@@ -1,6 +1,15 @@
 # Created by https://www.toptal.com/developers/gitignore/api/java,eclipse
 # Edit at https://www.toptal.com/developers/gitignore?templates=java,eclipse
 
+mybatis-config.xml
+log4j.xml
+
+lecture
+target
+pom.properties
+.classpath
+MANIFEST.MF
+
 ### Eclipse ###
 .metadata
 bin/
@@ -13,7 +22,6 @@ local.properties
 .settings/
 .loadpath
 .recommenders
-.classpath
 
 # External tool builders
 .externalToolBuilders/
