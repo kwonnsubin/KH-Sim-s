@@ -12,6 +12,6 @@
 <P>  The time on the server is ${serverTime}. </P>
 
 
-git -test
+git -test2
 </body>
 </html>
