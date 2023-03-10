@@ -22,6 +22,11 @@ local.properties
 .settings/
 .loadpath
 .recommenders
+*.class
+build/
+target/
+properties/
+
 
 # External tool builders
 .externalToolBuilders/
@@ -90,6 +95,7 @@ local.properties
 .mtj.tmp/
 
 # Package Files #
+*.jar
 *.war
 *.nar
 *.ear
