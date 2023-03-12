@@ -1,4 +1,4 @@
-package kh.finalproject.sims.apiTest;
+package kh.finalproject.sims.apiTest.kakao;
 
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
