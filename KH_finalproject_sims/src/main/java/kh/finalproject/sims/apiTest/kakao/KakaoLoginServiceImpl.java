@@ -10,18 +10,21 @@ import java.net.URL;
 import java.util.HashMap;
 import java.util.Map;
 
-import org.springframework.beans.factory.annotation.Autowired;
+
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.PropertySource;
 import org.springframework.stereotype.Service;
 
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.google.gson.JsonElement;
-import com.google.gson.JsonParser;
 
 @Service
 public class KakaoLoginServiceImpl implements KakaoLoginService {
-
-
+	
+	@Value("#{apikey['apikey.kakao']}")
+	private String kakaoKey;
+	
 	@Override
 	public String getAccessToken(String authorize_code) throws Exception {
 		String access_Token = "";
@@ -42,7 +45,7 @@ public class KakaoLoginServiceImpl implements KakaoLoginService {
 			StringBuilder sb = new StringBuilder();
 			sb.append("grant_type=authorization_code");
 
-			sb.append("&client_id=1f31ab8f5ec75fbb3903bae470cf8920"); // REST_API키 본인이 발급받은 key 넣어주기
+			sb.append("&client_id=" + kakaoKey); // REST_API키 본인이 발급받은 key 넣어주기
 			sb.append("&redirect_uri=http://localhost:8080/sims/kakaoLogin"); // REDIRECT_URI 본인이 설정한 주소 넣어주기
 
 			sb.append("&code=" + authorize_code);

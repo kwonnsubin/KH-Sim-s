@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib uri="http://www.springframework.org/tags" prefix="spring" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -69,7 +70,7 @@ a {
 <body>
 <div class="wrap">
    <div class="title">로그인</div>
-     <a class="kakao" href="https://kauth.kakao.com/oauth/authorize?client_id=1f31ab8f5ec75fbb3903bae470cf8920&redirect_uri=http://localhost:8080/sims/kakaoLogin&response_type=code">
+     <a class="kakao" href="https://kauth.kakao.com/oauth/authorize?client_id=<spring:eval expression="@apikey['apikey.kakao']"/>&redirect_uri=http://localhost:8080/sims/kakaoLogin&response_type=code">
      	<!-- REST_API키 및 REDIRECT_URI는 본인걸로 수정하세요 -->
         
       	<div class="kakao_i"></div>
