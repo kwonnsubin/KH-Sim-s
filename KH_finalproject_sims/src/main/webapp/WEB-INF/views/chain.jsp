@@ -766,7 +766,7 @@ https://templatemo.com/tm-570-chain-app-dev
 		})();
 
 		ChannelIO('boot', {
-			"pluginKey" : "6595e926-9f79-4132-92ea-772c735d16d5"
+			"pluginKey" : "플러그인 키 properties로"
 		});
 	</script>
 </body>
