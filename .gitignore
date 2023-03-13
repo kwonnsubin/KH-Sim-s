@@ -4,10 +4,8 @@
 mybatis-config.xml
 log4j.xml
 
-lecture
-target
+lecture/
 pom.properties
-.classpath
 MANIFEST.MF
 
 ### Eclipse ###
@@ -19,7 +17,6 @@ tmp/
 *.swp
 *~.nib
 local.properties
-.settings/
 .loadpath
 .recommenders
 *.class
