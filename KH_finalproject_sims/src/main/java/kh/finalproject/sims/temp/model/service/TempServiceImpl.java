@@ -41,7 +41,7 @@ public class TempServiceImpl implements TempService {
 	@Override
 	public List<TempVo> selectList() throws Exception {
 		
-		return null;
+		return dao.selectList();
 	}
 
 }

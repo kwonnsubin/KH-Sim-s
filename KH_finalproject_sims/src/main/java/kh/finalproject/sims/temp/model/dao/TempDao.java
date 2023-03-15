@@ -34,7 +34,7 @@ public class TempDao {
 	}
 	
 	public List<TempVo> selectList() throws Exception {
-		return sqlSession.selectList("temp.selectListId");
+		return sqlSession.selectList("temp.selectListTest");
 	}
 
 }

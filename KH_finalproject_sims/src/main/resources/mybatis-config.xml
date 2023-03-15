@@ -6,11 +6,10 @@
 		<setting name="jdbcTypeForNull" value="NULL"/>
 	</settings>
 	
-	<!-- 
+	
 	<typeAliases>
-		<typeAlias type=" " alias=" "/>
+		<typeAlias type="kh.finalproject.sims.temp.model.vo.TempVo" alias="tvo"/>
 	</typeAliases>
-	 -->
 	 
 	<mappers>
 		<mapper resource="mappers/temp-mapper.xml"/>

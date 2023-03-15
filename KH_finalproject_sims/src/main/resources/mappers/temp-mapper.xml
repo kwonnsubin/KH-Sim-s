@@ -14,9 +14,10 @@
 	
 	<select id="">
 	</select>
-	
-	<select id="">
-	</select>
 	 -->
+	
+	<select id="selectListTest" resultType="tvo">
+		select * from test_member
+	</select>
 	
 </mapper>
