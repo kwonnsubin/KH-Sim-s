@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="plan">
+
+	<insert id="insertPlanData" parameterType="map">
+		insert into plan_table values(plan_seq.nextval, #{chargeName}, #{telecomName}, null
+    		, #{bizName}, #{telecomGenerationType}, #{chargeDiv}, #{chargeAmount}, #{voiceAmount}
+    		, #{messageAmount}, #{dataAmount}, #{overVoiceAmtUnit}, #{overMessageAmtUnit}, #{overDataAmtUnit})
+	</insert>
+	
+</mapper>

@@ -13,5 +13,6 @@
 	 
 	<mappers>
 		<mapper resource="mappers/temp-mapper.xml"/>
+		<mapper resource="mappers/plan-mapper.xml"/>
 	</mappers>
 </configuration>
