@@ -4,7 +4,7 @@
 
 	<insert id="insertPlanData" parameterType="map">
 		insert into plan_table values(plan_seq.nextval, #{chargeName}, #{telecomName}, null
-    		, #{bizName}, #{telecomGenerationType}, #{chargeDiv}, #{chargeAmount}, #{voiceAmount}
+    		, #{bizName}, #{telecomGenerationType}, #{chargeAmount}, #{voiceAmount}
     		, #{messageAmount}, #{dataAmount}, #{overVoiceAmtUnit}, #{overMessageAmtUnit}, #{overDataAmtUnit})
 	</insert>
 	
