@@ -69,6 +69,20 @@ public class BizVo {
 	private Date updateDate;
 	private String logoRenameFilename;
 	
+	
+	@Override
+	public String toString() {
+		return "BizVo [bizNo=" + bizNo + ", bizName=" + bizName + ", bizSsn=" + bizSsn + ", bizCrn=" + bizCrn
+				+ ", bizId=" + bizId + ", bizPw=" + bizPw + ", bizEmail=" + bizEmail + ", bizPhone=" + bizPhone
+				+ ", bizFax=" + bizFax + ", bizOwnerName=" + bizOwnerName + ", bizHip=" + bizHip + ", bizLocation="
+				+ bizLocation + ", bizCardPayDate=" + bizCardPayDate + ", bizAccPayDate=" + bizAccPayDate
+				+ ", bizCertify=" + bizCertify + ", bizBeginTime=" + bizBeginTime + ", bizEndTime=" + bizEndTime
+				+ ", bizClosedDay=" + bizClosedDay + ", serviceSKT=" + serviceSKT + ", serviceKT=" + serviceKT
+				+ ", serviceLGU=" + serviceLGU + ", paymentCard=" + paymentCard + ", paymentAcc=" + paymentAcc
+				+ ", bizReviewStar=" + bizReviewStar + ", phoneOpTime=" + phoneOpTime + ", phoneOpTimeUsim="
+				+ phoneOpTimeUsim + ", network=" + network + ", writeDate=" + writeDate + ", updateDate=" + updateDate
+				+ ", logoRenameFilename=" + logoRenameFilename + "]";
+	}
 	public BizVo() {}
 	public BizVo(int bizNo, String bizName, String bizSsn, String bizCrn, String bizId, String bizPw, String bizEmail,
 			String bizPhone, String bizFax, String bizOwnerName, String bizHip, String bizLocation,
