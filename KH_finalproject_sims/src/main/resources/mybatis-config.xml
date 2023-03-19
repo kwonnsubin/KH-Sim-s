@@ -9,10 +9,12 @@
 	
 	<typeAliases>
 		<typeAlias type="kh.finalproject.sims.temp.model.vo.TempVo" alias="tvo"/>
+		<typeAlias type="kh.finalproject.sims.biz.model.vo.BizVo" alias="bvo"/>
 	</typeAliases>
 	 
 	<mappers>
 		<mapper resource="mappers/temp-mapper.xml"/>
 		<mapper resource="mappers/plan-mapper.xml"/>
+		<mapper resource="mappers/biz-mapper.xml"/>
 	</mappers>
 </configuration>
