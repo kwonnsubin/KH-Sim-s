@@ -3,9 +3,17 @@
 <mapper namespace="plan">
 
 	<insert id="insertPlanData" parameterType="map">
-		insert into plan_table values(plan_seq.nextval, #{chargeName}, #{telecomName}, null
-    		, #{bizName}, #{telecomGenerationType}, #{chargeAmount}, #{voiceAmount}
-    		, #{messageAmount}, #{dataAmount}, #{overVoiceAmtUnit}, #{overMessageAmtUnit}, #{overDataAmtUnit})
+		insert into plan_table values(plan_seq.nextval, #{chargeName}
+			, (select biz_no from biz where biz_name = #{bizName})
+			, (select net_no from network_table where net_name = #{telecomName})
+	    	, (select gen_no from tel_gen_table where gen_name = 
+	    	<choose>
+	    		<when test='telecomGenerationType eq "3G / LTE 모두가능"'>'LTE/3G'</when>
+	    		<otherwise>#{telecomGenerationType}</otherwise>
+	    	</choose>
+	    	)
+	    	, #{chargeAmount}, #{voiceAmount}, #{messageAmount}, #{dataAmount}
+	    	, #{overVoiceAmtUnit}, #{overMessageAmtUnit}, #{overDataAmtUnit})
 	</insert>
 	
 </mapper>

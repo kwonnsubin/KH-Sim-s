@@ -6,10 +6,7 @@ import java.net.URL;
 import java.net.URLEncoder;
 import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
-import java.util.Set;
-import java.util.Map.Entry;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
@@ -20,10 +17,8 @@ import org.springframework.web.servlet.ModelAndView;
 import com.google.gson.Gson;
 
 import kh.finalproject.sims.apiTest.dao.FeeApiDao;
-import kh.finalproject.sims.apiTest.dto.ChargeDto;
 
 import java.io.BufferedReader;
-import java.io.FileInputStream;
 
 @Controller
 public class FeeApiController {
@@ -73,7 +68,7 @@ public class FeeApiController {
 //	        System.out.println("######");
 //	        System.out.println(dto);
 	        
-	        ChargeDto chargeDto = new ChargeDto();
+//	        ChargeDto chargeDto = new ChargeDto();
 	        Map<String, Object> apiMap = new HashMap<String, Object>();
 	        
 	        apiMap = (Map)gson.fromJson(sb.toString(), apiMap.getClass());
