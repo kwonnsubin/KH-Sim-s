@@ -203,3 +203,14 @@ INSERT INTO BIZ VALUES (BIZ_SEQ.NEXTVAL,
 
 SELECT * FROM BIZ;
 commit; 
+
+-- 통신망, 이동통신세대 테이블 정보 입력
+insert all
+    into network_table values(1, 'KT')
+    into network_table values(2, 'SKT')
+    into network_table values(3, 'LG')
+    into TEL_GEN_TABLE values(1, '5G')
+    into TEL_GEN_TABLE values(2, 'LTE')
+    into TEL_GEN_TABLE values(3, 'LTE/3G')
+    into TEL_GEN_TABLE values(4, '3G')
+select * from dual;

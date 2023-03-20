@@ -50,3 +50,15 @@ CREATE SEQUENCE BIZ_SEQ
 
 
 desc biz;
+
+-- 통신망 테이블
+create table NETWORK_TABLE (
+    NET_NO NUMBER primary key,
+    NET_NAME VARCHAR(20)
+);
+
+-- 이동통신세대 테이블
+create table TEL_GEN_TABLE (
+    GEN_NO NUMBER primary key,
+    GEN_NAME VARCHAR(10)
+);
