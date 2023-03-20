@@ -23,6 +23,7 @@ local.properties
 build/
 target/
 properties/
+.project
 
 
 # External tool builders
