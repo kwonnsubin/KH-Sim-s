@@ -327,3 +327,42 @@ insert into biz_network values (9,3,'1600-5281');
 insert into biz_network values (10,1,'1877-9114');
 insert into biz_network values (10,2,'1811-1141');
 insert into biz_network values (10,3,'1533-7114');
+
+-- 사용자
+SELECT * FROM USER_TABLE;
+
+INSERT INTO USER_TABLE (
+	USER_NO, USER_ID, USER_PW, USER_NAME,
+	USER_SSN, USER_STATUS, USER_WR_DATE,
+	USER_GENDER, USER_PHONE, USER_EMAIL) 
+	VALUES(
+	USER_NO_SEQ.NEXTVAL,
+	'test1', 'test1', '사용자1', '123456-1234567',
+	'N', SYSDATE, 'M', '010-1234-5678',
+	'test@sims.co.kr');
+
+INSERT INTO USER_TABLE (
+	USER_NO, USER_ID, USER_PW, USER_NAME,
+	USER_SSN, USER_STATUS, USER_WR_DATE,
+	USER_GENDER, USER_PHONE, USER_EMAIL)
+	VALUES(
+	USER_NO_SEQ.NEXTVAL,
+	'user2', 'user2', '사용자2', '901010-2345678',
+	'N', SYSDATE, 'F', '010-2345-6789',
+	'user2@sims.co.kr');
+
+-- 관리자
+SELECT * FROM ADMIN;
+
+INSERT INTO ADMIN VALUES('admin','admin'); 
+
+-- 요금제 조회
+SELECT * FROM VIEW_TABLE;
+
+INSERT INTO VIEW_TABLE VALUES(1, 2, SYSDATE);
+INSERT INTO VIEW_TABLE VALUES(2, 1, SYSDATE);
+
+-- 찜하기
+SELECT * FROM LIKE_TABLE;
+
+INSERT INTO LIKE_TABLE VALUES(1, 1, SYSDATE, 'Y');
