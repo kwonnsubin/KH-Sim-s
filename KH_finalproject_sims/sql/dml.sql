@@ -289,3 +289,41 @@ INSERT INTO BIZ VALUES (
 
 SELECT * FROM BIZ;
 commit; 
+
+--통신사통신망(고객센터번호) 테이블 데이터
+insert into biz_network values (1,1,'1877-7540');
+insert into biz_network values (1,2,'1877-7784');
+insert into biz_network values (1,3,'1877-7030');
+
+insert into biz_network values (2,1,'1899-7700');
+insert into biz_network values (2,3,'1899-7800');
+
+insert into biz_network values (3,1,'1800-6200');
+insert into biz_network values (3,2,'1800-6100');
+insert into biz_network values (3,3,'1800-4100');
+
+
+insert into biz_network values (4,1,'1855-1144');
+insert into biz_network values (4,2,'1855-2114');
+
+insert into biz_network values (5,1,'1661-5146');
+insert into biz_network values (5,3,'1661-5646');
+
+insert into biz_network values (6,1,'1688-8466');
+
+
+insert into biz_network values (7,1,'1899-3666');
+insert into biz_network values (7,2,'1666-9980');
+insert into biz_network values (7,3,'1688-2964');
+
+insert into biz_network values (8,1,'1661-2207');
+insert into biz_network values (8,2,'1577-4551');
+insert into biz_network values (8,3,'1588-3615');
+
+insert into biz_network values (9,1,'1670-9114');
+insert into biz_network values (9,2,'1877-5281');
+insert into biz_network values (9,3,'1600-5281');
+
+insert into biz_network values (10,1,'1877-9114');
+insert into biz_network values (10,2,'1811-1141');
+insert into biz_network values (10,3,'1533-7114');
