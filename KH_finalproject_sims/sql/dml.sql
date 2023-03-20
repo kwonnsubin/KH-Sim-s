@@ -341,3 +341,11 @@ INSERT INTO VIEW_TABLE VALUES(2, 1, SYSDATE);
 SELECT * FROM LIKE_TABLE;
 
 INSERT INTO LIKE_TABLE VALUES(1, 1, SYSDATE, 'Y');
+
+--질문/답변 게시판
+
+--질문/답변 게시판 답변 테이블
+insert into qna_ans values(QNA_ANS_SEQ.nextval,'그냥 nfc 기능 없는 무료 유심으로 신청해서 개통하세요. 그게 제일 나아요.', 1, default, null, 2 );
+
+--질문/답변 게시판 답변의 댓글 테이블
+insert into qna_rpl values (QNA_RPL_SEQ.nextval, 1, 3, default, null, '무료유심이라 하면 개통 신청할 때 배송되는 유심 말씀하시는건가요?');
