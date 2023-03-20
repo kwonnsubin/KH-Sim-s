@@ -16,10 +16,7 @@ INSERT INTO BIZ VALUES (BIZ_SEQ.NEXTVAL,
                         '9:00',
                         '18:00',
                         '토,일,공휴일',
-                        '1877-7784',
-                        '1877-7540',
-                        '1877-7030',
-                        '4.4',
+                        4.4,
                         '평균 2일',
                         '평균 0.2일',
                         'SK망,KT망,LG망',
@@ -44,10 +41,7 @@ INSERT INTO BIZ VALUES (BIZ_SEQ.NEXTVAL,
                         '9:00',
                         '18:00',
                         '토,일,공휴일',
-                        NULL,
-                        '1688-8466',
-                         NULL,
-                        '3.9',
+                        3.9,
                         '평균 1일',
                         '평균 1일',
                         'KT망',
@@ -72,10 +66,7 @@ INSERT INTO BIZ VALUES (BIZ_SEQ.NEXTVAL,
                         '9:00',
                         '18:00',
                         '토,일,공휴일',
-                        '1899-3666',
-                        '1666-9980',
-                        '1688-2964',
-                        '4.4',
+                        4.4,
                         '평균 2.9일',
                         '평균 0.4일',
                         'SK망,KT망,LG망',
@@ -100,10 +91,7 @@ INSERT INTO BIZ VALUES (BIZ_SEQ.NEXTVAL,
                         '9:00',
                         '18:00',
                         '토,일,공휴일',
-                        '1661-2207',
-                        '1577-4551',
-                        '1588-3615',
-                        '4.5',
+                        4.5,
                         '평균 2일',
                         '평균 0.5일',
                         'SK망,KT망,LG망',
@@ -128,10 +116,7 @@ INSERT INTO BIZ VALUES (BIZ_SEQ.NEXTVAL,
                         '9:00',
                         '18:00',
                         '토,일,공휴일',
-                        null,
-                        '1661-5146',
-                        '1661-5647',
-                        '3.8',
+                        3.8,
                         '평균 3일',
                         '평균 1.8일',
                         'KT망,LG망',
@@ -157,10 +142,7 @@ INSERT INTO BIZ VALUES (BIZ_SEQ.NEXTVAL,
                         '9:00',
                         '18:00',
                         '토,일,공휴일',
-                        '1670-9114',
-                        '1877-5281',
-                        '1600-5281',
-                        '4.2',
+                        4.2,
                         '평균 2.9일',
                         '평균 0.4일',
                         'SK망,KT망,LG망',
@@ -186,10 +168,7 @@ INSERT INTO BIZ VALUES (BIZ_SEQ.NEXTVAL,
                         '9:00',
                         '18:00',
                         '토,일,공휴일',
-                        '1877-9114',
-                        '1811-1141',
-                        '1533-7114',
-                        '4.3',
+                        4.3,
                         '평균 2일',
                         '평균 0.7일',
                         'SK망,KT망,LG망',
@@ -215,9 +194,6 @@ INSERT INTO BIZ VALUES (
     '9:30',
     '18:00',
     '토,일,공휴일',
-    NULL,
-    '1899-7700',
-    '1899-7800',
     4.3,
     '평균 2일',
     '평균 0.2일',
@@ -245,9 +221,6 @@ INSERT INTO BIZ VALUES (
     '9:00',
     '18:00',
     '토,일,공휴일',
-    '1800-6100',
-    '1800-6200',
-    '1800-4100',
     4.1,
     '평균 1일',
     '평균 1일',
@@ -275,9 +248,6 @@ INSERT INTO BIZ VALUES (
     '9:00',
     '18:30',
     '일, 공휴일',
-    '1855-2114',
-    '1855-1144',
-    NULL,
     4.2,
     '평균 2일',
     '평균 0.8일',
@@ -296,6 +266,7 @@ insert into biz_network values (1,2,'1877-7784');
 insert into biz_network values (1,3,'1877-7030');
 
 insert into biz_network values (2,1,'1899-7700');
+insert into biz_network values (2,2,null);
 insert into biz_network values (2,3,'1899-7800');
 
 insert into biz_network values (3,1,'1800-6200');
@@ -305,11 +276,15 @@ insert into biz_network values (3,3,'1800-4100');
 
 insert into biz_network values (4,1,'1855-1144');
 insert into biz_network values (4,2,'1855-2114');
+insert into biz_network values (4,3,null);
 
 insert into biz_network values (5,1,'1661-5146');
+insert into biz_network values (5,2,null);
 insert into biz_network values (5,3,'1661-5646');
 
 insert into biz_network values (6,1,'1688-8466');
+insert into biz_network values (6,2,null);
+insert into biz_network values (6,3,null);
 
 
 insert into biz_network values (7,1,'1899-3666');
