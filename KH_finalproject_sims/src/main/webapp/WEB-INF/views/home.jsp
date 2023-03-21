@@ -29,13 +29,6 @@
 
 	<jsp:include page="header.jsp"/>
 	
-	<h1>
-		Hello world!  
-	</h1>
-	 <!-- p -->
-	
-	git -test2
-	
 	<jsp:include page="footer.jsp"/>
 	
   <!-- Scripts -->

@@ -11,7 +11,6 @@
 		<s:intercept-url pattern="/login" access="permitAll"/>
 		<s:intercept-url pattern="/chain/**" access="permitAll"/>
 		<s:intercept-url pattern="/admin/login" access="permitAll"/>
-		<s:intercept-url pattern="/admin/logout" access="permitAll"/>
 		<s:intercept-url pattern="/admin/**" access="hasRole('ROLE_ADMIN')"/>
 		
 		<s:form-login login-page="/login"
