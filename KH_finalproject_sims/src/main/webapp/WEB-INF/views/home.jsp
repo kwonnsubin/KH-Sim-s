@@ -38,6 +38,8 @@
 	
 	git -test2
 	
+	<jsp:include page="footer.jsp"/>
+	
   <!-- Scripts -->
   <script src="<%= request.getContextPath() %>/resources/chain/vendor/jquery/jquery.min.js"></script>
   <script src="<%= request.getContextPath() %>/resources/chain/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
