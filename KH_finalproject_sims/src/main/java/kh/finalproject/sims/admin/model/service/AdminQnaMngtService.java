@@ -8,4 +8,6 @@ public interface AdminQnaMngtService {
 	
 	public List<AdminQnaMngtVo> selectFaqList();
 	
+	public List<AdminQnaMngtVo> selectFaqDetail(int faqNo);
+	
 }

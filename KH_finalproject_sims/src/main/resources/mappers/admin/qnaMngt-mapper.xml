@@ -16,4 +16,14 @@
 		FROM FAQ
     	WHERE FAQ_NO = #{faqNo}
 	</select>
+	
+<!-- 	<insert id="">
+		INSERT INTO FAQ (FAQ_NO, FAQ_TITLE, FAQ_CONTENT, ADMIN_ID) VALUES(
+	    FAQ_NO_SEQ.NEXTVAL,
+	    #{faqTitle},
+	    #{faqContent},
+	    'admin'
+	);
+	
+	</insert> -->
 </mapper>

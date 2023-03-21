@@ -18,8 +18,8 @@ public class AdminQnaMngtDao {
 		return sqlSession.selectList("admin.selectQnaList");
 	}
 	
-//	public List<AdminQnaMngtVo> selectFaqDetail() {
-//		return sqlSession.selectList(statement, parameter)		
-//	}
+	public List<AdminQnaMngtVo> selectFaqDetail(int faqNo) {
+		return sqlSession.selectList("admin.selectFaqDetail", faqNo);
+	}
 	
 }

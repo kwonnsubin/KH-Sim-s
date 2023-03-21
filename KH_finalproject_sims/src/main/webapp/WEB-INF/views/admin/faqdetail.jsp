@@ -13,27 +13,13 @@
 <body>
 	<div class="container mb-5 mt-6 w-75">
 		<!-- 게시판 상세글 -->
-		<c:forEach var="boardList" items="${boardList }">
+		<c:forEach var="faqlist" items="${faqcontents }">
 				<div>
-					<h3>${boardList.title }</h3>
+					<h3>${faqlist.faqTitle }</h3>
 				</div>
 				<div class="mb-44">
-					<div class="row  bg-light  " style="height:50px;">
-						<div class="d-inline col-3  ">
-							<div class="d-inline">분류</div>
-							<div class="d-inline">${boardList.category }</div>
-						</div>
-						<div class="d-inline col-3  ">
-							<div class="d-inline">작성자</div>
-							<div class="d-inline">${boardList.writer }</div>
-						</div>
-						<div class="d-inline col ">
-							<div class="d-inline">작성일</div>
-							<div class="d-inline">${boardList.regdate }</div>
-						</div>
-					</div>
 					<div class="row  w-auto " style="width:1000px; height:300px;">
-						<p class="col">${boardList.content }</p>
+						<p class="col">${faqlist.faqContent }</p>
 					</div>
 				</div>
 		</c:forEach>

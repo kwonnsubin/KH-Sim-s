@@ -13,9 +13,16 @@ public class AdminQnaMngtServiceImpl implements AdminQnaMngtService{
 	@Autowired
 	AdminQnaMngtDao dao;
 	
+	// 자주묻는질문 목록
 	@Override
 	public List<AdminQnaMngtVo> selectFaqList() {
 		return dao.selectQnaList();
+	}
+
+	// 자주묻는질문 상세보기
+	@Override
+	public List<AdminQnaMngtVo> selectFaqDetail(int faqNo) {
+		return dao.selectFaqDetail(faqNo);
 	}
 
 }

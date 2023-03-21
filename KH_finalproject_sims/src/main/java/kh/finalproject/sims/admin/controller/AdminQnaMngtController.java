@@ -4,6 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
@@ -21,17 +22,30 @@ public class AdminQnaMngtController {
 	public ModelAndView selectFaqList(ModelAndView mv) {
 		mv.addObject("faqlist", service.selectFaqList());
 		mv.setViewName("admin/faqlist");
-		return mv;
-		
+		return mv;	
 	}
 	
 	// 자주 묻는 질문 화면 상세보기
-//	@GetMapping("/faqdetail/{faqNo}")
-//	public ModelAndView selectQnaListDetail(
-//			ModelAndView mv,
-//			@PathVariable int faqNo
-//			) {
-//		
-//	}
+	@GetMapping("/faqdetail/{faqNo}")
+	public ModelAndView selectQnaListDetail(
+			ModelAndView mv,
+			@PathVariable int faqNo
+			) {
+		mv.addObject("faqcontents", service.selectFaqDetail(faqNo));
+		mv.setViewName("admin/faqdetail");
+		return mv;
+	}
+	
+	// 자주 묻는 질문 화면 작성하기
+	@GetMapping("/faqwrite")
+	public ModelAndView viewInsertfaq(
+			ModelAndView mv
+			) {
+		mv.setViewName("admin/faqwrite");
+		return mv;
+	}
+	
+//	@PostMapping("/faqwrite")
+		
 			
 }
