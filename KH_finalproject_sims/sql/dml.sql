@@ -285,25 +285,16 @@ insert into biz_network values (10,3,'1533-7114');
 -- 사용자
 SELECT * FROM USER_TABLE;
 
-INSERT INTO USER_TABLE (
-	USER_NO, USER_ID, USER_PW, USER_NAME,
-	USER_SSN, USER_STATUS, USER_WR_DATE,
-	USER_GENDER, USER_PHONE, USER_EMAIL) 
-	VALUES(
-	USER_NO_SEQ.NEXTVAL,
-	'test1', 'test1', '사용자1', '123456-1234567',
-	'N', SYSDATE, 'M', '010-1234-5678',
-	'test@sims.co.kr');
-
-INSERT INTO USER_TABLE (
-	USER_NO, USER_ID, USER_PW, USER_NAME,
-	USER_SSN, USER_STATUS, USER_WR_DATE,
-	USER_GENDER, USER_PHONE, USER_EMAIL)
-	VALUES(
-	USER_NO_SEQ.NEXTVAL,
-	'user2', 'user2', '사용자2', '901010-2345678',
-	'N', SYSDATE, 'F', '010-2345-6789',
-	'user2@sims.co.kr');
+insert into user_table values ('user1'
+                              , '김철수'
+                              , '890125-1245353'
+                              , sysdate
+                              , null
+                              , 'M'
+                              , '010-5024-9201'
+                              , 'gildong@gmail.com'
+                              , '서울특별시 영등포구'
+);
 
 -- 관리자
 SELECT * FROM ADMIN;
@@ -387,3 +378,14 @@ insert into member values ('unicomz', 'unicomz', 'ROLE_BIZ', 1);
 insert into member values ('inscobee', 'inscobee', 'ROLE_BIZ', 1);
 insert into member values ('eyagi', 'eyagi', 'ROLE_BIZ', 1);
 insert into member values ('kcttel', 'kcttel', 'ROLE_BIZ', 1);
+
+--통신사 리뷰 
+INSERT INTO BIZ_REVIEW VALUES (BIZ_REVIEW_SEQ.NEXTVAL
+                               , '통신사 멤버쉽 등을 이용하지 않는 입장에서는 이용료가 저렴한게 제일입니다. 
+                                  같은 망을 사용하니 품질 차이도 있을 리 없고, 딱히 불편한 점은 없었습니다.'
+                                , DEFAULT
+                                , NULL
+                                , 5
+                                , 'user1'
+                                , 'kctv'
+);
