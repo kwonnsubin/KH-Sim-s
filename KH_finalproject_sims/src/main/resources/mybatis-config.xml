@@ -10,11 +10,15 @@
 	<typeAliases>
 		<typeAlias type="kh.finalproject.sims.temp.model.vo.TempVo" alias="tvo"/>
 		<typeAlias type="kh.finalproject.sims.biz.model.vo.BizVo" alias="bvo"/>
+		<typeAlias type="kh.finalproject.sims.admin.model.vo.AdminLoginVo" alias="adLvo"/>
+		<typeAlias type="kh.finalproject.sims.admin.model.vo.AdminQnaMngtVo" alias="adQvo"/>
 	</typeAliases>
 	 
 	<mappers>
 		<mapper resource="mappers/temp-mapper.xml"/>
 		<mapper resource="mappers/plan-mapper.xml"/>
 		<mapper resource="mappers/biz-mapper.xml"/>
+		<mapper resource="mappers/admin/login-mapper.xml"/>
+		<mapper resource="mappers/admin/qnaMngt-mapper.xml"/>
 	</mappers>
 </configuration>
