@@ -42,4 +42,13 @@ public class HomeController {
 		return "chain";
 	}
 	
+	@GetMapping("/admin")
+	public String admin() {
+		return "admin";
+	}
+	
+	@GetMapping("/login")
+	public String login() {
+		return "login";
+	}
 }

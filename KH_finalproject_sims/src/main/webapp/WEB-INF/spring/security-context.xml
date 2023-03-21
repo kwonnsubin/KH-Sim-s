@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:s="http://www.springframework.org/schema/security"
+	xsi:schemaLocation="http://www.springframework.org/schema/security http://www.springframework.org/schema/security/spring-security.xsd
+		http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd">
+	
+	<s:http auto-config="true" use-expressions="true">
+		<s:intercept-url pattern="/login" access="permitAll"/>
+		<s:intercept-url pattern="/chain/**" access="permitAll"/>
+		<s:intercept-url pattern="/admin/login" access="permitAll"/>
+		<s:intercept-url pattern="/admin/logout" access="permitAll"/>
+		<s:intercept-url pattern="/admin/**" access="hasRole('ROLE_ADMIN')"/>
+		
+		<s:form-login login-page="/login"
+                default-target-url="/"
+                authentication-failure-url="/login?error"
+                username-parameter="id"
+                password-parameter="password" />
+		<s:logout logout-url="/logout" logout-success-url="/" />
+		
+		<s:access-denied-handler error-page="/"/>
+	</s:http>
+	
+	<!-- 	
+	<s:authentication-manager>
+		<s:authentication-provider>
+			<s:user-service>
+				<s:user name="user" password="user" authorities="ROLE_USER"/>
+				<s:user name="admin" password="admin" authorities="ROLE_USER, ROLE_ADMIN"/>
+			</s:user-service>
+		</s:authentication-provider>
+	</s:authentication-manager>
+	 -->
+	<s:authentication-manager>
+	    <s:authentication-provider>
+	        <s:jdbc-user-service
+	            data-source-ref="dataSource"
+	            users-by-username-query="select id username, pw password, enable from member where id=?"
+	            authorities-by-username-query="select id username, role authority from member where id=?"
+	        />
+	    </s:authentication-provider>
+	</s:authentication-manager>
+	 
+</beans>
