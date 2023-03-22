@@ -8,7 +8,7 @@
 		from faq
 	</select>
 	
-	<select id="selectOne" resultType="usFaqvo">
+	<select id="selectFaqDetail" resultType="usFaqvo">
 		select faq_no,
 		faq_title,
 		faq_content

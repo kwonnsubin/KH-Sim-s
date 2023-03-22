@@ -8,6 +8,6 @@ public interface UserFaqService {
 
 	public List<UserFaqVo> selectFaqList();
 	
-	public UserFaqVo selectFaqDetail(int faqNo);
+	public List<UserFaqVo> selectFaqDetail(int faqNo);
 
 }

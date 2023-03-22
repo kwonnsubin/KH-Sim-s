@@ -42,5 +42,6 @@ public class UserFaqController {
 		mv.setViewName("user/faqread");
 		return mv;
 	}
-       
+	
+	
 }

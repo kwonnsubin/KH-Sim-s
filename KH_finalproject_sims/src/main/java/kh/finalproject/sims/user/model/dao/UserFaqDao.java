@@ -19,8 +19,8 @@ public class UserFaqDao {
 		return session.selectList("faq.selectFaqList");
 	};
 	
-	public UserFaqVo selectFaqDetail(int faqNo) {
-		return session.selectOne("faq.selectOne");
+	public List<UserFaqVo> selectFaqDetail(int faqNo) {
+		return session.selectList("faq.selectFaqDetail", faqNo);
 	}
 	
 	

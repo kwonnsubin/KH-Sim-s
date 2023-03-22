@@ -23,7 +23,7 @@
 				<tbody>
 					<tr>
 						<td class="text-center">${faq.faqNo}</td>
-						<td class="text-center"><a href="<%=request.getContextPath()%>/faq/read/${faq.faqNo}">${faq.faqTitle}</a></td>
+						<td class="text-center"><a href="<%=request.getContextPath()%>/faq/faqread/${faq.faqNo}">${faq.faqTitle}</a></td>
 					</tr>
 				</tbody>
  			</c:forEach>
