@@ -2,6 +2,18 @@
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
+<!-- ***** Preloader Start ***** -->
+ <div id="js-preloader" class="js-preloader">
+   <div class="preloader-inner">
+     <span class="dot"></span>
+     <div class="dots">
+       <span></span>
+       <span></span>
+       <span></span>
+     </div>
+   </div>
+ </div>
+  
 <header class="header-area header-sticky wow slideInDown" data-wow-duration="0.75s" data-wow-delay="0s">
 	<div class="container">
 		<div class="row">
@@ -18,7 +30,7 @@
 						<li><a href="<%=request.getContextPath()%>/">요금제 찾기</a></li>
 						<li><a href="<%=request.getContextPath()%>/faq/faqlist">자주 묻는 질문</a></li>
 						<sec:authorize access="isAnonymous()">
-						<li> <a href="<%=request.getContextPath()%>/login">로그인 </a> </li>
+						<li><a href="<%=request.getContextPath()%>/login">로그인 </a></li>
 						</sec:authorize>
 						<sec:authorize access="isAuthenticated()">
 						<form:form action="${pageContext.request.contextPath}/logout" method="POST">
@@ -27,11 +39,9 @@
 						</sec:authorize>
 						<li><a href="<%=request.getContextPath()%>/">마이페이지</a></li>
 					</ul>
-					<a class='menu-trigger'> <span>Menu</span>
-					</a>
-					<!-- ***** Menu End ***** -->
 				</nav>
 			</div>
 		</div>
 	</div>
 </header>
+
