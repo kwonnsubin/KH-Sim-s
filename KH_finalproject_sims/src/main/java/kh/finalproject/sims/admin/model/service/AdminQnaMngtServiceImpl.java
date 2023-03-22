@@ -25,4 +25,14 @@ public class AdminQnaMngtServiceImpl implements AdminQnaMngtService{
 		return dao.selectFaqDetail(faqNo);
 	}
 
+	@Override
+	public int insertFaqWrite(AdminQnaMngtVo vo) {
+		return dao.insertFaqWrite(vo);
+	}
+
+	@Override
+	public int selectFaqModify(AdminQnaMngtVo vo) {
+		return dao.selectFaqModify(vo);
+	}
+
 }

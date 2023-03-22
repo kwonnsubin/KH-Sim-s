@@ -12,6 +12,7 @@ public class AdminLoginDao {
 	@Autowired
 	private SqlSession sqlSession;
 	
+	// 관리자 로그인
 	public AdminLoginVo doLogin(AdminLoginVo vo) {
 		return sqlSession.selectOne("admin.login",vo);
 	}
