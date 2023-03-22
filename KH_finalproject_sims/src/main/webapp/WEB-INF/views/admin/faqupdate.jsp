@@ -13,15 +13,14 @@
 </head>
 <body>
 	<div class="container">
-	
-		<form:form action="faqwrite" method="post">
+		<form:form action="faqupdate" method="post">
 			<div class="mb-3 row">
 		   		<label for="inputPassword" class="col-sm-2 col-form-label">제목</label>
 		    	<div class="col-sm-10">
 		    		<input type="hidden" class="form-control" value="${username}" name="adminId">
 			      	<input type="text" class="form-control" name="faqTitle">
 		    	</div>
-		  	</div>	
+		  	</div>
 				<div class="mb-3">
 		  			<label for="exampleFormControlTextarea1" class="form-label "></label>
 		  			<textarea class="form-control" id="exampleFormControlTextarea1" rows="3" name="faqContent" style="height: 500px;"></textarea>
@@ -32,7 +31,7 @@
 						<button type="button" class="btn btn-outline-dark">돌아가기</button>		
 					</div>
 					<div class="col d-grid gap-2 d-md-flex justify-content-md-end">
-						<button type="submit" class="btn btn-outline-dark">완료</button>		
+						<button type="submit" class="btn btn-outline-dark">수정완료</button>		
 					</div>		
 				</div>
 		</form:form>

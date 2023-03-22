@@ -7,21 +7,20 @@
 <meta charset="UTF-8">
 <title>게시판 상세 페이지</title>
 <script src="https://code.jquery.com/jquery-3.6.3.js"></script>
-<link type="text/css" rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css">
-<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
 </head>
 <body>
 	<div class="container mb-5 mt-6 w-75">
-		<!-- 게시판 상세글 -->
 		<c:forEach var="faqlist" items="${faqcontents }">
-				<div>
-					<h3>${faqlist.faqTitle }</h3>
+			<a href="<%=request.getContextPath()%>/admin/faqupdate/${faqlist.faqNo}">수정</a>
+			<!-- 게시판 상세글 -->
+			<div>
+				<h3>${faqlist.faqTitle }</h3>
+			</div>
+			<div class="mb-44">
+				<div class="row  w-auto " style="width:1000px; height:300px;">
+					<p class="col">${faqlist.faqContent }</p>
 				</div>
-				<div class="mb-44">
-					<div class="row  w-auto " style="width:1000px; height:300px;">
-						<p class="col">${faqlist.faqContent }</p>
-					</div>
-				</div>
+			</div>
 		</c:forEach>
 	</div>
 </body>

@@ -3,27 +3,43 @@
 <mapper namespace="admin">
 	<select id="selectQnaList" resultType="adQvo">
 		SELECT FAQ_NO,
-		FAQ_TITLE,
-		FAQ_CONTENT,
-		ADMIN_ID,
-		FAQ_REWRITER
-		FROM FAQ
-		ORDER BY FAQ_NO DESC
+			FAQ_TITLE,
+			FAQ_CONTENT,
+			ADMIN_ID,
+			FAQ_REWRITER
+			FROM FAQ
+			ORDER BY FAQ_NO DESC
 	</select>
 	
+	<!-- 자주묻는질문 상세내용 -->
 	<select id="selectFaqDetail" resultType="adQvo">
 		SELECT *
-		FROM FAQ
-    	WHERE FAQ_NO = #{faqNo}
+			FROM FAQ
+	    	WHERE FAQ_NO = #{faqNo}
 	</select>
 	
-<!-- 	<insert id="">
+	<!-- 자주묻는질문 작성 -->
+  	<insert id="insertFaqWrite" parameterType="adQvo">
 		INSERT INTO FAQ (FAQ_NO, FAQ_TITLE, FAQ_CONTENT, ADMIN_ID) VALUES(
-	    FAQ_NO_SEQ.NEXTVAL,
-	    #{faqTitle},
-	    #{faqContent},
-	    'admin'
-	);
+		    FAQ_NO_SEQ.NEXTVAL,
+			#{faqTitle},
+			#{faqContent},
+			#{adminId}
+		)
+	</insert>
 	
-	</insert> -->
+	<!-- 자주묻는질문 수정  -->
+	<update id="selectFaqModify" parameterType="adQvo">
+		UPDATE FAQ
+		SET 
+		 FAQ_TITLE = #{faqTitle}
+		,FAQ_CONTENT=#{faqContent}
+		,FAQ_REWRITER=#{faqRewriter} 
+		WHERE FAQ_NO=#{faqNo}
+	</update>
+	
+	<!-- 자주묻는질문 삭제 -->
+	<delete id="deleteFaq" parameterType="_int">
+		DELETE FROM FAQ WHERE FAQ_NO=#{faqNo}
+	</delete>
 </mapper>
