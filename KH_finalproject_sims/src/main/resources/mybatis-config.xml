@@ -12,6 +12,7 @@
 		<typeAlias type="kh.finalproject.sims.biz.model.vo.BizVo" alias="bvo"/>
 		<typeAlias type="kh.finalproject.sims.admin.model.vo.AdminLoginVo" alias="adLvo"/>
 		<typeAlias type="kh.finalproject.sims.admin.model.vo.AdminQnaMngtVo" alias="adQvo"/>
+		<typeAlias type="kh.finalproject.sims.user.model.vo.UserFaqVo" alias="usFaqvo"/>
 	</typeAliases>
 	 
 	<mappers>
@@ -20,5 +21,6 @@
 		<mapper resource="mappers/biz-mapper.xml"/>
 		<mapper resource="mappers/admin/login-mapper.xml"/>
 		<mapper resource="mappers/admin/qnaMngt-mapper.xml"/>
+		<mapper resource="mappers/user/faq-mapper.xml"/>
 	</mappers>
 </configuration>
