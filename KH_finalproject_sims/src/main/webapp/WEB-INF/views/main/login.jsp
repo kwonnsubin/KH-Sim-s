@@ -27,47 +27,44 @@
     
 </head>
 <body>
-	<jsp:include page="../header.jsp"/>
 	
-	
-	
-		<section>
-			<div class="container row" style="float: none; margin:100 auto;">
-				<div class="col-md-4" style="float:none; margin:0 auto;">
-					<h2>로그인</h2>
-					<c:url value="/login" var="loginUrl" />
-					<form:form name="f" action="${loginUrl}" method="POST">
-						<c:if test="${param.error != null}">
-							<p>아이디와 비밀번호가 잘못되었습니다.</p>
-						</c:if>
-					  <!-- ID input -->
-					  <div class="form-outline mb-4">
-					    <input type="text" id="id" name="id" class="form-control" placeholder="아이디" />
-					  </div>
-					
-					  <!-- Password input -->
-					  <div class="form-outline mb-4">
-					    <input type="password" id="password" name="password" class="form-control" placeholder="비밀번호" />
-					  </div>
-					
-					  <!-- 2 column grid layout for inline styling -->
-					  <div class="row mb-4">
-					    <div class="col d-flex justify-content-center">
-					      <!-- Simple link -->
-					      <a href="#!">아이디 / 비밀번호 찾기</a>
-					      <a href="#!">회원가입</a>
-					      <a href="#!">카카오 로그인</a>
-					    </div>
-					  </div>
-					
-					  <!-- Submit button -->
-					  <div class="d-flex justify-content-center">
-					  	<button type="submit" class="btn btn-primary btn-block mb-4">로그인</button>
-					  </div>
-					</form:form>
-				</div>
+	<section>
+		<div class="container row" style="float: none; margin:100 auto;">
+			<div class="col-md-5" style="float:none; margin:0 auto;">
+				<h2>로그인</h2>
+				<c:url value="/login" var="loginUrl" />
+				<form:form name="f" action="${loginUrl}" method="POST">
+					<c:if test="${param.error != null}">
+						<p>아이디와 비밀번호가 잘못되었습니다.</p>
+					</c:if>
+				  <!-- ID input -->
+				  <div class="form-outline mb-4">
+				    <input type="text" id="id" name="id" class="form-control" placeholder="아이디" />
+				  </div>
+				
+				  <!-- Password input -->
+				  <div class="form-outline mb-4">
+				    <input type="password" id="password" name="password" class="form-control" placeholder="비밀번호" />
+				  </div>
+				
+				  <!-- 2 column grid layout for inline styling -->
+				  <div class="row mb-4">
+				    <div class="col d-flex justify-content-center">
+				      <!-- Simple link -->
+				      <a href="#!">아이디 / 비밀번호 찾기</a>
+				      <a href="#!">회원가입</a>
+				      <a href="#!">카카오 로그인</a>
+				    </div>
+				  </div>
+				
+				  <!-- Submit button -->
+				  <div class="d-flex justify-content-center">
+				  	<button type="submit" class="btn btn-primary btn-block mb-4">로그인</button>
+				  </div>
+				</form:form>
 			</div>
-		</section>
+		</div>
+	</section>
 	
 	<jsp:include page="../footer.jsp"/>
 	
