@@ -21,7 +21,7 @@ INSERT INTO BIZ VALUES ('kctv',
                         'SK망,KT망,LG망',
                         SYSDATE,
                         NULL,
-                        NULL
+                        'kctv.png'
 );
 INSERT INTO BIZ VALUES ('idowell',
                         '위너스텔',
@@ -44,7 +44,7 @@ INSERT INTO BIZ VALUES ('idowell',
                         'KT망',
                         SYSDATE,
                         NULL,
-                        NULL
+                        'idowell.jpg'
 );
 INSERT INTO BIZ VALUES ('unicomz',
                         '유니컴즈',
@@ -67,7 +67,7 @@ INSERT INTO BIZ VALUES ('unicomz',
                         'SK망,KT망,LG망',
                         SYSDATE,
                         NULL,
-                        NULL
+                        'unicomz.png'
 );
 INSERT INTO BIZ VALUES ('inscobee',
                         '인스코비',
@@ -90,7 +90,7 @@ INSERT INTO BIZ VALUES ('inscobee',
                         'SK망,KT망,LG망',
                         SYSDATE,
                         NULL,
-                        NULL
+                        'inscobee.png'
 );
 INSERT INTO BIZ VALUES ('yytel',
                         '와이엘랜드',
@@ -113,7 +113,7 @@ INSERT INTO BIZ VALUES ('yytel',
                         'KT망,LG망',
                         SYSDATE,
                         NULL,
-                        NULL
+                        'yytel.png'
 );
 
 INSERT INTO BIZ VALUES ('eyagi',
@@ -137,7 +137,7 @@ INSERT INTO BIZ VALUES ('eyagi',
                         'SK망,KT망,LG망',
                         SYSDATE,
                         NULL,
-                        NULL
+                        'eyagi.png'
 );
 
 INSERT INTO BIZ VALUES ('kcttel',
@@ -161,7 +161,7 @@ INSERT INTO BIZ VALUES ('kcttel',
                         'SK망,KT망,LG망',
                         SYSDATE,
                         NULL,
-                        NULL
+                        'kcttel.png'
 );
 INSERT INTO BIZ VALUES ('sejong',
                         '세종텔레콤',
@@ -184,7 +184,7 @@ INSERT INTO BIZ VALUES ('sejong',
                         'KT망,LG망',
                         SYSDATE,
                         NULL,
-                        NULL    
+                        'sejong.png'    
 );
     
 INSERT INTO BIZ VALUES ('eyesmb',
@@ -208,7 +208,7 @@ INSERT INTO BIZ VALUES ('eyesmb',
                         'SK망,KT망,LG망',
                         SYSDATE,
                         NULL,
-                        NULL
+                        'eyesmb.png'
 );
 
 INSERT INTO BIZ VALUES ('annex',
@@ -232,7 +232,7 @@ INSERT INTO BIZ VALUES ('annex',
                         'SK망,KT망',
                         SYSDATE,
                         NULL,
-                        NULL
+                        'annex.png'
 );
 SELECT * FROM BIZ;
 commit; 

@@ -8,9 +8,10 @@
 <title>Insert title here</title>
 </head>
 <body>
-<h1>통신사 리스트 테스트</h1>
-<c:forEach items="${list }" var="biz">
-	${biz}
-</c:forEach>
+<h1>통신사 상세정보</h1>
+
+	${info}
+	<img src="<%=request.getContextPath()%>/resources/img/${info.logoRenameFilename}"/>
+	
 </body>
 </html>

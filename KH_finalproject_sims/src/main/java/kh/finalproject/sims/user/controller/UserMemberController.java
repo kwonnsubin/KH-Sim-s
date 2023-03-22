@@ -15,4 +15,12 @@ public class UserMemberController {
 		return mv;
 	}
 	
+	@GetMapping("signup")
+	public ModelAndView selectSignUp(ModelAndView mv) {
+		
+		mv.setViewName("main/signup");
+		
+		return mv;
+	} 
+	
 }
