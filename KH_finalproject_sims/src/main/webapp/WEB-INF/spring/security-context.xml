@@ -9,7 +9,7 @@
 	
 	<s:http auto-config="true" use-expressions="true">
 		<s:intercept-url pattern="/login" access="permitAll"/>
-		<s:intercept-url pattern="/chain/**" access="permitAll"/>
+		<s:intercept-url pattern="/logout" access="hasRole('ROLE_ADMIN, ROLE_USER, ROLE_BIZ')"/>
 		<s:intercept-url pattern="/admin/login" access="permitAll"/>
 		<s:intercept-url pattern="/admin/**" access="hasRole('ROLE_ADMIN')"/>
 		
