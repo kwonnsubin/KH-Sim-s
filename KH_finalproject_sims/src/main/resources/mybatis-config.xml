@@ -9,7 +9,7 @@
 	
 	<typeAliases>
 		<typeAlias type="kh.finalproject.sims.temp.model.vo.TempVo" alias="tvo"/>
-		<typeAlias type="kh.finalproject.sims.biz.model.vo.BizVo" alias="bvo"/>
+		<typeAlias type="kh.finalproject.sims.biz.model.vo.BizInfoMngtVo" alias="bvo"/>
 		<typeAlias type="kh.finalproject.sims.admin.model.vo.AdminLoginVo" alias="adLvo"/>
 		<typeAlias type="kh.finalproject.sims.admin.model.vo.AdminQnaMngtVo" alias="adQvo"/>
 		<typeAlias type="kh.finalproject.sims.user.model.vo.UserFaqVo" alias="usFaqvo"/>

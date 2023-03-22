@@ -21,7 +21,7 @@ INSERT INTO BIZ VALUES ('kctv',
                         'SK망,KT망,LG망',
                         SYSDATE,
                         NULL,
-                        'kvtc.png'
+                        'kctv.png'
 );
 INSERT INTO BIZ VALUES ('idowell',
                         '위너스텔',

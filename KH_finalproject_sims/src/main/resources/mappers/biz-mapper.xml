@@ -2,40 +2,8 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="biz">
 	
-	<resultMap type="bvo" id="bizMap">
-		<id column="BIZ_NO" property="bizNo"/>
-		<result column="BIZ_NAME" property="bizName"/>
-		<result column="BIZ_SSN" property="bizSsn"/>
-		<result column="BIZ_CRN" property="bizCrn"/>
-		<result column="BIZ_ID" property="bizId"/>
-		<result column="BIZ_PW" property="bizPw"/>
-		<result column="BIZ_EMAIL" property="bizEmail"/>
-		<result column="BIZ_PHONE" property="bizPhone"/>
-		<result column="BIZ_FAX" property="bizFax"/>
-		<result column="BIZ_OWNER_NAME" property="bizOwnerName"/>
-		<result column="BIZ_HP" property="bizHip"/>
-		<result column="BIZ_LOCATION" property="bizLocation"/>
-		<result column="BIZ_CARD_PAY_DATE" property="bizCardPayDate"/>
-		<result column="BIZ_ACC_PAY_DATE" property="bizAccPayDate"/>
-		<result column="BIZ_CERTIFY" property="bizCertify"/>
-		<result column="BIZ_BEGIN_TIME" property="bizBeginTime"/>
-		<result column="BIZ_END_TIME" property="bizEndTime"/>
-		<result column="BIZ_CLOSED_DAY" property="bizClosedDay"/>
-		<result column="SERVICE_SKT" property="serviceSKT"/>
-		<result column="SERVICE_KT" property="serviceKT"/>
-		<result column="SERVICE_LGU" property="serviceLGU"/>
-		<result column="PAYMENT_CARD" property="paymentCard"/>
-		<result column="PAYMENT_ACC" property="paymentAcc"/>
-		<result column="BIZ_REVIEW_STAR" property="bizReviewStar"/>
-		<result column="PHONE_OP_TIME" property="phoneOpTime"/>
-		<result column="PHONE_OP_TIME_USIM" property="phoneOpTimeUsim"/>
-		<result column="NETWORK" property="network"/>
-		<result column="WRITE_DATE" property="writeDate"/>
-		<result column="UPDATE_DATE" property="updateDate"/>
-		<result column="LOGO_RENAME_FILENAME" property="logoRenameFilename"/>
-	</resultMap>
 	
-	<select id="selectListBiz" resultMap="bizMap">
-		select * from biz
+	<select id="selectListBizinfo" resultType="bvo">
+		select * from biz where biz_id = 'kctv'
 	</select>
 </mapper>
