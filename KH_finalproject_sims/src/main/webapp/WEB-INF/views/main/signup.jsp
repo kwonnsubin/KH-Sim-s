@@ -77,12 +77,19 @@
 	              <input type="text" class="form-control" id="userName" placeholder="이름" required>
 	              <div class="invalid-feedback">이름을 입력해주세요.</div>
 	          </div>
-	
-	          <div class="mb-3">
-	            <label for="userEmail">이메일</label>
-	            <input type="email" class="form-control" id="userEmail" placeholder="you@example.com" required>
-	            <div class="invalid-feedback">이메일을 입력해주세요.</div>
-	          </div>
+			
+			<div class="container">
+	            <div class="row">
+		          <div class="col-8 mb-3">
+		            <label for="userEmail">이메일</label>
+		            <input type="email" class="form-control" id="userEmail" placeholder="you@example.com" required>
+		            <div class="invalid-feedback">이메일을 입력해주세요.</div>
+		          </div>
+		          <div class="col-2 mb-3">
+		            <button class="btn btn-primary btn-sm btn-block" type="button">인증번호받기</button>
+		          </div>
+	            </div>
+	        </div>
 	
 	          <div class="mb-3">
 	            <label for="emailNum">인증번호</label>
@@ -129,22 +136,6 @@
 	    </div>
 	</section>
 	
-	<script>
-	   window.addEventListener('load', () => {
-	     const forms = document.getElementsByClassName('validation-form');
-	
-	     Array.prototype.filter.call(forms, (form) => {
-	       form.addEventListener('submit', function (event) {
-	         if (form.checkValidity() === false) {
-	           event.preventDefault();
-	           event.stopPropagation();
-	         }
-	
-	         form.classList.add('was-validated');
-	       }, false);
-	     });
-	   }, false);
-	 </script>
 	
 	<jsp:include page="../footer.jsp"/>
 	
