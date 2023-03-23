@@ -72,6 +72,7 @@
 		            </div>
 		        </div>
 	        
+	        <!-- 유저 정보 -->
 	        <div class="user">
 		          <div class="mb-3">
 		              <label for="userName">이름</label>
@@ -161,6 +162,7 @@
 		          </div>
 	          </div>
 	          
+	          <!-- 통신사 정보 -->
 	          <div class="biz" style="display:none;">
 		          <div class="mb-3">
 		              <label for="bizName">법인명</label>
@@ -169,22 +171,31 @@
 		          </div>
 				
 		          <div class="mb-3">
-		            <label for="userEmail">법인등록번호</label>
-		            <input type="email" class="form-control" name="bizSsn" placeholder="법인등록번호" required>
+		            <label for="bizSsn">법인등록번호</label>
+		            <input type="text" class="form-control" name="bizSsn" placeholder="법인등록번호" required>
 		            <div class="invalid-feedback">법인등록번호를 입력해주세요.</div>
 		          </div>
 		
 		          <div class="mb-3">
-		            <label for="emailNum">사업자등록번호</label>
+		            <label for="bizCrn">사업자등록번호</label>
 		            <input type="text" class="form-control" name="bizCrn" placeholder="사업자등록번호" required>
 		            <div class="invalid-feedback">사업자등록번호를 입력하세요</div>
 		          </div>
 		          
-		          <div class="mb-3">
-		            <label for="id">아이디</label>
-		            <input type="text" class="form-control" name="id" placeholder="아이디" required>
-		            <div class="invalid-feedback">아이디를 입력하세요</div>
+		          <div class="container">
+		            <div class="row">
+			          <div class="col-9 mb-3 text-left">
+			            <label for="id">아이디</label>
+			            <input type="text" class="form-control" name="id" placeholder="아이디" required>
+			            <div class="invalid-feedback">아이디를 입력해주세요.</div>
+			          </div>
+			          <div class="col-3 mb-3 text-center align-self-end">
+			            <button class="btn btn-primary btn-sm btn-block" name="idBtn" type="button" disabled="disabled">중복확인</button>
+			          </div>
+		            </div>
 		          </div>
+		        
+		        <div class="idCheckDiv" style="display:none;"></div>
 		          
 		          <div class="mb-3">
 		            <label for="pw">비밀번호</label>
@@ -198,9 +209,11 @@
 		            <div class="invalid-feedback">비밀번호를 입력하세요</div>
 		          </div>
 		          
+		          <div class="pwCheckDiv" style="display:none;"></div>
+		          
 		          <div class="mb-3">
 		            <label for="bizEmail">이메일</label>
-		            <input type="text" class="form-control" name="userSsn" placeholder="이메일" required>
+		            <input type="text" class="form-control" name="bizEmail" placeholder="이메일" required>
 		            <div class="invalid-feedback">이메일을 입력하세요</div>
 		          </div>
 		          
@@ -229,129 +242,8 @@
   <script src="<%= request.getContextPath() %>/resources/chain/assets/js/imagesloaded.js"></script>
   <script src="<%= request.getContextPath() %>/resources/chain/assets/js/popup.js"></script>
   <script src="<%= request.getContextPath() %>/resources/chain/assets/js/custom.js"></script>
-  <script>
-	  $(document).ready(function() {
-		    $("input[name='role']").click(function() {
-		        if($("input[name='role']:checked").val() === 'ROLE_USER') {
-		        	$(".biz").css("display","none");
-		        	$(".user").css("display","block");
-		        } else {
-		        	$(".biz").css("display","block");
-		        	$(".user").css("display","none");
-		        }
-		    })
-		    
-		    $('.user input[name=pwCheck]').change(function(){
-				if($('.user input[name=pw]').val() === $('input[name=pwCheck]').val()) {
-					$(".user .pwCheckDiv").html("<p style='color: green;'>비밀번호가 같습니다.</p>");
-					$(".user .pwCheckDiv").css("display", "block");
-					$(".btn").removeAttr("disabled");
-				} else {
-					$(".user .pwCheckDiv").html("<p style='color: red;'>비밀번호가 다릅니다.</p>");
-					$(".user .pwCheckDiv").css("display", "block");
-					$(".btn").attr("disabled", "disabled");
-				}
-			});
-			
-			$('.user input[name=pw]').change(function(){
-				if($('.user input[name=pw]').val() === $('input[name=pwCheck]').val()) {
-					$(".user .pwCheckDiv").html("<p style='color: green;'>비밀번호가 같습니다.</p>");
-					$(".user .pwCheckDiv").css("display", "block");
-					$(".btn").removeAttr("disabled");
-				} else {
-					$(".user .pwCheckDiv").html("<p style='color: red;'>비밀번호가 다릅니다.</p>");
-					$(".user .pwCheckDiv").css("display", "block");
-					$(".btn").attr("disabled", "disabled");
-				}
-			});
-			
-			$('.user input[name=id]').change(function(){
-				if($('.user input[name=id]').val() != null) {
-					$("button[name=idBtn]").removeAttr("disabled");
-				} else {
-					$("button[name=idBtn]").attr("disabled", "disabled");
-				}
-			});
-			
-			$('.user input[name=userEmail]').change(function(){
-				if($('.user input[name=userEmail]').val() != null) {
-					$("button[name=emailBtn]").removeAttr("disabled");
-				} else {
-					$("button[name=emailBtn]").attr("disabled", "disabled");
-				}
-			});
-		});
+  <script src="<%= request.getContextPath() %>/resources/js/signup.js"></script>
   
-    window.addEventListener('load', () => {
-      const forms = document.getElementsByClassName('validation-form');
-
-      Array.prototype.filter.call(forms, (form) => {
-        form.addEventListener('submit', function (event) {
-          if (form.checkValidity() === false) {
-            event.preventDefault();
-            event.stopPropagation();
-          }
-
-          form.classList.add('was-validated');
-        }, false);
-      });
-    }, false);
-    
-    $("button[name=idBtn]").on("click", idCheck);
-    
-    function idCheck() {
-    	$.ajax({
-			url : "<%=request.getContextPath()%>/signup/idcheck",
-			type : "post",
-			async : false,
-			data : {
-				id : $("input[name=id]").val()
-			},
-			dataType : "json",
-			success : function(data){
-				if(data.idCheck == 1) {
-					$(".idCheckDiv").html("<p style='color: red;'>사용 불가능한 아이디입니다.</p>");
-					$(".idCheckDiv").css("display", "block");
-				} else {
-					$(".idCheckDiv").html("<p style='color: green;'>사용 가능한 아이디입니다.</p>");
-					$(".idCheckDiv").css("display", "block");
-				}
-			}
-		 });
-    }
-    
-    $('button[name=emailBtn]').on("click", function() {
-		const email = $('input[name=userEmail').val() // 이메일 주소값 얻어오기
-		const checkInput = $('input[name=emailCheck]') // 인증번호 입력하는곳 
-		
-		$.ajax({
-			type : "get"
-			, url : "<%= request.getContextPath() %>/emailCheck?email=" + email
-			, success : function (data) {
-				checkInput.attr('disabled',false);
-				code =data;
-				alert('인증번호가 전송되었습니다.')
-			}			
-		});
-	});
-	
-	// 인증번호 비교
-	$('input[name=emailCheck]').on("blur", function () {
-		const inputCode = $(this).val();
-		const $resultMsg = $('.emailCheckDiv');
-		
-		if(inputCode === code){
-			$resultMsg.html("<p style='color: green;'>인증번호가 일치합니다.</p>");
-			$resultMsg.css("display", "block");
-			$('button[name=emailBtn]').attr('disabled',true);
-			$('input[name=userEmail').attr('readonly',true);
-			$('input[name=emailCheck]').attr('readonly',true);
-		}else{
-			$resultMsg.html("<p style='color: green;'>인증번호가 불일치합니다. 다시 확인해주세요</p>");
-			$resultMsg.css("display", "block");
-		}
-	});
-  </script>
   
 </body>
 </html>
