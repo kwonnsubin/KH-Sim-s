@@ -35,4 +35,9 @@ public class UserFaqServiceImpl implements UserFaqService {
 		return dao.selectQnaDetail(aqNo);
 	}
 
+	@Override
+	public void viewCount(int aqNo) {
+		dao.viewCount(aqNo);
+	}
+
 }

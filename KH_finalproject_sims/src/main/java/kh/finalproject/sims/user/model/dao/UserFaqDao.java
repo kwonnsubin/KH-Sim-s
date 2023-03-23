@@ -31,6 +31,10 @@ public class UserFaqDao {
 	public List<UserQnaVo> selectQnaDetail(int aqNo) {
 		return session.selectList("qna.selectQnaDetail", aqNo);
 	}
+
+	public void viewCount(int aqNo) {
+		session.update("qna.viewCount", aqNo);
+	}
 	
 	
 

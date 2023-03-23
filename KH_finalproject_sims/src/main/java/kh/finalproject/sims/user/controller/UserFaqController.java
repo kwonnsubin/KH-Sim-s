@@ -50,6 +50,7 @@ public class UserFaqController {
 			ModelAndView mv,
 			@PathVariable int aqNo
 			) {
+		service.viewCount(aqNo);
 		mv.addObject("qnacontents", service.selectQnaDetail(aqNo));
 		mv.setViewName("user/qnaread");
 		return mv;

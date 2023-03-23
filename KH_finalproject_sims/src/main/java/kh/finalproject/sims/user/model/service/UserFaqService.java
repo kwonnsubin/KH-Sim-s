@@ -14,5 +14,7 @@ public interface UserFaqService {
 	public List<UserQnaVo> selectQnaList();
 
 	public List<UserQnaVo> selectQnaDetail(int aqNo);
+	
+	public void viewCount(int aqNo);
 
 }
