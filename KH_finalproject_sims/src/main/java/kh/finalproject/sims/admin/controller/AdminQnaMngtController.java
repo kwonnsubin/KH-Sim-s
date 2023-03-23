@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
@@ -37,7 +38,8 @@ public class AdminQnaMngtController {
 			  ModelAndView mv
 			, @PathVariable int faqNo
 			) {
-		mv.addObject("faqcontents", service.selectFaqDetail(faqNo));
+		AdminQnaMngtVo result = service.selectFaqDetail(faqNo);
+		mv.addObject("faqlist", result);
 		mv.setViewName("admin/faqdetail");
 		return mv;
 	}
@@ -68,29 +70,51 @@ public class AdminQnaMngtController {
 	}
 	
 	
-	// 자주묻는질문 수정 페이지
+	// 자주묻는질문 수정 페이지로 이동
 	@GetMapping("/faqupdate/{faqNo}")
 	public ModelAndView viewUpdateFaq(
 			ModelAndView mv
 		  , @PathVariable int faqNo
 			) {
+		AdminQnaMngtVo result = service.selectFaqDetail(faqNo);
+		mv.addObject("faqlist", result); // 기존 내용 띄우기
 		mv.setViewName("admin/faqupdate");
 		return mv;
 	}
 	
 	
 	// 자주묻는질문 수정하기
-	@PostMapping("/faqupdate") // 왜 url이 두개나오는거지?? 해결중!!!!!!!!!
+	@PostMapping("/faqupdate/{faqNo}") // 왜 url이 두개나오는거지??(faqupdate.jsp) 해결중!!!!!!!!!
 	public ModelAndView selectFaqModify(
-		    ModelAndView mv
-		   ,AdminQnaMngtVo vo) {
+		     ModelAndView mv
+		   , @PathVariable int faqNo
+		   , AdminQnaMngtVo vo) {
 		service.selectFaqModify(vo);
-		mv.setViewName("redirect:/admin/faqdetail/vo.getFaqNo()");
+		mv.setViewName("redirect:/admin/faqdetail/"+vo.getFaqNo());
 		return mv;
 	}
 	
+//	// 자주묻는질문 삭제하기
+//	@GetMapping("/faqdelete/{faqNo}")
+//	public ModelAndView deleteFaq(
+//			  ModelAndView mv
+//			, @PathVariable int faqNo
+//			) {
+//		service.deleteFaq(faqNo);
+//		mv.setViewName("redirect:/admin/faqlist");
+//		return mv;
+//	}
 	
-	
-
-			
+//	// 자주묻는질문 삭제하기(미완성)
+//	@PostMapping("/faqdelete")
+//	public ModelAndView deleteFaq(
+//			  ModelAndView mv
+//			, int faqNo
+//			, RedirectAttributes rttr
+//			) {
+//		service.deleteFaq(faqNo);
+//		rttr.addFlashAttribute(attributeName, attributeValue);
+//		mv.setViewName("redirect:/admin/faqlist");
+//		return mv;
+//	}
 }

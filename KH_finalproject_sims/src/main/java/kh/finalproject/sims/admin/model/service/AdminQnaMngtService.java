@@ -10,12 +10,15 @@ public interface AdminQnaMngtService {
 	public List<AdminQnaMngtVo> selectFaqList();
 	
 	// 자주묻는질문 상세보기
-	public List<AdminQnaMngtVo> selectFaqDetail(int faqNo);
+	public AdminQnaMngtVo selectFaqDetail(int faqNo);
 	
 	// 자주묻는질문 작성하기
 	public int insertFaqWrite(AdminQnaMngtVo vo);
 	
 	// 자주묻는질문 수정하기
 	public int selectFaqModify(AdminQnaMngtVo vo);
+	
+	// 자주묻는질문 삭제하기
+	public int deleteFaq(int faqNo);
 	
 }

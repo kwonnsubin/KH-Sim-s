@@ -10,7 +10,6 @@
 </head>
 <body>
 	<div class="container mb-5 mt-6 w-75">
-		<c:forEach var="faqlist" items="${faqcontents }">
 			<a href="<%=request.getContextPath()%>/admin/faqupdate/${faqlist.faqNo}">수정</a>
 			<!-- 게시판 상세글 -->
 			<div>
@@ -21,7 +20,6 @@
 					<p class="col">${faqlist.faqContent }</p>
 				</div>
 			</div>
-		</c:forEach>
 	</div>
 </body>
 </html>

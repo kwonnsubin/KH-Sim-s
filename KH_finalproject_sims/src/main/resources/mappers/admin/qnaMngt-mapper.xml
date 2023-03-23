@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="admin">
+	<!-- 자주묻는질문 목록 -->
 	<select id="selectQnaList" resultType="adQvo">
 		SELECT FAQ_NO,
 			FAQ_TITLE,
@@ -29,7 +30,7 @@
 	</insert>
 	
 	<!-- 자주묻는질문 수정  -->
-	<update id="selectFaqModify" parameterType="adQvo">
+	<update id="selectReviewReportList" parameterType="adQvo">
 		UPDATE FAQ
 		SET 
 		 FAQ_TITLE = #{faqTitle}
@@ -42,4 +43,15 @@
 	<delete id="deleteFaq" parameterType="_int">
 		DELETE FROM FAQ WHERE FAQ_NO=#{faqNo}
 	</delete>
+	
+	
+	<!-- 신고 리뷰 목록 -->
+	<select id="selectReviewList" resultType="kh.finalproject.sims.admin.model.vo.AdminReviewMngtVo">
+		select REVIEW_NO
+		,USER_ID
+		,BIZ_ID
+		,REPORT_DATE
+		,REPORT_STATUS 
+		from REVIEW_REPORT;	
+	</select>
 </mapper>

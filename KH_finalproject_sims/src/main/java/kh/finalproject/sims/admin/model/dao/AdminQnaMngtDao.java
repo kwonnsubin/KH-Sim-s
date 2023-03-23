@@ -20,8 +20,8 @@ public class AdminQnaMngtDao {
 	}
 	
 	// 자주묻는질문 상세보기
-	public List<AdminQnaMngtVo> selectFaqDetail(int faqNo) {
-		return sqlSession.selectList("admin.selectFaqDetail", faqNo);
+	public AdminQnaMngtVo selectFaqDetail(int faqNo) {
+		return sqlSession.selectOne("admin.selectFaqDetail", faqNo);
 	}
 	
 	// 자주묻는질문 작성하기
@@ -32,6 +32,11 @@ public class AdminQnaMngtDao {
 	// 자주묻는질문 수정하기
 	public int selectFaqModify(AdminQnaMngtVo vo) {
 		return sqlSession.update("admin.selectFaqModify", vo);
+	}
+	
+	// 자주묻는질문 삭제하기
+	public int deleteFaq(int faqNo) {
+		return sqlSession.delete("admin.deleteFaq", faqNo);
 	}
 	
 	
