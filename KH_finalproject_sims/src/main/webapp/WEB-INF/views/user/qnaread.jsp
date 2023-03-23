@@ -21,8 +21,6 @@
 			${qnalist.aqDate } <br>
 			${qnalist.aqRedate } <br>
 			${qnalist.aqViews } <br>
-						
-			
 		</c:forEach>
 	</div>
 </body>

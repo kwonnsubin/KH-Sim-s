@@ -44,20 +44,25 @@
 					<h6 class="py-2 fw-bolder">자주 묻는 질문</h6>
 					<div id="carouselExampleControls" class="carousel slide" data-bs-ride="carousel">
 						<div class="carousel-inner">
-							<div class="carousel-item active">
-								<img src="https://dummyimage.com/30x10" class="d-block w-100" alt="...">
-								<div class="carousel-caption">
-									<span>자주묻는질문</span>
-								</div>
-							</div>
 							<c:forEach items="${faqlist}" var="faq">
-								<div class="carousel-item">
-									<img src="https://dummyimage.com/30x10" class="d-block w-100" alt="...">
-									<div class="carousel-caption">
-										<span>${faq.faqNo}</span> 
-										<a href="<%=request.getContextPath()%>/faq/faqread/${faq.faqNo}">${faq.faqTitle}</a>
+								<c:if test="${faq.faqNo eq 1}">
+									<div class="carousel-item active">
+										<img src="https://dummyimage.com/30x10" class="d-block w-100" alt="...">
+										<div class="carousel-caption">
+											<span>${faq.faqNo}</span> 
+												<a href="<%=request.getContextPath()%>/faq/faqread/${faq.faqNo}">${faq.faqTitle}</a>
+										</div>
 									</div>
-								</div>
+								</c:if>
+								<c:if test="${faq.faqNo ne 1}">
+									<div class="carousel-item">
+										<img src="https://dummyimage.com/30x10" class="d-block w-100" alt="...">
+										<div class="carousel-caption">
+											<span>${faq.faqNo}</span> 
+											<a href="<%=request.getContextPath()%>/faq/faqread/${faq.faqNo}">${faq.faqTitle}</a>
+										</div>
+									</div>
+								</c:if>
 							</c:forEach>
 						</div>
 						<button class="carousel-control-prev" type="button"
