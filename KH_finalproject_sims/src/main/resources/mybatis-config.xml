@@ -16,6 +16,7 @@
 		<typeAlias type="kh.finalproject.sims.admin.model.vo.AdminNoticeMngtVo" alias="adNtcvo"/>
 	</typeAliases>
 	 
+	 <!-- 매퍼 추가 안해도 됨
 	<mappers>
 		<mapper resource="mappers/temp-mapper.xml"/>
 		<mapper resource="mappers/plan-mapper.xml"/>
@@ -25,4 +26,5 @@
 		<mapper resource="mappers/admin/notice-mapper.xml"/>
 		<mapper resource="mappers/user/faq-mapper.xml"/>
 	</mappers>
+	 -->
 </configuration>
