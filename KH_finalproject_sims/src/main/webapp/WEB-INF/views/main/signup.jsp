@@ -59,77 +59,157 @@
 		            <div class="row">
 			          <div class="col input-group mb-3">
 						  <div class="input-group-text">
-						    <input class="form-check-input mt-0" type="radio" value="사용자" name="userTypeRdo" id="userType" checked>
+						    <input class="form-check-input mt-0" type="radio" value="ROLE_USER" name="role" checked="checked">
 						  </div>
 						  <input type="text" class="form-control" value="사용자" readonly>
 					  </div>
 					  <div class="col input-group mb-3">
 						  <div class="input-group-text">
-						    <input class="form-check-input mt-0" type="radio" value="통신사" name="userTypeRdo" id="userType">
+						    <input class="form-check-input mt-0" type="radio" value="ROLE_BIZ" name="role">
 						  </div>
 						  <input type="text" class="form-control" value="통신사" readonly>
 					  </div>
 		            </div>
 		        </div>
 	        
-	          <div class="mb-3">
-	              <label for="userName">이름</label>
-	              <input type="text" class="form-control" id="userName" placeholder="이름" required>
-	              <div class="invalid-feedback">이름을 입력해주세요.</div>
-	          </div>
-			
-			<div class="container">
-	            <div class="row">
-		          <div class="col-8 mb-3">
-		            <label for="userEmail">이메일</label>
-		            <input type="email" class="form-control" id="userEmail" placeholder="you@example.com" required>
-		            <div class="invalid-feedback">이메일을 입력해주세요.</div>
+	        <div class="user">
+		          <div class="mb-3">
+		              <label for="userName">이름</label>
+		              <input type="text" class="form-control" name="userName" placeholder="이름" required>
+		              <div class="invalid-feedback">이름을 입력해주세요.</div>
 		          </div>
-		          <div class="col-2 mb-3">
-		            <button class="btn btn-primary btn-sm btn-block" type="button">인증번호받기</button>
+				
+				<div class="container">
+		            <div class="row">
+			          <div class="col-9 mb-3 text-left">
+			            <label for="userEmail">이메일</label>
+			            <input type="email" class="form-control" name="userEmail" placeholder="you@example.com" required>
+			            <div class="invalid-feedback">이메일을 입력해주세요.</div>
+			          </div>
+			          <div class="col-3 mb-3 text-center align-self-end">
+			            <button class="btn btn-primary btn-sm btn-block" name="emailBtn" type="button" disabled="disabled">인증받기</button>
+			          </div>
+		            </div>
+		        </div>
+		
+		          <div class="mb-3">
+		            <label for="emailNum">인증번호</label>
+		            <input type="text" class="form-control" name="emailNum" placeholder="인증번호" required>
+		            <div class="invalid-feedback">인증번호를 입력하세요</div>
 		          </div>
-	            </div>
-	        </div>
-	
-	          <div class="mb-3">
-	            <label for="emailNum">인증번호</label>
-	            <input type="text" class="form-control" id="emailNum" placeholder="인증번호" required>
-	            <div class="invalid-feedback">인증번호를 입력하세요</div>
+		          
+		          <div class="container">
+		            <div class="row">
+			          <div class="col-9 mb-3 text-left">
+			            <label for="id">아이디</label>
+			            <input type="text" class="form-control" name="id" placeholder="아이디" required>
+			            <div class="invalid-feedback">아이디를 입력해주세요.</div>
+			          </div>
+			          <div class="col-3 mb-3 text-center align-self-end">
+			            <button class="btn btn-primary btn-sm btn-block" name="idBtn" type="button" disabled="disabled">중복확인</button>
+			          </div>
+		            </div>
+		        </div>
+		        
+		        <div class="idCheckDiv" style="display:none;"></div>
+		          
+		          <div class="mb-3">
+		            <label for="pw">비밀번호</label>
+		            <input type="password" class="form-control" name="pw" placeholder="비밀번호" required>
+		            <div class="invalid-feedback">비밀번호를 입력하세요</div>
+		          </div>
+		          
+		          <div class="mb-3">
+		            <label for="pwCheck">비밀번호 확인</label>
+		            <input type="password" class="form-control" name="pwCheck" placeholder="비밀번호 확인" required>
+		            <div class="invalid-feedback">비밀번호를 입력하세요</div>
+		          </div>
+		          
+		          <div class="pwCheckDiv" style="display:none;"></div>
+		          
+		          <!-- 성별 -->
+            	<label for="genderDiv">성별</label>
+		          <div class="container text-center" name="genderDiv">
+		            <div class="row">
+			          <div class="col input-group mb-3">
+						  <div class="input-group-text">
+						    <input class="form-check-input mt-0" type="radio" value="M" name="userGender" checked>
+						  </div>
+						  <input type="text" class="form-control" value="여성" readonly>
+					  </div>
+					  <div class="col input-group mb-3">
+						  <div class="input-group-text">
+						    <input class="form-check-input mt-0" type="radio" value="F" name="userGender">
+						  </div>
+						  <input type="text" class="form-control" value="남성" readonly>
+					  </div>
+		            </div>
+	        	</div>
+		          
+		          <div class="mb-3">
+		            <label for="userSsn">주민등록번호</label>
+		            <input type="text" class="form-control" name="userSsn" placeholder="- 제외한 주민등록번호" required>
+		            <div class="invalid-feedback">주민등록번호를 입력하세요</div>
+		          </div>
+		          
+		          <div class="mb-3">
+		            <label for="userPhone">전화번호</label>
+		            <input type="text" class="form-control" name="userPhone" placeholder="전화번호" required>
+		            <div class="invalid-feedback">전화번호를 입력하세요</div>
+		          </div>
 	          </div>
 	          
-	          <div class="mb-3">
-	            <label for="id">아이디</label>
-	            <input type="text" class="form-control" id="id" placeholder="아이디" required>
-	            <div class="invalid-feedback">아이디를 입력하세요</div>
+	          <div class="biz" style="display:none;">
+		          <div class="mb-3">
+		              <label for="bizName">법인명</label>
+		              <input type="text" class="form-control" name="bizName" placeholder="법인명" required>
+		              <div class="invalid-feedback">법인명을 입력해주세요.</div>
+		          </div>
+				
+		          <div class="mb-3">
+		            <label for="userEmail">법인등록번호</label>
+		            <input type="email" class="form-control" name="bizSsn" placeholder="법인등록번호" required>
+		            <div class="invalid-feedback">법인등록번호를 입력해주세요.</div>
+		          </div>
+		
+		          <div class="mb-3">
+		            <label for="emailNum">사업자등록번호</label>
+		            <input type="text" class="form-control" name="bizCrn" placeholder="사업자등록번호" required>
+		            <div class="invalid-feedback">사업자등록번호를 입력하세요</div>
+		          </div>
+		          
+		          <div class="mb-3">
+		            <label for="id">아이디</label>
+		            <input type="text" class="form-control" name="id" placeholder="아이디" required>
+		            <div class="invalid-feedback">아이디를 입력하세요</div>
+		          </div>
+		          
+		          <div class="mb-3">
+		            <label for="pw">비밀번호</label>
+		            <input type="password" class="form-control" name="pw" placeholder="비밀번호" required>
+		            <div class="invalid-feedback">비밀번호를 입력하세요</div>
+		          </div>
+		          
+		          <div class="mb-3">
+		            <label for="pwCheck">비밀번호 확인</label>
+		            <input type="password" class="form-control" name="pwCheck" placeholder="비밀번호 확인" required>
+		            <div class="invalid-feedback">비밀번호를 입력하세요</div>
+		          </div>
+		          
+		          <div class="mb-3">
+		            <label for="bizEmail">이메일</label>
+		            <input type="text" class="form-control" name="userSsn" placeholder="이메일" required>
+		            <div class="invalid-feedback">이메일을 입력하세요</div>
+		          </div>
+		          
+		          <div class="mb-3">
+		            <label for="bizPhone">연락처</label>
+		            <input type="text" class="form-control" name="bizPhone" placeholder="연락처" required>
+		            <div class="invalid-feedback">연락처를 입력하세요</div>
+		          </div>
 	          </div>
 	          
-	          <div class="mb-3">
-	            <label for="pw">비밀번호</label>
-	            <input type="password" class="form-control" id="pw" placeholder="비밀번호" required>
-	            <div class="invalid-feedback">비밀번호를 입력하세요</div>
-	          </div>
-	          
-	          <div class="mb-3">
-	            <label for="pwCheck">비밀번호 확인</label>
-	            <input type="password" class="form-control" id="pwCheck" placeholder="비밀번호 확인" required>
-	            <div class="invalid-feedback">비밀번호를 입력하세요</div>
-	          </div>
-	          
-	          <!-- 성별 -->
-	          
-	          <div class="mb-3">
-	            <label for="userSsn">주민등록번호</label>
-	            <input type="text" class="form-control" id="userSsn" placeholder="- 제외한 주민등록번호" required>
-	            <div class="invalid-feedback">주민등록번호를 입력하세요</div>
-	          </div>
-	          
-	          <div class="mb-3">
-	            <label for="userPhone">전화번호</label>
-	            <input type="text" class="form-control" id="userPhone" placeholder="전화번호" required>
-	            <div class="invalid-feedback">전화번호를 입력하세요</div>
-	          </div>
-	          
-	          <button class="btn btn-primary btn-lg btn-block" type="submit">가입</button>
+	          <button class="btn btn-primary btn-lg btn-block" type="submit" disabled>가입</button>
 	        </form>
 	      </div>
 	    </div>
@@ -147,6 +227,89 @@
   <script src="<%= request.getContextPath() %>/resources/chain/assets/js/imagesloaded.js"></script>
   <script src="<%= request.getContextPath() %>/resources/chain/assets/js/popup.js"></script>
   <script src="<%= request.getContextPath() %>/resources/chain/assets/js/custom.js"></script>
+  <script>
+	  $(document).ready(function() {
+		    $("input[name='role']").click(function() {
+		        if($("input[name='role']:checked").val() === 'ROLE_USER') {
+		        	$(".biz").css("display","none");
+		        	$(".user").css("display","block");
+		        } else {
+		        	$(".biz").css("display","block");
+		        	$(".user").css("display","none");
+		        }
+		    })
+		    
+		    $('.user input[name=pwCheck]').change(function(){
+				if($('.user input[name=pw]').val() === $('input[name=pwCheck]').val()) {
+					$(".user .pwCheckDiv").html("<p style='color: green;'>비밀번호가 같습니다.</p>");
+					$(".user .pwCheckDiv").css("display", "block");
+					$(".btn").removeAttr("disabled");
+				} else {
+					$(".user .pwCheckDiv").html("<p style='color: red;'>비밀번호가 다릅니다.</p>");
+					$(".user .pwCheckDiv").css("display", "block");
+					$(".btn").attr("disabled", "disabled");
+				}
+			});
+			
+			$('.user input[name=pw]').change(function(){
+				if($('.user input[name=pw]').val() === $('input[name=pwCheck]').val()) {
+					$(".user .pwCheckDiv").html("<p style='color: green;'>비밀번호가 같습니다.</p>");
+					$(".user .pwCheckDiv").css("display", "block");
+					$(".btn").removeAttr("disabled");
+				} else {
+					$(".user .pwCheckDiv").html("<p style='color: red;'>비밀번호가 다릅니다.</p>");
+					$(".user .pwCheckDiv").css("display", "block");
+					$(".btn").attr("disabled", "disabled");
+				}
+			});
+			
+			$('.user input[name=id]').change(function(){
+				if($('.user input[name=id]').val() != null) {
+					$("button[name=idBtn]").removeAttr("disabled");
+				} else {
+					$("button[name=idBtn]").attr("disabled", "disabled");
+				}
+			});
+		});
+  
+    window.addEventListener('load', () => {
+      const forms = document.getElementsByClassName('validation-form');
+
+      Array.prototype.filter.call(forms, (form) => {
+        form.addEventListener('submit', function (event) {
+          if (form.checkValidity() === false) {
+            event.preventDefault();
+            event.stopPropagation();
+          }
+
+          form.classList.add('was-validated');
+        }, false);
+      });
+    }, false);
+    
+    $("button[name=idBtn]").on("click", idCheck);
+    
+    function idCheck() {
+    	$.ajax({
+			url : "<%=request.getContextPath()%>/signup/idcheck",
+			type : "post",
+			async : false,
+			data : {
+				id : $("input[name=id]").val()
+			},
+			dataType : "json",
+			success : function(data){
+				if(data.idCheck == 1) {
+					$(".idCheckDiv").html("<p style='color: red;'>사용 불가능한 아이디입니다.</p>");
+					$(".idCheckDiv").css("display", "block");
+				} else {
+					$(".idCheckDiv").html("<p style='color: green;'>사용 가능한 아이디입니다.</p>");
+					$(".idCheckDiv").css("display", "block");
+				}
+			}
+		 });
+    }
+  </script>
   
 </body>
 </html>
