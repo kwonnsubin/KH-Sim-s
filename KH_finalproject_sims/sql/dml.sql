@@ -324,26 +324,43 @@ INSERT INTO LIKE_TABLE VALUES(1, 1, SYSDATE, 'Y');
 
 --질문/답변 게시판
 select * from QNA;
-insert into QNA values(QNA_SEQ.nextval,
-                        1,
-                        '유심을 매번 사야 하나요?',
-                        'A통신사 LG망 쓰고 있다가 B통신사 LG로 변경하고 싶은데 유심을 사는 방법밖에 없나요? 그럼 매번 유심을 구매해야 한다는 건데...
-                        (LG인터넷 결합 때문에 LG만 개통 가능) 너무 번거롭네요ㅠㅠ
-
-                        유심 초기화는 해지를 하고 공유심이어야 가능하다던데.. 해지를 하면 통화가 안 돼서 개통 할 때 본인인증이 안 되니까 안 되고.. 
-                        반년에 한번씩 유심을 사야하는 거 맞죠?',
-                        DEFAULT,
-                        NULL,
-                        1
-); 
+insert into QNA values (
+    QNA_SEQ.nextval
+    , 'user1'
+    , '유심을 매번 사야 하나요?'
+    , 'A통신사 LG망 쓰고 있다가 B통신사 LG로 변경하고 싶은데 유심을 사는 방법밖에 없나요? 
+    그럼 매번 유심을 구매해야 한다는 건데... (LG인터넷 결합 때문에 LG만 개통 가능) 너무 번거롭네요ㅠㅠ
+    유심 초기화는 해지를 하고 공유심이어야 가능하다던데.. 
+    해지를 하면 통화가 안 돼서 개통 할 때 본인인증이 안 되니까 안 되고..
+    반년에 한번씩 유심을 사야하는 거 맞죠?'
+    , default
+    , null
+    , 1
+);
 
 --질문/답변 게시판 답변 테이블
 select * from qna_ans;
-insert into qna_ans values(QNA_ANS_SEQ.nextval,'그냥 nfc 기능 없는 무료 유심으로 신청해서 개통하세요. 그게 제일 나아요.', 1, default, null, 2 );
+insert into QNA_ANS values (
+    QNA_ANS_SEQ.nextval
+    , 2
+    , 'admin'
+    , null
+    , '그냥 nfc 기능 없는 무료 유심으로 신청해서 개통하세요. 그게 제일 나아요.'
+    , default
+    , null
+);
 
 --질문/답변 게시판 답변의 댓글 테이블
-select * from qna_rlp;
-insert into qna_rpl values (QNA_RPL_SEQ.nextval, 1, 3, default, null, '무료유심이라 하면 개통 신청할 때 배송되는 유심 말씀하시는건가요?');
+desc QNA_RPL;
+insert into QNA_RPL values (
+    QNA_RPL_SEQ.nextval
+    , 2
+    , default
+    , null
+    , '무료유심이라 하면 개통 신청할 때 배송되는 유심 말씀하시는건가요?'
+    , 'user1'
+    , null
+);
 
 -- 공지사항 테이블
 SELECT * FROM NOTICE;
