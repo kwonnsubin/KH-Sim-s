@@ -87,16 +87,18 @@
 			            <div class="invalid-feedback">이메일을 입력해주세요.</div>
 			          </div>
 			          <div class="col-3 mb-3 text-center align-self-end">
-			            <button class="btn btn-primary btn-sm btn-block" name="emailBtn" type="button" disabled="disabled">인증받기</button>
+			            <button class="btn btn-primary btn-sm btn-block" name="emailBtn" type="button" disabled="disabled">본인인증</button>
 			          </div>
 		            </div>
 		        </div>
 		
 		          <div class="mb-3">
-		            <label for="emailNum">인증번호</label>
-		            <input type="text" class="form-control" name="emailNum" placeholder="인증번호" required>
+		            <label for="emailCheck">인증번호</label>
+		            <input type="text" class="form-control" name="emailCheck" placeholder="인증번호" required>
 		            <div class="invalid-feedback">인증번호를 입력하세요</div>
 		          </div>
+		          
+		        <div class="emailCheckDiv" style="display:none;"></div>
 		          
 		          <div class="container">
 		            <div class="row">
@@ -148,7 +150,7 @@
 		          
 		          <div class="mb-3">
 		            <label for="userSsn">주민등록번호</label>
-		            <input type="text" class="form-control" name="userSsn" placeholder="- 제외한 주민등록번호" required>
+		            <input type="text" class="form-control" name="userSsn" placeholder="- 포함한 주민등록번호" required>
 		            <div class="invalid-feedback">주민등록번호를 입력하세요</div>
 		          </div>
 		          
@@ -270,6 +272,14 @@
 					$("button[name=idBtn]").attr("disabled", "disabled");
 				}
 			});
+			
+			$('.user input[name=userEmail]').change(function(){
+				if($('.user input[name=userEmail]').val() != null) {
+					$("button[name=emailBtn]").removeAttr("disabled");
+				} else {
+					$("button[name=emailBtn]").attr("disabled", "disabled");
+				}
+			});
 		});
   
     window.addEventListener('load', () => {
@@ -309,6 +319,38 @@
 			}
 		 });
     }
+    
+    $('button[name=emailBtn]').on("click", function() {
+		const email = $('input[name=userEmail').val() // 이메일 주소값 얻어오기
+		const checkInput = $('input[name=emailCheck]') // 인증번호 입력하는곳 
+		
+		$.ajax({
+			type : "get"
+			, url : "<%= request.getContextPath() %>/emailCheck?email=" + email
+			, success : function (data) {
+				checkInput.attr('disabled',false);
+				code =data;
+				alert('인증번호가 전송되었습니다.')
+			}			
+		});
+	});
+	
+	// 인증번호 비교
+	$('input[name=emailCheck]').on("blur", function () {
+		const inputCode = $(this).val();
+		const $resultMsg = $('.emailCheckDiv');
+		
+		if(inputCode === code){
+			$resultMsg.html("<p style='color: green;'>인증번호가 일치합니다.</p>");
+			$resultMsg.css("display", "block");
+			$('button[name=emailBtn]').attr('disabled',true);
+			$('input[name=userEmail').attr('readonly',true);
+			$('input[name=emailCheck]').attr('readonly',true);
+		}else{
+			$resultMsg.html("<p style='color: green;'>인증번호가 불일치합니다. 다시 확인해주세요</p>");
+			$resultMsg.css("display", "block");
+		}
+	});
   </script>
   
 </body>

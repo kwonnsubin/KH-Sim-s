@@ -30,7 +30,7 @@
 	
 	<section>
 		<div class="container row" style="float: none; margin:100 auto;">
-			<div class="col-md-5" style="float:none; margin:0 auto;">
+			<div class="col-md-6" style="float:none; margin:0 auto;">
 				<h2>로그인</h2>
 				<c:url value="/login" var="loginUrl" />
 				<form:form name="f" action="${loginUrl}" method="POST">
@@ -52,7 +52,7 @@
 				    <div class="col d-flex justify-content-center">
 				      <!-- Simple link -->
 				      <a href="#!">아이디 / 비밀번호 찾기</a>
-				      <a href="#!">회원가입</a>
+				      <a href="<%=request.getContextPath()%>/signup">회원가입</a>
 				      <a href="#!">카카오 로그인</a>
 				    </div>
 				  </div>
