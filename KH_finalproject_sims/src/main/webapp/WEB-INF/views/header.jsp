@@ -39,6 +39,10 @@
 						</sec:authorize>
 						<li><a href="<%=request.getContextPath()%>/">마이페이지</a></li>
 					</ul>
+					<a class='menu-trigger'> 
+						<span>Menu</span>
+					</a>
+					<!-- ***** Menu End ***** -->
 				</nav>
 			</div>
 		</div>

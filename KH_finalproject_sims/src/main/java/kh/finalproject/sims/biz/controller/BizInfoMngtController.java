@@ -18,12 +18,21 @@ public class BizInfoMngtController {
 	@Autowired
 	private BizInfoMngtService service;
 	
-	@GetMapping("/infodetail")
-	public ModelAndView selectBizInfoDetail(ModelAndView mv) throws Exception {
-		mv.addObject("info", service.selectList());
+	/*
+	 * @GetMapping("/infodetail") public ModelAndView
+	 * selectBizInfoDetail(ModelAndView mv) throws Exception { mv.addObject("info",
+	 * service.selectList()); mv.setViewName("biz/info");
+	 * 
+	 * return mv; }
+	 */
+
+	@GetMapping("infodetail")
+	public ModelAndView showLogo(ModelAndView mv
+			,BizInfoMngtVo vo
+			) {
+		String imagePath ="/resources/img/"+vo.getLogoRenameFilename();
+		mv.addObject("imagePath",imagePath);
 		mv.setViewName("biz/info");
-		
 		return mv;
 	}
-
 }

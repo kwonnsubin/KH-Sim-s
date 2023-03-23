@@ -13,14 +13,20 @@
 		<typeAlias type="kh.finalproject.sims.admin.model.vo.AdminLoginVo" alias="adLvo"/>
 		<typeAlias type="kh.finalproject.sims.admin.model.vo.AdminQnaMngtVo" alias="adQvo"/>
 		<typeAlias type="kh.finalproject.sims.user.model.vo.UserFaqVo" alias="usFaqvo"/>
+		<typeAlias type="kh.finalproject.sims.user.model.vo.UserQnaVo" alias="usQnavo"/>
+		<typeAlias type="kh.finalproject.sims.admin.model.vo.AdminNoticeMngtVo" alias="adNtcvo"/>
 	</typeAliases>
 	 
+	 <!-- 매퍼 추가 안해도 됨
 	<mappers>
 		<mapper resource="mappers/temp-mapper.xml"/>
 		<mapper resource="mappers/plan-mapper.xml"/>
 		<mapper resource="mappers/biz-mapper.xml"/>
 		<mapper resource="mappers/admin/login-mapper.xml"/>
 		<mapper resource="mappers/admin/qnaMngt-mapper.xml"/>
+		<mapper resource="mappers/admin/notice-mapper.xml"/>
 		<mapper resource="mappers/user/faq-mapper.xml"/>
+		<mapper resource="mappers/user/qna-mapper.xml"/>
 	</mappers>
+	 -->
 </configuration>
