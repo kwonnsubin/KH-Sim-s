@@ -2,15 +2,36 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org/DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="adminNotice">
 	
+	
+	<!-- 관리자 공지사항 리스트 -->
 	<select id="selectNoticeList" resultType="adNtcvo">
 		SELECT
 			*
 		FROM
 			NOTICE
-	
-	
 	</select>
 	
+	
+	<!-- 관리자 공지사항 상세 -->
+	<select id="selectNoticeDetail" resultType="adNtcvo">
+		SELECT
+			*
+		FROM	
+			NOTICE
+		WHERE
+		    NTC_NO = #{ntcNo}		
+		
+	</select>
+	
+	<!-- 관리자 공지사항 작성 -->
+	<insert id="insertNoticeWrite" parameterType="adNtcVo">
+		INSERT INTO NOTICE(NTC_NO, NTC_TITLE, NTC_CONTENT, ADMIN_ID) VALUES(
+		FAQ_NO_SEQ.NEXTVAL
+		, #{faqTitle}
+		, #{faqContent}
+		, #{adminId}
+		)
+	</insert>
 
 
 
