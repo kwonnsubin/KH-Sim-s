@@ -9,7 +9,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import kh.finalproject.sims.admin.model.service.AdminNoticeMngtService;
 
-@RequestMapping("/adminNotice")
+@RequestMapping("/adminNotice") //admin으로 변경해주세요.
 @Controller
 public class AdminNoticeMngtController {
 	
@@ -23,4 +23,16 @@ public class AdminNoticeMngtController {
 		mv.setViewName("admin/notice/noticeList");
 		return mv;
 	}
+	
+	
+	// 신고 리뷰 목록
+	@GetMapping("/reviewreportlist")
+	public ModelAndView selectReviewReportList(ModelAndView mv) {
+		mv.addObject("reviewReportList", service.selectReviewReportList());
+		mv.setViewName("admin/reviewreportlist");
+		return mv;
+	}	
+	
 }
+
+
