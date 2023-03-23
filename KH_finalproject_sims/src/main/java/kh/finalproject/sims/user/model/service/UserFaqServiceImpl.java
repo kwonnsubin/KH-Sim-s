@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 
 import kh.finalproject.sims.user.model.dao.UserFaqDao;
 import kh.finalproject.sims.user.model.vo.UserFaqVo;
+import kh.finalproject.sims.user.model.vo.UserQnaVo;
 
 @Service
 public class UserFaqServiceImpl implements UserFaqService {
@@ -22,6 +23,16 @@ public class UserFaqServiceImpl implements UserFaqService {
 	@Override
 	public List<UserFaqVo> selectFaqDetail(int faqNo) {
 		return dao.selectFaqDetail(faqNo);
+	}
+
+	@Override
+	public List<UserQnaVo> selectQnaList() {
+		return dao.selectQnaList();
+	}
+
+	@Override
+	public List<UserQnaVo> selectQnaDetail(int aqNo) {
+		return dao.selectQnaDetail(aqNo);
 	}
 
 }

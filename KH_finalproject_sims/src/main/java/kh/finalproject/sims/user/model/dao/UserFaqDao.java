@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import kh.finalproject.sims.user.model.vo.UserFaqVo;
+import kh.finalproject.sims.user.model.vo.UserQnaVo;
 
 @Repository
 public class UserFaqDao {
@@ -21,6 +22,14 @@ public class UserFaqDao {
 	
 	public List<UserFaqVo> selectFaqDetail(int faqNo) {
 		return session.selectList("faq.selectFaqDetail", faqNo);
+	}
+
+	public List<UserQnaVo> selectQnaList() {
+		return session.selectList("qna.selectQnaList");
+	}
+
+	public List<UserQnaVo> selectQnaDetail(int aqNo) {
+		return session.selectList("qna.selectQnaDetail", aqNo);
 	}
 	
 	

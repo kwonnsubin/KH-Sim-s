@@ -23,10 +23,11 @@ public class UserFaqController {
 	@Autowired
 	UserFaqService service;
 	
-	// 자주 묻는 질문 리스트
+	// 질문 리스트
 	@GetMapping("/faqlist")
 	public ModelAndView selectFaqList(ModelAndView mv) {
-		mv.addObject("list", service.selectFaqList());
+		mv.addObject("faqlist", service.selectFaqList());
+		mv.addObject("qnalist", service.selectQnaList());
 		mv.setViewName("user/faqlist");
 		
 		return mv;
@@ -40,6 +41,17 @@ public class UserFaqController {
 			) {
 		mv.addObject("faqcontents", service.selectFaqDetail(faqNo));
 		mv.setViewName("user/faqread");
+		return mv;
+	}
+	
+	// 일반 질문 상세보기
+	@GetMapping("/qnaread/{aqNo}")
+	public ModelAndView readQna(
+			ModelAndView mv,
+			@PathVariable int aqNo
+			) {
+		mv.addObject("qnacontents", service.selectQnaDetail(aqNo));
+		mv.setViewName("user/qnaread");
 		return mv;
 	}
 	
