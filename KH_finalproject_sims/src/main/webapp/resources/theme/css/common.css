@@ -19,7 +19,7 @@ a{color:#222;text-decoration:none}
 a:hover{color:#000;text-decoration:underline}
 button *{position:relative}
 button img{left:-3px;*left:auto}
-html:first-child select{height:20px;padding-right:6px}
+/* html:first-child select{height:20px;padding-right:6px} */
 option{padding-right:6px}
 hr{display:none}
 legend{*width:0}
