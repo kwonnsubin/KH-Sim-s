@@ -14,18 +14,20 @@
 			<thead class="table-light text-center">
 			<tr>
 				<th class="text-center">리뷰번호</th>
-				<th>리뷰내용</th>
-				<th class="text-center">작성자</th>
+				<th>신고사유</th>
+				<th class="text-center">통신사</th>
 				<th class="text-center">신고일자</th>
+				<th class="text-center">처리상태</th>
 			</tr>
 			</thead>
  			<c:forEach items="${reviewReportList}" var="reviewlist">
 				<tbody>
 					<tr>
 						<td class="text-center">${reviewlist.reviewNo}</td>
-						<td class="text-center"><a href="<%=request.getContextPath()%>/admin/faqdetail/${faq.faqNo}">${reviewlist.reviewContent}</a></td>
-						<td class="text-center">${reviewlist.userId}</td>
+						<td class="text-center"><a href="<%=request.getContextPath()%>/admin/reviewreportdetail/${reviewlist.reviewNo}">${reviewlist.reportReason}</a></td>
+						<td class="text-center">${reviewlist.bizId}</td>
 						<td class="text-center">${reviewlist.reportDate}</td>
+						<td class="text-center">${reviewlist.reportStatus}</td>
 					</tr>
 				</tbody>
  			</c:forEach>

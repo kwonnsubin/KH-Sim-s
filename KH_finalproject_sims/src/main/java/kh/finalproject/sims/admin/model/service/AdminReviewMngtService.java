@@ -9,5 +9,9 @@ import kh.finalproject.sims.admin.model.vo.AdminReviewMngtVo;
 
 public interface AdminReviewMngtService {
 	
+	// 신고리뷰목록
 	public List<AdminReviewMngtVo> selectReviewReportList();
+	
+	// 신고리뷰상세
+	public AdminReviewMngtVo selectReviewReportDetail(int reviewNo);
 }

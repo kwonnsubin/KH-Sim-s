@@ -47,9 +47,32 @@
 	
 	<!-- 신고 리뷰 목록 -->
 	<select id="selectReviewReportList" resultType="kh.finalproject.sims.admin.model.vo.AdminReviewMngtVo">
-		SELECT R.REVIEW_NO, R.REPORT_DATE, R.REPORT_STATUS, B.REVIEW_CONTENT, B.USER_ID, B.BIZ_ID
+		SELECT R.REVIEW_NO, R.REPORT_DATE, 
+		    CASE R.REPORT_STATUS
+		        WHEN 1 THEN '미확인'
+		        WHEN 2 THEN '삭제'
+		        WHEN 3 THEN '반려'
+		        ELSE '알 수 없음'
+		    END AS REPORT_STATUS, 
+		    B.REVIEW_CONTENT, B.USER_ID, B.BIZ_ID, R.REPORT_REASON
 		FROM REVIEW_REPORT R
 		JOIN BIZ_REVIEW B ON R.REVIEW_NO = B.REVIEW_NO
 		ORDER BY R.REPORT_DATE DESC
+	</select>
+	
+	<!-- 신고 리뷰 상세내용 -->
+	<select id="selectReviewReportDetail" resultType="kh.finalproject.sims.admin.model.vo.AdminReviewMngtVo" parameterType="_int">
+		SELECT R.REVIEW_NO, R.REPORT_DATE, 
+	    CASE R.REPORT_STATUS
+	        WHEN 1 THEN '미확인'
+	        WHEN 2 THEN '삭제'
+	        WHEN 3 THEN '반려'
+	        ELSE '알 수 없음'
+	    END AS REPORT_STATUS, 
+	    B.REVIEW_CONTENT, B.USER_ID, B.BIZ_ID, R.REPORT_REASON
+	FROM REVIEW_REPORT R
+	JOIN BIZ_REVIEW B ON R.REVIEW_NO = B.REVIEW_NO
+	WHERE R.REVIEW_NO = 2
+	ORDER BY R.REPORT_DATE DESC
 	</select>
 </mapper>

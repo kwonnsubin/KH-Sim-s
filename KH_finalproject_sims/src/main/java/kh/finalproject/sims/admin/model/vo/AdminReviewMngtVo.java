@@ -16,24 +16,28 @@ public class AdminReviewMngtVo {
 	private String userId; // 사용자아이디
 	private String bizId; // 통신사아이디
 	private Date reportDate; // 신고일자
-	private int reportStatus; // 신고처리상태
+	private String reportStatus; // 신고처리상태
 	private String reviewContent; // 리뷰내용
+	private String reportReason; // 신고사유
 	
 	@Override
 	public String toString() {
 		return "AdminReviewMngtVo [reviewNo=" + reviewNo + ", userId=" + userId + ", bizId=" + bizId + ", reportDate="
-				+ reportDate + ", reportStatus=" + reportStatus + ", reviewContent=" + reviewContent + "]";
+				+ reportDate + ", reportStatus=" + reportStatus + ", reviewContent=" + reviewContent + ", reportReason="
+				+ reportReason + "]";
 	}
-	
 
+	
+	
 	public AdminReviewMngtVo() {
 		super();
+		// TODO Auto-generated constructor stub
 	}
 
 
 
-	public AdminReviewMngtVo(int reviewNo, String userId, String bizId, Date reportDate, int reportStatus,
-			String reviewContent) {
+	public AdminReviewMngtVo(int reviewNo, String userId, String bizId, Date reportDate, String reportStatus,
+			String reviewContent, String reportReason) {
 		super();
 		this.reviewNo = reviewNo;
 		this.userId = userId;
@@ -41,11 +45,15 @@ public class AdminReviewMngtVo {
 		this.reportDate = reportDate;
 		this.reportStatus = reportStatus;
 		this.reviewContent = reviewContent;
+		this.reportReason = reportReason;
 	}
+
+
 
 	public int getReviewNo() {
 		return reviewNo;
 	}
+
 
 
 	public void setReviewNo(int reviewNo) {
@@ -53,9 +61,11 @@ public class AdminReviewMngtVo {
 	}
 
 
+
 	public String getUserId() {
 		return userId;
 	}
+
 
 
 	public void setUserId(String userId) {
@@ -63,9 +73,11 @@ public class AdminReviewMngtVo {
 	}
 
 
+
 	public String getBizId() {
 		return bizId;
 	}
+
 
 
 	public void setBizId(String bizId) {
@@ -73,9 +85,11 @@ public class AdminReviewMngtVo {
 	}
 
 
+
 	public Date getReportDate() {
 		return reportDate;
 	}
+
 
 
 	public void setReportDate(Date reportDate) {
@@ -83,14 +97,17 @@ public class AdminReviewMngtVo {
 	}
 
 
-	public int getReportStatus() {
+
+	public String getReportStatus() {
 		return reportStatus;
 	}
 
 
-	public void setReportStatus(int reportStatus) {
+
+	public void setReportStatus(String reportStatus) {
 		this.reportStatus = reportStatus;
 	}
+
 
 
 	public String getReviewContent() {
@@ -98,7 +115,21 @@ public class AdminReviewMngtVo {
 	}
 
 
+
 	public void setReviewContent(String reviewContent) {
 		this.reviewContent = reviewContent;
 	}
+
+
+
+	public String getReportReason() {
+		return reportReason;
+	}
+
+
+
+	public void setReportReason(String reportReason) {
+		this.reportReason = reportReason;
+	}
+	
 }

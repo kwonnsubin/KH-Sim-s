@@ -13,8 +13,14 @@ public class AdminReviewMngtDao {
 	@Autowired
 	SqlSession sqlSession;
 	
+	// 신고리뷰리스트
 	public List<AdminReviewMngtVo> selectReviewReportList() {
 		return sqlSession.selectList("admin.selectReviewReportList");
+	}
+	
+	// 신고리뷰상세
+	public AdminReviewMngtVo selectReviewReportDetail(int reviewNo) {
+		return sqlSession.selectOne("admin.selectReviewReportDetail", reviewNo);
 	}
 	
 	
