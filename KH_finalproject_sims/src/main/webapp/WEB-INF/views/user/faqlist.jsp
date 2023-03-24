@@ -79,7 +79,7 @@
 				</div>
 			</div>
 			<!-- ***** 자주묻는질문 end ***** -->
-			<!--  ***** 일반 질문 Start ***** -->
+			<!-- ***** 일반 질문 Start ***** -->
 			<div class="row">
 				<div class="col-lg-12 p-2">
 					<table class="table table-hover table-group-divider mt-3 mb-3">

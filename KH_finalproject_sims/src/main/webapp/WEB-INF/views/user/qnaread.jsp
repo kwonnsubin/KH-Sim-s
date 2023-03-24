@@ -12,8 +12,9 @@
 </head>
 <body>
 	<div class="container mb-5 mt-6 w-75">
-		<!-- 게시판 상세글 -->
-		<c:forEach var="qnalist" items="${qnacontents }">
+		<!-- 문의 게시판 질문상세 -->
+		<h4>질문</h4>
+		<c:forEach items="${qnaquestion }" var="qnalist">
 			${qnalist.aqNo } <br>
 			${qnalist.aqWriter } <br>
 			${qnalist.aqTitle } <br>

@@ -23,7 +23,7 @@ public class UserFaqController {
 	@Autowired
 	UserFaqService service;
 	
-	// 질문 리스트
+	// 질문 목록
 	@GetMapping("/faqlist")
 	public ModelAndView selectFaqList(ModelAndView mv) {
 		mv.addObject("faqlist", service.selectFaqList());
@@ -33,7 +33,7 @@ public class UserFaqController {
 		return mv;
 	}
 	
-	// 자주 묻는 질문 상세보기
+	// 자주묻는질문 상세보기
 	@GetMapping("/faqread/{faqNo}")
 	public ModelAndView readFaq(
 			ModelAndView mv, 
@@ -44,7 +44,7 @@ public class UserFaqController {
 		return mv;
 	}
 	
-	// 일반 질문 상세보기
+	// 문의게시판 질문 상세보기
 	@GetMapping("/qnaread/{aqNo}")
 	public ModelAndView readQna(
 			ModelAndView mv,
