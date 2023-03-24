@@ -72,7 +72,19 @@
 	    B.REVIEW_CONTENT, B.USER_ID, B.BIZ_ID, R.REPORT_REASON
 	FROM REVIEW_REPORT R
 	JOIN BIZ_REVIEW B ON R.REVIEW_NO = B.REVIEW_NO
-	WHERE R.REVIEW_NO = 2
+	WHERE R.REVIEW_NO = #{reviewNo}
 	ORDER BY R.REPORT_DATE DESC
 	</select>
+	
+	<!-- 신고 리뷰 처리변경 -->
+	<!-- 신고 리뷰 반려로-->
+	<update id="updateReviewReportReject">
+		UPDATE REVIEW_REPORT SET REPORT_STATUS = 3 WHERE REVIEW_NO = #{reviewNo}
+	</update>
+	
+	<!-- 신고 리뷰 삭제로 -->
+	<update id="updateReviewReportRemove">
+		UPDATE REVIEW_REPORT SET REPORT_STATUS = 3 WHERE REVIEW_NO = #{reviewNo}
+	</update>
+	
 </mapper>

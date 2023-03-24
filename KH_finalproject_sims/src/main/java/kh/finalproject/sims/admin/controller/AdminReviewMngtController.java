@@ -36,6 +36,9 @@ public class AdminReviewMngtController {
 		return mv;
 	}
 	
-	// 신고 리뷰 삭제
+	// 신고 리뷰 반려처리
+	// 뭔가 이상한데..
+	
+	// 신고 리뷰 삭제처리
 	
 }

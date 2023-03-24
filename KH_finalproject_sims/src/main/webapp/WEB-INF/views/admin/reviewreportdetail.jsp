@@ -13,7 +13,7 @@
 	<div class="container mb-5 mt-6 w-75">
 		<!-- 게시판 상세글 -->
 		<button>삭제</button>
-		<button>반려</button>
+		<button id="reject-btn">반려</button>
 		<div class="mb-44">
 				<div class="row  bg-light  " style="height:50px;">
 					<div class="d-inline col-3  ">
@@ -41,33 +41,5 @@
 	</div>
 </body>
 
-<script>
-$(document).ready(function() {
-  // 삭제 버튼 클릭 이벤트 핸들러 등록
-  $('#deleteButton').click(function() {
-    // 리뷰 삭제 요청을 보낼 URL
-    var url = 'reviewdelete';
-    // 삭제할 리뷰의 번호
-    var reviewNo = ${detail.reviewNo};
-    // AJAX 요청 보내기
-    $.ajax({
-      type: 'POST',
-      url: url,
-      data: {reviewNo: reviewNo},
-      success: function(data) {
-        // 처리 결과에 따라 처리 상태 업데이트
-        if (data.result === 'success') {
-          $('#reportStatus').text('삭제');
-        } else {
-          alert('리뷰 삭제에 실패하였습니다.');
-        }
-      },
-      error: function() {
-        alert('오류가 발생하였습니다.');
-      }
-    });
-  });
-});
-</script>
 
 </html>
