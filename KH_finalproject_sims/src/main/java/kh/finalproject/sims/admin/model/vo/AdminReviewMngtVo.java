@@ -17,11 +17,12 @@ public class AdminReviewMngtVo {
 	private String bizId; // 통신사아이디
 	private Date reportDate; // 신고일자
 	private int reportStatus; // 신고처리상태
+	private String reviewContent; // 리뷰내용
 	
 	@Override
 	public String toString() {
 		return "AdminReviewMngtVo [reviewNo=" + reviewNo + ", userId=" + userId + ", bizId=" + bizId + ", reportDate="
-				+ reportDate + ", reportStatus=" + reportStatus + "]";
+				+ reportDate + ", reportStatus=" + reportStatus + ", reviewContent=" + reviewContent + "]";
 	}
 	
 
@@ -31,15 +32,16 @@ public class AdminReviewMngtVo {
 
 
 
-	public AdminReviewMngtVo(int reviewNo, String userId, String bizId, Date reportDate, int reportStatus) {
+	public AdminReviewMngtVo(int reviewNo, String userId, String bizId, Date reportDate, int reportStatus,
+			String reviewContent) {
 		super();
 		this.reviewNo = reviewNo;
 		this.userId = userId;
 		this.bizId = bizId;
 		this.reportDate = reportDate;
 		this.reportStatus = reportStatus;
+		this.reviewContent = reviewContent;
 	}
-
 
 	public int getReviewNo() {
 		return reviewNo;
@@ -88,5 +90,15 @@ public class AdminReviewMngtVo {
 
 	public void setReportStatus(int reportStatus) {
 		this.reportStatus = reportStatus;
+	}
+
+
+	public String getReviewContent() {
+		return reviewContent;
+	}
+
+
+	public void setReviewContent(String reviewContent) {
+		this.reviewContent = reviewContent;
 	}
 }

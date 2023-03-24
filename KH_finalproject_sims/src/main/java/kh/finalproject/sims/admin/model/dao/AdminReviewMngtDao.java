@@ -17,4 +17,5 @@ public class AdminReviewMngtDao {
 		return sqlSession.selectList("admin.selectReviewReportList");
 	}
 	
+	
 }

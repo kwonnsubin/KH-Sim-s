@@ -30,7 +30,7 @@
 	</insert>
 	
 	<!-- 자주묻는질문 수정  -->
-	<update id="selectReviewReportList" parameterType="adQvo">
+	<update id="selectFaqModify" parameterType="adQvo">
 		UPDATE FAQ
 		SET 
 		 FAQ_TITLE = #{faqTitle}
@@ -46,12 +46,10 @@
 	
 	
 	<!-- 신고 리뷰 목록 -->
-	<select id="selectReviewList" resultType="kh.finalproject.sims.admin.model.vo.AdminReviewMngtVo">
-		select REVIEW_NO
-		,USER_ID
-		,BIZ_ID
-		,REPORT_DATE
-		,REPORT_STATUS 
-		from REVIEW_REPORT;	
+	<select id="selectReviewReportList" resultType="kh.finalproject.sims.admin.model.vo.AdminReviewMngtVo">
+		SELECT R.REVIEW_NO, R.REPORT_DATE, R.REPORT_STATUS, B.REVIEW_CONTENT, B.USER_ID, B.BIZ_ID
+		FROM REVIEW_REPORT R
+		JOIN BIZ_REVIEW B ON R.REVIEW_NO = B.REVIEW_NO
+		ORDER BY R.REPORT_DATE DESC
 	</select>
 </mapper>
