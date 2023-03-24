@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import kh.finalproject.sims.user.model.dao.UserFaqDao;
+import kh.finalproject.sims.user.model.vo.UserAnsVo;
 import kh.finalproject.sims.user.model.vo.UserFaqVo;
 import kh.finalproject.sims.user.model.vo.UserQnaVo;
 
@@ -37,6 +38,12 @@ public class UserFaqServiceImpl implements UserFaqService {
 	@Override
 	public List<UserQnaVo> selectQnaDetail(int aqNo) {
 		return dao.selectQnaDetail(aqNo);
+	}
+	
+	// 문의게시판 답변목록
+	@Override
+	public List<UserAnsVo> selectAnsList(int aqNo) {
+		return dao.selectAnsList(aqNo);
 	}
 
 	// 조회수 증가

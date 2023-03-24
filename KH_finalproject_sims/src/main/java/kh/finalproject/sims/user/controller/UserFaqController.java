@@ -51,7 +51,8 @@ public class UserFaqController {
 			@PathVariable int aqNo
 			) {
 		service.viewCount(aqNo);
-		mv.addObject("qnacontents", service.selectQnaDetail(aqNo));
+		mv.addObject("qnaquestion", service.selectQnaDetail(aqNo));
+		mv.addObject("qnaanswer", service.selectAnsList(aqNo));
 		mv.setViewName("user/qnaread");
 		return mv;
 	}

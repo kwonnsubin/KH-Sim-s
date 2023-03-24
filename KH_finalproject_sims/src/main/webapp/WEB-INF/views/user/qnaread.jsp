@@ -23,6 +23,16 @@
 			${qnalist.aqRedate } <br>
 			${qnalist.aqViews } <br>
 		</c:forEach>
+		<h4>답변</h4>
+		<c:forEach items="${qnaanswer }" var="ans">
+			${ans.aaNo} <br>
+			${ans.aqNo } <br>
+			${ans.adminId } <br>
+			${ans.userId } <br>
+			${ans.aaContent } <br>
+			${ans.aaDate } <br>
+			${ans.aaRedate }
+		</c:forEach>
 	</div>
 </body>
 </html>
