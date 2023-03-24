@@ -6,6 +6,7 @@ import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import kh.finalproject.sims.user.model.vo.UserAnsVo;
 import kh.finalproject.sims.user.model.vo.UserFaqVo;
 import kh.finalproject.sims.user.model.vo.UserQnaVo;
 
@@ -30,6 +31,10 @@ public class UserFaqDao {
 
 	public List<UserQnaVo> selectQnaDetail(int aqNo) {
 		return session.selectList("qna.selectQnaDetail", aqNo);
+	}
+	
+	public List<UserAnsVo> selectAnsList(int aqNo) {
+		return session.selectList("ans.selectAnsList", aqNo);
 	}
 
 	public void viewCount(int aqNo) {
