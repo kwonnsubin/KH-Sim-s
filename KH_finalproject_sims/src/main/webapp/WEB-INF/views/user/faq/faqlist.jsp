@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -106,8 +107,13 @@
 					</table>
 				</div>
 			</div>
-			<button type="button">내 질문/답변</button>
-			<button type="button" onclick="location.href='qnawrite'">질문하기</button>
+			<sec:authorize access="isAuthenticated()">
+				<sec:authentication property="principal.username" var="username"/>
+				<c:if test="${not empty username }">
+					<button type="button">내 질문/답변</button>
+					<button type="button" onclick="location.href='qnawrite'">질문하기</button>
+				</c:if>
+			</sec:authorize>
 			<!-- ***** 일반 질문 end ***** -->
 		</div>
 
