@@ -13,19 +13,19 @@
 		<table class="table table-hover table-group-divider mt-3 mb-3">
 			<thead class="table-light text-center">
 			<tr>
-				<th class="text-center">번호</th>
-				<th>제목</th>
+				<th class="text-center">리뷰번호</th>
+				<th>리뷰내용</th>
 				<th class="text-center">작성자</th>
-				<th class="text-center">작성일</th>
+				<th class="text-center">신고일자</th>
 			</tr>
 			</thead>
  			<c:forEach items="${reviewReportList}" var="reviewlist">
 				<tbody>
 					<tr>
-						<td class="text-center">${reviewlist.REVIEW_NO}</td>
-						<td class="text-center"><a href="<%=request.getContextPath()%>/admin/faqdetail/${faq.faqNo}">${faq.faqTitle}</a></td>
-						<td class="text-center">${faq.adminId}</td>
-						<%-- <td class="text-center">${faq.adminId}</td> --%>
+						<td class="text-center">${reviewlist.reviewNo}</td>
+						<td class="text-center"><a href="<%=request.getContextPath()%>/admin/faqdetail/${faq.faqNo}">${reviewlist.reviewContent}</a></td>
+						<td class="text-center">${reviewlist.userId}</td>
+						<td class="text-center">${reviewlist.reportDate}</td>
 					</tr>
 				</tbody>
  			</c:forEach>
