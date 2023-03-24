@@ -1,6 +1,7 @@
 package kh.finalproject.sims.biz.model.vo;
 
 import java.sql.Date;
+import java.util.List;
 
 import org.springframework.stereotype.Component;
 
@@ -44,15 +45,26 @@ public class BizInfoMngtVo {
 	private int bizZipCode;
 	private String bizLocation;
 	private String bizCardPayDate;
+	private String bizAccPayDate;
+	private String bizBeginTime;
+	private String bizEndTime;
+	private String bizClosedDay;
+	private int bizReviewStar;
+	private String phoneOpTime;
+	private String phoneOpTimeUsim;
+	private String network;
+	private Date writeDate;
+	private Date updateDate;
+	private String logoRenameFilename;
+
 	
-	public BizInfoMngtVo() {}
+	private List<bizInfoMngServiceVo> serviceList;
 	
 	public BizInfoMngtVo(String bizId, String bizName, String bizSsn, String bizCrn, String bizEmail, String bizPhone,
 			String bizFax, String bizOwnerName, String bizHp, int bizZipCode, String bizLocation, String bizCardPayDate,
 			String bizAccPayDate, String bizBeginTime, String bizEndTime, String bizClosedDay, int bizReviewStar,
 			String phoneOpTime, String phoneOpTimeUsim, String network, Date writeDate, Date updateDate,
-			String logoRenameFilename) {
-		super();
+			String logoRenameFilename, List<bizInfoMngServiceVo> serviceList) {
 		this.bizId = bizId;
 		this.bizName = bizName;
 		this.bizSsn = bizSsn;
@@ -76,7 +88,20 @@ public class BizInfoMngtVo {
 		this.writeDate = writeDate;
 		this.updateDate = updateDate;
 		this.logoRenameFilename = logoRenameFilename;
+		this.serviceList = serviceList;
 	}
+	
+
+	public List<bizInfoMngServiceVo> getServiceList() {
+		return serviceList;
+	}
+
+	public void setServiceList(List<bizInfoMngServiceVo> serviceList) {
+		this.serviceList = serviceList;
+	}
+
+	public BizInfoMngtVo() {}
+
 	@Override
 	public String toString() {
 		return "BizInfoMngtVo [bizId=" + bizId + ", bizName=" + bizName + ", bizSsn=" + bizSsn + ", bizCrn=" + bizCrn
@@ -86,7 +111,7 @@ public class BizInfoMngtVo {
 				+ bizBeginTime + ", bizEndTime=" + bizEndTime + ", bizClosedDay=" + bizClosedDay + ", bizReviewStar="
 				+ bizReviewStar + ", phoneOpTime=" + phoneOpTime + ", phoneOpTimeUsim=" + phoneOpTimeUsim + ", network="
 				+ network + ", writeDate=" + writeDate + ", updateDate=" + updateDate + ", logoRenameFilename="
-				+ logoRenameFilename + "]";
+				+ logoRenameFilename + ", serviceList=" + serviceList + "]";
 	}
 	public String getBizId() {
 		return bizId;
@@ -226,19 +251,7 @@ public class BizInfoMngtVo {
 	public void setLogoRenameFilename(String logoRenameFilename) {
 		this.logoRenameFilename = logoRenameFilename;
 	}
-	private String bizAccPayDate;
-	private String bizBeginTime;
-	private String bizEndTime;
-	private String bizClosedDay;
-	private int bizReviewStar;
-	private String phoneOpTime;
-	private String phoneOpTimeUsim;
-	private String network;
-	private Date writeDate;
-	private Date updateDate;
-	private String logoRenameFilename;
-	
-	
+
 	
 	
 	

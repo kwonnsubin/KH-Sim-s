@@ -22,11 +22,18 @@ table th{
  table {
     width: 100%;
     margin: 0;
-    border: 0;
+    /* border: 0; */
     table-layout: fixed;
     border-collapse: collapse;
     empty-cells: show;
     justify-content: center;
 	align-items: center;
+	border-style: solid;
 }
-	
+table tr, 
+table th,
+table td{
+    border-color: inherit;
+    border-style: dotted;
+    border-width: thin;
+ }

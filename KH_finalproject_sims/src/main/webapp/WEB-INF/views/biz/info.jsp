@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <c:set var="path" value="${pageContext.request.contextPath}"/>
 <!DOCTYPE html>
 <html>
@@ -32,57 +32,139 @@
 				<th scope="row">
 					<span>법인명</span>
 				</th>
-				<td>kctv</td>
+				<td>${bizinfo.bizName }</td>
 				<th scope="row">
 					<span>대표자명</span>
 				</th>
-				<td>kctv</td>
+				<td>${bizinfo.bizOwnerName }</td>
 			</tr>
 			<tr>
 				<th scope="row">
 					<span>사업자등록번호</span>
 				</th>
-				<td>kctv</td>
+				<td>${bizinfo.bizCrn }</td>
 				<th scope="row">
 					<span>법인등록번호</span>
 				</th>
-				<td>kctv</td>
+				<td>${bizinfo.bizSsn }</td>
 			</tr>
 			<tr>
 				<th scope="row">
 					<span>회사우편번호</span>
 				</th>
-				<td colspan="2">kctv</td>
+				<td colspan="2">${bizinfo.bizZipCode }</td>
 			</tr>
 			<tr>
 				<th scope="row">
 					<span>회사주소</span>
 				</th>
-				<td colspan="2">kctv</td>
+				<td colspan="2">${bizinfo.bizLocation }</td>
 			</tr>
 			<tr>
 				<th scope="row">
 					<span>전화</span>
 				</th>
-				<td>kctv</td>
+				<td>${bizinfo.bizPhone }</td>
 				<th scope="row">
 					<span>팩스</span>
 				</th>
-				<td>kctv</td>
+				<td>${bizinfo.bizFax }</td>
 			</tr>
 			<tr>
 				<th scope="row">
 					<span>이메일</span>
 				</th>
-				<td>kctv</td>
+				<td>${bizinfo.bizEmail }</td>
 				<th scope="row">
 					<span>홈페이지</span>
 				</th>
-				<td>kctv</td>
+				<td>${bizinfo.bizHp }</td>
 			</tr>
 		</tbody>
 	</table>
 	
+	<div>
+		<span>상세정보</span>
+	</div>
+	
+	<table>
+		<tr>
+			<th scope="row">
+				<span>개통 소요시간</span>
+			</th>
+			<td colspan="2">${bizinfo.phoneOpTime }</td>
+		</tr>
+		<tr>
+			<th scope="row">
+				<span>개통 소요시간 (유심보유시)</span>
+			</th>
+			<td colspan="2">${bizinfo.phoneOpTimeUsim }</td>
+		</tr>
+		<tr>
+			<th scope="row">
+				<span>지원통신망</span>
+			</th>
+			<td colspan="2">${bizinfo.network }</td>
+		</tr>
+		<tr>
+			<th scope="row">
+				<span>영업시간</span>
+			</th>
+			<td colspan="2">${bizinfo.bizBeginTime } ~ ${bizinfo.bizEndTime }</td>
+		</tr>
+		<tr>
+			<th scope="row">
+				<span>휴무일</span>
+			</th>
+			<td colspan="2">${bizinfo.bizClosedDay }</td>
+		</tr>
+		
+		<c:forEach var="service" items="${vo }">
+			<tr>
+				<th scope="row">
+					<span>고객센터번호</span>
+				</th>
+				<td colspan="2">SKT</td>
+				<td>${service.biznetservice}</td>
+			</tr>
+			<tr>
+				<th scope="row">
+					<span>고객센터번호</span>
+				</th>
+				<td colspan="2">KT</td>
+				<td>${service.biznetservice }</td>
+			</tr>
+			<tr>
+				<th scope="row">
+					<span>고객센터번호</span>
+				</th>
+				<td colspan="2">LGU+</td>
+				<td>${service.biznetservice}</td>
+			</tr>
+		</c:forEach>
+		
+		
+		
+	</table>
+	
+		<table>
+  <thead>
+    <tr>
+      <th>열 1</th>
+      <th>열 2</th>
+      <th>열 3</th>
+    </tr>
+  </thead>
+  <tbody>
+    
+      <tr>
+        <td>${item.bizNetService}</td>
+        <td>${item.bizNetService}</td>
+        <td>${item.bizNetService}</td>
+      </tr>
+   
+  </tbody>
+</table>
 	
 	
 	

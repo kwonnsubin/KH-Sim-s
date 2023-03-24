@@ -15,7 +15,16 @@ public class BizInfoMngtDao {
 	@Autowired
 	private SqlSession sqlSession;
 	
-	public List<BizInfoMngtVo> selectList() throws Exception {
-		return sqlSession.selectList("biz.selectListBizinfo");
+//	public List<BizInfoMngtVo> selectList() throws Exception {
+//		return sqlSession.selectList("biz.selectListBizinfo");
+//	}
+
+	public BizInfoMngtVo selectBizInfoDetail() {
+		return sqlSession.selectOne("biz.selectBizInfoDetail");
+	}
+	
+	//고객센터번호 리스트
+	public List<BizInfoMngtVo> selectListService(){
+		return sqlSession.selectList("biz.selectListService");
 	}
 }

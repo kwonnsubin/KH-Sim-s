@@ -13,8 +13,18 @@ public class BizInfoMngtServiceImpl implements BizInfoMngtService{
 	@Autowired
 	private BizInfoMngtDao dao;
 
+	/*
+	 * @Override public List<BizInfoMngtVo> selectList() throws Exception { return
+	 * dao.selectList(); }
+	 */
+
 	@Override
-	public List<BizInfoMngtVo> selectList() throws Exception {
-		return dao.selectList();
+	public BizInfoMngtVo selectBizInfoDetail() {
+		return dao.selectBizInfoDetail();
+	}
+
+	@Override
+	public List<BizInfoMngtVo> selectListService() {
+		return dao.selectListService();
 	}
 }
