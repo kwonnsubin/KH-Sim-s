@@ -10,7 +10,7 @@
 	
 	<select id="selectFaqDetail" resultType="usFaqvo">
 		select faq_no
-			, faq_title,
+			, faq_title
 			, faq_content
 		from faq
 		where faq_no = #{faqNo}
