@@ -14,7 +14,9 @@
 	
 	<!-- 문의게시판 질문보기 -->
 	<select id="selectQnaDetail" resultType="usQnavo">
-		select * from qna
+		select * 
+		from QNA
+		where AQ_NO = #{aqNo}
 	</select>
 	
 	<!-- 조회수 증가 -->
