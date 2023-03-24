@@ -449,3 +449,7 @@ INSERT INTO PLAN_ORDER VALUES (PLAN_ORDER_SEQ.NEXTVAL,
                                NULL,
                                NULL
 );
+
+-- 리뷰내역신고
+INSERT INTO REVIEW_REPORT (
+REVIEW_NO, REPORT_STATUS, REPORT_REASON) values (2, 1, '악의적인 리뷰');
