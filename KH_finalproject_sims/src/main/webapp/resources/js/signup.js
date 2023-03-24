@@ -1,11 +1,11 @@
 $(document).ready(function() {
     $("input[name='role']").click(function() {
         if($("input[name='role']:checked").val() === 'ROLE_USER') {
-        	$(".biz").css("display","none");
-        	$(".user").css("display","block");
+        	$(".bizForm").css("display","none");
+        	$(".userForm").css("display","block");
         } else {
-        	$(".biz").css("display","block");
-        	$(".user").css("display","none");
+        	$(".bizForm").css("display","block");
+        	$(".userForm").css("display","none");
         }
     })
     
@@ -14,11 +14,14 @@ $(document).ready(function() {
 		if($('.user input[name=pw]').val() === $('.user input[name=pwCheck]').val()) {
 			$(".user .pwCheckDiv").html("<p style='color: green;'>비밀번호가 같습니다.</p>");
 			$(".user .pwCheckDiv").css("display", "block");
-			$(".btn").removeAttr("disabled");
+			if($('input[name=userEmail').attr('readonly') === 'readonly' && 
+					$(".user .idCheckDiv").html() === '<p style="color: green;">사용 가능한 아이디입니다.</p>'){
+				$(".userForm .btn").removeAttr("disabled");
+			}
 		} else {
 			$(".user .pwCheckDiv").html("<p style='color: red;'>비밀번호가 다릅니다.</p>");
 			$(".user .pwCheckDiv").css("display", "block");
-			$(".btn").attr("disabled", "disabled");
+			$(".userForm .btn").attr("disabled", "disabled");
 		}
 	});
 	
@@ -26,11 +29,14 @@ $(document).ready(function() {
 		if($('.user input[name=pw]').val() === $('.user input[name=pwCheck]').val()) {
 			$(".user .pwCheckDiv").html("<p style='color: green;'>비밀번호가 같습니다.</p>");
 			$(".user .pwCheckDiv").css("display", "block");
-			$(".btn").removeAttr("disabled");
+			if($('input[name=userEmail').attr('readonly') === 'readonly' && 
+					$(".user .idCheckDiv").html() === '<p style="color: green;">사용 가능한 아이디입니다.</p>'){
+				$(".userForm .btn").removeAttr("disabled");
+			}
 		} else {
 			$(".user .pwCheckDiv").html("<p style='color: red;'>비밀번호가 다릅니다.</p>");
 			$(".user .pwCheckDiv").css("display", "block");
-			$(".btn").attr("disabled", "disabled");
+			$(".userForm .btn").attr("disabled", "disabled");
 		}
 	});
 	
@@ -39,11 +45,13 @@ $(document).ready(function() {
 		if($('.biz input[name=pw]').val() === $('.biz input[name=pwCheck]').val()) {
 			$(".biz .pwCheckDiv").html("<p style='color: green;'>비밀번호가 같습니다.</p>");
 			$(".biz .pwCheckDiv").css("display", "block");
-			$(".btn").removeAttr("disabled");
+			if($(".biz .idCheckDiv").html() === '<p style="color: green;">사용 가능한 아이디입니다.</p>'){
+				$(".bizForm .btn").removeAttr("disabled");
+			}
 		} else {
 			$(".biz .pwCheckDiv").html("<p style='color: red;'>비밀번호가 다릅니다.</p>");
 			$(".biz .pwCheckDiv").css("display", "block");
-			$(".btn").attr("disabled", "disabled");
+			$(".bizForm .btn").attr("disabled", "disabled");
 		}
 	});
 	
@@ -51,11 +59,13 @@ $(document).ready(function() {
 		if($('.biz input[name=pw]').val() === $('.biz input[name=pwCheck]').val()) {
 			$(".biz .pwCheckDiv").html("<p style='color: green;'>비밀번호가 같습니다.</p>");
 			$(".biz .pwCheckDiv").css("display", "block");
-			$(".btn").removeAttr("disabled");
+			if($(".biz .idCheckDiv").html() === '<p style="color: green;">사용 가능한 아이디입니다.</p>'){
+				$(".bizForm .btn").removeAttr("disabled");
+			}
 		} else {
 			$(".user .pwCheckDiv").html("<p style='color: red;'>비밀번호가 다릅니다.</p>");
 			$(".biz .pwCheckDiv").css("display", "block");
-			$(".btn").attr("disabled", "disabled");
+			$(".bizForm .btn").attr("disabled", "disabled");
 		}
 	});
 	
@@ -106,24 +116,47 @@ window.addEventListener('load', () => {
   });
 }, false);
     
-$("button[name=idBtn]").on("click", idCheck);
+$(".user button[name=idBtn]").on("click", userIdCheck);
 
-function idCheck() {
+function userIdCheck() {
 	$.ajax({
 		url : contextPath + "/signup/idcheck",
 		type : "post",
 		async : false,
 		data : {
-			id : $("input[name=id]").val()
+			id : $(".user input[name=id]").val()
 		},
 		dataType : "json",
 		success : function(data){
 			if(data.idCheck == 1) {
-				$(".idCheckDiv").html("<p style='color: red;'>사용 불가능한 아이디입니다.</p>");
-				$(".idCheckDiv").css("display", "block");
+				$(".user .idCheckDiv").html("<p style='color: red;'>사용 불가능한 아이디입니다.</p>");
+				$(".user .idCheckDiv").css("display", "block");
 			} else {
-				$(".idCheckDiv").html("<p style='color: green;'>사용 가능한 아이디입니다.</p>");
-				$(".idCheckDiv").css("display", "block");
+				$(".user .idCheckDiv").html("<p style='color: green;'>사용 가능한 아이디입니다.</p>");
+				$(".user .idCheckDiv").css("display", "block");
+			}
+		}
+	 });
+}
+
+$(".biz button[name=idBtn]").on("click", bizIdCheck);
+
+function bizIdCheck() {
+	$.ajax({
+		url : contextPath + "/signup/idcheck",
+		type : "post",
+		async : false,
+		data : {
+			id : $(".biz input[name=id]").val()
+		},
+		dataType : "json",
+		success : function(data){
+			if(data.idCheck == 1) {
+				$(".biz .idCheckDiv").html("<p style='color: red;'>사용 불가능한 아이디입니다.</p>");
+				$(".biz .idCheckDiv").css("display", "block");
+			} else {
+				$(".biz .idCheckDiv").html("<p style='color: green;'>사용 가능한 아이디입니다.</p>");
+				$(".biz .idCheckDiv").css("display", "block");
 			}
 		}
 	 });
@@ -135,7 +168,7 @@ $('button[name=emailBtn]').on("click", function() {
 	
 	$.ajax({
 		type : "get"
-		, url : "${pageContext.request.contextPath}/emailCheck?email=" + email
+		, url : contextPath + "/emailCheck?email=" + email
 		, success : function (data) {
 			checkInput.attr('disabled',false);
 			code =data;

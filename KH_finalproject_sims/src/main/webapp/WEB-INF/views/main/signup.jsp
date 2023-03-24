@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
-
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 <%@ page session="false" %>
 <html>
 <head>
@@ -52,27 +52,31 @@
 	    <div class="input-form-backgroud row">
 	      <div class="input-form col-md-12 mx-auto">
 	        <h4 class="mb-3">회원가입</h4>
-	        <form class="validation-form" novalidate>
 	        
-	        	<!-- 유형 -->
-	        	<div class="container text-center">
-		            <div class="row">
-			          <div class="col input-group mb-3">
-						  <div class="input-group-text">
-						    <input class="form-check-input mt-0" type="radio" value="ROLE_USER" name="role" checked="checked">
-						  </div>
-						  <input type="text" class="form-control" value="사용자" readonly>
+        	<!-- 유형 -->
+        	<div class="container text-center">
+	            <div class="row">
+		          <div class="col input-group mb-3">
+					  <div class="input-group-text">
+					    <input class="form-check-input mt-0" type="radio" value="ROLE_USER" name="role" checked="checked">
 					  </div>
-					  <div class="col input-group mb-3">
-						  <div class="input-group-text">
-						    <input class="form-check-input mt-0" type="radio" value="ROLE_BIZ" name="role">
-						  </div>
-						  <input type="text" class="form-control" value="통신사" readonly>
+					  <input type="text" class="form-control" value="사용자" readonly>
+				  </div>
+				  <div class="col input-group mb-3">
+					  <div class="input-group-text">
+					    <input class="form-check-input mt-0" type="radio" value="ROLE_BIZ" name="role">
 					  </div>
-		            </div>
-		        </div>
+					  <input type="text" class="form-control" value="통신사" readonly>
+				  </div>
+	            </div>
+	        </div>
+		        
+	        <c:url value="/signup" var="signupUrl" />
+	        <form:form class="userForm validation-form" name="f" action="${signupUrl}" method="post" novalidate="novalidate">
 	        
 	        <!-- 유저 정보 -->
+	        <input type="hidden" name="role" value="ROLE_USER">
+	        
 	        <div class="user">
 		          <div class="mb-3">
 		              <label for="userName">이름</label>
@@ -162,8 +166,15 @@
 		          </div>
 	          </div>
 	          
+	          
+	          <button class="btn btn-primary btn-lg btn-block" type="submit" disabled>가입</button>
+	        </form:form>
+	        
+	        <form:form class="bizForm validation-form" name="f" action="${signupUrl}" style="display:none" method="post" novalidate="novalidate">
 	          <!-- 통신사 정보 -->
-	          <div class="biz" style="display:none;">
+	          <input type="hidden" name="role" value="ROLE_BIZ">
+	          
+	          <div class="biz">
 		          <div class="mb-3">
 		              <label for="bizName">법인명</label>
 		              <input type="text" class="form-control" name="bizName" placeholder="법인명" required>
@@ -222,10 +233,10 @@
 		            <input type="text" class="form-control" name="bizPhone" placeholder="연락처" required>
 		            <div class="invalid-feedback">연락처를 입력하세요</div>
 		          </div>
-	          </div>
-	          
-	          <button class="btn btn-primary btn-lg btn-block" type="submit" disabled>가입</button>
-	        </form>
+	           </div>
+	           
+	           <button class="btn btn-primary btn-lg btn-block" type="submit" disabled>가입</button>
+            </form:form>
 	      </div>
 	    </div>
 	    </div>

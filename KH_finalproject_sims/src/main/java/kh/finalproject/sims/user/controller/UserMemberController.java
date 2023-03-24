@@ -15,6 +15,8 @@ import com.google.gson.Gson;
 
 import kh.finalproject.sims.apiTest.mail.MailSendService;
 import kh.finalproject.sims.user.model.service.UserMemberService;
+import kh.finalproject.sims.user.model.vo.MemberVo;
+import kh.finalproject.sims.user.model.vo.UserMemberVo;
 
 @Controller
 public class UserMemberController {
@@ -34,9 +36,24 @@ public class UserMemberController {
 	}
 	
 	@GetMapping("signup")
-	public ModelAndView selectSignUp(ModelAndView mv) {
+	public ModelAndView signUp(ModelAndView mv) {
 		
 		mv.setViewName("main/signup");
+		
+		return mv;
+	}
+	
+	@PostMapping("signup")
+	public ModelAndView insertSignUp(ModelAndView mv, MemberVo memVo, UserMemberVo userVo) {
+		
+		int result = service.insertSignUp(memVo, userVo);
+		
+		if(result == 1) {
+			mv.setViewName("main/login");
+		} else {
+			mv.setViewName("mail/signup");
+		}
+		
 		
 		return mv;
 	}
