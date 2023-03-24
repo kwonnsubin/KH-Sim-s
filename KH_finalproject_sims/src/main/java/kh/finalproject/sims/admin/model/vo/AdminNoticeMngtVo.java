@@ -27,6 +27,27 @@ public class AdminNoticeMngtVo {
 				+ ", ntcRewriter=" + ntcRewriter + ", ntcDate=" + ntcDate + ", ntcRedate=" + ntcRedate + ", adminId="
 				+ adminId + "]";
 	}
+	
+	
+	public AdminNoticeMngtVo() {
+		super();
+		// TODO Auto-generated constructor stub
+	}
+
+
+	public AdminNoticeMngtVo(int ntcNo, String ntcTitle, String ntcContent, String ntcRewriter, Timestamp ntcDate,
+			Timestamp ntcRedate, String adminId) {
+		super();
+		this.ntcNo = ntcNo;
+		this.ntcTitle = ntcTitle;
+		this.ntcContent = ntcContent;
+		this.ntcRewriter = ntcRewriter;
+		this.ntcDate = ntcDate;
+		this.ntcRedate = ntcRedate;
+		this.adminId = adminId;
+	}
+
+
 	public int getNtcNo() {
 		return ntcNo;
 	}
