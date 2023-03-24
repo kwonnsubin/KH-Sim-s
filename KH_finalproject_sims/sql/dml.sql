@@ -349,6 +349,15 @@ insert into QNA_ANS values (
     , default
     , null
 );
+insert into QNA_ANS values (
+    QNA_ANS_SEQ.NEXTVAL
+    , 2
+    , null
+    , 'user1'
+    , '잘 해결하세요.'
+    , default
+    , null
+);
 
 --질문/답변 게시판 답변의 댓글 테이블
 desc QNA_RPL;
