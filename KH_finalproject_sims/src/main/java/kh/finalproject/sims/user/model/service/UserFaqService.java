@@ -26,4 +26,7 @@ public interface UserFaqService {
 	// 조회수 증가
 	public void viewCount(int aqNo);
 
+	// 질문하기
+	public void insertQna(UserQnaVo vo);
+
 }

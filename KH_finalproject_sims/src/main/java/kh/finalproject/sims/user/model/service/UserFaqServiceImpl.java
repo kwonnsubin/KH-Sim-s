@@ -52,4 +52,11 @@ public class UserFaqServiceImpl implements UserFaqService {
 		dao.viewCount(aqNo);
 	}
 
+	// 질문하기
+	@Override
+	public void insertQna(UserQnaVo vo) {
+		dao.insertQna(vo);
+		
+	}
+
 }

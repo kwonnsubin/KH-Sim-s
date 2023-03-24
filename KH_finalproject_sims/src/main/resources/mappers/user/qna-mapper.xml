@@ -23,4 +23,17 @@
 		set AQ_VIEWS = AQ_VIEWS + 1
 		where AQ_NO = #{aqNo}
 	</update>
+	
+	<!-- 질문 작성 -->
+	<insert id="insertQna" parameterType="usQnavo">
+		insert into QNA values (
+		    QNA_SEQ.NEXTVAL
+		    , #{userId}
+		    , #{aqTitle}
+		    , #{aqContent}
+		    , default
+		    , null
+		    , 0
+		)
+	</insert>
 </mapper>

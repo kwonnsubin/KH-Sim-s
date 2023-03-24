@@ -5,7 +5,7 @@ import java.sql.Timestamp;
 public class UserQnaVo {
 	
 	private int aqNo;
-	private String aqWriter;
+	private String userId;
 	private String aqTitle;
 	private String aqContent;
 	private Timestamp aqDate;
@@ -14,7 +14,7 @@ public class UserQnaVo {
 	
 	@Override
 	public String toString() {
-		return "UserQnaVo [aqNo=" + aqNo + ", aqWriter=" + aqWriter + ", aqTitle=" + aqTitle + ", aqContent="
+		return "UserQnaVo [aqNo=" + aqNo + ", userId=" + userId + ", aqTitle=" + aqTitle + ", aqContent="
 				+ aqContent + ", aqDate=" + aqDate + ", aqRedate=" + aqRedate + ", aqViews=" + aqViews + "]";
 	}
 	
@@ -22,11 +22,11 @@ public class UserQnaVo {
 		super();
 	}
 
-	public UserQnaVo(int aqNo, String aqWriter, String aqTitle, String aqContent, Timestamp aqDate, Timestamp aqRedate,
+	public UserQnaVo(int aqNo, String userId, String aqTitle, String aqContent, Timestamp aqDate, Timestamp aqRedate,
 			int aqViews) {
 		super();
 		this.aqNo = aqNo;
-		this.aqWriter = aqWriter;
+		this.userId = userId;
 		this.aqTitle = aqTitle;
 		this.aqContent = aqContent;
 		this.aqDate = aqDate;
@@ -40,11 +40,11 @@ public class UserQnaVo {
 	public void setAqNo(int aqNo) {
 		this.aqNo = aqNo;
 	}
-	public String getAqWriter() {
-		return aqWriter;
+	public String getUserId() {
+		return userId;
 	}
-	public void setAqWriter(String aqWriter) {
-		this.aqWriter = aqWriter;
+	public void setUserId(String userId) {
+		this.userId = userId;
 	}
 	public String getAqTitle() {
 		return aqTitle;

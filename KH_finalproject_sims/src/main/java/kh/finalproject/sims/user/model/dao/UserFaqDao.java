@@ -40,7 +40,9 @@ public class UserFaqDao {
 	public void viewCount(int aqNo) {
 		session.update("qna.viewCount", aqNo);
 	}
-	
-	
 
+	public int insertQna(UserQnaVo vo) {
+		return session.insert("qna.insertQna", vo);
+	}
+	
 }

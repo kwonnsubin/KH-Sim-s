@@ -28,7 +28,7 @@
     
 </head>
 <body>
-	<jsp:include page="../header.jsp"/>
+	<jsp:include page="../../header.jsp"/>
 	
 	<section>
 		<div class="container">
@@ -106,11 +106,13 @@
 					</table>
 				</div>
 			</div>
+			<button type="button">내 질문/답변</button>
+			<button type="button" onclick="location.href='qnawrite'">질문하기</button>
 			<!-- ***** 일반 질문 end ***** -->
 		</div>
 
 	</section>
-	<jsp:include page="../footer.jsp"/>
+	<jsp:include page="../../footer.jsp"/>
 	
 	<!-- Scripts -->
 	<script src="<%= request.getContextPath() %>/resources/chain/vendor/jquery/jquery.min.js"></script>
