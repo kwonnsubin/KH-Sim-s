@@ -17,8 +17,8 @@ public class AdminNoticeMngtServiceImpl implements AdminNoticeMngtService{
 	
 	    //관리자 공지사항 리스트
 		@Override
-		public List<AdminNoticeMngtVo> selectNoticeList(){
-			return dao.selectNoticeList();
+		public List<AdminNoticeMngtVo> selectNoticeList(AdminNoticeMngtVo vo){
+			return dao.selectNoticeList(vo);
 		}
 		
 		//관리자 공지사항 상세
@@ -38,12 +38,10 @@ public class AdminNoticeMngtServiceImpl implements AdminNoticeMngtService{
 		public int deleteNotice(int ntcNo) {
 			return dao.deleteNotice(ntcNo);
 		}
-		
-		//관리자 공지사항 글 수정
+	
+		//관리자 공지사항 글 수정 저장
 		@Override
-		public int selectNoticeModify(AdminNoticeMngtVo vo) {
-			return dao.selectNoticeModify(vo);
+		public int saveNoticeModify(AdminNoticeMngtVo vo){
+			return dao.saveNoticeModify(vo);
 		}
-	
-	
 }

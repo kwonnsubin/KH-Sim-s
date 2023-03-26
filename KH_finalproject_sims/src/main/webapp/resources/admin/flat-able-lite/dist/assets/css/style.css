@@ -21219,7 +21219,7 @@ pre[class*=language-]:before {
     z-index: 1023;
     position: fixed;
     border-radius: 0;
-    top: 56px;
+    top: 0px;
     margin-top: 0;
 }
 
@@ -21232,7 +21232,7 @@ pre[class*=language-]:before {
 }
 
 .pcoded-navbar.theme-horizontal.default, .pcoded-navbar.theme-horizontal.default.top-nav-collapse {
-    top: 56px;
+    top: 0;
 }
 
 .pcoded-navbar.theme-horizontal.header-hide {
@@ -21541,7 +21541,7 @@ pre[class*=language-]:before {
 }
 
 .pcoded-navbar.theme-horizontal ~ .pcoded-main-container {
-    margin-top: 112px;
+    margin-top: 60px;
     margin-left: 0;
     padding-top: 1px;
     min-height: calc(100vh - 112px);
@@ -24332,6 +24332,7 @@ body.box-layout .pcoded-navbar.theme-horizontal ~ .pcoded-header {
 }
 
 .fixed-button.active {
+	display:none;
     bottom: 50px;
     opacity: 1;
 }

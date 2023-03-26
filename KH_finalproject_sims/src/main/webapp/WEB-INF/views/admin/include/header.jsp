@@ -14,7 +14,7 @@
 <meta name="keywords" content="">
 <meta name="author" content="Phoenixcoded" />
 <!-- Favicon icon -->
-<link rel="icon" href="<%=request.getContextPath()%>/resources/admin/flat-able-lite/src/assets/images/favicon.ico" type="image/x-icon">
+<link rel="icon" href="<%=request.getContextPath()%>/resources/admin/flat-able-lite/dist/assets/images/favicon.ico" type="image/x-icon">
 
 <!-- prism css -->
 <link rel="stylesheet" href="<%=request.getContextPath()%>/resources/admin/flat-able-lite/dist/assets/css/plugins/prism-coy.css">
@@ -22,8 +22,10 @@
 <link rel="stylesheet" href="<%=request.getContextPath()%>/resources/admin/flat-able-lite/dist/assets/css/style.css">
 <!-- UI 템플릿 적용 end -->
 
-<%-- <link rel="stylesheet" type="text/css" href="<%=request.getContextPath()%>/resources/theme/css/common.css">
-<link rel="stylesheet" type="text/css" href="<%=request.getContextPath()%>/resources/theme/css/style.css"> --%>
+<!-- 컨텐츠 수정용 CSS -->
+<link rel="stylesheet" type="text/css" href="<%=request.getContextPath()%>/resources/admin/theme/css/style.css">
+<!-- 컨텐츠 수정용 CSS End -->
+
 <title>sims</title>
 </head>
 <body>

@@ -14,7 +14,7 @@
 
 
 <!-- prism Js -->
-<script src="<%=request.getContextPath()%>/resources/admin/flat-able-lite/src/assets/js/plugins/prism.js"></script>
+<script src="<%=request.getContextPath()%>/resources/admin/flat-able-lite/dist/assets/js/plugins/prism.js"></script>
 
 
 

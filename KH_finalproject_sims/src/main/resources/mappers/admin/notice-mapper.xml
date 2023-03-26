@@ -5,15 +5,31 @@
 	
 	<!-- 관리자 공지사항 리스트 -->
 	<select id="selectNoticeList" resultType="adNtcvo">
+	/** 관리자 공지사항 리스트 (selectNoticeList) **/
 		SELECT
 			*
 		FROM
 			NOTICE
+		WHERE 1=1
+			<if test="searchOption != null">
+				<choose>
+					<when test="searchOption == 'title'">
+						AND UPPER(NTC_TITLE) LIKE UPPER('%'||#{searchBox}||'%')
+					</when>
+					<when test="searchOption == 'writer'">
+						AND UPPER(ADMIN_ID) LIKE UPPER('%'||#{searchBox}||'%')
+					</when>
+					<when test="searchOption == 'content'">
+						AND UPPER(NTC_CONTENT) LIKE UPPER('%'||#{searchBox}||'%')
+					</when>
+				</choose>
+			</if>
 	</select>
 	
 	
 	<!-- 관리자 공지사항 상세 -->
 	<select id="selectNoticeDetail" resultType="adNtcvo">
+	/** 관리자 공지사항 상세 (selectNoticeDetail) **/
 		SELECT
 			*
 		FROM	
@@ -24,7 +40,8 @@
 	</select>
 	
 	<!-- 관리자 공지사항 작성 -->
-	<insert id="insertNoticeWrite" parameterType="adNtcVo">
+	<insert id="insertNoticeWrite" parameterType="adNtcVo" useGeneratedKeys="true" keyColumn="NTC_NO" keyProperty="ntcNo">
+	/** 관리자 공지사항 작성 (insertNoticeWrite) **/
 		INSERT INTO NOTICE(NTC_NO, NTC_TITLE, NTC_CONTENT, ADMIN_ID) VALUES(
 		NTC_NO_SEQ.NEXTVAL
 		, #{ntcTitle}
@@ -32,7 +49,22 @@
 		, #{adminId}
 		)
 	</insert>
-
-
-
+	
+	<!-- 관리자 공지사항 수정   -->
+	<update id="saveNoticeModify" parameterType="adNtcVo">
+	/** 관리자 공지사항 수정 (saveNoticeModify) **/
+		UPDATE NOTICE
+		SET
+			NTC_TITLE = #{ntcTitle}
+			, NTC_CONTENT = #{ntcContent}
+			, NTC_REDATE = SYSDATE
+		WHERE NTC_NO = #{ntcNo}
+	</update>
+	
+	<!-- 관리자 공지사항 삭제   -->
+	<delete id="deleteNotice" parameterType="adNtcVo">
+	/** 관리자 공지사항 삭제 (deleteNotice) **/
+		DELETE FROM NOTICE
+		WHERE NTC_NO = #{ntcNo}
+	</delete>
 </mapper>

@@ -21,14 +21,18 @@ public class AdminNoticeMngtVo {
 	private Timestamp ntcRedate;
 	private String adminId;
 	
+	// 조회용 변수
+	private String searchOption;	// 조회 조건 
+	private String searchBox;		// 조회 문구
+	
 	@Override
 	public String toString() {
 		return "AdminNoticeMngtVo [ntcNo=" + ntcNo + ", ntcTitle=" + ntcTitle + ", ntcContent=" + ntcContent
 				+ ", ntcRewriter=" + ntcRewriter + ", ntcDate=" + ntcDate + ", ntcRedate=" + ntcRedate + ", adminId="
-				+ adminId + "]";
+				+ adminId + ", searchOption=" + searchOption + ", searchBox=" + searchBox + "]";
 	}
-	
-	
+
+
 	public AdminNoticeMngtVo() {
 		super();
 		// TODO Auto-generated constructor stub
@@ -36,7 +40,7 @@ public class AdminNoticeMngtVo {
 
 
 	public AdminNoticeMngtVo(int ntcNo, String ntcTitle, String ntcContent, String ntcRewriter, Timestamp ntcDate,
-			Timestamp ntcRedate, String adminId) {
+			Timestamp ntcRedate, String adminId, String searchOption, String searchBox) {
 		super();
 		this.ntcNo = ntcNo;
 		this.ntcTitle = ntcTitle;
@@ -45,6 +49,8 @@ public class AdminNoticeMngtVo {
 		this.ntcDate = ntcDate;
 		this.ntcRedate = ntcRedate;
 		this.adminId = adminId;
+		this.searchOption = searchOption;
+		this.searchBox = searchBox;
 	}
 
 
@@ -89,6 +95,26 @@ public class AdminNoticeMngtVo {
 	}
 	public void setAdminId(String adminId) {
 		this.adminId = adminId;
+	}
+
+
+	public String getSearchOption() {
+		return searchOption;
+	}
+
+
+	public void setSearchOption(String searchOption) {
+		this.searchOption = searchOption;
+	}
+
+
+	public String getSearchBox() {
+		return searchBox;
+	}
+
+
+	public void setSearchBox(String searchBox) {
+		this.searchBox = searchBox;
 	}
 	
 	
