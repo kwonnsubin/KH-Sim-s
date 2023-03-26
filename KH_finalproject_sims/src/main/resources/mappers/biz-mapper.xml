@@ -48,12 +48,20 @@
 		</collection>
 	</resultMap>
 	
-	<select id="selectListService" resultMap="bvoCollectionMap">
+	<select id="selectListService" resultType="kh.finalproject.sims.biz.model.vo.bizInfoMngServiceVo">
 		SELECT NET_NO, BIZ_NET_SERVICE
 			FROM BIZ_NETWORK
 			JOIN BIZ
 			USING(BIZ_ID)
 		where biz_id='kctv'
+		<!-- SELECT CASE WHEN NET_NO = 1 THEN 'SKT'
+            		WHEN NET_NO = 2 THEN 'KT'
+            		ELSE 'LGU+' END AS NET_NO
+    			, BIZ_NET_SERVICE
+			FROM BIZ_NETWORK
+			JOIN BIZ
+			USING(BIZ_ID)
+		where biz_id='kctv' --><!-- 이 경우에는 NET_NO 자료형이  varchar2여야 함.  -->
 	</select>
 	
 </mapper>

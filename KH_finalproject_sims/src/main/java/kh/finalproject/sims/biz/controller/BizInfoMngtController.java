@@ -42,7 +42,7 @@ public class BizInfoMngtController {
 		System.out.println(vo);
 		
 		//고객센터 번호
-		List<BizInfoMngtVo> serviceList = service.selectListService();
+		List<bizInfoMngServiceVo> serviceList = service.selectListService();
 		System.out.println(serviceList);
 	
 	

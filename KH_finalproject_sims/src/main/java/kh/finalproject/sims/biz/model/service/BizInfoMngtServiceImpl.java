@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 
 import kh.finalproject.sims.biz.model.dao.BizInfoMngtDao;
 import kh.finalproject.sims.biz.model.vo.BizInfoMngtVo;
+import kh.finalproject.sims.biz.model.vo.bizInfoMngServiceVo;
 @Service
 public class BizInfoMngtServiceImpl implements BizInfoMngtService{
 	
@@ -24,7 +25,7 @@ public class BizInfoMngtServiceImpl implements BizInfoMngtService{
 	}
 
 	@Override
-	public List<BizInfoMngtVo> selectListService() {
+	public List<bizInfoMngServiceVo> selectListService() {
 		return dao.selectListService();
 	}
 }

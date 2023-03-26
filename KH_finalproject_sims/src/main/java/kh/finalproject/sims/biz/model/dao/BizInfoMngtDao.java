@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import kh.finalproject.sims.biz.model.vo.BizInfoMngtVo;
+import kh.finalproject.sims.biz.model.vo.bizInfoMngServiceVo;
 
 
 @Repository
@@ -24,7 +25,7 @@ public class BizInfoMngtDao {
 	}
 	
 	//고객센터번호 리스트
-	public List<BizInfoMngtVo> selectListService(){
+	public List<bizInfoMngServiceVo> selectListService(){
 		return sqlSession.selectList("biz.selectListService");
 	}
 }

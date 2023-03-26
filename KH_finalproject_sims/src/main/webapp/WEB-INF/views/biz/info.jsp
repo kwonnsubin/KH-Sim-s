@@ -7,7 +7,7 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-<link rel="stylesheet" href="${path}/resources/css/bizInfo.css"/>
+<link rel="stylesheet" href="${path}/resources/css/biz/info.css"/>
 <script src="https://code.jquery.com/jquery-3.6.3.js"></script>
 <link type="text/css" rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css">
 <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
@@ -119,27 +119,25 @@
 			<td colspan="2">${bizinfo.bizClosedDay }</td>
 		</tr>
 		
-		<c:forEach var="service" items="${vo }">
+		<c:forEach var="service" items="${serviceList }">
 			<tr>
 				<th scope="row">
 					<span>고객센터번호</span>
 				</th>
-				<td colspan="2">SKT</td>
-				<td>${service.biznetservice}</td>
-			</tr>
-			<tr>
-				<th scope="row">
-					<span>고객센터번호</span>
-				</th>
-				<td colspan="2">KT</td>
-				<td>${service.biznetservice }</td>
-			</tr>
-			<tr>
-				<th scope="row">
-					<span>고객센터번호</span>
-				</th>
-				<td colspan="2">LGU+</td>
-				<td>${service.biznetservice}</td>
+				<td colspan="2">
+				<c:choose>
+					<c:when test="${service.netNo eq 1}">
+				      SKT
+				    </c:when>
+				    <c:when test="${service.netNo eq 2}">
+				      KT
+				    </c:when>
+				    <c:when test="${service.netNo eq 3}">
+				      LGU+
+				    </c:when>
+				</c:choose>
+				</td>
+				<td>${service.bizNetService}</td>
 			</tr>
 		</c:forEach>
 		
@@ -147,23 +145,7 @@
 		
 	</table>
 	
-		<table>
-  <thead>
-    <tr>
-      <th>열 1</th>
-      <th>열 2</th>
-      <th>열 3</th>
-    </tr>
-  </thead>
-  <tbody>
-    
-      <tr>
-        <td>${item.bizNetService}</td>
-        <td>${item.bizNetService}</td>
-        <td>${item.bizNetService}</td>
-      </tr>
-   
-  </tbody>
+
 </table>
 	
 	
