@@ -15,23 +15,35 @@ public class AdminNoticeMngtServiceImpl implements AdminNoticeMngtService{
 	private AdminNoticeMngtDao dao;
 	
 	
-	//관리자 공지사항 리스트
-	@Override
-	public List<AdminNoticeMngtVo> selectNoticeList(){
-		return dao.selectNoticeList();
-	}
-	
-	//관리자 공지사항 상세
-	@Override
-	public List<AdminNoticeMngtVo> selectNoticeDetail(int ntcNo){
-		return dao.selectNoticeDetail(ntcNo);
-	}
-	
-	//관리자 공지사항 작성
-	@Override
-	public int insertNoticeWrite(AdminNoticeMngtVo vo){
-		return dao.insertNoticeWrite(vo);
-	}
+	    //관리자 공지사항 리스트
+		@Override
+		public List<AdminNoticeMngtVo> selectNoticeList(){
+			return dao.selectNoticeList();
+		}
+		
+		//관리자 공지사항 상세
+		@Override
+		public AdminNoticeMngtVo selectNoticeDetail(int ntcNo){
+			return dao.selectNoticeDetail(ntcNo);
+		}
+		
+		//관리자 공지사항 글 작성
+		@Override
+		public int insertNoticeWrite(AdminNoticeMngtVo vo){
+			return dao.insertNoticeWrite(vo);
+		}
+
+		//관리자 공지사항 글 삭제
+		@Override
+		public int deleteNotice(int ntcNo) {
+			return dao.deleteNotice(ntcNo);
+		}
+		
+		//관리자 공지사항 글 수정
+		@Override
+		public int selectNoticeModify(AdminNoticeMngtVo vo) {
+			return dao.selectNoticeModify(vo);
+		}
 	
 	
 }

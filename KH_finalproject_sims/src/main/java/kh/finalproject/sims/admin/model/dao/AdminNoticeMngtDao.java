@@ -19,14 +19,23 @@ public class AdminNoticeMngtDao {
 	}
 
 	//관리자 공지사항 상세
-	public List<AdminNoticeMngtVo> selectNoticeDetail(int ntcNo) {
-		return sqlSession.selectList("adminNotice.selectNoticeDetail", ntcNo);
+	public AdminNoticeMngtVo selectNoticeDetail(int ntcNo) {
+		return sqlSession.selectOne("adminNotice.selectNoticeDetail", ntcNo);
 	}
-	
-	
+		
+		
 	//관리자 공지사항 작성
 	public int insertNoticeWrite(AdminNoticeMngtVo vo){
 		return sqlSession.insert("adminNotice.insertNoticeWrite", vo);
 	}
 
+	//공지사항 글 삭제
+	public int deleteNotice(int ntcNo) {
+		return sqlSession.delete("adminNotice.deleteNotice", ntcNo);
+	}
+
+	//공지사항 글 수정
+	public int selectNoticeModify(AdminNoticeMngtVo vo) {
+		return sqlSession.update("admin.seletctNoticeModify", vo);
+	}
 }

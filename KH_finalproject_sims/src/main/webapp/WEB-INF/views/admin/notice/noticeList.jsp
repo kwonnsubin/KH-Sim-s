@@ -10,6 +10,8 @@
 </head>
 <body>
 	<jsp:include page="../include/header.jsp" />
+	
+	
 	<div id="container">
 		<div class="contain-area">
 			<div class="content">
@@ -52,6 +54,7 @@
 			</div>
 		</div>
 	</div>
+	<jsp:include page="../include/footer.jsp" />
 	<!--${noticeList}-->
 </body>
 </html>
