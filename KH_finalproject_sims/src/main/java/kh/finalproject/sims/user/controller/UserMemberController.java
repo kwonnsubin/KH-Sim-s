@@ -14,6 +14,7 @@ import org.springframework.web.servlet.ModelAndView;
 import com.google.gson.Gson;
 
 import kh.finalproject.sims.apiTest.mail.MailSendService;
+import kh.finalproject.sims.biz.model.vo.BizInfoMngtVo;
 import kh.finalproject.sims.user.model.service.UserMemberService;
 import kh.finalproject.sims.user.model.vo.MemberVo;
 import kh.finalproject.sims.user.model.vo.UserMemberVo;
@@ -44,16 +45,24 @@ public class UserMemberController {
 	}
 	
 	@PostMapping("signup")
-	public ModelAndView insertSignUp(ModelAndView mv, MemberVo memVo, UserMemberVo userVo) {
+	public ModelAndView insertSignUp(ModelAndView mv, MemberVo memVo, UserMemberVo userVo, BizInfoMngtVo bizVo) {
+		memVo.setEnable(1);
 		
-		int result = service.insertSignUp(memVo, userVo);
+		int result = 0;
+		if(memVo.getRole().equals("ROLE_USER")) {
+			userVo.setUserId(memVo.getId());
+			result = service.insertUserSignUp(memVo, userVo);
+		} else {
+			bizVo.setBizId(memVo.getId());
+			result = service.insertBizSignUp(memVo, bizVo);
+		}
+		
 		
 		if(result == 1) {
 			mv.setViewName("main/login");
 		} else {
-			mv.setViewName("mail/signup");
+			mv.setViewName("main/signup");
 		}
-		
 		
 		return mv;
 	}

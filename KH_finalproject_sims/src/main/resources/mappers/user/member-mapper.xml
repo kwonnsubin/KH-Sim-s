@@ -7,11 +7,15 @@
 	</select>
 	
 	<insert id="signUpMember" parameterType="memVo">
-		insert into member values(${id}, ${pw}, ${role}, 1)
+		insert into member values(#{id}, #{pw}, #{role}, #{enable})
 	</insert>
 	
 	<insert id="signUpUser" parameterType="userVo">
-		insert into user_table values(${userId}, ${userName}, ${userSsn}, sysdate, null, ${userGender}, ${userPhone}, ${userEmail}, null)
+		insert into user_table values(#{userId}, #{userName}, #{userSsn}, sysdate, null, #{userGender}, #{userPhone}, #{userEmail}, null)
+	</insert>
+	
+	<insert id="signUpBiz" parameterType="bVo">
+		insert into biz(biz_id, biz_name, biz_ssn, biz_crn, biz_email, biz_phone, write_date) values(#{bizId}, #{bizName}, #{bizSsn}, #{bizCrn}, #{bizEmail}, #{bizPhone}, sysdate)
 	</insert>
 
 </mapper>

@@ -4,6 +4,7 @@ import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import kh.finalproject.sims.biz.model.vo.BizInfoMngtVo;
 import kh.finalproject.sims.user.model.vo.MemberVo;
 import kh.finalproject.sims.user.model.vo.UserMemberVo;
 
@@ -23,6 +24,10 @@ public class UserMemberDao {
 
 	public int signUpUser(UserMemberVo userVo) {
 		return sqlSession.insert("member.signUpUser", userVo);
+	}
+
+	public int signUpBiz(BizInfoMngtVo bizVo) {
+		return sqlSession.insert("member.signUpBiz", bizVo);
 	}
 	
 }
