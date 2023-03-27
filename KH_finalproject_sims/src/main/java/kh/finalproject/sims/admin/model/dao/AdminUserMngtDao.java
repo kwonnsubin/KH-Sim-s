@@ -19,6 +19,11 @@ public class AdminUserMngtDao {
 		return sqlSession.selectList("adminUser.selectUserList", vo);
 	}
 	
+	//관리자의 사용자 관리 상세 페이지 호출
+	public AdminUserMngtVo selectUserDetail(String userId) {
+		return sqlSession.selectOne("adminUser.selectUserDetail", userId);
+	}
+	
 	
 	
 	

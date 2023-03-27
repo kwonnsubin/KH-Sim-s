@@ -24,6 +24,11 @@ public class AdminNoticeMngtVo {
 	// 조회용 변수
 	private String searchOption;	// 조회 조건 
 	private String searchBox;		// 조회 문구
+
+
+	public AdminNoticeMngtVo() {
+		super();
+	}
 	
 	@Override
 	public String toString() {
@@ -32,14 +37,8 @@ public class AdminNoticeMngtVo {
 				+ adminId + ", searchOption=" + searchOption + ", searchBox=" + searchBox + "]";
 	}
 
-
-	public AdminNoticeMngtVo() {
-		super();
-	}
-
-
 	public AdminNoticeMngtVo(int ntcNo, String ntcTitle, String ntcContent, String ntcRewriter, Timestamp ntcDate,
-			Timestamp ntcRedate, String adminId, String searchOption, String searchBox) {
+			Timestamp ntcRedate, String adminId, String searchOption, String searchBox, int ro, int totalCnt) {
 		super();
 		this.ntcNo = ntcNo;
 		this.ntcTitle = ntcTitle;
@@ -115,7 +114,6 @@ public class AdminNoticeMngtVo {
 	public void setSearchBox(String searchBox) {
 		this.searchBox = searchBox;
 	}
-	
 	
 	
 	

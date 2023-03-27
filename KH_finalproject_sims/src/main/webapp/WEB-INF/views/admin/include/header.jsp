@@ -57,7 +57,7 @@
                     <li class="nav-item pcoded-menu-caption">
                     	<label>UI Element</label>
                     </li>
-                    <li class="nav-item pcoded-hasmenu">
+                    <!-- <li class="nav-item pcoded-hasmenu">
                     	<a href="#!" class="nav-link "><span class="pcoded-micon"><i class="feather icon-box"></i></span><span class="pcoded-mtext">사용자 관리</span></a>
                     	<ul class="pcoded-submenu">
                     		<li><a href="bc_alert.html">Alert</a></li>
@@ -77,10 +77,13 @@
                     		<li><a href="bc_toasts.html">Toasts</a></li>
                     		<li><a href="bc_extra.html">Other</a></li>
                     	</ul>
-                    </li>
+                    </li> -->
                     <!-- <li class="nav-item pcoded-menu-caption">
                         <label>공지사항 관리</label>
                     </li> -->
+                    <li class="nav-item">
+                        <a href="<%=request.getContextPath()%>/adminUser/userList" class="nav-link "><span class="pcoded-micon"><i class="feather icon-file-text"></i></span><span class="pcoded-mtext">사용자 관리</span></a>
+                    </li>
                     <li class="nav-item">
                         <a href="<%=request.getContextPath()%>/adminNotice/noticeList" class="nav-link "><span class="pcoded-micon"><i class="feather icon-file-text"></i></span><span class="pcoded-mtext">공지사항 관리</span></a>
                     </li>

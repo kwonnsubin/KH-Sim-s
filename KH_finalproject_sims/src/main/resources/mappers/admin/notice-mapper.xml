@@ -24,6 +24,7 @@
 					</when>
 				</choose>
 			</if>
+		ORDER BY NTC_DATE DESC
 	</select>
 	
 	

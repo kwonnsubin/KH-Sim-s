@@ -38,7 +38,7 @@
 									</div>
 									<div class="card">
 										<div class="card-body">
-											<form action="<%=request.getContextPath()%>/adminNotice/noticeList" method="post">
+											<form id="searchForm" name="searchForm" action="<%=request.getContextPath()%>/adminNotice/noticeList" method="post">
 												<div class="row">
 													<div class="col-sm-12">
 														<div class="input-group">
@@ -72,9 +72,9 @@
 														</tr>
 													</thead>
 													<tbody>
-														<c:forEach var="list" items="${noticeList}">
+														<c:forEach var="list" items="${noticeList}" varStatus="status">
 															<tr>
-																<td>${list.ntcNo}&nbsp;&nbsp;</td>
+																<td>${status.count}</td>
 																<td><a href="<%=request.getContextPath()%>/adminNotice/noticeDetail/${list.ntcNo}">${list.ntcTitle}</a>&nbsp;&nbsp;</td>
 																
 																<td>${list.adminId}&nbsp;&nbsp;&nbsp;</td>
@@ -103,31 +103,6 @@
 			</div>
 		</div>
 	</div>
-	<div class="row">
-			
-			
-			<%-- 
-			<div id="container">
-				<div class="contain-area">
-					<div class="content">
-						<h1>공지사항관리</h1>
-						
-						<div class="contents">
-							<div class="searchBox">
-								<label for="searchbox">검색</label>
-								<select class="search">
-									<option>제목</option>
-									<option>작성자</option>
-									<option>내용</option>
-								</select> 
-								<input class="search" type="text" id="searchbox"> <input class="sims_btn" type="button" value="검색">
-							</div>
-						</div>
-					</div>
-				</div>
-			</div>
-			 --%>
-</div>
 <jsp:include page="../include/footer.jsp" />
 <script>
 $(document).ready(function(){

@@ -19,37 +19,45 @@ public class AdminUserMngtVo {
 	private String userSsn;
 	private Date userWrdate;
 	private Date userUpdate;
-	private char gender;
+	private char userGender;
 	private String userPhone;
-	private String email;
+	private String userEmail;
 	private String userAddress;
+	
+	// 조회용 변수
+	private String searchUserId;	// 아이디 조회
+	private String searchUserName;	// 이름 조회
+	private String searchRadioVal;	// 라디오 조회
 	
 	@Override
 	public String toString() {
 		return "AdminUserMngtVo [userId=" + userId + ", userName=" + userName + ", userSsn=" + userSsn + ", userWrdate="
-				+ userWrdate + ", userUpdate=" + userUpdate + ", gender=" + gender + ", userPhone=" + userPhone
-				+ ", email=" + email + ", userAddress=" + userAddress + "]";
+				+ userWrdate + ", userUpdate=" + userUpdate + ", userGender=" + userGender + ", userPhone=" + userPhone
+				+ ", userEmail=" + userEmail + ", userAddress=" + userAddress + ", searchUserId=" + searchUserId
+				+ ", searchUserName=" + searchUserName + ", searchRadioVal=" + searchRadioVal + "]";
 	}
-	
+
 	public AdminUserMngtVo() {
 		super();
 	}
 
-	
 	public AdminUserMngtVo(String userId, String userName, String userSsn, Date userWrdate, Date userUpdate,
-			char gender, String userPhone, String email, String userAddress) {
+			char userGender, String userPhone, String userEmail, String userAddress, String searchUserId,
+			String searchUserName, String searchRadioVal) {
 		super();
 		this.userId = userId;
 		this.userName = userName;
 		this.userSsn = userSsn;
 		this.userWrdate = userWrdate;
 		this.userUpdate = userUpdate;
-		this.gender = gender;
+		this.userGender = userGender;
 		this.userPhone = userPhone;
-		this.email = email;
+		this.userEmail = userEmail;
 		this.userAddress = userAddress;
+		this.searchUserId = searchUserId;
+		this.searchUserName = searchUserName;
+		this.searchRadioVal = searchRadioVal;
 	}
-
 
 
 	public String getUserId() {
@@ -82,11 +90,11 @@ public class AdminUserMngtVo {
 	public void setUserUpdate(Date userUpdate) {
 		this.userUpdate = userUpdate;
 	}
-	public char getGender() {
-		return gender;
+	public char getUserGender() {
+		return userGender;
 	}
-	public void setGender(char gender) {
-		this.gender = gender;
+	public void setUserGender(char userGender) {
+		this.userGender = userGender;
 	}
 	public String getUserPhone() {
 		return userPhone;
@@ -94,17 +102,41 @@ public class AdminUserMngtVo {
 	public void setUserPhone(String userPhone) {
 		this.userPhone = userPhone;
 	}
-	public String getEmail() {
-		return email;
+	public String getUserEmail() {
+		return userEmail;
 	}
-	public void setEmail(String email) {
-		this.email = email;
+	public void setUserEmail(String userEmail) {
+		this.userEmail = userEmail;
 	}
 	public String getUserAddress() {
 		return userAddress;
 	}
 	public void setUserAddress(String userAddress) {
 		this.userAddress = userAddress;
+	}
+
+	public String getSearchUserId() {
+		return searchUserId;
+	}
+
+	public void setSearchUserId(String searchUserId) {
+		this.searchUserId = searchUserId;
+	}
+
+	public String getSearchUserName() {
+		return searchUserName;
+	}
+
+	public void setSearchUserName(String searchUserName) {
+		this.searchUserName = searchUserName;
+	}
+
+	public String getSearchRadioVal() {
+		return searchRadioVal;
+	}
+
+	public void setSearchRadioVal(String searchRadioVal) {
+		this.searchRadioVal = searchRadioVal;
 	}
 	
 	

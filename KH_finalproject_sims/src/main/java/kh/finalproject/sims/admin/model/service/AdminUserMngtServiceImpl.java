@@ -19,6 +19,12 @@ public class AdminUserMngtServiceImpl implements AdminUserMngtService{
 		public List<AdminUserMngtVo> selectUserList(AdminUserMngtVo vo) {
 			return dao.selectUserList(vo);
 		}
+
+		//관리자의 사용자 관리 상세
+		@Override
+		public AdminUserMngtVo selectUserDetail(String userId) {
+			return dao.selectUserDetail(userId);
+		}
 	
 		
 
