@@ -23,5 +23,29 @@ public class AdminReviewMngtDao {
 		return sqlSession.selectOne("admin.selectReviewReportDetail", reviewNo);
 	}
 	
+	// 신고 리뷰 처리(반려/삭제)
+	public int updateReviewReportStatus(AdminReviewMngtVo vo) {
+		return sqlSession.update("admin.updateReviewReportStatus", vo);
+	}
+	
+	// 신고리뷰숨김
+	public int updateReviewHidden(AdminReviewMngtVo vo) {
+		return sqlSession.update("admin.updateReviewHidden", vo);
+	}
+	
+	// 리뷰목록
+	public List<AdminReviewMngtVo> selectReviewList() {
+		return sqlSession.selectList("admin.selectReviewList");
+	}
+	
+	// 리뷰삭제
+	public int deleteReview(int reviewNo) {
+		return sqlSession.delete("admin.deleteReview", reviewNo);
+	}
+	
+	// 리뷰상세내용
+	public AdminReviewMngtVo selectReviewDetail(int reviewNo) {
+		return sqlSession.selectOne("admin.selectReviewDetail", reviewNo);
+	}
 	
 }

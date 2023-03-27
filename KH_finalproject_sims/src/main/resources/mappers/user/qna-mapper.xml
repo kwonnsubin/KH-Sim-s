@@ -38,4 +38,14 @@
 		    , 0
 		)
 	</insert>
+	
+	<!-- 내 질문 목록 -->
+	<select id="selectMyQnaList" resultType="usQnavo">
+		select aq_no
+			, aq_title
+			, aq_date
+		from QNA
+		where user_id = #{username}
+	</select>
+	
 </mapper>

@@ -413,11 +413,21 @@ insert into member values ('kcttel', 'kcttel', 'ROLE_BIZ', 1);
 INSERT INTO BIZ_REVIEW VALUES (BIZ_REVIEW_SEQ.NEXTVAL
                                , '통신사 멤버쉽 등을 이용하지 않는 입장에서는 이용료가 저렴한게 제일입니다. 
                                   같은 망을 사용하니 품질 차이도 있을 리 없고, 딱히 불편한 점은 없었습니다.'
-                                , DEFAULT
-                                , NULL
+                                , SYSTIMESTAMP
+                                , NULLㅏ
                                 , 5
                                 , 'user1'
                                 , 'kctv'
+                                , 0
+);
+INSERT INTO BIZ_REVIEW VALUES (BIZ_REVIEW_SEQ.NEXTVAL
+                               , '여러 통신사를 비교해서 볼 수 있는 점이 좋았고, 이벤트도 진행하고 있어서 좋았습니다 :)'
+                                , SYSTIMESTAMP
+                                , NULL
+                                , 3
+                                , 'user1'
+                                , 'unicomz'
+                                , 0
 );
 
 -- 요금제 가입 정보

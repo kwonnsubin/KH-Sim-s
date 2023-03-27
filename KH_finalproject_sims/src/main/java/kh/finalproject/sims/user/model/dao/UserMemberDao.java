@@ -29,5 +29,25 @@ public class UserMemberDao {
 	public int signUpBiz(BizInfoMngtVo bizVo) {
 		return sqlSession.insert("member.signUpBiz", bizVo);
 	}
+
+	public String selectFindId(UserMemberVo userVo) {
+		return sqlSession.selectOne("member.selectFindUserId", userVo);
+	}
+
+	public String selectFindId(BizInfoMngtVo bizVo) {
+		return sqlSession.selectOne("member.selectFindBizId", bizVo);
+	}
+
+	public int selectFindPw(UserMemberVo userVo) {
+		return sqlSession.selectOne("member.selectFindUserPw", userVo);
+	}
+
+	public int selectFindPw(BizInfoMngtVo bizVo) {
+		return sqlSession.selectOne("member.selectFindBizPw", bizVo);
+	}
+
+	public int changePw(MemberVo memVo) {
+		return sqlSession.update("member.changePw", memVo);
+	}
 	
 }

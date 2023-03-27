@@ -1,14 +1,8 @@
 package kh.finalproject.sims.user.controller;
 
-import java.io.IOException;
 import java.security.Principal;
 
-import javax.servlet.ServletException;
-import javax.servlet.annotation.WebServlet;
-import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Controller;
@@ -19,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
 import kh.finalproject.sims.user.model.service.UserFaqService;
+import kh.finalproject.sims.user.model.vo.UserAnsVo;
 import kh.finalproject.sims.user.model.vo.UserQnaVo;
 
 @RequestMapping("/faq")
@@ -62,6 +57,21 @@ public class UserFaqController {
 		return mv;
 	}
 	
+	// 내 질문답변
+	@GetMapping("/myqna")
+	public ModelAndView selectMyQnaList(
+			ModelAndView mv
+			, HttpServletRequest request
+			) {
+		Principal principal = request.getUserPrincipal();
+		String username = principal.getName();
+		
+		mv.addObject("myqnalist", service.selectMyQnaList(username));
+		mv.addObject("myanslist", service.selectMyAnsList(username));
+		mv.setViewName("user/faq/myQna");
+		return mv;
+	}
+	
 	// 질문하기 페이지
 	@GetMapping("/qnawrite")
 	public ModelAndView writeQnaForm(
@@ -83,6 +93,30 @@ public class UserFaqController {
 			, Authentication authentication
 			) {
 		service.insertQna(vo);
+		return "redirect:/faq/faqlist";
+	}
+	
+	// 답변하기 페이지
+	@GetMapping("/writeans")
+	public ModelAndView writeAnsForm(
+			ModelAndView mv
+			, HttpServletRequest request
+			) {
+		mv.setViewName("user/faq/writeAns");
+		Principal principal = request.getUserPrincipal();
+		String username = principal.getName();
+		
+		mv.addObject("username", username);
+		return mv;
+	}
+	
+	// 답변 저장
+	@PostMapping("/writeans")
+	public String writeAns(
+			UserAnsVo vo
+			, Authentication authentication
+			) {
+		service.insertAns(vo);
 		return "redirect:/faq/faqlist";
 	}
 	

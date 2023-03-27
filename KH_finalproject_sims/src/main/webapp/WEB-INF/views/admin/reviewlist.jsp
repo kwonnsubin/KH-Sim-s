@@ -22,11 +22,11 @@
 										<div class="row align-items-center">
 											<div class="col-md-12">
 												<div class="page-header-title">
-													<h5 class="m-b-10">공지사항관리</h5>
+													<h5 class="m-b-10">리뷰관리</h5>
 												</div>
 												<ul class="breadcrumb">
 													<li class="breadcrumb-item"><a href=""><i class="feather icon-home"></i></a></li>
-													<li class="breadcrumb-item"><a href=""><i class="breadcrumb-item"></i>공지사항 관리</a></li>
+													<li class="breadcrumb-item"><a href=""><i class="breadcrumb-item"></i>리뷰 관리</a></li>
 												</ul>
 											</div>
 										</div>
@@ -66,20 +66,19 @@
 													<thead>
 														<tr>
 															<th>번호</th>
-															<th>신고사유</th>
-															<th>통신사</th>
-															<th>신고일자</th>
-															<th>처리상태</th>
+															<th>내용</th>
+															<th>작성자</th>
+															<th>작성일</th>
 														</tr>
 													</thead>
 													<tbody>
-														<c:forEach items="${reviewReportList}" var="reviewlist">
+														<c:forEach items="${reviewlist}" var="list">
 															<tr>
-																<td>${reviewlist.reviewNo}&nbsp;&nbsp;</td>
-																<td><a href="<%=request.getContextPath()%>/admin/reviewreportdetail/${reviewlist.reviewNo}">${reviewlist.reportReason}</a>&nbsp;&nbsp;</td>															
-																<td>${reviewlist.bizId}&nbsp;&nbsp;&nbsp;</td>
-																<td><fmt:formatDate value="${reviewlist.reportDate}" pattern="yyyy.MM.dd"/> </td>
-																<td>${reviewlist.reportStatus}</td>
+																<td>${list.reviewNo}&nbsp;&nbsp;</td>
+																<td><a href="<%=request.getContextPath()%>/admin/reviewdetail/${list.reviewNo}">${list.reviewContent}</a>&nbsp;&nbsp;</td>
+																
+																<td>${list.userId}&nbsp;&nbsp;&nbsp;</td>
+																<td><fmt:formatDate value="${list.reviewDate}" pattern="yyyy.MM.dd"/> </td>
 															</tr>
 														</c:forEach>
 													</tbody>

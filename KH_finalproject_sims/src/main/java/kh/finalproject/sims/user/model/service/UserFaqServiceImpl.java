@@ -58,5 +58,23 @@ public class UserFaqServiceImpl implements UserFaqService {
 		dao.insertQna(vo);
 		
 	}
+	
+	// 답변하기
+	@Override
+	public void insertAns(UserAnsVo vo) {
+		dao.insertAns(vo);
+	}
+
+	// 내질문 목록
+	@Override
+	public List<UserQnaVo> selectMyQnaList(String username) {
+		return dao.selectMyQnaList(username);
+	}
+
+	// 내답변 목록
+	@Override
+	public List<UserAnsVo> selectMyAnsList(String username) {
+		return dao.selectMyAnsList(username);
+	}
 
 }

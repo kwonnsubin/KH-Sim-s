@@ -1,24 +1,25 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="admin">
+	<!-- 자주묻는질문 -->
 	<!-- 자주묻는질문 목록 -->
 	<select id="selectQnaList" resultType="adQvo">
 		SELECT FAQ_NO,
 			FAQ_TITLE,
 			FAQ_CONTENT,
 			ADMIN_ID,
-			FAQ_REWRITER
+			FAQ_REWRITER,
+			FAQ_DATE,
+			FAQ_REDATE
 			FROM FAQ
-			ORDER BY FAQ_NO DESC
+			ORDER BY FAQ_REDATE DESC
 	</select>
-	
 	<!-- 자주묻는질문 상세내용 -->
 	<select id="selectFaqDetail" resultType="adQvo">
 		SELECT *
 			FROM FAQ
 	    	WHERE FAQ_NO = #{faqNo}
 	</select>
-	
 	<!-- 자주묻는질문 작성 -->
   	<insert id="insertFaqWrite" parameterType="adQvo">
 		INSERT INTO FAQ (FAQ_NO, FAQ_TITLE, FAQ_CONTENT, ADMIN_ID) VALUES(
@@ -28,7 +29,6 @@
 			#{adminId}
 		)
 	</insert>
-	
 	<!-- 자주묻는질문 수정  -->
 	<update id="selectFaqModify" parameterType="adQvo">
 		UPDATE FAQ
@@ -38,13 +38,12 @@
 		,FAQ_REWRITER=#{faqRewriter} 
 		WHERE FAQ_NO=#{faqNo}
 	</update>
-	
 	<!-- 자주묻는질문 삭제 -->
 	<delete id="deleteFaq" parameterType="_int">
 		DELETE FROM FAQ WHERE FAQ_NO=#{faqNo}
 	</delete>
 	
-	
+	<!-- 신고 리뷰 -->
 	<!-- 신고 리뷰 목록 -->
 	<select id="selectReviewReportList" resultType="kh.finalproject.sims.admin.model.vo.AdminReviewMngtVo">
 		SELECT R.REVIEW_NO, R.REPORT_DATE, 
@@ -59,7 +58,6 @@
 		JOIN BIZ_REVIEW B ON R.REVIEW_NO = B.REVIEW_NO
 		ORDER BY R.REPORT_DATE DESC
 	</select>
-	
 	<!-- 신고 리뷰 상세내용 -->
 	<select id="selectReviewReportDetail" resultType="kh.finalproject.sims.admin.model.vo.AdminReviewMngtVo" parameterType="_int">
 		SELECT R.REVIEW_NO, R.REPORT_DATE, 
@@ -75,16 +73,44 @@
 	WHERE R.REVIEW_NO = #{reviewNo}
 	ORDER BY R.REPORT_DATE DESC
 	</select>
-	
-	<!-- 신고 리뷰 처리변경 -->
-	<!-- 신고 리뷰 반려로-->
-	<update id="updateReviewReportReject">
-		UPDATE REVIEW_REPORT SET REPORT_STATUS = 3 WHERE REVIEW_NO = #{reviewNo}
+	<!-- 신고 리뷰 반려/삭제 처리-->
+	<update id="updateReviewReportStatus" parameterType="kh.finalproject.sims.admin.model.vo.AdminReviewMngtVo">
+		UPDATE REVIEW_REPORT SET REPORT_STATUS = #{reportStatus} WHERE REVIEW_NO = #{reviewNo}
+	</update>
+	<!-- 리뷰 숨김처리(1:숨김)-->
+	<update id="updateReviewHidden" parameterType="kh.finalproject.sims.admin.model.vo.AdminReviewMngtVo">
+		UPDATE BIZ_REVIEW SET REVIEW_HIDDEN = #{reviewHidden} WHERE REVIEW_NO = #{reviewNo}
 	</update>
 	
-	<!-- 신고 리뷰 삭제로 -->
-	<update id="updateReviewReportRemove">
-		UPDATE REVIEW_REPORT SET REPORT_STATUS = 3 WHERE REVIEW_NO = #{reviewNo}
-	</update>
+	<!-- 리뷰 목록 -->
+	<select id="selectReviewList" resultType="kh.finalproject.sims.admin.model.vo.AdminReviewMngtVo">
+		SELECT 
+		  REVIEW_NO
+		, REVIEW_CONTENT
+		, REVIEW_DATE
+		, REVIEW_STAR
+		, USER_ID
+		, BIZ_ID
+		, REVIEW_HIDDEN 
+		FROM BIZ_REVIEW
+	</select>
+	
+	<!-- 리뷰 삭제 -->
+	<delete id="deleteReview" parameterType="_int">
+		delete from biz_review where review_no = #{reviewNo}
+	</delete>
+	
+	<!-- 리뷰 상세 내용 -->
+	<select id="selectReviewDetail" parameterType="_int" resultType="kh.finalproject.sims.admin.model.vo.AdminReviewMngtVo">
+		SELECT 
+	  REVIEW_NO
+	, REVIEW_CONTENT
+	, REVIEW_DATE
+	, REVIEW_STAR
+	, USER_ID
+	, BIZ_ID
+	, REVIEW_HIDDEN 
+	FROM BIZ_REVIEW WHERE REVIEW_NO=#{reviewNo}
+	</select>
 	
 </mapper>

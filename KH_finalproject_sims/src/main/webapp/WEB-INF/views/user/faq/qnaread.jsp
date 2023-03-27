@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -32,5 +33,10 @@
 		답변작성일: ${ans.aaDate } <br>
 		답변수정일: ${ans.aaRedate } <hr>
 	</c:forEach>
+	
+	<!-- 답변 등록 -->
+	<sec:authorize access="isAuthenticated()">
+		<button type="button" onclick="location.href='writeans'">답변하기</button>
+	</sec:authorize>
 </body>
 </html>

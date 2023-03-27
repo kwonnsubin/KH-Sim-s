@@ -8,5 +8,23 @@
 		from QNA_ANS
 		where AQ_NO = #{aqNo}
 	</select>
+
+	<!-- 내 답변 목록 -->
+	<select id="selectMyAnsList" resultType="usAnsvo">
+		select *
+		from QNA_ANS
+		where USER_ID = #{username}
+	</select>
 	
+	<!-- 답변하기 -->
+	<insert id="insertAns" parameterType="usAnsvo">
+		insert into QNA_ANS (aa_no, aq_no, user_id, aa_content, aa_date) 
+		values (
+		    QNA_ANS_SEQ.NEXTVAL
+		    , #{aqNo}
+		    , #{userId}
+		    , #{aaContent}
+		    , default
+		)
+	</insert>	
 </mapper>
