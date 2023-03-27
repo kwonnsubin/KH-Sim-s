@@ -12,6 +12,14 @@ public class AdminReviewMngtVo {
 //	REPORT_DATE            DATE         
 //	REPORT_STATUS          NUMBER 
 	
+//	  REVIEW_NO
+//	  , REVIEW_CONTENT
+//	  , REVIEW_DATE
+//	  , REVIEW_STAR
+//	  , USER_ID
+//	  , BIZ_ID
+//	  , REVIEW_HIDDEN
+	
 	private int reviewNo; // 리뷰번호
 	private String userId; // 사용자아이디
 	private String bizId; // 통신사아이디
@@ -19,12 +27,16 @@ public class AdminReviewMngtVo {
 	private String reportStatus; // 신고처리상태
 	private String reviewContent; // 리뷰내용
 	private String reportReason; // 신고사유
+	private int reviewHidden; // 숨김처리
+	private Date reviewDate; // 리뷰등록일
+	private int reviewStar; // 별점
 	
 	@Override
 	public String toString() {
 		return "AdminReviewMngtVo [reviewNo=" + reviewNo + ", userId=" + userId + ", bizId=" + bizId + ", reportDate="
 				+ reportDate + ", reportStatus=" + reportStatus + ", reviewContent=" + reviewContent + ", reportReason="
-				+ reportReason + "]";
+				+ reportReason + ", reviewHidden=" + reviewHidden + ", reviewDate=" + reviewDate + ", reviewStar="
+				+ reviewStar + "]";
 	}
 
 	
@@ -37,7 +49,7 @@ public class AdminReviewMngtVo {
 
 
 	public AdminReviewMngtVo(int reviewNo, String userId, String bizId, Date reportDate, String reportStatus,
-			String reviewContent, String reportReason) {
+			String reviewContent, String reportReason, int reviewHidden, Date reviewDate, int reviewStar) {
 		super();
 		this.reviewNo = reviewNo;
 		this.userId = userId;
@@ -46,6 +58,9 @@ public class AdminReviewMngtVo {
 		this.reportStatus = reportStatus;
 		this.reviewContent = reviewContent;
 		this.reportReason = reportReason;
+		this.reviewHidden = reviewHidden;
+		this.reviewDate = reviewDate;
+		this.reviewStar = reviewStar;
 	}
 
 
@@ -131,5 +146,45 @@ public class AdminReviewMngtVo {
 	public void setReportReason(String reportReason) {
 		this.reportReason = reportReason;
 	}
+
+
+
+	public int getReviewHidden() {
+		return reviewHidden;
+	}
+
+
+
+	public void setReviewHidden(int reviewHidden) {
+		this.reviewHidden = reviewHidden;
+	}
+
+
+
+	public Date getReviewDate() {
+		return reviewDate;
+	}
+
+
+
+	public void setReviewDate(Date reviewDate) {
+		this.reviewDate = reviewDate;
+	}
+
+
+
+	public int getReviewStar() {
+		return reviewStar;
+	}
+
+
+
+	public void setReviewStar(int reviewStar) {
+		this.reviewStar = reviewStar;
+	}
+	
+	
+	
+	
 	
 }

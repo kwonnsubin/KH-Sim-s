@@ -25,4 +25,33 @@ public class AdminReviewMngtServiceImpl implements AdminReviewMngtService{
 		return dao.selectReviewReportDetail(reviewNo);
 	}
 
+	// 신고 리뷰 처리(반려/삭제)
+	@Override
+	public int updateReviewReportStatus(AdminReviewMngtVo vo) {
+		
+		// 신고리뷰숨김
+		dao.updateReviewHidden(vo);
+		
+		return dao.updateReviewReportStatus(vo);
+	}
+	
+	// 리뷰목록
+	@Override
+	public List<AdminReviewMngtVo> selectReviewList() {
+		return dao.selectReviewList();
+	}
+
+	// 리뷰삭제
+	@Override
+	public int deleteReview(int reviewNo) {
+		return dao.deleteReview(reviewNo);
+	}
+	
+	// 리뷰상세내용
+	@Override
+	public AdminReviewMngtVo selectReviewDetail(int reviewNo) {
+		return dao.selectReviewDetail(reviewNo);
+	}
+
+
 }

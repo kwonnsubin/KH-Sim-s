@@ -39,6 +39,8 @@ public class AdminQnaMngtDao {
 		return sqlSession.delete("admin.deleteFaq", faqNo);
 	}
 	
+	// 
+	
 	
 	
 }
