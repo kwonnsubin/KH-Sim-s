@@ -1,5 +1,7 @@
 package kh.finalproject.sims.admin.model.vo;
 
+import java.sql.Date;
+
 import org.springframework.stereotype.Component;
 
 @Component
@@ -15,24 +17,31 @@ public class AdminQnaMngtVo {
 	private String faqContent; // 질문답변내용
 	private String adminId; // 관리자아이디
 	private String faqRewriter; // 수정자아이디
+	private Date faqDate; // 작성일
+	private Date faqRedate; // 수정일
 	
 	@Override
 	public String toString() {
 		return "AdminQnaMngtVo [faqNo=" + faqNo + ", faqTitle=" + faqTitle + ", faqContent=" + faqContent + ", adminId="
-				+ adminId + ", faqRewriter=" + faqRewriter + "]";
+				+ adminId + ", faqRewriter=" + faqRewriter + ", faqDate=" + faqDate + ", faqRedate=" + faqRedate + "]";
 	}
 
 	public AdminQnaMngtVo() {
 		super();
 	}
+	
+	
 
-	public AdminQnaMngtVo(String faqNo, String faqTitle, String faqContent, String adminId, String faqRewriter) {
+	public AdminQnaMngtVo(String faqNo, String faqTitle, String faqContent, String adminId, String faqRewriter,
+			Date faqDate, Date faqRedate) {
 		super();
 		this.faqNo = faqNo;
 		this.faqTitle = faqTitle;
 		this.faqContent = faqContent;
 		this.adminId = adminId;
 		this.faqRewriter = faqRewriter;
+		this.faqDate = faqDate;
+		this.faqRedate = faqRedate;
 	}
 
 	public String getFaqNo() {
@@ -74,6 +83,24 @@ public class AdminQnaMngtVo {
 	public void setFaqRewriter(String faqRewriter) {
 		this.faqRewriter = faqRewriter;
 	}
+
+	public Date getFaqDate() {
+		return faqDate;
+	}
+
+	public void setFaqDate(Date faqDate) {
+		this.faqDate = faqDate;
+	}
+
+	public Date getFaqRedate() {
+		return faqRedate;
+	}
+
+	public void setFaqRedate(Date faqRedate) {
+		this.faqRedate = faqRedate;
+	}
+
+	
 	
 
 	

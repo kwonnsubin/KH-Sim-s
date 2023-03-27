@@ -75,15 +75,14 @@ public class AdminReviewMngtController {
 		return mv;
 	}
 	
-//	// 리뷰 삭제
-//	@PostMapping("reviewdelete") 
-//	public ModelAndView deleteReview(
-//			ModelAndView mv
-//			
-//			) {
-//		service.deleteReview(reviewNo);
-//		return mv;
-//	}
+	// 리뷰 삭제
+	@PostMapping("reviewdelete") 
+	public String deleteReview(
+			@RequestParam("reviewNo") int reviewNo
+			) {
+		service.deleteReview(reviewNo);
+		return "redirect:/admin/reviewdetail/"+reviewNo;
+	}
 	
 
 

@@ -8,9 +8,11 @@
 			FAQ_TITLE,
 			FAQ_CONTENT,
 			ADMIN_ID,
-			FAQ_REWRITER
+			FAQ_REWRITER,
+			FAQ_DATE,
+			FAQ_REDATE
 			FROM FAQ
-			ORDER BY FAQ_NO DESC
+			ORDER BY FAQ_REDATE DESC
 	</select>
 	<!-- 자주묻는질문 상세내용 -->
 	<select id="selectFaqDetail" resultType="adQvo">
