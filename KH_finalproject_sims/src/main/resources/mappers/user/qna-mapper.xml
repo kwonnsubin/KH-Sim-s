@@ -47,4 +47,5 @@
 		from QNA
 		where user_id = #{username}
 	</select>
+	
 </mapper>

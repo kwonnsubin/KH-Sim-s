@@ -32,5 +32,8 @@ public interface UserFaqService {
 	// 내질문 목록
 	public List<UserQnaVo> selectMyQnaList(String username);
 
+	// 내답변 목록
+	public List<UserAnsVo> selectMyAnsList(String username);
+
 
 }

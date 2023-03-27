@@ -66,6 +66,7 @@ public class UserFaqController {
 		String username = principal.getName();
 		
 		mv.addObject("myqnalist", service.selectMyQnaList(username));
+		mv.addObject("myanslist", service.selectMyAnsList(username));
 		mv.setViewName("user/faq/myQna");
 		return mv;
 	}

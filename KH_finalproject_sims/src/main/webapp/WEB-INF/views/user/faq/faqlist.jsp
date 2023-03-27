@@ -108,7 +108,7 @@
 				</div>
 			</div>
 			<sec:authorize access="isAuthenticated()">
-				<button type="button" onclick="location.href='myqna/${id}'">내 질문/답변</button>
+				<button type="button" onclick="location.href='myqna'">내 질문/답변</button>
 				<button type="button" onclick="location.href='qnawrite'">질문하기</button>
 			</sec:authorize>
 			<!-- ***** 일반 질문 end ***** -->

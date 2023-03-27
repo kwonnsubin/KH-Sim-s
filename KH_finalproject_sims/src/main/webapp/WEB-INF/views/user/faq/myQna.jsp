@@ -16,7 +16,7 @@
 				<table>
 					<thead>
 						<tr>
-							<th>제목</th>
+							<th>질문</th>
 							<th>작성일</th>
 						</tr>
 					</thead>
@@ -34,7 +34,28 @@
 			</div>
 			<!-- ***** 내 질문 목록 end  ***** -->
 			<!-- ***** 내 답변 목록 start  ***** -->
-			
+			<div class="row">
+				<h4>내 답변</h4>
+				<table>
+					<thead>
+						<tr>
+							<th>답변</th>
+							<th>작성일</th>
+						</tr>
+					</thead>
+					<c:forEach items="${myanslist}" var="ans">
+						<tbody>
+							<tr>
+								<td class="text-center">
+								<a href="<%=request.getContextPath()%>/faq/qnaread/${ans.aqNo}">${ans.aaContent}</a>
+								</td>
+								<td class="text-center">${ans.aaDate}</td>
+							</tr>
+						</tbody>
+					</c:forEach>
+				</table>
+			</div>
+			<!-- ***** 내 답변 목록 end  ***** -->
 		</div>
 	</section>
 </body>

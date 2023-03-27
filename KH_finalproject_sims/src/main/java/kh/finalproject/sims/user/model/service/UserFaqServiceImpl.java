@@ -65,4 +65,10 @@ public class UserFaqServiceImpl implements UserFaqService {
 		return dao.selectMyQnaList(username);
 	}
 
+	// 내답변 목록
+	@Override
+	public List<UserAnsVo> selectMyAnsList(String username) {
+		return dao.selectMyAnsList(username);
+	}
+
 }

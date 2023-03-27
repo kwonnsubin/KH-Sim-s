@@ -8,5 +8,11 @@
 		from QNA_ANS
 		where AQ_NO = #{aqNo}
 	</select>
-	
+
+	<!-- 내 답변 목록 -->
+	<select id="selectMyAnsList" resultType="usAnsvo">
+		select *
+		from QNA_ANS
+		where USER_ID = #{username}
+	</select>	
 </mapper>
