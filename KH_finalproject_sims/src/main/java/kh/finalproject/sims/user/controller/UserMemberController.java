@@ -76,6 +76,14 @@ public class UserMemberController {
 		return mv;
 	}
 	
+	// 비밀번호 찾기 페이지
+	@GetMapping("findpw")
+	public ModelAndView findPw(ModelAndView mv) {
+		mv.setViewName("main/findpw");
+		
+		return mv;
+	}
+	
 	// 아이디 찾기
 	@PostMapping("findid")
 	public ModelAndView selectFindId(ModelAndView mv, MemberVo memVo, UserMemberVo userVo, BizInfoMngtVo bizVo) {
@@ -96,7 +104,47 @@ public class UserMemberController {
 		}
 		
 		return mv;
+	}
+	
+	// 비밀번호 찾기
+	@PostMapping("findpw")
+	public ModelAndView selectFindPw(ModelAndView mv, MemberVo memVo, UserMemberVo userVo, BizInfoMngtVo bizVo) {
+		
+		int result = 0;
+		if(memVo.getRole().equals("ROLE_USER")) {
+			userVo.setUserId(memVo.getId());
+			result = service.selectFindPw(userVo);
+		} else {
+			bizVo.setBizId(memVo.getId());
+			result = service.selectFindPw(bizVo);
+		}
+		
+		if(result == 0) {
+			mv.addObject("msg", "해당 정보에 맞는 계정이 없습니다.");
+			mv.setViewName("main/findpw");
+		} else {
+			mv.addObject("resultId", memVo.getId());
+			mv.setViewName("main/findpw");
+		}
+		
+		return mv;
 	}	
+	
+	// 비밀번호 재설정
+	@ResponseBody
+	@PostMapping("findpw/changepw")
+	public String changePw(ModelAndView mv, @RequestParam String id, @RequestParam String pw) {
+
+		MemberVo memVo = new MemberVo();
+		
+		memVo.setId(id);
+		memVo.setPw(pw);
+		
+		HashMap<String, Object> result = new HashMap<String, Object>();
+		result.put("changePw", service.changePw(memVo));
+		
+		return new Gson().toJson(result);
+	}
 	
 	// ID 중복 확인
 	@ResponseBody

@@ -25,5 +25,17 @@
 	<select id="selectFindBizId" parameterType="bVo" resultType="string">
 		select biz_id from biz where biz_name=#{bizName} and biz_email=#{bizEmail}
 	</select>
+	
+	<select id="selectFindUserPw" parameterType="userVo" resultType="int">
+		select count(*) from user_table where user_id=#{userId} and user_email=#{userEmail}
+	</select>
+	
+	<select id="selectFindBizPw" parameterType="bVo" resultType="int">
+		select count(*) from biz where biz_id=#{bizId} and biz_email=#{bizEmail}
+	</select>
+	
+	<update id="changePw" parameterType="memVo">
+		update member set pw=#{pw} where id=#{id}
+	</update>
 
 </mapper>

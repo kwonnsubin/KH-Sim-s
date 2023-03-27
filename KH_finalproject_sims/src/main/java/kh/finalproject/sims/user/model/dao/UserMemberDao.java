@@ -37,5 +37,17 @@ public class UserMemberDao {
 	public String selectFindId(BizInfoMngtVo bizVo) {
 		return sqlSession.selectOne("member.selectFindBizId", bizVo);
 	}
+
+	public int selectFindPw(UserMemberVo userVo) {
+		return sqlSession.selectOne("member.selectFindUserPw", userVo);
+	}
+
+	public int selectFindPw(BizInfoMngtVo bizVo) {
+		return sqlSession.selectOne("member.selectFindBizPw", bizVo);
+	}
+
+	public int changePw(MemberVo memVo) {
+		return sqlSession.update("member.changePw", memVo);
+	}
 	
 }

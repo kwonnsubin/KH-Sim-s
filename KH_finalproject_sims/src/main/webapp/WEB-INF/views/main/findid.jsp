@@ -162,7 +162,7 @@
 			      <h4 class="mb-3">아이디 정보</h4>
 			        
 		          <div class="mb-3">
-		              <h5>고객님의 정보와 일치하는 아이디 입니다.</h5>
+		              <h6 class="mb-3">고객님의 정보와 일치하는 아이디 입니다.</h6>
 		              <input type="text" class="form-control" value="${resultId}" disabled>
 		          </div>
 		          <div class="row">

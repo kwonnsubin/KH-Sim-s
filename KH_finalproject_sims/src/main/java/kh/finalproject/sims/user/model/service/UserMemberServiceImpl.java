@@ -66,4 +66,22 @@ public class UserMemberServiceImpl implements UserMemberService {
 		return result;
 	}
 
+	@Override
+	public int selectFindPw(UserMemberVo userVo) {
+		int result = dao.selectFindPw(userVo);
+		return result;
+	}
+
+	@Override
+	public int selectFindPw(BizInfoMngtVo bizVo) {
+		int result = dao.selectFindPw(bizVo);
+		return result;
+	}
+
+	@Override
+	public int changePw(MemberVo memVo) {
+		int result = dao.changePw(memVo);
+		return result;
+	}
+
 }

@@ -47,21 +47,32 @@
 				    <input type="password" id="password" name="password" class="form-control" placeholder="비밀번호" />
 				  </div>
 				
-				  <!-- 2 column grid layout for inline styling -->
-				  <div class="row mb-4">
-				    <div class="col d-flex justify-content-center">
-				      <!-- Simple link -->
-				      <a href="#!">아이디 / 비밀번호 찾기</a>
-				      <a href="<%=request.getContextPath()%>/signup">회원가입</a>
-				      <a href="#!">카카오 로그인</a>
-				    </div>
-				  </div>
-				
 				  <!-- Submit button -->
 				  <div class="d-flex justify-content-center">
 				  	<button type="submit" class="btn btn-primary btn-block mb-4">로그인</button>
 				  </div>
 				</form:form>
+			</div>
+		</div>
+		
+		<div class="container px-2 text-center">
+			<div class="row gx-2">
+				<div class="col">
+					<div class="p-3">
+						<a href="<%=request.getContextPath()%>/findid">아이디 찾기</a> / 
+				    	<a href="<%=request.getContextPath()%>/findpw">비밀번호 찾기</a>
+					</div>
+				</div>
+				<div class="col">
+					<div class="p-3">
+						<a href="<%=request.getContextPath()%>/signup">회원가입</a>
+					</div>
+				</div>
+				<div class="col">
+					<div class="p-3">
+						<a href="#">카카오로그인</a>
+					</div>
+				</div>
 			</div>
 		</div>
 	</section>
