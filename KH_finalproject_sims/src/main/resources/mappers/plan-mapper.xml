@@ -4,7 +4,7 @@
 
 	<insert id="insertPlanData" parameterType="map">
 		insert into plan_table values(plan_seq.nextval, #{chargeName}
-			, (select biz_no from biz where biz_name = #{bizName})
+			, (select biz_name from biz where biz_name = #{bizName})
 			, (select net_no from network_table where net_name = #{telecomName})
 	    	, (select gen_no from tel_gen_table where gen_name = 
 	    	<choose>

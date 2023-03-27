@@ -17,5 +17,13 @@
 	<insert id="signUpBiz" parameterType="bVo">
 		insert into biz(biz_id, biz_name, biz_ssn, biz_crn, biz_email, biz_phone, write_date) values(#{bizId}, #{bizName}, #{bizSsn}, #{bizCrn}, #{bizEmail}, #{bizPhone}, sysdate)
 	</insert>
+	
+	<select id="selectFindUserId" parameterType="userVo" resultType="string">
+		select user_id from user_table where user_name=#{userName} and user_email=#{userEmail}
+	</select>
+	
+	<select id="selectFindBizId" parameterType="bVo" resultType="string">
+		select biz_id from biz where biz_name=#{bizName} and biz_email=#{bizEmail}
+	</select>
 
 </mapper>

@@ -28,22 +28,23 @@ public class UserMemberController {
 	@Autowired
 	private MailSendService mailService;
 
+	// 로그인 페이지
 	@GetMapping("login")
 	public ModelAndView LoginDo(ModelAndView mv) {
-		
 		mv.setViewName("main/login");
 		
 		return mv;
 	}
 	
+	// 회원가입 페이지
 	@GetMapping("signup")
 	public ModelAndView signUp(ModelAndView mv) {
-		
 		mv.setViewName("main/signup");
 		
 		return mv;
 	}
 	
+	// 회원가입
 	@PostMapping("signup")
 	public ModelAndView insertSignUp(ModelAndView mv, MemberVo memVo, UserMemberVo userVo, BizInfoMngtVo bizVo) {
 		memVo.setEnable(1);
@@ -59,14 +60,45 @@ public class UserMemberController {
 		
 		
 		if(result == 1) {
-			mv.setViewName("main/login");
+			mv.setViewName("redirect:/login");
 		} else {
-			mv.setViewName("main/signup");
+			mv.setViewName("redirect:/signup");
 		}
 		
 		return mv;
 	}
 	
+	// 아이디 찾기 페이지
+	@GetMapping("findid")
+	public ModelAndView findId(ModelAndView mv) {
+		mv.setViewName("main/findid");
+		
+		return mv;
+	}
+	
+	// 아이디 찾기
+	@PostMapping("findid")
+	public ModelAndView selectFindId(ModelAndView mv, MemberVo memVo, UserMemberVo userVo, BizInfoMngtVo bizVo) {
+		
+		String result = null;
+		if(memVo.getRole().equals("ROLE_USER")) {
+			result = service.selectFindId(userVo);
+		} else {
+			result = service.selectFindId(bizVo);
+		}
+		
+		if(result == null) {
+			mv.addObject("msg", "해당 정보에 맞는 아이디가 없습니다.");
+			mv.setViewName("main/findid");
+		} else {
+			mv.addObject("resultId", result);
+			mv.setViewName("main/findid");
+		}
+		
+		return mv;
+	}	
+	
+	// ID 중복 확인
 	@ResponseBody
 	@PostMapping("signup/idcheck")
 	public String selectIdCheck(ModelAndView mv, @RequestParam String id) {

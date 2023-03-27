@@ -14,5 +14,11 @@ public interface UserMemberService {
 
 	// 통신사 회원가입
 	public int insertBizSignUp(MemberVo memVo, BizInfoMngtVo bizVo);
+
+	// 유저 아이디 찾기
+	public String selectFindId(UserMemberVo userVo);
+
+	// 통신사 아이디 찾기
+	public String selectFindId(BizInfoMngtVo bizVo);
 	
 }
