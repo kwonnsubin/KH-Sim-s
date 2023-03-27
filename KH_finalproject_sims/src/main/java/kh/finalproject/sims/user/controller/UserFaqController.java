@@ -1,14 +1,8 @@
 package kh.finalproject.sims.user.controller;
 
-import java.io.IOException;
 import java.security.Principal;
 
-import javax.servlet.ServletException;
-import javax.servlet.annotation.WebServlet;
-import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Controller;
@@ -59,6 +53,20 @@ public class UserFaqController {
 		mv.addObject("qnaquestion", service.selectQnaDetail(aqNo));
 		mv.addObject("qnaanswer", service.selectAnsList(aqNo));
 		mv.setViewName("user/faq/qnaread");
+		return mv;
+	}
+	
+	// 내 질문답변
+	@GetMapping("/myqna")
+	public ModelAndView selectMyQnaList(
+			ModelAndView mv
+			, HttpServletRequest request
+			) {
+		Principal principal = request.getUserPrincipal();
+		String username = principal.getName();
+		
+		mv.addObject("myqnalist", service.selectMyQnaList(username));
+		mv.setViewName("user/faq/myQna");
 		return mv;
 	}
 	

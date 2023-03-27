@@ -29,4 +29,8 @@ public interface UserFaqService {
 	// 질문하기
 	public void insertQna(UserQnaVo vo);
 
+	// 내질문 목록
+	public List<UserQnaVo> selectMyQnaList(String username);
+
+
 }

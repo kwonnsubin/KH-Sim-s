@@ -44,5 +44,9 @@ public class UserFaqDao {
 	public int insertQna(UserQnaVo vo) {
 		return session.insert("qna.insertQna", vo);
 	}
+
+	public List<UserQnaVo> selectMyQnaList(String id) {
+		return session.selectList("qna.selectMyQnaList", id);
+	}
 	
 }
