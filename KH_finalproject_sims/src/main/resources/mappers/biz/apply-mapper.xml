@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="apply">
+  <select id = "selectApplyDetailUser" resultType ="kh.finalproject.sims.biz.model.vo.BizApplyVo">
+  	<!-- 유저 기본정보 -->
+  	select * 
+   		from plan_order
+    	join user_table
+    	using(user_id)
+    where user_id = 'user1'
+  </select>
+  <select id="selectApplyDetailPlan" resultType ="kh.finalproject.sims.biz.model.vo.BizApplyVo">
+     <!-- 요금제 정보 -->
+    select plan_price, plan_voice, plan_message, plan_data
+	    from plan_order
+	    join plan_table
+	    using (plan_no)
+    where plan_no = '1'
+  </select>
+</mapper>

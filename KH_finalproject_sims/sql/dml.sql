@@ -434,25 +434,25 @@ INSERT INTO BIZ_REVIEW VALUES (BIZ_REVIEW_SEQ.NEXTVAL
 INSERT INTO PLAN_ORDER VALUES (PLAN_ORDER_SEQ.NEXTVAL,
                                'user1',
                                1,
-                               1,
-                               1,
-                               1,
-                               1,
-                               1,
-                               1,
+                               '1',
+                               '1',
+                               '1',
+                               '1',
+                               '1',
+                               '1',
                                '3456-5958-1923-4921',
                                '05/24',
                                NULL,
                                NULL,
                                DEFAULT,
-                               1,
+                               '1',
                                1,
                                2,
                                NULL,
                                NULL,
                                NULL,
                                NULL
-);
+);   
 
 -- 리뷰내역신고
 INSERT INTO REVIEW_REPORT (
