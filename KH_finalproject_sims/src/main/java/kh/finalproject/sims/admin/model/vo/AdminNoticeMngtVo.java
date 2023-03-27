@@ -35,7 +35,6 @@ public class AdminNoticeMngtVo {
 
 	public AdminNoticeMngtVo() {
 		super();
-		// TODO Auto-generated constructor stub
 	}
 
 

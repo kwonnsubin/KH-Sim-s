@@ -18,6 +18,7 @@
 		<typeAlias type="kh.finalproject.sims.admin.model.vo.AdminNoticeMngtVo" alias="adNtcvo"/>
 		<typeAlias type="kh.finalproject.sims.user.model.vo.MemberVo" alias="memVo"/>
 		<typeAlias type="kh.finalproject.sims.user.model.vo.UserMemberVo" alias="userVo"/>
+		<typeAlias type="kh.finalproject.sims.admin.model.vo.AdminUserMngtVo" alias="adUserVo"/>
 	</typeAliases>
 	 
 	 <!-- 매퍼 추가 안해도 됨

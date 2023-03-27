@@ -50,7 +50,7 @@
 																<option value="content" <c:if test="${searchOption eq 'content' }">selected</c:if>>내용</option>
 															</select>
 															<input class="form-control" type="text" name="searchBox" value="${searchBox}">
-															<div class="input-group-append">
+															<div class="input-group-append"> 
 																<button class="btn  btn-primary" type="submit">검색</button>
 															</div>
 														</div>
