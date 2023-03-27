@@ -14,5 +14,17 @@
 		select *
 		from QNA_ANS
 		where USER_ID = #{username}
-	</select>	
+	</select>
+	
+	<!-- 답변하기 -->
+	<insert id="insertAns" parameterType="usAnsvo">
+		insert into QNA_ANS (aa_no, aq_no, user_id, aa_content, aa_date) 
+		values (
+		    QNA_ANS_SEQ.NEXTVAL
+		    , #{aqNo}
+		    , #{userId}
+		    , #{aaContent}
+		    , default
+		)
+	</insert>	
 </mapper>

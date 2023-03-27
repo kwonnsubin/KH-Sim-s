@@ -14,19 +14,15 @@
 			<div class="row">
 				<h4>내 질문</h4>
 				<table>
-					<thead>
-						<tr>
-							<th>질문</th>
-							<th>작성일</th>
-						</tr>
-					</thead>
 					<c:forEach items="${myqnalist}" var="qna">
 						<tbody>
 							<tr>
-								<td class="text-center">
+								<td>
 								<a href="<%=request.getContextPath()%>/faq/qnaread/${qna.aqNo}">${qna.aqTitle}</a>
 								</td>
-								<td class="text-center">${qna.aqDate}</td>
+								<td>${qna.aqDate}</td>
+								<td><button>수정</button></td>
+								<td><button>삭제</button></td>
 							</tr>
 						</tbody>
 					</c:forEach>
@@ -37,19 +33,15 @@
 			<div class="row">
 				<h4>내 답변</h4>
 				<table>
-					<thead>
-						<tr>
-							<th>답변</th>
-							<th>작성일</th>
-						</tr>
-					</thead>
 					<c:forEach items="${myanslist}" var="ans">
 						<tbody>
 							<tr>
-								<td class="text-center">
+								<td>
 								<a href="<%=request.getContextPath()%>/faq/qnaread/${ans.aqNo}">${ans.aaContent}</a>
 								</td>
-								<td class="text-center">${ans.aaDate}</td>
+								<td>${ans.aaDate}</td>
+								<td><button>수정</button></td>
+								<td><button>삭제</button></td>
 							</tr>
 						</tbody>
 					</c:forEach>

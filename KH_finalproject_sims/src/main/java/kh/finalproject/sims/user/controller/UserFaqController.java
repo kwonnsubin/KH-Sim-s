@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
 import kh.finalproject.sims.user.model.service.UserFaqService;
+import kh.finalproject.sims.user.model.vo.UserAnsVo;
 import kh.finalproject.sims.user.model.vo.UserQnaVo;
 
 @RequestMapping("/faq")
@@ -92,6 +93,30 @@ public class UserFaqController {
 			, Authentication authentication
 			) {
 		service.insertQna(vo);
+		return "redirect:/faq/faqlist";
+	}
+	
+	// 답변하기 페이지
+	@GetMapping("/writeans")
+	public ModelAndView writeAnsForm(
+			ModelAndView mv
+			, HttpServletRequest request
+			) {
+		mv.setViewName("user/faq/writeAns");
+		Principal principal = request.getUserPrincipal();
+		String username = principal.getName();
+		
+		mv.addObject("username", username);
+		return mv;
+	}
+	
+	// 답변 저장
+	@PostMapping("/writeans")
+	public String writeAns(
+			UserAnsVo vo
+			, Authentication authentication
+			) {
+		service.insertAns(vo);
 		return "redirect:/faq/faqlist";
 	}
 	
