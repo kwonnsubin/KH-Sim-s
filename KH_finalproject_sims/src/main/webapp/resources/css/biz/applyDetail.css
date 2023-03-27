@@ -1,0 +1,9 @@
+@charset "UTF-8";
+.applyStatus{
+	display: flex;
+	align-items: center; /*행을 수직으로 중앙정렬*/
+}
+/* table{
+	flex:1; 테이블이 남은 공간을 모두 차지하도록 함
+	margin-left: 20px;
+} */

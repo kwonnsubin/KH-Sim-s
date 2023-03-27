@@ -1,12 +1,19 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
+<c:set var="path" value="${pageContext.request.contextPath}"/>
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+<link rel="stylesheet" href="${path}/resources/css/biz/applyDetail.css"/>
+<script src="https://code.jquery.com/jquery-3.6.3.js"></script>
+
 </head>
 <body>
+	<%-- <jsp:include page="../header.jsp"/> --%>
     요금제 신청서 상세정보
     <table border="solid">
 		<tbody>
@@ -18,7 +25,7 @@
 				<th scope="row">
 					<span>요금제명</span>
 				</th>
-				<td>${applyDetail.planName }</td>
+				<td>${applyDetailPlan.planName }</td>
                 <th scope="row">
                     <span>아이디</span>
                 </th>
@@ -61,105 +68,206 @@
 				<th scope="row">
 					<span>가입유형</span>
 				</th>
-				<td>${applyDetail.joinCategory }</td>
+				<td>
+				<c:choose>
+					<c:when test= "${applyDetail.joinCategory eq 1}">
+						번호이동
+					</c:when>
+					<c:otherwise>
+						신규가입
+					</c:otherwise>
+				</c:choose>
+				</td>
 				<th scope="row">
 					<span>심종류</span>
 				</th>
-				<td>${applyDetail.simType }</td>
+				<td>
+				<c:choose>
+					<c:when test ="${applyDetail.simType eq 1 }">
+						일반유심
+					</c:when>
+					<c:otherwise>
+						NFC 유심
+					</c:otherwise>
+				</c:choose>
+				</td>
 			</tr>
             <tr>
 				<th scope="row">
 					<span>유심신청여부</span>
 				</th>
-				<td>${applyDetail.simYn }</td>
+				<td>
+				<c:choose>
+					<c:when test ="${applyDetail.simYn eq 1}">
+						N
+					</c:when>
+					<c:otherwise>
+						Y
+					</c:otherwise>
+				</c:choose>
+				</td>
 				<th scope="row">
 					<span>현재사용통신사</span>
 				</th>
-				<td>${applyDetail.currentTelecom }</td>
+				<td>
+				<c:choose>
+					<c:when test="${applyDetail.currentTelecom eq 1}">
+						SKT
+					</c:when>
+					<c:when test="${applyDetail.currentTelecom eq 2}">
+						KT
+					</c:when>
+					<c:when test="${applyDetail.currentTelecom eq 3}">
+						LGU+
+					</c:when>
+					<c:when test="${applyDetail.currentTelecom eq 4}">
+						SKT 알뜰폰
+					</c:when>
+					<c:when test="${applyDetail.currentTelecom eq 5}">
+						KT 알뜰폰	
+					</c:when>
+					<c:otherwise>
+						LGU+ 알뜰폰
+					</c:otherwise>				
+				</c:choose>
+				</td>
 			</tr>
 			<tr>
 				<th scope="row">
 					<span>청구서유형</span>
 				</th>
-				<td>${applyDetail.planBill }</td>
+				<td>
+				<c:choose>
+					<c:when test="${applyDetail.planBill eq 1}">
+						문자
+					</c:when>
+					<c:otherwise>
+						이메일
+					</c:otherwise>
+				</c:choose>	
+				</td>
 				<th scope="row">
 					<span>납부방법</span>
 				</th>
-				<td>${applyDetail.planPay }</td>
+				<td>
+				<c:choose>
+					<c:when test="${applyDetail.planPay eq 1}">
+						카드
+					</c:when>
+					<c:otherwise>
+						계좌이체
+					</c:otherwise>
+				</c:choose>
+				</td>
 			</tr>
         </tbody>
     </table>	
 
     <!--납부방법에 따라 뜨는거 다르게 할 것. -->
-    <!--납부 방법 카드일 경우-->
+    <table border="solid">
+    <c:choose>
+        <c:when test="${applyDetail.planPay eq 1}">
+            <tr>
+                <th scope="row">
+                    <span>카드번호</span>
+                </th>
+                <td>${applyDetail.cardNumber }</td>
+                <th scope="row">
+                    <span>카드유효기간</span>
+                </th>
+                <td>${applyDetail.cardExpiration }</td>
+            </tr>
+        </c:when>
+        <c:otherwise>
+            <tr>
+                <th scope="row">
+                    <span>은행</span>
+                </th>
+                <td>${applyDetail.bank }</td>
+                <th scope="row">
+                    <span>계좌번호</span>
+                </th>
+                <td>${applyDetail.bankNumber }</td>
+            </tr>
+        </c:otherwise>
+    </c:choose>
+	</table>
+
+
     <table border="solid">
     	<tr>
 	        <th scope="row">
-	            <span>카드번호</span>
+	            <span>기본료(원)</span>
 	        </th>
-	        <td>${applyDetail.cardNumber }</td>
+	        <td>${applyDetailPlan.planPrice }</td>
 	        <th scope="row">
-	            <span>카드유효기간</span>
+	            <span>기본데이터(MB)</span>
 	        </th>
-	        <td>${applyDetail.cardExpiration }</td>
+	        <td>${applyDetailPlan.data }</td>
+	        <th scope="row">
+	            <span>기본음성(분)</span>
+	        </th>
+	        <td>${applyDetailPlan.planVoice }</td>
+	        <th scope="row">
+	            <span>기본문자(건)</span>
+	        </th>
+	        <td>${applyDetailPlan.planMessage }</td>
         </tr>
     </table>
 
-    <!--계좌이체일 경우-->
-    <table border="solid">
-    	<tr>
-	        <th scope="row">
-	            <span>은행</span>
-	        </th>
-	        <td>${applyDetail.bank }</td>
-	        <th scope="row">
-	            <span>계좌번호</span>
-	        </th>
-	        <td>${applyDetail.bankNumber }</td>
-        </tr>
-    </table>
-
-    <table border="solid">
-    	<tr>
-	        <th scope="row">
-	            <span>가입기본료</span>
-	        </th>
-	        <td>${applyDetail.planPrice }</td>
-	        <th scope="row">
-	            <span>가입데이터</span>
-	        </th>
-	        <td>${applyDetail.data }</td>
-	        <th scope="row">
-	            <span>가입음성</span>
-	        </th>
-	        <td>${applyDetail.planVoice }</td>
-	        <th scope="row">
-	            <span>가입문자</span>
-	        </th>
-	        <td>${applyDetail.planMessage }</td>
-        </tr>
-    </table>
-
-
+	<div class="applyStatus">
+		<table border="solid">
+			<tr>
+				<th scope="row">
+					<span>가입 신청 상태</span>
+				</th>
+				<td>
+				<c:choose>
+					<c:when test="${applyDetail.orderStatus eq 1}">
+						신청완료
+					</c:when>
+					<c:when test="${applyDetail.orderStatus eq 2}">
+						승인완료
+					</c:when>
+					<c:otherwise>
+						승인보류
+					</c:otherwise>
+				</c:choose>
+				</td>
+			</tr>
+		</table>
+		<button onclick="approve()">승인</button>
+		<button onclick="hold()">보류</button>
+	</div>
 
 <script>
-/* Javascript 샘플 코드 */
-
-
-	var xhr = new XMLHttpRequest();
-	var url = 'http://apis.data.go.kr/1160100/service/GetDomeBankInfoService/getDomeBankGeneInfo'; /*URL*/
-	var queryParams = '?' + encodeURIComponent('serviceKey') + '='+'PHfPC7SVItw6zXzXyZSTViGirU5wxr2MwwLQj5J00RFqEHLRXpIIrvAUjGs2bY6QHBp3SgqaDynMg22h%2BgvZ5w%3D%3D'; /*Service Key*/
-	queryParams += '&' + encodeURIComponent('numOfRows') + '=' + encodeURIComponent('1'); /**/
-	queryParams += '&' + encodeURIComponent('pageNo') + '=' + encodeURIComponent('1'); /**/
-	queryParams += '&' + encodeURIComponent('resultType') + '=' + encodeURIComponent('xml'); /**/
-	xhr.open('GET', url + queryParams);
-	xhr.onreadystatechange = function () {
-	    if (this.readyState == 4) {
-	        alert('Status: '+this.status+'nHeaders: '+JSON.stringify(this.getAllResponseHeaders())+'nBody: '+this.responseText);
-	    }
-	};
+	function approve(){
+		$.ajax({
+			url:,//요청을 보낼 url
+			type: "POST" ,
+			data:{orderStatus:2},
+			success: function(results){
+				console.log(result);
+			},
+			error:function(xhr, status, error){
+				console.log(xhr, responseText);
+			}
+		});
+	}
 	
-	xhr.send('');
+	function hold() {
+		  $.ajax({
+		    url: "/hold", // 요청을 보낼 URL
+		    type: "POST", // HTTP 요청 방식
+		    data: { orderStatus: 3 }, // 전송할 데이터
+		    success: function(result) {
+		      console.log(result); // 요청이 성공하면 콘솔에 결과 출력
+		    },
+		    error: function(xhr, status, error) {
+		      console.error(xhr.responseText); // 요청이 실패하면 에러 출력
+		    }
+		  });
+		}
 </script>
 </body>
 </html>

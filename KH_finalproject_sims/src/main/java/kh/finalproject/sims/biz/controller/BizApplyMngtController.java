@@ -30,4 +30,8 @@ public class BizApplyMngtController {
 		mv.setViewName("biz/applyDetail");
 		return mv;
 	}
+	
+	//가입신청상태 변경
+	//public String appove
+	//TODO 에이작스 값 받아오기
 }

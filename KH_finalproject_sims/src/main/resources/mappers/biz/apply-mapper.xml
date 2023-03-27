@@ -11,7 +11,7 @@
   </select>
   <select id="selectApplyDetailPlan" resultType ="kh.finalproject.sims.biz.model.vo.BizApplyVo">
      <!-- 요금제 정보 -->
-    select plan_price, plan_voice, plan_message, plan_data
+    select plan_name, plan_price, plan_voice, plan_message, plan_data
 	    from plan_order
 	    join plan_table
 	    using (plan_no)
