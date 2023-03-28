@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -14,7 +15,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.google.gson.Gson;
 
-import kh.finalproject.sims.apiTest.mail.MailSendService;
+import kh.finalproject.sims.api.mail.MailSendService;
 import kh.finalproject.sims.biz.model.vo.BizInfoMngtVo;
 import kh.finalproject.sims.user.model.service.UserMemberService;
 import kh.finalproject.sims.user.model.vo.MemberVo;
@@ -83,19 +84,11 @@ public class UserMemberController {
 		return mv;
 	}
 	
-	// 비밀번호 찾기 페이지
-	@GetMapping("findpw")
-	public ModelAndView findPw(ModelAndView mv) {
-		mv.setViewName("main/findpw");
-		
-		return mv;
-	}
-	
 	// 아이디 찾기
 	@PostMapping("findid")
 	public ModelAndView selectFindId(ModelAndView mv, MemberVo memVo, UserMemberVo userVo, BizInfoMngtVo bizVo) {
 		
-		String result = null;
+		MemberVo result = null;
 		if(memVo.getRole().equals("ROLE_USER")) {
 			result = service.selectFindId(userVo);
 		} else {
@@ -106,9 +99,20 @@ public class UserMemberController {
 			mv.addObject("msg", "해당 정보에 맞는 아이디가 없습니다.");
 			mv.setViewName("main/findid");
 		} else {
-			mv.addObject("resultId", result);
+			mv.addObject("resultId", result.getId());
+			if(result.getEnable() == 2) {
+				mv.addObject("resultEna", result.getEnable());
+			}
 			mv.setViewName("main/findid");
 		}
+		
+		return mv;
+	}
+	
+	// 비밀번호 찾기 페이지
+	@GetMapping("findpw")
+	public ModelAndView findPw(ModelAndView mv) {
+		mv.setViewName("main/findpw");
 		
 		return mv;
 	}
@@ -172,6 +176,43 @@ public class UserMemberController {
 		System.out.println("이메일 인증 이메일 : " + email);
 		
 		return mailService.joinEmail(email);
+	}
+	
+	// 계정 복구
+	@ResponseBody
+	@PostMapping("rel")
+	public String updateEna(ModelAndView mv, @RequestParam String id) {
+
+		HashMap<String, Object> result = new HashMap<String, Object>();
+		result.put("rel", service.updateEna(id));
+		
+		return new Gson().toJson(result);
+	}
+	
+	// 내 정보 페이지
+	@GetMapping("myinfo/{id}")
+	public ModelAndView selectMyPageInfo(ModelAndView mv, @PathVariable String id) {
+		
+		UserMemberVo userVo = service.selectMyPageInfo(id);
+		
+		mv.addObject("userInfo", userVo);
+		mv.setViewName("user/myinfo");
+		
+		return mv;
+	}
+	
+	// 내 정보 페이지 수정
+	@PostMapping("myinfo")
+	public ModelAndView updateMyPageModify(ModelAndView mv, MemberVo memVo, UserMemberVo userVo) {
+		
+		userVo.setUserId(memVo.getId());
+		memVo.setPw(pwEncoder.encode(memVo.getPw()));
+		
+		service.updateMyPageModify(memVo, userVo);
+		
+		mv.setViewName("redirect:/logout");
+		
+		return mv;
 	}
 	
 }

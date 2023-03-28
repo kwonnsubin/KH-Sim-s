@@ -12,6 +12,7 @@
 	<s:http auto-config="true" use-expressions="true">
 		<s:intercept-url pattern="/login" access="permitAll"/>
 		<s:intercept-url pattern="/logout" access="hasRole('ROLE_ADMIN, ROLE_USER, ROLE_BIZ')"/>
+		<s:intercept-url pattern="/myinfo/**" access="hasRole('ROLE_USER')"/>
 		<s:intercept-url pattern="/biz/**" access="hasRole('ROLE_BIZ')"/>
 		<s:intercept-url pattern="/admin/**" access="hasRole('ROLE_ADMIN')"/>
 		
@@ -43,7 +44,7 @@
 	    	<s:password-encoder hash="bcrypt"></s:password-encoder>
 	        <s:jdbc-user-service
 	            data-source-ref="dataSource"
-	            users-by-username-query="select id username, pw password, enable from member where id=?"
+	            users-by-username-query="select id username, pw password, case when enable = 2 then 0 else 1 end as enable from member where id=?"
 	            authorities-by-username-query="select id username, role authority from member where id=?"
 	        />
 	    </s:authentication-provider>

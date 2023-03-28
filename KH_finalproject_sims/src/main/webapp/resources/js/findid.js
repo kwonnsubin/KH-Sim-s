@@ -124,3 +124,24 @@ $('.login-btn').on("click", function() {
 $('.findpw-btn').on("click", function() {
 	location.href = contextPath + "/findpw";
 });
+
+// 탈퇴 계정 복구
+$('.rel-btn').on("click", function() {
+	$.ajax({
+		url : contextPath + "/rel",
+		type : "post",
+		async : false,
+		data : {
+			id : $(".resultId").val()
+		},
+		dataType : "json",
+		success : function(data){
+			if(data.rel == 1) {
+				alert("계정이 복구되었습니다.");
+				location.href = contextPath + "/login";
+			} else {
+				alert("계정 복구 실패하였습니다.")
+			}
+		}
+	 });
+});

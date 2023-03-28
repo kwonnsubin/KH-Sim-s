@@ -18,6 +18,10 @@
 		insert into biz(biz_id, biz_name, biz_ssn, biz_crn, biz_email, biz_phone, write_date) values(#{bizId}, #{bizName}, #{bizSsn}, #{bizCrn}, #{bizEmail}, #{bizPhone}, sysdate)
 	</insert>
 	
+	<select id="checkEna" parameterType="string" resultType="int">
+		select enable from member where id=#{id}
+	</select>
+	
 	<select id="selectFindUserId" parameterType="userVo" resultType="string">
 		select user_id from user_table where user_name=#{userName} and user_email=#{userEmail}
 	</select>
@@ -34,8 +38,22 @@
 		select count(*) from biz where biz_id=#{bizId} and biz_email=#{bizEmail}
 	</select>
 	
+	<select id="selectMyPageInfo" parameterType="string" resultType="userVo">
+		select * from user_table where user_id=#{id}
+	</select>
+	
 	<update id="changePw" parameterType="memVo">
 		update member set pw=#{pw} where id=#{id}
 	</update>
+	
+	<update id="updateEna" parameterType="string">
+		update member set enable=1 where id=#{id}
+	</update>
+	
+	<update id="updateMyPageModify" parameterType="userVo">
+		update user_table set user_email=#{userEmail}, user_phone=#{userPhone} where user_id=#{userId}
+	</update>
+	
+	
 
 </mapper>

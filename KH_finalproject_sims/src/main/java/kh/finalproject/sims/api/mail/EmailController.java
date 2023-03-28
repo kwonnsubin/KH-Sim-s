@@ -1,4 +1,4 @@
-package kh.finalproject.sims.apiTest.mail;
+package kh.finalproject.sims.api.mail;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;

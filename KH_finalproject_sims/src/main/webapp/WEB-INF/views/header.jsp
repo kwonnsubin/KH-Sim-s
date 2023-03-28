@@ -38,6 +38,9 @@
 						</form:form>
 						</sec:authorize>
 						<li><a href="<%=request.getContextPath()%>/">마이페이지</a></li>
+						<sec:authorize access="isAuthenticated()">
+						<li><a href="<%=request.getContextPath()%>/myinfo/<sec:authentication property="name"/>">테스트마이페이지</a></li>
+						</sec:authorize>
 					</ul>
 					<a class='menu-trigger'> 
 						<span>Menu</span>

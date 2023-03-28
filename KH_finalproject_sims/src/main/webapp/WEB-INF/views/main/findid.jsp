@@ -61,13 +61,13 @@
 					  <div class="input-group-text">
 					    <input class="form-check-input mt-0" type="radio" value="ROLE_USER" name="role" checked="checked">
 					  </div>
-					  <input type="text" class="form-control" value="사용자" readonly>
+					  <input type="text" class="form-control" aria-label="Text input with checkbox" value="사용자" readonly>
 				  </div>
 				  <div class="col input-group mb-3">
 					  <div class="input-group-text">
 					    <input class="form-check-input mt-0" type="radio" value="ROLE_BIZ" name="role">
 					  </div>
-					  <input type="text" class="form-control" value="통신사" readonly>
+					  <input type="text" class="form-control" aria-label="Text input with checkbox" value="통신사" readonly>
 				  </div>
 	            </div>
 	        </div>
@@ -163,15 +163,22 @@
 			        
 		          <div class="mb-3">
 		              <h6 class="mb-3">고객님의 정보와 일치하는 아이디 입니다.</h6>
-		              <input type="text" class="form-control" value="${resultId}" disabled>
+		              <input type="text" class="form-control resultId" value="${resultId}" disabled>
 		          </div>
 		          <div class="row">
+		          <c:if test="${resultEna eq null}">
 			          <div class="col text-center">
-			          	<button class="btn btn-primary btn-sm btn-block login-btn" type="button" disabled>로그인 하기</button>
+			          	<button class="btn btn-primary btn-sm btn-block login-btn" type="button">로그인 하기</button>
 			          </div>
 			          <div class="col text-center">
-			          	<button class="btn btn-primary btn-sm btn-block findpw-btn" type="button" disabled>비밀번호 찾기</button>
+			          	<button class="btn btn-primary btn-sm btn-block findpw-btn" type="button">비밀번호 찾기</button>
 			          </div>
+		          </c:if>
+		          <c:if test="${resultEna ne null}">
+		              <div class="col text-center">
+			          	<button class="btn btn-primary btn-sm btn-block rel-btn" type="button">휴면 풀기</button>
+			          </div>
+		          </c:if>
 		          </div>
 		      </div>
 		    </div>

@@ -49,5 +49,21 @@ public class UserMemberDao {
 	public int changePw(MemberVo memVo) {
 		return sqlSession.update("member.changePw", memVo);
 	}
+
+	public int checkEna(String userId) {
+		return sqlSession.selectOne("member.checkEna", userId);
+	}
+	
+	public int updateEna(String id) {
+		return sqlSession.update("member.updateEna", id);
+	}
+
+	public UserMemberVo selectMyPageInfo(String id) {
+		return sqlSession.selectOne("member.selectMyPageInfo", id);
+	}
+
+	public int updateMyPageModify(UserMemberVo userVo) {
+		return sqlSession.update("member.updateMyPageModify", userVo);
+	}
 	
 }
