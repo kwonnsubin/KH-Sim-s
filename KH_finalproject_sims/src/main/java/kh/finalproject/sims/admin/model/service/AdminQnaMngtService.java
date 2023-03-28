@@ -32,4 +32,7 @@ public interface AdminQnaMngtService {
 	
 	// 문의 내역 답변 리스트
 	public List<AdminQnaMngtVo> selectQnaAnsList(int aqNo);
+	
+	// 문의 내역 댓글 리스트
+	public List<AdminQnaMngtVo> selectQnaReplyList(int aaNo);
 }

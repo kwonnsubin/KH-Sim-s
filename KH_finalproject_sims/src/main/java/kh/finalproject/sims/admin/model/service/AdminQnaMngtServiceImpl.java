@@ -60,6 +60,12 @@ public class AdminQnaMngtServiceImpl implements AdminQnaMngtService{
 		return dao.selectQnaAnsList(aqNo);
 	}
 	
+	// 문의 내역 댓글 리스트
+	@Override
+	public List<AdminQnaMngtVo> selectQnaReplyList(int aaNo) {
+		return dao.selectQnaReplyList(aaNo);
+	}
+	
 //	// 문의 내역 상세보기 JOIN
 //	@Override
 //	public List<AdminQnaMngtVo> selectQnaListDetail(int aqNo) {

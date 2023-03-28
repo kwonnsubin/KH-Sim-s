@@ -364,6 +364,15 @@ insert into QNA_RPL values (
     , 'user1'
     , null
 );
+insert into QNA_RPL values (
+    QNA_RPL_SEQ.nextval
+    , 2
+    , default
+    , null
+    , '네 좋은하루보내세요'
+    , null
+    , 'admin'
+);
 
 -- 공지사항 테이블
 SELECT * FROM NOTICE;

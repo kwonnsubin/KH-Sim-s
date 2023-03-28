@@ -59,6 +59,11 @@ public class AdminQnaMngtDao {
 		return sqlSession.selectList("admin.selectQnaAnsList", aqNo);
 	}
 	
+	// 문의 내역 댓글 리스트
+	public List<AdminQnaMngtVo> selectQnaReplyList(int aaNo) {
+		return sqlSession.selectList("admin.selectQnaReplyList", aaNo);
+	}
+	
 	
 	
 }

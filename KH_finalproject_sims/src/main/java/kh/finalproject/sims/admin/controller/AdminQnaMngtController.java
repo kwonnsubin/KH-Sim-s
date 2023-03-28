@@ -121,9 +121,11 @@ public class AdminQnaMngtController {
 	public ModelAndView selectQnaListDetail(
 			ModelAndView mv
 			,@PathVariable int aqNo
+			,AdminQnaMngtVo vo
 			) {
 		mv.addObject("qnaDetail", service.selectQnaListDetail(aqNo));
 		mv.addObject("qnaAnsList", service.selectQnaAnsList(aqNo));
+		mv.addObject("qnaReplyList", service.selectQnaReplyList(vo.getAaNo()));
 		mv.setViewName("admin/qna/detail");
 		return mv;
 	}

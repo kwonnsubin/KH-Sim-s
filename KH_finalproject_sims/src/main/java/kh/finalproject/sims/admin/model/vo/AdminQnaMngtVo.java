@@ -32,6 +32,47 @@ public class AdminQnaMngtVo {
 	Date aaDate; // 작성일
 	String aaRedate; // 수정일
 	
+	// 문의 답변 댓글
+	int rplNo; // 댓글번호
+	Date rplDate; // 등록일
+	Date rplRedate; // 수정일
+	String rplContent; // 댓글내용
+	
+
+	public AdminQnaMngtVo() {
+		super();
+		// TODO Auto-generated constructor stub
+	}
+
+	public AdminQnaMngtVo(String faqNo, String faqTitle, String faqContent, String adminId, String faqRewriter,
+			Date faqDate, Date faqRedate, int aqNo, String userId, String aqTitle, String aqContent, Date aqDate,
+			Date aqRedate, int aqViews, int aqAnswers, int aaNo, String aaContent, Date aaDate, String aaRedate,
+			int rplNo, Date rplDate, Date rplRedate, String rplContent) {
+		super();
+		this.faqNo = faqNo;
+		this.faqTitle = faqTitle;
+		this.faqContent = faqContent;
+		this.adminId = adminId;
+		this.faqRewriter = faqRewriter;
+		this.faqDate = faqDate;
+		this.faqRedate = faqRedate;
+		this.aqNo = aqNo;
+		this.userId = userId;
+		this.aqTitle = aqTitle;
+		this.aqContent = aqContent;
+		this.aqDate = aqDate;
+		this.aqRedate = aqRedate;
+		this.aqViews = aqViews;
+		this.aqAnswers = aqAnswers;
+		this.aaNo = aaNo;
+		this.aaContent = aaContent;
+		this.aaDate = aaDate;
+		this.aaRedate = aaRedate;
+		this.rplNo = rplNo;
+		this.rplDate = rplDate;
+		this.rplRedate = rplRedate;
+		this.rplContent = rplContent;
+	}
 	
 	@Override
 	public String toString() {
@@ -39,7 +80,9 @@ public class AdminQnaMngtVo {
 				+ adminId + ", faqRewriter=" + faqRewriter + ", faqDate=" + faqDate + ", faqRedate=" + faqRedate
 				+ ", aqNo=" + aqNo + ", userId=" + userId + ", aqTitle=" + aqTitle + ", aqContent=" + aqContent
 				+ ", aqDate=" + aqDate + ", aqRedate=" + aqRedate + ", aqViews=" + aqViews + ", aqAnswers=" + aqAnswers
-				+ "]";
+				+ ", aaNo=" + aaNo + ", aaContent=" + aaContent + ", aaDate=" + aaDate + ", aaRedate=" + aaRedate
+				+ ", rplNo=" + rplNo + ", rplDate=" + rplDate + ", rplRedate=" + rplRedate + ", rplContent="
+				+ rplContent + "]";
 	}
 
 	public String getFaqNo() {
@@ -161,42 +204,70 @@ public class AdminQnaMngtVo {
 	public void setAqAnswers(int aqAnswers) {
 		this.aqAnswers = aqAnswers;
 	}
-	
-	
 
-	public AdminQnaMngtVo() {
-		super();
-		// TODO Auto-generated constructor stub
+	public int getAaNo() {
+		return aaNo;
 	}
 
-	public AdminQnaMngtVo(String faqNo, String faqTitle, String faqContent, String adminId, String faqRewriter,
-			Date faqDate, Date faqRedate, int aqNo, String userId, String aqTitle, String aqContent, Date aqDate,
-			Date aqRedate, int aqViews, int aqAnswers) {
-		super();
-		this.faqNo = faqNo;
-		this.faqTitle = faqTitle;
-		this.faqContent = faqContent;
-		this.adminId = adminId;
-		this.faqRewriter = faqRewriter;
-		this.faqDate = faqDate;
-		this.faqRedate = faqRedate;
-		this.aqNo = aqNo;
-		this.userId = userId;
-		this.aqTitle = aqTitle;
-		this.aqContent = aqContent;
-		this.aqDate = aqDate;
-		this.aqRedate = aqRedate;
-		this.aqViews = aqViews;
-		this.aqAnswers = aqAnswers;
+	public void setAaNo(int aaNo) {
+		this.aaNo = aaNo;
 	}
-	
-	
-	
-	
-	
 
-	
-	
+	public String getAaContent() {
+		return aaContent;
+	}
 
-	
+	public void setAaContent(String aaContent) {
+		this.aaContent = aaContent;
+	}
+
+	public Date getAaDate() {
+		return aaDate;
+	}
+
+	public void setAaDate(Date aaDate) {
+		this.aaDate = aaDate;
+	}
+
+	public String getAaRedate() {
+		return aaRedate;
+	}
+
+	public void setAaRedate(String aaRedate) {
+		this.aaRedate = aaRedate;
+	}
+
+	public int getRplNo() {
+		return rplNo;
+	}
+
+	public void setRplNo(int rplNo) {
+		this.rplNo = rplNo;
+	}
+
+	public Date getRplDate() {
+		return rplDate;
+	}
+
+	public void setRplDate(Date rplDate) {
+		this.rplDate = rplDate;
+	}
+
+	public Date getRplRedate() {
+		return rplRedate;
+	}
+
+	public void setRplRedate(Date rplRedate) {
+		this.rplRedate = rplRedate;
+	}
+
+	public String getRplContent() {
+		return rplContent;
+	}
+
+	public void setRplContent(String rplContent) {
+		this.rplContent = rplContent;
+	}
+
+		
 }

@@ -75,84 +75,51 @@
 										</div>
 									</div>
 								</div>
-								<!-- 답변  -->
-								<!-- 댓글달기 -->
-								<div class="form-group">
-                                        <label for="exampleFormControlTextarea1">Example textarea</label>
-                                        <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
-                                </div>
+								<!-- 답변 시작 -->
 								<div class="card table-card review-card">
-				                    <div class="card-header borderless ">
-				                        <h5>Customer Reviews</h5>
-				                        <div class="card-header-right">
-				                            <div class="btn-group card-option">
-				                                <button type="button" class="btn dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-				                                    <i class="feather icon-more-horizontal"></i>
-				                                </button>
-				                                <ul class="list-unstyled card-option dropdown-menu dropdown-menu-right">
-				                                    <li class="dropdown-item full-card"><a href="#!"><span><i class="feather icon-maximize"></i> maximize</span><span style="display:none"><i class="feather icon-minimize"></i> Restore</span></a></li>
-				                                    <li class="dropdown-item minimize-card"><a href="#!"><span><i class="feather icon-minus"></i> collapse</span><span style="display:none"><i class="feather icon-plus"></i> expand</span></a></li>
-				                                    <li class="dropdown-item reload-card"><a href="#!"><i class="feather icon-refresh-cw"></i> reload</a></li>
-				                                    <li class="dropdown-item close-card"><a href="#!"><i class="feather icon-trash"></i> remove</a></li>
-				                                </ul>
-				                            </div>
-				                        </div>
-				                    </div>
-				                    <div class="card-body pb-0">
+				                    <div class="card-header borderless">
 				                        <div class="review-block">
-				                            <div class="row">
-				                                <div class="col-sm-auto p-r-0">
-				                                    <img src="assets/images/user/avatar-2.jpg" alt="user image" class="img-radius profile-img cust-img m-b-15">
-				                                </div>
-				                                <div class="col">
-				                                    <h6 class="m-b-15">John Deo <span class="float-right f-13 text-muted"> a week ago</span></h6>
-				                                    <a href="#!"><i class="feather icon-star-on f-18 text-c-yellow"></i></a>
-				                                    <a href="#!"><i class="feather icon-star-on f-18 text-c-yellow"></i></a>
-				                                    <a href="#!"><i class="feather icon-star-on f-18 text-c-yellow"></i></a>
-				                                    <a href="#!"><i class="feather icon-star f-18 text-muted"></i></a>
-				                                    <a href="#!"><i class="feather icon-star f-18 text-muted"></i></a>
-				                                    <p class="m-t-15 m-b-15 text-muted">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s.</p>
-				                                    <a href="#!" class="m-r-30 text-muted"><i class="feather icon-thumbs-up m-r-15"></i>Helpful?</a>
-				                                    <a href="#!"><i class="feather icon-heart-on text-c-red m-r-15"></i></a>
-				                                    <a href="#!"><i class="feather icon-edit text-muted"></i></a>
-				                                </div>
-				                            </div>
-				                            <div class="row">
-				                                <div class="col-sm-auto p-r-0">
-				                                    <img src="assets/images/user/avatar-4.jpg" alt="user image" class="img-radius profile-img cust-img m-b-15">
-				                                </div>
-				                                <div class="col">
-				                                    <h6 class="m-b-15">Allina D’croze <span class="float-right f-13 text-muted"> a week ago</span></h6>
-				                                    <a href="#!"><i class="feather icon-star-on f-18 text-c-yellow"></i></a>
-				                                    <a href="#!"><i class="feather icon-star f-18 text-muted"></i></a>
-				                                    <a href="#!"><i class="feather icon-star f-18 text-muted"></i></a>
-				                                    <a href="#!"><i class="feather icon-star f-18 text-muted"></i></a>
-				                                    <a href="#!"><i class="feather icon-star f-18 text-muted"></i></a>
-				                                    <p class="m-t-15 m-b-15 text-muted">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s.</p>
-				                                    <a href="#!" class="m-r-30 text-muted"><i class="feather icon-thumbs-up m-r-15"></i>Helpful?</a>
-				                                    <a href="#!"><i class="feather icon-heart-on text-c-red m-r-15"></i></a>
-				                                    <a href="#!"><i class="feather icon-edit text-muted"></i></a>
-				                                    <blockquote class="blockquote m-t-15 m-b-0">
-				                                        <h6>Allina D’croze</h6>
-				                                        <p class="m-b-0 text-muted">Lorem Ipsum is simply dummy text of the industry.</p>
-				                                    </blockquote>
-				                                </div>
-				                            </div>
-				                        </div>
+					                        <h5>답글달기</h5>
+					                    	<div class="form-group">
+			                                        <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
+			                                </div>
+					                    </div>
+										<div class="card-body pb-0">
+					                        <div class="review-block">
+					                        	<c:forEach var="ansList" items="${qnaAnsList }" >
+						                            <div class="row"   style="padding-bottom: 0px;">
+						                                <div class="col">
+							                                <c:if test="${not empty ansList.adminId}">
+							                                    <h6 class="m-b-15">${ansList.adminId }<span class="float-right f-13 text-muted">${ansList.aaDate }</span></h6>
+							                               		 <p class="m-t-15 m-b-15 text-muted">${ansList.aaContent}</p>
+																<a href="#!" class="badge badge-primary m-t-5 m-b-20" data-toggle="collapse" data-target="#collapseExample" aria-expanded="true" aria-controls="collapseExample">댓글</a>
+																<div class="collapse show alert alert-secondary" id="collapseExample" style="">
+																	<div class="card-body m-b-15 m-t-20">
+																		<div class="form-group">
+								                                       		 <textarea class="form-control m-b-20" id="exampleFormControlTextarea1" rows="3" placeholder="댓글을 입력해보세요."></textarea>
+								                                       		 <a href="#!" class="m-r-30 text-muted text-muted">댓글 등록</a>
+								                               			</div>
+								                               			<div class="m-t-40">
+								                               			<c:forEach var="replyList" items="${qnaReplyList }" >
+										                                    <h6 class="m-b-15">${replyList.adminId }<span class="float-right f-13 text-muted">${replyList.rplDate }</span></h6>
+										                               		 <p class="m-t-15 m-b-15 text-muted">${replyList.rplContent }</p>								                               			
+								                               			</c:forEach>
+								                               			</div>
+																	</div>
+																</div>
+							                                </c:if>
+							                                <c:if test="${not empty ansList.userId}">
+						                                    	<h6 class="m-b-15">${ansList.userId }<span class="float-right f-13 text-muted">${ansList.aaDate }</span></h6>
+						                                    	<p class="m-t-15 m-b-15 text-muted">${ansList.aaContent}</p>
+						                                    </c:if>	
+						                                </div>
+						                            </div>
+					                            </c:forEach>
+					                        </div>
+					                    </div>
 				                    </div>
 				                </div>
-								<!--  댓글 리스트  -->
-								<c:forEach var="ansList" items="qnaAnsList" >
-												<div class="col-sm-12">
-					                                    <div class="form-group row">
-					                                        <label for="adminId" class="col-sm-2 col-form-label left">작성자</label>
-					                                        <div class="col-sm-2">
-					                                            <input type="text"  class="form-control-plaintext" name="userId">
-					                                        </div>
-					                                    </div>
-				                              	</div>
-				               </c:forEach>
-				               <input type="text"  class="form-control-plaintext" name="userId">
+				              <!-- 답변 끝 -->
 						</div>
 				    </div>
 				</div>
