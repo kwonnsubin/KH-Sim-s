@@ -234,6 +234,16 @@
 	        <artifactId>spring-security-test</artifactId>
 	        <version>${security.version}</version>
 	    </dependency>
+	    
+	    <!-- json -->
+	    <!-- xml to json parsing-->
+		<dependency>
+		    <groupId>org.json</groupId>
+		    <artifactId>json</artifactId>
+		    <version>20160810</version>
+		</dependency>
+				
+	    
 		
 	</dependencies>
     <build>
