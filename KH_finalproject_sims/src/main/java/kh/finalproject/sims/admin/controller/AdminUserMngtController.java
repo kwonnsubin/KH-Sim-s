@@ -1,9 +1,12 @@
 package kh.finalproject.sims.admin.controller;
 
+import java.security.Principal;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
@@ -40,6 +43,36 @@ public class AdminUserMngtController {
 		return mv;
 	}
 	
-	
+	//관리자의 사용자 관리 수정 페이지로 이동
+	@GetMapping("/selectUserModify/{userId}")
+	public ModelAndView selectUserModify(
+			ModelAndView mv
+			, @PathVariable String userId
+			, AdminUserMngtVo vo) {
+		AdminUserMngtVo userDetail = service.selectUserDetail(userId);
+		mv.addObject("userDetail", userDetail);
+		mv.addObject("cmd","update");
+		mv.setViewName("/admin/user/userDetail");
+		return mv;
+	}
+		
+	//관리자의 사용자 관리 수정하기
+	@PostMapping("/saveUserModify")
+	public ModelAndView saveUserModify(
+			ModelAndView mv
+		  , AdminUserMngtVo vo) {
+		  service.saveUserModify(vo);
+		  
+		  String userId = vo.getUserId();
+		  AdminUserMngtVo userDetail = service.selectUserDetail(userId);
+		  mv.addObject("userDetail", userDetail);
+		  mv.addObject("result", "저장이 완료되었습니다.");
+		  mv.addObject("cmd","read");
+		  mv.setViewName("/admin/user/userDetail");
+		  return mv;
+	}
+			
+			
+			
 
 }

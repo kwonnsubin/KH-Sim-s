@@ -32,4 +32,17 @@
 		WHERE
 			USER_ID = #{userId}		
 	</select>
+	
+	<!-- 관리자의 사용자 관리 수정 -->
+	<update id="saveUserModify" parameterType="adUserVo">
+		/** 관리자의 사용자 관리 수정 (saveUserModify) **/
+		UPDATE USER_TABLE
+		SET
+			USER_EMAIL = #{userEmail}
+			, USER_ADDRESS = #{userAddress}
+			, USER_PHONE = #{userPhone}
+			, USER_REDATE = SYSDATE
+		WHERE USER_ID = #{userId}	
+	</update>
+	
 </mapper>

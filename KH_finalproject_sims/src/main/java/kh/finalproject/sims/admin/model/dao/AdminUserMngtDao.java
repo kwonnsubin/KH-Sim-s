@@ -23,9 +23,14 @@ public class AdminUserMngtDao {
 	public AdminUserMngtVo selectUserDetail(String userId) {
 		return sqlSession.selectOne("adminUser.selectUserDetail", userId);
 	}
+
+	//관리자의 사용자 관리 수정 저장
+	public int saveUserModify(AdminUserMngtVo vo) {
+		return sqlSession.update("adminUser.saveUserModify", vo);
+	}
 	
 	
 	
-	
+ 
 
 }

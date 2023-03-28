@@ -25,6 +25,12 @@ public class AdminUserMngtServiceImpl implements AdminUserMngtService{
 		public AdminUserMngtVo selectUserDetail(String userId) {
 			return dao.selectUserDetail(userId);
 		}
+
+		//관리자의 사용자 관리 수정 저장
+		@Override
+		public int saveUserModify(AdminUserMngtVo vo) {
+			return dao.saveUserModify(vo);
+		}
 	
 		
 
