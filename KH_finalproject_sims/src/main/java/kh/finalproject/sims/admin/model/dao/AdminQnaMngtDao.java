@@ -15,8 +15,8 @@ public class AdminQnaMngtDao {
 	SqlSession sqlSession;
 	
 	// 자주묻는질문 리스트
-	public List<AdminQnaMngtVo> selectQnaList() {
-		return sqlSession.selectList("admin.selectQnaList");
+	public List<AdminQnaMngtVo> selectFaqList() {
+		return sqlSession.selectList("admin.selectFaqList");
 	}
 	
 	// 자주묻는질문 상세보기
@@ -39,7 +39,10 @@ public class AdminQnaMngtDao {
 		return sqlSession.delete("admin.deleteFaq", faqNo);
 	}
 	
-	// 
+	// 문의 내역 리스트
+	public List<AdminQnaMngtVo> selectQnaList() {
+		return sqlSession.selectList("admin.selectQnaList");
+	}
 	
 	
 	

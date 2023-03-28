@@ -34,7 +34,7 @@
 								</div>
 								<div class="col-md-12">
 									<div class="simsBtn m-b-15">
-										<input class="btn btn-primary right" type="button" onclick="location.href='<%=request.getContextPath()%>/adminNotice/noticeWrite'" value="작성">
+										<input class="btn btn-primary right" type="button" onclick="location.href='<%=request.getContextPath()%>/admin/faqwrite'" value="작성">
 									</div>
 									<div class="card">
 										<div class="card-body">

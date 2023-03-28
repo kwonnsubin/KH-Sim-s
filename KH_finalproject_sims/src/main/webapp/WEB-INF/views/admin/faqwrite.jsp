@@ -1,41 +1,73 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <!-- 붙여야 <form method="post"> 작동함 -->
-<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>    
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
-<title>자주묻는질문 작성 페이지</title>
-<script src="https://code.jquery.com/jquery-3.6.3.js"></script>
-<link type="text/css" rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css">
-<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
+<title>자주묻는질문 작성</title>
 </head>
 <body>
-	<div class="container">
-	
-		<form:form action="faqwrite" method="post">
-			<div class="mb-3 row">
-		   		<label for="inputPassword" class="col-sm-2 col-form-label">제목</label>
-		    	<div class="col-sm-10">
-		    		<input type="hidden" class="form-control" value="${username}" name="adminId">
-			      	<input type="text" class="form-control" name="faqTitle">
-		    	</div>
-		  	</div>	
-				<div class="mb-3">
-		  			<label for="exampleFormControlTextarea1" class="form-label "></label>
-		  			<textarea class="form-control" id="exampleFormControlTextarea1" rows="3" name="faqContent" style="height: 500px;"></textarea>
+<jsp:include page="./include/header.jsp" />
+<div class="pcoded-main-container">
+	<div class="pcoded-wrapper container">
+		<div class="pcoded-content">
+			<div class="pcoded-inner-content">
+				<div class="pcoded-inner-content">
+					<div class="main-body">
+						<div class="page-wrapper">
+							<div class="page-header">
+								<div class="page-block">
+									<div class="row align-items-center">
+										<div class="col-md-12">
+											<div class="page-header-title">
+												<h5 class="m-b-10">자주묻는질문 작성</h5>
+											</div>
+											<ul class="breadcrumb">
+												<li class="breadcrumb-item"><a href=""><i class="feather icon-home"></i></a></li>
+												<li class="breadcrumb-item"><a href=""><i class="breadcrumb-item"></i>자주묻는질문 관리</a></li>
+												<li class="breadcrumb-item"><a href=""><i class="breadcrumb-item"></i>자주묻는질문 작성</a></li>
+											</ul>
+										</div>
+									</div>
+								</div>
+							</div>
+							<form:form action="faqwrite" method="post">
+								<div class="col-md-12">
+									<div class="simsBtn m-b-15">
+										<input type="hidden" value="${username }" name="adminId">
+										<input class="btn btn-primary right" type="submit" value="저장">
+									</div>
+								</div>
+								<div class="card text-center">
+									<div class="card-body">
+										<!-- <h5 class="card-text"></h5>
+										<p class="card-text"></p> -->
+										<div class="row">
+											<div class="col-sm-12">
+												<div class="form-group">
+                                        			<input type="text" class="form-control" name="faqTitle" placeholder="제목을 입력하세요">
+                                    			</div>
+											</div>
+											<div class="col-sm-12">
+												<div class="form-group">
+			                                        <textarea class="form-control" name="faqContent" rows="20" placeholder="내용을 입력하세요"></textarea>
+			                                    </div>
+											</div>
+										</div>
+									</div>
+								</div>	
+							</form:form>
+						</div>
+				    </div>
 				</div>
-				
-				<div class="row">
-					<div class="col">
-						<button type="button" class="btn btn-outline-dark">돌아가기</button>		
-					</div>
-					<div class="col d-grid gap-2 d-md-flex justify-content-md-end">
-						<button type="submit" class="btn btn-outline-dark">완료</button>		
-					</div>		
-				</div>
-		</form:form>
+			</div>
+		</div>
 	</div>
+</div>
+<jsp:include page="./include/footer.jsp" />
 </body>
 </html>

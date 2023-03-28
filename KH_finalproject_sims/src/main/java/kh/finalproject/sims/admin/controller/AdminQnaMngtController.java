@@ -1,6 +1,7 @@
 package kh.finalproject.sims.admin.controller;
 
 import java.security.Principal;
+import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
 
@@ -13,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
+
 
 import kh.finalproject.sims.admin.model.service.AdminQnaMngtService;
 import kh.finalproject.sims.admin.model.vo.AdminQnaMngtVo;
@@ -94,27 +96,25 @@ public class AdminQnaMngtController {
 		return mv;
 	}
 	
-//	// 자주묻는질문 삭제하기
-//	@GetMapping("/faqdelete/{faqNo}")
-//	public ModelAndView deleteFaq(
-//			  ModelAndView mv
-//			, @PathVariable int faqNo
-//			) {
-//		service.deleteFaq(faqNo);
-//		mv.setViewName("redirect:/admin/faqlist");
-//		return mv;
-//	}
+	// 자주묻는질문 삭제하기
+	@GetMapping("/faqdelete/{faqNo}")
+	public ModelAndView deleteFaq(
+			  ModelAndView mv
+			, @PathVariable int faqNo
+			) {
+		service.deleteFaq(faqNo);
+		mv.setViewName("redirect:/admin/faqlist");
+		return mv;
+	}
 	
-//	// 자주묻는질문 삭제하기(미완성)
-//	@PostMapping("/faqdelete")
-//	public ModelAndView deleteFaq(
-//			  ModelAndView mv
-//			, int faqNo
-//			, RedirectAttributes rttr
-//			) {
-//		service.deleteFaq(faqNo);
-//		rttr.addFlashAttribute(attributeName, attributeValue);
-//		mv.setViewName("redirect:/admin/faqlist");
-//		return mv;
-//	}
+	// 문의내역 리스트
+	@GetMapping("/qna/list")
+	public ModelAndView selectQnaList(ModelAndView mv) {
+		List<AdminQnaMngtVo> list = service.selectQnaList();
+		mv.addObject("qnalist", list);
+		mv.setViewName("admin/qna/list");
+		return mv;
+	}
+	
+	
 }

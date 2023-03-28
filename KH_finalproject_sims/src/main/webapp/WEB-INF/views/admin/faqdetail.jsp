@@ -38,7 +38,8 @@
 								<div class="col-md-12">
 									<div class="simsBtn m-b-15">
 										<input class="btn btn-primary right m-l-10" type="button" onclick="location.href='<%=request.getContextPath()%>/admin/faqupdate/${faqlist.faqNo}'" value="수정">
-										<input class="btn btn-primary right" type="button" onclick="location.href='<%=request.getContextPath()%>/admin/faqupdate/${faqlist.faqNo}'" value="삭제">
+										<input class="btn btn-primary right m-l-10" type="button" onclick="location.href='<%=request.getContextPath()%>/admin/faqdelete/${faqlist.faqNo}'" value="삭제">
+										<input class="btn btn-primary right " type="button" onclick="location.href='<%=request.getContextPath()%>/admin/faqlist'" value="목록">
 									</div>
 								</div>
 								<div class="card text-center">

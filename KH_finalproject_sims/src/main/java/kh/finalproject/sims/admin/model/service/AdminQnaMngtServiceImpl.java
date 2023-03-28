@@ -16,7 +16,7 @@ public class AdminQnaMngtServiceImpl implements AdminQnaMngtService{
 	// 자주묻는질문 목록
 	@Override
 	public List<AdminQnaMngtVo> selectFaqList() {
-		return dao.selectQnaList();
+		return dao.selectFaqList();
 	}
 
 	// 자주묻는질문 상세보기
@@ -38,6 +38,12 @@ public class AdminQnaMngtServiceImpl implements AdminQnaMngtService{
 	@Override
 	public int deleteFaq(int faqNo) {
 		return dao.deleteFaq(faqNo);
+	}
+
+	// 문의 내역 리스트
+	@Override
+	public List<AdminQnaMngtVo> selectQnaList() {
+		return dao.selectQnaList();
 	}
 	
 	
