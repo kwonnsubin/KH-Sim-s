@@ -90,6 +90,7 @@
 								<th>제목</th>
 								<th>작성일</th>
 								<th>조회수</th>
+								<th>답변수</th>
 							</tr>
 						</thead>
 						<c:forEach items="${qnalist}" var="qna">
@@ -101,6 +102,7 @@
 									</td>
 									<td class="text-center">${qna.aqDate}</td>
 									<td class="text-center">${qna.aqViews}</td>
+									<td class="text-center">${qna.aqAnswers }</td>
 								</tr>
 							</tbody>
 						</c:forEach>

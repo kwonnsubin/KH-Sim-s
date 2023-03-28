@@ -11,19 +11,17 @@ public class UserQnaVo {
 	private Timestamp aqDate;
 	private Timestamp aqRedate;
 	private int aqViews;
-	
+	private int aqAnswers;
+
 	@Override
 	public String toString() {
-		return "UserQnaVo [aqNo=" + aqNo + ", userId=" + userId + ", aqTitle=" + aqTitle + ", aqContent="
-				+ aqContent + ", aqDate=" + aqDate + ", aqRedate=" + aqRedate + ", aqViews=" + aqViews + "]";
+		return "UserQnaVo [aqNo=" + aqNo + ", userId=" + userId + ", aqTitle=" + aqTitle + ", aqContent=" + aqContent
+				+ ", aqDate=" + aqDate + ", aqRedate=" + aqRedate + ", aqViews=" + aqViews + ", aqAnswers=" + aqAnswers
+				+ "]";
 	}
 	
-	public UserQnaVo() {
-		super();
-	}
-
 	public UserQnaVo(int aqNo, String userId, String aqTitle, String aqContent, Timestamp aqDate, Timestamp aqRedate,
-			int aqViews) {
+			int aqViews, int aqAnswers) {
 		super();
 		this.aqNo = aqNo;
 		this.userId = userId;
@@ -32,6 +30,11 @@ public class UserQnaVo {
 		this.aqDate = aqDate;
 		this.aqRedate = aqRedate;
 		this.aqViews = aqViews;
+		this.aqAnswers = aqAnswers;
+	}
+	
+	public UserQnaVo() {
+		super();
 	}
 
 	public int getAqNo() {
@@ -75,6 +78,14 @@ public class UserQnaVo {
 	}
 	public void setAqViews(int aqViews) {
 		this.aqViews = aqViews;
+	}
+
+	public int getAqAnswers() {
+		return aqAnswers;
+	}
+
+	public void setAqAnswers(int aqAnswers) {
+		this.aqAnswers = aqAnswers;
 	}
 	
 }

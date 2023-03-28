@@ -24,7 +24,7 @@
 	
 	<!-- 질문 작성 -->
 	<insert id="insertQna" parameterType="usQnavo">
-		insert into QNA values (aq_no, user_id, aq_title, aq_content, aq_date, aq_views, aq_answers) (
+		insert into QNA(aq_no, user_id, aq_title, aq_content, aq_date, aq_views, aq_answers) values (
 		    QNA_SEQ.NEXTVAL
 		    , #{userId}
 		    , #{aqTitle}
@@ -41,5 +41,12 @@
 		from QNA
 		where user_id = #{username}
 	</select>
+	
+	<!-- 답변수 증가 -->
+	<update id="insertAns">
+		update QNA
+		set aq_answers = aq_answers + 1
+		where aq_no = #{aqNo}
+	</update>
 	
 </mapper>

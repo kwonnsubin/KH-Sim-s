@@ -18,7 +18,7 @@
 						<tbody>
 							<tr>
 								<td>
-								<a href="<%=request.getContextPath()%>/faq/qnaread/${qna.aqNo}">${qna.aqTitle}</a>
+								<a href="<%=request.getContextPath()%>/faq/qnaread/${qna.aqNo}">${qna.aqTitle}(${qna.aqAnswers })</a>
 								</td>
 								<td>${qna.aqDate}</td>
 								<td><button>수정</button></td>
