@@ -4,11 +4,7 @@
   
   	<!-- 문의게시판 질문 목록 -->
   	<select id="selectQnaList" resultType="usQnavo">
-		select aq_no
-		    , user_id
-		    , aq_title
-		    , aq_date
-		    , aq_views
+		select *
 		from QNA
 	</select>
 	
@@ -28,22 +24,20 @@
 	
 	<!-- 질문 작성 -->
 	<insert id="insertQna" parameterType="usQnavo">
-		insert into QNA values (
+		insert into QNA values (aq_no, user_id, aq_title, aq_content, aq_date, aq_views, aq_answers) (
 		    QNA_SEQ.NEXTVAL
 		    , #{userId}
 		    , #{aqTitle}
 		    , #{aqContent}
 		    , default
-		    , null
-		    , 0
+		    , default
+		    , default
 		)
 	</insert>
 	
 	<!-- 내 질문 목록 -->
 	<select id="selectMyQnaList" resultType="usQnavo">
-		select aq_no
-			, aq_title
-			, aq_date
+		select *
 		from QNA
 		where user_id = #{username}
 	</select>
