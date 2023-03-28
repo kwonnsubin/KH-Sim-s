@@ -3,6 +3,7 @@ package kh.finalproject.sims.user.controller;
 import java.util.HashMap;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -27,6 +28,9 @@ public class UserMemberController {
 	
 	@Autowired
 	private MailSendService mailService;
+	
+	@Autowired
+	private BCryptPasswordEncoder pwEncoder;
 
 	// 로그인 페이지
 	@GetMapping("login")
@@ -48,6 +52,9 @@ public class UserMemberController {
 	@PostMapping("signup")
 	public ModelAndView insertSignUp(ModelAndView mv, MemberVo memVo, UserMemberVo userVo, BizInfoMngtVo bizVo) {
 		memVo.setEnable(1);
+		
+		String encPw = pwEncoder.encode(memVo.getPw());
+		memVo.setPw(encPw);
 		
 		int result = 0;
 		if(memVo.getRole().equals("ROLE_USER")) {
@@ -138,7 +145,7 @@ public class UserMemberController {
 		MemberVo memVo = new MemberVo();
 		
 		memVo.setId(id);
-		memVo.setPw(pw);
+		memVo.setPw(pwEncoder.encode(pw));
 		
 		HashMap<String, Object> result = new HashMap<String, Object>();
 		result.put("changePw", service.changePw(memVo));
