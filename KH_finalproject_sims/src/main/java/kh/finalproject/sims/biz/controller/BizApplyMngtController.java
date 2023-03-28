@@ -41,17 +41,12 @@ public class BizApplyMngtController {
 	
 	//가입신청상태 변경
 	@PostMapping("/updateStatus")
-	public ModelAndView updateStatus(ModelAndView mv,
-			@RequestParam("userId") String userId
-			,@RequestParam("status") String status
-			, BizApplyVo vo
-			) {
-		vo.setUserId(userId);
-		vo.setOrderStatus(status);
-		service.updateApproveStatus(vo);
+	@ResponseBody
+	public String updateStatus() {
 		
-		mv.setViewName("biz/applyDetail");
-		return mv;
-	}
-	//TODO 에러 발생
+		service.updateApproveStatus();
+
+		return "success";
+	} 
+	//TODO 404에러 발생
 }

@@ -236,8 +236,8 @@
 				</td>
 			</tr>
 		</table>
-		<button>승인</button>
-		<button>보류</button>
+		<button type="button" class="btn approve">승인</button>
+		<button type="button" class="btn hold">보류</button>
 	</div>
 	
 	<button>목록으로</button>
@@ -245,7 +245,22 @@
 
 <!-- 에러발생..  -->
 <script>
-	$(document).ready(function() {
+	$(".btn.approve").on("click", approveClickHandler);
+	function approveClickHandler(){
+			$.ajax({
+				url:"<%=request.getContextPath()%>/biz/updateStatus"
+				, type:"POST"
+				, success:function(result){
+					alert("승인되었습니다.");
+					location.reload();
+				}
+				, error:function(){
+					alert("에러가 발생했습니다.");
+				}
+			});
+		}
+	<!--db에선 바뀌긴하는데 404 에러... -->
+	<%-- $(document).ready(function() {
 	   $("button").click(function() {
 	      var status;
 	      if ($(this).text() == "승인") {
@@ -267,7 +282,7 @@
 	         }
 	      });
 	   });
-	});
+	}); --%>
 
 
 

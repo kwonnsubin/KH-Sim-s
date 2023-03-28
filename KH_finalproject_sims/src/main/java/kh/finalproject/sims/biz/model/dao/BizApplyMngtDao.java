@@ -20,7 +20,7 @@ public class BizApplyMngtDao {
 	}
 
 
-	public int updateApproveStatus(BizApplyVo vo) {
-		return sqlSession.update("apply.updateApproveStatus", vo);
+	public int updateApproveStatus( ) {
+		return sqlSession.update("apply.updateApproveStatus");
 	}
 }
