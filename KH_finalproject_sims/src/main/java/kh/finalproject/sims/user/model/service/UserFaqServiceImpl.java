@@ -56,13 +56,6 @@ public class UserFaqServiceImpl implements UserFaqService {
 	@Override
 	public void insertQna(UserQnaVo vo) {
 		dao.insertQna(vo);
-		
-	}
-	
-	// 답변하기
-	@Override
-	public void insertAns(UserAnsVo vo) {
-		dao.insertAns(vo);
 	}
 
 	// 내질문 목록
@@ -77,4 +70,21 @@ public class UserFaqServiceImpl implements UserFaqService {
 		return dao.selectMyAnsList(username);
 	}
 
+	// 내질문 삭제
+	@Override
+	public int deleteQna(int aqNo) {
+		return dao.deleteQna(aqNo);
+	}
+
+	// 내답변 삭제
+	@Override
+	public int deleteAns(int aaNo) {
+		return dao.deleteAns(aaNo);
+	}
+
+	// 답변수 -1
+	@Override
+	public void deAnswers(int aqNo) {
+		dao.deAnswers(aqNo);
+	}
 }

@@ -11,9 +11,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
-
 import kh.finalproject.sims.user.model.service.UserFaqService;
-import kh.finalproject.sims.user.model.vo.UserAnsVo;
 import kh.finalproject.sims.user.model.vo.UserQnaVo;
 
 @RequestMapping("/faq")
@@ -96,28 +94,28 @@ public class UserFaqController {
 		return "redirect:/faq/faqlist";
 	}
 	
-	// 답변하기 페이지
-	@GetMapping("/writeans")
-	public ModelAndView writeAnsForm(
-			ModelAndView mv
-			, HttpServletRequest request
+	// 내 질문 삭제
+	@GetMapping("/qnadelete/{aqNo}")
+	public ModelAndView deleteQna(
+			  ModelAndView mv
+			, @PathVariable int aqNo
 			) {
-		mv.setViewName("user/faq/writeAns");
-		Principal principal = request.getUserPrincipal();
-		String username = principal.getName();
-		
-		mv.addObject("username", username);
+		service.deleteQna(aqNo);
+		mv.setViewName("redirect:/faq/myqna");
 		return mv;
 	}
 	
-	// 답변 저장
-	@PostMapping("/writeans")
-	public String writeAns(
-			UserAnsVo vo
-			, Authentication authentication
+	// 내 답변 삭제
+	@GetMapping("/ansdelete/{aqNo}/{aaNo}")
+	public ModelAndView deleteAns(
+			ModelAndView mv
+			, @PathVariable int aqNo
+			, @PathVariable int aaNo
 			) {
-		service.insertAns(vo);
-		return "redirect:/faq/faqlist";
+		service.deleteAns(aaNo);
+		service.deAnswers(aqNo);
+		mv.setViewName("redirect:/faq/myqna");
+		return mv;
 	}
 	
 }

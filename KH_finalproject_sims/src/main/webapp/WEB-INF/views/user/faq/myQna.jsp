@@ -22,7 +22,7 @@
 								</td>
 								<td>${qna.aqDate}</td>
 								<td><button>수정</button></td>
-								<td><button>삭제</button></td>
+								<td><button onclick="location.href='<%=request.getContextPath()%>/faq/qnadelete/${qna.aqNo}'">삭제</button></td>
 							</tr>
 						</tbody>
 					</c:forEach>
@@ -41,7 +41,7 @@
 								</td>
 								<td>${ans.aaDate}</td>
 								<td><button>수정</button></td>
-								<td><button>삭제</button></td>
+								<td><button onclick="location.href='<%=request.getContextPath()%>/faq/ansdelete/${ans.aqNo}/${ans.aaNo}'">삭제</button></td>
 							</tr>
 						</tbody>
 					</c:forEach>

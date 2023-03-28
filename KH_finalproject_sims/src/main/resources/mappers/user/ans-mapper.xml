@@ -16,15 +16,9 @@
 		where USER_ID = #{username}
 	</select>
 	
-	<!-- 답변하기 -->
-	<insert id="insertAns" parameterType="usAnsvo">
-		insert into QNA_ANS (aa_no, aq_no, user_id, aa_content, aa_date) 
-		values (
-		    QNA_ANS_SEQ.NEXTVAL
-		    , #{aqNo}
-		    , #{userId}
-		    , #{aaContent}
-		    , default
-		)
-	</insert>	
+	<!-- 내 답변 삭제 -->
+	<delete id="deleteAns" parameterType="_int">
+		delete from QNA_ANS
+		where aa_no = #{aaNo}
+	</delete>	
 </mapper>

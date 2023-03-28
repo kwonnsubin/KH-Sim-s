@@ -42,11 +42,16 @@
 		where user_id = #{username}
 	</select>
 	
-	<!-- 답변수 증가 -->
-	<update id="insertAns">
+	<!-- 내 질문 삭제 -->
+	<delete id="deleteQna" parameterType="_int">
+		delete from QNA
+		where aq_no = #{aqNo}
+	</delete>
+	
+	<!-- 답변수 -1 -->
+	<update id="deAnswers">
 		update QNA
-		set aq_answers = aq_answers + 1
+		set aq_answers = aq_answers - 1
 		where aq_no = #{aqNo}
 	</update>
-	
 </mapper>

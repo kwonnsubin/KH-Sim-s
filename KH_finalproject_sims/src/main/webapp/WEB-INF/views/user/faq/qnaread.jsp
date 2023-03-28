@@ -33,10 +33,5 @@
 		답변작성일: ${ans.aaDate } <br>
 		답변수정일: ${ans.aaRedate } <hr>
 	</c:forEach>
-	
-	<!-- 답변 등록 -->
-	<sec:authorize access="isAuthenticated()">
-		<button type="button" onclick="location.href='writeans'">답변하기</button>
-	</sec:authorize>
 </body>
 </html>
