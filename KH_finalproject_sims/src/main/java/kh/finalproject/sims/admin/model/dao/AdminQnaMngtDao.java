@@ -44,6 +44,21 @@ public class AdminQnaMngtDao {
 		return sqlSession.selectList("admin.selectQnaList");
 	}
 	
+	// 문의 내역 상세보기
+	public AdminQnaMngtVo selectQnaListDetail(int aqNo) {
+		return sqlSession.selectOne("admin.selectQnaListDetail", aqNo);
+	}
+	
+//	// 문의 내역 상세보기 JOIN
+//	public List<AdminQnaMngtVo> selectQnaListDetail(int aqNo) {
+//		return sqlSession.selectList("admin.selectQnaListDetail", aqNo);
+//	}
+	
+	// 문의 내역 답변 리스트
+	public List<AdminQnaMngtVo> selectQnaAnsList(int aqNo) {
+		return sqlSession.selectList("admin.selectQnaAnsList", aqNo);
+	}
+	
 	
 	
 }

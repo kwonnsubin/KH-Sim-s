@@ -124,7 +124,47 @@
 		, AQ_REDATE
 		, AQ_VIEWS
 		, AQ_ANSWERS
-		FROM QNA;
+		FROM QNA
+	</select>
+	
+ 	<!-- 문의 내역 상세 내용 -->
+	<select id="selectQnaListDetail" resultType="kh.finalproject.sims.admin.model.vo.AdminQnaMngtVo">
+		SELECT 
+		AQ_NO
+		, USER_ID
+		, AQ_TITLE
+		, AQ_CONTENT
+		, AQ_DATE
+		, AQ_REDATE
+		, AQ_VIEWS
+		, AQ_ANSWERS
+		FROM QNA
+		WHERE AQ_NO = #{aqNo}
+	</select> 
+	 
+	<!-- 문의 내역 상세 내용 JOIN -->
+	<!-- 실패
+	<select id="selectQnaListDetail" resultType="kh.finalproject.sims.admin.model.vo.AdminQnaMngtVo">
+		SELECT *
+		FROM QNA
+		LEFT JOIN QNA_ANS ON QNA.AQ_NO = QNA_ANS.AQ_NO
+		LEFT JOIN QNA_RPL ON QNA_ANS.AA_NO = QNA_RPL.AA_NO
+		WHERE QNA.AQ_NO = #{aqNo}
+	</select>
+	  -->
+	
+	<!-- 문의 내역 답변 -->
+	<select id="selectQnaAnsList" resultType="kh.finalproject.sims.admin.model.vo.AdminQnaMngtVo">
+		SELECT
+		AA_NO
+		, AQ_NO
+		, ADMIN_ID
+		, USER_ID
+		, AA_CONTENT
+		, AA_DATE
+		, AA_REDATE
+		FROM QNA_ANS
+		WHERE AQ_NO = #{aqNo}
 	</select>
 	
 </mapper>

@@ -26,6 +26,13 @@ public class AdminQnaMngtVo {
 	int aqViews; // 조회수
 	int aqAnswers; // 답변수
 	
+	// 문의 답변
+	int aaNo; // 답변번호
+	String aaContent; // 답변내용
+	Date aaDate; // 작성일
+	String aaRedate; // 수정일
+	
+	
 	@Override
 	public String toString() {
 		return "AdminQnaMngtVo [faqNo=" + faqNo + ", faqTitle=" + faqTitle + ", faqContent=" + faqContent + ", adminId="

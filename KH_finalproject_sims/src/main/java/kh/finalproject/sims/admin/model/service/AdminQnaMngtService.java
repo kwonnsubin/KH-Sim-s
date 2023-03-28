@@ -24,4 +24,12 @@ public interface AdminQnaMngtService {
 	// 문의 내역 리스트
 	public List<AdminQnaMngtVo> selectQnaList();
 	
+	// 문의 내역 상세보기
+	public AdminQnaMngtVo selectQnaListDetail(int aqNo);
+	
+//	// 문의 내역 상세보기 JOIN
+//	public List<AdminQnaMngtVo> selectQnaListDetail(int aqNo);
+	
+	// 문의 내역 답변 리스트
+	public List<AdminQnaMngtVo> selectQnaAnsList(int aqNo);
 }

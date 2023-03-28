@@ -36,7 +36,7 @@ public class AdminQnaMngtController {
 	
 	// 자주묻는질문화면 상세내용 보기
 	@GetMapping("/faqdetail/{faqNo}")
-	public ModelAndView selectQnaListDetail(
+	public ModelAndView selectFaqDetail(
 			  ModelAndView mv
 			, @PathVariable int faqNo
 			) {
@@ -115,6 +115,32 @@ public class AdminQnaMngtController {
 		mv.setViewName("admin/qna/list");
 		return mv;
 	}
+	
+	// 문의내역 상세보기
+	@GetMapping("/qna/detail/{aqNo}")
+	public ModelAndView selectQnaListDetail(
+			ModelAndView mv
+			,@PathVariable int aqNo
+			) {
+		mv.addObject("qnaDetail", service.selectQnaListDetail(aqNo));
+		mv.addObject("qnaAnsList", service.selectQnaAnsList(aqNo));
+		mv.setViewName("admin/qna/detail");
+		return mv;
+	}
+	
+//	// 문의내역 상세보기 JOIN
+//	@GetMapping("/qna/detail/{aqNo}")
+//	public ModelAndView selectQnaListDetail(
+//			ModelAndView mv
+//			,@PathVariable int aqNo
+//			) {
+//		List<AdminQnaMngtVo> list = service.selectQnaListDetail(aqNo);
+//		mv.addObject("qnaDetail", list);
+//		mv.setViewName("admin/qna/detail");
+//		return mv;
+//	}
+
+	
 	
 	
 }
