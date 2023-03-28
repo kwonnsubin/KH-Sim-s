@@ -18,4 +18,9 @@ public class BizApplyMngtDao {
 	public BizApplyVo selectApplyDetailPlan() {
 		return sqlSession.selectOne("apply.selectApplyDetailPlan");
 	}
+
+
+	public int updateApproveStatus(BizApplyVo vo) {
+		return sqlSession.update("apply.updateApproveStatus", vo);
+	}
 }

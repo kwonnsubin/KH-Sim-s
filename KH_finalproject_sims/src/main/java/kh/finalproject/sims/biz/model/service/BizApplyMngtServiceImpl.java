@@ -21,4 +21,9 @@ public class BizApplyMngtServiceImpl implements BizApplyMngtService {
 	public BizApplyVo selectApplyDetailPlan() {
 		return dao.selectApplyDetailPlan();
 	}
+
+	@Override
+	public int updateApproveStatus(BizApplyVo vo) {
+		return dao.updateApproveStatus(vo);
+	}
 }

@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
+<%-- <%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags" %> --%>
 <c:set var="path" value="${pageContext.request.contextPath}"/>
 <!DOCTYPE html>
 <html>
@@ -236,20 +236,52 @@
 				</td>
 			</tr>
 		</table>
-		<button onclick="approve()">승인</button>
-		<button onclick="hold()">보류</button>
+		<button>승인</button>
+		<button>보류</button>
 	</div>
+	
+	<button>목록으로</button>
 
+
+<!-- 에러발생..  -->
 <script>
-	function approve(){
+	$(document).ready(function() {
+	   $("button").click(function() {
+	      var status;
+	      if ($(this).text() == "승인") {
+	         status = "2";
+	      } else {
+	         status = "3";
+	      }
+	      $.ajax({
+	         type: "POST"
+	         , url: "<%=request.getContextPath()%>/biz/updateStatus"
+	         , data: {userId: "${applyDetail.userId}", status: status}
+	         , success: function() {
+	        	
+	        	alert("승인되었습니다.")
+	            location.reload();
+	         },
+	         error: function() {
+	            alert("에러가 발생했습니다.");
+	         }
+	      });
+	   });
+	});
+
+
+
+	<%-- function approve(){
 		$.ajax({
-			url:,//요청을 보낼 url
-			type: "POST" ,
-			data:{orderStatus:2},
+			url:"<%=request.getContextPath()%>/biz/approveStatus"
+			, type: "POST"
+			, data: {userId : applyDetail.userId },
 			success: function(results){
 				console.log(result);
-			},
-			error:function(xhr, status, error){
+				applyDetail.orderStatus = 2;
+				alert("신청이 승인되었습니다.");
+			}
+			,error:function(xhr, status, error){
 				console.log(xhr, responseText);
 			}
 		});
@@ -267,7 +299,7 @@
 		      console.error(xhr.responseText); // 요청이 실패하면 에러 출력
 		    }
 		  });
-		}
+		} --%>
 </script>
 </body>
 </html>
