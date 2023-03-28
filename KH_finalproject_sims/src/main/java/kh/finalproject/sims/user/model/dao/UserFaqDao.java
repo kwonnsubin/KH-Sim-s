@@ -29,8 +29,8 @@ public class UserFaqDao {
 		return session.selectList("qna.selectQnaList");
 	}
 
-	public List<UserQnaVo> selectQnaDetail(int aqNo) {
-		return session.selectList("qna.selectQnaDetail", aqNo);
+	public UserQnaVo selectQnaDetail(int aqNo) {
+		return session.selectOne("qna.selectQnaDetail", aqNo);
 	}
 	
 	public List<UserAnsVo> selectAnsList(int aqNo) {
@@ -63,6 +63,10 @@ public class UserFaqDao {
 
 	public void deAnswers(int aqNo) {
 		session.update("qna.deAnswers", aqNo);
+	}
+
+	public int updateQna(UserQnaVo vo) {
+		return session.update("qna.updateQna", vo);
 	}
 	
 }

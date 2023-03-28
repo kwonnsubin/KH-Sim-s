@@ -42,7 +42,7 @@
 		where user_id = #{username}
 	</select>
 	
-	<!-- 내 질문 삭제 -->
+	<!-- 질문 삭제 -->
 	<delete id="deleteQna" parameterType="_int">
 		delete from QNA
 		where aq_no = #{aqNo}
@@ -52,6 +52,15 @@
 	<update id="deAnswers">
 		update QNA
 		set aq_answers = aq_answers - 1
+		where aq_no = #{aqNo}
+	</update>
+	  
+	<!-- 질문 수정 -->
+	<update id="updateQna" parameterType="usQnavo">
+		update QNA
+		set aq_title = #{aqTitle}
+			, aq_content = #{aqContent}
+			, aq_redate = sysdate
 		where aq_no = #{aqNo}
 	</update>
 </mapper>

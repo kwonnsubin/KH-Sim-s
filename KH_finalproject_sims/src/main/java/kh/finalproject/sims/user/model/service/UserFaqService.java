@@ -18,7 +18,7 @@ public interface UserFaqService {
 	public List<UserQnaVo> selectQnaList();
 
 	// 문의게시판 상세
-	public List<UserQnaVo> selectQnaDetail(int aqNo);
+	public UserQnaVo selectQnaDetail(int aqNo);
 	
 	// 문의게시판 답변목록
 	public List<UserAnsVo> selectAnsList(int aqNo);
@@ -43,5 +43,8 @@ public interface UserFaqService {
 
 	// 답변수 -1
 	public void deAnswers(int aqNo);
+
+	// 질문 수정
+	public int updateQna(UserQnaVo vo);
 
 }

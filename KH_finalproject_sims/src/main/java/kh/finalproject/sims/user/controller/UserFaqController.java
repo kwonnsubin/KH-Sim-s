@@ -11,6 +11,8 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
+
+import kh.finalproject.sims.admin.model.vo.AdminQnaMngtVo;
 import kh.finalproject.sims.user.model.service.UserFaqService;
 import kh.finalproject.sims.user.model.vo.UserQnaVo;
 
@@ -118,4 +120,25 @@ public class UserFaqController {
 		return mv;
 	}
 	
+	// 내 질문 수정 페이지
+	@GetMapping("/qnaupdate/{aqNo}")
+	public ModelAndView updateQnaForm(
+			ModelAndView mv
+		  , @PathVariable int aqNo
+			) {
+		mv.addObject("myqna", service.selectQnaDetail(aqNo)); 
+		mv.setViewName("user/faq/updateQna");
+		return mv;
+	}
+	
+	// 내 질문 수정하기
+	@PostMapping("/qnaupdate/{aqNo}") 
+	public ModelAndView updateQna(
+		     ModelAndView mv
+		   , @PathVariable int aqNo
+		   , UserQnaVo vo) {
+		service.updateQna(vo);
+		mv.setViewName("redirect:/faq/qnaread/"+vo.getAqNo());
+		return mv;
+	}
 }

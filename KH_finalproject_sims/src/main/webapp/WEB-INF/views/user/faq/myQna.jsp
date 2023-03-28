@@ -5,7 +5,7 @@
 <html>
 <head>
 	<meta charset="UTF-8">
-	<title>Insert title here</title>
+	<title>내 질문/답변</title>
 </head>
 <body>
 	<section>
@@ -21,7 +21,7 @@
 								<a href="<%=request.getContextPath()%>/faq/qnaread/${qna.aqNo}">${qna.aqTitle}(${qna.aqAnswers })</a>
 								</td>
 								<td>${qna.aqDate}</td>
-								<td><button>수정</button></td>
+								<td><button onclick="location.href='<%=request.getContextPath()%>/faq/qnaupdate/${qna.aqNo}'">수정</button></td>
 								<td><button onclick="location.href='<%=request.getContextPath()%>/faq/qnadelete/${qna.aqNo}'">삭제</button></td>
 							</tr>
 						</tbody>

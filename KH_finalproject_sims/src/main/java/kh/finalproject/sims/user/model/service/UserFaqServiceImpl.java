@@ -36,7 +36,7 @@ public class UserFaqServiceImpl implements UserFaqService {
 
 	// 문의게시판 상세
 	@Override
-	public List<UserQnaVo> selectQnaDetail(int aqNo) {
+	public UserQnaVo selectQnaDetail(int aqNo) {
 		return dao.selectQnaDetail(aqNo);
 	}
 	
@@ -86,5 +86,11 @@ public class UserFaqServiceImpl implements UserFaqService {
 	@Override
 	public void deAnswers(int aqNo) {
 		dao.deAnswers(aqNo);
+	}
+
+	// 질문 수정
+	@Override
+	public int updateQna(UserQnaVo vo) {
+		return dao.updateQna(vo);
 	}
 }

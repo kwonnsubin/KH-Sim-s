@@ -12,15 +12,13 @@
 <body>
 	<!-- 문의 게시판 질문상세 -->
 	<h4>질문</h4>
-	<c:forEach items="${qnaquestion }" var="qnalist">
-		질문번호: ${qnalist.aqNo } <br>
-		질문작성자: ${qnalist.userId } <br>
-		질문제목: ${qnalist.aqTitle } <br>
-		질문내용: ${qnalist.aqContent } <br>
-		질문작성일: ${qnalist.aqDate } <br>
-		질문수정일: ${qnalist.aqRedate } <br>
-		조회수: ${qnalist.aqViews } <br>
-	</c:forEach>
+		질문번호: ${qnaquestion.aqNo } <br>
+		질문작성자: ${qnaquestion.userId } <br>
+		질문제목: ${qnaquestion.aqTitle } <br>
+		질문내용: ${qnaquestion.aqContent } <br>
+		질문작성일: ${qnaquestion.aqDate } <br>
+		질문수정일: ${qnaquestion.aqRedate } <br>
+		조회수: ${qnaquestion.aqViews } <br>
 	
 	<!-- 답변 -->
 	<h4>답변</h4>
