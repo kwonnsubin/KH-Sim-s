@@ -31,12 +31,14 @@ public interface UserMemberService {
 	public int changePw(MemberVo memVo);
 
 	// 계정 복구
-	public int updateEna(String id);
+	public int updateEnable(String id);
 
 	// 마이페이지
 	public UserMemberVo selectMyPageInfo(String id);
 
 	// 유저 정보 수정
 	public void updateMyPageModify(MemberVo memVo, UserMemberVo userVo);
+
+	public int updateDisable(String id);
 	
 }

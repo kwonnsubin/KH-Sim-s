@@ -128,7 +128,7 @@ $('.findpw-btn').on("click", function() {
 // 탈퇴 계정 복구
 $('.rel-btn').on("click", function() {
 	$.ajax({
-		url : contextPath + "/rel",
+		url : contextPath + "/enable",
 		type : "post",
 		async : false,
 		data : {

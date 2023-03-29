@@ -180,11 +180,22 @@ public class UserMemberController {
 	
 	// 계정 복구
 	@ResponseBody
-	@PostMapping("rel")
-	public String updateEna(ModelAndView mv, @RequestParam String id) {
+	@PostMapping("enable")
+	public String updateEnable(ModelAndView mv, @RequestParam String id) {
 
 		HashMap<String, Object> result = new HashMap<String, Object>();
-		result.put("rel", service.updateEna(id));
+		result.put("rel", service.updateEnable(id));
+		
+		return new Gson().toJson(result);
+	}
+	
+	// 계정 탈퇴
+	@ResponseBody
+	@PostMapping("disable")
+	public String updateDisable(ModelAndView mv, @RequestParam String id) {
+
+		HashMap<String, Object> result = new HashMap<String, Object>();
+		result.put("rel", service.updateDisable(id));
 		
 		return new Gson().toJson(result);
 	}

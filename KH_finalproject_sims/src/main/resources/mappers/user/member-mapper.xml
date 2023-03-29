@@ -46,14 +46,16 @@
 		update member set pw=#{pw} where id=#{id}
 	</update>
 	
-	<update id="updateEna" parameterType="string">
+	<update id="updateEnable" parameterType="string">
 		update member set enable=1 where id=#{id}
+	</update>
+	
+	<update id="updateDisable" parameterType="string">
+		update member set enable=2 where id=#{id}
 	</update>
 	
 	<update id="updateMyPageModify" parameterType="userVo">
 		update user_table set user_email=#{userEmail}, user_phone=#{userPhone} where user_id=#{userId}
 	</update>
-	
-	
 
 </mapper>

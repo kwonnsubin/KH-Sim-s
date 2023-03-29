@@ -54,8 +54,12 @@ public class UserMemberDao {
 		return sqlSession.selectOne("member.checkEna", userId);
 	}
 	
-	public int updateEna(String id) {
-		return sqlSession.update("member.updateEna", id);
+	public int updateEnable(String id) {
+		return sqlSession.update("member.updateEnable", id);
+	}
+	
+	public int updateDisable(String id) {
+		return sqlSession.update("member.updateDisable", id);
 	}
 
 	public UserMemberVo selectMyPageInfo(String id) {

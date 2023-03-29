@@ -97,8 +97,14 @@ public class UserMemberServiceImpl implements UserMemberService {
 
 	// 계정 복구
 	@Override
-	public int updateEna(String id) {
-		return dao.updateEna(id);
+	public int updateEnable(String id) {
+		return dao.updateEnable(id);
+	}
+	
+	// 계정 탈퇴
+	@Override
+	public int updateDisable(String id) {
+		return dao.updateDisable(id);
 	}
 
 	// 유저 정보 가져오기

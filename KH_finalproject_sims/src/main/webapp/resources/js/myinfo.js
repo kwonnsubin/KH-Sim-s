@@ -102,3 +102,34 @@ $('input[name=emailCheck]').on("blur", function () {
 		$resultMsg.css("display", "block");
 	}
 });
+
+// 모달창 띄우기
+$('.modalInBtn').on("click", function () {
+	$('.modal').fadeIn();
+});
+
+// 모달창 닫기
+$('.modalOutBtn').on("click", function () {
+	$('.modal').fadeOut();
+});
+
+// 계정 탈퇴
+$('.relBtn').on("click", function() {
+	$.ajax({
+		url : contextPath + "/disable",
+		type : "post",
+		async : false,
+		data : {
+			id : $("input[name=id]").val()
+		},
+		dataType : "json",
+		success : function(data){
+			if(data.rel == 1) {
+				alert("계정이 탈퇴되었습니다.");
+				location.href = contextPath + "/logout";
+			} else {
+				alert("계정 탈퇴에 실패하였습니다.")
+			}
+		}
+	 });
+});

@@ -24,6 +24,7 @@
     <link rel="stylesheet" href="<%= request.getContextPath() %>/resources/chain/assets/css/templatemo-chain-app-dev.css">
     <link rel="stylesheet" href="<%= request.getContextPath() %>/resources/chain/assets/css/animated.css">
     <link rel="stylesheet" href="<%= request.getContextPath() %>/resources/chain/assets/css/owl.css">
+    <link rel="stylesheet" href="<%= request.getContextPath() %>/resources/css/user/myinfo.css"/>
     
      <style>
 
@@ -114,12 +115,22 @@
 	        
 	        <div class="text-center">
 		       	<button class="btn btn-primary btn-lg btn-block mx-5 subBtn" type="submit" disabled>수정</button>
-		       	<button class="btn btn-primary btn-lg btn-block mx-5 relBtn" type="button" disabled>탈퇴</button>
+		       	<button class="btn btn-primary btn-lg btn-block mx-5 modalInBtn" type="button">탈퇴</button>
         	</div>
 	        
 	        </form:form>
 	      </div>
 	    </div>
+	    </div>
+	    
+	    <div class="modal">
+	    	<div class="modal_content">
+	    		<div class="mb-3 text-center">탈퇴하려면 확인을 눌러주세요.</div>
+	    		<div class="mt-3 text-center">
+			       	<button class="btn btn-primary btn-sm btn-block mx-1 relBtn" type="button">확인</button>
+		    		<button class="btn btn-primary btn-sm btn-block mx-1 modalOutBtn" type="button">취소</button>
+	    		</div>
+	    	</div>
 	    </div>
 	    
 	</section>
