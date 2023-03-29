@@ -10,11 +10,18 @@ import lombok.Setter;
 import lombok.ToString;
 
 @Component
+<<<<<<< Updated upstream
 @ToString
+=======
+>>>>>>> Stashed changes
 @Getter
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
+<<<<<<< Updated upstream
+=======
+@ToString
+>>>>>>> Stashed changes
 public class UserMemberVo {
 	
 	private String userId;
@@ -26,5 +33,9 @@ public class UserMemberVo {
 	private String userPhone;
 	private String userEmail;
 	private String userAddress;
+<<<<<<< Updated upstream
 	
+=======
+
+>>>>>>> Stashed changes
 }
