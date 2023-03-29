@@ -12,7 +12,7 @@
 			FROM BIZ_NETWORK
 				JOIN BIZ
 				USING(BIZ_ID)
-		where biz_id='kctv'
+		where biz_id=#{bizid}
 
 	</select>
 	
@@ -48,12 +48,13 @@
 		</collection>
 	</resultMap>
 	
+	<!-- 고객센터 번호 -->
 	<select id="selectListService" resultType="kh.finalproject.sims.biz.model.vo.bizInfoMngServiceVo">
 		SELECT NET_NO, BIZ_NET_SERVICE
 			FROM BIZ_NETWORK
 			JOIN BIZ
 			USING(BIZ_ID)
-		where biz_id='kctv'
+		where biz_id=#{bizid}
 		<!-- SELECT CASE WHEN NET_NO = 1 THEN 'SKT'
             		WHEN NET_NO = 2 THEN 'KT'
             		ELSE 'LGU+' END AS NET_NO

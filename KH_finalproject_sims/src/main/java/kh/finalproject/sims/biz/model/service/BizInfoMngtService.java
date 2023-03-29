@@ -9,6 +9,6 @@ public interface BizInfoMngtService {
 	
 	//public List<BizInfoMngtVo> selectList() throws Exception;
 
-	public BizInfoMngtVo selectBizInfoDetail();
-	public List<bizInfoMngServiceVo> selectListService();
+	public BizInfoMngtVo selectBizInfoDetail(String bizid);
+	public List<bizInfoMngServiceVo> selectListService(String bizid);
 }

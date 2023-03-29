@@ -20,12 +20,12 @@ public class BizInfoMngtDao {
 //		return sqlSession.selectList("biz.selectListBizinfo");
 //	}
 
-	public BizInfoMngtVo selectBizInfoDetail() {
-		return sqlSession.selectOne("biz.selectBizInfoDetail");
+	public BizInfoMngtVo selectBizInfoDetail(String bizid) {
+		return sqlSession.selectOne("biz.selectBizInfoDetail", bizid);
 	}
 	
 	//고객센터번호 리스트
-	public List<bizInfoMngServiceVo> selectListService(){
-		return sqlSession.selectList("biz.selectListService");
+	public List<bizInfoMngServiceVo> selectListService(String bizid){
+		return sqlSession.selectList("biz.selectListService", bizid);
 	}
 }

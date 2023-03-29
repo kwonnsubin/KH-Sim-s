@@ -22,27 +22,22 @@ public class BizInfoMngtController {
 	@Autowired
 	private BizInfoMngtService service;
 	
-	/*
-	 * @GetMapping("/infodetail") public ModelAndView
-	 * selectBizInfoDetail(ModelAndView mv) throws Exception { mv.addObject("info",
-	 * service.selectList()); mv.setViewName("biz/info");
-	 * 
-	 * return mv; }
-	 */
+
 
 	//내 정보관리 상세
-	@GetMapping("infodetail")
+	@GetMapping("/infodetail")
 	public ModelAndView selectBizInfoDetail(ModelAndView mv
 			, HttpServletRequest request
 			) {
-		//Principal principal = request.getUserPrincipal(); //통신사 아이디를 어떻게?
-		//String bizid = principal.getName();
-		//System.out.println("통신사아이디"+bizid);
-		BizInfoMngtVo vo =service.selectBizInfoDetail();
+		Principal principal = request.getUserPrincipal();
+		String bizid = principal.getName();
+		System.out.println("통신사아이디 : "+bizid);
+		
+		BizInfoMngtVo vo =service.selectBizInfoDetail(bizid);
 		System.out.println(vo);
 		
 		//고객센터 번호
-		List<bizInfoMngServiceVo> serviceList = service.selectListService();
+		List<bizInfoMngServiceVo> serviceList = service.selectListService(bizid);
 		System.out.println(serviceList);
 	
 	

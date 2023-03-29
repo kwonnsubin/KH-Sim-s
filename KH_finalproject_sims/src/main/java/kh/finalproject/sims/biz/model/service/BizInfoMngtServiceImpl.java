@@ -20,12 +20,13 @@ public class BizInfoMngtServiceImpl implements BizInfoMngtService{
 	 */
 
 	@Override
-	public BizInfoMngtVo selectBizInfoDetail() {
-		return dao.selectBizInfoDetail();
+	public BizInfoMngtVo selectBizInfoDetail(String bizid) {
+		return dao.selectBizInfoDetail(bizid);
 	}
 
 	@Override
-	public List<bizInfoMngServiceVo> selectListService() {
-		return dao.selectListService();
+	public List<bizInfoMngServiceVo> selectListService(String bizid) {
+		return dao.selectListService(bizid);
 	}
+
 }
