@@ -40,7 +40,7 @@
 	        			<h4><sec:authentication property="name"/>님 안녕하세요</h4>
 	        		</div>
 	        		<div class="row mb-5 text-center">
-	        			<div class="col pointer">
+	        			<div class="col faqDiv pointer">
 	        				<span class="material-symbols-outlined mb-2">comment</span>
 	        				<p>문의게시판</p>
 	        			</div>

@@ -114,8 +114,8 @@
 	        </div>
 	        
 	        <div class="text-center">
-		       	<button class="btn btn-primary btn-lg btn-block mx-5 subBtn" type="submit" disabled>수정</button>
-		       	<button class="btn btn-primary btn-lg btn-block mx-5 modalInBtn" type="button">탈퇴</button>
+		       	<button class="btn btn-primary mx-5 subBtn" type="submit" disabled>수정</button>
+		       	<button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#relModal">탈퇴</button>
         	</div>
 	        
 	        </form:form>
@@ -123,15 +123,21 @@
 	    </div>
 	    </div>
 	    
-	    <div class="modal">
-	    	<div class="modal_content">
-	    		<div class="mb-3 text-center">탈퇴하려면 확인을 눌러주세요.</div>
-	    		<div class="mt-3 text-center">
-			       	<button class="btn btn-primary btn-sm btn-block mx-1 relBtn" type="button">확인</button>
-		    		<button class="btn btn-primary btn-sm btn-block mx-1 modalOutBtn" type="button">취소</button>
-	    		</div>
-	    	</div>
-	    </div>
+	    <div class="modal fade" id="relModal" tabindex="-1" aria-labelledby="relModalLabel" aria-hidden="true">
+		  <div class="modal-dialog">
+		    <div class="modal-content">
+		      <div class="modal-header">
+		        <h1 class="modal-title fs-5" id="relModalLabel">계정 탈퇴</h1>
+		        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+		      </div>
+		      <div class="modal-body">탈퇴하려면 확인을 눌러주세요.</div>
+		      <div class="modal-footer">
+		        <button type="button" class="btn btn-primary relBtn">확인</button>
+		        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">취소</button>
+		      </div>
+		    </div>
+		  </div>
+		</div>
 	    
 	</section>
 	

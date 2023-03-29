@@ -11,3 +11,7 @@ var contextPath = getContextPath();
 $(".myinfo-div").on("click", function() {
 	location.href= contextPath + "/mypage/myinfo/" + $('h4').text().substr('0' , $('h4').text().length - 7);
 });
+
+$(".faqDiv").on("click", function() {
+	location.href= contextPath + "/faq/faqlist"
+});
