@@ -67,6 +67,15 @@ public class AdminQnaMngtDao {
 //		return sqlSession.selectList("admin.selectQnaReplyList", aaNo);
 //	}
 	
+	// 문의 내역 답변 작성
+	public int insertQnaAnsWrite(AdminQnaAnsVo vo) {
+		return sqlSession.insert("admin.insertQnaAnsWrite", vo);
+	}
+	
+	// 문의 내역 댓글 작성
+	public int insertQnaReplyWrite(AdminQnaReplyVo vo) {
+		return sqlSession.insert("admin.insertQnaReplyWrite", vo);
+	}
 	
 	
 }

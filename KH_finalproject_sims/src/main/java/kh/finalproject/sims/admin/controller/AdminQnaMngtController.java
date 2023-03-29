@@ -18,7 +18,9 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import kh.finalproject.sims.admin.model.service.AdminQnaMngtService;
 import kh.finalproject.sims.admin.model.vo.AdminFaqVo;
+import kh.finalproject.sims.admin.model.vo.AdminQnaAnsVo;
 import kh.finalproject.sims.admin.model.vo.AdminQnaMngtVo;
+import kh.finalproject.sims.admin.model.vo.AdminQnaReplyVo;
 
 @RequestMapping("/admin")
 @Controller
@@ -123,10 +125,15 @@ public class AdminQnaMngtController {
 			ModelAndView mv
 			,@PathVariable int aqNo
 			,AdminQnaMngtVo vo
+			, HttpServletRequest request // 사용자(관리자)정보 가져오기
 			) {
+		Principal principal = request.getUserPrincipal(); // 사용자(관리자)정보 가져오기
+	    String username = principal.getName(); // 사용자(관리자)정보 가져오기
 		mv.addObject("qnaDetail", service.selectQnaListDetail(aqNo)); 
-		mv.addObject("qnaAnsList", service.selectQnaAnsList(aqNo));
 		mv.setViewName("admin/qna/detail");
+		
+		mv.addObject("qnaAnsList", service.selectQnaAnsList(aqNo));
+	    mv.addObject("username", username);
 		return mv;
 	}
 	
@@ -141,6 +148,29 @@ public class AdminQnaMngtController {
 //		mv.setViewName("admin/qna/detail");
 //		return mv;
 //	}
+	
+	// 문의내역 답변 작성
+	@PostMapping("/qna/insertAns")
+	public ModelAndView insertQnaAnsWrite(
+			ModelAndView mv
+			, AdminQnaAnsVo vo
+			) {
+		service.insertQnaAnsWrite(vo);
+		return mv;
+		
+	}
+	
+	// 문의내역 댓글 작성
+	@PostMapping("/qna/insertReply")
+	public ModelAndView insertQnaAnsWrite(
+			ModelAndView mv
+			, AdminQnaReplyVo vo
+			) {
+		service.insertQnaReplyWrite(vo);
+		return mv;
+	}
+	
+	
 
 	
 	

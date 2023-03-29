@@ -49,7 +49,6 @@
 	                                       			<input type="text" class="form-control" name="ntcTitle" value="${qnaDetail.aqTitle }" readonly>
 	                                   			</div>
 											</div>
-											<!-- <div class="row"> -->
 												<div class="col-sm-12">
 					                                    <div class="form-group row">
 					                                        <label for="adminId" class="col-sm-2 col-form-label left">작성자</label>
@@ -66,7 +65,6 @@
 					                                        </div>
 					                                    </div>
 				                                </div>
-			                                <!-- </div> -->
 											<div class="col-sm-12">
 												<div class="form-group">
 			                                        <textarea class="form-control" name="ntcContent" rows="20" readonly>${qnaDetail.aqContent }</textarea>
@@ -75,52 +73,66 @@
 										</div>
 									</div>
 								</div>
-								<!-- 답변 시작 -->
+							<!-- 답변  -->
+					       <c:forEach var="ans" items="${qnaAnsList }" >
 								<div class="card table-card review-card">
 				                    <div class="card-header borderless">
 				                        <div class="review-block">
 					                        <h5>답글달기</h5>
 					                    	<div class="form-group">
-			                                        <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
+					                    <!-- 답변 작성  -->
+					                    	<form:form action="../insertAns" method="post">
+												<input type="hidden" name="aqNo" value="${ans.aqNo}">
+												<input type="hidden" name="adminId" value="${username }" >
+									            <textarea class="form-control m-b-20" id="exampleFormControlTextarea1" rows="3" placeholder="댓글을 입력해보세요." name="aaContent"></textarea>
+									            <button type="submit">댓글 등록</button>
+			                                </form:form>
 			                                </div>
 					                    </div>
 										<div class="card-body pb-0">
 					                        <div class="review-block">
-					                        	<c:forEach var="ans" items="${qnaAnsList }" >
 						                            <div class="row"   style="padding-bottom: 0px;">
-						                                <div class="col">
-							                                <c:if test="${not empty ans.adminId}">
-							                                    <h6 class="m-b-15">${ans.adminId }<span class="float-right f-13 text-muted">${ans.aaDate }</span></h6>
+						                                <div class="col">	
+						                                		<c:if test="${not empty ans.adminId}">
+							                                    	<h6 class="m-b-15">${ans.adminId}<span class="float-right f-13 text-muted">${ans.aaDate }</span></h6>						                                		
+						                                		</c:if>
+						                                		<c:if test="${not empty ans.userId}">				                                    				                                
+							                                  		<h6 class="m-b-15">${ans.userId }<span class="float-right f-13 text-muted">${ans.aaDate }</span></h6>
+							                                  	</c:if>
 							                               		 <p class="m-t-15 m-b-15 text-muted">${ans.aaContent}</p>
 																<a href="#!" class="badge badge-primary m-t-5 m-b-20" data-toggle="collapse" data-target="#collapseExample" aria-expanded="true" aria-controls="collapseExample">댓글</a>
 																<div class="collapse show alert alert-secondary" id="collapseExample" style="">
 																	<div class="card-body m-b-15 m-t-20">
+																	<!-- 대댓글 -->
+																	<form:form action="../insertReply" method="post">
 																		<div class="form-group">
-								                                       		 <textarea class="form-control m-b-20" id="exampleFormControlTextarea1" rows="3" placeholder="댓글을 입력해보세요."></textarea>
-								                                       		 <a href="#!" class="m-r-30 text-muted text-muted">댓글 등록</a>
+																			 <input type="hidden" name="aaNo" value="${ans.aaNo}">
+																			 <input type="hidden" name="adminId" value="${username }" >
+								                                       		 <textarea class="form-control m-b-20" id="exampleFormControlTextarea1" rows="3" placeholder="댓글을 입력해보세요." name="rplContent"></textarea>
+								                                       		 <button type="submit">댓글 등록</button>
 								                               			</div>
+																	</form:form>
 								                               			<div class="m-t-40">
-								                               			<!-- 대댓글 -->
 								                               			<c:forEach var="reply" items="${ans.replyList }" >
-										                                    <h6 class="m-b-15">${reply.adminId }<span class="float-right f-13 text-muted">${replyList.rplDate }</span></h6>
-										                               		 <p class="m-t-15 m-b-15 text-muted">${reply.rplContent }</p>								                               			
+									                               			<c:if test="${not empty ans.adminId}">
+											                                    <h6 class="m-b-15">${reply.adminId }<span class="float-right f-13 text-muted">${reply.rplDate }</span></h6>
+											                                </c:if>
+											                                <c:if test="${not empty ans.userId}">
+											                                    <h6 class="m-b-15">${reply.userId }<span class="float-right f-13 text-muted">${reply.rplDate }</span></h6>
+											                                </c:if>
+											                               		 <p class="m-t-15 m-b-15 text-muted">${reply.rplContent }</p>								                               			
 								                               			</c:forEach>
 								                               			</div>
 																	</div>
 																</div>
-							                                </c:if>
-							                                <c:if test="${not empty ans.userId}">
-						                                    	<h6 class="m-b-15">${ans.userId }<span class="float-right f-13 text-muted">${ans.aaDate }</span></h6>
-						                                    	<p class="m-t-15 m-b-15 text-muted">${ans.aaContent}</p>
-						                                    </c:if>	
 						                                </div>
 						                            </div>
-					                            </c:forEach>
 					                        </div>
 					                    </div>
 				                    </div> 
 				                </div>
 				              <!-- 답변 끝 -->
+					      </c:forEach>
 						</div>
 				    </div>
 				</div>

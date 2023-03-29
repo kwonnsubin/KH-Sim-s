@@ -5,6 +5,7 @@ import java.util.List;
 import kh.finalproject.sims.admin.model.vo.AdminFaqVo;
 import kh.finalproject.sims.admin.model.vo.AdminQnaAnsVo;
 import kh.finalproject.sims.admin.model.vo.AdminQnaMngtVo;
+import kh.finalproject.sims.admin.model.vo.AdminQnaReplyVo;
 
 public interface AdminQnaMngtService {
 	
@@ -37,4 +38,10 @@ public interface AdminQnaMngtService {
 	
 	// 문의 내역 댓글 리스트
 //	public List<AdminQnaMngtVo> selectQnaReplyList(int aaNo);
+	
+	// 문의 내역 답변 작성
+	public int insertQnaAnsWrite(AdminQnaAnsVo vo);
+	
+	// 문의 내역 댓글 작성
+	public int insertQnaReplyWrite(AdminQnaReplyVo vo);
 }

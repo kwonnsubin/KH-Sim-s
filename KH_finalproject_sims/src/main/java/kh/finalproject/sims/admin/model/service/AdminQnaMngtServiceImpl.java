@@ -59,8 +59,19 @@ public class AdminQnaMngtServiceImpl implements AdminQnaMngtService{
 	// 문의 내역 답변 리스트
 	@Override
 	public List<AdminQnaAnsVo> selectQnaAnsList(int aqNo) {
-		// TODO Auto-generated method stub
 		return dao.selectQnaAnsList(aqNo);
+	}
+	
+	// 문의 내역 답변 작성
+	@Override
+	public int insertQnaAnsWrite(AdminQnaAnsVo vo) {
+		return dao.insertQnaAnsWrite(vo);
+	}
+	
+	// 문의 내역 댓글 작성
+	@Override
+	public int insertQnaReplyWrite(AdminQnaReplyVo vo) {
+		return dao.insertQnaReplyWrite(vo);
 	}
 	
 	// 문의 내역 댓글 리스트

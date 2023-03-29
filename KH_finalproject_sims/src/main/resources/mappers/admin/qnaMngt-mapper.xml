@@ -5,7 +5,7 @@
 	<!-- 1대 다 -->
 	<resultMap type="kh.finalproject.sims.admin.model.vo.AdminQnaAnsVo" id="adminQnaAnsCollectionMap">
 		<id column="AA_NO" property="aaNo"/>
-		<result column="AQ_NO" property="aQvo"/>
+		<result column="AQ_NO" property="aqNo"/>
 		<result column="ANS_ADMIN_ID" property="adminId"/>
 		<result column="ANS_USER_ID" property="userId"/>
 		<result column="AA_CONTENT" property="aaContent"/>
@@ -174,7 +174,7 @@
 	</select>
 	  -->
 	
-	<!-- 문의 내역 답변(댓글) 조회 -->
+	<!-- 문의 내역 답변 조회 -->
 	<!-- <select id="selectQnaAnsList" resultType="kh.finalproject.sims.admin.model.vo.AdminQnaAnsVo"> AdminQnaAnsVo안에  List<replyVo>가 들어있는데 이건 왜 안되는걸까요?? -->
 	<select id="selectQnaAnsList" resultMap="adminQnaAnsCollectionMap">
         SELECT AQ_NO, AA_NO, QNA_RPL.RPL_NO, QNA_ANS.ADMIN_ID AS ANS_ADMIN_ID, QNA_ANS.USER_ID AS ANS_USER_ID, AA_CONTENT, AA_DATE, AA_REDATE, QNA_RPL.RPL_CONTENT, QNA_RPL.ADMIN_ID AS RPL_ADMIN_ID, QNA_RPL.USER_ID AS RPL_USER_ID, QNA_RPL.RPL_DATE, QNA_RPL.RPL_REDATE
@@ -182,10 +182,17 @@
 		WHERE AQ_NO = #{aqNo}
 	</select>
 	
-	<!-- 문의 내역 댓글의 대댓글 조회 -->
-	<select id="selectQnaReplyList" resultType="kh.finalproject.sims.admin.model.vo.AdminQnaMngtVo">
-		SELECT *
-		FROM QNA_RPL
-		WHERE AA_NO = #{aaNo}
-	</select>
+	<!-- 문의 내역 답변 작성 -->
+	<insert id="insertQnaAnsWrite" parameterType="kh.finalproject.sims.admin.model.vo.AdminQnaAnsVo">
+		INSERT INTO 
+		QNA_ANS (AA_NO, AQ_NO, ADMIN_ID, AA_CONTENT, AA_DATE) 
+		values (QNA_ANS_SEQ.NEXTVAL, #{aqNo}, #{adminId}, #{aaContent}, DEFAULT)
+	</insert>
+	
+	<!-- 문의 내역  댓글 작성 -->
+	<insert id="insertQnaReplyWrite" parameterType="kh.finalproject.sims.admin.model.vo.AdminQnaReplyVo">
+		INSERT INTO QNA_RPL 
+		(RPL_NO, AA_NO, RPL_DATE, RPL_CONTENT,ADMIN_ID) 
+		values (QNA_RPL_SEQ.NEXTVAL, #{aaNo}, DEFAULT, #{rplContent}, #{adminId})
+	</insert>
 </mapper>

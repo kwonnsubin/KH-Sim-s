@@ -11,7 +11,7 @@ public class AdminQnaAnsVo {
 	
 	// 문의 게시판 답변(댓글)
 	private int aaNo; // 댓글번호 PK
-	private int aQvo; // 글번호
+	private int aqNo; // 글번호
 	private String adminId; // 관리자아이디
 	private String userId; // 사용자아이디
 	private String aaContent; // 답변내용
@@ -19,18 +19,41 @@ public class AdminQnaAnsVo {
 	private String aaRedate; // 수정일
 	private List<AdminQnaReplyVo> replyList; // 여러 대댓글이 들어간다.
 	
+
+	public AdminQnaAnsVo() {
+		super();
+		// TODO Auto-generated constructor stub
+	}
 	
+	
+	
+	public AdminQnaAnsVo(int aaNo, int aqNo, String adminId, String userId, String aaContent, Date aaDate,
+			String aaRedate, List<AdminQnaReplyVo> replyList) {
+		super();
+		this.aaNo = aaNo;
+		this.aqNo = aqNo;
+		this.adminId = adminId;
+		this.userId = userId;
+		this.aaContent = aaContent;
+		this.aaDate = aaDate;
+		this.aaRedate = aaRedate;
+		this.replyList = replyList;
+	}
+
+
+
 	public int getAaNo() {
 		return aaNo;
 	}
 	public void setAaNo(int aaNo) {
 		this.aaNo = aaNo;
 	}
-	public int getaQvo() {
-		return aQvo;
+
+	public int getAqNo() {
+		return aqNo;
 	}
-	public void setaQvo(int aQvo) {
-		this.aQvo = aQvo;
+	public void setAqNo(int aqNo) {
+		this.aqNo = aqNo;
 	}
 	public String getAdminId() {
 		return adminId;
@@ -71,10 +94,12 @@ public class AdminQnaAnsVo {
 	
 	@Override
 	public String toString() {
-		return "AdminQnaAnsVo [aaNo=" + aaNo + ", aQvo=" + aQvo + ", adminId=" + adminId + ", userId=" + userId
+		return "AdminQnaAnsVo [aaNo=" + aaNo + ", aQvo=" + aqNo + ", adminId=" + adminId + ", userId=" + userId
 				+ ", aaContent=" + aaContent + ", aaDate=" + aaDate + ", aaRedate=" + aaRedate + ", replyList="
 				+ replyList + "]";
 	}
+	
+	
 	
 	
 	
