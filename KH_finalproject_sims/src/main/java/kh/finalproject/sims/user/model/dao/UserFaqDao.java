@@ -9,6 +9,7 @@ import org.springframework.stereotype.Repository;
 import kh.finalproject.sims.user.model.vo.UserAnsVo;
 import kh.finalproject.sims.user.model.vo.UserFaqVo;
 import kh.finalproject.sims.user.model.vo.UserQnaVo;
+import kh.finalproject.sims.user.model.vo.UserRplVo;
 
 @Repository
 public class UserFaqDao {
@@ -44,7 +45,19 @@ public class UserFaqDao {
 	public int insertAnswer(int aqNo, UserAnsVo vo) {
 		return session.insert("ans.insertAnswer", vo);
 	}
+	
+	public UserAnsVo getAnsByNo(int aaNo) {
+		return session.selectOne("ans.getAnsByNo", aaNo);
+	}
+	
+	public int insertReply(int aaNo, UserRplVo vo) {
+		return session.insert("rpl.insertReply", vo);
+	}
 
+	public List<UserRplVo> getRplsByAnsNo(int aaNo) {
+		return session.selectList("rpl.getRplsByAnsNo", aaNo);
+	}
+	
 	public int insertQna(UserQnaVo vo) {
 		return session.insert("qna.insertQna", vo);
 	}
@@ -77,5 +90,4 @@ public class UserFaqDao {
 		session.update("qna.upAnswers", aqNo);
 	}
 
-	
 }

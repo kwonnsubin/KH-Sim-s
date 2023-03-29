@@ -15,6 +15,7 @@
 		<typeAlias type="kh.finalproject.sims.user.model.vo.UserFaqVo" alias="usFaqvo"/>
 		<typeAlias type="kh.finalproject.sims.user.model.vo.UserQnaVo" alias="usQnavo"/>
 		<typeAlias type="kh.finalproject.sims.user.model.vo.UserAnsVo" alias="usAnsvo"/>
+		<typeAlias type="kh.finalproject.sims.user.model.vo.UserRplVo" alias="usRplvo"/>
 		<typeAlias type="kh.finalproject.sims.admin.model.vo.AdminNoticeMngtVo" alias="adNtcvo"/>
 		<typeAlias type="kh.finalproject.sims.user.model.vo.MemberVo" alias="memVo"/>
 		<typeAlias type="kh.finalproject.sims.user.model.vo.UserMemberVo" alias="userVo"/>

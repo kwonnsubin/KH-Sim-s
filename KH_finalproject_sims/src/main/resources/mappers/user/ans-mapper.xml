@@ -7,6 +7,7 @@
 		select * 
 		from QNA_ANS
 		where AQ_NO = #{aqNo}
+		order by aa_no
 	</select>
 
 	<!-- 내 답변 목록 -->
@@ -14,6 +15,7 @@
 		select *
 		from QNA_ANS
 		where USER_ID = #{username}
+		order by aa_no
 	</select>
 	
 	<!-- 내 답변 삭제 -->
@@ -32,4 +34,11 @@
 		, default
 		)
 	</insert>
+	
+	<!-- 답변 번호로 조회 -->
+	<select id="getAnsByNo" resultType="usAnsvo">
+		select * 
+		from QNA_ANS
+		where aa_no = #{aaNo}
+	</select>
 </mapper>

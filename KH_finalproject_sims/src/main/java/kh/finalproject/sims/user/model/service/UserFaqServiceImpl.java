@@ -9,6 +9,7 @@ import kh.finalproject.sims.user.model.dao.UserFaqDao;
 import kh.finalproject.sims.user.model.vo.UserAnsVo;
 import kh.finalproject.sims.user.model.vo.UserFaqVo;
 import kh.finalproject.sims.user.model.vo.UserQnaVo;
+import kh.finalproject.sims.user.model.vo.UserRplVo;
 
 @Service
 public class UserFaqServiceImpl implements UserFaqService {
@@ -50,6 +51,18 @@ public class UserFaqServiceImpl implements UserFaqService {
 	@Override
 	public void insertAnswer(int aqNo, UserAnsVo vo) {
 		dao.insertAnswer(aqNo, vo);
+	}
+	
+	// 답변 번호로 조회
+	@Override
+	public UserAnsVo getAnsByNo(int aaNo) {
+		return dao.getAnsByNo(aaNo);
+	}
+	
+	// 댓글달기
+	@Override
+	public void insertReply(int aaNo, UserRplVo vo) {
+		dao.insertReply(aaNo, vo);
 	}
 
 	// 조회수 증가
@@ -106,4 +119,9 @@ public class UserFaqServiceImpl implements UserFaqService {
 		dao.upAnswers(aqNo);
 	}
 
+	@Override
+	public List<UserRplVo> getRplsByAnsNo(int aaNo) {
+		return dao.getRplsByAnsNo(aaNo);
+	}
+	
 }

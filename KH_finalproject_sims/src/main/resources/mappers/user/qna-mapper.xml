@@ -6,6 +6,7 @@
   	<select id="selectQnaList" resultType="usQnavo">
 		select *
 		from QNA
+		order by aq_no
 	</select>
 	
 	<!-- 문의게시판 질문보기 -->
@@ -40,6 +41,7 @@
 		select *
 		from QNA
 		where user_id = #{username}
+		order by aq_no
 	</select>
 	
 	<!-- 질문 삭제 -->

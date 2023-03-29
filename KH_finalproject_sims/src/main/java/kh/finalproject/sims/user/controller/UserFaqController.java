@@ -16,6 +16,7 @@ import org.springframework.web.servlet.ModelAndView;
 import kh.finalproject.sims.user.model.service.UserFaqService;
 import kh.finalproject.sims.user.model.vo.UserAnsVo;
 import kh.finalproject.sims.user.model.vo.UserQnaVo;
+import kh.finalproject.sims.user.model.vo.UserRplVo;
 
 @RequestMapping("/faq")
 @Controller
@@ -59,8 +60,9 @@ public class UserFaqController {
 		String username = principal.getName();
 		
 		mv.addObject("username", username);
-		mv.addObject("qnaquestion", question);
-		mv.addObject("qnaanswer", answers);
+		mv.addObject("questions", question);
+		mv.addObject("answers", answers);
+		
 		
 		mv.setViewName("user/faq/readQna");
 		return mv;
@@ -76,6 +78,18 @@ public class UserFaqController {
 		service.insertAnswer(aqNo, vo);
 		service.upAnswers(aqNo);
 		return "redirect:/faq/qna/" + aqNo;
+	}
+	
+	// 댓글달기
+	@PostMapping("/ans/{aaNo}/reply")
+	public String insertReply(
+			@PathVariable int aaNo
+			, UserRplVo vo
+			, Authentication authentication
+			) {
+		service.insertReply(aaNo, vo);
+		UserAnsVo ansVo = service.getAnsByNo(aaNo);
+		return "redirect:/faq/qna/" + ansVo.getAqNo();
 	}
 	
 	// 질문하기 페이지

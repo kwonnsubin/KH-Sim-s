@@ -5,6 +5,7 @@ import java.util.List;
 import kh.finalproject.sims.user.model.vo.UserAnsVo;
 import kh.finalproject.sims.user.model.vo.UserFaqVo;
 import kh.finalproject.sims.user.model.vo.UserQnaVo;
+import kh.finalproject.sims.user.model.vo.UserRplVo;
 
 public interface UserFaqService {
 
@@ -25,6 +26,12 @@ public interface UserFaqService {
 	
 	// 답변달기
 	public void insertAnswer(int aqNo, UserAnsVo vo);
+	
+	// 답변 번호로 조회
+	public UserAnsVo getAnsByNo(int aaNo);
+	
+	// 댓글달기
+	public void insertReply(int aaNo, UserRplVo vo);
 	
 	// 조회수 증가
 	public void viewCount(int aqNo);
@@ -52,5 +59,7 @@ public interface UserFaqService {
 
 	// 답변수 +1
 	public void upAnswers(int aqNo);
+
+	public List<UserRplVo> getRplsByAnsNo(int aaNo);
 
 }

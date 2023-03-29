@@ -6,6 +6,7 @@
 		select faq_no
 			, faq_title
 		from faq
+		order by faq_no
 	</select>
 	
 	<select id="selectFaqDetail" resultType="usFaqvo">
