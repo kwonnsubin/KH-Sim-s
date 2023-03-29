@@ -31,7 +31,6 @@ public class UserFaqController {
 		mv.addObject("faqlist", service.selectFaqList());
 		mv.addObject("qnalist", service.selectQnaList());
 		mv.setViewName("user/faq/faqlist");
-		
 		return mv;
 	}
 	
@@ -51,19 +50,12 @@ public class UserFaqController {
 	public ModelAndView readQna(
 			ModelAndView mv
 			, @PathVariable int aqNo
-			, HttpServletRequest request
 			) {
 		service.viewCount(aqNo);
 		UserQnaVo question = service.selectQnaDetail(aqNo);
 		List<UserAnsVo> answers = service.selectAnsList(aqNo);
-		Principal principal = request.getUserPrincipal();
-		String username = principal.getName();
-		
-		mv.addObject("username", username);
-		mv.addObject("questions", question);
+		mv.addObject("question", question);
 		mv.addObject("answers", answers);
-		
-		
 		mv.setViewName("user/faq/readQna");
 		return mv;
 	}
