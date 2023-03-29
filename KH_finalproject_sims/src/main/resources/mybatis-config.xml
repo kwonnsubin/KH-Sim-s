@@ -12,14 +12,15 @@
 		<typeAlias type="kh.finalproject.sims.biz.model.vo.BizInfoMngtVo" alias="bvo"/>
 		<typeAlias type="kh.finalproject.sims.admin.model.vo.AdminLoginVo" alias="adLvo"/>
 		<typeAlias type="kh.finalproject.sims.admin.model.vo.AdminQnaMngtVo" alias="adQvo"/>
+		<typeAlias type="kh.finalproject.sims.admin.model.vo.AdminNoticeMngtVo" alias="adNtcvo"/>
+		<typeAlias type="kh.finalproject.sims.admin.model.vo.AdminUserMngtVo" alias="adUserVo"/>
 		<typeAlias type="kh.finalproject.sims.user.model.vo.UserFaqVo" alias="usFaqvo"/>
 		<typeAlias type="kh.finalproject.sims.user.model.vo.UserQnaVo" alias="usQnavo"/>
 		<typeAlias type="kh.finalproject.sims.user.model.vo.UserAnsVo" alias="usAnsvo"/>
 		<typeAlias type="kh.finalproject.sims.user.model.vo.UserRplVo" alias="usRplvo"/>
-		<typeAlias type="kh.finalproject.sims.admin.model.vo.AdminNoticeMngtVo" alias="adNtcvo"/>
 		<typeAlias type="kh.finalproject.sims.user.model.vo.MemberVo" alias="memVo"/>
 		<typeAlias type="kh.finalproject.sims.user.model.vo.UserMemberVo" alias="userVo"/>
-		<typeAlias type="kh.finalproject.sims.admin.model.vo.AdminUserMngtVo" alias="adUserVo"/>
+		<typeAlias type="kh.finalproject.sims.user.model.vo.PlanVo" alias="planVo"/>
 	</typeAliases>
 	 
 	 <!-- 매퍼 추가 안해도 됨
