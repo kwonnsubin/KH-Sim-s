@@ -1,6 +1,7 @@
 package kh.finalproject.sims.user.controller;
 
 import java.security.Principal;
+import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,8 +13,8 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
-import kh.finalproject.sims.admin.model.vo.AdminQnaMngtVo;
 import kh.finalproject.sims.user.model.service.UserFaqService;
+import kh.finalproject.sims.user.model.vo.UserAnsVo;
 import kh.finalproject.sims.user.model.vo.UserQnaVo;
 
 @RequestMapping("/faq")
@@ -45,16 +46,60 @@ public class UserFaqController {
 	}
 	
 	// 문의게시판 질문 상세보기
-	@GetMapping("/qnaread/{aqNo}")
+	@GetMapping("/qna/{aqNo}")
 	public ModelAndView readQna(
-			ModelAndView mv,
-			@PathVariable int aqNo
+			ModelAndView mv
+			, @PathVariable int aqNo
+			, HttpServletRequest request
 			) {
 		service.viewCount(aqNo);
-		mv.addObject("qnaquestion", service.selectQnaDetail(aqNo));
-		mv.addObject("qnaanswer", service.selectAnsList(aqNo));
-		mv.setViewName("user/faq/qnaread");
+		UserQnaVo question = service.selectQnaDetail(aqNo);
+		List<UserAnsVo> answers = service.selectAnsList(aqNo);
+		Principal principal = request.getUserPrincipal();
+		String username = principal.getName();
+		
+		mv.addObject("username", username);
+		mv.addObject("qnaquestion", question);
+		mv.addObject("qnaanswer", answers);
+		
+		mv.setViewName("user/faq/readQna");
 		return mv;
+	}
+	
+	// 답변달기
+	@PostMapping("/qna/{aqNo}/answer")
+	public String insertAnswer(
+			@PathVariable int aqNo
+			, UserAnsVo vo
+			, Authentication authentication
+			) {
+		service.insertAnswer(aqNo, vo);
+		service.upAnswers(aqNo);
+		return "redirect:/faq/qna/" + aqNo;
+	}
+	
+	// 질문하기 페이지
+	@GetMapping("/qna/write")
+	public ModelAndView writeQnaForm(
+			ModelAndView mv
+			, HttpServletRequest request
+			) {
+		mv.setViewName("user/faq/writeQna");
+		Principal principal = request.getUserPrincipal();
+		String username = principal.getName();
+		
+		mv.addObject("username", username);
+		return mv;
+	}
+	
+	// 질문 저장
+	@PostMapping("/qna/write")
+	public String writeQna(
+			UserQnaVo vo
+			, Authentication authentication
+			) {
+		service.insertQna(vo);
+		return "redirect:/faq/faqlist";
 	}
 	
 	// 내 질문답변
@@ -70,30 +115,6 @@ public class UserFaqController {
 		mv.addObject("myanslist", service.selectMyAnsList(username));
 		mv.setViewName("user/faq/myQna");
 		return mv;
-	}
-	
-	// 질문하기 페이지
-	@GetMapping("/qnawrite")
-	public ModelAndView writeQnaForm(
-			ModelAndView mv
-			, HttpServletRequest request
-			) {
-		mv.setViewName("user/faq/qnawrite");
-		Principal principal = request.getUserPrincipal();
-		String username = principal.getName();
-		
-		mv.addObject("username", username);
-		return mv;
-	}
-	
-	// 질문 저장
-	@PostMapping("/qnawrite")
-	public String writeQna(
-			UserQnaVo vo
-			, Authentication authentication
-			) {
-		service.insertQna(vo);
-		return "redirect:/faq/faqlist";
 	}
 	
 	// 내 질문 삭제
@@ -138,7 +159,7 @@ public class UserFaqController {
 		   , @PathVariable int aqNo
 		   , UserQnaVo vo) {
 		service.updateQna(vo);
-		mv.setViewName("redirect:/faq/qnaread/"+vo.getAqNo());
+		mv.setViewName("redirect:/faq/qna/"+vo.getAqNo());
 		return mv;
 	}
 }

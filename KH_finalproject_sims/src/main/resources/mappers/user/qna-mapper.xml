@@ -63,4 +63,11 @@
 			, aq_redate = sysdate
 		where aq_no = #{aqNo}
 	</update>
+	
+	<!-- 답변수 +1 -->
+	<update id="upAnswers">
+		update QNA
+		set aq_answers = aq_answers + 1
+		where aq_no = #{aqNo}
+	</update>
 </mapper>

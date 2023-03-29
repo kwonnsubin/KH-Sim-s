@@ -18,7 +18,7 @@
 						<tbody>
 							<tr>
 								<td>
-								<a href="<%=request.getContextPath()%>/faq/qnaread/${qna.aqNo}">${qna.aqTitle}(${qna.aqAnswers })</a>
+								<a href="<%=request.getContextPath()%>/faq/qna/${qna.aqNo}">${qna.aqTitle}(${qna.aqAnswers })</a>
 								</td>
 								<td>${qna.aqDate}</td>
 								<td><button onclick="location.href='<%=request.getContextPath()%>/faq/qnaupdate/${qna.aqNo}'">수정</button></td>
@@ -37,7 +37,7 @@
 						<tbody>
 							<tr>
 								<td>
-								<a href="<%=request.getContextPath()%>/faq/qnaread/${ans.aqNo}">${ans.aaContent}</a>
+								<a href="<%=request.getContextPath()%>/faq/qna/${ans.aqNo}">${ans.aaContent}</a>
 								</td>
 								<td>${ans.aaDate}</td>
 								<td><button>수정</button></td>

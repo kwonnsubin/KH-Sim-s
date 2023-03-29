@@ -23,6 +23,9 @@ public interface UserFaqService {
 	// 문의게시판 답변목록
 	public List<UserAnsVo> selectAnsList(int aqNo);
 	
+	// 답변달기
+	public void insertAnswer(int aqNo, UserAnsVo vo);
+	
 	// 조회수 증가
 	public void viewCount(int aqNo);
 
@@ -46,5 +49,8 @@ public interface UserFaqService {
 
 	// 질문 수정
 	public int updateQna(UserQnaVo vo);
+
+	// 답변수 +1
+	public void upAnswers(int aqNo);
 
 }

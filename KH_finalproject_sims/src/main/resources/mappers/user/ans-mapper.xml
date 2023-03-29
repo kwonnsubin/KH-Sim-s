@@ -21,4 +21,15 @@
 		delete from QNA_ANS
 		where aa_no = #{aaNo}
 	</delete>	
+	
+	<!-- 답변달기 -->
+	<insert id="insertAnswer" parameterType="usAnsvo">
+		insert into QNA_ANS (aa_no, aq_no, user_id, aa_content, aa_date) values (
+		QNA_ANS_SEQ.nextval
+		, #{aqNo}
+		, #{userId}
+		, #{aaContent}
+		, default
+		)
+	</insert>
 </mapper>
