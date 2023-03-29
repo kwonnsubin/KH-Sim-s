@@ -23,4 +23,8 @@ public class BizApplyMngtDao {
 	public int updateApproveStatus( ) {
 		return sqlSession.update("apply.updateApproveStatus");
 	}
+
+	public int updateHoldStatus() {
+		return sqlSession.update("apply.updateHoldStatus");
+	}
 }

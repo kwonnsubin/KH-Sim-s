@@ -6,4 +6,5 @@ public interface BizApplyMngtService {
 	public BizApplyVo selectApplyDetailUser();
 	public BizApplyVo selectApplyDetailPlan();
 	public int updateApproveStatus();
+	public int updateHoldStatus();
 }

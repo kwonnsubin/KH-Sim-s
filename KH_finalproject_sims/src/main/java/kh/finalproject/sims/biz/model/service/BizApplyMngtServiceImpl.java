@@ -31,4 +31,9 @@ public class BizApplyMngtServiceImpl implements BizApplyMngtService {
 	public int updateApproveStatus() {
 		return dao.updateApproveStatus();
 	}
+
+	@Override
+	public int updateHoldStatus() {
+		return dao.updateHoldStatus();
+	}
 }

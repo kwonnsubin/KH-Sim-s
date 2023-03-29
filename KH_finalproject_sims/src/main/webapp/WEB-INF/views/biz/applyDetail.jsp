@@ -248,7 +248,7 @@
 	$(".btn.approve").on("click", approveClickHandler);
 	function approveClickHandler(){
 			$.ajax({
-				url:"<%=request.getContextPath()%>/biz/updateStatus"
+				url:"<%=request.getContextPath()%>/biz/approveStatus"
 				, type:"POST"
 				, success:function(result){
 					alert("승인되었습니다.");
@@ -259,62 +259,23 @@
 				}
 			});
 		}
-	<!--db에선 바뀌긴하는데 404 에러... -->
-	<%-- $(document).ready(function() {
-	   $("button").click(function() {
-	      var status;
-	      if ($(this).text() == "승인") {
-	         status = "2";
-	      } else {
-	         status = "3";
-	      }
-	      $.ajax({
-	         type: "POST"
-	         , url: "<%=request.getContextPath()%>/biz/updateStatus"
-	         , data: {userId: "${applyDetail.userId}", status: status}
-	         , success: function() {
-	        	
-	        	alert("승인되었습니다.")
-	            location.reload();
-	         },
-	         error: function() {
-	            alert("에러가 발생했습니다.");
-	         }
-	      });
-	   });
-	}); --%>
-
-
-
-	<%-- function approve(){
+	
+	
+	$(".btn.hold").on("click", holdClickHandler);
+	function holdClickHandler(){
 		$.ajax({
-			url:"<%=request.getContextPath()%>/biz/approveStatus"
-			, type: "POST"
-			, data: {userId : applyDetail.userId },
-			success: function(results){
-				console.log(result);
-				applyDetail.orderStatus = 2;
-				alert("신청이 승인되었습니다.");
+			url:"<%=request.getContextPath()%>/biz/holdStatus"
+			, type:"POST"
+			, success:function(result){
+				alert("보류되었습니다.");
+				location.reload();
 			}
-			,error:function(xhr, status, error){
-				console.log(xhr, responseText);
+			, error:function(){
+				alert("에러가 발생했습니다.");
 			}
 		});
 	}
-	
-	function hold() {
-		  $.ajax({
-		    url: "/hold", // 요청을 보낼 URL
-		    type: "POST", // HTTP 요청 방식
-		    data: { orderStatus: 3 }, // 전송할 데이터
-		    success: function(result) {
-		      console.log(result); // 요청이 성공하면 콘솔에 결과 출력
-		    },
-		    error: function(xhr, status, error) {
-		      console.error(xhr.responseText); // 요청이 실패하면 에러 출력
-		    }
-		  });
-		} --%>
+
 </script>
 </body>
 </html>

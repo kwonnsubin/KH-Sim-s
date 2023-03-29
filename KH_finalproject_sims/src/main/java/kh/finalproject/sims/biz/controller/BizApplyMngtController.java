@@ -40,13 +40,17 @@ public class BizApplyMngtController {
 	}
 	
 	//가입신청상태 변경
-	@PostMapping("/updateStatus")
+	@PostMapping("/approveStatus")
 	@ResponseBody
-	public String updateStatus() {
-		
+	public String approveStatus() {
 		service.updateApproveStatus();
-
 		return "success";
 	} 
-	//TODO 404에러 발생
+
+	@PostMapping("/holdStatus")
+	@ResponseBody
+	public String holdStatus() {
+		service.updateHoldStatus();
+		return "success";
+	}
 }
