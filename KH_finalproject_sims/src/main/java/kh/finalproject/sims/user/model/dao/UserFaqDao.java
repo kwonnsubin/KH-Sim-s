@@ -41,6 +41,10 @@ public class UserFaqDao {
 		session.update("qna.viewCount", aqNo);
 	}
 
+	public int insertAnswer(int aqNo, UserAnsVo vo) {
+		return session.insert("ans.insertAnswer", vo);
+	}
+
 	public int insertQna(UserQnaVo vo) {
 		return session.insert("qna.insertQna", vo);
 	}
@@ -68,5 +72,10 @@ public class UserFaqDao {
 	public int updateQna(UserQnaVo vo) {
 		return session.update("qna.updateQna", vo);
 	}
+
+	public void upAnswers(int aqNo) {
+		session.update("qna.upAnswers", aqNo);
+	}
+
 	
 }

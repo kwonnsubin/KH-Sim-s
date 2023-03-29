@@ -98,7 +98,7 @@
 								<tr>
 									<td class="text-center">${qna.aqNo}</td>
 									<td class="text-center">
-									<a href="<%=request.getContextPath()%>/faq/qnaread/${qna.aqNo}">${qna.aqTitle}</a>
+									<a href="<%=request.getContextPath()%>/faq/qna/${qna.aqNo}">${qna.aqTitle}</a>
 									</td>
 									<td class="text-center">${qna.aqDate}</td>
 									<td class="text-center">${qna.aqViews}</td>
@@ -111,7 +111,7 @@
 			</div>
 			<sec:authorize access="isAuthenticated()">
 				<button type="button" onclick="location.href='myqna'">내 질문/답변</button>
-				<button type="button" onclick="location.href='qnawrite'">질문하기</button>
+				<button type="button" onclick="location.href='qna/write'">질문하기</button>
 			</sec:authorize>
 			<!-- ***** 일반 질문 end ***** -->
 		</div>

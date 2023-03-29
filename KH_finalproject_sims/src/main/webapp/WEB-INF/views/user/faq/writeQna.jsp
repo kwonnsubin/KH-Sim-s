@@ -9,7 +9,7 @@
 </head>
 <body>
 	<div class="container">
-		<form:form action="qnawrite" method="post">
+		<form:form action="qna/write" method="post">
 			<div>
 				<label>제목</label>
 				<div>

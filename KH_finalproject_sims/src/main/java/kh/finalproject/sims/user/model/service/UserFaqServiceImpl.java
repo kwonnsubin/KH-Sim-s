@@ -46,6 +46,12 @@ public class UserFaqServiceImpl implements UserFaqService {
 		return dao.selectAnsList(aqNo);
 	}
 
+	// 답변달기
+	@Override
+	public void insertAnswer(int aqNo, UserAnsVo vo) {
+		dao.insertAnswer(aqNo, vo);
+	}
+
 	// 조회수 증가
 	@Override
 	public void viewCount(int aqNo) {
@@ -93,4 +99,11 @@ public class UserFaqServiceImpl implements UserFaqService {
 	public int updateQna(UserQnaVo vo) {
 		return dao.updateQna(vo);
 	}
+
+	// 답변수 +1
+	@Override
+	public void upAnswers(int aqNo) {
+		dao.upAnswers(aqNo);
+	}
+
 }
