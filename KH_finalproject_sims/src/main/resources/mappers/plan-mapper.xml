@@ -13,7 +13,7 @@
 	    	</choose>
 	    	)
 	    	, #{chargeAmount}, #{voiceAmount}, #{messageAmount}, #{dataAmount}
-	    	, #{overVoiceAmtUnit}, #{overMessageAmtUnit}, #{overDataAmtUnit})
+	    	, #{overVoiceAmtUnit}, #{overMessageAmtUnit}, #{overDataAmtUnit}, sysdate)
 	</insert>
 	
 </mapper>

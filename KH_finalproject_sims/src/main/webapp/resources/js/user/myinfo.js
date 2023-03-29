@@ -116,7 +116,7 @@ $('.modalOutBtn').on("click", function () {
 // 계정 탈퇴
 $('.relBtn').on("click", function() {
 	$.ajax({
-		url : contextPath + "/disable",
+		url : contextPath + "/mypage/disable",
 		type : "post",
 		async : false,
 		data : {

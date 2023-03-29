@@ -80,6 +80,12 @@ public class UserMemberServiceImpl implements UserMemberService {
 		int result = dao.selectFindPw(userVo);
 		return result;
 	}
+	
+	// 계정 복구
+	@Override
+	public int updateEnable(String id) {
+		return dao.updateEnable(id);
+	}
 
 	// 통신사 비밀번호 찾기
 	@Override
@@ -93,34 +99,6 @@ public class UserMemberServiceImpl implements UserMemberService {
 	public int changePw(MemberVo memVo) {
 		int result = dao.changePw(memVo);
 		return result;
-	}
-
-	// 계정 복구
-	@Override
-	public int updateEnable(String id) {
-		return dao.updateEnable(id);
-	}
-	
-	// 계정 탈퇴
-	@Override
-	public int updateDisable(String id) {
-		return dao.updateDisable(id);
-	}
-
-	// 유저 정보 가져오기
-	@Override
-	public UserMemberVo selectMyPageInfo(String id) {
-		return dao.selectMyPageInfo(id);
-	}
-
-	// 유저 정보 수정
-	@Override
-	@Transactional
-	public void updateMyPageModify(MemberVo memVo, UserMemberVo userVo) {
-		int result = dao.changePw(memVo);
-		if(result == 1) {
-			dao.updateMyPageModify(userVo);
-		}
 	}
 
 }

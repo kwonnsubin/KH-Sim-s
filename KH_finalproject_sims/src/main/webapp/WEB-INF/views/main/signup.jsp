@@ -253,7 +253,7 @@
   <script src="<%= request.getContextPath() %>/resources/chain/assets/js/imagesloaded.js"></script>
   <script src="<%= request.getContextPath() %>/resources/chain/assets/js/popup.js"></script>
   <script src="<%= request.getContextPath() %>/resources/chain/assets/js/custom.js"></script>
-  <script src="<%= request.getContextPath() %>/resources/js/signup.js"></script>
+  <script src="<%= request.getContextPath() %>/resources/js/main/signup.js"></script>
   
   
 </body>

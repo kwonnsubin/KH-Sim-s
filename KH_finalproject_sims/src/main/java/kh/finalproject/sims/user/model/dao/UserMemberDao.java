@@ -58,16 +58,4 @@ public class UserMemberDao {
 		return sqlSession.update("member.updateEnable", id);
 	}
 	
-	public int updateDisable(String id) {
-		return sqlSession.update("member.updateDisable", id);
-	}
-
-	public UserMemberVo selectMyPageInfo(String id) {
-		return sqlSession.selectOne("member.selectMyPageInfo", id);
-	}
-
-	public int updateMyPageModify(UserMemberVo userVo) {
-		return sqlSession.update("member.updateMyPageModify", userVo);
-	}
-	
 }

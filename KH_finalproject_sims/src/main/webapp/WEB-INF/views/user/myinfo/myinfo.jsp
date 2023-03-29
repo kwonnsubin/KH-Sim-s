@@ -46,7 +46,7 @@
 </head>
 <body>
 
-	<jsp:include page="../header.jsp"/>
+	<jsp:include page="../../header.jsp"/>
 	
 	<section>
 	  <div class="container">
@@ -54,7 +54,7 @@
 	      <div class="input-form col-md-12 mx-auto">
 	        <h4 class="mb-3">내 정보</h4>
 		        
-	        <c:url value="/myinfo" var="myinfoUrl" />
+	        <c:url value="/mypage/myinfo" var="myinfoUrl" />
 	        <form:form class="userForm validation-form" name="f" action="${myinfoUrl}" method="post" novalidate="novalidate">
 	        
 	        <!-- 권한 -->
@@ -136,7 +136,7 @@
 	</section>
 	
 	
-	<jsp:include page="../footer.jsp"/>
+	<jsp:include page="../../footer.jsp"/>
 	
   <!-- Scripts -->
   <script src="<%= request.getContextPath() %>/resources/chain/vendor/jquery/jquery.min.js"></script>
@@ -146,7 +146,7 @@
   <script src="<%= request.getContextPath() %>/resources/chain/assets/js/imagesloaded.js"></script>
   <script src="<%= request.getContextPath() %>/resources/chain/assets/js/popup.js"></script>
   <script src="<%= request.getContextPath() %>/resources/chain/assets/js/custom.js"></script>
-  <script src="<%= request.getContextPath() %>/resources/js/myinfo.js"></script>
+  <script src="<%= request.getContextPath() %>/resources/js/user/myinfo.js"></script>
   
   
 </body>

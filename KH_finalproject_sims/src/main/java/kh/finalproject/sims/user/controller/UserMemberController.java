@@ -157,6 +157,17 @@ public class UserMemberController {
 		return new Gson().toJson(result);
 	}
 	
+	// 계정 복구
+	@ResponseBody
+	@PostMapping("/enable")
+	public String updateEnable(ModelAndView mv, @RequestParam String id) {
+
+		HashMap<String, Object> result = new HashMap<String, Object>();
+		result.put("rel", service.updateEnable(id));
+		
+		return new Gson().toJson(result);
+	}
+	
 	// ID 중복 확인
 	@ResponseBody
 	@PostMapping("signup/idcheck")
@@ -176,54 +187,6 @@ public class UserMemberController {
 		System.out.println("이메일 인증 이메일 : " + email);
 		
 		return mailService.joinEmail(email);
-	}
-	
-	// 계정 복구
-	@ResponseBody
-	@PostMapping("enable")
-	public String updateEnable(ModelAndView mv, @RequestParam String id) {
-
-		HashMap<String, Object> result = new HashMap<String, Object>();
-		result.put("rel", service.updateEnable(id));
-		
-		return new Gson().toJson(result);
-	}
-	
-	// 계정 탈퇴
-	@ResponseBody
-	@PostMapping("disable")
-	public String updateDisable(ModelAndView mv, @RequestParam String id) {
-
-		HashMap<String, Object> result = new HashMap<String, Object>();
-		result.put("rel", service.updateDisable(id));
-		
-		return new Gson().toJson(result);
-	}
-	
-	// 내 정보 페이지
-	@GetMapping("myinfo/{id}")
-	public ModelAndView selectMyPageInfo(ModelAndView mv, @PathVariable String id) {
-		
-		UserMemberVo userVo = service.selectMyPageInfo(id);
-		
-		mv.addObject("userInfo", userVo);
-		mv.setViewName("user/myinfo");
-		
-		return mv;
-	}
-	
-	// 내 정보 페이지 수정
-	@PostMapping("myinfo")
-	public ModelAndView updateMyPageModify(ModelAndView mv, MemberVo memVo, UserMemberVo userVo) {
-		
-		userVo.setUserId(memVo.getId());
-		memVo.setPw(pwEncoder.encode(memVo.getPw()));
-		
-		service.updateMyPageModify(memVo, userVo);
-		
-		mv.setViewName("redirect:/logout");
-		
-		return mv;
 	}
 	
 }

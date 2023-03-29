@@ -14,7 +14,7 @@
    </div>
  </div>
   
-<header class="header-area header-sticky wow slideInDown" data-wow-duration="0.75s" data-wow-delay="0s">
+<header class="header-area header-sticky wow slideInDown sticky-top" data-wow-duration="0.75s" data-wow-delay="0s">
 	<div class="container">
 		<div class="row">
 			<div class="col-12">
@@ -33,14 +33,9 @@
 						<li><a href="<%=request.getContextPath()%>/login">로그인 </a></li>
 						</sec:authorize>
 						<sec:authorize access="isAuthenticated()">
-						<form:form action="${pageContext.request.contextPath}/logout" method="POST">
-							<li><input type="submit" value="로그아웃" /></li>
-						</form:form>
+						<li><a href="<%=request.getContextPath()%>/logout">로그아웃</a></li>
 						</sec:authorize>
-						<li><a href="<%=request.getContextPath()%>/">마이페이지</a></li>
-						<sec:authorize access="isAuthenticated()">
-						<li><a href="<%=request.getContextPath()%>/myinfo/<sec:authentication property="name"/>">테스트마이페이지</a></li>
-						</sec:authorize>
+						<li><a href="<%=request.getContextPath()%>/mypage">마이페이지</a></li>
 					</ul>
 					<a class='menu-trigger'> 
 						<span>Menu</span>
