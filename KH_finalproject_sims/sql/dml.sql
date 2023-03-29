@@ -466,3 +466,20 @@ INSERT INTO PLAN_ORDER VALUES (PLAN_ORDER_SEQ.NEXTVAL,
 -- 리뷰내역신고
 INSERT INTO REVIEW_REPORT (
 REVIEW_NO, REPORT_STATUS, REPORT_REASON) values (2, 1, '악의적인 리뷰');
+
+--통신사 아이디 받아서 요금제 가입 신청서 조회 // 추후에 수정할 예정, 민성
+--1) 조건
+select * 
+ from plan_order
+ where plan_no in
+ (select plan_no 
+    from plan_table 
+    where biz_name like (select biz_name from biz where biz_id = 'sejong'));  
+--2) 조인   
+ select * from plan_order
+ join plan_table
+ using (plan_no)
+ where plan_no in
+ (select plan_no 
+    from plan_table 
+    where biz_name like (select biz_name from biz where biz_id = 'sejong')); 
