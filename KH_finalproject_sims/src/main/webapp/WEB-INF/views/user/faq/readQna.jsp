@@ -1,3 +1,6 @@
+<%@page import="kh.finalproject.sims.user.model.vo.UserAnsVo"%>
+<%@page import="kh.finalproject.sims.user.model.vo.UserRplVo"%>
+<%@page import="java.util.List"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
@@ -13,13 +16,13 @@
 	<!-- 문의 게시판 질문상세 -->
 	<div>
 		<h4>질문</h4>
-			질문번호: ${questions.aqNo } <br>
-			질문작성자: ${questions.userId } <br>
-			질문제목: ${questions.aqTitle } <br>
-			질문내용: ${questions.aqContent } <br>
-			질문작성일: ${questions.aqDate } <br>
-			질문수정일: ${questions.aqRedate } <br>
-			조회수: ${questions.aqViews } <br>
+			질문번호: ${question.aqNo } <br>
+			질문작성자: ${question.userId } <br>
+			질문제목: ${question.aqTitle } <br>
+			질문내용: ${question.aqContent } <br>
+			질문작성일: ${question.aqDate } <br>
+			질문수정일: ${question.aqRedate } <br>
+			조회수: ${question.aqViews } <br>
 	</div>
 	
 	<!-- 답변 -->
@@ -42,7 +45,7 @@
 				
 				<!-- 댓글 -->
 				<p>댓글</p>
-				<c:forEach items="${replies}" var="rpl">
+				<c:forEach items="${ans.aaRpls}" var="rpl">
 					<br> 댓글번호: ${rpl.rplNo }
 					<br> 댓글내용: ${rpl.rplContent }
 					<c:if test="${not empty rpl.adminId }">
@@ -68,13 +71,15 @@
 			</c:forEach>
 		</c:if>
 		
-		<!-- 답변달기 -->
-		<form action="${cpath }/faq/qna/${questions.aqNo}/answer" method="post">
-			<input type="hidden" value="${username }" name="userId">
-			<input type="hidden" value="${questions.aqNo }" name="aqNo">
-			<input type="text" name="aaContent" placeholder="답변을 작성해주세요">
-			<input type="submit" value="답변하기">
-		</form>
+		<c:if test="">
+			<!-- 답변달기 -->
+			<form action="${cpath }/faq/qna/${question.aqNo}/answer" method="post">
+				<input type="hidden" value="${username }" name="userId">
+				<input type="hidden" value="${question.aqNo }" name="aqNo">
+				<input type="text" name="aaContent" placeholder="답변을 작성해주세요">
+				<input type="submit" value="답변하기">
+			</form>
+		</c:if>
 	</div>
 </body>
 </html>
