@@ -6,7 +6,10 @@ import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import kh.finalproject.sims.admin.model.vo.AdminFaqVo;
+import kh.finalproject.sims.admin.model.vo.AdminQnaAnsVo;
 import kh.finalproject.sims.admin.model.vo.AdminQnaMngtVo;
+import kh.finalproject.sims.admin.model.vo.AdminQnaReplyVo;
 
 @Repository
 public class AdminQnaMngtDao {
@@ -15,22 +18,22 @@ public class AdminQnaMngtDao {
 	SqlSession sqlSession;
 	
 	// 자주묻는질문 리스트
-	public List<AdminQnaMngtVo> selectFaqList() {
+	public List<AdminFaqVo> selectFaqList() {
 		return sqlSession.selectList("admin.selectFaqList");
 	}
 	
 	// 자주묻는질문 상세보기
-	public AdminQnaMngtVo selectFaqDetail(int faqNo) {
+	public AdminFaqVo selectFaqDetail(int faqNo) {
 		return sqlSession.selectOne("admin.selectFaqDetail", faqNo);
 	}
 	
 	// 자주묻는질문 작성하기
-	public int insertFaqWrite(AdminQnaMngtVo vo) {
+	public int insertFaqWrite(AdminFaqVo vo) {
 		return sqlSession.insert("admin.insertFaqWrite", vo);
 	}
 	
 	// 자주묻는질문 수정하기
-	public int selectFaqModify(AdminQnaMngtVo vo) {
+	public int selectFaqModify(AdminFaqVo vo) {
 		return sqlSession.update("admin.selectFaqModify", vo);
 	}
 	
@@ -55,14 +58,14 @@ public class AdminQnaMngtDao {
 //	}
 	
 	// 문의 내역 답변 리스트
-	public List<AdminQnaMngtVo> selectQnaAnsList(int aqNo) {
+	public List<AdminQnaAnsVo> selectQnaAnsList(int aqNo) {
 		return sqlSession.selectList("admin.selectQnaAnsList", aqNo);
 	}
 	
 	// 문의 내역 댓글 리스트
-	public List<AdminQnaMngtVo> selectQnaReplyList(int aaNo) {
-		return sqlSession.selectList("admin.selectQnaReplyList", aaNo);
-	}
+//	public List<AdminQnaMngtVo> selectQnaReplyList(int aaNo) {
+//		return sqlSession.selectList("admin.selectQnaReplyList", aaNo);
+//	}
 	
 	
 	

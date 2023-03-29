@@ -86,12 +86,12 @@
 					                    </div>
 										<div class="card-body pb-0">
 					                        <div class="review-block">
-					                        	<c:forEach var="ansList" items="${qnaAnsList }" >
+					                        	<c:forEach var="ans" items="${qnaAnsList }" >
 						                            <div class="row"   style="padding-bottom: 0px;">
 						                                <div class="col">
-							                                <c:if test="${not empty ansList.adminId}">
-							                                    <h6 class="m-b-15">${ansList.adminId }<span class="float-right f-13 text-muted">${ansList.aaDate }</span></h6>
-							                               		 <p class="m-t-15 m-b-15 text-muted">${ansList.aaContent}</p>
+							                                <c:if test="${not empty ans.adminId}">
+							                                    <h6 class="m-b-15">${ans.adminId }<span class="float-right f-13 text-muted">${ans.aaDate }</span></h6>
+							                               		 <p class="m-t-15 m-b-15 text-muted">${ans.aaContent}</p>
 																<a href="#!" class="badge badge-primary m-t-5 m-b-20" data-toggle="collapse" data-target="#collapseExample" aria-expanded="true" aria-controls="collapseExample">댓글</a>
 																<div class="collapse show alert alert-secondary" id="collapseExample" style="">
 																	<div class="card-body m-b-15 m-t-20">
@@ -100,24 +100,25 @@
 								                                       		 <a href="#!" class="m-r-30 text-muted text-muted">댓글 등록</a>
 								                               			</div>
 								                               			<div class="m-t-40">
-								                               			<c:forEach var="replyList" items="${qnaReplyList }" >
-										                                    <h6 class="m-b-15">${replyList.adminId }<span class="float-right f-13 text-muted">${replyList.rplDate }</span></h6>
-										                               		 <p class="m-t-15 m-b-15 text-muted">${replyList.rplContent }</p>								                               			
+								                               			<!-- 대댓글 -->
+								                               			<c:forEach var="reply" items="${ans.replyList }" >
+										                                    <h6 class="m-b-15">${reply.adminId }<span class="float-right f-13 text-muted">${replyList.rplDate }</span></h6>
+										                               		 <p class="m-t-15 m-b-15 text-muted">${reply.rplContent }</p>								                               			
 								                               			</c:forEach>
 								                               			</div>
 																	</div>
 																</div>
 							                                </c:if>
-							                                <c:if test="${not empty ansList.userId}">
-						                                    	<h6 class="m-b-15">${ansList.userId }<span class="float-right f-13 text-muted">${ansList.aaDate }</span></h6>
-						                                    	<p class="m-t-15 m-b-15 text-muted">${ansList.aaContent}</p>
+							                                <c:if test="${not empty ans.userId}">
+						                                    	<h6 class="m-b-15">${ans.userId }<span class="float-right f-13 text-muted">${ans.aaDate }</span></h6>
+						                                    	<p class="m-t-15 m-b-15 text-muted">${ans.aaContent}</p>
 						                                    </c:if>	
 						                                </div>
 						                            </div>
 					                            </c:forEach>
 					                        </div>
 					                    </div>
-				                    </div>
+				                    </div> 
 				                </div>
 				              <!-- 답변 끝 -->
 						</div>

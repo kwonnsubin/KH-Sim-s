@@ -17,6 +17,7 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 
 import kh.finalproject.sims.admin.model.service.AdminQnaMngtService;
+import kh.finalproject.sims.admin.model.vo.AdminFaqVo;
 import kh.finalproject.sims.admin.model.vo.AdminQnaMngtVo;
 
 @RequestMapping("/admin")
@@ -40,7 +41,7 @@ public class AdminQnaMngtController {
 			  ModelAndView mv
 			, @PathVariable int faqNo
 			) {
-		AdminQnaMngtVo result = service.selectFaqDetail(faqNo);
+		AdminFaqVo result = service.selectFaqDetail(faqNo);
 		mv.addObject("faqlist", result);
 		mv.setViewName("admin/faqdetail");
 		return mv;
@@ -64,7 +65,7 @@ public class AdminQnaMngtController {
 	@PostMapping("/faqwrite")
 	public ModelAndView faqwrite(
 			ModelAndView mv
-		  , AdminQnaMngtVo vo
+		  , AdminFaqVo vo
 			) {
 		service.insertFaqWrite(vo);
 		mv.setViewName("redirect:/admin/faqlist");
@@ -78,7 +79,7 @@ public class AdminQnaMngtController {
 			ModelAndView mv
 		  , @PathVariable int faqNo
 			) {
-		AdminQnaMngtVo result = service.selectFaqDetail(faqNo);
+		AdminFaqVo result = service.selectFaqDetail(faqNo);
 		mv.addObject("faqlist", result); // 기존 내용 띄우기
 		mv.setViewName("admin/faqupdate");
 		return mv;
@@ -90,7 +91,7 @@ public class AdminQnaMngtController {
 	public ModelAndView selectFaqModify(
 		     ModelAndView mv
 		   , @PathVariable int faqNo
-		   , AdminQnaMngtVo vo) {
+		   , AdminFaqVo vo) {
 		service.selectFaqModify(vo);
 		mv.setViewName("redirect:/admin/faqdetail/"+vo.getFaqNo());
 		return mv;
@@ -123,9 +124,8 @@ public class AdminQnaMngtController {
 			,@PathVariable int aqNo
 			,AdminQnaMngtVo vo
 			) {
-		mv.addObject("qnaDetail", service.selectQnaListDetail(aqNo));
+		mv.addObject("qnaDetail", service.selectQnaListDetail(aqNo)); 
 		mv.addObject("qnaAnsList", service.selectQnaAnsList(aqNo));
-		mv.addObject("qnaReplyList", service.selectQnaReplyList(vo.getAaNo()));
 		mv.setViewName("admin/qna/detail");
 		return mv;
 	}

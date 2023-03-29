@@ -2,21 +2,23 @@ package kh.finalproject.sims.admin.model.service;
 
 import java.util.List;
 
+import kh.finalproject.sims.admin.model.vo.AdminFaqVo;
+import kh.finalproject.sims.admin.model.vo.AdminQnaAnsVo;
 import kh.finalproject.sims.admin.model.vo.AdminQnaMngtVo;
 
 public interface AdminQnaMngtService {
 	
 	// 자주묻는질문 목록보기
-	public List<AdminQnaMngtVo> selectFaqList();
+	public List<AdminFaqVo> selectFaqList();
 	
 	// 자주묻는질문 상세보기
-	public AdminQnaMngtVo selectFaqDetail(int faqNo);
+	public AdminFaqVo selectFaqDetail(int faqNo);
 	
 	// 자주묻는질문 작성하기
-	public int insertFaqWrite(AdminQnaMngtVo vo);
+	public int insertFaqWrite(AdminFaqVo vo);
 	
 	// 자주묻는질문 수정하기
-	public int selectFaqModify(AdminQnaMngtVo vo);
+	public int selectFaqModify(AdminFaqVo vo);
 	
 	// 자주묻는질문 삭제하기
 	public int deleteFaq(int faqNo);
@@ -31,8 +33,8 @@ public interface AdminQnaMngtService {
 //	public List<AdminQnaMngtVo> selectQnaListDetail(int aqNo);
 	
 	// 문의 내역 답변 리스트
-	public List<AdminQnaMngtVo> selectQnaAnsList(int aqNo);
+	public List<AdminQnaAnsVo> selectQnaAnsList(int aqNo);
 	
 	// 문의 내역 댓글 리스트
-	public List<AdminQnaMngtVo> selectQnaReplyList(int aaNo);
+//	public List<AdminQnaMngtVo> selectQnaReplyList(int aaNo);
 }

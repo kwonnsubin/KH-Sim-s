@@ -6,7 +6,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import kh.finalproject.sims.admin.model.dao.AdminQnaMngtDao;
+import kh.finalproject.sims.admin.model.vo.AdminFaqVo;
+import kh.finalproject.sims.admin.model.vo.AdminQnaAnsVo;
 import kh.finalproject.sims.admin.model.vo.AdminQnaMngtVo;
+import kh.finalproject.sims.admin.model.vo.AdminQnaReplyVo;
 
 @Service
 public class AdminQnaMngtServiceImpl implements AdminQnaMngtService{
@@ -15,23 +18,23 @@ public class AdminQnaMngtServiceImpl implements AdminQnaMngtService{
 	
 	// 자주묻는질문 목록
 	@Override
-	public List<AdminQnaMngtVo> selectFaqList() {
+	public List<AdminFaqVo> selectFaqList() {
 		return dao.selectFaqList();
 	}
 
 	// 자주묻는질문 상세보기
 	@Override
-	public AdminQnaMngtVo selectFaqDetail(int faqNo) {
+	public AdminFaqVo selectFaqDetail(int faqNo) {
 		return dao.selectFaqDetail(faqNo);
 	}
 
 	@Override
-	public int insertFaqWrite(AdminQnaMngtVo vo) {
+	public int insertFaqWrite(AdminFaqVo vo) {
 		return dao.insertFaqWrite(vo);
 	}
 
 	@Override
-	public int selectFaqModify(AdminQnaMngtVo vo) {
+	public int selectFaqModify(AdminFaqVo vo) {
 		return dao.selectFaqModify(vo);
 	}
 
@@ -55,16 +58,16 @@ public class AdminQnaMngtServiceImpl implements AdminQnaMngtService{
 
 	// 문의 내역 답변 리스트
 	@Override
-	public List<AdminQnaMngtVo> selectQnaAnsList(int aqNo) {
+	public List<AdminQnaAnsVo> selectQnaAnsList(int aqNo) {
 		// TODO Auto-generated method stub
 		return dao.selectQnaAnsList(aqNo);
 	}
 	
 	// 문의 내역 댓글 리스트
-	@Override
-	public List<AdminQnaMngtVo> selectQnaReplyList(int aaNo) {
-		return dao.selectQnaReplyList(aaNo);
-	}
+//	@Override
+//	public List<AdminQnaMngtVo> selectQnaReplyList(int aaNo) {
+//		return dao.selectQnaReplyList(aaNo);
+//	}
 	
 //	// 문의 내역 상세보기 JOIN
 //	@Override

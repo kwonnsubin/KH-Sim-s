@@ -1,9 +1,30 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="admin">
+
+	<!-- 1대 다 -->
+	<resultMap type="kh.finalproject.sims.admin.model.vo.AdminQnaAnsVo" id="adminQnaAnsCollectionMap">
+		<id column="AA_NO" property="aaNo"/>
+		<result column="AQ_NO" property="aQvo"/>
+		<result column="ANS_ADMIN_ID" property="adminId"/>
+		<result column="ANS_USER_ID" property="userId"/>
+		<result column="AA_CONTENT" property="aaContent"/>
+		<result column="AA_DATE" property="aaDate"/>
+		<result column="AA_REDATE" property="aaRedate"/>
+		
+		<collection column="AA_NO" property="replyList" ofType="kh.finalproject.sims.admin.model.vo.AdminQnaReplyVo">
+			<id column="RPL_NO" property="rplNo"/>
+			<result column="RPL_DATE" property="rplDate"/>
+			<result column="RPL_REDATE" property="rplRedate"/>
+			<result column="RPL_CONTENT" property="rplContent"/>
+			<result column="RPL_USER_ID" property="adminId"/>
+			<result column="RPL_ADMIN_ID" property="userId"/>
+		</collection>
+	</resultMap>
+
 	<!-- 자주묻는질문 -->
 	<!-- 자주묻는질문 목록 -->
-	<select id="selectFaqList" resultType="adQvo">
+	<select id="selectFaqList" resultType="kh.finalproject.sims.admin.model.vo.AdminFaqVo">
 		SELECT FAQ_NO,
 			FAQ_TITLE,
 			FAQ_CONTENT,
@@ -15,13 +36,13 @@
 			ORDER BY FAQ_REDATE DESC
 	</select>
 	<!-- 자주묻는질문 상세내용 -->
-	<select id="selectFaqDetail" resultType="adQvo">
+	<select id="selectFaqDetail" resultType="kh.finalproject.sims.admin.model.vo.AdminFaqVo">
 		SELECT *
 			FROM FAQ
 	    	WHERE FAQ_NO = #{faqNo}
 	</select>
 	<!-- 자주묻는질문 작성 -->
-  	<insert id="insertFaqWrite" parameterType="adQvo">
+  	<insert id="insertFaqWrite" parameterType="kh.finalproject.sims.admin.model.vo.AdminFaqVo">
 		INSERT INTO FAQ (FAQ_NO, FAQ_TITLE, FAQ_CONTENT, ADMIN_ID) VALUES(
 		    FAQ_NO_SEQ.NEXTVAL,
 			#{faqTitle},
@@ -30,7 +51,7 @@
 		)
 	</insert>
 	<!-- 자주묻는질문 수정  -->
-	<update id="selectFaqModify" parameterType="adQvo">
+	<update id="selectFaqModify" parameterType="kh.finalproject.sims.admin.model.vo.AdminFaqVo">
 		UPDATE FAQ
 		SET 
 		 FAQ_TITLE = #{faqTitle}
@@ -154,16 +175,10 @@
 	  -->
 	
 	<!-- 문의 내역 답변(댓글) 조회 -->
-	<select id="selectQnaAnsList" resultType="kh.finalproject.sims.admin.model.vo.AdminQnaMngtVo">
-		SELECT
-		AA_NO
-		, AQ_NO
-		, ADMIN_ID
-		, USER_ID
-		, AA_CONTENT
-		, AA_DATE
-		, AA_REDATE
-		FROM QNA_ANS
+	<!-- <select id="selectQnaAnsList" resultType="kh.finalproject.sims.admin.model.vo.AdminQnaAnsVo"> AdminQnaAnsVo안에  List<replyVo>가 들어있는데 이건 왜 안되는걸까요?? -->
+	<select id="selectQnaAnsList" resultMap="adminQnaAnsCollectionMap">
+        SELECT AQ_NO, AA_NO, QNA_RPL.RPL_NO, QNA_ANS.ADMIN_ID AS ANS_ADMIN_ID, QNA_ANS.USER_ID AS ANS_USER_ID, AA_CONTENT, AA_DATE, AA_REDATE, QNA_RPL.RPL_CONTENT, QNA_RPL.ADMIN_ID AS RPL_ADMIN_ID, QNA_RPL.USER_ID AS RPL_USER_ID, QNA_RPL.RPL_DATE, QNA_RPL.RPL_REDATE
+		FROM QNA_ANS LEFT OUTER JOIN QNA_RPL USING (AA_NO)
 		WHERE AQ_NO = #{aqNo}
 	</select>
 	
