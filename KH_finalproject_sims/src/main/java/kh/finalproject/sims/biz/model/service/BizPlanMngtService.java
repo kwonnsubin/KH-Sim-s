@@ -6,6 +6,6 @@ import kh.finalproject.sims.biz.model.vo.BizPlanMngtVo;
 
 public interface BizPlanMngtService {
 
-	public List<BizPlanMngtVo> selectBizPlanList();
+	public List<BizPlanMngtVo> selectBizPlanList(String bizid);
 
 }

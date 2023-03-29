@@ -1,5 +1,7 @@
 package kh.finalproject.sims.biz.model.service;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -35,5 +37,10 @@ public class BizApplyMngtServiceImpl implements BizApplyMngtService {
 	@Override
 	public int updateHoldStatus() {
 		return dao.updateHoldStatus();
+	}
+
+	@Override
+	public List<BizApplyVo> selectBizPlanApplyList(String bizid) {
+		return dao.selectBizPlanApplyList(bizid);
 	}
 }

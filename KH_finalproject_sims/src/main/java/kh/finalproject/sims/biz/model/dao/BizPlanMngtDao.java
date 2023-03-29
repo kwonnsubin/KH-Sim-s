@@ -13,8 +13,8 @@ public class BizPlanMngtDao {
 	@Autowired
 	private SqlSession sqlSession;
 	
-	public List<BizPlanMngtVo> selectBizPlanList(){
-		return sqlSession.selectList("bizPlan.selectPlanList");
+	public List<BizPlanMngtVo> selectBizPlanList(String bizid){
+		return sqlSession.selectList("bizPlan.selectPlanList", bizid);
 	}
 	
 }

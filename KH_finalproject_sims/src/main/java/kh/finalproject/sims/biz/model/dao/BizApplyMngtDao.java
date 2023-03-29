@@ -1,5 +1,7 @@
 package kh.finalproject.sims.biz.model.dao;
 
+import java.util.List;
+
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
@@ -26,5 +28,9 @@ public class BizApplyMngtDao {
 
 	public int updateHoldStatus() {
 		return sqlSession.update("apply.updateHoldStatus");
+	}
+
+	public List<BizApplyVo> selectBizPlanApplyList(String bizid) {
+		return sqlSession.selectList("apply.selectBizPlanApplyList", bizid);
 	}
 }

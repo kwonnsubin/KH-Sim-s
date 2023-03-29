@@ -1,6 +1,9 @@
 package kh.finalproject.sims.biz.controller;
 
+import java.security.Principal;
 import java.util.List;
+
+import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -21,9 +24,15 @@ public class BizPlanMngtController {
 	
 	// 자사 요금제 목록
 	@GetMapping("/planList")
-	public ModelAndView selectBizPlanList(ModelAndView mv) {
+	public ModelAndView selectBizPlanList(ModelAndView mv
+			, HttpServletRequest request
+			) {
 		
-		List<BizPlanMngtVo> planList = service.selectBizPlanList();
+		Principal principal = request.getUserPrincipal();
+		String bizid = principal.getName();
+		System.out.println("통신사아이디 : "+bizid);
+		
+		List<BizPlanMngtVo> planList = service.selectBizPlanList(bizid);
 		System.out.println(planList);
 		
 		mv.addObject("planList", planList);
@@ -33,7 +42,7 @@ public class BizPlanMngtController {
 	}
 	
 	//통신사 요금제 등록
-	@PostMapping("/registerPlan")
+	@GetMapping("/registerPlan") //왜 GET??
 	public ModelAndView registerBizPlan(ModelAndView mv) {
 		
 		mv.setViewName("/biz/registerPlan");

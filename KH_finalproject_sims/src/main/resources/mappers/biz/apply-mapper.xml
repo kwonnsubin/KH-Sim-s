@@ -1,6 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="apply">
+
+	<!-- orderNo로 받아야할 것 같은데.. -->
   <select id = "selectApplyDetailUser" resultType ="kh.finalproject.sims.biz.model.vo.BizApplyVo">
   	<!-- 유저 기본정보 -->
   	select * 
@@ -25,4 +27,16 @@
   <update id="updateHoldStatus">
   	update plan_order set order_status = 3 where user_id = 'user1'
   </update>
+  
+  <!-- 요금제 가입 신청 목록 -->
+  <select id="selectBizPlanApplyList" resultType="kh.finalproject.sims.biz.model.vo.BizApplyVo">
+  select rownum, plan_name, order_status, order_date 
+	 from plan_order
+	 join plan_table
+	 using (plan_no)
+	 where plan_no in
+	 (select plan_no 
+	    from plan_table 
+	    where biz_name like (select biz_name from biz where biz_id = #{bizid}))
+	</select>
 </mapper>

@@ -4,6 +4,6 @@
 	<select id="selectPlanList" resultType="kh.finalproject.sims.biz.model.vo.BizPlanMngtVo">
 	select rownum, plan_name, plan_date
  		from plan_table
- 		where biz_name =(select biz_name from biz where biz_id = 'kctv')
+ 		where biz_name =(select biz_name from biz where biz_id = #{bizid})
 	</select>
 </mapper>

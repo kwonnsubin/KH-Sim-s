@@ -95,16 +95,48 @@ public class BizApplyVo {
 //	PLAN_DATA                  NUMBER        
 //	PLAN_VOICE_OVER            NUMBER(7,3)   
 //	PLAN_MESSAGE_OVER          NUMBER        
-//	PLAN_DATA_OVER             NUMBER(7,3) 
+//	PLAN_DATA_OVER             NUMBER(7,3)   
+//	PLAN_DATE                  DATE 
 	
 	//desc plan_table;
 	//private int planNo;
 	private String planName;
 	private String bizName;
+	private int netNo;
+	private int genNo;
 	private int planPrice;
 	private int planVoice;
 	private int planMessage;
-	private int data;
+	private int planData;
+	private int planVoiceOver;
+	private int planMessageOver;
+	private int planDataOver;
+	private int planDate;
 	
-
+	//TODO biz 테이블도 추가
+	private String bizId;
+	//private String bizName;
+	private String bizSsn;
+	private String bizCrn;
+	private String bizEmail;
+	private String bizPhone;
+	private String bizFax;
+	private String bizOwnerName;
+	private String bizHp;
+	private int bizZipCode;
+	private String bizLocation;
+	private String bizCardPayDate;
+	private String bizAccPayDate;
+	private String bizBeginTime;
+	private String bizEndTime;
+	private String bizClosedDay;
+	private int bizReviewStar;
+	private String phoneOpTime;
+	private String phoneOpTimeUsim;
+	private String network;
+	private Date writeDate;
+	private Date updateDate;
+	private String logoRenameFilename;
+	
+	private int rownum;
 }
