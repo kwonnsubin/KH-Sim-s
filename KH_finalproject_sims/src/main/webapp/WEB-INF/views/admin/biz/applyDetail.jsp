@@ -1,12 +1,13 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>    
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>    	
+    
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
-<title>관리자의 사용자 관리 상세</title>
+<title></title>
 </head>
 <body>
 <jsp:include page="../include/header.jsp" />
@@ -22,7 +23,7 @@
 									<div class="row align-items-center">
 										<div class="col-md-12">
 											<div class="page-header-title">
-												<h5 class="m-b-10">사용자 관리
+												<h5 class="m-b-10">통신사 관리
 													<c:choose>
 														<c:when test="${cmd eq 'read' }"> 상세</c:when>
 														<c:otherwise> 수정</c:otherwise>
@@ -31,8 +32,8 @@
 											</div>
 											<ul class="breadcrumb">
 												<li class="breadcrumb-item"><a href=""><i class="feather icon-home"></i></a></li>
-												<li class="breadcrumb-item"><a href="<%=request.getContextPath()%>/adminUser/userList/"><i class="breadcrumb-item"></i>사용자 관리</a></li>
-												<li class="breadcrumb-item"><a href=""><i class="breadcrumb-item"></i>사용자 관리 
+												<li class="breadcrumb-item"><a href="<%=request.getContextPath()%>/adminBiz/applyList/"><i class="breadcrumb-item"></i>통신사 관리</a></li>
+												<li class="breadcrumb-item"><a href=""><i class="breadcrumb-item"></i>통신사 관리 
 													<c:choose>
 														<c:when test="${cmd eq 'read' }"> 상세</c:when>
 														<c:otherwise> 수정</c:otherwise>
@@ -46,7 +47,7 @@
 							<form action="<%=request.getContextPath()%>/adminUser/saveUserModify" method="post">
 								<div class="col-md-12">
 									<div class="simsBtn m-b-15">
-										<input class="btn btn-primary right m-l-10" type="button" onclick="location.href='<%=request.getContextPath()%>/adminUser/userList'" value="목록">
+										<input class="btn btn-primary right m-l-10" type="button" onclick="location.href='<%=request.getContextPath()%>/adminBiz/applyList'" value="목록">
 											<c:choose>
 												<c:when test="${cmd eq 'read' }">
 													<input class="btn btn-primary right" type="button" onclick="location.href='<%=request.getContextPath()%>/adminUser/selectUserModify/${userDetail.userId}'" value="수정">
@@ -62,49 +63,41 @@
 							 <div class="col-sm-12">
                 				<div class="card">
                     				<div class="card-header">
-                        				<h5>사용자 상세정보</h5>
+                        				<h5>통신사 정보</h5>
                     				</div>
                     				<form>
                     				<div class="card-body">
 	                                    <div class="form-group row">
-	                                        <label for="userId" class="col-sm-1 col-form-label text-center">아이디</label>
+	                                        <label for="bizName" class="col-sm-1 col-form-label text-center">법인명</label>
 	                                        <div class="col-sm-5">
-	                                            <input type="text" class="form-control"  name="userId" <c:if test="${cmd eq 'read' }">readonly</c:if> value="${userDetail.userId}">
+	                                            <input type="text" class="form-control"  name="bizName" <c:if test="${cmd eq 'read' }">readonly</c:if> value="${applyDetail.bizName}">
 	                                        </div>
-	                                        <label for="userName" class="col-sm-1 col-form-label text-center">이름</label>
+	                                        <label for="bizSsn" class="col-sm-1 col-form-label text-center">법인 등록번호</label>
 	                                        <div class="col-sm-5">
-	                                            <input type="text" class="form-control"  name="userName" <c:if test="${cmd eq 'read' }">readonly</c:if> value="${userDetail.userName}">
+	                                            <input type="text" class="form-control"  name="bizSsn" <c:if test="${cmd eq 'read' }">readonly</c:if> value="${applyDetail.bizSsn}">
 	                                        </div>
 	                                    </div>
 	                           			 <div class="form-group row">
-	                                        <label for="userEmail" class="col-sm-1 col-form-label text-center">메일</label>
+	                                        <label for="bizCrn" class="col-sm-1 col-form-label text-center">사업자번호</label>
 	                                        <div class="col-sm-5">
-	                                            <input type="text" class="form-control"  name="userEmail" <c:if test="${cmd eq 'read' }">readonly</c:if> value="${userDetail.userEmail}">
+	                                            <input type="text" class="form-control"  name="bizCrn" <c:if test="${cmd eq 'read' }">readonly</c:if> value="${applyDetail.bizCrn}">
 	                                        </div>
-	                                         <label for="userGender" class="col-sm-1 col-form-label text-center">성별</label>
+	                                         <label for="bizId" class="col-sm-1 col-form-label text-center">아이디</label>
 	                                        <div class="col-sm-5">
-	                                            <input type="text" class="form-control"  name="userGender" <c:if test="${cmd eq 'read' }">readonly</c:if> value="${userDetail.userGender}">
+	                                            <input type="text" class="form-control"  name="bizId" <c:if test="${cmd eq 'read' }">readonly</c:if> value="${applyDetail.bizId}">
 	                                        </div>
 	                                        
 	                                    </div>
 	                                    <div class="form-group row">
-	                                        <label for="userSsn" class="col-sm-1 col-form-label text-center">생년월일</label>
+	                                        <label for="bizEmail" class="col-sm-1 col-form-label text-center">이메일</label>
 	                                        <div class="col-sm-5">
-	                                            <input type="text" class="form-control"  name="userSsn" <c:if test="${cmd eq 'read' }">readonly</c:if> value="${userDetail.userSsn}">
+	                                            <input type="text" class="form-control"  name="bizEmail" <c:if test="${cmd eq 'read' }">readonly</c:if> value="${applyDetail.bizEmail}">
 	                                        </div>
-	                                        <label for="userPhone" class="col-sm-1 col-form-label text-center">전화번호</label>
+	                                        <label for="bizPhone" class="col-sm-1 col-form-label text-center">연락처</label>
 	                                        <div class="col-sm-5">
-	                                            <input type="text" class="form-control"  name="userPhone" <c:if test="${cmd eq 'read' }">readonly</c:if> value="${userDetail.userPhone}">
+	                                            <input type="text" class="form-control"  name="bizPhone" <c:if test="${cmd eq 'read' }">readonly</c:if> value="${applyDetail.bizPhone}">
 	                                        </div>
 	                                    </div>
-	                                    <div class="form-group">
-                                			<label for="userAddress" class="col-sm-1 col-form-label text-center">주소</label>
-                                			<input type="text" class="form-control"  name="userAddress" <c:if test="${cmd eq 'read' }">readonly</c:if> value="${userDetail.userAddress}">
-                            			</div>
-                            			<div class="form-group">
-                                			<label for="userAddress2" class="col-sm-1 col-form-label text-center">상세 주소</label>
-                                			<input type="text" class="form-control"  name="userAddress2" <c:if test="${cmd eq 'read' }">readonly</c:if> value="${userDetail.userAddress}">
-                            			</div>
                             		</div>	
                             		</form>
 								</div>

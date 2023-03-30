@@ -75,9 +75,9 @@
 														<c:forEach var="list" items="${noticeList}" varStatus="status">
 															<tr>
 																<td>${status.count}</td>
-																<td><a href="<%=request.getContextPath()%>/adminNotice/noticeDetail/${list.ntcNo}">${list.ntcTitle}</a>&nbsp;&nbsp;</td>
+																<td><a href="<%=request.getContextPath()%>/adminNotice/noticeDetail/${list.ntcNo}">${list.ntcTitle}</a></td>
 																
-																<td>${list.adminId}&nbsp;&nbsp;&nbsp;</td>
+																<td>${list.adminId}</td>
 																<td><fmt:formatDate value="${list.ntcDate}" pattern="yyyy.MM.dd"/> </td>
 															</tr>
 														</c:forEach>

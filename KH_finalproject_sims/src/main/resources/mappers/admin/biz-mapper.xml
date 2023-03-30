@@ -3,18 +3,51 @@
 <mapper namespace="adminBiz">
 
 	<!-- 통신사 신청정보 리스트 -->
-	<select id="selectBizApplyList" resultType="adBizVo">
-	/** 통신사 신청정보 리스트(selectBizApplyList)**/
+	<select id="selectApplyList" resultType="adBizVo">
+	/** 통신사 신청정보 리스트(selectApplyList)**/
 		SELECT
 			*
 		FROM 
 			BIZ A
 			INNER JOIN MEMBER B ON A.BIZ_ID = B.ID
 		
+	</select>
+	<!-- 통신사 신청정보 상세 -->
+	<select id="selectApplyDetail" resultType="adBizVo">
+	/** 관리자의 통신사 신청정보 상세 (selectApplyDetail)**/	
+		SELECT
+			*
+		FROM
+			BIZ
+		WHERE 
+			BIZ_ID = #{bizId}		
+	
 	
 	</select>
-
-
+	<!-- 통신사 정보 상세 -->
+	<select id="selectBizDetail" resultType="adBizVo">
+	/** 관리자의 통신사 정보 상세 (selectBizDetail)**/	
+		SELECT
+			*
+		FROM
+			BIZ
+		WHERE 
+			BIZ_OWNER_NAME = #{bizOwnerName} 
+			
+	</select>
+	
+	<!-- 통신사 요금제 개통 신청 리스트 -->
+	<select id="selectBizPlanApplyList" resultType="adBizVo">
+	/** 통신사 요금제 개통 신청 리스트(selectBizPlanApplyList)**/
+		SELECT
+			*
+		FROM 
+			PLAN_ORDER A
+			INNER JOIN PLAN_TABLE B ON A.PLAN_NO = B.PLAN_NO
+	</select>
+	
+	
+	
 
 
 </mapper>
