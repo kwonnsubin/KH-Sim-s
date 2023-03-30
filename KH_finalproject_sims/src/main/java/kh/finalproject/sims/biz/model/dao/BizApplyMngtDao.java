@@ -13,12 +13,12 @@ public class BizApplyMngtDao {
 	@Autowired
 	private SqlSession sqlSession;
 	
-	public BizApplyVo selectApplyDetailUser() {
-		return sqlSession.selectOne("apply.selectApplyDetailUser");
+	public BizApplyVo selectApplyDetailUser(int orderNo) {
+		return sqlSession.selectOne("apply.selectApplyDetailUser",orderNo);
 	}
 	
-	public BizApplyVo selectApplyDetailPlan() {
-		return sqlSession.selectOne("apply.selectApplyDetailPlan");
+	public BizApplyVo selectApplyDetailPlan(int orderNo) {
+		return sqlSession.selectOne("apply.selectApplyDetailPlan",orderNo);
 	}
 
 

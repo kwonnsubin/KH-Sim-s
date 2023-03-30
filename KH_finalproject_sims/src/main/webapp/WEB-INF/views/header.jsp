@@ -24,8 +24,8 @@
 					</a>
 					<!-- ***** Logo End ***** -->
 					<!-- ***** Menu Start ***** -->
-					<ul class="nav">
-						<li><a href="<%=request.getContextPath()%>/" class="active">홈</a></li>
+					<ul class="nav header-li">
+						<li><a href="<%=request.getContextPath()%>/">홈</a></li>
 						<li><a href="<%=request.getContextPath()%>/plans">요금제 찾기</a></li>
 						<li><a href="<%=request.getContextPath()%>/faq/faqlist">자주 묻는 질문</a></li>
 						<sec:authorize access="isAnonymous()">
@@ -34,7 +34,7 @@
 						<sec:authorize access="isAuthenticated()">
 						<li><a href="<%=request.getContextPath()%>/logout">로그아웃</a></li>
 						</sec:authorize>
-						<li><a href="<%=request.getContextPath()%>/mypage">마이페이지</a></li>
+						<li><a href="<%=request.getContextPath()%>/mypage" class="mypage">마이페이지</a></li>
 					</ul>
 					<a class='menu-trigger'> 
 						<span>Menu</span>
@@ -45,4 +45,3 @@
 		</div>
 	</div>
 </header>
-

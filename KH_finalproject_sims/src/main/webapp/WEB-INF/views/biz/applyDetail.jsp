@@ -21,7 +21,7 @@
 				<th scope="row">
 					<span>신청번호</span>
 				</th>
-				<td>${applyDetail.orderNo }</td>
+				<td>${applyDetailPlan.orderNo }</td>
 				<th scope="row">
 					<span>요금제명</span>
 				</th>
@@ -37,7 +37,7 @@
                 <th scope="row">
                     <span>신청일자</span>
                 </th>
-                <td>${applyDetail.orderDate }</td>
+                <td>${applyDetailPlan.orderDate }</td>
 			</tr>
 			<tr>
 				<th scope="row">
@@ -70,7 +70,7 @@
 				</th>
 				<td>
 				<c:choose>
-					<c:when test= "${applyDetail.joinCategory eq 1}">
+					<c:when test= "${applyDetailPlan.joinCategory eq 1}">
 						번호이동
 					</c:when>
 					<c:otherwise>
@@ -83,7 +83,7 @@
 				</th>
 				<td>
 				<c:choose>
-					<c:when test ="${applyDetail.simType eq 1 }">
+					<c:when test ="${applyDetailPlan.simType eq 1 }">
 						일반유심
 					</c:when>
 					<c:otherwise>
@@ -98,7 +98,7 @@
 				</th>
 				<td>
 				<c:choose>
-					<c:when test ="${applyDetail.simYn eq 1}">
+					<c:when test ="${applyDetailPlan.simYn eq 1}">
 						N
 					</c:when>
 					<c:otherwise>
@@ -111,19 +111,19 @@
 				</th>
 				<td>
 				<c:choose>
-					<c:when test="${applyDetail.currentTelecom eq 1}">
+					<c:when test="${applyDetailPlan.currentTelecom eq 1}">
 						SKT
 					</c:when>
-					<c:when test="${applyDetail.currentTelecom eq 2}">
+					<c:when test="${applyDetailPlan.currentTelecom eq 2}">
 						KT
 					</c:when>
-					<c:when test="${applyDetail.currentTelecom eq 3}">
+					<c:when test="${applyDetailPlan.currentTelecom eq 3}">
 						LGU+
 					</c:when>
-					<c:when test="${applyDetail.currentTelecom eq 4}">
+					<c:when test="${applyDetailPlan.currentTelecom eq 4}">
 						SKT 알뜰폰
 					</c:when>
-					<c:when test="${applyDetail.currentTelecom eq 5}">
+					<c:when test="${applyDetailPlan.currentTelecom eq 5}">
 						KT 알뜰폰	
 					</c:when>
 					<c:otherwise>
@@ -138,7 +138,7 @@
 				</th>
 				<td>
 				<c:choose>
-					<c:when test="${applyDetail.planBill eq 1}">
+					<c:when test="${applyDetailPlan.planBill eq 1}">
 						문자
 					</c:when>
 					<c:otherwise>
@@ -151,7 +151,7 @@
 				</th>
 				<td>
 				<c:choose>
-					<c:when test="${applyDetail.planPay eq 1}">
+					<c:when test="${applyDetailPlan.planPay eq 1}">
 						카드
 					</c:when>
 					<c:otherwise>
@@ -166,16 +166,16 @@
     <!--납부방법에 따라 뜨는거 다르게 할 것. -->
     <table border="solid">
     <c:choose>
-        <c:when test="${applyDetail.planPay eq 1}">
+        <c:when test="${applyDetailPlan.planPay eq 1}">
             <tr>
                 <th scope="row">
                     <span>카드번호</span>
                 </th>
-                <td>${applyDetail.cardNumber }</td>
+                <td>${applyDetailPlan.cardNumber }</td>
                 <th scope="row">
                     <span>카드유효기간</span>
                 </th>
-                <td>${applyDetail.cardExpiration }</td>
+                <td>${applyDetailPlan.cardExpiration }</td>
             </tr>
         </c:when>
         <c:otherwise>
@@ -183,11 +183,11 @@
                 <th scope="row">
                     <span>은행</span>
                 </th>
-                <td>${applyDetail.bank }</td>
+                <td>${applyDetailPlan.bank }</td>
                 <th scope="row">
                     <span>계좌번호</span>
                 </th>
-                <td>${applyDetail.bankNumber }</td>
+                <td>${applyDetailPlan.bankNumber }</td>
             </tr>
         </c:otherwise>
     </c:choose>
@@ -223,10 +223,10 @@
 				</th>
 				<td>
 				<c:choose>
-					<c:when test="${applyDetail.orderStatus eq 1}">
+					<c:when test="${applyDetailPlan.orderStatus eq 1}">
 						신청완료
 					</c:when>
-					<c:when test="${applyDetail.orderStatus eq 2}">
+					<c:when test="${applyDetailPlan.orderStatus eq 2}">
 						승인완료
 					</c:when>
 					<c:otherwise>

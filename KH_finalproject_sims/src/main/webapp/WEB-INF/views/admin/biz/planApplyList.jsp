@@ -44,7 +44,7 @@
 															<label class="floating-label"></label>
 															<select class="" name="searchOption">
 																<option value="">선택</option>
-																<option value="title" <c:if test="${searchOption eq 'name' }">selected</c:if>>업체명</option>
+																<option value="title" <c:if test="${searchOption eq 'name' }">selected</c:if>>요금제명</option>
 																<option value="writer" <c:if test="${searchOption eq 'enabled' }">selected</c:if>>신청상태</option>
 																<option value="content" <c:if test="${searchOption eq 'writer' }">selected</c:if>>신청자</option>
 															</select>
@@ -65,26 +65,25 @@
 													<thead>
 														<tr>
 															<th>번호</th>
-															<th>업체명</th>
+															<th>요금제명</th>
 															<th>신청상태</th>
 															<th>신청자</th>
 															<th>신청일</th>
 														</tr>
 													</thead>
 													<tbody>
-														<c:forEach var="list" items="${applyList}" varStatus="status">
+														<c:forEach var="list" items="${bizPlanApplyList}" varStatus="status">
 															<tr>
 																<td>${status.count}</td>
-																<td><a href="<%=request.getContextPath()%>/adminBiz/applyDetail/${list.bizId}">${list.bizId}</a></td>
-																
+																<td><a href="<%=request.getContextPath()%>/adminBiz/bizDetail/${list.planName}">${list.planName}</a></td>
 																<td><c:choose>
 																		<c:when test="${list.enable eq 0}"> 신청 중 </c:when>
 																		<c:when test="${list.enable eq 1}"> 승인 </c:when>
 																		<c:when test="${list.enable eq 2}"> 탈퇴 </c:when>
 																	</c:choose>
-																</td>	
-																<td><a href="<%=request.getContextPath()%>/adminBiz/bizDetail/${list.bizOwnerName}">${list.bizOwnerName}</a></td>
-																<td><fmt:formatDate value="${list.writeDate}" pattern="yyyy.MM.dd"/> </td>
+																</td>
+																<td><a href="<%=request.getContextPath()%>/adminBiz/bizDetail/${list.userId}">${list.userId}</a></td>
+																<td><fmt:formatDate value="${list.orderDate}" pattern="yyyy.MM.dd"/> </td>
 															</tr>
 														</c:forEach>
 													</tbody>

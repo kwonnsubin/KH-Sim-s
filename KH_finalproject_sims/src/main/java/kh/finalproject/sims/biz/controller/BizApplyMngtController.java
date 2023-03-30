@@ -11,6 +11,7 @@ import javax.servlet.http.HttpServletResponse;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -32,15 +33,14 @@ public class BizApplyMngtController {
 	public ModelAndView selectBizPlanApplyList(ModelAndView mv
 			, HttpServletRequest request
 			) {
-		//TODO 그 해당 통신사에게 들어온 가입 신청서..
 		Principal principal = request.getUserPrincipal();
 		String bizid = principal.getName();
 		System.out.println("통신사아이디 : "+bizid);
 		
-		//TODO userName 가져와야 함. 혹은 리스트에선 아이디, 상세 정보에선 실명까지?
-		//TODO 신청상태 jsp 조건 걸 것
 		List<BizApplyVo> applyList = service.selectBizPlanApplyList(bizid);
 		System.out.println(applyList);
+		
+		
 		
 		mv.addObject("applyList",applyList);
 		mv.setViewName("biz/applyList");
@@ -49,11 +49,14 @@ public class BizApplyMngtController {
 	
 	//요금제 가입 신청서 상세 보기
 	@GetMapping("/applydetail")
-	public ModelAndView selectBizPlanApplyDetail(ModelAndView mv) {
+	public ModelAndView selectBizPlanApplyDetail(ModelAndView mv
+			, @RequestParam int orderNo
+			) {
+		
 		//TODO 그 사용자 아이디 매개인자로 들고 가야되는데..가 아니라 orderNo 가져가야되지 않나?
-		BizApplyVo vo = service.selectApplyDetailUser();
+		BizApplyVo vo = service.selectApplyDetailUser(orderNo);
 		System.out.println(vo);
-		BizApplyVo vo1 = service.selectApplyDetailPlan();
+		BizApplyVo vo1 = service.selectApplyDetailPlan(orderNo);
 		
 		mv.addObject("applyDetail", vo);
 		mv.addObject("applyDetailPlan", vo1);
@@ -64,6 +67,7 @@ public class BizApplyMngtController {
 	}
 	
 	//가입신청상태 변경
+	//TODO 들고가야하는 매개변수 생각할 것. 
 	@PostMapping("/approveStatus")
 	@ResponseBody
 	public String approveStatus() {

@@ -12,9 +12,12 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
 
 import kh.finalproject.sims.admin.model.service.AdminQnaMngtService;
 import kh.finalproject.sims.admin.model.vo.AdminFaqVo;
@@ -134,6 +137,7 @@ public class AdminQnaMngtController {
 		
 		mv.addObject("qnaAnsList", service.selectQnaAnsList(aqNo));
 	    mv.addObject("username", username);
+	    mv.addObject("aqNo", aqNo);
 		return mv;
 	}
 	
@@ -149,18 +153,37 @@ public class AdminQnaMngtController {
 //		return mv;
 //	}
 	
-	// 문의내역 답변 작성
+	// 문의내역 답변 작성 ajax
+	@ResponseBody
 	@PostMapping("/qna/insertAns")
-	public ModelAndView insertQnaAnsWrite(
-			ModelAndView mv
-			, AdminQnaAnsVo vo
+	public String insertQnaAnsWrite(
+			 AdminQnaAnsVo vo
 			) {
-		service.insertQnaAnsWrite(vo);
-		return mv;
-		
+		int result = service.insertQnaAnsWrite(vo);
+		if(result > 0) {
+			return "success";
+		} else {
+			return "fail";
+		}
 	}
 	
-	// 문의내역 댓글 작성
+	// 문의내역 불러오기 test!!!!!!!
+	@ResponseBody
+	@GetMapping(value="/qna/ansList", produces = "application/json;charset=utf-8")
+	public String ansList(
+			@RequestParam("aqNo") int aqNo)
+			{
+			service.selectQnaListDetail(aqNo);
+			List<AdminQnaAnsVo> qnaAnsList = service.selectQnaAnsList(aqNo);
+			if(!qnaAnsList.isEmpty()) {
+				Gson gson = new GsonBuilder().setDateFormat("yyyy-MM-dd").create();
+				// GSON 객체를 만들 때 date 포맷은 이렇게 해서 만들어주세요!라는 뜻
+				return gson.toJson(qnaAnsList);
+			}
+			return null;
+	}
+	
+	// 문의내역 댓글 작성 
 	@PostMapping("/qna/insertReply")
 	public ModelAndView insertQnaAnsWrite(
 			ModelAndView mv

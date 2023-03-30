@@ -44,7 +44,7 @@ public class AdminBizMngtVo {
 	// UPDATE_DATE			NULL 		DATE
 	// LOGO_RENAME_FILENAME	NULL 		VARCHAR2
 
-	private String bizNo;
+	private String bizId;
 	private String bizName;
 	private String bizSsn;
 	private String bizCrn;

@@ -27,9 +27,10 @@
     
 </head>
 <body>
+	<jsp:include page="../header.jsp"/>
 	
 	<section>
-		<div class="container row" style="float: none; margin:100 auto;">
+		<div class="container-fluid d-flex justify-content-center row" style="width: 80%; margin-top: 150px;">
 			<div class="col-md-6" style="float:none; margin:0 auto;">
 				<h2>로그인</h2>
 				<c:url value="/login" var="loginUrl" />

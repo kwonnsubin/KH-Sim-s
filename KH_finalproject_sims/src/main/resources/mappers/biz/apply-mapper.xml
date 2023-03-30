@@ -4,22 +4,63 @@
 
 	<!-- orderNo로 받아야할 것 같은데.. -->
   <select id = "selectApplyDetailUser" resultType ="kh.finalproject.sims.biz.model.vo.BizApplyVo">
+<!--  order_no으로 들고오면 이건 듯?? 요금제 기본 정보는 plan_table에서 가져와야함 별칭 부여?
+  SELECT *
+ FROM plan_table
+ JOIN plan_order 
+ USING (plan_no)
+ WHERE plan_no = (
+    SELECT plan_no 
+     FROM plan_order 
+     WHERE order_no = 5
+);
+   -->
+
   	<!-- 유저 기본정보 -->
-  	select * 
+  	<!-- select * 
    		from plan_order
     	join user_table
     	using(user_id)
-    where user_id = 'user1'
+    where user_id = 'user1' -->
+    
+    select * 
+ from user_table
+ where user_id = (
+        select user_id
+        from plan_order
+        where order_no = #{orderNo}       
+); 
+    
   </select>
   <select id="selectApplyDetailPlan" resultType ="kh.finalproject.sims.biz.model.vo.BizApplyVo">
      <!-- 요금제 정보 -->
-    select plan_name, plan_price, plan_voice, plan_message, plan_data
+    <!-- select plan_name, plan_price, plan_voice, plan_message, plan_data
 	    from plan_order
 	    join plan_table
 	    using (plan_no)
-    where plan_no = '1'
+    where plan_no = '1' -->
+       
+<!-- orderNo 받아서 그 요금제의 기본 정보랑 요금제 신청서 테이블 join -->
+SELECT pt.plan_name, po.join_category, po.sim_type, po.sim_yn, po.current_telecom
+        ,po.plan_bill, po.plan_pay, po.card_number, po.card_expiration
+        ,po.bank, po.bank_number, po.order_date
+        ,pt.net_no, pt.gen_no, pt.plan_price, pt.plan_data, pt.plan_voice, pt.plan_message
+        ,po.order_no, po.order_date, po.order_status
+ FROM plan_table  pt
+ JOIN plan_order  po
+ USING (plan_no)
+ WHERE plan_no = (
+    SELECT plan_no 
+     FROM plan_order 
+     WHERE order_no = #{orderNo}
+);
   </select>
   
+  
+  <!-- 가입신청상태 변경 -->
+<!--    update plan_order 
+ set order_status = 2
+ where order_no = 1; order_no 들고오는 경우 -->
   <update id="updateApproveStatus">
   	update plan_order set order_status = 2 where user_id = 'user1'
   </update>
@@ -30,13 +71,33 @@
   
   <!-- 요금제 가입 신청 목록 -->
   <select id="selectBizPlanApplyList" resultType="kh.finalproject.sims.biz.model.vo.BizApplyVo">
-  select rownum, plan_name, order_status, order_date 
+  SELECT rownum,
+       TO_CHAR(order_date, 'YYYYMMDD') || '-' || LPAD(order_no, 6, '0')  AS serial_no,
+       plan_name,
+       user_id,
+       order_status,
+       order_date,
+       order_no
+	FROM plan_order
+	JOIN plan_table USING (plan_no)
+	WHERE plan_no IN (
+   	 SELECT plan_no 
+    	FROM plan_table 
+    		WHERE biz_name LIKE (
+        						SELECT biz_name 
+							        FROM biz 
+							        WHERE biz_id = #{bizid}
+   		)
+   	)
+  
+  
+  <!-- select rownum, plan_name, user_id, order_status, order_date 
 	 from plan_order
 	 join plan_table
 	 using (plan_no)
 	 where plan_no in
 	 (select plan_no 
 	    from plan_table 
-	    where biz_name like (select biz_name from biz where biz_id = #{bizid}))
+	    where biz_name like (select biz_name from biz where biz_id = #{bizid})) -->
 	</select>
 </mapper>
