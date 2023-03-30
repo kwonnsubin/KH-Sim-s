@@ -102,6 +102,7 @@
 						<sec:authorize access="hasRole('ROLE_USER')">
 							<c:if test="${username eq rpl.userId}">
 								<button onclick="location.href='<%=request.getContextPath()%>/faq/rpldelete/${ans.aqNo}/${rpl.aaNo}/${rpl.rplNo}'">삭제</button>
+								<button onclick="location.href='<%=request.getContextPath()%>/faq/rplupdate/${rpl.rplNo}'">수정</button>
 							</c:if>	
 						</sec:authorize>
 					</div>

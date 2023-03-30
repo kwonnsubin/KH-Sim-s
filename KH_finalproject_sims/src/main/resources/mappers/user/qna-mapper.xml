@@ -100,6 +100,14 @@
 		where aa_no = #{aaNo}
 	</update>
 	
+	<!-- 댓글 수정 -->
+	<update id="updateRpl" parameterType="usRplvo">
+		update QNA_RPL
+		set rpl_content = #{rplContent}
+			, rpl_redate = systimestamp
+		where rpl_no = #{rplNo}
+	</update>
+	
 	<!-- 문의게시판 답변 목록 -->
 	<select id="selectAnsList" resultMap="usAnsCollectionMap">
 		select AQ_NO
@@ -173,4 +181,5 @@
 	<select id="getRplByNo" resultType="usRplvo">
 		select * from QNA_RPL where rpl_no = #{rplNo}
 	</select>
+	
 </mapper>

@@ -9,64 +9,39 @@ import kh.finalproject.sims.user.model.vo.UserRplVo;
 
 public interface UserFaqService {
 
-	// 자주묻는질문 목록
+	// 자주묻는질문 목록/조회
 	public List<UserFaqVo> selectFaqList();
-	
-	// 자주묻는질문 상세
 	public List<UserFaqVo> selectFaqDetail(int faqNo);
 
-	// 문의게시판 질문목록
+	// 질문 목록/조회/작성/삭제/수정
 	public List<UserQnaVo> selectQnaList();
-
-	// 문의게시판 상세
 	public UserQnaVo selectQnaDetail(int aqNo);
+	public void insertQna(UserQnaVo vo);
+	public int deleteQna(int aqNo);
+	public int updateQna(UserQnaVo vo);
 	
-	// 문의게시판 답변목록
+	// 답변 목록/조회/작성/삭제/수정
 	public List<UserAnsVo> selectAnsList(int aqNo);
-	
-	// 답변달기
-	public void insertAnswer(int aqNo, UserAnsVo vo);
-	
-	// 답변 번호로 조회
 	public UserAnsVo getAnsByNo(int aaNo);
+	public void insertAnswer(int aqNo, UserAnsVo vo);
+	public int deleteAns(int aaNo);
+	public int updateAns(UserAnsVo vo);
 	
-	// 댓글달기
+	// 댓글 조회/작성/삭제/수정
+	public UserRplVo getRplByNo(int rplNo);
 	public void insertReply(int aaNo, UserRplVo vo);
+	public int deleteRpl(int rplNo);
+	public int updateRpl(UserRplVo vo);
+
+	// 아이디로 조회한 질문/답변 목록
+	public List<UserQnaVo> selectMyQnaList(String username);
+	public List<UserAnsVo> selectMyAnsList(String username);
 	
 	// 조회수 증가
 	public void viewCount(int aqNo);
 
-	// 질문하기
-	public void insertQna(UserQnaVo vo);
-
-	// 내질문 목록
-	public List<UserQnaVo> selectMyQnaList(String username);
-
-	// 내답변 목록
-	public List<UserAnsVo> selectMyAnsList(String username);
-
-	// 내질문 삭제
-	public int deleteQna(int aqNo);
-
-	// 내답변 삭제
-	public int deleteAns(int aaNo);
-	
-	// 댓글 삭제
-	public int deleteRpl(int rplNo);
-
-	// 답변수 -1
+	// 답변수 -1/+1
 	public void deAnswers(int aqNo);
-	
-	// 답변수 +1
 	public void upAnswers(int aqNo);
-
-	// 질문 수정
-	public int updateQna(UserQnaVo vo);
-	
-	// 답변 수정
-	public int updateAns(UserAnsVo vo);
-
-	// 댓글 번호로 조회
-	public UserRplVo getRplByNo(int rplNo);
 
 }

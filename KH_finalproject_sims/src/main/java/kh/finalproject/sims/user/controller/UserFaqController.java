@@ -219,8 +219,8 @@ public class UserFaqController {
 			, @PathVariable int rplNo
 			, UserRplVo vo
 			) {
-		/*service.updateRpl(vo);*/
-		mv.setViewName("redirect:/faq/qna/");
+		service.updateRpl(vo);
+		mv.setViewName("redirect:/faq/faqlist/");
 		return mv;
 	}
 	

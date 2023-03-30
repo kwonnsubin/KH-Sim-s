@@ -98,4 +98,8 @@ public class UserFaqDao {
 		return session.selectOne("qna.getRplByNo", rplNo);
 	}
 
+	public int updateRpl(UserRplVo vo) {
+		return session.update("qna.updateRpl", vo);
+	}
+
 }
