@@ -2,6 +2,7 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="plan">
 
+	<!-- api 데이터 -->
 	<insert id="insertPlanData" parameterType="map">
 		insert into plan_table values(plan_seq.nextval, #{chargeName}
 			, (select biz_name from biz where biz_name = #{bizName})
@@ -15,5 +16,13 @@
 	    	, #{chargeAmount}, #{voiceAmount}, #{messageAmount}, #{dataAmount}
 	    	, #{overVoiceAmtUnit}, #{overMessageAmtUnit}, #{overDataAmtUnit}, sysdate)
 	</insert>
+	
+	<select id="selectPlanList" resultType="planVo">
+		select * from plan_table
+	</select>
+	
+	<select id="cntPlanList" resultType="int">
+		select count(*) from plan_table
+	</select>
 	
 </mapper>
