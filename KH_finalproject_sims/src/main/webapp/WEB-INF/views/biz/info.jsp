@@ -22,10 +22,7 @@
 		 
 		</ul>
 	</nav>
-	
-	
-	
-	
+
 	<table>
 		<tbody>
 			<tr>
@@ -144,10 +141,6 @@
 		
 		
 	</table>
-	
-
-</table>
-	
 	
 	
 	

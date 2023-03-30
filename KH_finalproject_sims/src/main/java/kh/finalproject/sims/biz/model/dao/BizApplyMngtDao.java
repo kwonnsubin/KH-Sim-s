@@ -21,13 +21,12 @@ public class BizApplyMngtDao {
 		return sqlSession.selectOne("apply.selectApplyDetailPlan",orderNo);
 	}
 
-
-	public int updateApproveStatus( ) {
-		return sqlSession.update("apply.updateApproveStatus");
+	public int updateApproveStatus( int orderNo) {
+		return sqlSession.update("apply.updateApproveStatus", orderNo);
 	}
 
-	public int updateHoldStatus() {
-		return sqlSession.update("apply.updateHoldStatus");
+	public int updateHoldStatus(int orderNo) {
+		return sqlSession.update("apply.updateHoldStatus",orderNo);
 	}
 
 	public List<BizApplyVo> selectBizPlanApplyList(String bizid) {

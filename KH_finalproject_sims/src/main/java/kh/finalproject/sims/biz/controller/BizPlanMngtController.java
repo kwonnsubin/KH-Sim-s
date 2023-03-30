@@ -41,9 +41,21 @@ public class BizPlanMngtController {
 		return mv;
 	}
 	
+	//통신사 요금제 상세
+	@GetMapping("/planDetail")
+	public ModelAndView selectBizPlanDetail(ModelAndView mv) {
+	//TODO	
+		
+		mv.setViewName("/biz/planDetail");
+		return mv;
+	}
+
+	
+	
 	//통신사 요금제 등록
 	@GetMapping("/registerPlan") //왜 GET??
 	public ModelAndView registerBizPlan(ModelAndView mv) {
+		//TODO	
 		
 		mv.setViewName("/biz/registerPlan");
 		return mv;

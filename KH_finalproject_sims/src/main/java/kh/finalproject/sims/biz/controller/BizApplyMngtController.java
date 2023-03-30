@@ -50,10 +50,9 @@ public class BizApplyMngtController {
 	//요금제 가입 신청서 상세 보기
 	@GetMapping("/applydetail")
 	public ModelAndView selectBizPlanApplyDetail(ModelAndView mv
-			, @RequestParam int orderNo
+			, int orderNo
 			) {
 		
-		//TODO 그 사용자 아이디 매개인자로 들고 가야되는데..가 아니라 orderNo 가져가야되지 않나?
 		BizApplyVo vo = service.selectApplyDetailUser(orderNo);
 		System.out.println(vo);
 		BizApplyVo vo1 = service.selectApplyDetailPlan(orderNo);
@@ -67,18 +66,17 @@ public class BizApplyMngtController {
 	}
 	
 	//가입신청상태 변경
-	//TODO 들고가야하는 매개변수 생각할 것. 
 	@PostMapping("/approveStatus")
 	@ResponseBody
-	public String approveStatus() {
-		service.updateApproveStatus();
+	public String approveStatus(int orderNo) {
+		service.updateApproveStatus(orderNo);
 		return "success";
 	} 
 
 	@PostMapping("/holdStatus")
 	@ResponseBody
-	public String holdStatus() {
-		service.updateHoldStatus();
+	public String holdStatus(int orderNo) {
+		service.updateHoldStatus(orderNo);
 		return "success";
 	}
 }

@@ -42,36 +42,12 @@
                     </td>
                     <td>${applyList.orderDate }</td>
                     <td><button type="button" class="btn detail" data-orderNo="${applyList.orderNo}"
-                    onclick="location.href='/biz/applydetail?'orderNo="+${applyList.orderNo}>
+                    onclick="location.href='<%=request.getContextPath()%>/biz/applydetail?orderNo=${applyList.orderNo}'">
                     상세보기</button></td>
                 </tr>
                 </c:forEach>             
             </tbody>
         </table>
-<%--         
-<script>
 
-	$(".btn.detail").on("click.detailClickHandler");
-	function detailClickHandler(){
-		console.log("해당 가입신청서 상세페이지로 넘어갑니다.");
-		console.log("${applyList.orderNo}")
-		
-		var orderNo = parseInt($(this).attr("id"));
-		
-		$.ajax({
-			 url : "<%=request.getContextPath()%>/biz/applydetail"
-			,type : "POST"
-			,data : {orderNo : orderNo}
-			,success: function (data) {
-			      console.log("orderNo데이터 들고가는 것 성공");
-			      console.log(data);
-			}
-			,error:function(){
-				alert("상세페이지를 볼 수 없습니다.");
-			}
-		})
-	} 
-</script>
-         --%>
 </body>
 </html>

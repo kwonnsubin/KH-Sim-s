@@ -203,7 +203,7 @@
 	        <th scope="row">
 	            <span>기본데이터(MB)</span>
 	        </th>
-	        <td>${applyDetailPlan.data }</td>
+	        <td>${applyDetailPlan.planData }</td>
 	        <th scope="row">
 	            <span>기본음성(분)</span>
 	        </th>
@@ -240,7 +240,7 @@
 		<button type="button" class="btn hold">보류</button>
 	</div>
 	
-	<button>목록으로</button>
+	<button type="button" onclick="location.href='<%=request.getContextPath()%>/biz/applyList'">목록으로</button>
 
 
 <!-- 에러발생..  -->
@@ -250,6 +250,7 @@
 			$.ajax({
 				url:"<%=request.getContextPath()%>/biz/approveStatus"
 				, type:"POST"
+				, data : {orderNo : ${applyDetailPlan.orderNo }}
 				, success:function(result){
 					alert("승인되었습니다.");
 					location.reload();
@@ -266,6 +267,7 @@
 		$.ajax({
 			url:"<%=request.getContextPath()%>/biz/holdStatus"
 			, type:"POST"
+			, data : {orderNo : ${applyDetailPlan.orderNo }}
 			, success:function(result){
 				alert("보류되었습니다.");
 				location.reload();

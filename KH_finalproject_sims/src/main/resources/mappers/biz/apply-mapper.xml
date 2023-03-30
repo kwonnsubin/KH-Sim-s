@@ -29,7 +29,7 @@
         select user_id
         from plan_order
         where order_no = #{orderNo}       
-); 
+)
     
   </select>
   <select id="selectApplyDetailPlan" resultType ="kh.finalproject.sims.biz.model.vo.BizApplyVo">
@@ -41,32 +41,33 @@
     where plan_no = '1' -->
        
 <!-- orderNo 받아서 그 요금제의 기본 정보랑 요금제 신청서 테이블 join -->
-SELECT pt.plan_name, po.join_category, po.sim_type, po.sim_yn, po.current_telecom
-        ,po.plan_bill, po.plan_pay, po.card_number, po.card_expiration
-        ,po.bank, po.bank_number, po.order_date
-        ,pt.net_no, pt.gen_no, pt.plan_price, pt.plan_data, pt.plan_voice, pt.plan_message
-        ,po.order_no, po.order_date, po.order_status
- FROM plan_table  pt
- JOIN plan_order  po
- USING (plan_no)
- WHERE plan_no = (
-    SELECT plan_no 
-     FROM plan_order 
-     WHERE order_no = #{orderNo}
-);
+	SELECT pt.plan_name, po.join_category, po.sim_type, po.sim_yn, po.current_telecom
+	        ,po.plan_bill, po.plan_pay, po.card_number, po.card_expiration
+	        ,po.bank, po.bank_number, po.order_date
+	        ,pt.net_no, pt.gen_no, pt.plan_price, pt.plan_data, pt.plan_voice, pt.plan_message
+	        ,po.order_no, po.order_date, po.order_status
+	 FROM plan_table  pt
+	 JOIN plan_order  po
+	 USING (plan_no)
+	 WHERE plan_no = (
+	    SELECT plan_no 
+	     FROM plan_order 
+	     WHERE order_no = #{orderNo}
+	)
   </select>
   
   
   <!-- 가입신청상태 변경 -->
-<!--    update plan_order 
- set order_status = 2
- where order_no = 1; order_no 들고오는 경우 -->
-  <update id="updateApproveStatus">
-  	update plan_order set order_status = 2 where user_id = 'user1'
+  <update id="updateApproveStatus">	
+  	update plan_order 
+      set order_status = 2
+ 	where order_no = #{orderNo} 
   </update>
   
-  <update id="updateHoldStatus">
-  	update plan_order set order_status = 3 where user_id = 'user1'
+  <update id="updateHoldStatus"> 	
+  	update plan_order 
+      set order_status = 3
+ 	where order_no = #{orderNo} 
   </update>
   
   <!-- 요금제 가입 신청 목록 -->
@@ -89,15 +90,6 @@ SELECT pt.plan_name, po.join_category, po.sim_type, po.sim_yn, po.current_teleco
 							        WHERE biz_id = #{bizid}
    		)
    	)
-  
-  
-  <!-- select rownum, plan_name, user_id, order_status, order_date 
-	 from plan_order
-	 join plan_table
-	 using (plan_no)
-	 where plan_no in
-	 (select plan_no 
-	    from plan_table 
-	    where biz_name like (select biz_name from biz where biz_id = #{bizid})) -->
+
 	</select>
 </mapper>
