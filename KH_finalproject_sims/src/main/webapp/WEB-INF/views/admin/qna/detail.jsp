@@ -9,6 +9,7 @@
 <head>
 <meta charset="UTF-8">
 <title>문의내역 상세페이지</title>
+<script src="https://code.jquery.com/jquery-latest.min.js"></script>
 </head>
 <body>
 <jsp:include page="../include/header.jsp" />
@@ -74,57 +75,60 @@
 									</div>
 								</div>
 							<!-- 답변  -->
-					       <c:forEach var="ans" items="${qnaAnsList }" >
 								<div class="card table-card review-card">
 				                    <div class="card-header borderless">
 				                        <div class="review-block">
 					                        <h5>답글달기</h5>
 					                    	<div class="form-group">
 					                    <!-- 답변 작성  -->
-					                    	<form:form action="../insertAns" method="post">
-												<input type="hidden" name="aqNo" value="${ans.aqNo}">
-												<input type="hidden" name="adminId" value="${username }" >
-									            <textarea class="form-control m-b-20" id="exampleFormControlTextarea1" rows="3" placeholder="댓글을 입력해보세요." name="aaContent"></textarea>
-									            <button type="submit">댓글 등록</button>
-			                                </form:form>
+									            <textarea class="form-control m-b-20" id="aaContent" rows="3" placeholder="댓글을 입력해보세요."></textarea>
+									            <button type="submit" id="ans-btn">댓글 등록</button>
 			                                </div>
 					                    </div>
+ 
 										<div class="card-body pb-0">
 					                        <div class="review-block">
 						                            <div class="row"   style="padding-bottom: 0px;">
 						                                <div class="col">	
-						                                		<c:if test="${not empty ans.adminId}">
-							                                    	<h6 class="m-b-15">${ans.adminId}<span class="float-right f-13 text-muted">${ans.aaDate }</span></h6>						                                		
-						                                		</c:if>
-						                                		<c:if test="${not empty ans.userId}">				                                    				                                
-							                                  		<h6 class="m-b-15">${ans.userId }<span class="float-right f-13 text-muted">${ans.aaDate }</span></h6>
-							                                  	</c:if>
-							                               		 <p class="m-t-15 m-b-15 text-muted">${ans.aaContent}</p>
-																<a href="#!" class="badge badge-primary m-t-5 m-b-20" data-toggle="collapse" data-target="#collapseExample" aria-expanded="true" aria-controls="collapseExample">댓글</a>
-																<div class="collapse show alert alert-secondary" id="collapseExample" style="">
-																	<div class="card-body m-b-15 m-t-20">
-																	<!-- 대댓글 -->
-																	<form:form action="../insertReply" method="post">
-																		<div class="form-group">
-																			 <input type="hidden" name="aaNo" value="${ans.aaNo}">
-																			 <input type="hidden" name="adminId" value="${username }" >
-								                                       		 <textarea class="form-control m-b-20" id="exampleFormControlTextarea1" rows="3" placeholder="댓글을 입력해보세요." name="rplContent"></textarea>
-								                                       		 <button type="submit">댓글 등록</button>
-								                               			</div>
-																	</form:form>
-								                               			<div class="m-t-40">
-								                               			<c:forEach var="reply" items="${ans.replyList }" >
-									                               			<c:if test="${not empty ans.adminId}">
-											                                    <h6 class="m-b-15">${reply.adminId }<span class="float-right f-13 text-muted">${reply.rplDate }</span></h6>
-											                                </c:if>
-											                                <c:if test="${not empty ans.userId}">
-											                                    <h6 class="m-b-15">${reply.userId }<span class="float-right f-13 text-muted">${reply.rplDate }</span></h6>
-											                                </c:if>
-											                               		 <p class="m-t-15 m-b-15 text-muted">${reply.rplContent }</p>								                               			
-								                               			</c:forEach>
-								                               			</div>
+							                                <!-- 답글 들어가는 부분 -->
+							                                <c:forEach var="ans" items="${qnaAnsList }" > 
+							                                	<div class="qnaAns">
+																		<h6 class="m-b-15">
+ 																			<c:choose>
+																				<c:when test="${not empty ans.adminId}">${ans.adminId}</c:when>
+																				<c:when test="${not empty ans.userId}">${ans.userId}</c:when>
+																			</c:choose>
+																			<span class="float-right f-13 text-muted">${ans.aaDate }</span>
+																		</h6>					                                						                                    				                                
+									                               		<p class="m-t-15 m-b-15 text-muted">${ans.aaContent}</p> 
+																	<a href="#!" class="badge badge-primary m-t-5 m-b-20" data-toggle="collapse" data-target="#collapseExample" aria-expanded="true" aria-controls="collapseExample">댓글</a>
+																	<div class="collapse show alert alert-secondary" id="collapseExample">
+																		<div class="card-body m-b-15 m-t-20">
+																		<!-- 대댓글 -->
+																		<form:form action="../insertReply" method="post">
+																			<div class="form-group">
+																				 <input type="hidden" name="aaNo" value="${ans.aaNo}">
+																				 <input type="hidden" name="adminId" value="${username }" >
+									                                       		 <textarea class="form-control m-b-20" id="exampleFormControlTextarea1" rows="3" placeholder="댓글을 입력해보세요." name="rplContent"></textarea>
+									                                       		 <button type="submit">댓글 등록</button>
+									                               			</div>
+																		</form:form>
+									                               			<div class="m-t-40">
+										                               			<c:forEach var="reply" items="${ans.replyList }" >
+										                               				<h6 class="m-b-15">
+													                               		<c:choose>
+																							<c:when test="${not empty reply.adminId}">${ans.adminId}</c:when>
+																							<c:when test="${not empty reply.userId}">${ans.userId}</c:when>
+																						</c:choose>
+																						<span class="float-right f-13 text-muted">${reply.rplDate }</span>
+																					</h6>
+													                               		 <p class="m-t-15 m-b-15 text-muted">${reply.rplContent }</p>								                               			
+										                               			</c:forEach>
+									                               			</div>
+																		</div>
 																	</div>
-																</div>
+																 </div>
+						                                	</c:forEach>
 						                                </div>
 						                            </div>
 					                        </div>
@@ -132,7 +136,6 @@
 				                    </div> 
 				                </div>
 				              <!-- 답변 끝 -->
-					      </c:forEach>
 						</div>
 				    </div>
 				</div>
@@ -142,4 +145,97 @@
 </div>
 <jsp:include page="../include/footer.jsp" />
 </body>
+<script>
+
+// 문의내역 등록하기 ajax
+$('#ans-btn').on("click", function() {
+			var adminId = "${username}"
+			var aqNo = "${aqNo}"
+			var aaContent = $("#aaContent").val();
+			$.ajax({
+				url: '<%=request.getContextPath()%>/admin/qna/insertAns',
+				data : {adminId: adminId, aqNo: aqNo, aaContent: aaContent},
+				type : "post",
+				success : function(result) {
+					if (result == "success") {
+					$('#aaContent').val('') // 댓글 등록시 댓글 등록창 초기화
+					getAnsList(); // 등록후 댓글 목록 불러오기 함수 실행
+					}
+				},
+				error : function() {
+					alert("등록 실패")
+				}
+			})
+		})
+		
+		
+// 문의내역 불러오기 ajax
+function getAnsList(){
+	var aqNo = "${aqNo}"
+    $.ajax({
+        type:'GET',
+        url : '<%=request.getContextPath()%>/admin/qna/ansList',
+        data: {aqNo: aqNo},
+		success : function(result) {
+				alert("조회 성공")
+				var qnaAns = $(".qnaAns");
+				$(".qnaAns").html(''); // 초기화 시켜야 댓글 목록의 중첩을 막을수 있음 아니면 등록할떄마다 append로 이어짐
+				//$("#rCount").text("댓글 (" + rList.length + ")"); //댓글 갯수 조회하는 코드
+				if (result != null) {
+					console.log(result); // 결과출력	
+					displayAns(result);
+				}
+			},
+		error : function() {
+			alert("서버 요청 실패!")
+		}
+        
+    });
+}	
+
+function displayAns(result){
+	var html = ''; // 변수초기화
+	//$.each(result, function(){ });
+	for ( var i in result) {
+html += '<div class="qnaAns">';
+html += '	<h6 class="m-b-15">';
+if(result[i].adminId) {
+	html += result[i].adminId;
+}else if(result[i].userId) {
+	html += result[i].userId;
+}
+html += '		<span class="float-right f-13 text-muted">'+result[i].aaDate+'</span>';
+html += '	</h6>';	                                    				                                
+html += '	<p class="m-t-15 m-b-15 text-muted">'+result[i].aaContent+'</p> ';
+html += '	<a href="#!" class="badge badge-primary m-t-5 m-b-20" data-toggle="collapse" data-target="#collapseExample" aria-expanded="true" aria-controls="collapseExample">댓글</a>';
+html += '	<div class="collapse show alert alert-secondary" id="collapseExample">';
+html += '		<div class="card-body m-b-15 m-t-20">';
+		//<!-- 대댓글 -->
+html += '		<form:form action="../insertReply" method="post">';
+html += '			<div class="form-group">';
+html += '				 <input type="hidden" name="aaNo" value="'+result[i].aaNo+'">';
+html += '				 <input type="hidden" name="adminId" value="'+result[i].username+'">';
+html += '	       		 <textarea class="form-control m-b-20" id="exampleFormControlTextarea1" rows="3" placeholder="댓글을 입력해보세요." name="rplContent"></textarea>';
+html += '	       		 <button type="submit">댓글 등록</button>';
+html += '				</div>';
+html += '		</form:form>';
+html += '				<div class="m-t-40">';
+for(var j in result[i].replyList){
+html += 		'<h6 class="m-b-15">';
+if(result[i].replyList[j].adminId) {
+	html += result[i].replyList[j].adminId;
+}else if(result[i].replyList[j].userId){
+	html += result[i].replyList[j].userId;
+}
+html += '					 <span class="float-right f-13 text-muted">'+result[i].replyList[j].rplDate+'</span>';
+html += '	           		 <p class="m-t-15 m-b-15 text-muted">'+result[i].replyList[j].rplContent+'</p>';
+}
+html += '				</div>';
+html += '		</div>';
+html += '	</div>';
+html += '</div>';
+	}	
+	$(".qnaAns").append(html);
+}
+</script>
 </html>
