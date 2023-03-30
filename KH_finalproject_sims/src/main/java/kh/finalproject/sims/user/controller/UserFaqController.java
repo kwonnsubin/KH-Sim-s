@@ -222,6 +222,6 @@ public class UserFaqController {
 		/*service.updateRpl(vo);*/
 		mv.setViewName("redirect:/faq/qna/");
 		return mv;
-	
+	}
 	
 }
