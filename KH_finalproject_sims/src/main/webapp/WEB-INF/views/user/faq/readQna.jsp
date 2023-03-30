@@ -3,7 +3,7 @@
 <%@page import="java.util.List"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
 <c:set var="cpath" value="${pageContext.request.contextPath }"/>
 <!DOCTYPE html>
@@ -25,7 +25,14 @@
 			질문수정일: ${question.aqRedate } <br>
 			조회수: ${question.aqViews } <br>
 	</div>
-	
+	<div>
+		<sec:authorize access="hasRole('ROLE_USER')">
+			<sec:authentication property="principal.username" var="username"/>
+			<c:if test="${username eq question.userId}">
+				<button onclick="location.href='<%=request.getContextPath()%>/faq/qnaupdate/${question.aqNo}'">수정</button>
+			</c:if>	
+		</sec:authorize>
+	</div>
 	<!-- 답변 -->
 	<div>
 		<h4>답변</h4>
@@ -35,7 +42,7 @@
 			<form action="${cpath }/faq/qna/${question.aqNo}/answer" method="post">
 				<input type="hidden" value="${username }" name="userId">
 				<input type="hidden" value="${question.aqNo }" name="aqNo">
-				<input type="text" name="aaContent" placeholder="답변을 작성해주세요">
+				<input type="text" name="aaContent" size="60" placeholder="답변을 작성해주세요">
 				<input type="submit" value="답변하기">
 			</form>
 		</sec:authorize>
@@ -55,11 +62,16 @@
 				<br> 답변수정일: ${ans.aaRedate }
 				</c:if>
 				
+				<sec:authorize access="hasRole('ROLE_USER')">
+					<c:if test="${username eq ans.userId}">
+						<button onclick="location.href='<%=request.getContextPath()%>/faq/ansupdate/${ans.aaNo}'">수정</button>
+						<button onclick="location.href='<%=request.getContextPath()%>/faq/ansdelete/${ans.aqNo}/${ans.aaNo}'">삭제</button>
+					</c:if>	
+				</sec:authorize>
 
 				<p>댓글</p>
 				<!-- 댓글 작성 -->
 				<sec:authorize access="hasRole('ROLE_USER')">
-					<sec:authentication property="principal.username" var="username"/>
 					<form action="${cpath }/faq/ans/${ans.aaNo}/reply" method="post">
 						<input type="text" value="${username }" name="userId">
 						<input type="text" value="${ans.aaNo }" name="aaNo">

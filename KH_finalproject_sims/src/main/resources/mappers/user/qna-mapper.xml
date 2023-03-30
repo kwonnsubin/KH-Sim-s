@@ -17,8 +17,8 @@
 			<result column="RPL_DATE" property="rplDate" />
 			<result column="RPL_REDATE" property="rplRedate" />
 			<result column="RPL_CONTENT" property="rplContent" />
-			<result column="RPL_ADMIN_ID" property="userId" />
-			<result column="RPL_USER_ID" property="adminId" />
+			<result column="RPL_ADMIN_ID" property="adminId" />
+			<result column="RPL_USER_ID" property="userId" />
 		</collection>
 	</resultMap>
   
@@ -76,6 +76,13 @@
 		set aq_answers = aq_answers - 1
 		where aq_no = #{aqNo}
 	</update>
+	
+	<!-- 답변수 +1 -->
+	<update id="upAnswers">
+		update QNA
+		set aq_answers = aq_answers + 1
+		where aq_no = #{aqNo}
+	</update>
 	  
 	<!-- 질문 수정 -->
 	<update id="updateQna" parameterType="usQnavo">
@@ -86,11 +93,12 @@
 		where aq_no = #{aqNo}
 	</update>
 	
-	<!-- 답변수 +1 -->
-	<update id="upAnswers">
-		update QNA
-		set aq_answers = aq_answers + 1
-		where aq_no = #{aqNo}
+	<!-- 답변 수정 -->
+	<update id="updateAns" parameterType="usAnsvo">
+		update QNA_ANS
+		set aa_content = #{aaContent}
+			, aa_redate = systimestamp
+		where aa_no = #{aaNo}
 	</update>
 	
 	<!-- 문의게시판 답변 목록 -->

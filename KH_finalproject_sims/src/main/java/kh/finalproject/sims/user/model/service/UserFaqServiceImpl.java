@@ -106,6 +106,12 @@ public class UserFaqServiceImpl implements UserFaqService {
 	public void deAnswers(int aqNo) {
 		dao.deAnswers(aqNo);
 	}
+	
+	// 답변수 +1
+	@Override
+	public void upAnswers(int aqNo) {
+		dao.upAnswers(aqNo);
+	}
 
 	// 질문 수정
 	@Override
@@ -113,10 +119,10 @@ public class UserFaqServiceImpl implements UserFaqService {
 		return dao.updateQna(vo);
 	}
 
-	// 답변수 +1
+	// 답변 수정
 	@Override
-	public void upAnswers(int aqNo) {
-		dao.upAnswers(aqNo);
+	public int updateAns(UserAnsVo vo) {
+		return dao.updateAns(vo);
 	}
-	
+
 }

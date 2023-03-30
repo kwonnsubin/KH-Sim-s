@@ -125,9 +125,11 @@ public class UserFaqController {
 	public ModelAndView deleteQna(
 			  ModelAndView mv
 			, @PathVariable int aqNo
+			, HttpServletRequest request
 			) {
 		service.deleteQna(aqNo);
-		mv.setViewName("redirect:/faq/myqna");
+		String referer = request.getHeader("Referer");
+		mv.setViewName("redirect:" + referer);
 		return mv;
 	}
 	
@@ -137,10 +139,12 @@ public class UserFaqController {
 			ModelAndView mv
 			, @PathVariable int aqNo
 			, @PathVariable int aaNo
+			, HttpServletRequest request
 			) {
 		service.deleteAns(aaNo);
 		service.deAnswers(aqNo);
-		mv.setViewName("redirect:/faq/myqna");
+		String referer = request.getHeader("Referer");
+		mv.setViewName("redirect:" + referer);
 		return mv;
 	}
 	
@@ -163,6 +167,29 @@ public class UserFaqController {
 		   , UserQnaVo vo) {
 		service.updateQna(vo);
 		mv.setViewName("redirect:/faq/qna/"+vo.getAqNo());
+		return mv;
+	}
+	
+	// 내 답변 수정 페이지
+	@GetMapping("/ansupdate/{aaNo}")
+	public ModelAndView updateAnsForm(
+			ModelAndView mv
+			, @PathVariable int aaNo
+			) {
+		mv.addObject("myans", service.getAnsByNo(aaNo));
+		mv.setViewName("user/faq/updateAns");
+		return mv;
+	}
+	
+	// 내 답변 수정하기
+	@PostMapping("/ansupdate/{aaNo}")
+	public ModelAndView updateAns(
+			ModelAndView mv
+			, @PathVariable int aaNo
+			, UserAnsVo vo
+			) {
+		service.updateAns(vo);
+		mv.setViewName("redirect:/faq/qna/"+ service.getAnsByNo(aaNo).getAqNo());
 		return mv;
 	}
 }

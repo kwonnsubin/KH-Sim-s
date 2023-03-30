@@ -77,13 +77,17 @@ public class UserFaqDao {
 	public void deAnswers(int aqNo) {
 		session.update("qna.deAnswers", aqNo);
 	}
+	
+	public void upAnswers(int aqNo) {
+		session.update("qna.upAnswers", aqNo);
+	}
 
 	public int updateQna(UserQnaVo vo) {
 		return session.update("qna.updateQna", vo);
 	}
 
-	public void upAnswers(int aqNo) {
-		session.update("qna.upAnswers", aqNo);
+	public int updateAns(UserAnsVo vo) {
+		return session.update("qna.updateAns", vo);
 	}
 
 }

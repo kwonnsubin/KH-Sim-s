@@ -53,11 +53,14 @@ public interface UserFaqService {
 
 	// 답변수 -1
 	public void deAnswers(int aqNo);
+	
+	// 답변수 +1
+	public void upAnswers(int aqNo);
 
 	// 질문 수정
 	public int updateQna(UserQnaVo vo);
-
-	// 답변수 +1
-	public void upAnswers(int aqNo);
+	
+	// 답변 수정
+	public int updateAns(UserAnsVo vo);
 
 }

@@ -40,7 +40,7 @@
 								<a href="<%=request.getContextPath()%>/faq/qna/${myanss.aqNo}">${myanss.aaContent}</a>
 								</td>
 								<td>${myanss.aaDate}</td>
-								<td><button>수정</button></td>
+								<td><button onclick="location.href='<%=request.getContextPath()%>/faq/ansupdate/${myanss.aaNo}'">수정</button></td>
 								<td><button onclick="location.href='<%=request.getContextPath()%>/faq/ansdelete/${myanss.aqNo}/${myanss.aaNo}'">삭제</button></td>
 							</tr>
 						</tbody>
