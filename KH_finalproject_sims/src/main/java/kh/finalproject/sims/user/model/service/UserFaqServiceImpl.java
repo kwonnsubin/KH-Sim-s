@@ -118,10 +118,5 @@ public class UserFaqServiceImpl implements UserFaqService {
 	public void upAnswers(int aqNo) {
 		dao.upAnswers(aqNo);
 	}
-
-	@Override
-	public List<UserRplVo> getRplsByAnsNo(int aaNo) {
-		return dao.getRplsByAnsNo(aaNo);
-	}
 	
 }

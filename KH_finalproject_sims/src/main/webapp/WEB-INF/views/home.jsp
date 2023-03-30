@@ -1,7 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
-<%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
 <%@ page session="false" %>
 <html>
 <head>
@@ -34,14 +32,14 @@
 	
 	<jsp:include page="footer.jsp"/>
 	
-  <!-- Scripts -->
-  <script src="<%= request.getContextPath() %>/resources/chain/vendor/jquery/jquery.min.js"></script>
-  <script src="<%= request.getContextPath() %>/resources/chain/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
-  <script src="<%= request.getContextPath() %>/resources/chain/assets/js/owl-carousel.js"></script>
-  <script src="<%= request.getContextPath() %>/resources/chain/assets/js/animation.js"></script>
-  <script src="<%= request.getContextPath() %>/resources/chain/assets/js/imagesloaded.js"></script>
-  <script src="<%= request.getContextPath() %>/resources/chain/assets/js/popup.js"></script>
-  <script src="<%= request.getContextPath() %>/resources/chain/assets/js/custom.js"></script>
+	<!-- Scripts -->
+	<script src="<%= request.getContextPath() %>/resources/chain/vendor/jquery/jquery.min.js"></script>
+	<script src="<%= request.getContextPath() %>/resources/chain/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+	<script src="<%= request.getContextPath() %>/resources/chain/assets/js/owl-carousel.js"></script>
+	<script src="<%= request.getContextPath() %>/resources/chain/assets/js/animation.js"></script>
+	<script src="<%= request.getContextPath() %>/resources/chain/assets/js/imagesloaded.js"></script>
+	<script src="<%= request.getContextPath() %>/resources/chain/assets/js/popup.js"></script>
+	<script src="<%= request.getContextPath() %>/resources/chain/assets/js/custom.js"></script>
   
 </body>
 </html>

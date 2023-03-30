@@ -109,7 +109,7 @@
 					</table>
 				</div>
 			</div>
-			<sec:authorize access="isAuthenticated()">
+			<sec:authorize access="hasRole('ROLE_USER')">
 				<button type="button" onclick="location.href='myqna'">내 질문/답변</button>
 				<button type="button" onclick="location.href='qna/write'">질문하기</button>
 			</sec:authorize>

@@ -14,15 +14,15 @@
 			<div class="row">
 				<h4>내 질문</h4>
 				<table>
-					<c:forEach items="${myqnalist}" var="qna">
+					<c:forEach items="${myqnalist}" var="myqnas">
 						<tbody>
 							<tr>
 								<td>
-								<a href="<%=request.getContextPath()%>/faq/qna/${qna.aqNo}">${qna.aqTitle}(${qna.aqAnswers })</a>
+								<a href="<%=request.getContextPath()%>/faq/qna/${myqnas.aqNo}">${myqnas.aqTitle}(${myqnas.aqAnswers })</a>
 								</td>
-								<td>${qna.aqDate}</td>
-								<td><button onclick="location.href='<%=request.getContextPath()%>/faq/qnaupdate/${qna.aqNo}'">수정</button></td>
-								<td><button onclick="location.href='<%=request.getContextPath()%>/faq/qnadelete/${qna.aqNo}'">삭제</button></td>
+								<td>${myqnas.aqDate}</td>
+								<td><button onclick="location.href='<%=request.getContextPath()%>/faq/qnaupdate/${myqnas.aqNo}'">수정</button></td>
+								<td><button onclick="location.href='<%=request.getContextPath()%>/faq/qnadelete/${myqnas.aqNo}'">삭제</button></td>
 							</tr>
 						</tbody>
 					</c:forEach>
@@ -33,15 +33,15 @@
 			<div class="row">
 				<h4>내 답변</h4>
 				<table>
-					<c:forEach items="${myanslist}" var="ans">
+					<c:forEach items="${myanslist}" var="myanss">
 						<tbody>
 							<tr>
 								<td>
-								<a href="<%=request.getContextPath()%>/faq/qna/${ans.aqNo}">${ans.aaContent}</a>
+								<a href="<%=request.getContextPath()%>/faq/qna/${myanss.aqNo}">${myanss.aaContent}</a>
 								</td>
-								<td>${ans.aaDate}</td>
+								<td>${myanss.aaDate}</td>
 								<td><button>수정</button></td>
-								<td><button onclick="location.href='<%=request.getContextPath()%>/faq/ansdelete/${ans.aqNo}/${ans.aaNo}'">삭제</button></td>
+								<td><button onclick="location.href='<%=request.getContextPath()%>/faq/ansdelete/${myanss.aqNo}/${myanss.aaNo}'">삭제</button></td>
 							</tr>
 						</tbody>
 					</c:forEach>

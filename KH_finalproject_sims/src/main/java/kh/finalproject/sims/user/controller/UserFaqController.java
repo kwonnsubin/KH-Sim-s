@@ -1,8 +1,6 @@
 package kh.finalproject.sims.user.controller;
 
 import java.security.Principal;
-import java.util.List;
-
 import javax.servlet.http.HttpServletRequest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
@@ -52,10 +50,9 @@ public class UserFaqController {
 			, @PathVariable int aqNo
 			) {
 		service.viewCount(aqNo);
-		UserQnaVo question = service.selectQnaDetail(aqNo);
-		List<UserAnsVo> answers = service.selectAnsList(aqNo);
-		mv.addObject("question", question);
-		mv.addObject("answers", answers);
+		mv.addObject("question", service.selectQnaDetail(aqNo));
+		mv.addObject("answers", service.selectAnsList(aqNo));
+		
 		mv.setViewName("user/faq/readQna");
 		return mv;
 	}

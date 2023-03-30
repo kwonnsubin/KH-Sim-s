@@ -60,6 +60,4 @@ public interface UserFaqService {
 	// 답변수 +1
 	public void upAnswers(int aqNo);
 
-	public List<UserRplVo> getRplsByAnsNo(int aaNo);
-
 }

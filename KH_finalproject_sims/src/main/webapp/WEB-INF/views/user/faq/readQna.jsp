@@ -4,6 +4,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
 <c:set var="cpath" value="${pageContext.request.contextPath }"/>
 <!DOCTYPE html>
 <html>
@@ -28,9 +29,20 @@
 	<!-- 답변 -->
 	<div>
 		<h4>답변</h4>
+		<!-- 답변달기 -->
+		<sec:authorize access="hasRole('ROLE_USER')">
+			<sec:authentication property="principal.username" var="username"/>
+			<form action="${cpath }/faq/qna/${question.aqNo}/answer" method="post">
+				<input type="hidden" value="${username }" name="userId">
+				<input type="hidden" value="${question.aqNo }" name="aqNo">
+				<input type="text" name="aaContent" placeholder="답변을 작성해주세요">
+				<input type="submit" value="답변하기">
+			</form>
+		</sec:authorize>
+		<!-- 답변목록 -->
 		<c:if test="${not empty answers }">
 			<c:forEach items="${answers }" var="ans">
-				<br> 답변번호: ${ans.aaNo}
+				<hr> 답변번호: ${ans.aaNo}
 				<c:if test="${not empty ans.adminId }">
 					<br> 관리자답변자: ${ans.adminId }
 				</c:if>
@@ -43,9 +55,21 @@
 				<br> 답변수정일: ${ans.aaRedate }
 				</c:if>
 				
-				<!-- 댓글 -->
+
 				<p>댓글</p>
+				<!-- 댓글 작성 -->
+				<sec:authorize access="hasRole('ROLE_USER')">
+					<sec:authentication property="principal.username" var="username"/>
+					<form action="${cpath }/faq/ans/${ans.aaNo}/reply" method="post">
+						<input type="text" value="${username }" name="userId">
+						<input type="text" value="${ans.aaNo }" name="aaNo">
+						<input type="text" name="rplContent" placeholder="댓글을 작성해주세요">
+						<input type="submit" value="완료">
+					</form>
+				</sec:authorize>
+				<!-- 댓글 -->
 				<c:forEach items="${ans.aaRpls}" var="rpl">
+					<br>
 					<br> 댓글번호: ${rpl.rplNo }
 					<br> 댓글내용: ${rpl.rplContent }
 					<c:if test="${not empty rpl.adminId }">
@@ -58,27 +82,9 @@
 					<c:if test="${not empty rpl.rplRedate }">
 						<br> 댓글수정일: ${rpl.rplRedate }
 					</c:if>
-					<hr>	
 				</c:forEach>
-				<!-- 댓글 작성 -->
-				<form action="${cpath }/faq/ans/${ans.aaNo}/reply" method="post">
-					<input type="text" value="${username }" name="userId">
-					<input type="text" value="${ans.aaNo }" name="aaNo">
-					<input type="text" name="rplContent" placeholder="댓글을 작성해주세요">
-					<input type="submit" value="완료">
-				</form>
-				<hr>
+				
 			</c:forEach>
-		</c:if>
-		
-		<c:if test="">
-			<!-- 답변달기 -->
-			<form action="${cpath }/faq/qna/${question.aqNo}/answer" method="post">
-				<input type="hidden" value="${username }" name="userId">
-				<input type="hidden" value="${question.aqNo }" name="aqNo">
-				<input type="text" name="aaContent" placeholder="답변을 작성해주세요">
-				<input type="submit" value="답변하기">
-			</form>
 		</c:if>
 	</div>
 </body>

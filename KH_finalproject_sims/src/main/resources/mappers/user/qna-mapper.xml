@@ -1,6 +1,26 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="qna">
+
+	<resultMap type="kh.finalproject.sims.user.model.vo.UserAnsVo" id="usAnsCollectionMap">
+		<id column="AA_NO" property="aaNo" />
+		<result column="AQ_NO" property="aqNo" />
+		<result column="ANS_ADMIN_ID" property="adminId" />
+		<result column="ANS_USER_ID" property="userId" />
+		<result column="AA_CONTENT" property="aaContent" />
+		<result column="AA_DATE" property="aaDate" />
+		<result column="AA_REDATE" property="aaRedate" />
+
+		<collection column="AA_NO" property="aaRpls"
+			ofType="kh.finalproject.sims.user.model.vo.UserRplVo">
+			<id column="RPL_NO" property="rplNo" />
+			<result column="RPL_DATE" property="rplDate" />
+			<result column="RPL_REDATE" property="rplRedate" />
+			<result column="RPL_CONTENT" property="rplContent" />
+			<result column="RPL_ADMIN_ID" property="userId" />
+			<result column="RPL_USER_ID" property="adminId" />
+		</collection>
+	</resultMap>
   
   	<!-- 문의게시판 질문 목록 -->
   	<select id="selectQnaList" resultType="usQnavo">
@@ -62,7 +82,7 @@
 		update QNA
 		set aq_title = #{aqTitle}
 			, aq_content = #{aqContent}
-			, aq_redate = sysdate
+			, aq_redate = systimestamp
 		where aq_no = #{aqNo}
 	</update>
 	
@@ -72,4 +92,68 @@
 		set aq_answers = aq_answers + 1
 		where aq_no = #{aqNo}
 	</update>
+	
+	<!-- 문의게시판 답변 목록 -->
+	<select id="selectAnsList" resultMap="usAnsCollectionMap">
+		select AQ_NO
+			, AA_NO
+			, QNA_RPL.RPL_NO
+			, QNA_ANS.ADMIN_ID AS ANS_ADMIN_ID
+			, QNA_ANS.USER_ID AS ANS_USER_ID
+			, AA_CONTENT
+			, AA_DATE
+			, AA_REDATE
+			, QNA_RPL.RPL_CONTENT
+			, QNA_RPL.ADMIN_ID AS RPL_ADMIN_ID
+			, QNA_RPL.USER_ID AS RPL_USER_ID
+			, QNA_RPL.RPL_DATE
+			, QNA_RPL.RPL_REDATE
+		from QNA_ANS LEFT OUTER JOIN QNA_RPL USING (AA_NO)
+		where AQ_NO = #{aqNo}
+		order by aa_no
+	</select>
+
+	<!-- 내 답변 목록 -->
+	<select id="selectMyAnsList" resultType="usAnsvo">
+		select *
+		from QNA_ANS
+		where USER_ID = #{username}
+		order by aa_no
+	</select>
+	
+	<!-- 내 답변 삭제 -->
+	<delete id="deleteAns" parameterType="_int">
+		delete from QNA_ANS
+		where aa_no = #{aaNo}
+	</delete>	
+	
+	<!-- 답변달기 -->
+	<insert id="insertAnswer" parameterType="usAnsvo">
+		insert into QNA_ANS (aa_no, aq_no, user_id, aa_content, aa_date) values (
+		QNA_ANS_SEQ.nextval
+		, #{aqNo}
+		, #{userId}
+		, #{aaContent}
+		, default
+		)
+	</insert>
+	
+	<!-- 답변 번호로 조회 -->
+	<select id="getAnsByNo" resultType="usAnsvo">
+		select * 
+		from QNA_ANS
+		where aa_no = #{aaNo}
+	</select>
+
+	<!-- 댓글 달기 -->
+	<insert id="insertReply" parameterType="usRplvo">
+		insert into QNA_RPL
+		(rpl_no, aa_no, rpl_date, rpl_content, user_id) values (
+		QNA_RPL_SEQ.nextval
+		, #{aaNo}
+		, default
+		, #{rplContent}
+		, #{userId}
+		)
+	</insert>
 </mapper>

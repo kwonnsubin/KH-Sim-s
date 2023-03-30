@@ -35,7 +35,7 @@ public class UserFaqDao {
 	}
 	
 	public List<UserAnsVo> selectAnsList(int aqNo) {
-		return session.selectList("ans.selectAnsList", aqNo);
+		return session.selectList("qna.selectAnsList", aqNo);
 	}
 
 	public void viewCount(int aqNo) {
@@ -43,19 +43,15 @@ public class UserFaqDao {
 	}
 
 	public int insertAnswer(int aqNo, UserAnsVo vo) {
-		return session.insert("ans.insertAnswer", vo);
+		return session.insert("qna.insertAnswer", vo);
 	}
 	
 	public UserAnsVo getAnsByNo(int aaNo) {
-		return session.selectOne("ans.getAnsByNo", aaNo);
+		return session.selectOne("qna.getAnsByNo", aaNo);
 	}
 	
 	public int insertReply(int aaNo, UserRplVo vo) {
-		return session.insert("rpl.insertReply", vo);
-	}
-
-	public List<UserRplVo> getRplsByAnsNo(int aaNo) {
-		return session.selectList("rpl.getRplsByAnsNo", aaNo);
+		return session.insert("qna.insertReply", vo);
 	}
 	
 	public int insertQna(UserQnaVo vo) {
@@ -67,7 +63,7 @@ public class UserFaqDao {
 	}
 
 	public List<UserAnsVo> selectMyAnsList(String username) {
-		return session.selectList("ans.selectMyAnsList", username);
+		return session.selectList("qna.selectMyAnsList", username);
 	}
 
 	public int deleteQna(int aqNo) {
@@ -75,7 +71,7 @@ public class UserFaqDao {
 	}
 
 	public int deleteAns(int aaNo) {
-		return session.delete("ans.deleteAns", aaNo);
+		return session.delete("qna.deleteAns", aaNo);
 	}
 
 	public void deAnswers(int aqNo) {
