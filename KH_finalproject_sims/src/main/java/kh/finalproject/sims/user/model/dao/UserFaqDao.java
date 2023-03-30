@@ -73,6 +73,10 @@ public class UserFaqDao {
 	public int deleteAns(int aaNo) {
 		return session.delete("qna.deleteAns", aaNo);
 	}
+	
+	public int deleteRpl(int rplNo) {
+		return session.delete("qna.deleteRpl", rplNo);
+	}
 
 	public void deAnswers(int aqNo) {
 		session.update("qna.deAnswers", aqNo);
@@ -88,6 +92,10 @@ public class UserFaqDao {
 
 	public int updateAns(UserAnsVo vo) {
 		return session.update("qna.updateAns", vo);
+	}
+
+	public UserRplVo getRplByNo(int rplNo) {
+		return session.selectOne("qna.getRplByNo", rplNo);
 	}
 
 }

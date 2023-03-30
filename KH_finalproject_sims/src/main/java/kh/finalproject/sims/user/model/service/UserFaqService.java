@@ -50,6 +50,9 @@ public interface UserFaqService {
 
 	// 내답변 삭제
 	public int deleteAns(int aaNo);
+	
+	// 댓글 삭제
+	public int deleteRpl(int rplNo);
 
 	// 답변수 -1
 	public void deAnswers(int aqNo);
@@ -62,5 +65,8 @@ public interface UserFaqService {
 	
 	// 답변 수정
 	public int updateAns(UserAnsVo vo);
+
+	// 댓글 번호로 조회
+	public UserRplVo getRplByNo(int rplNo);
 
 }

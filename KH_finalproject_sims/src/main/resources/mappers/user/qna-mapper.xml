@@ -10,7 +10,6 @@
 		<result column="AA_CONTENT" property="aaContent" />
 		<result column="AA_DATE" property="aaDate" />
 		<result column="AA_REDATE" property="aaRedate" />
-
 		<collection column="AA_NO" property="aaRpls"
 			ofType="kh.finalproject.sims.user.model.vo.UserRplVo">
 			<id column="RPL_NO" property="rplNo" />
@@ -118,7 +117,7 @@
 			, QNA_RPL.RPL_REDATE
 		from QNA_ANS LEFT OUTER JOIN QNA_RPL USING (AA_NO)
 		where AQ_NO = #{aqNo}
-		order by aa_no
+		order by QNA_RPL.RPL_NO, aa_no
 	</select>
 
 	<!-- 내 답변 목록 -->
@@ -134,6 +133,12 @@
 		delete from QNA_ANS
 		where aa_no = #{aaNo}
 	</delete>	
+	
+	<!-- 댓글 삭제 -->
+	<delete id="deleteRpl" parameterType="_int">
+		delete from QNA_RPL
+		where rpl_no = #{rplNo}
+	</delete>
 	
 	<!-- 답변달기 -->
 	<insert id="insertAnswer" parameterType="usAnsvo">
@@ -164,4 +169,8 @@
 		, #{userId}
 		)
 	</insert>
+	
+	<select id="getRplByNo" resultType="usRplvo">
+		select * from QNA_RPL where rpl_no = #{rplNo}
+	</select>
 </mapper>

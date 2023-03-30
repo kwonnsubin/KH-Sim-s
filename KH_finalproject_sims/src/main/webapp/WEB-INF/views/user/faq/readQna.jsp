@@ -46,6 +46,7 @@
 				<input type="submit" value="답변하기">
 			</form>
 		</sec:authorize>
+		
 		<!-- 답변목록 -->
 		<c:if test="${not empty answers }">
 			<c:forEach items="${answers }" var="ans">
@@ -62,14 +63,15 @@
 				<br> 답변수정일: ${ans.aaRedate }
 				</c:if>
 				
-				<sec:authorize access="hasRole('ROLE_USER')">
-					<c:if test="${username eq ans.userId}">
-						<button onclick="location.href='<%=request.getContextPath()%>/faq/ansupdate/${ans.aaNo}'">수정</button>
-						<button onclick="location.href='<%=request.getContextPath()%>/faq/ansdelete/${ans.aqNo}/${ans.aaNo}'">삭제</button>
-					</c:if>	
-				</sec:authorize>
+				<div class="row">
+					<sec:authorize access="hasRole('ROLE_USER')">
+						<c:if test="${username eq ans.userId}">
+							<button onclick="location.href='<%=request.getContextPath()%>/faq/ansupdate/${ans.aaNo}'">수정</button>
+							<button onclick="location.href='<%=request.getContextPath()%>/faq/ansdelete/${ans.aqNo}/${ans.aaNo}'">삭제</button>
+						</c:if>	
+					</sec:authorize>
+				</div>
 
-				<p>댓글</p>
 				<!-- 댓글 작성 -->
 				<sec:authorize access="hasRole('ROLE_USER')">
 					<form action="${cpath }/faq/ans/${ans.aaNo}/reply" method="post">
@@ -79,7 +81,8 @@
 						<input type="submit" value="완료">
 					</form>
 				</sec:authorize>
-				<!-- 댓글 -->
+				
+				<!-- 댓글목록 -->
 				<c:forEach items="${ans.aaRpls}" var="rpl">
 					<br>
 					<br> 댓글번호: ${rpl.rplNo }
@@ -94,6 +97,14 @@
 					<c:if test="${not empty rpl.rplRedate }">
 						<br> 댓글수정일: ${rpl.rplRedate }
 					</c:if>
+					
+					<div class="row">
+						<sec:authorize access="hasRole('ROLE_USER')">
+							<c:if test="${username eq rpl.userId}">
+								<button onclick="location.href='<%=request.getContextPath()%>/faq/rpldelete/${ans.aqNo}/${rpl.aaNo}/${rpl.rplNo}'">삭제</button>
+							</c:if>	
+						</sec:authorize>
+					</div>
 				</c:forEach>
 				
 			</c:forEach>

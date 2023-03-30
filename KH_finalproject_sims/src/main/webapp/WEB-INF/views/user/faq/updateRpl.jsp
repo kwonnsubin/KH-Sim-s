@@ -7,14 +7,14 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>답변 수정</title>
+<title>댓글 수정</title>
 </head>
 <body>
 	<div>
 		<sec:authentication property="principal.username" var="username"/>
-		<form action="${cpath }/faq/ansupdate/${myans.aaNo }" method="post">
+		<form action="${cpath }/faq/rplupdate/${myrpl.rplNo }" method="post">
 			<div>
-				<input type="text" name="aaContent" value="${myans.aaContent }" size="60">
+				<input type="text" name="rplContent" value="${myrpl.rplContent }" size="60">
 			</div>
 			<div class="row">
 				<button type="button" onClick="history.back();">취소</button>

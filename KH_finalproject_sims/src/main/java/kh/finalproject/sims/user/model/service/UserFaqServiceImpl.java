@@ -100,6 +100,12 @@ public class UserFaqServiceImpl implements UserFaqService {
 	public int deleteAns(int aaNo) {
 		return dao.deleteAns(aaNo);
 	}
+	
+	// 댓글 삭제
+	@Override
+	public int deleteRpl(int rplNo) {
+		return dao.deleteRpl(rplNo);
+	}
 
 	// 답변수 -1
 	@Override
@@ -125,4 +131,9 @@ public class UserFaqServiceImpl implements UserFaqService {
 		return dao.updateAns(vo);
 	}
 
+	// 댓글 번호로 조회
+	@Override
+	public UserRplVo getRplByNo(int rplNo) {
+		return dao.getRplByNo(rplNo);
+	}
 }

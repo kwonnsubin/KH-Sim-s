@@ -135,17 +135,25 @@ public class UserFaqController {
 	
 	// 내 답변 삭제
 	@GetMapping("/ansdelete/{aqNo}/{aaNo}")
-	public ModelAndView deleteAns(
-			ModelAndView mv
-			, @PathVariable int aqNo
+	public String deleteAns(
+			@PathVariable int aqNo
 			, @PathVariable int aaNo
 			, HttpServletRequest request
 			) {
 		service.deleteAns(aaNo);
 		service.deAnswers(aqNo);
-		String referer = request.getHeader("Referer");
-		mv.setViewName("redirect:" + referer);
-		return mv;
+		return "redirect:" + request.getHeader("Referer");
+	}
+	
+	// 댓글 삭제
+	@GetMapping("/rpldelete/{aqNo}/{aaNo}/{rplNo}")
+	public String deleteRpl(
+			@PathVariable int rplNo
+			, @PathVariable int aaNo
+			, @PathVariable int aqNo
+			) {
+		service.deleteRpl(rplNo);
+		return "redirect:/faq/qna/"+ aqNo;
 	}
 	
 	// 내 질문 수정 페이지
@@ -192,4 +200,28 @@ public class UserFaqController {
 		mv.setViewName("redirect:/faq/qna/"+ service.getAnsByNo(aaNo).getAqNo());
 		return mv;
 	}
+	
+	// 댓글 수정 페이지
+	@GetMapping("/rplupdate/{rplNo}")
+	public ModelAndView updateRplForm(
+			ModelAndView mv
+			, @PathVariable int rplNo
+			) {
+		mv.addObject("myrpl", service.getRplByNo(rplNo));
+		mv.setViewName("user/faq/updateRpl");
+		return mv;
+	}
+	
+	// 댓글 수정하기
+	@PostMapping("/rplupdate/{rplNo}")
+	public ModelAndView updateRpl(
+			ModelAndView mv
+			, @PathVariable int rplNo
+			, UserRplVo vo
+			) {
+		/*service.updateRpl(vo);*/
+		mv.setViewName("redirect:/faq/qna/");
+		return mv;
+	
+	
 }
