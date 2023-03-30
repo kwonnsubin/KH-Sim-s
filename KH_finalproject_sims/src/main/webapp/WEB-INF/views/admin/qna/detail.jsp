@@ -178,8 +178,6 @@ function getAnsList(){
         data: {aqNo: aqNo},
 		success : function(result) {
 				alert("조회 성공")
-				var qnaAns = $(".qnaAns");
-				$(".qnaAns").html(''); // 초기화 시켜야 댓글 목록의 중첩을 막을수 있음 아니면 등록할떄마다 append로 이어짐
 				//$("#rCount").text("댓글 (" + rList.length + ")"); //댓글 갯수 조회하는 코드
 				if (result != null) {
 					console.log(result); // 결과출력	
@@ -194,6 +192,7 @@ function getAnsList(){
 }	
 
 function displayAns(result){
+	$(".qnaAns").html(''); // 초기화 시켜야 댓글 목록의 중첩을 막을수 있음 아니면 등록할떄마다 append로 이어짐
 	var html = ''; // 변수초기화
 	//$.each(result, function(){ });
 	for ( var i in result) {
