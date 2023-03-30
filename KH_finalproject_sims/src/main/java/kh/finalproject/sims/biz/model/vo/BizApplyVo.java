@@ -139,4 +139,5 @@ public class BizApplyVo {
 	private String logoRenameFilename;
 	
 	private int rownum;
+	private String serialNo;
 }

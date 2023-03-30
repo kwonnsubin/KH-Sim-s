@@ -15,13 +15,13 @@ public class BizApplyMngtServiceImpl implements BizApplyMngtService {
 	public BizApplyMngtDao dao;
 
 	@Override
-	public BizApplyVo selectApplyDetailUser() {
-		return dao.selectApplyDetailUser();
+	public BizApplyVo selectApplyDetailUser(int orderNo) {
+		return dao.selectApplyDetailUser(orderNo);
 	}
 
 	@Override
-	public BizApplyVo selectApplyDetailPlan() {
-		return dao.selectApplyDetailPlan();
+	public BizApplyVo selectApplyDetailPlan(int orderNo) {
+		return dao.selectApplyDetailPlan(orderNo);
 	}
 
 	/*
