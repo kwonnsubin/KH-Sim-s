@@ -18,6 +18,7 @@ section {
 
 .vr {
 	height: 80px;
+	background-color: #d3d3d3;
 	margin-top: 10px;
 }
 
@@ -29,11 +30,18 @@ p {
 	font-weight: 400;
 }
 
-.dropdown .btn {
+.select {
+	-webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    
+	width: 80px;
+	height: 41.5px;
 	color: black;
 	background-color: white;
 	border-radius: 30px;
 	font-size: small;
+	padding: 10px 20px 10px 20px;
 }
 
 .modalBtn {
@@ -57,7 +65,7 @@ p {
 }
 
 .list-div {
-	max-width: 600px;
+	max-width: 560px;
 
 	padding: 20px;
 	

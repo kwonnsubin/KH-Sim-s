@@ -72,15 +72,12 @@
  		<div class="container-fluid d-flex justify-content-center">
 			<div class="row my-3 mt-4 choose-div">
 				<div class="col-2 text-center">
-	        		<div class="dropdown">
-						<button class="btn btn-light btn-outline-secondary" type="button" id="dropdownBtn" data-bs-toggle="dropdown" aria-expanded="false">
-					  	선택순
-						</button>
-					  	<ul class="dropdown-menu" aria-labelledby="dropdownBtn">
-					    	<li><a class="dropdown-item" href="#">낮은 가격순</a></li>
-					    	<li><a class="dropdown-item" href="#">별점순</a></li>
-					    	<li><a class="dropdown-item" href="#">선택순</a></li>
-					  	</ul>
+	        		<div class="select-div">
+					  <select class="select text-start" id="floatingSelect" aria-label="select">
+					    <option value="선택순" selected>선택순</option>
+					    <option value="별점순">별점순</option>
+					    <option value="추천순">추천순</option>
+					  </select>
 					</div>
 				</div>
 				<div class="vr"></div>
