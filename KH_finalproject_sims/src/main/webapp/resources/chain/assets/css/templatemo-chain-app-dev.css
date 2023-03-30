@@ -399,7 +399,7 @@ header
 .background-header .main-nav .nav li:last-child a,
 .header-area .main-nav .nav li:nth-child(6) a ,
 .background-header .main-nav .nav li:nth-child(6) a {
-  padding: 0px 20px !important;
+  /* padding: 0px 20px !important; */
   font-weight: 400;
 }
 

@@ -191,3 +191,15 @@ wow = new WOW(
   }
 );
 wow.init();
+
+if((document.location.href).includes('plans')) {
+	$('.header-li li:nth-child(2) > a').attr("class", "active");
+} else if ((document.location.href).includes('faq')) {
+	$('.header-li li:nth-child(3) > a').attr("class", "active");
+} else if ((document.location.href).includes('login')) {
+	$('.header-li li:nth-child(4) > a').attr("class", "active");
+} else if ((document.location.href).includes('mypage')) {
+	$('.header-li li:nth-child(5) > a').attr("class", "active");
+} else {
+	$('.header-li li:nth-child(1) > a').attr("class", "active");
+}
