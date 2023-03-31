@@ -19,7 +19,7 @@
 			<div class="col-12">
 				<nav class="main-nav">
 					<!-- ***** Logo Start ***** -->
-					<a href="#" class="logo"> <img
+					<a href="<%=request.getContextPath()%>/" class="logo"> <img
 						src="https://dummyimage.com/50x50" alt="Sim-s">
 					</a>
 					<!-- ***** Logo End ***** -->
