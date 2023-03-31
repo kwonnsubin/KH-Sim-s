@@ -73,6 +73,18 @@ public class AdminQnaMngtServiceImpl implements AdminQnaMngtService{
 	public int insertQnaReplyWrite(AdminQnaReplyVo vo) {
 		return dao.insertQnaReplyWrite(vo);
 	}
+
+	// 문의 내역 댓글 삭제
+	@Override
+	public int deleteQnaAns(int aaNo) {
+		return dao.deleteQnaAns(aaNo);
+	}
+
+	// 문의 내역 댓글 수정
+	@Override
+	public int updateQnaAns(AdminQnaAnsVo vo) {
+		return dao.updateQnaAns(vo);
+	}
 	
 	// 문의 내역 댓글 리스트
 //	@Override

@@ -193,9 +193,32 @@ public class AdminQnaMngtController {
 		return mv;
 	}
 	
+	// 문의내역 답변 삭제
+	@ResponseBody
+	@PostMapping("/qna/deleteAns")
+	public String deleteQnaAns(
+			 int aaNo
+			) {
+		int result = service.deleteQnaAns(aaNo);
+		
+		if(result > 0) {
+			return "success";
+		} else {
+			return "fail";
+		}
+	}
 	
-
-	
-	
-	
+	// 문의내역 답변 수정
+	@ResponseBody
+	@PostMapping("/qna/updateAns")
+	public String updateQnaAns(
+			AdminQnaAnsVo vo
+			) {
+		int result = service.updateQnaAns(vo);
+		if(result > 0) {
+			return "success";
+		} else {
+			return "fail";
+		}
+	}
 }

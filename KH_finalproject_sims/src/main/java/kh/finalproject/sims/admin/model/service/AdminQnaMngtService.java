@@ -44,4 +44,10 @@ public interface AdminQnaMngtService {
 	
 	// 문의 내역 댓글 작성
 	public int insertQnaReplyWrite(AdminQnaReplyVo vo);
+	
+	// 문의 내역 댓글 삭제
+	public int deleteQnaAns(int aaNo);
+	
+	// 문의 내역 답변 수정
+	public int updateQnaAns(AdminQnaAnsVo vo);
 }
