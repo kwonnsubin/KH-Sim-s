@@ -30,7 +30,7 @@
     .input-form {
       max-width: 680px;
 
-      margin-top: 150px;
+      margin-top: 50px;
       padding: 32px;
 
       background: #fff;
@@ -68,23 +68,19 @@
 	    <div class="input-form-backgroud row">
 	      <div class="input-form col-md-12 mx-auto">
 			<h3>약관 동의</h3>
-			<hr>
-    		<c:url value="/contract" var="contractUrl" />
-		    <form:form class="userForm validation-form" name="f" action="${contractUrl}" method="post" novalidate="novalidate">
-		
-		    <!-- <p style="margin: 10px 0;">회원가입약관 및 개인정보처리방침안내의 내용에 동의하셔야 회원가입 하실 수 있습니다.</p> -->
-		    <div class="row form-check">
-				<input class="form-check-input all-check" type="checkbox" id="flexCheckDefault">
-				<label class="form-check-label">
-				  	회원가입 약관에 모두 동의합니다.
-				</label>
-			</div>
-			<hr>
+		    <form:form class="userForm validation-form" name="f" novalidate="novalidate">
+			    <div class="form-check form-check-reverse mb-3">
+					<input class="form-check-input all-check" type="checkbox" id="all-check">
+					<label class="form-check-label" for="all-check">
+					  	회원가입 약관에 모두 동의합니다.
+					</label>
+				</div>
 		
 		    <section id="fregister_term">
-				<div class="form-check">
-				  <input class="form-check-input allow-check" type="checkbox" value="" id="flexCheckDefault">
-				  <label class="form-check-label" for="flexCheckDefault">
+				
+				<div class="form-check mb-2">
+				  <input class="form-check-input allow-check" type="checkbox" value="" id="allow-check">
+				  <label class="form-check-label" for="allow-check">
 				    	이용약관 동의 <span>(필수)</span>
 				  </label>
 				</div>
@@ -330,9 +326,9 @@
 		    </section>
 		
 		    <section id="fregister_private">
-		        <div class="form-check">
-				  <input class="form-check-input personal-check" type="checkbox" value="" id="flexCheckDefault">
-				  <label class="form-check-label" for="flexCheckDefault">
+		        <div class="form-check mb-2">
+				  <input class="form-check-input personal-check" type="checkbox" value="" id="personal-check">
+				  <label class="form-check-label" for="personal-check">
 				    	개인정보 수집 및 이용 동의 <span>(필수)</span>
 				  </label>
 				</div>
