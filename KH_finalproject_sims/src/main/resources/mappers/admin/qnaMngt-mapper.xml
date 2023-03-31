@@ -189,6 +189,7 @@
 		QNA_ANS (AA_NO, AQ_NO, ADMIN_ID, AA_CONTENT, AA_DATE) 
 		values (QNA_ANS_SEQ.NEXTVAL, #{aqNo}, #{adminId}, #{aaContent}, DEFAULT)
 	</insert>
+
 	
 	<!-- 문의 내역  댓글 작성 -->
 	<insert id="insertQnaReplyWrite" parameterType="kh.finalproject.sims.admin.model.vo.AdminQnaReplyVo">
@@ -196,4 +197,14 @@
 		(RPL_NO, AA_NO, RPL_DATE, RPL_CONTENT,ADMIN_ID) 
 		values (QNA_RPL_SEQ.NEXTVAL, #{aaNo}, DEFAULT, #{rplContent}, #{adminId})
 	</insert>
+	
+	<!-- 문의 내역 답변 삭제 -->
+	<delete id="deleteQnaAns" parameterType="_int">
+		DELETE FROM QNA_ANS where AA_NO=#{aaNo}
+	</delete>
+	
+	<!-- 문의 내역 답변 수정 -->
+	<update id="updateQnaAns" parameterType="kh.finalproject.sims.admin.model.vo.AdminQnaAnsVo">
+		UPDATE QNA_ANS SET AA_CONTENT = #{aaContent}, AA_REDATE=SYSTIMESTAMP WHERE AA_NO=#{aaNo}
+	</update>
 </mapper>

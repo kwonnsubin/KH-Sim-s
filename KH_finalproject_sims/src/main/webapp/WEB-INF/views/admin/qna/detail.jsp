@@ -91,7 +91,7 @@
 						                            <div class="row"   style="padding-bottom: 0px;">
 						                                <div class="col">	
 							                                <!-- 답글 들어가는 부분 -->
-							                                <c:forEach var="ans" items="${qnaAnsList }" > 
+							                                <c:forEach var="ans" items="${qnaAnsList }" >
 							                                	<div class="qnaAns">
 																		<h6 class="m-b-15">
  																			<c:choose>
@@ -100,11 +100,12 @@
 																			</c:choose>
 																			<span class="float-right f-13 text-muted">${ans.aaDate }</span>
 																		</h6>					                                						                                    				                                
-									                               		<p class="m-t-15 m-b-15 text-muted">${ans.aaContent}</p> 
+									                               		<p class="m-t-15 m-b-15 text-muted" id="aaNo${ans.aaNo}">${ans.aaContent}</p>
+									                               		<button onclick="qnaAnsUpdateFormFunction(aaNo${ans.aaNo})">수정</button>
+									                               		<button onclick="qnaAnsDeleteFunction('${ans.aaNo}')">삭제</button> 
 																	<a href="#!" class="badge badge-primary m-t-5 m-b-20" data-toggle="collapse" data-target="#collapseExample" aria-expanded="true" aria-controls="collapseExample">댓글</a>
 																	<div class="collapse show alert alert-secondary" id="collapseExample">
 																		<div class="card-body m-b-15 m-t-20">
-																		<!-- 대댓글 -->
 																		<form:form action="../insertReply" method="post">
 																			<div class="form-group">
 																				 <input type="hidden" name="aaNo" value="${ans.aaNo}">
@@ -130,7 +131,7 @@
 																 </div>
 						                                	</c:forEach>
 						                                </div>
-						                            </div>
+						                           </div>
 					                        </div>
 					                    </div>
 				                    </div> 
@@ -158,8 +159,8 @@ $('#ans-btn').on("click", function() {
 				type : "post",
 				success : function(result) {
 					if (result == "success") {
-					$('#aaContent').val('') // 댓글 등록시 댓글 등록창 초기화
-					getAnsList(); // 등록후 댓글 목록 불러오기 함수 실행
+					$('#aaContent').val('') 
+					getAnsList(); 
 					}
 				},
 				error : function() {
@@ -180,7 +181,7 @@ function getAnsList(){
 				alert("조회 성공")
 				//$("#rCount").text("댓글 (" + rList.length + ")"); //댓글 갯수 조회하는 코드
 				if (result != null) {
-					console.log(result); // 결과출력	
+					console.log(result); 	
 					displayAns(result);
 				}
 			},
@@ -191,9 +192,10 @@ function getAnsList(){
     });
 }	
 
+//
 function displayAns(result){
-	$(".qnaAns").html(''); // 초기화 시켜야 댓글 목록의 중첩을 막을수 있음 아니면 등록할떄마다 append로 이어짐
-	var html = ''; // 변수초기화
+	$(".qnaAns").html(''); 
+	var html = ''; 
 	//$.each(result, function(){ });
 	for ( var i in result) {
 html += '<div class="qnaAns">';
@@ -209,7 +211,6 @@ html += '	<p class="m-t-15 m-b-15 text-muted">'+result[i].aaContent+'</p> ';
 html += '	<a href="#!" class="badge badge-primary m-t-5 m-b-20" data-toggle="collapse" data-target="#collapseExample" aria-expanded="true" aria-controls="collapseExample">댓글</a>';
 html += '	<div class="collapse show alert alert-secondary" id="collapseExample">';
 html += '		<div class="card-body m-b-15 m-t-20">';
-		//<!-- 대댓글 -->
 html += '		<form:form action="../insertReply" method="post">';
 html += '			<div class="form-group">';
 html += '				 <input type="hidden" name="aaNo" value="'+result[i].aaNo+'">';
@@ -236,5 +237,36 @@ html += '</div>';
 	}	
 	$(".qnaAns").append(html);
 }
+
+
+function qnaAnsDeleteFunction(aaNo) {
+	if(confirm("삭제하시겠습니까?")) {
+			$.ajax({
+				url: '<%=request.getContextPath()%>/admin/qna/deleteAns',
+				data : {aaNo: aaNo},
+				type : "post",
+				success : function(result) {
+					if (result == "success") {
+						getAnsList();
+					}
+				},
+				error : function() {
+					alert("삭제 실패")
+				}
+			})
+	}
+}
+
+
+// 답변 수정 폼 추가
+function qnaAnsUpdateFormFunction(aaNo) {
+	var aaNo = aaNo;
+	var html='';
+	html += '	       		 <textarea class="form-control m-b-20" id="exampleFormControlTextarea1" rows="3" placeholder="댓글을 입력해보세요." name="rplContent"></textarea>';
+	$("#aaNo").replaceWith(html);
+}
+
+
+
 </script>
 </html>

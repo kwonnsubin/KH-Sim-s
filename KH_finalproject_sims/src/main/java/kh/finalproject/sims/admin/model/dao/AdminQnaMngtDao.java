@@ -77,5 +77,15 @@ public class AdminQnaMngtDao {
 		return sqlSession.insert("admin.insertQnaReplyWrite", vo);
 	}
 	
+	// 문의 내역 답변 삭제
+	public int deleteQnaAns(int aaNo) {
+		return sqlSession.delete("admin.deleteQnaAns", aaNo);
+	}
+	
+	// 문의 내역 답변 수정
+	public int updateQnaAns(AdminQnaAnsVo vo) {
+		return sqlSession.update("admin.updateQnaAns", vo);
+	}
+	
 	
 }

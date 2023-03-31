@@ -107,7 +107,7 @@ $(function() {
 
 $(function() {
     $("#delete-btn").click(function() {
-        if (confirm("삭제하시겠습니까?")) {
+        if (confirm("선택하신 답변을 삭제하시겠습니까?")) {
             var reviewNo = ${detail.reviewNo};
             $.ajax({
                 url: "<%=request.getContextPath()%>/admin/reviewreportstatus",

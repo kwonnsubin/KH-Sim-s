@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="admin">
+
+<!-- 리뷰 리스트 -->
+<select id="selectDashboardBizReview" resultType="kh.finalproject.sims.admin.model.vo.AdminReviewMngtVo">
+SELECT * FROM (
+    SELECT 
+        REVIEW_NO
+        ,REVIEW_CONTENT
+        , REVIEW_DATE
+        , REVIEW_REDATE
+        , REVIEW_STAR
+        , USER_ID
+        , BIZ_ID
+        , REVIEW_HIDDEN
+    FROM BIZ_REVIEW
+    ORDER BY REVIEW_DATE DESC
+)  <![CDATA[ WHERE ROWNUM <= 3 ]]>
+</select>
+
+<!-- 질문/답변 리스트 -->
+<select id="selectDashBoardQna" resultType="kh.finalproject.sims.admin.model.vo.AdminQnaMngtVo">
+	SELECT * FROM (
+	    SELECT 
+	        AQ_NO
+	        ,USER_ID
+	        , AQ_TITLE
+	        , AQ_CONTENT
+	        , AQ_DATE
+	        , AQ_REDATE
+	        , AQ_VIEWS
+	        , AQ_ANSWERS
+	    FROM QNA
+	    ORDER BY AQ_DATE DESC
+	) <![CDATA[ WHERE ROWNUM <= 3 ]]>
+</select>
+
+</mapper>
