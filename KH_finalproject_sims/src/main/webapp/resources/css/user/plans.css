@@ -102,3 +102,18 @@ p {
 	right: 6px;
 	margin: 0;
 }
+
+.btn-div button {
+	margin: 10px 10px 10px 0px;
+	background: inherit;
+	border: none;
+	box-shadow:none;
+	border-radius:0;
+	padding:0;
+	overflow:visible;
+    cursor:pointer;
+}
+
+.btn-div button:hover {
+	font-weight: bold;
+}
