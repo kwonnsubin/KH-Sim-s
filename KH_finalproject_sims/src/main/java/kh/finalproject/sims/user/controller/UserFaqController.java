@@ -220,7 +220,9 @@ public class UserFaqController {
 			, UserRplVo vo
 			) {
 		service.updateRpl(vo);
-		mv.setViewName("redirect:/faq/faqlist/");
+		UserRplVo rpl = service.getRplByNo(rplNo);
+		UserAnsVo ans = service.getAnsByNo(rpl.getAaNo());
+		mv.setViewName("redirect:/faq/qna/" + ans.getAqNo());
 		return mv;
 	}
 	

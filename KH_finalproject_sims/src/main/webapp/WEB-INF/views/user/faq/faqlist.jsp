@@ -32,9 +32,9 @@
 	<jsp:include page="../../header.jsp"/>
 	
 	<section>
-		<div class="container">
+		<div class="container-sm">
 			<div class="row">
-				<div class="col-lg-10 p-2" style="float: none; margin-top: 100px;">
+				<div class="col-md-10 p-2" style="float: none;">
 					<h5 class="py-2 fw-bolder">알뜰폰 궁금한 점 무엇이든 물어보세요</h5>
 					<!-- ***** 검색창 TODO ***** -->
 				</div>
