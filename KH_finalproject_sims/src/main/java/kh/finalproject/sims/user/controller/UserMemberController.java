@@ -41,6 +41,14 @@ public class UserMemberController {
 		return mv;
 	}
 	
+	// 약관동의 페이지
+	@GetMapping("contract")
+	public ModelAndView contract(ModelAndView mv) {
+		mv.setViewName("main/contract");
+		
+		return mv;
+	}
+	
 	// 회원가입 페이지
 	@GetMapping("signup")
 	public ModelAndView signUp(ModelAndView mv) {

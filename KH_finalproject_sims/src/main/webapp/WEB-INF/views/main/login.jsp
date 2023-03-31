@@ -56,7 +56,7 @@
 			</div>
 		</div>
 		
-		<div class="container px-2 text-center">
+		<div class="container px-2 text-center" style="width:60%;">
 			<div class="row gx-2">
 				<div class="col">
 					<div class="p-3">
@@ -66,7 +66,7 @@
 				</div>
 				<div class="col">
 					<div class="p-3">
-						<a href="<%=request.getContextPath()%>/signup">회원가입</a>
+						<a href="<%=request.getContextPath()%>/contract">회원가입</a>
 					</div>
 				</div>
 				<div class="col">

@@ -25,7 +25,7 @@
     <link rel="stylesheet" href="<%= request.getContextPath() %>/resources/chain/assets/css/animated.css">
     <link rel="stylesheet" href="<%= request.getContextPath() %>/resources/chain/assets/css/owl.css">
     
-     <style>
+    <style>
 
     .input-form {
       max-width: 680px;
@@ -41,7 +41,7 @@
       -moz-box-shadow: 0 8px 20px 0 rgba(0, 0, 0, 0.15);
       box-shadow: 0 8px 20px 0 rgba(0, 0, 0, 0.15)
     }
-  </style>
+  	</style>
 </head>
 <body>
 
