@@ -329,9 +329,9 @@ header
 }
 
 .header-area {
-  background-color: transparent;
+  background-color: white;
   border-bottom: 1px solid rgba(42,42,42,0.2);
-  position: absolute;
+  /* position: absolute; */
   left: 0px;
   right: 0px;
   z-index: 100;
