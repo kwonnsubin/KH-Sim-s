@@ -50,7 +50,7 @@
 										<input class="btn btn-primary right m-l-10" type="button" onclick="location.href='<%=request.getContextPath()%>/adminBiz/applyList'" value="목록">
 											<c:choose>
 												<c:when test="${cmd eq 'read' }">
-													<input class="btn btn-primary right" type="button" onclick="location.href='<%=request.getContextPath()%>/adminUser/selectUserModify/${userDetail.userId}'" value="수정">
+													<input class="btn btn-primary right" type="button" onclick="location.href='<%=request.getContextPath()%>/adminBiz/selectBizModify/${bizDetail.bizId}'" value="수정">
 												</c:when>
 												<c:otherwise>
 													<input class="btn btn-primary right" type="submit" value="저장">

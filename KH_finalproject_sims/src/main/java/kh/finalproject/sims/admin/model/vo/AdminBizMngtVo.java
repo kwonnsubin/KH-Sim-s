@@ -139,6 +139,16 @@ public class AdminBizMngtVo {
 	// PLAN_MESSAGE_OVER	NULL		NUMBER
 	// PLAN_DATA_OVER		NULL		NUMBER(7,3)
 	
+	private String planName;
+	private int planPrice;
+	private int planVoice;
+	private int planMessage;
+	private int planData;
+	private int planVoiceOver;
+	private int planMessageOver;
+	private int planDataOver;
+	
+	
 	//모든 멤버
 	// ID    NOT NULL VARCHAR2(30)
 	// PW    NOT NULL VARCHAR2(80)
@@ -154,13 +164,22 @@ public class AdminBizMngtVo {
 	private String searchOption; // 조회 조건
 	private String searchBox; // 조회 문구
 	
-	private String planName;
-	private int planPrice;
-	private int planVoice;
-	private int planMessage;
-	private int planData;
-	private int planVoiceOver;
-	private int planMessageOver;
-	private int planDataOver;
+	//사용자
+	// USER_NAME	NOT NULL		VARCHAR2(20)
+	// USER_SSN		NOT NULL		VARCHAR2(20)
+	// USER_WR_DATE	NOT NULL		DATE
+	// USER_UP_DATE NULL			DATE
+	// USER_GENDER	NOT NULL		CHAR(1)
+	// USER_PHONE	NULL			VARCHAR2(20)
+	// USER_EMAIL	NULL			VARCHAR2(30)
+	// USER_ADDRESS	NULL			VARCHAR2(100)
 	
+	private String userName;
+	private String userSsn;
+	private Date userWrDate;
+	private Date userUpDate;
+	private char userGender;
+	private String userPhone;
+	private String userEmail;
+	private String userAddress;
 }	

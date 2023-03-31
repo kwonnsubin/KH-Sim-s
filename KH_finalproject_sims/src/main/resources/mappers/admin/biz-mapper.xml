@@ -22,8 +22,8 @@
 		WHERE 
 			BIZ_ID = #{bizId}		
 	
-	
 	</select>
+	
 	<!-- 통신사 정보 상세 -->
 	<select id="selectBizDetail" resultType="adBizVo">
 	/** 관리자의 통신사 정보 상세 (selectBizDetail)**/	
@@ -36,6 +36,43 @@
 			
 	</select>
 	
+	<!-- 통신사 상세 수정 리스트 -->
+	<select id="selectBizModify" resultType="adBizVo">
+	/** 관리자의 통신사 상세 수정 리스트 (selectBizModify)**/	
+		SELECT
+			*
+		FROM
+			BIZ
+		WHERE 
+			BIZ_ID = #{bizId}		
+	
+	</select>
+	
+	
+	<!-- 통신사 탈퇴정보 리스트 -->
+	<select id="selectWithdrawalList" resultType="adBizVo">
+	/** 통신사 탈퇴정보 리스트(selectWithdrawalList)**/
+		SELECT
+			*
+		FROM 
+			BIZ A
+			INNER JOIN MEMBER B ON A.BIZ_ID = B.ID
+		
+	</select>
+	
+	<!-- 통신사 탈퇴정보 상세 -->
+	<select id="selectWithdrawalDetail" resultType="adBizVo">
+	/** 관리자의 통신사 탈퇴정보 상세 (selectWithdrawalDetail)**/	
+		SELECT
+			*
+		FROM
+			BIZ
+		WHERE 
+			BIZ_ID = #{bizId}		
+	
+	</select>
+	
+	
 	<!-- 통신사 요금제 개통 신청 리스트 -->
 	<select id="selectBizPlanApplyList" resultType="adBizVo">
 	/** 통신사 요금제 개통 신청 리스트(selectBizPlanApplyList)**/
@@ -46,6 +83,37 @@
 			INNER JOIN PLAN_TABLE B ON A.PLAN_NO = B.PLAN_NO
 	</select>
 	
+	<!-- 통신사 요금제 개통 신청 상세 -->
+	<select id="selectBizPlanApplyDetail" resultType="adBizVo">
+	/** 통신사 요금제 개통 신청 상세 (selectBizPlanApplyDetail)**/
+		
+	
+	
+		SELECT
+				*
+			FROM
+				USER_TABLE A
+			 JOIN
+				PLAN_ORDER B ON A.USER_ID = B.USER_ID
+			 JOIN			
+				PLAN_TABLE C ON B.PLAN_NO = C.PLAN_NO
+			WHERE
+			ORDER_NO =#{orderNo}
+	  
+	   
+	  <!--  SELECT
+	   		*
+	   	FROM 
+	   		PLAN_ORDER A
+	   	JOIN
+	   		USER_TABLE B ON A.USER_ID = B.USER_ID
+	   	JOIN 
+	   		PLAN_TABLE C ON A.PLAN_NO = C.PLAN_NO
+	   	WHERE
+	   	ORDER_NO = #{orderNo}	 -->	  		
+	   
+		 
+	</select>
 	
 	
 

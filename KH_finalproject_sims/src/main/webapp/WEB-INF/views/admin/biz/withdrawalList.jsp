@@ -6,7 +6,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>통신사 가입 신청 리스트</title>
+<title>통신사 탈퇴 신청 리스트</title>
 </head>
 <body>
 	<jsp:include page="../include/header.jsp" />
@@ -26,8 +26,7 @@
 												</div>
 												<ul class="breadcrumb">
 													<li class="breadcrumb-item"><a href=""><i class="feather icon-home"></i></a></li>
-													<li class="breadcrumb-item"><a href="<%=request.getContextPath()%>/adminBiz/applyList"><i class="breadcrumb-item"></i>통신사 관리</a></li>
-													<li class="breadcrumb-item"><a href="<%=request.getContextPath()%>/adminBiz/bizPlanApplyList"><i class="breadcrumb-item"></i>통신사 요금제 가입신청</a></li>
+													<li class="breadcrumb-item"><a href=""><i class="breadcrumb-item"></i>통신사 관리</a></li>
 												</ul>
 											</div>
 										</div>
@@ -45,7 +44,7 @@
 															<label class="floating-label"></label>
 															<select class="" name="searchOption">
 																<option value="">선택</option>
-																<option value="title" <c:if test="${searchOption eq 'name' }">selected</c:if>>요금제명</option>
+																<option value="title" <c:if test="${searchOption eq 'name' }">selected</c:if>>업체명</option>
 																<option value="writer" <c:if test="${searchOption eq 'enabled' }">selected</c:if>>신청상태</option>
 																<option value="content" <c:if test="${searchOption eq 'writer' }">selected</c:if>>신청자</option>
 															</select>
@@ -66,25 +65,26 @@
 													<thead>
 														<tr>
 															<th>번호</th>
-															<th>요금제명</th>
+															<th>업체명</th>
 															<th>신청상태</th>
 															<th>신청자</th>
 															<th>신청일</th>
 														</tr>
 													</thead>
 													<tbody>
-														<c:forEach var="list" items="${bizPlanApplyList}" varStatus="status">
+														<c:forEach var="list" items="${withdrawalList}" varStatus="status">
 															<tr>
-																<td><a href="<%=request.getContextPath()%>/adminBiz/bizPlanApplyDetail/${list.orderNo}">${list.orderNo}</a></td>
-																<td>${list.planName}</a></td>
+																<td>${status.count}</td>
+																<td><a href="<%=request.getContextPath()%>/adminBiz/withdrawalDetail/${list.bizId}">${list.bizId}</a></td>
+																
 																<td><c:choose>
 																		<c:when test="${list.enable eq 0}"> 신청 중 </c:when>
 																		<c:when test="${list.enable eq 1}"> 승인 </c:when>
 																		<c:when test="${list.enable eq 2}"> 탈퇴 </c:when>
 																	</c:choose>
-																</td>
-																<td>${list.userId}</a></td>
-																<td><fmt:formatDate value="${list.orderDate}" pattern="yyyy.MM.dd"/> </td>
+																</td>	
+																<td><a href="<%=request.getContextPath()%>/adminBiz/bizDetail/${list.bizOwnerName}">${list.bizOwnerName}</a></td>
+																<td><fmt:formatDate value="${list.writeDate}" pattern="yyyy.MM.dd"/> </td>
 															</tr>
 														</c:forEach>
 													</tbody>

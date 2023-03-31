@@ -11,6 +11,7 @@ import org.springframework.web.servlet.ModelAndView;
 import kh.finalproject.sims.admin.model.service.AdminBizMngtService;
 import kh.finalproject.sims.admin.model.vo.AdminBizMngtVo;
 
+
 @RequestMapping("/adminBiz")
 @Controller
 public class AdminBizMngtController {
@@ -48,6 +49,42 @@ public class AdminBizMngtController {
 		return mv;
 	}
 	
+	//통신사 상세 수정 페이지로 이동
+	@GetMapping("/bizModify/{bizId}")
+	public ModelAndView selectBizModify(
+			ModelAndView mv
+			, @PathVariable String bizId
+			, AdminBizMngtVo vo) {
+		AdminBizMngtVo bizDetail = service.selectBizDetail(bizId);
+		mv.addObject("bizDetail", bizDetail);
+		mv.addObject("cmd", "update");
+		mv.setViewName("/admin/biz/bizDetail");
+		return mv;
+	}
+	
+	
+	//통신사 탈퇴 리스트로 이동
+	@RequestMapping(value="/withdrawalList", method= {RequestMethod.GET, RequestMethod.POST})
+	public ModelAndView selectWithdrawalList(ModelAndView mv, AdminBizMngtVo vo) {
+		mv.addObject("withdrawalList", service.selectWithdrawalList(vo));
+		mv.addObject("searchOption", vo.getSearchOption());
+		mv.addObject("searchBox", vo.getSearchBox());
+		mv.setViewName("admin/biz/withdrawalList");
+		mv.addObject("cmd", "read");
+		return mv;
+	
+	}
+	
+	//통신사 탈퇴 상세 정보로 이동
+	@GetMapping("/withdrawalDetail/{bizId}")
+	public ModelAndView selectWithdrawalDetail(ModelAndView mv, @PathVariable String bizId) {
+		AdminBizMngtVo withdrawalDetail = service.selectWithdrawalDetail(bizId);
+		mv.addObject("withdrawalDetail", withdrawalDetail);
+		mv.setViewName("admin/biz/withdrawalDetail");
+		mv.addObject("cmd", "read");
+		return mv;
+	}	
+	
 	//통신사 요금제 개통 신청 리스트로 이동
 	@RequestMapping(value="/bizPlanApplyList", method = {RequestMethod.GET, RequestMethod.POST})
 	public ModelAndView selectBizPlanApplyList(ModelAndView mv, AdminBizMngtVo vo) {
@@ -55,6 +92,16 @@ public class AdminBizMngtController {
 		mv.addObject("searchOption", vo.getSearchOption());
 		mv.addObject("searchBox", vo.getSearchBox());
 		mv.setViewName("admin/biz/planApplyList");
+		mv.addObject("cmd", "read");
+		return mv;
+	}
+	
+	//통신사 요금제 개통 신청 상세 페이지로 이동
+	@GetMapping("/bizPlanApplyDetail/{orderNo}")
+	public ModelAndView selectBizPlanApplyDetail(ModelAndView mv, @PathVariable int orderNo) {
+		AdminBizMngtVo bizPlanApplyDetail = service.selectBizPlanApplyDetail(orderNo);
+		mv.addObject("bizPlanApplyDetail", bizPlanApplyDetail);
+		mv.setViewName("admin/biz/planApplyDetail");
 		mv.addObject("cmd", "read");
 		return mv;
 	}
