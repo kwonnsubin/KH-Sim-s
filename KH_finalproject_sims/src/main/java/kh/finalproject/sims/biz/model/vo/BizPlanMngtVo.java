@@ -73,6 +73,8 @@ public class BizPlanMngtVo {
 	
 
 	private int rownum;
+	
+	private int listCnt;
 
 
 	

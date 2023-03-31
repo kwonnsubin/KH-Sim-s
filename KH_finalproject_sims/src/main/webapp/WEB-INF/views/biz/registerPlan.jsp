@@ -12,8 +12,8 @@
             <label>요금제명</label>
             <input type="text" name="planName">
             <label>통신사명</label>
-            <!-- <span>박제하고싶은데.. </span> -->
-            <input type="text" name="bizName">
+            <input type="text" name="bizName" value="${vo.bizName}" readonly >
+            <%-- value="${pageContext.request.userPrincipal.name }" 이렇게 하면 통신사 아이디--%>
         </div>
         <div>
             <label>통신망</label>

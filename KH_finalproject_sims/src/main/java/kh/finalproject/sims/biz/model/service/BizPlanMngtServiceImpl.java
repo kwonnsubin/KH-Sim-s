@@ -29,6 +29,16 @@ public class BizPlanMngtServiceImpl implements BizPlanMngtService{
 		return dao.registerBizPlan(vo);
 		
 	}
+
+	@Override
+	public BizPlanMngtVo findByBizName(String bizid) {
+		return dao.findByBizName(bizid);
+	}
+
+	@Override
+	public int getPlanListCnt(String bizid) {
+		return dao.getPlanListCnt(bizid);
+	}
 	
 
 }

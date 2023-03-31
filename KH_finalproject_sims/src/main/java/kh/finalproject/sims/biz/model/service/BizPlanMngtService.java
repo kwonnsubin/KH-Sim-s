@@ -12,4 +12,8 @@ public interface BizPlanMngtService {
 
 	public int registerBizPlan(BizPlanMngtVo vo);
 
+	public BizPlanMngtVo findByBizName(String bizid);
+
+	public int getPlanListCnt(String bizid);
+
 }

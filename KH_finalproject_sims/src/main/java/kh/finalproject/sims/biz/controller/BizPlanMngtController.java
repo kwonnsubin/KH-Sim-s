@@ -37,6 +37,13 @@ public class BizPlanMngtController {
 		List<BizPlanMngtVo> planList = service.selectBizPlanList(bizid);
 		System.out.println(planList);
 		
+		int listCnt = service.getPlanListCnt(bizid);
+		System.out.println("요금제 목록 개수는 : "+listCnt);
+		BizPlanMngtVo vo = new BizPlanMngtVo();
+		vo.setListCnt(listCnt);
+		System.out.println("listCnt를 저장한 vo : "+vo);
+		
+		mv.addObject("vo", vo);
 		mv.addObject("planList", planList);
 		
 		mv.setViewName("/biz/planList");
@@ -61,11 +68,19 @@ public class BizPlanMngtController {
 	
 	//통신사 요금제 등록
 	@GetMapping("/registerPlan") 
-	public ModelAndView registerBizPlan(ModelAndView mv) {
+	public ModelAndView registerBizPlan(ModelAndView mv
+			, HttpServletRequest request
+			) {
 		
-		//TODO 통신사 이름 가지고 와서 박제
+		Principal principal = request.getUserPrincipal();
+		String bizid = principal.getName();
+		System.out.println("통신사아이디 : "+bizid);
+		
+		BizPlanMngtVo vo = service.findByBizName(bizid);
+		System.out.println(vo);
 		
 		
+		mv.addObject("vo",vo);
 		mv.setViewName("/biz/registerPlan");
 		return mv;
 	}
@@ -75,8 +90,6 @@ public class BizPlanMngtController {
 	public String registerBizPlan(ModelAndView mv
 			, @ModelAttribute BizPlanMngtVo vo
 			) {
-		
-	//TODO 통신사 이름은 자동으로 박제 시켜야 함.
 	    service.registerBizPlan(vo);
 	    
 		return "redirect:/biz/planList";

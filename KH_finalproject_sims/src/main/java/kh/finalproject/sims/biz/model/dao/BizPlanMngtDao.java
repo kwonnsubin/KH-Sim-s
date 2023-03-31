@@ -24,6 +24,14 @@ public class BizPlanMngtDao {
 	public int registerBizPlan(BizPlanMngtVo vo) {
 		return sqlSession.insert("bizPlan.registerBizPlan",vo);
 	}
+
+	public BizPlanMngtVo findByBizName(String bizid) {
+		return sqlSession.selectOne("bizPlan.findByBizName", bizid);
+	}
+
+	public int getPlanListCnt(String bizid) {
+		return sqlSession.selectOne("bizPlan.getPlanListCount", bizid);
+	}
 	
 	
 	
