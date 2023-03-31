@@ -8,8 +8,8 @@
 <title>Insert title here</title>
 </head>
 <body>
-<h2>요금제 목록</h2>
-<div>
+<h2>${planList[0].bizName}의 요금제 목록</h2>
+	<div>
         <span class="count float-1">총 0건</span>
     </div>
     <div>
@@ -23,11 +23,11 @@
                 </tr>
             </thead>
             <tbody>
-                <c:forEach var="planList" items="${planList }">
+                <c:forEach var="plan" items="${planList}">
                 <tr>
-                    <td>${planList.rownum }</td>
-                    <td>${planList.planName }</td>
-                    <td>${planList.planDate }</td>
+                    <td>${plan.rownum }</td>
+                    <td><a href="<%=request.getContextPath()%>/biz/planDetail?planNo=${plan.planNo }">${plan.planName }</a></td>
+                    <td>${plan.planDate } </td>
                     <td>
                     <button>수정</button><!-- 요금제 수정이 필요한가??? -->
                     <button>삭제</button>
@@ -37,5 +37,15 @@
             </tbody>
         </table>
     </div>
+    
+    <div>
+    	<button type="button"  onclick="registerBtn(this);">요금제 등록하기</button>
+    </div>
+    <%-- location.href='<%=request.getContextPath()%>/biz/registerPlan'" --%>
+<script>
+	function registerBtn(){
+		location.href="<%=request.getContextPath()%>/biz/registerPlan";
+	}
+</script>   
 </body>
 </html>

@@ -16,5 +16,15 @@ public class BizPlanMngtDao {
 	public List<BizPlanMngtVo> selectBizPlanList(String bizid){
 		return sqlSession.selectList("bizPlan.selectPlanList", bizid);
 	}
+
+	public BizPlanMngtVo selectBizPlanDetail(int planNo) {
+		return sqlSession.selectOne("bizPlan.selectBizPlanDetail", planNo);
+	}
+
+	public int registerBizPlan(BizPlanMngtVo vo) {
+		return sqlSession.insert("bizPlan.registerBizPlan",vo);
+	}
+	
+	
 	
 }

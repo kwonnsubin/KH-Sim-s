@@ -17,6 +17,7 @@ import lombok.ToString;
 @NoArgsConstructor
 @ToString
 public class BizPlanMngtVo {
+//  desc plan_table;
 //	----------------- -------- ------------- 
 //	PLAN_NO           NOT NULL NUMBER        
 //	PLAN_NAME         NOT NULL VARCHAR2(300) 
@@ -29,7 +30,8 @@ public class BizPlanMngtVo {
 //	PLAN_DATA                  NUMBER        
 //	PLAN_VOICE_OVER            NUMBER(7,3)   
 //	PLAN_MESSAGE_OVER          NUMBER        
-//	PLAN_DATA_OVER             NUMBER(7,3)   
+//	PLAN_DATA_OVER             NUMBER(7,3)
+//  PLAN_DATE                  DATE 
 	
 	private int planNo; 
 	private String planName;
@@ -39,10 +41,10 @@ public class BizPlanMngtVo {
 	private int planPrice;
 	private int planVoice;
 	private int planMessage;
-	private int data;
-	private int planVoiceOver;
+	private int planData;
+	private double planVoiceOver;
 	private int planMessageOver;
-	private int planDataOver;
+	private double planDataOver;
 	private Date planDate;
 	
 	private String bizId;
@@ -69,8 +71,7 @@ public class BizPlanMngtVo {
 	private Date updateDate;
 	private String logoRenameFilename;
 	
-	
-	//rownum도 따로 추가?
+
 	private int rownum;
 
 

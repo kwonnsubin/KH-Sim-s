@@ -18,6 +18,17 @@ public class BizPlanMngtServiceImpl implements BizPlanMngtService{
 	public List<BizPlanMngtVo> selectBizPlanList(String bizid) {
 		return dao.selectBizPlanList(bizid);
 	}
+
+	@Override
+	public BizPlanMngtVo selectBizPlanDetail(int planNo) {
+		return dao.selectBizPlanDetail(planNo);
+	}
+
+	@Override
+	public int registerBizPlan(BizPlanMngtVo vo) {
+		return dao.registerBizPlan(vo);
+		
+	}
 	
 
 }
