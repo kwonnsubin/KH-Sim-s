@@ -65,23 +65,37 @@
 					</div>
 				</div>
 				<div class="vr"></div>
-				<div class="col-2 text-center">
+				<div class="col-2">
 					<button type="button" class="btn btn-light btn-outline-secondary modalBtn" data-bs-toggle="modal" data-bs-target="#filter-modal">
 						필터
 					</button>
 					
 					<!-- Modal -->
 					<div class="modal fade" id="filter-modal" tabindex="-1" aria-labelledby="filter-modal" aria-hidden="true">
-						<div class="modal-dialog">
+						<div class="modal-dialog modal-lg">
 							<div class="modal-content">
-								<div class="modal-header">
-									<h5 class="modal-title" id="filter-modal">Modal title</h5>
-									<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+								<div class="modal-header-div m-2">
+									<div class="row">
+										<div class="col text-start">
+											<h5 class="modal-title" id="filter-modal">필터</h5>
+										</div>
+										<div class="col text-end">
+											<button type="button" class="btn-close text-end" data-bs-dismiss="modal" aria-label="Close"></button>
+										</div>
+									</div>
+									<div class="btn-div">
+										<button data-target="#planData">데이터</button>
+										<button data-target="#planVoice">통화량</button>
+										<button data-target="#planMessage">문자량</button>
+										<button data-target="#netInfo">통신정보</button>
+										<button data-target="#bizName">통신사</button>
+									</div>
+									<hr style="border:0;border-top:1px solid #555;margin:0;height:1px;" />
 								</div>
-								<div class="modal-body">
+								<div class="modal-body overflow-auto">
 					        	...
 					      		</div>
-					      		<div class="modal-footer">
+					      		<div class="modal-footer m-2 mb-0">
 					        		<button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
 					        		<button type="button" class="btn btn-primary">Save changes</button>
 					      		</div>
