@@ -6,27 +6,56 @@
 <html>
 <head>
 <meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@100;300;400;500;700;900&display=swap" rel="stylesheet">
+    
 <title>Insert title here</title>
 <link rel="stylesheet" href="${path}/resources/css/biz/main.css"/>
 <script src="https://code.jquery.com/jquery-3.6.3.js"></script>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
+
+ 	<!-- Bootstrap core CSS -->
+    <link href="<%= request.getContextPath() %>/resources/chain/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    
+    <!-- Additional CSS Files -->
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
+    <link rel="stylesheet" href="<%= request.getContextPath() %>/resources/chain/assets/css/templatemo-chain-app-dev.css">
+    <link rel="stylesheet" href="<%= request.getContextPath() %>/resources/chain/assets/css/animated.css">
+    <link rel="stylesheet" href="<%= request.getContextPath() %>/resources/chain/assets/css/owl.css">
+    <link rel="stylesheet" href="<%= request.getContextPath() %>/resources/css/user/myinfo.css"/>
+    
+
 </head>
 <body>
+<jsp:include page="/WEB-INF/views/header.jsp"/>
+
 	<div id="wrap">
-	    <header id="header">
-	        <p class="tit">사이드바</p>
+	    <nav id="header">
+	        <p class="tit">마이페이지</p>
 	        <ul class="list">
 	            <li>
-	                <a href="#">
-	                   	     내 정보 보기 
+	                <a href="${path}/biz/infodetail">
+	                   	     내 정보 보기
 	                       <span class="material-symbols-outlined">
 	                        arrow_forward_ios
 	                       </span>
 	                </a>
 	            </li>
 	            <li>
-	                <a href="#">
-	                    	내 정보 보기 
+	                <a href="${path}/biz/planList">
+	                    	요금제 현황
+	                        <span class="material-symbols-outlined">
+	                        arrow_forward_ios
+	                        </span>
+	                </a>
+	            </li>
+	            <li>
+	                <a href="${path}/biz/applyList">
+	                    	가입신청 현황 
 	                        <span class="material-symbols-outlined">
 	                        arrow_forward_ios
 	                        </span>
@@ -34,33 +63,39 @@
 	            </li>
 	            <li>
 	                <a href="#">
-	                    	내 정보 보기 
-	                        <span class="material-symbols-outlined">
-	                        arrow_forward_ios
-	                        </span>
-	                </a>
-	            </li>
-	            <li>
-	                <a href="#">
-	                    	내 정보 보기 
+	                    	리뷰 현황
 	                        <span class="material-symbols-outlined">
 	                        arrow_forward_ios
 	                        </span>
 	                </a>
 	            </li>
 	        </ul>
-	    </header>
+	    </nav>
 	
 	    <div id="container">
 	        <div id="containerWrap">
-	           		 마이페이지
+	           		 
 	            <div class="contents">
 	                <div class="mypage-main">
 	                   	 진짜 메인
+	                   	 <img src="${path}${imagePath}"/>
 	                </div> 
 	            </div>
 	        </div>
 	    </div>
 	  </div>
+	  
+	<jsp:include page="/WEB-INF/views/footer.jsp"/>
+	
+	<!-- Scripts -->
+	<script src="<%= request.getContextPath() %>/resources/chain/vendor/jquery/jquery.min.js"></script>
+	<script src="<%= request.getContextPath() %>/resources/chain/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+	<script src="<%= request.getContextPath() %>/resources/chain/assets/js/owl-carousel.js"></script>
+	<script src="<%= request.getContextPath() %>/resources/chain/assets/js/animation.js"></script>
+	<script src="<%= request.getContextPath() %>/resources/chain/assets/js/imagesloaded.js"></script>
+	<script src="<%= request.getContextPath() %>/resources/chain/assets/js/popup.js"></script>
+	<script src="<%= request.getContextPath() %>/resources/chain/assets/js/custom.js"></script>
+	<script src="<%= request.getContextPath() %>/resources/js/user/myinfo.js"></script>
+	  
 </body>
 </html>

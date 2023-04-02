@@ -38,6 +38,8 @@ div{
     width: 240px;
     min-height: 100vh;
     padding: 10px;
+    padding-left: 50px;
+    margin-right : 20px;
     /* border-style: dotted; */
 }
 #header .tit{
