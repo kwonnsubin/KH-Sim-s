@@ -5,6 +5,7 @@ import java.io.PrintWriter;
 import java.security.Principal;
 import java.util.List;
 
+import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
@@ -20,6 +21,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import kh.finalproject.sims.biz.model.service.BizApplyMngtService;
 import kh.finalproject.sims.biz.model.vo.BizApplyVo;
+import kh.finalproject.sims.common.page.Paging;
 
 @Controller
 @RequestMapping("/biz")
@@ -32,6 +34,7 @@ public class BizApplyMngtController {
 	@GetMapping("/applyList")
 	public ModelAndView selectBizPlanApplyList(ModelAndView mv
 			, HttpServletRequest request
+			, HttpServletResponse response
 			) {
 		Principal principal = request.getUserPrincipal();
 		String bizid = principal.getName();
@@ -40,6 +43,50 @@ public class BizApplyMngtController {
 		List<BizApplyVo> applyList = service.selectBizPlanApplyList(bizid);
 		System.out.println(applyList);
 		
+		//페이징
+		String pageNumber = request.getParameter("p");
+		int pNum;
+		if (pageNumber == null || pageNumber.isEmpty()) {
+			pNum = 1;
+		} else {
+			pNum = Integer.parseInt(pageNumber);
+		}
+	
+		Cookie cookie = null;
+		Cookie[] cookies = request.getCookies();
+		for (Cookie c : cookies) {
+			if (c.getName().equals("cnt")) {
+				cookie = c;
+			}
+		}
+	
+		String cnt = request.getParameter("cnt");
+		if (cnt != null) {
+			if (cnt.isEmpty()) {
+				if (cookie != null) {
+					cnt = cookie.getValue();
+				} else {
+					cnt = "10"; // 초기값
+				}
+			}
+		} else {
+			if (cookie != null) {
+				cnt = cookie.getValue();
+			} else {
+				cnt = "10";
+			}
+		}
+	
+		cookie = new Cookie("cnt", cnt);
+		cookie.setMaxAge(60 * 60 * 24 * 5);
+		response.addCookie(cookie);
+	
+		Paging paging = service.getPage(bizid, pNum, Integer.parseInt(cnt));
+		request.setAttribute("paging", paging);
+		
+		System.out.println("@@@@paging.getPage() : " +paging.getPage());//확인용
+		System.out.println("#########getPageList : "+ paging.getPageList()); //하단 개수
+
 		
 		
 		mv.addObject("applyList",applyList);
