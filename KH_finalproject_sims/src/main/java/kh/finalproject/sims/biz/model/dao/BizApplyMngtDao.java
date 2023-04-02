@@ -1,6 +1,7 @@
 package kh.finalproject.sims.biz.model.dao;
 
 import java.util.List;
+import java.util.Map;
 
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -31,5 +32,13 @@ public class BizApplyMngtDao {
 
 	public List<BizApplyVo> selectBizPlanApplyList(String bizid) {
 		return sqlSession.selectList("apply.selectBizPlanApplyList", bizid);
+	}
+
+	public int getApplyListCnt(String bizid) {
+		return sqlSession.selectOne("apply.getApplyListCnt", bizid);
+	}
+
+	public List<BizApplyVo> selectPage(Map<String, Object> map) {
+		return sqlSession.selectList("apply.selectPage", map);
 	}
 }

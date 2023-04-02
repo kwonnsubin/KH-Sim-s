@@ -18,6 +18,42 @@
     )
 	</select>
 	
+	<!-- paging -->
+	<select id="selectPage" parameterType="map" resultType="kh.finalproject.sims.biz.model.vo.BizPlanMngtVo">
+	SELECT rownum, plan_name, plan_date, biz_name, plan_no
+    	FROM (
+    	select rownum rn, plan_name, plan_date, biz_name, plan_no
+    	from plan_table
+    	where biz_name = (select biz_name from biz where biz_id = #{bizid})    
+	 )
+	 where rn BETWEEN #{start} and #{end}
+	</select>
+	
+	<!-- search 리스트 -->
+	<select id="searchBizPlanList" parameterType="map" resultType="kh.finalproject.sims.biz.model.vo.BizPlanMngtVo">
+	SELECT rownum, plan_name, plan_date, biz_name, plan_no
+		FROM (
+		    SELECT rownum rn, plan_name, plan_date, biz_name, plan_no
+		    FROM plan_table
+		    WHERE biz_name = (SELECT biz_name FROM biz WHERE biz_id = #{bizid})    
+        			AND plan_name LIKE '%' || #{keyword} || '%' 
+				)
+		WHERE rn BETWEEN #{start} AND #{end}
+	
+	</select>
+	
+	<!-- search 리스트 출력 개수 -->
+	<select id="getSearchPlanListCount" resultType="_int">
+	select count(*) searchCnt
+	 from (SELECT rownum, plan_name, plan_date, biz_name, plan_no
+			FROM (
+				    SELECT rownum rn, plan_name, plan_date, biz_name, plan_no
+				    FROM plan_table
+				    WHERE biz_name = (SELECT biz_name FROM biz WHERE biz_id = #{bizid})    
+				        AND plan_name LIKE '%' || #{keyword} || '%')
+				)
+	</select>
+	
 	<!-- 통신사 요금제 상세 정보 -->
 	<select id="selectBizPlanDetail" resultType="kh.finalproject.sims.biz.model.vo.BizPlanMngtVo">
 		select * from plan_table where plan_no = #{plan_no}
@@ -37,5 +73,10 @@
 	<select id ="findByBizName" resultType="kh.finalproject.sims.biz.model.vo.BizPlanMngtVo">
 		select biz_name from biz where biz_id =#{bizid}
 	</select>
+	
+	<!-- 요금제 삭제 -->
+	<delete id="deleteBizPlan">
+		delete from plan_table where plan_no=#{planNo}
+	</delete>
 	
 </mapper>

@@ -75,7 +75,11 @@ public class BizPlanMngtVo {
 	private int rownum;
 	
 	private int listCnt;
+	
+	private int rn;
 
+	//search
+	private String keyword;
 
 	
 	

@@ -1,6 +1,7 @@
 package kh.finalproject.sims.biz.model.dao;
 
 import java.util.List;
+import java.util.Map;
 
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -29,8 +30,27 @@ public class BizPlanMngtDao {
 		return sqlSession.selectOne("bizPlan.findByBizName", bizid);
 	}
 
+	
+	//selectTotalRowCount
 	public int getPlanListCnt(String bizid) {
 		return sqlSession.selectOne("bizPlan.getPlanListCount", bizid);
+	}
+
+	public List<BizPlanMngtVo> selectPage(Map<String, Object> map) {
+		return sqlSession.selectList("bizPlan.selectPage", map);
+	}
+
+	public int deleteBizPlan(int planNo) {
+		return sqlSession.delete("bizPlan.deleteBizPlan", planNo);
+	}
+
+
+	public List<BizPlanMngtVo> searchBizPlanList(Map<String, Object> map) {
+		return sqlSession.selectList("bizPlan.searchBizPlanList", map);
+	}
+	
+	public int getSearchPlanListCount(Map<String, String> mapCnt) {
+		return sqlSession.selectOne("bizPlan.getSearchPlanListCount", mapCnt);
 	}
 	
 	
