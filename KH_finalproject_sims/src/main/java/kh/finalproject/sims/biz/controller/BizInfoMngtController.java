@@ -46,7 +46,10 @@ public class BizInfoMngtController {
 		
 		String imagePath ="/resources/img/"+vo.getLogoRenameFilename();
 		mv.addObject("imagePath",imagePath);
-		mv.setViewName("biz/info");
+		mv.setViewName("biz/bizInfo");
 		return mv;
 	}
+	
+	//내 정보 수정하기
+	//TODO
 }

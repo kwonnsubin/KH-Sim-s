@@ -23,6 +23,10 @@
 		</ul>
 	</nav>
 
+	<div>
+		<span>기본정보</span>
+	</div>
+
 	<table>
 		<tbody>
 			<tr>
