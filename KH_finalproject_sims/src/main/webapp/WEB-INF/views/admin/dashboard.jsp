@@ -179,7 +179,7 @@
 <jsp:include page="./include/footer.jsp" />
 </body>
 	<!-- 차트 -->
-    <script type="text/javascript">
+<!--     <script type="text/javascript">
       google.charts.load('current', {'packages':['corechart']});
       google.charts.setOnLoadCallback(drawChart);
 
@@ -201,5 +201,5 @@
         var chart = new google.visualization.AreaChart(document.getElementById('chart_div'));
         chart.draw(data, options);
       }
-    </script>
+    </script> -->
 </html>
