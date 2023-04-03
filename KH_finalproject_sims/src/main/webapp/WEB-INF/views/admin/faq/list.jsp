@@ -9,7 +9,7 @@
 <title>자주묻는질문 리스트</title>
 </head>
 <body>
-	<jsp:include page="./include/header.jsp" />
+	<jsp:include page="../include/header.jsp" />
 	<div class="pcoded-main-container">	
 		<div class="pcoded-wrapper container">
 			<div class="pcoded-content">
@@ -38,7 +38,7 @@
 									</div>
 									<div class="card">
 										<div class="card-body">
-											<form action="<%=request.getContextPath()%>/adminNotice/noticeList" method="post">
+											<form action="<%=request.getContextPath()%>/admin/faq/list" method="post">
 												<div class="row">
 													<div class="col-sm-12">
 														<div class="input-group">
@@ -127,6 +127,6 @@
 			</div>
 			 --%>
 </div>
-<jsp:include page="./include/footer.jsp" />
+<jsp:include page="../include/footer.jsp" />
 </body>
 </html>

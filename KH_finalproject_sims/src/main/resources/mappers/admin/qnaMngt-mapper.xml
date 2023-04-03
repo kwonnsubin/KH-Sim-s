@@ -64,6 +64,17 @@
 		DELETE FROM FAQ WHERE FAQ_NO=#{faqNo}
 	</delete>
 	
+	<!-- 자주묻는질문 검색 -->
+	<select id="selectSearchFaqList" resultType="kh.finalproject.sims.admin.model.vo.AdminFaqVo">
+		SELECT * FROM FAQ 
+		<choose>
+			<when test="searchOption != null and searchOption == 'title'"> WHERE FAQ_TITLE LIKE '%'|| #{searchBox} ||'%'</when>
+			<when test="searchOption != null and searchOption == 'writer'"> WHERE ADMIN_ID LIKE '%'|| #{searchBox} ||'%'</when>
+			<when test="searchOption != null and searchOption == 'content'"> WHERE FAQ_CONTENT LIKE '%'|| #{searchBox} ||'%'</when>
+		</choose>
+		ORDER BY FAQ_DATE DESC
+	</select>
+	
 	<!-- 신고 리뷰 -->
 	<!-- 신고 리뷰 목록 -->
 	<select id="selectReviewReportList" resultType="kh.finalproject.sims.admin.model.vo.AdminReviewMngtVo">

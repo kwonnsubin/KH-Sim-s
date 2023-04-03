@@ -36,4 +36,30 @@ SELECT * FROM (
 	) <![CDATA[ WHERE ROWNUM <= 3 ]]>
 </select>
 
+<!-- 신고 리스트 -->
+<select id="selectDashBoardReviewReport" resultType="kh.finalproject.sims.admin.model.vo.AdminReviewMngtVo">
+	SELECT * 
+	FROM 
+	(SELECT *
+	FROM REVIEW_REPORT LEFT OUTER JOIN BIZ_REVIEW USING (REVIEW_NO) 
+	ORDER BY REVIEW_DATE DESC)
+	<![CDATA[ WHERE ROWNUM <= 3 ]]>
+</select>
+
+<!-- 가입자 수 -->
+<select id="selectDashBoardPlanOrderCount" resultType="_int">
+	SELECT COUNT(*) FROM PLAN_ORDER WHERE TRUNC(ORDER_DATE) = TRUNC(SYSDATE)
+</select>
+
+<!-- 통신사 등록 신청 수 -->
+<select id="selectDashBoardBizWriteCount" resultType="_int">
+	SELECT COUNT(*) FROM BIZ WHERE TRUNC(WRITE_DATE) = TRUNC(SYSDATE)
+</select>
+
+<!-- 통신사 총 신청 수 -->
+<select id="selectDashBoardBizTotalCount" resultType="_int">
+	SELECT COUNT(*) FROM BIZ
+</select>
+
+
 </mapper>

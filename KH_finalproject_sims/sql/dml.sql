@@ -473,7 +473,7 @@ select *
  from plan_order
  where plan_no in
  (select plan_no 
-    from plan_table 
+    from plan_table
     where biz_name like (select biz_name from biz where biz_id = 'sejong'));  
 --2) 조인   
  select * from plan_order

@@ -24,6 +24,9 @@ public interface AdminQnaMngtService {
 	// 자주묻는질문 삭제하기
 	public int deleteFaq(int faqNo);
 	
+	// 자주묻는질문 검색
+	public List<AdminFaqVo> selectSearchFaqList(AdminFaqVo vo);
+	
 	// 문의 내역 리스트
 	public List<AdminQnaMngtVo> selectQnaList();
 	

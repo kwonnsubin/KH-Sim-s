@@ -42,6 +42,12 @@ public class AdminQnaMngtServiceImpl implements AdminQnaMngtService{
 	public int deleteFaq(int faqNo) {
 		return dao.deleteFaq(faqNo);
 	}
+	
+	// 자주묻는질문 조회
+	@Override
+	public List<AdminFaqVo> selectSearchFaqList(AdminFaqVo vo) {
+		return dao.selectSearchFaqList(vo);
+	}
 
 	// 문의 내역 리스트
 	@Override

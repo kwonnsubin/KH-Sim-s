@@ -48,7 +48,7 @@
 															</select>
 															<input class="form-control" type="text" name="searchBox" value="${searchBox}">
 															<div class="input-group-append">
-																<button class="btn  btn-primary" type="submit">검색</button>
+																<button class="btn  btn-primary" type="submit" id="search-btn">검색</button>
 															</div>
 														</div>
 													</div>

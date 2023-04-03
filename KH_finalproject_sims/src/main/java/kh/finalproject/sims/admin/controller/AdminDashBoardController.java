@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
 import kh.finalproject.sims.admin.model.service.AdminDashBoardService;
+import kh.finalproject.sims.admin.model.vo.AdminQnaMngtVo;
 import kh.finalproject.sims.admin.model.vo.AdminReviewMngtVo;
 
 
@@ -21,9 +22,20 @@ public class AdminDashBoardController {
 	
 	@GetMapping("/dashboard")
 		public ModelAndView selectDashBoard(ModelAndView mv) {
-		List<AdminReviewMngtVo> bizReviewList = service.selectDashboardBizReview();
-		System.out.println("@@@@@@@@@@@"+bizReviewList);
+		List<AdminReviewMngtVo> bizReviewList = service.selectDashboardBizReview(); // 리뷰 리스트
+		List<AdminQnaMngtVo> qnaList = service.selectDashBoardQna(); // 질문/답변 리스트
+		List<AdminReviewMngtVo> reviewReportList = service.selectDashBoardReviewReport(); // 신고 리스트
+		int planOrderCount = service.selectDashBoardPlanOrderCount(); // 가입자 수
+		int bizWriteCount = service.selectDashBoardBizWriteCount();	// 통신사 신청 수
+		int bizTotalCount = service.selectDashBoardBizTotalCount(); // 통신사 총 등록 수
+		
 		mv.addObject("bizReviewList", bizReviewList);
+		mv.addObject("qnaList", qnaList);
+		mv.addObject("reviewReportList", reviewReportList);
+		mv.addObject("planOrderCount", planOrderCount); // 가입자 수를 뷰에 전달
+		mv.addObject("bizWriteCount", bizWriteCount); // 통신사 신청 수를 뷰에 전달
+		mv.addObject("bizTotalCount", bizTotalCount); // 통신사 총 등록 수를 뷰에 전달
+		
 		mv.setViewName("admin/dashboard");
 		return mv;		
 		}

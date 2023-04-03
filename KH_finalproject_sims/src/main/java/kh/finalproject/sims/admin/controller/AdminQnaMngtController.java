@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
@@ -33,11 +34,17 @@ public class AdminQnaMngtController {
 	AdminQnaMngtService service;
 	
 	// 자주묻는질문화면 리스트
-	@GetMapping("/faqlist")
-	public ModelAndView selectFaqList(ModelAndView mv) {
-		mv.addObject("faqlist", service.selectFaqList());
-		mv.setViewName("admin/faqlist");
-		return mv;	
+	@RequestMapping(value="/faq/list", method = {RequestMethod.GET, RequestMethod.POST})
+	public ModelAndView selectFaqList(ModelAndView mv, AdminFaqVo vo) {
+	    if(vo.getSearchOption() == null) {
+	        mv.addObject("faqlist", service.selectFaqList()); // 검색이 없는경우
+	    } else {
+	        mv.addObject("faqlist", service.selectSearchFaqList(vo)); // 검색이 있을경우    
+	        mv.addObject("searchOption", vo.getSearchOption());
+	        mv.addObject("searchBox", vo.getSearchBox());
+	    }
+	    mv.setViewName("admin/faq/list");
+	    return mv;    
 	}
 	
 	// 자주묻는질문화면 상세내용 보기
@@ -140,18 +147,6 @@ public class AdminQnaMngtController {
 	    mv.addObject("aqNo", aqNo);
 		return mv;
 	}
-	
-//	// 문의내역 상세보기 JOIN
-//	@GetMapping("/qna/detail/{aqNo}")
-//	public ModelAndView selectQnaListDetail(
-//			ModelAndView mv
-//			,@PathVariable int aqNo
-//			) {
-//		List<AdminQnaMngtVo> list = service.selectQnaListDetail(aqNo);
-//		mv.addObject("qnaDetail", list);
-//		mv.setViewName("admin/qna/detail");
-//		return mv;
-//	}
 	
 	// 문의내역 답변 작성 ajax
 	@ResponseBody
