@@ -41,7 +41,7 @@
 					                        <h5>리뷰</h5>										            	
 						            	</div>
 						            	<div class="col-6 text-right">
-				                        	<a href="<%=request.getContextPath()%>/admin/reviewlist"><i class="fa-solid fa-list text-dark text-dark"></i></a>								            	
+				                        	<a href="<%=request.getContextPath()%>/admin/review/list"><i class="fa-solid fa-list text-dark text-dark"></i></a>								            	
 						            	</div>
 						            </div>
 			                    </div>

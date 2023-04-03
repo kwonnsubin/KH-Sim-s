@@ -9,7 +9,7 @@
 <title>관리자 공지사항 리스트</title>
 </head>
 <body>
-	<jsp:include page="./include/header.jsp" />
+	<jsp:include page="../include/header.jsp" />
 	<div class="pcoded-main-container">	
 		<div class="pcoded-wrapper container">
 			<div class="pcoded-content">
@@ -35,14 +35,13 @@
 								<div class="col-md-12">
 									<div class="card">
 										<div class="card-body">
-											<form action="<%=request.getContextPath()%>/adminNotice/noticeList" method="post">
+											<form action="<%=request.getContextPath()%>/admin/review/list" method="post">
 												<div class="row">
 													<div class="col-sm-12">
 														<div class="input-group">
 															<label class="floating-label"></label>
 															<select class="" name="searchOption">
 																<option value="">선택</option>
-																<option value="title" <c:if test="${searchOption eq 'title' }">selected</c:if>>제목</option>
 																<option value="writer" <c:if test="${searchOption eq 'writer' }">selected</c:if>>작성자</option>
 																<option value="content" <c:if test="${searchOption eq 'content' }">selected</c:if>>내용</option>
 															</select>
@@ -125,6 +124,6 @@
 			</div>
 			 --%>
 </div>
-<jsp:include page="./include/footer.jsp" />
+<jsp:include page="../include/footer.jsp" />
 </body>
 </html>

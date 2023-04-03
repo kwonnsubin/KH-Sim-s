@@ -4,7 +4,18 @@ import java.sql.Date;
 
 import org.springframework.stereotype.Component;
 
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
+import lombok.ToString;
+
 @Component
+@Getter
+@Setter
+@AllArgsConstructor
+@NoArgsConstructor
+@ToString
 public class AdminReviewMngtVo {
 //	REVIEW_NO     NOT NULL NUMBER    
 //	USER_ID                VARCHAR2(30) 
@@ -31,160 +42,8 @@ public class AdminReviewMngtVo {
 	private Date reviewDate; // 리뷰등록일
 	private int reviewStar; // 별점
 	
-	@Override
-	public String toString() {
-		return "AdminReviewMngtVo [reviewNo=" + reviewNo + ", userId=" + userId + ", bizId=" + bizId + ", reportDate="
-				+ reportDate + ", reportStatus=" + reportStatus + ", reviewContent=" + reviewContent + ", reportReason="
-				+ reportReason + ", reviewHidden=" + reviewHidden + ", reviewDate=" + reviewDate + ", reviewStar="
-				+ reviewStar + "]";
-	}
-
-	
-	
-	public AdminReviewMngtVo() {
-		super();
-		// TODO Auto-generated constructor stub
-	}
-
-
-
-	public AdminReviewMngtVo(int reviewNo, String userId, String bizId, Date reportDate, String reportStatus,
-			String reviewContent, String reportReason, int reviewHidden, Date reviewDate, int reviewStar) {
-		super();
-		this.reviewNo = reviewNo;
-		this.userId = userId;
-		this.bizId = bizId;
-		this.reportDate = reportDate;
-		this.reportStatus = reportStatus;
-		this.reviewContent = reviewContent;
-		this.reportReason = reportReason;
-		this.reviewHidden = reviewHidden;
-		this.reviewDate = reviewDate;
-		this.reviewStar = reviewStar;
-	}
-
-
-
-	public int getReviewNo() {
-		return reviewNo;
-	}
-
-
-
-	public void setReviewNo(int reviewNo) {
-		this.reviewNo = reviewNo;
-	}
-
-
-
-	public String getUserId() {
-		return userId;
-	}
-
-
-
-	public void setUserId(String userId) {
-		this.userId = userId;
-	}
-
-
-
-	public String getBizId() {
-		return bizId;
-	}
-
-
-
-	public void setBizId(String bizId) {
-		this.bizId = bizId;
-	}
-
-
-
-	public Date getReportDate() {
-		return reportDate;
-	}
-
-
-
-	public void setReportDate(Date reportDate) {
-		this.reportDate = reportDate;
-	}
-
-
-
-	public String getReportStatus() {
-		return reportStatus;
-	}
-
-
-
-	public void setReportStatus(String reportStatus) {
-		this.reportStatus = reportStatus;
-	}
-
-
-
-	public String getReviewContent() {
-		return reviewContent;
-	}
-
-
-
-	public void setReviewContent(String reviewContent) {
-		this.reviewContent = reviewContent;
-	}
-
-
-
-	public String getReportReason() {
-		return reportReason;
-	}
-
-
-
-	public void setReportReason(String reportReason) {
-		this.reportReason = reportReason;
-	}
-
-
-
-	public int getReviewHidden() {
-		return reviewHidden;
-	}
-
-
-
-	public void setReviewHidden(int reviewHidden) {
-		this.reviewHidden = reviewHidden;
-	}
-
-
-
-	public Date getReviewDate() {
-		return reviewDate;
-	}
-
-
-
-	public void setReviewDate(Date reviewDate) {
-		this.reviewDate = reviewDate;
-	}
-
-
-
-	public int getReviewStar() {
-		return reviewStar;
-	}
-
-
-
-	public void setReviewStar(int reviewStar) {
-		this.reviewStar = reviewStar;
-	}
-	
-	
-	
-	
+	// 조회용 변수
+	private String searchOption;	// 조회 조건 
+	private String searchBox;		// 조회 문구
 	
 }

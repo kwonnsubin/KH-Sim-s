@@ -38,6 +38,11 @@ public class AdminReviewMngtDao {
 		return sqlSession.selectList("admin.selectReviewList");
 	}
 	
+	// 리뷰검색
+	public List<AdminReviewMngtVo> selectSearchReviewList(AdminReviewMngtVo vo) {
+		return sqlSession.selectList("admin.selectSearchReviewList", vo);
+	}
+	
 	// 리뷰삭제
 	public int deleteReview(int reviewNo) {
 		return sqlSession.delete("admin.deleteReview", reviewNo);

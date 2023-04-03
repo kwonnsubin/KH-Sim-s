@@ -8,10 +8,12 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import kh.finalproject.sims.admin.model.service.AdminReviewMngtService;
+import kh.finalproject.sims.admin.model.vo.AdminFaqVo;
 import kh.finalproject.sims.admin.model.vo.AdminReviewMngtVo;
 
 @RequestMapping("/admin")
@@ -53,15 +55,22 @@ public class AdminReviewMngtController {
 		}
 	
 	// 리뷰 목록
-	@GetMapping("reviewlist")
+	@RequestMapping(value = "review/list", method = {RequestMethod.GET,RequestMethod.POST })
 	public ModelAndView selectReviewList(
 			ModelAndView mv
+			, AdminReviewMngtVo vo
 			) {
-		List<AdminReviewMngtVo> result = service.selectReviewList();
-		mv.addObject("reviewlist", result);
-		mv.setViewName("admin/reviewlist");
+		if(vo.getSearchOption() == null) {
+			mv.addObject("reviewlist", service.selectReviewList()); // 검색이 없는경우			
+		} else {
+			mv.addObject("reviewlist", service.selectSearchReviewList(vo)); // 검색이 있을경우
+	        mv.addObject("searchOption", vo.getSearchOption());
+	        mv.addObject("searchBox", vo.getSearchBox());
+		}
+		mv.setViewName("admin/review/list");
 		return mv;
 	}
+	
 	
 	// 리뷰 상세 내용
 	@GetMapping("reviewdetail/{reviewNo}")

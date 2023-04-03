@@ -40,7 +40,13 @@ public class AdminReviewMngtServiceImpl implements AdminReviewMngtService{
 	public List<AdminReviewMngtVo> selectReviewList() {
 		return dao.selectReviewList();
 	}
-
+	
+	// 리뷰검색
+	@Override
+	public List<AdminReviewMngtVo> selectSearchReviewList(AdminReviewMngtVo vo) {
+		return dao.selectSearchReviewList(vo);
+	}
+	
 	// 리뷰삭제
 	@Override
 	public int deleteReview(int reviewNo) {
@@ -52,6 +58,7 @@ public class AdminReviewMngtServiceImpl implements AdminReviewMngtService{
 	public AdminReviewMngtVo selectReviewDetail(int reviewNo) {
 		return dao.selectReviewDetail(reviewNo);
 	}
+
 
 
 }

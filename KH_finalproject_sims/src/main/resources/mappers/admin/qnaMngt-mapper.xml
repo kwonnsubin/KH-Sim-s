@@ -125,6 +125,17 @@
 		, BIZ_ID
 		, REVIEW_HIDDEN 
 		FROM BIZ_REVIEW
+		ORDER BY REVIEW_DATE DESC
+	</select>
+	
+	<!-- 리뷰 검색 -->
+	<select id="selectSearchReviewList" resultType="kh.finalproject.sims.admin.model.vo.AdminReviewMngtVo">
+		SELECT * FROM BIZ_REVIEW 
+		<choose>
+			<when test="searchOption != null and searchOption == 'writer'"> WHERE USER_ID LIKE '%'|| #{searchBox} ||'%'</when>
+			<when test="searchOption != null and searchOption == 'content'"> WHERE REVIEW_CONTENT LIKE '%'|| #{searchBox} ||'%'</when>
+		</choose>
+		ORDER BY REVIEW_DATE DESC
 	</select>
 	
 	<!-- 리뷰 삭제 -->

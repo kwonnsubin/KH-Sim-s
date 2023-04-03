@@ -21,6 +21,9 @@ public interface AdminReviewMngtService {
 	// 리뷰목록
 	public List<AdminReviewMngtVo> selectReviewList();
 	
+	// 리뷰검색
+	public List<AdminReviewMngtVo> selectSearchReviewList(AdminReviewMngtVo vo);
+	
 	// 리뷰삭제
 	public int deleteReview(int reviewNo);
 	
