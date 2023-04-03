@@ -55,60 +55,58 @@
 													<input class="btn btn-primary right" type="submit" value="저장">
 												</c:otherwise>
 											</c:choose>
-										<input type="hidden" value="${userDetail.userId }" name="userId">
+										<%-- <input type="hidden" value="${userDetail.userId }" name="userId"> --%>
 									</div>
 								</div>
-								</form>
-							 <div class="col-sm-12">
-                				<div class="card">
-                    				<div class="card-header">
-                        				<h5>사용자 상세정보</h5>
-                    				</div>
-                    				<form>
-                    				<div class="card-body">
-	                                    <div class="form-group row">
-	                                        <label for="userId" class="col-sm-1 col-form-label text-center">아이디</label>
-	                                        <div class="col-sm-5">
-	                                            <input type="text" class="form-control"  name="userId" <c:if test="${cmd eq 'read' }">readonly</c:if> value="${userDetail.userId}">
-	                                        </div>
-	                                        <label for="userName" class="col-sm-1 col-form-label text-center">이름</label>
-	                                        <div class="col-sm-5">
-	                                            <input type="text" class="form-control"  name="userName" <c:if test="${cmd eq 'read' }">readonly</c:if> value="${userDetail.userName}">
-	                                        </div>
-	                                    </div>
-	                           			 <div class="form-group row">
-	                                        <label for="userEmail" class="col-sm-1 col-form-label text-center">메일</label>
-	                                        <div class="col-sm-5">
-	                                            <input type="text" class="form-control"  name="userEmail" <c:if test="${cmd eq 'read' }">readonly</c:if> value="${userDetail.userEmail}">
-	                                        </div>
-	                                         <label for="userGender" class="col-sm-1 col-form-label text-center">성별</label>
-	                                        <div class="col-sm-5">
-	                                            <input type="text" class="form-control"  name="userGender" <c:if test="${cmd eq 'read' }">readonly</c:if> value="${userDetail.userGender}">
-	                                        </div>
-	                                        
-	                                    </div>
-	                                    <div class="form-group row">
-	                                        <label for="userSsn" class="col-sm-1 col-form-label text-center">생년월일</label>
-	                                        <div class="col-sm-5">
-	                                            <input type="text" class="form-control"  name="userSsn" <c:if test="${cmd eq 'read' }">readonly</c:if> value="${userDetail.userSsn}">
-	                                        </div>
-	                                        <label for="userPhone" class="col-sm-1 col-form-label text-center">전화번호</label>
-	                                        <div class="col-sm-5">
-	                                            <input type="text" class="form-control"  name="userPhone" <c:if test="${cmd eq 'read' }">readonly</c:if> value="${userDetail.userPhone}">
-	                                        </div>
-	                                    </div>
-	                                    <div class="form-group">
-                                			<label for="userAddress" class="col-sm-1 col-form-label text-center">주소</label>
-                                			<input type="text" class="form-control"  name="userAddress" <c:if test="${cmd eq 'read' }">readonly</c:if> value="${userDetail.userAddress}">
-                            			</div>
-                            			<div class="form-group">
-                                			<label for="userAddress2" class="col-sm-1 col-form-label text-center">상세 주소</label>
-                                			<input type="text" class="form-control"  name="userAddress2" <c:if test="${cmd eq 'read' }">readonly</c:if> value="${userDetail.userAddress}">
-                            			</div>
-                            		</div>	
-                            		</form>
+								 <div class="col-sm-12">
+	                				<div class="card">
+	                    				<div class="card-header">
+	                        				<h5>사용자 상세정보</h5>
+	                    				</div>
+	                    				<div class="card-body">
+		                                    <div class="form-group row">
+		                                        <label for="userId" class="col-sm-1 col-form-label text-center">아이디</label>
+		                                        <div class="col-sm-5">
+		                                            <input type="text" class="form-control"  name="userId" readonly value="${userDetail.userId}">
+		                                        </div>
+		                                        <label for="userName" class="col-sm-1 col-form-label text-center">이름</label>
+		                                        <div class="col-sm-5">
+		                                            <input type="text" class="form-control"  name="userName" <c:if test="${cmd eq 'read' }">readonly</c:if> value="${userDetail.userName}">
+		                                        </div>
+		                                    </div>
+		                           			 <div class="form-group row">
+		                                        <label for="userEmail" class="col-sm-1 col-form-label text-center">메일</label>
+		                                        <div class="col-sm-5">
+		                                            <input type="text" class="form-control"  name="userEmail" <c:if test="${cmd eq 'read' }">readonly</c:if> value="${userDetail.userEmail}">
+		                                        </div>
+		                                         <label for="userGender" class="col-sm-1 col-form-label text-center">성별</label>
+		                                        <div class="col-sm-5">
+		                                            <input type="text" class="form-control"  name="userGender" <c:if test="${cmd eq 'read' }">readonly</c:if> value="${userDetail.userGender}">
+		                                        </div>
+		                                        
+		                                    </div>
+		                                    <div class="form-group row">
+		                                        <label for="userSsn" class="col-sm-1 col-form-label text-center">생년월일</label>
+		                                        <div class="col-sm-5">
+		                                            <input type="text" class="form-control"  name="userSsn" <c:if test="${cmd eq 'read' }">readonly</c:if> value="${userDetail.userSsn}">
+		                                        </div>
+		                                        <label for="userPhone" class="col-sm-1 col-form-label text-center">전화번호</label>
+		                                        <div class="col-sm-5">
+		                                            <input type="text" class="form-control"  name="userPhone" <c:if test="${cmd eq 'read' }">readonly</c:if> value="${userDetail.userPhone}">
+		                                        </div>
+		                                    </div>
+		                                    <div class="form-group">
+	                                			<label for="userAddress" class="col-sm-1 col-form-label text-center">주소</label>
+	                                			<input type="text" class="form-control"  name="userAddress" <c:if test="${cmd eq 'read' }">readonly</c:if> value="${userDetail.userAddress}">
+	                            			</div>
+	                            			<div class="form-group">
+	                                			<label for="userAddress2" class="col-sm-1 col-form-label text-center">상세 주소</label>
+	                                			<input type="text" class="form-control"  name="userAddress2" <c:if test="${cmd eq 'read' }">readonly</c:if> value="${userDetail.userAddress}">
+	                            			</div>
+	                            		</div>	
+									</div>
 								</div>
-							</div>
+							</form>
 				    	</div>
 					</div>
 				</div>

@@ -1,5 +1,7 @@
 package kh.finalproject.sims.admin.controller;
 
+import javax.servlet.http.HttpServletRequest;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -31,20 +33,20 @@ public class AdminBizMngtController {
 
 	//통신사 신청정보 상세 페이지로 이동
 	@GetMapping("/applyDetail/{bizId}")
-	public ModelAndView selectApplyDetail(ModelAndView mv, @PathVariable String bizId) {
+	public ModelAndView selectApplyDetail(ModelAndView mv, @PathVariable String bizId, HttpServletRequest request, AdminBizMngtVo vo) {
+		String divCheck = request.getParameter("divCheck");
+		switch(divCheck) {
+			case "apply": mv.setViewName("admin/biz/applyDetail");
+				break;
+			case "detail": mv.setViewName("admin/biz/bizDetail");
+				mv.addObject("bizPlanList", service.selectBizPlanList(bizId));
+				break;
+			default: mv.setViewName("admin/biz/bizDetail");
+				mv.addObject("bizPlanList", service.selectBizPlanList(bizId));
+				break;
+		}
 		AdminBizMngtVo applyDetail = service.selectApplyDetail(bizId);
 		mv.addObject("applyDetail", applyDetail);
-		mv.setViewName("admin/biz/applyDetail");
-		mv.addObject("cmd", "read");
-		return mv;
-	}
-	
-	//통신사 상세 페이지로 이동
-	@GetMapping("/bizDetail/{bizOwnerName}")
-	public ModelAndView selectBizDetail(ModelAndView mv, @PathVariable String bizOwnerName) {
-		AdminBizMngtVo bizDetail = service.selectBizDetail(bizOwnerName);
-		mv.addObject("bizDetail", bizDetail);
-		mv.setViewName("admin/biz/bizDetail");
 		mv.addObject("cmd", "read");
 		return mv;
 	}
@@ -55,7 +57,7 @@ public class AdminBizMngtController {
 			ModelAndView mv
 			, @PathVariable String bizId
 			, AdminBizMngtVo vo) {
-		AdminBizMngtVo bizDetail = service.selectBizDetail(bizId);
+		AdminBizMngtVo bizDetail = service.selectApplyDetail(bizId);
 		mv.addObject("bizDetail", bizDetail);
 		mv.addObject("cmd", "update");
 		mv.setViewName("/admin/biz/bizDetail");

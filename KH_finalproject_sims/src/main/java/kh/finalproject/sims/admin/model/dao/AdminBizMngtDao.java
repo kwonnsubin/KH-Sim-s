@@ -25,10 +25,10 @@ public class AdminBizMngtDao {
 	public AdminBizMngtVo selectApplyDetail(String bizId) {
 		return sqlSession.selectOne("adminBiz.selectApplyDetail", bizId);
 	}
-
-	//통신사 관리 통신사 정보 상세 페이지로 이동
-	public AdminBizMngtVo selectBizDetail(String bizOwnerName) {
-		return sqlSession.selectOne("adminBiz.selectBizDetail",bizOwnerName);
+	
+	//통신사 요금제 리스트
+	public List<AdminBizMngtVo> selectBizPlanList(String bizId) {
+		return sqlSession.selectList("adminBiz.selectBizPlanList", bizId);
 	}
 	
 	//통신사 상세 수정 페이지로 이동
@@ -55,6 +55,7 @@ public class AdminBizMngtDao {
 	public AdminBizMngtVo selectBizPlanApplyDetail(int orderNo) {
 		return sqlSession.selectOne("adminBiz.selectBizPlanApplyDetail", orderNo);
 	}
+
 
 
 }

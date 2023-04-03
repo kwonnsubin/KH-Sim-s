@@ -41,7 +41,7 @@
 			USER_EMAIL = #{userEmail}
 			, USER_ADDRESS = #{userAddress}
 			, USER_PHONE = #{userPhone}
-			, USER_REDATE = SYSDATE
+			, USER_UP_DATE = SYSDATE
 		WHERE USER_ID = #{userId}	
 	</update>
 	

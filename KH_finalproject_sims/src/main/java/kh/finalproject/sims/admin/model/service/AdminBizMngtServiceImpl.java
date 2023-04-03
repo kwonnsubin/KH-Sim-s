@@ -26,11 +26,11 @@ public class AdminBizMngtServiceImpl implements AdminBizMngtService{
 	public AdminBizMngtVo selectApplyDetail(String bizId) {
 		return dao.selectApplyDetail(bizId);
 	}
-
-	//통신사의 상세 페이지로 이동
+	
+	//통신사의 요금제 정보 리스트
 	@Override
-	public AdminBizMngtVo selectBizDetail(String bizOwnerName) {
-		return dao.selectBizDetail(bizOwnerName);
+	public List<AdminBizMngtVo> selectBizPlanList(String bizId) {
+		return dao.selectBizPlanList(bizId);
 	}
 	
 	//통신사의 상세 수정 페이지로 이동
@@ -41,7 +41,7 @@ public class AdminBizMngtServiceImpl implements AdminBizMngtService{
 
 	//통신사 탈퇴 신청 리스트
 	@Override
-	public Object selectWithdrawalList(AdminBizMngtVo vo) {
+	public List<AdminBizMngtVo> selectWithdrawalList(AdminBizMngtVo vo) {
 		return dao.selectWithdrawalList(vo);
 	}
 	

@@ -75,15 +75,18 @@
 														<c:forEach var="list" items="${applyList}" varStatus="status">
 															<tr>
 																<td>${status.count}</td>
-																<td><a href="<%=request.getContextPath()%>/adminBiz/applyDetail/${list.bizId}">${list.bizId}</a></td>
-																
+																<c:set var="divCheck" value="apply"/>
+																<c:if test="${list.enable eq 1 }">
+																	<c:set var="divCheck" value="detail"/>
+																</c:if>
+																<td><a href="<%=request.getContextPath()%>/adminBiz/applyDetail/${list.bizId}?divCheck=${divCheck}">${list.bizId}</a></td>
 																<td><c:choose>
 																		<c:when test="${list.enable eq 0}"> 신청 중 </c:when>
 																		<c:when test="${list.enable eq 1}"> 승인 </c:when>
 																		<c:when test="${list.enable eq 2}"> 탈퇴 </c:when>
 																	</c:choose>
 																</td>	
-																<td><a href="<%=request.getContextPath()%>/adminBiz/bizDetail/${list.bizOwnerName}">${list.bizOwnerName}</a></td>
+																<td><a href="<%=request.getContextPath()%>/adminBiz/applyDetail/${list.bizId}?divCheck=apply">${list.bizId}</a></td>
 																<td><fmt:formatDate value="${list.writeDate}" pattern="yyyy.MM.dd"/> </td>
 															</tr>
 														</c:forEach>
