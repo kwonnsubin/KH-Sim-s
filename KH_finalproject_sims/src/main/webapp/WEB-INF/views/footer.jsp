@@ -5,7 +5,7 @@
 		<div class="row">
 			<div class="footer-widget">
 				<div class="logo">
-					<img src="https://dummyimage.com/50x50" alt="Sim-s">
+					<img src="<%=request.getContextPath()%>/resources/img/sims.png" alt="Sim-s">
 				</div>
 			</div>
 			<div class="col-lg-2">

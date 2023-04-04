@@ -19,8 +19,8 @@
 			<div class="col-12">
 				<nav class="main-nav">
 					<!-- ***** Logo Start ***** -->
-					<a href="<%=request.getContextPath()%>/" class="logo"> <img
-						src="https://dummyimage.com/50x50" alt="Sim-s">
+					<a href="<%=request.getContextPath()%>/" class="logo">
+						<img src="<%=request.getContextPath()%>/resources/img/sims.png" alt="Sim-s" style="max-width: 100px;">
 					</a>
 					<!-- ***** Logo End ***** -->
 					<!-- ***** Menu Start ***** -->

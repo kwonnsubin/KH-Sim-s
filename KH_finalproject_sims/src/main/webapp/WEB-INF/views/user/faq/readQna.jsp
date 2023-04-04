@@ -6,7 +6,6 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
 <c:set var="cpath" value="${pageContext.request.contextPath }"/>
-<sec:authentication property="principal.username" var="username"/>
 <!DOCTYPE html>
 <html>
 <head>
@@ -49,6 +48,7 @@
 					<span class="pe-3">${question.aqRedate }</span>
 					<span>
 					<sec:authorize access="hasRole('ROLE_USER')">
+						<sec:authentication property="principal.username" var="username"/>
 						<c:if test="${username eq question.userId}">
 							<button onclick="location.href='<%=request.getContextPath()%>/faq/qnaupdate/${question.aqNo}'">수정</button>
 						</c:if>	
