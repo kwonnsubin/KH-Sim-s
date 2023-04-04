@@ -478,7 +478,7 @@
 					<button class="btn btn-light btn-outline-secondary cancle-btn" type="button">CANCLE</button>
 		    	</div>
 		    	<div class="col">
-			        <button class="btn btn-light btn-outline-secondary join-btn" type="button">JOIN</button>
+			        <button class="btn btn-secondary btn-outline-secondary join-btn" type="button">JOIN</button>
 		    	</div>
 		    </div>
 
