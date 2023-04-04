@@ -34,11 +34,11 @@
 								</div>
 								<div class="col-md-12">
 									<div class="simsBtn m-b-15">
-										<input class="btn btn-primary right" type="button" onclick="location.href='<%=request.getContextPath()%>/adminNotice/noticeWrite'" value="작성">
+										<input class="btn btn-primary right" type="button" onclick="location.href='<%=request.getContextPath()%>/admin/noticeWrite'" value="작성">
 									</div>
 									<div class="card">
 										<div class="card-body">
-											<form id="searchForm" name="searchForm" action="<%=request.getContextPath()%>/adminNotice/noticeList" method="post">
+											<form id="searchForm" name="searchForm" action="<%=request.getContextPath()%>/admin/noticeList" method="post">
 												<div class="row">
 													<div class="col-sm-12">
 														<div class="input-group">
@@ -75,7 +75,7 @@
 														<c:forEach var="list" items="${noticeList}" varStatus="status">
 															<tr>
 																<td>${status.count}</td>
-																<td><a href="<%=request.getContextPath()%>/adminNotice/noticeDetail/${list.ntcNo}">${list.ntcTitle}</a></td>
+																<td><a href="<%=request.getContextPath()%>/admin/noticeDetail/${list.ntcNo}">${list.ntcTitle}</a></td>
 																
 																<td>${list.adminId}</td>
 																<td><fmt:formatDate value="${list.ntcDate}" pattern="yyyy.MM.dd"/> </td>

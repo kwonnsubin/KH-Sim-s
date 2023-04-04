@@ -17,7 +17,7 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import kh.finalproject.sims.admin.model.service.AdminNoticeMngtService;
 import kh.finalproject.sims.admin.model.vo.AdminNoticeMngtVo;
 
-@RequestMapping("/adminNotice") //admin으로 변경해주세요.
+@RequestMapping("/admin")
 @Controller
 public class AdminNoticeMngtController {
 	

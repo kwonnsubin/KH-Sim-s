@@ -35,7 +35,7 @@
 								<div class="col-md-12">
 									<div class="card">
 										<div class="card-body">
-											<form id="searchForm" name="searchForm" action="<%=request.getContextPath()%>/adminUser/userList" method="post">
+											<form id="searchForm" name="searchForm" action="<%=request.getContextPath()%>/admin/userList" method="post">
 												<div class="row">
 													<div class="col-sm-12">
 														<div class="input-group">
@@ -84,7 +84,7 @@
 														<c:forEach var="list" items="${userList}" varStatus="status">
 															<tr>
 																<td>${status.count}</td>
-																<td><a href="<%=request.getContextPath()%>/adminUser/userDetail/${list.userId}">${list.userId}</a></td>
+																<td><a href="<%=request.getContextPath()%>/admin/userDetail/${list.userId}">${list.userId}</a></td>
 																<td>${list.userName}</td>
 																<td>${list.userEmail}</td>
 																<td>${list.userPhone}</td>

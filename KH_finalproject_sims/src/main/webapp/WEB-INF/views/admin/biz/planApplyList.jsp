@@ -26,8 +26,8 @@
 												</div>
 												<ul class="breadcrumb">
 													<li class="breadcrumb-item"><a href=""><i class="feather icon-home"></i></a></li>
-													<li class="breadcrumb-item"><a href="<%=request.getContextPath()%>/adminBiz/applyList"><i class="breadcrumb-item"></i>통신사 관리</a></li>
-													<li class="breadcrumb-item"><a href="<%=request.getContextPath()%>/adminBiz/bizPlanApplyList"><i class="breadcrumb-item"></i>통신사 요금제 가입신청</a></li>
+													<li class="breadcrumb-item"><a href="<%=request.getContextPath()%>/admin/applyList"><i class="breadcrumb-item"></i>통신사 관리</a></li>
+													<li class="breadcrumb-item"><a href="<%=request.getContextPath()%>/admin/bizPlanApplyList"><i class="breadcrumb-item"></i>통신사 요금제 가입신청</a></li>
 												</ul>
 											</div>
 										</div>
@@ -38,7 +38,7 @@
 									</div>
 									<div class="card">
 										<div class="card-body">
-											<form id="searchForm" name="searchForm" action="<%=request.getContextPath()%>/adminNotice/noticeList" method="post">
+											<form id="searchForm" name="searchForm" action="<%=request.getContextPath()%>/admin/noticeList" method="post">
 												<div class="row">
 													<div class="col-sm-12">
 														<div class="input-group">
@@ -75,7 +75,7 @@
 													<tbody>
 														<c:forEach var="list" items="${bizPlanApplyList}" varStatus="status">
 															<tr>
-																<td><a href="<%=request.getContextPath()%>/adminBiz/bizPlanApplyDetail/${list.orderNo}">${list.orderNo}</a></td>
+																<td><a href="<%=request.getContextPath()%>/admin/bizPlanApplyDetail/${list.orderNo}">${list.orderNo}</a></td>
 																<td>${list.planName}</a></td>
 																<td><c:choose>
 																		<c:when test="${list.enable eq 0}"> 신청 중 </c:when>

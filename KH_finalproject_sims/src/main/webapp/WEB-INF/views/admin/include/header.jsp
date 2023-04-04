@@ -47,10 +47,10 @@
                     	<label>Navigation</label>
                     </li>
                     <li class="nav-item">
-                        <a href="index.html" class="nav-link "><span class="pcoded-micon"><i class="feather icon-home"></i></span><span class="pcoded-mtext">Dashboard</span></a>
+                        <a href="<%=request.getContextPath()%>/admin/dashboard" class="nav-link "><span class="pcoded-micon"><i class="feather icon-home"></i></span><span class="pcoded-mtext">Dashboard</span></a>
                     </li>
                     <li class="nav-item pcoded-hasmenu">
-                        <a href="<%=request.getContextPath()%>/adminBiz/applyList" class="nav-link " class="nav-link "><span class="pcoded-micon"><i class="feather icon-layout"></i></span><span class="pcoded-mtext">통신사 관리</span></a>
+                        <a href="<%=request.getContextPath()%>/admin/applyList" class="nav-link " class="nav-link "><span class="pcoded-micon"><i class="feather icon-layout"></i></span><span class="pcoded-mtext">통신사 관리</span></a>
                         <ul class="pcoded-submenu">
                             <li><a href="layout-vertical.html" target="_blank">Vertical</a></li>
                             <li><a href="layout-horizontal.html" target="_blank">Horizontal</a></li>
@@ -84,16 +84,16 @@
                         <label>공지사항 관리</label>
                     </li> -->
                     <li class="nav-item">
-                        <a href="<%=request.getContextPath()%>/adminUser/userList" class="nav-link "><span class="pcoded-micon"><i class="feather icon-file-text"></i></span><span class="pcoded-mtext">사용자 관리</span></a>
+                        <a href="<%=request.getContextPath()%>/admin/userList" class="nav-link "><span class="pcoded-micon"><i class="feather icon-file-text"></i></span><span class="pcoded-mtext">사용자 관리</span></a>
                     </li>
                     <li class="nav-item">
-                        <a href="<%=request.getContextPath()%>/adminNotice/noticeList" class="nav-link "><span class="pcoded-micon"><i class="feather icon-file-text"></i></span><span class="pcoded-mtext">공지사항 관리</span></a>
+                        <a href="<%=request.getContextPath()%>/admin/noticeList" class="nav-link "><span class="pcoded-micon"><i class="feather icon-file-text"></i></span><span class="pcoded-mtext">공지사항 관리</span></a>
                     </li>
                     <li class="nav-item">
-                        <a href="form_elements.html" class="nav-link "><span class="pcoded-micon"><i class="feather icon-file-text"></i></span><span class="pcoded-mtext">신고 관리</span></a>
+                        <a href="<%=request.getContextPath()%>/admin/reviewreportlist"><span class="pcoded-micon"><i class="feather icon-file-text"></i></span><span class="pcoded-mtext">신고 관리</span></a>
                     </li>
                     <li class="nav-item">
-                        <a href="tbl_bootstrap.html" class="nav-link "><span class="pcoded-micon"><i class="feather icon-align-justify"></i></span><span class="pcoded-mtext">리뷰 관리</span></a>
+                        <a href="<%=request.getContextPath()%>/admin/review/list" class="nav-link "><span class="pcoded-micon"><i class="feather icon-align-justify"></i></span><span class="pcoded-mtext">리뷰 관리</span></a>
                     </li>
                     <li class="nav-item pcoded-menu-caption">
                     	<label>문의내역 관리</label>
@@ -102,7 +102,7 @@
                         <a href="chart-apex.html" class="nav-link "><span class="pcoded-micon"><i class="feather icon-pie-chart"></i></span><span class="pcoded-mtext">통계 조회</span></a>
                     </li>
                     <li class="nav-item">
-                        <a href="chart-apex.html" class="nav-link "><span class="pcoded-micon"><i class="feather icon-lock"></i></span><span class="pcoded-mtext">로그 아웃</span></a>
+                        <a href="chart-apex.html" class="nav-link "><span class="pcoded-micon"><i class="feather icon-lock"></i></span><span class="pcoded-mtext">로그아웃</span></a>
                     </li>
                     <!-- <li class="nav-item">
                         <a href="map-google.html" class="nav-link "><span class="pcoded-micon"><i class="feather icon-map"></i></span><span class="pcoded-mtext">로그 아웃</span></a>

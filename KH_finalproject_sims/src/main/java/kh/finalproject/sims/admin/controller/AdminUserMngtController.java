@@ -15,7 +15,7 @@ import kh.finalproject.sims.admin.model.service.AdminUserMngtService;
 import kh.finalproject.sims.admin.model.vo.AdminUserMngtVo;
 
 
-@RequestMapping("/adminUser") //admin으로 변경해주세요.
+@RequestMapping("/admin") //admin으로 변경해주세요.
 @Controller
 public class AdminUserMngtController {
 	

@@ -37,7 +37,7 @@
 									</div>
 									<div class="card">
 										<div class="card-body">
-											<form id="searchForm" name="searchForm" action="<%=request.getContextPath()%>/adminNotice/noticeList" method="post">
+											<form id="searchForm" name="searchForm" action="<%=request.getContextPath()%>/admin/noticeList" method="post">
 												<div class="row">
 													<div class="col-sm-12">
 														<div class="input-group">
@@ -79,14 +79,14 @@
 																<c:if test="${list.enable eq 1 }">
 																	<c:set var="divCheck" value="detail"/>
 																</c:if>
-																<td><a href="<%=request.getContextPath()%>/adminBiz/applyDetail/${list.bizId}?divCheck=${divCheck}">${list.bizId}</a></td>
+																<td><a href="<%=request.getContextPath()%>/admin/applyDetail/${list.bizId}?divCheck=${divCheck}">${list.bizId}</a></td>
 																<td><c:choose>
 																		<c:when test="${list.enable eq 0}"> 신청 중 </c:when>
 																		<c:when test="${list.enable eq 1}"> 승인 </c:when>
 																		<c:when test="${list.enable eq 2}"> 탈퇴 </c:when>
 																	</c:choose>
 																</td>	
-																<td><a href="<%=request.getContextPath()%>/adminBiz/applyDetail/${list.bizId}?divCheck=apply">${list.bizId}</a></td>
+																<td><a href="<%=request.getContextPath()%>/admin/applyDetail/${list.bizId}?divCheck=apply">${list.bizId}</a></td>
 																<td><fmt:formatDate value="${list.writeDate}" pattern="yyyy.MM.dd"/> </td>
 															</tr>
 														</c:forEach>

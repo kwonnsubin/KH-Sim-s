@@ -14,7 +14,7 @@ import kh.finalproject.sims.admin.model.service.AdminBizMngtService;
 import kh.finalproject.sims.admin.model.vo.AdminBizMngtVo;
 
 
-@RequestMapping("/adminBiz")
+@RequestMapping("/admin")
 @Controller
 public class AdminBizMngtController {
 	
