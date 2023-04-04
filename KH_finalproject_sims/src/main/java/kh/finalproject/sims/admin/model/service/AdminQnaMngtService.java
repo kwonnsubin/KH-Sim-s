@@ -30,6 +30,9 @@ public interface AdminQnaMngtService {
 	// 문의 내역 리스트
 	public List<AdminQnaMngtVo> selectQnaList();
 	
+	// 문의 내역 검색
+	public List<AdminQnaMngtVo> selectSearchQnaList(AdminQnaMngtVo vo);
+	
 	// 문의 내역 상세보기
 	public AdminQnaMngtVo selectQnaListDetail(int aqNo);
 	

@@ -12,7 +12,7 @@
 <script src="https://code.jquery.com/jquery-latest.min.js"></script>
 </head>
 <body>
-<jsp:include page="../include/header.jsp" />
+<jsp:include page="/WEB-INF/views/admin/include/header.jsp" />
 <div class="pcoded-main-container">
 	<div class="pcoded-wrapper container">
 		<div class="pcoded-content">
@@ -144,7 +144,7 @@
 		</div>
 	</div>
 </div>
-<jsp:include page="../include/footer.jsp" />
+<jsp:include page="/WEB-INF/views/admin/include/footer.jsp" />
 </body>
 <script>
 

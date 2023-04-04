@@ -12,6 +12,9 @@ public interface AdminReviewMngtService {
 	// 신고리뷰목록
 	public List<AdminReviewMngtVo> selectReviewReportList();
 	
+	// 신고리뷰 검색
+	public List<AdminReviewMngtVo> selectSearchReviewReportList(AdminReviewMngtVo vo);
+	
 	// 신고리뷰상세
 	public AdminReviewMngtVo selectReviewReportDetail(int reviewNo);
 	

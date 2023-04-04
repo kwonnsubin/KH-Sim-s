@@ -18,6 +18,11 @@ public class AdminReviewMngtDao {
 		return sqlSession.selectList("admin.selectReviewReportList");
 	}
 	
+	// 신고리뷰 검색
+	public List<AdminReviewMngtVo> selectSearchReviewReportList(AdminReviewMngtVo vo) {
+		return sqlSession.selectList("admin.selectSearchReviewReportList", vo);
+	}
+	
 	// 신고리뷰상세
 	public AdminReviewMngtVo selectReviewReportDetail(int reviewNo) {
 		return sqlSession.selectOne("admin.selectReviewReportDetail", reviewNo);

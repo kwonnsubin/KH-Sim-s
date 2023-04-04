@@ -5,7 +5,18 @@ import java.util.List;
 
 import org.springframework.stereotype.Component;
 
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
+import lombok.ToString;
+
 @Component
+@Getter
+@Setter
+@AllArgsConstructor
+@NoArgsConstructor
+@ToString
 public class AdminQnaMngtVo {
 
 
@@ -19,64 +30,9 @@ public class AdminQnaMngtVo {
 	private int aqViews; // 조회수
 	private int aqAnswers; // 답변수
 	private List<AdminQnaAnsVo> ansList; // 여러 댓글이 들어간다.
-
 	
-	
-	public int getAqNo() {
-		return aqNo;
-	}
-	public void setAqNo(int aqNo) {
-		this.aqNo = aqNo;
-	}
-	public String getUserId() {
-		return userId;
-	}
-	public void setUserId(String userId) {
-		this.userId = userId;
-	}
-	public String getAqTitle() {
-		return aqTitle;
-	}
-	public void setAqTitle(String aqTitle) {
-		this.aqTitle = aqTitle;
-	}
-	public String getAqContent() {
-		return aqContent;
-	}
-	public void setAqContent(String aqContent) {
-		this.aqContent = aqContent;
-	}
-	public Date getAqDate() {
-		return aqDate;
-	}
-	public void setAqDate(Date aqDate) {
-		this.aqDate = aqDate;
-	}
-	public Date getAqRedate() {
-		return aqRedate;
-	}
-	public void setAqRedate(Date aqRedate) {
-		this.aqRedate = aqRedate;
-	}
-	public int getAqViews() {
-		return aqViews;
-	}
-	public void setAqViews(int aqViews) {
-		this.aqViews = aqViews;
-	}
-	public int getAqAnswers() {
-		return aqAnswers;
-	}
-	public void setAqAnswers(int aqAnswers) {
-		this.aqAnswers = aqAnswers;
-	}
-	public List<AdminQnaAnsVo> getAnsList() {
-		return ansList;
-	}
-	public void setAnsList(List<AdminQnaAnsVo> ansList) {
-		this.ansList = ansList;
-	}
-	
-	
+	// 조회용 변수
+	private String searchOption;	// 조회 조건 
+	private String searchBox;		// 조회 문구
 		
 }

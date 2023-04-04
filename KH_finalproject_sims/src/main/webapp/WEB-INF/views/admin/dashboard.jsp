@@ -15,7 +15,7 @@
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
 </head>
 <body>
-<jsp:include page="./include/header.jsp" />
+<jsp:include page="/WEB-INF/views/admin/include/header.jsp" />
 <div class="pcoded-main-container">
 	<div class="pcoded-wrapper container">
 		<div class="pcoded-content">
@@ -105,7 +105,7 @@
 			                        </div>
 			                    </div>
 			                </div>
-			          <!-- 신고 리스트  -->  
+			          		<!-- 신고 리스트  -->  
 			                <div class="card table-card">
 								<div class="card-header">
 					            <div class="row"> 
@@ -176,7 +176,7 @@
 		</div>
 	</div>
 </div>
-<jsp:include page="./include/footer.jsp" />
+<jsp:include page="/WEB-INF/views/admin/include/footer.jsp" />
 </body>
 	<!-- 차트 -->
 <!--     <script type="text/javascript">

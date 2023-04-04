@@ -18,6 +18,12 @@ public class AdminReviewMngtServiceImpl implements AdminReviewMngtService{
 	public List<AdminReviewMngtVo> selectReviewReportList() {
 		return dao.selectReviewReportList();
 	}
+	
+	// 신고리뷰검색
+	@Override
+	public List<AdminReviewMngtVo> selectSearchReviewReportList(AdminReviewMngtVo vo) {
+		return dao.selectSearchReviewReportList(vo);
+	}
 
 	// 신고리뷰상세
 	@Override

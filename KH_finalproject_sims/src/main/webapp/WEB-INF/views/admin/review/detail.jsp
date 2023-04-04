@@ -7,9 +7,10 @@
 <head>
 <meta charset="UTF-8">
 <title>공지사항 상세 페이지</title>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
 </head>
 <body>
-<jsp:include page="./include/header.jsp" />
+<jsp:include page="/WEB-INF/views/admin/include/header.jsp" />
 <div class="pcoded-main-container">
 	<div class="pcoded-wrapper container">
 		<div class="pcoded-content">
@@ -36,7 +37,7 @@
 								<div class="col-md-12">
 									<div class="simsBtn m-b-15">
 										<input id="delete-btn" class="btn btn-primary right m-l-10" type="button" value="삭제">
-										<input class="btn btn-primary right " type="button" onclick="location.href='<%=request.getContextPath()%>/admin/reviewlist'" value="목록">
+										<input class="btn btn-primary right " type="button" onclick="location.href='<%=request.getContextPath()%>/admin/review/list'" value="목록">
 									</div>
 								</div>
 								<div class="card text-center">
@@ -51,11 +52,17 @@
 					                                            <input type="text" readonly class="form-control-plaintext" name="bizId" value="${reviewdetail.bizId }">
 					                                        </div>
 					                                        <label for="adminId" class="col-sm-1 col-form-label left">작성자</label>
-					                                        <div class="col-sm-2">
+					                                        <div class="col-sm-1">
 					                                            <input type="text" readonly class="form-control-plaintext" name="adminId" value="${reviewdetail.userId }">
 					                                        </div>
 					                                        <div class="col-sm-2">
-					                                            <input type="text" readonly class="form-control-plaintext" name="aaaaa" value="${reviewdetail.reviewStar }">
+					                                        	<div class="form-control-plaintext">
+													                <i class="fa${reviewdetail.reviewStar < 1 ? '-regular' : '-solid'} fa-star" style="color: #ffdd00;"></i>
+													                <i class="fa${reviewdetail.reviewStar < 1.5 ? '-regular' : (reviewdetail.reviewStar < 2 ? '-half-stroke' : '-solid')} fa-star" style="color: #ffdd00;"></i>
+													                <i class="fa${reviewdetail.reviewStar < 2.5 ? '-regular' : (reviewdetail.reviewStar < 3 ? '-half-stroke' : '-solid')} fa-star" style="color: #ffdd00;"></i>
+													                <i class="fa${reviewdetail.reviewStar < 3.5 ? '-regular' : (reviewdetail.reviewStar < 4 ? '-half-stroke' : '-solid')} fa-star" style="color: #ffdd00;"></i>
+													                <i class="fa${reviewdetail.reviewStar < 4.5 ? '-regular' : '-solid'} fa-star" style="color: #ffdd00;"></i>
+					                                        	</div>
 					                                        </div>
 					                                        <label for="staticEmail" class="col-sm-1 col-form-label">작성일</label>
 					                                        <div class="col-sm-2">
@@ -80,7 +87,7 @@
 		</div>
 	</div>
 </div>
-<jsp:include page="./include/footer.jsp" />
+<jsp:include page="/WEB-INF/views/admin/include/footer.jsp" />
 <script>
 $(function() {
 	  $('#delete-btn').click(function() {
@@ -88,11 +95,11 @@ $(function() {
 			var reviewNo = ${reviewdetail.reviewNo};    	
 		    $.ajax({
 			      type: 'POST',
-			      url: '<%=request.getContextPath()%>/admin/reviewdelete',
+			      url: '<%=request.getContextPath()%>/admin/review/delete',
 			      data: {reviewNo: reviewNo},
 			      success: function(result) {
 						alert('삭제 처리되었습니다.');
-						location.href = '<%=request.getContextPath()%>/admin/reviewlist'; // 페이지 이동
+						location.href = '<%=request.getContextPath()%>/admin/review/list'; // 페이지 이동
 			      },
 			      error: function() {
 			        alert('오류가 발생하였습니다.');

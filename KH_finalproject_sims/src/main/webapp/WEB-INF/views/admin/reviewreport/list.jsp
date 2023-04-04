@@ -9,7 +9,7 @@
 <title>관리자 공지사항 리스트</title>
 </head>
 <body>
-	<jsp:include page="./include/header.jsp" />
+	<jsp:include page="/WEB-INF/views/admin/include/header.jsp" />
 	<div class="pcoded-main-container">	
 		<div class="pcoded-wrapper container">
 			<div class="pcoded-content">
@@ -35,15 +35,15 @@
 								<div class="col-md-12">
 									<div class="card">
 										<div class="card-body">
-											<form action="<%=request.getContextPath()%>/adminNotice/noticeList" method="post">
+											<form action="<%=request.getContextPath()%>/admin/reviewreport/list" method="post">
 												<div class="row">
 													<div class="col-sm-12">
 														<div class="input-group">
 															<label class="floating-label"></label>
 															<select class="" name="searchOption">
 																<option value="">선택</option>
-																<option value="title" <c:if test="${searchOption eq 'title' }">selected</c:if>>제목</option>
-																<option value="writer" <c:if test="${searchOption eq 'writer' }">selected</c:if>>작성자</option>
+																<option value="title" <c:if test="${searchOption eq 'title' }">selected</c:if>>신고사유</option>
+																<option value="writer" <c:if test="${searchOption eq 'writer' }">selected</c:if>>통신사</option>
 																<option value="content" <c:if test="${searchOption eq 'content' }">selected</c:if>>내용</option>
 															</select>
 															<input class="form-control" type="text" name="searchBox" value="${searchBox}">
@@ -61,7 +61,7 @@
 											<div class="table-responsive">
 												<table class="table table-hover">
 													<thead>
-														<tr>
+														<tr class="text-center">
 															<th>번호</th>
 															<th>신고사유</th>
 															<th>통신사</th>
@@ -72,11 +72,11 @@
 													<tbody>
 														<c:forEach items="${reviewReportList}" var="reviewlist">
 															<tr>
-																<td>${reviewlist.reviewNo}&nbsp;&nbsp;</td>
-																<td><a href="<%=request.getContextPath()%>/admin/reviewreportdetail/${reviewlist.reviewNo}">${reviewlist.reportReason}</a>&nbsp;&nbsp;</td>															
-																<td>${reviewlist.bizId}&nbsp;&nbsp;&nbsp;</td>
-																<td><fmt:formatDate value="${reviewlist.reportDate}" pattern="yyyy.MM.dd"/> </td>
-																<td>${reviewlist.reportStatus}</td>
+																<td class="text-center">${reviewlist.reviewNo}</td>
+																<td><a href="<%=request.getContextPath()%>/admin/reviewreport/detail/${reviewlist.reviewNo}">${reviewlist.reportReason}</a></td>															
+																<td class="text-center">${reviewlist.bizId}</td>
+																<td class="text-center"><fmt:formatDate value="${reviewlist.reportDate}" pattern="yyyy.MM.dd"/> </td>
+																<td class="text-center">${reviewlist.reportStatus}</td>
 															</tr>
 														</c:forEach>
 													</tbody>
@@ -126,6 +126,6 @@
 			</div>
 			 --%>
 </div>
-<jsp:include page="./include/footer.jsp" />
+<jsp:include page="/WEB-INF/views/admin/include/footer.jsp" />
 </body>
 </html>

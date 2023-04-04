@@ -9,7 +9,7 @@
 <title>자주묻는질문 리스트</title>
 </head>
 <body>
-	<jsp:include page="../include/header.jsp" />
+	<jsp:include page="/WEB-INF/views/admin/include/header.jsp" />
 	<div class="pcoded-main-container">	
 		<div class="pcoded-wrapper container">
 			<div class="pcoded-content">
@@ -34,7 +34,7 @@
 								</div>
 								<div class="col-md-12">
 									<div class="simsBtn m-b-15">
-										<input class="btn btn-primary right" type="button" onclick="location.href='<%=request.getContextPath()%>/admin/faqwrite'" value="작성">
+										<input class="btn btn-primary right" type="button" onclick="location.href='<%=request.getContextPath()%>/admin/faq/write'" value="작성">
 									</div>
 									<div class="card">
 										<div class="card-body">
@@ -64,7 +64,7 @@
 											<div class="table-responsive">
 												<table class="table table-hover">
 													<thead>
-														<tr>
+														<tr class="text-center">
 															<th>번호</th>
 															<th>제목</th>
 															<th>작성자</th>
@@ -74,10 +74,10 @@
 													<tbody>
 														<c:forEach items="${faqlist}" var="faq">
 															<tr>
-																<td>${faq.faqNo}&nbsp;&nbsp;</td>
-																<td><a href="<%=request.getContextPath()%>/admin/faqdetail/${faq.faqNo}">${faq.faqTitle}</a>&nbsp;&nbsp;</td>
-																<td>${faq.adminId}&nbsp;&nbsp;&nbsp;</td>
-																<td><fmt:formatDate value="${faq.faqDate}" pattern="yyyy.MM.dd"/> </td>
+																<td class="text-center">${faq.faqNo}</td>
+																<td><a href="<%=request.getContextPath()%>/admin/faq/detail/${faq.faqNo}">${faq.faqTitle}</a></td>
+																<td class="text-center">${faq.adminId}</td>
+																<td class="text-center"><fmt:formatDate value="${faq.faqDate}" pattern="yyyy.MM.dd"/></td>
 															</tr>
 														</c:forEach>
 													</tbody>
@@ -127,6 +127,6 @@
 			</div>
 			 --%>
 </div>
-<jsp:include page="../include/footer.jsp" />
+<jsp:include page="/WEB-INF/views/admin/include/footer.jsp" />
 </body>
 </html>

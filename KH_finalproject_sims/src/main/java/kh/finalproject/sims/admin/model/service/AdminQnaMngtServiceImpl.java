@@ -54,7 +54,12 @@ public class AdminQnaMngtServiceImpl implements AdminQnaMngtService{
 	public List<AdminQnaMngtVo> selectQnaList() {
 		return dao.selectQnaList();
 	}
-
+	
+	// 문의 내역 검색
+	@Override
+	public List<AdminQnaMngtVo> selectSearchQnaList(AdminQnaMngtVo vo) {
+		return dao.selectSearchQnaList(vo);
+	}
 
 	// 문의 내역 상세보기
 	@Override

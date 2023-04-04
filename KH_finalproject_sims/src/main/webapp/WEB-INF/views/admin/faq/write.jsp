@@ -11,7 +11,7 @@
 <title>자주묻는질문 작성</title>
 </head>
 <body>
-<jsp:include page="./include/header.jsp" />
+<jsp:include page="/WEB-INF/views/admin/include/header.jsp" />
 <div class="pcoded-main-container">
 	<div class="pcoded-wrapper container">
 		<div class="pcoded-content">
@@ -35,7 +35,7 @@
 									</div>
 								</div>
 							</div>
-							<form:form action="faqwrite" method="post">
+							<form:form action="${pageContext.request.contextPath}/admin/faq/write" method="post">
 								<div class="col-md-12">
 									<div class="simsBtn m-b-15">
 										<input type="hidden" value="${username }" name="adminId">
@@ -68,6 +68,6 @@
 		</div>
 	</div>
 </div>
-<jsp:include page="./include/footer.jsp" />
+<jsp:include page="/WEB-INF/views/admin/include/footer.jsp" />
 </body>
 </html>

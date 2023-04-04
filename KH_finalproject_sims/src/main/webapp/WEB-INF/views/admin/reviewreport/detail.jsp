@@ -9,7 +9,7 @@
 <title>공지사항 상세 페이지</title>
 </head>
 <body>
-<jsp:include page="./include/header.jsp" />
+<jsp:include page="/WEB-INF/views/admin/include/header.jsp" />
 <div class="pcoded-main-container">
 	<div class="pcoded-wrapper container">
 		<div class="pcoded-content">
@@ -37,7 +37,7 @@
 									<div class="simsBtn m-b-15">
 										<input id="delete-btn" class="btn btn-primary right m-l-10" type="button" value="삭제">
 										<input id="reject-btn" class="btn btn-primary right m-l-10" type="button" value="반려">
-										<input class="btn btn-primary right " type="button" onclick="location.href='<%=request.getContextPath()%>/admin/reviewreportlist'" value="목록">
+										<input class="btn btn-primary right " type="button" onclick="location.href='<%=request.getContextPath()%>/admin/reviewreport/list'" value="목록">
 									</div>
 								</div>
 								<div class="card text-center">
@@ -82,7 +82,7 @@
 		</div>
 	</div>
 </div>
-<jsp:include page="./include/footer.jsp" />
+<jsp:include page="/WEB-INF/views/admin/include/footer.jsp" />
 <script>
 $(function() {
   $('#reject-btn').click(function() {
@@ -90,7 +90,7 @@ $(function() {
 		var reviewNo = ${detail.reviewNo};    	
 	    $.ajax({
 		      type: 'POST',
-		      url: '<%=request.getContextPath()%>/admin/reviewreportstatus',
+		      url: '<%=request.getContextPath()%>/admin/reviewreport/status',
 		      data: {reviewNo: reviewNo, reviewHidden: 0, reportStatus: 3},
 		      success: function(result) {
 					alert('반려 처리되었습니다.');
@@ -110,7 +110,7 @@ $(function() {
         if (confirm("선택하신 답변을 삭제하시겠습니까?")) {
             var reviewNo = ${detail.reviewNo};
             $.ajax({
-                url: "<%=request.getContextPath()%>/admin/reviewreportstatus",
+                url: "<%=request.getContextPath()%>/admin/reviewreport/status",
                 data: {reviewNo: reviewNo, reviewHidden: 1, reportStatus: 2},
                 type: "POST",
                 success: function() {

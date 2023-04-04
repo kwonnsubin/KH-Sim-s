@@ -2,14 +2,16 @@
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
 <title>관리자 공지사항 리스트</title>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
 </head>
 <body>
-	<jsp:include page="../include/header.jsp" />
+	<jsp:include page="/WEB-INF/views/admin/include/header.jsp" />
 	<div class="pcoded-main-container">	
 		<div class="pcoded-wrapper container">
 			<div class="pcoded-content">
@@ -60,7 +62,7 @@
 											<div class="table-responsive">
 												<table class="table table-hover">
 													<thead>
-														<tr>
+														<tr class="text-center">
 															<th>번호</th>
 															<th>내용</th>
 															<th>작성자</th>
@@ -68,13 +70,26 @@
 														</tr>
 													</thead>
 													<tbody>
-														<c:forEach items="${reviewlist}" var="list">
+														<c:forEach items="${reviewlist}" var="review">
 															<tr>
-																<td>${list.reviewNo}&nbsp;&nbsp;</td>
-																<td><a href="<%=request.getContextPath()%>/admin/reviewdetail/${list.reviewNo}">${list.reviewContent}</a>&nbsp;&nbsp;</td>
-																
-																<td>${list.userId}&nbsp;&nbsp;&nbsp;</td>
-																<td><fmt:formatDate value="${list.reviewDate}" pattern="yyyy.MM.dd"/> </td>
+																<td class="text-center">${review.reviewNo}</td>
+																<td>
+																<c:choose>
+														          <c:when test="${fn:length(review.reviewContent) > 40}">
+														            <a href="<%=request.getContextPath()%>/admin/review/detail/${review.reviewNo }" class="">${fn:substring(review.reviewContent, 0, 40)}...&nbsp;</a>
+														          </c:when>
+														          <c:otherwise>
+														            <a href="<%=request.getContextPath()%>/admin/review/detail/${review.reviewNo }" class="">${review.reviewContent}&nbsp;</a>
+														          </c:otherwise>
+														        </c:choose>  
+													                <i class="fa${review.reviewStar < 1 ? '-regular' : '-solid'} fa-star" style="color: #ffdd00;"></i>
+													                <i class="fa${review.reviewStar < 1.5 ? '-regular' : (review.reviewStar < 2 ? '-half-stroke' : '-solid')} fa-star" style="color: #ffdd00;"></i>
+													                <i class="fa${review.reviewStar < 2.5 ? '-regular' : (review.reviewStar < 3 ? '-half-stroke' : '-solid')} fa-star" style="color: #ffdd00;"></i>
+													                <i class="fa${review.reviewStar < 3.5 ? '-regular' : (review.reviewStar < 4 ? '-half-stroke' : '-solid')} fa-star" style="color: #ffdd00;"></i>
+													                <i class="fa${review.reviewStar < 4.5 ? '-regular' : '-solid'} fa-star" style="color: #ffdd00;"></i>
+																</td>
+																<td class="text-center">${review.userId}</td>
+																<td class="text-center"><fmt:formatDate value="${review.reviewDate}" pattern="yyyy.MM.dd"/> </td>
 															</tr>
 														</c:forEach>
 													</tbody>
@@ -124,6 +139,6 @@
 			</div>
 			 --%>
 </div>
-<jsp:include page="../include/footer.jsp" />
+<jsp:include page="/WEB-INF/views/admin/include/footer.jsp" />
 </body>
 </html>

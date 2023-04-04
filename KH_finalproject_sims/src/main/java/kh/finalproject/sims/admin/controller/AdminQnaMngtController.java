@@ -48,24 +48,24 @@ public class AdminQnaMngtController {
 	}
 	
 	// 자주묻는질문화면 상세내용 보기
-	@GetMapping("/faqdetail/{faqNo}")
+	@GetMapping("/faq/detail/{faqNo}")
 	public ModelAndView selectFaqDetail(
 			  ModelAndView mv
 			, @PathVariable int faqNo
 			) {
 		AdminFaqVo result = service.selectFaqDetail(faqNo);
 		mv.addObject("faqlist", result);
-		mv.setViewName("admin/faqdetail");
+		mv.setViewName("admin/faq/detail");
 		return mv;
 	}
 	
 	// 자주묻는질문화면 작성 페이지
-	@GetMapping("/faqwrite")
+	@GetMapping("/faq/write")
 	public ModelAndView viewInsertFaq(
 			  ModelAndView mv
 			, HttpServletRequest request // 사용자(관리자)정보 가져오기
 			) {
-		mv.setViewName("admin/faqwrite");
+		mv.setViewName("admin/faq/write");
 		Principal principal = request.getUserPrincipal(); // 사용자(관리자)정보 가져오기
 	    String username = principal.getName(); // 사용자(관리자)정보 가져오기
 	    
@@ -74,57 +74,65 @@ public class AdminQnaMngtController {
 	}
 	
 	// 자주묻는질문 작성
-	@PostMapping("/faqwrite")
+	@PostMapping("/faq/write")
 	public ModelAndView faqwrite(
 			ModelAndView mv
 		  , AdminFaqVo vo
 			) {
 		service.insertFaqWrite(vo);
-		mv.setViewName("redirect:/admin/faqlist");
+		mv.setViewName("redirect:/admin/faq/list");
 		return mv;
 	}
 	
 	
 	// 자주묻는질문 수정 페이지로 이동
-	@GetMapping("/faqupdate/{faqNo}")
+	@GetMapping("/faq/update/{faqNo}")
 	public ModelAndView viewUpdateFaq(
 			ModelAndView mv
 		  , @PathVariable int faqNo
 			) {
 		AdminFaqVo result = service.selectFaqDetail(faqNo);
 		mv.addObject("faqlist", result); // 기존 내용 띄우기
-		mv.setViewName("admin/faqupdate");
+		mv.setViewName("admin/faq/update");
 		return mv;
 	}
 	
 	
 	// 자주묻는질문 수정하기
-	@PostMapping("/faqupdate/{faqNo}") // 왜 url이 두개나오는거지??(faqupdate.jsp) 해결중!!!!!!!!!
+	@PostMapping("/faq/update/{faqNo}") // 왜 url이 두개나오는거지??(faqupdate.jsp) 해결중!!!!!!!!!
 	public ModelAndView selectFaqModify(
 		     ModelAndView mv
 		   , @PathVariable int faqNo
 		   , AdminFaqVo vo) {
 		service.selectFaqModify(vo);
-		mv.setViewName("redirect:/admin/faqdetail/"+vo.getFaqNo());
+		mv.setViewName("redirect:/admin/faq/detail/"+vo.getFaqNo());
 		return mv;
 	}
 	
 	// 자주묻는질문 삭제하기
-	@GetMapping("/faqdelete/{faqNo}")
+	@GetMapping("/faq/delete/{faqNo}")
 	public ModelAndView deleteFaq(
 			  ModelAndView mv
 			, @PathVariable int faqNo
 			) {
 		service.deleteFaq(faqNo);
-		mv.setViewName("redirect:/admin/faqlist");
+		mv.setViewName("redirect:/admin/faq/list");
 		return mv;
 	}
 	
 	// 문의내역 리스트
-	@GetMapping("/qna/list")
-	public ModelAndView selectQnaList(ModelAndView mv) {
-		List<AdminQnaMngtVo> list = service.selectQnaList();
-		mv.addObject("qnalist", list);
+	@RequestMapping(value = "qna/list", method = {RequestMethod.GET, RequestMethod.POST})
+	public ModelAndView selectQnaList(
+			ModelAndView mv
+			, AdminQnaMngtVo vo
+			) {
+	    if(vo.getSearchOption() == null) {
+	        mv.addObject("qnalist", service.selectQnaList()); // 검색이 없는경우
+	    } else {
+	        mv.addObject("qnalist", service.selectSearchQnaList(vo)); // 검색이 있을경우    
+	        mv.addObject("searchOption", vo.getSearchOption());
+	        mv.addObject("searchBox", vo.getSearchBox());
+	    }
 		mv.setViewName("admin/qna/list");
 		return mv;
 	}

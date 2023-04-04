@@ -9,7 +9,7 @@
 <title>문의내역 리스트</title>
 </head>
 <body>
-	<jsp:include page="../include/header.jsp" />
+	<jsp:include page="/WEB-INF/views/admin/include/header.jsp" />
 	<div class="pcoded-main-container">	
 		<div class="pcoded-wrapper container">
 			<div class="pcoded-content">
@@ -35,7 +35,7 @@
 								<div class="col-md-12">
 									<div class="card">
 										<div class="card-body">
-											<form action="<%=request.getContextPath()%>/adminNotice/noticeList" method="post">
+											<form action="<%=request.getContextPath()%>/admin/qna/list" method="post">
 												<div class="row">
 													<div class="col-sm-12">
 														<div class="input-group">
@@ -61,7 +61,7 @@
 											<div class="table-responsive">
 												<table class="table table-hover">
 													<thead>
-														<tr>
+														<tr class="text-center">
 															<th>번호</th>
 															<th>제목</th>
 															<th>작성자</th>
@@ -73,12 +73,12 @@
 													<tbody>
 														<c:forEach items="${qnalist}" var="list">
 															<tr>
-																<td>${list.aqNo}&nbsp;&nbsp;</td>
-																<td><a href="<%=request.getContextPath()%>/admin/qna/detail/${list.aqNo}">${list.aqTitle}</a>&nbsp;&nbsp;</td>
-																<td>${list.userId}&nbsp;&nbsp;&nbsp;</td>
-																<td><fmt:formatDate value="${list.aqDate}" pattern="yyyy.MM.dd"/></td>
-																<td>${list.aqViews}&nbsp;&nbsp;&nbsp;</td>
-																<td>${list.aqAnswers}&nbsp;&nbsp;&nbsp;</td>
+																<td class="text-center">${list.aqNo}&nbsp;&nbsp;</td>
+																<td><a href="<%=request.getContextPath()%>/admin/qna/detail/${list.aqNo}">${list.aqTitle}</a></td>
+																<td class="text-center">${list.userId}</td>
+																<td class="text-center"><fmt:formatDate value="${list.aqDate}" pattern="yyyy.MM.dd"/></td>
+																<td class="text-center">${list.aqViews}</td>
+																<td class="text-center">${list.aqAnswers}</td>
 															</tr>
 														</c:forEach>
 													</tbody>
@@ -126,6 +126,6 @@
 			</div>
 			 --%>
 </div>
-<jsp:include page="../include/footer.jsp" />
+<jsp:include page="/WEB-INF/views/admin/include/footer.jsp" />
 </body>
 </html>

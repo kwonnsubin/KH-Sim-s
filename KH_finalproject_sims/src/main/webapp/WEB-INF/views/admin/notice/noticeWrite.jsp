@@ -9,7 +9,7 @@
 <title>관리자 공지사항 작성</title>
 </head>
 <body>
-<jsp:include page="../include/header.jsp" />
+<jsp:include page="/WEB-INF/views/admin/include/header.jsp" />
 <div class="pcoded-main-container">
 	<div class="pcoded-wrapper container">
 		<div class="pcoded-content">
@@ -67,6 +67,6 @@
 		</div>
 	</div>
 </div>
-<jsp:include page="../include/footer.jsp" />
+<jsp:include page="/WEB-INF/views/admin/include/footer.jsp" />
 </body>
 </html>

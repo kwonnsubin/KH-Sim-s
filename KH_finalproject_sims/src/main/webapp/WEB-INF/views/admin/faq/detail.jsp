@@ -1,18 +1,17 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-<!-- 붙여야 <form method="post"> 작동함 -->
-<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
+<!-- 붙여야 <form method="post"> 작동함 -->
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
 <title>자주묻는질문 상세페이지</title>
-<script src="https://code.jquery.com/jquery-3.6.3.js"></script>
 </head>
 <body>
-<jsp:include page="./include/header.jsp" />
+<jsp:include page="/WEB-INF/views/admin/include/header.jsp" />
 <div class="pcoded-main-container">
 	<div class="pcoded-wrapper container">
 		<div class="pcoded-content">
@@ -36,11 +35,11 @@
 									</div>
 								</div>
 							</div>
-								<%-- <form:form action="faqupdate/${faqlist.faqNo}" method="post"> <- 왜 이렇게 오류나는건지 이해가 안갑니다.. --%>
- 								<form:form action="../faqupdate/${faqlist.faqNo}" method="post"> <!-- 해결 : 상대경로이용 -->
 								<div class="col-md-12">
 									<div class="simsBtn m-b-15">
-										<input class="btn btn-primary right" type="submit" value="저장">
+										<input class="btn btn-primary right m-l-10" type="button" onclick="location.href='<%=request.getContextPath()%>/admin/faq/update/${faqlist.faqNo}'" value="수정">
+										<input class="btn btn-primary right m-l-10" type="button" onclick="location.href='<%=request.getContextPath()%>/admin/faq/delete/${faqlist.faqNo}'" value="삭제">
+										<input class="btn btn-primary right " type="button" onclick="location.href='<%=request.getContextPath()%>/admin/faq/list'" value="목록">
 									</div>
 								</div>
 								<div class="card text-center">
@@ -48,7 +47,7 @@
 										<div class="row">
 											<div class="col-sm-12">
 												<div class="form-group">
-	                                       			<input type="text" class="form-control" name="faqTitle" value="${faqlist.faqTitle }" >
+	                                       			<input type="text" class="form-control" name="ntcTitle" value="${faqlist.faqTitle }" readonly>
 	                                   			</div>
 											</div>
 											<!-- <div class="row"> -->
@@ -67,13 +66,12 @@
 			                                <!-- </div> -->
 											<div class="col-sm-12">
 												<div class="form-group">
-			                                        <textarea class="form-control" name="faqContent" rows="20" >${faqlist.faqContent }</textarea>
+			                                        <textarea class="form-control" name="ntcContent" rows="20" readonly>${faqlist.faqContent }</textarea>
 			                                    </div>
 											</div>
 										</div>
 									</div>
 								</div>	
-							</form:form>
 						</div>
 				    </div>
 				</div>
@@ -81,6 +79,6 @@
 		</div>
 	</div>
 </div>
-<jsp:include page="./include/footer.jsp" />
+<jsp:include page="/WEB-INF/views/admin/include/footer.jsp" />
 </body>
 </html>
