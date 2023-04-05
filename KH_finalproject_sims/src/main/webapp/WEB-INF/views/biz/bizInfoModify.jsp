@@ -22,7 +22,7 @@
 
         <div>
             <label>법인명</label>
-            <input type="text" name="bizName">
+            <input type="text" name="bizName" value="${bizinfo.bizName }">
             <label>대표자명</label>
             <input type="text" name="bizOwnerName" >
         </div>
@@ -53,7 +53,7 @@
 		        
         
          <div>
-            <label>전화</label>
+            <label>연락처</label>
             <input type="text" name="bizPhone">
             <label>팩스</label>
             <input type="text" name="bizFax" >
@@ -91,9 +91,9 @@
 		
 		<div>
 			<label>지원통신망</label>
-            <input type="checkbox" name="net" value="KT망">KT망
-            <input type="checkbox" name="net" value="SKT망">SKT망
-            <input type="checkbox" name="net" value="LGU+망">LGU+망
+			<input type="checkbox" name="net" value="KT망" >KT망
+            <input type="checkbox" name="net" value="SKT망" >SKT망
+            <input type="checkbox" name="net" value="LGU+망" >LGU+망
             
             
             <label>영업시간</label>

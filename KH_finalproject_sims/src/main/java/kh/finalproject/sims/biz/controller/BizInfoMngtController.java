@@ -52,11 +52,27 @@ public class BizInfoMngtController {
 		return mv;
 	}
 	
-	
+	//내 정보 수정하기 - 기본값 출력용
 	@GetMapping("/modifyInfo")
 	public ModelAndView modifyBizInfo(ModelAndView mv
+			, HttpServletRequest request
 			) {
-
+		Principal principal = request.getUserPrincipal();
+		String bizid = principal.getName();
+		System.out.println("통신사아이디 : "+bizid);
+		
+		BizInfoMngtVo vo =service.selectBizInfoDetail(bizid);
+		System.out.println(vo);
+		
+		
+		
+		//고객센터 번호
+		List<bizInfoMngServiceVo> serviceList = service.selectListService(bizid);
+		System.out.println(serviceList);
+		
+	
+		mv.addObject("bizinfo", vo);
+		mv.addObject("serviceList",serviceList);
 		
 		
 		mv.setViewName("biz/bizInfoModify");
@@ -68,18 +84,39 @@ public class BizInfoMngtController {
 	//내 정보 수정하기
 	//TODO
 	@PostMapping("/modifyInfo")
-	public String modifyBizInfo(
-			HttpServletRequest request
+	public String modifyBizInfo(HttpServletRequest request
+			, BizInfoMngtVo vo
+			, bizInfoMngServiceVo svo
+			, @RequestParam(name ="bizName") String bizName
+			, @RequestParam(name ="bizOwnerName") String bizOwnerName
+			, @RequestParam(name ="bizCrn") String bizCrn
+			, @RequestParam(name ="bizSsn") String bizSsn
+			//주소
+			, @RequestParam(name ="bizZipCode") int bizZipCode
+			, @RequestParam(name ="roadAddress") String roadAddress
+			, @RequestParam(name ="detailAddress") String detailAddress
+			// 
+			, @RequestParam(name ="bizPhone") String bizPhone
+			, @RequestParam(name ="bizFax") String bizFax
+			, @RequestParam(name ="bizEmail") String bizEmail
+			, @RequestParam(name ="bizHp") String bizHp
+			
+			, @RequestParam(name ="phoneOpTime") String phoneOpTime
+			, @RequestParam(name ="phoneOpTimeUsim") String phoneOpTimeUsim
+			, @RequestParam(name ="bizBeginTime") String bizBeginTime
+			, @RequestParam(name ="bizEndTime") String bizEndTime
+			//고객센터번호
+			, @RequestParam(name ="KtService") String KtService
+			, @RequestParam(name ="SktService") String SktService
+			, @RequestParam(name ="LguService") String LguService
+			
 			, @RequestParam(name = "weekday", required = false) String[] selectedWeekdays
 			, @RequestParam(name="net", required = false) String[] selectedNetworks
-			, @RequestParam("bizOwnerName") String bizOwnerName
+			
+			//파일 첨부도 가져와야 하는는데.. 
 			) {
 
-		/* 이것도 되고
-		 * if (selectedWeekdays != null) { for (String weekday : selectedWeekdays) {
-		 * System.out.println("Selected weekday: " + weekday); } } else {
-		 * System.out.println("No weekday selected"); }
-		 */
+		//휴무일
 		StringBuilder selectedWeekdaysString = new StringBuilder();
 		if (selectedWeekdays != null) {
 		    for (String weekday : selectedWeekdays) {
@@ -91,17 +128,9 @@ public class BizInfoMngtController {
 		    selectedWeekdaysString.append("No weekday selected");
 		}
 
-		System.out.println("Selected weekdays: " + selectedWeekdaysString.toString());
+		String bizClosedDay = selectedWeekdaysString.toString();
+		System.out.println("Selected weekdays: " + bizClosedDay);
 
-
-		
-		/////이건 되고..
-		/*
-		 * if (selectedNetworks != null) { for (String network : selectedNetworks) {
-		 * System.out.println("Selected network: " + network); } } else {
-		 * System.out.println("No network selected"); }
-		 */
-		
 		//통신망
 		StringBuilder selectedNetworksString = new StringBuilder();
 		if (selectedNetworks != null) {
@@ -114,9 +143,11 @@ public class BizInfoMngtController {
 		    selectedNetworksString.append("No network selected");
 		}
 
-		String networkts = selectedNetworksString.toString();
-		System.out.println(networkts);
+		String network = selectedNetworksString.toString();
+		System.out.println(network);
 
+		
+		
 
 
 		return "redirect:/biz/infodetail";
