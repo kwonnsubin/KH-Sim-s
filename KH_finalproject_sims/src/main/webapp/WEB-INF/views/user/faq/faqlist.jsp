@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -32,11 +33,23 @@
 	<jsp:include page="../../header.jsp"/>
 	
 	<section>
-		<div class="container-sm">
+		<div class="container-sm" style="max-width: 960px">
 			<div class="row">
-				<div class="col-md-10 p-2" style="float: none;">
-					<h5 class="py-2 fw-bolder">알뜰폰 궁금한 점 무엇이든 물어보세요</h5>
-					<!-- ***** 검색창 TODO ***** -->
+				<div class="col-lg-12 p-2" style="float: none;">
+					<h5 class="py-3 fw-bolder">알뜰폰 궁금한 점 무엇이든 물어보세요</h5>
+					<div class="row">
+						<form action="<%=request.getContextPath()%>/faq/faqlist" method="post">
+							<div class="input-group my-3">
+								<select name="searchOption" class="btn btn-outline-secondary dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
+									<option value="">선택</option>
+									<option value="title">제목</option>
+									<option value="content">내용</option>
+								</select>
+								<input type="text" class="form-control" placeholder="검색해보세요" name="searchBox" value="${searchBox }">
+								<button class="btn btn-outline-secondary" type="submit">검색</button>
+							</div>
+						</form>
+					</div>
 				</div>
 			</div>
 			<!-- ***** 자주묻는질문 Start ***** -->
@@ -80,34 +93,22 @@
 				</div>
 			</div>
 			<!-- ***** 자주묻는질문 end ***** -->
+			
 			<!-- ***** 일반 질문 Start ***** -->
-			<div class="row">
-				<div class="col-lg-12 p-2">
-					<table class="table table-hover table-group-divider mt-3 mb-3">
-						<thead class="table-light text-center">
-							<tr>
-								<th class="text-center">번호</th>
-								<th>제목</th>
-								<th>작성일</th>
-								<th>조회수</th>
-								<th>답변수</th>
-							</tr>
-						</thead>
-						<c:forEach items="${qnalist}" var="qna">
-							<tbody>
-								<tr>
-									<td class="text-center">${qna.aqNo}</td>
-									<td class="text-center">
-									<a href="<%=request.getContextPath()%>/faq/qna/${qna.aqNo}">${qna.aqTitle}</a>
-									</td>
-									<td class="text-center">${qna.aqDate}</td>
-									<td class="text-center">${qna.aqViews}</td>
-									<td class="text-center">${qna.aqAnswers }</td>
-								</tr>
-							</tbody>
-						</c:forEach>
-					</table>
-				</div>
+			<div class="col-lg-12 py-2">
+				<c:if test="${not empty qnalist }">
+					<c:forEach items="${qnalist }" var="qna">
+						<div class="row my-3">
+							<div class="pb-1">
+								<a href="<%=request.getContextPath()%>/faq/qna/${qna.aqNo}">${qna.aqTitle}</a>
+							</div>
+							<div class="small col-1 pe-0">조회 <fmt:formatNumber value="${qna.aqViews}" pattern="###,###"/></div>
+							<div class="small col-9">답변 ${qna.aqAnswers }</div>
+							<div class="small col-2 text-end"><fmt:formatDate value="${qna.aqDate}" pattern="yyyy.MM.dd HH:mm"/></div>
+						</div>
+						<hr>
+					</c:forEach>
+				</c:if>
 			</div>
 			<sec:authorize access="hasRole('ROLE_USER')">
 				<button type="button" onclick="location.href='myqna'">내 질문/답변</button>
