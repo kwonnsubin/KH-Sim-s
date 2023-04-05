@@ -80,12 +80,13 @@
 										</div>
 									</div>
 									<div class="btn-div text-start mx-4">
-										<button data-target="#planData">데이터</button>
-										<button data-target="#planVoice">통화량</button>
-										<button data-target="#planMessage">문자량</button>
-										<button data-target="#netName">통신망</button>
-										<button data-target="#genName">통신기술</button>
-										<button data-target="#bizName">통신사</button>
+										<button onclick="goToScroll('planData')">데이터</button>
+										<button onclick="goToScroll('planVoice')">통화량</button>
+										<button onclick="goToScroll('planMessage')">문자량</button>
+										<button onclick="goToScroll('planPrice')">가격</button>
+										<button onclick="goToScroll('netName')">통신망</button>
+										<button onclick="goToScroll('genName')">통신기술</button>
+										<button onclick="goToScroll('bizName')">통신사</button>
 									</div>
 									<hr style="border:0;border-top:1px solid #555;margin:0;height:1px;" />
 								</div>
@@ -99,7 +100,7 @@
 						        						<label class="range1-label" for="range1">전체</label>
 						        					</div>
 						        			
-							        				<div slider class="slider1" id="slider-distance">
+							        				<div slider id="slider-distance">
 													  <div>
 													    <div inverse-left style="width:70%;"></div>
 													    <div inverse-right style="width:70%;"></div>
@@ -166,15 +167,161 @@
 													</fieldset>
 						        				</div>
 					        				</div>
-					        				<div>
-					        					
-					        				</div>
 					        			</div>
 					        			<div id="planVoice">
-					        				<p class="my-2">통화량</p>
+					        				<div>
+						        				<p class="my-2">통화량</p>
+						        				<div class="range-div my-2 mb-3">
+						        					<div class="text-center">
+						        						<label class="range2-label" for="range2">전체</label>
+						        					</div>
+						        			
+							        				<div slider id="slider-distance">
+													  <div>
+													    <div inverse-left style="width:70%;"></div>
+													    <div inverse-right style="width:70%;"></div>
+													    <div range style="left:0%;right:0%;"></div>
+													    <span thumb style="left:0%;"></span>
+													    <span thumb style="left:100%;"></span>
+													    <div sign style="left:0%;">
+													      <span id="value">0</span>
+													    </div>
+													    <div sign style="left:100%;">
+													      <span id="value">300</span>
+													    </div>
+													  </div>
+													  <input type="range" id="range2" tabindex="0" value="0" max="300" min="0" step="10" oninput="
+													  this.value=Math.min(this.value,this.parentNode.childNodes[5].value-1);
+													  var value=(100/(parseInt(this.max)-parseInt(this.min)))*parseInt(this.value)-(100/(parseInt(this.max)-parseInt(this.min)))*parseInt(this.min);
+													  var children = this.parentNode.childNodes[1].childNodes;
+													  children[1].style.width=value+'%';
+													  children[5].style.left=value+'%';
+													  children[7].style.left=value+'%';children[11].style.left=value+'%';
+													  children[11].childNodes[1].innerHTML=this.value;" />
+													
+													  <input type="range" tabindex="0" value="300" max="300" min="0" step="10" oninput="
+													  this.value=Math.max(this.value,this.parentNode.childNodes[3].value-(-1));
+													  var value=(100/(parseInt(this.max)-parseInt(this.min)))*parseInt(this.value)-(100/(parseInt(this.max)-parseInt(this.min)))*parseInt(this.min);
+													  var children = this.parentNode.childNodes[1].childNodes;
+													  children[3].style.width=(100-value)+'%';
+													  children[5].style.right=(100-value)+'%';
+													  children[9].style.left=value+'%';children[13].style.left=value+'%';
+													  children[13].childNodes[1].innerHTML=this.value;" />
+													</div>
+												</div>
+						        				<div>
+					        						<fieldset>
+														<label class="mx-1">
+													    	<input type="radio" name="voice" value="전체" checked />
+													    	<span class="px-2">전체</span>
+														</label>
+													
+													  	<label class="mx-1">
+													    	<input type="radio" name="voice" value="기본제공" />
+													    	<span class="px-2">기본제공</span>
+													  	</label>
+													  	
+													  	<label class="mx-1">
+													    	<input type="radio" name="voice" value="300분 이상" />
+													    	<span class="px-2">300분 이상</span>
+													  	</label>
+													
+													 	<label class="mx-1">
+													    	<input type="radio" name="voice" value="180~300분" />
+													    	<span class="px-2">180~300분</span>
+													  	</label>
+													
+													  	<label class="mx-1">
+													    	<input type="radio" name="voice" value="60~180분" />
+													    	<span class="px-2">60~180분</span>
+													  	</label>
+													  	
+													  	<label class="mx-1">
+													    	<input type="radio" name="voice" value="60분 이하" />
+													    	<span class="px-2">60분 이하</span>
+													  	</label>
+													</fieldset>
+						        				</div>
+					        				</div>
 					        			</div>
 					        			<div id="planMessage">
-					        				<p class="my-2">문자량</p>
+					        				<div>
+						        				<p class="my-2">문자량</p>
+						        				<div class="range-div my-2 mb-3">
+						        					<div class="text-center">
+						        						<label class="range3-label" for="range3">전체</label>
+						        					</div>
+						        			
+							        				<div slider id="slider-distance">
+													  <div>
+													    <div inverse-left style="width:70%;"></div>
+													    <div inverse-right style="width:70%;"></div>
+													    <div range style="left:0%;right:0%;"></div>
+													    <span thumb style="left:0%;"></span>
+													    <span thumb style="left:100%;"></span>
+													    <div sign style="left:0%;">
+													      <span id="value">0</span>
+													    </div>
+													    <div sign style="left:100%;">
+													      <span id="value">300</span>
+													    </div>
+													  </div>
+													  <input type="range" id="range3" tabindex="0" value="0" max="300" min="0" step="10" oninput="
+													  this.value=Math.min(this.value,this.parentNode.childNodes[5].value-1);
+													  var value=(100/(parseInt(this.max)-parseInt(this.min)))*parseInt(this.value)-(100/(parseInt(this.max)-parseInt(this.min)))*parseInt(this.min);
+													  var children = this.parentNode.childNodes[1].childNodes;
+													  children[1].style.width=value+'%';
+													  children[5].style.left=value+'%';
+													  children[7].style.left=value+'%';children[11].style.left=value+'%';
+													  children[11].childNodes[1].innerHTML=this.value;" />
+													
+													  <input type="range" tabindex="0" value="300" max="300" min="0" step="10" oninput="
+													  this.value=Math.max(this.value,this.parentNode.childNodes[3].value-(-1));
+													  var value=(100/(parseInt(this.max)-parseInt(this.min)))*parseInt(this.value)-(100/(parseInt(this.max)-parseInt(this.min)))*parseInt(this.min);
+													  var children = this.parentNode.childNodes[1].childNodes;
+													  children[3].style.width=(100-value)+'%';
+													  children[5].style.right=(100-value)+'%';
+													  children[9].style.left=value+'%';children[13].style.left=value+'%';
+													  children[13].childNodes[1].innerHTML=this.value;" />
+													</div>
+												</div>
+						        				<div>
+					        						<fieldset>
+														<label class="mx-1">
+													    	<input type="radio" name="voice" value="전체" checked />
+													    	<span class="px-2">전체</span>
+														</label>
+													
+													  	<label class="mx-1">
+													    	<input type="radio" name="voice" value="기본제공" />
+													    	<span class="px-2">기본제공</span>
+													  	</label>
+													  	
+													  	<label class="mx-1">
+													    	<input type="radio" name="voice" value="300건 이상" />
+													    	<span class="px-2">300건 이상</span>
+													  	</label>
+													
+													 	<label class="mx-1">
+													    	<input type="radio" name="voice" value="100~300건" />
+													    	<span class="px-2">100~300건</span>
+													  	</label>
+													
+													  	<label class="mx-1">
+													    	<input type="radio" name="voice" value="50~100건" />
+													    	<span class="px-2">50~100건</span>
+													  	</label>
+													  	
+													  	<label class="mx-1">
+													    	<input type="radio" name="voice" value="50건 이하" />
+													    	<span class="px-2">50건 이하</span>
+													  	</label>
+													</fieldset>
+						        				</div>
+					        				</div>
+					        			</div>
+					        			<div id="planPrice">
+					        				<p class="my-2">가격</p>
 					        			</div>
 					        			<div id="netName">
 					        				<p class="my-2">통신망</p>
