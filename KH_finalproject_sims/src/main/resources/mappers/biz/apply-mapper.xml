@@ -53,7 +53,8 @@
 	    SELECT plan_no 
 	     FROM plan_order 
 	     WHERE order_no = #{orderNo}
-	)
+	) 
+	AND order_no =#{orderNo}
   </select>
   
   

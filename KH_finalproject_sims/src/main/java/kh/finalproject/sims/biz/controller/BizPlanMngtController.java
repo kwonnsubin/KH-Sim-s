@@ -182,7 +182,7 @@ public class BizPlanMngtController {
 	}
 	
 	//요금제 삭제
-	//TODO
+	//TODO 모달창에서 planNo 가져와야 함. 
 	@PostMapping("deletePlan")
 	@ResponseBody
 	public String deleteBizPlan(int planNo) {
