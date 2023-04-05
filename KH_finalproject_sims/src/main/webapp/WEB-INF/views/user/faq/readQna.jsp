@@ -31,14 +31,14 @@
 </head>
 <body>
 
-	<jsp:include page="../../header.jsp"/>
+	<jsp:include page="/WEB-INF/views/header.jsp"/>
 	
 	<section>
-		<div class="container-sm" style="max-width: 960px">
+		<div class="container-sm div-m">
 		
 			<!-- 질문제목 -->
 			<div class="row">
-				<div class="col-sm-10 p-2 float-sm-none mt-5">
+				<div class="col-sm-12 p-2 float-sm-none mt-5">
 					<h4>${question.aqTitle }</h4>
 				</div>
 				<div class="col-sm-auto p-2 small mb-3">
@@ -125,7 +125,7 @@
 										<input type="hidden" value="${username }" name="userId">
 										<input type="hidden" value="${ans.aaNo }" name="aaNo">
 										<input type="text" name="rplContent" placeholder="댓글을 작성해주세요">
-										<input type="submit" value="완료">
+										<button type="submit">완료</button>
 									</form>
 								</sec:authorize>
 							</div>
@@ -153,7 +153,7 @@
 									</div>
 									
 									<!-- 댓글 수정,삭제 -->
-									<div>
+									<div class="btn-group">
 										<sec:authorize access="hasRole('ROLE_USER')">
 											<c:if test="${username eq rpl.userId}">
 												<button onclick="location.href='<%=request.getContextPath()%>/faq/rplupdate/${rpl.rplNo}'">수정</button>
@@ -176,7 +176,7 @@
 						<input type="hidden" value="${username }" name="userId">
 						<input type="hidden" value="${question.aqNo }" name="aqNo">
 						<input type="text" name="aaContent" size="60" placeholder="답변을 작성해주세요">
-						<input type="submit" value="답변하기">
+						<button type="submit">답변하기</button>
 					</form>
 				</sec:authorize>
 				<!-- /답변달기 -->
@@ -187,7 +187,7 @@
 		</div>
 	</section>
 	
-	<jsp:include page="../../footer.jsp"/>
+	<jsp:include page="/WEB-INF/views/footer.jsp"/>
 	
 	<!-- Scripts -->
 	<script src="<%= request.getContextPath() %>/resources/chain/vendor/jquery/jquery.min.js"></script>

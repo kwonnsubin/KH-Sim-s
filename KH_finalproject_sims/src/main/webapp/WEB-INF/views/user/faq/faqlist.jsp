@@ -27,26 +27,28 @@
     <link rel="stylesheet" href="<%= request.getContextPath() %>/resources/chain/assets/css/templatemo-chain-app-dev.css">
     <link rel="stylesheet" href="<%= request.getContextPath() %>/resources/chain/assets/css/animated.css">
     <link rel="stylesheet" href="<%= request.getContextPath() %>/resources/chain/assets/css/owl.css">
+    <link rel="stylesheet" href="<%= request.getContextPath() %>/resources/css/user/qna.css">
+    
     
 </head>
 <body>
-	<jsp:include page="../../header.jsp"/>
+	<jsp:include page="/WEB-INF/views/header.jsp"/>
 	
 	<section>
-		<div class="container-sm" style="max-width: 960px">
+		<div class="container-sm div-m">
 			<div class="row">
-				<div class="col-lg-12 p-2" style="float: none;">
+				<div class="col-lg-12 p-2">
 					<h5 class="py-3 fw-bolder">알뜰폰 궁금한 점 무엇이든 물어보세요</h5>
 					<div class="row">
 						<form action="<%=request.getContextPath()%>/faq/faqlist" method="post">
 							<div class="input-group my-3">
-								<select name="searchOption" class="btn btn-outline-secondary dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
+								<select name="searchOption" class="btn dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
 									<option value="">선택</option>
 									<option value="title">제목</option>
 									<option value="content">내용</option>
 								</select>
 								<input type="text" class="form-control" placeholder="검색해보세요" name="searchBox" value="${searchBox }">
-								<button class="btn btn-outline-secondary" type="submit">검색</button>
+								<button class="btn" type="submit">검색</button>
 							</div>
 						</form>
 					</div>
@@ -118,7 +120,7 @@
 		</div>
 
 	</section>
-	<jsp:include page="../../footer.jsp"/>
+	<jsp:include page="/WEB-INF/views/footer.jsp"/>
 	
 	<!-- Scripts -->
 	<script src="<%= request.getContextPath() %>/resources/chain/vendor/jquery/jquery.min.js"></script>

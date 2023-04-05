@@ -13,3 +13,17 @@ hr {
 	line-height: 3 !important
 }
 
+.div-m {
+	max-width: 960px
+}
+
+textarea {
+	resize: vertical;
+	width: 100%;
+	border: none
+}
+
+input {
+	width: 100%;
+	border: none;
+}
