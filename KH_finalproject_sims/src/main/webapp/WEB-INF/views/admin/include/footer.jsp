@@ -59,6 +59,21 @@
     });
 </script>
 
+<script>
+$(document).ready(function(){
+	
+	/* var result = '<c:out value="${result }"/>'; */
+	var result = '${result }';
+	var html = result;
+	result = result.replace(" ", "");
+	if(result == null || result == "" || result == undefined){
+		
+	} else {
+		alert(html);
+	}
+});
+
+</script>
 <script src="<%=request.getContextPath()%>/resources/admin/flat-able-lite/dist/assets/js/analytics.js"></script>
 </body>
 </html>

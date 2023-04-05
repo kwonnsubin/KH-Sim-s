@@ -24,7 +24,7 @@ public class AdminBizMngtController {
 	
 	//통신사 리스트로 이동
 	@RequestMapping(value="/applyList", method = {RequestMethod.GET, RequestMethod.POST})
-	public ModelAndView selectApplyList(ModelAndView mv, AdminBizMngtVo vo) {
+	public ModelAndView selectApplyList(ModelAndView mv, AdminBizMngtVo vo) throws Exception {
 		mv.addObject("applyList", service.selectApplyList(vo));
 		mv.addObject("searchOption", vo.getSearchOption());
 		mv.addObject("searchBox", vo.getSearchBox());
@@ -34,7 +34,7 @@ public class AdminBizMngtController {
 
 	//통신사 신청정보 상세 페이지로 이동
 	@GetMapping("/applyDetail/{bizId}")
-	public ModelAndView selectApplyDetail(ModelAndView mv, @PathVariable String bizId, HttpServletRequest request, AdminBizMngtVo vo) {
+	public ModelAndView selectApplyDetail(ModelAndView mv, @PathVariable String bizId, HttpServletRequest request, AdminBizMngtVo vo) throws Exception {
 		String divCheck = request.getParameter("divCheck");
 		switch(divCheck) {
 			case "apply": mv.setViewName("admin/biz/applyDetail");
@@ -52,12 +52,28 @@ public class AdminBizMngtController {
 		return mv;
 	}
 	
+	//통신사 검토결과 변경
+	@PostMapping("/updateBizStatus")
+	public ModelAndView updateBizStatus(
+			ModelAndView mv
+			, AdminBizMngtVo vo) throws Exception {
+			service.updateBizStatus(vo);
+			
+			String bizId = vo.getBizId();
+			AdminBizMngtVo applyDetail = service.selectApplyDetail(bizId);
+			mv.addObject("applyDetail", applyDetail);
+			mv.addObject("result", "수정이 완료되었습니다.");
+			mv.addObject("cmd", "read");
+			mv.setViewName("admin/biz/applyDetail");
+			return mv;
+	}
+	
 	//통신사 상세 수정 페이지로 이동
 	@GetMapping("/selectBizModify/{bizId}")
 	public ModelAndView selectBizModify(
 			ModelAndView mv
 			, @PathVariable String bizId
-			, AdminBizMngtVo vo) {
+			, AdminBizMngtVo vo) throws Exception {
 		AdminBizMngtVo applyDetail = service.selectApplyDetail(bizId);
 		mv.addObject("applyDetail", applyDetail);
 		mv.addObject("cmd", "update");
@@ -69,7 +85,7 @@ public class AdminBizMngtController {
 	@PostMapping("/saveBizModify")
 	public ModelAndView saveBizModify(
 			ModelAndView mv
-			, AdminBizMngtVo vo) {
+			, AdminBizMngtVo vo) throws Exception {
 			service.saveBizModify(vo);
 			
 			String bizId = vo.getBizId();
@@ -84,7 +100,7 @@ public class AdminBizMngtController {
 	
 	//통신사 탈퇴 리스트로 이동
 	@RequestMapping(value="/withdrawalList", method= {RequestMethod.GET, RequestMethod.POST})
-	public ModelAndView selectWithdrawalList(ModelAndView mv, AdminBizMngtVo vo) {
+	public ModelAndView selectWithdrawalList(ModelAndView mv, AdminBizMngtVo vo) throws Exception {
 		mv.addObject("withdrawalList", service.selectWithdrawalList(vo));
 		mv.addObject("searchOption", vo.getSearchOption());
 		mv.addObject("searchBox", vo.getSearchBox());
@@ -96,7 +112,7 @@ public class AdminBizMngtController {
 	
 	//통신사 탈퇴 상세 정보로 이동
 	@GetMapping("/withdrawalDetail/{bizId}")
-	public ModelAndView selectWithdrawalDetail(ModelAndView mv, @PathVariable String bizId) {
+	public ModelAndView selectWithdrawalDetail(ModelAndView mv, @PathVariable String bizId) throws Exception {
 		AdminBizMngtVo withdrawalDetail = service.selectWithdrawalDetail(bizId);
 		mv.addObject("withdrawalDetail", withdrawalDetail);
 		mv.setViewName("admin/biz/withdrawalDetail");
@@ -106,7 +122,7 @@ public class AdminBizMngtController {
 	
 	//통신사 요금제 개통 신청 리스트로 이동
 	@RequestMapping(value="/bizPlanApplyList", method = {RequestMethod.GET, RequestMethod.POST})
-	public ModelAndView selectBizPlanApplyList(ModelAndView mv, AdminBizMngtVo vo) {
+	public ModelAndView selectBizPlanApplyList(ModelAndView mv, AdminBizMngtVo vo) throws Exception {
 		mv.addObject("bizPlanApplyList", service.selectBizPlanApplyList(vo));
 		mv.addObject("searchOption", vo.getSearchOption());
 		mv.addObject("searchBox", vo.getSearchBox());
@@ -117,7 +133,7 @@ public class AdminBizMngtController {
 	
 	//통신사 요금제 개통 신청 상세 페이지로 이동
 	@GetMapping("/bizPlanApplyDetail/{orderNo}")
-	public ModelAndView selectBizPlanApplyDetail(ModelAndView mv, @PathVariable int orderNo) {
+	public ModelAndView selectBizPlanApplyDetail(ModelAndView mv, @PathVariable int orderNo) throws Exception {
 		AdminBizMngtVo bizPlanApplyDetail = service.selectBizPlanApplyDetail(orderNo);
 		mv.addObject("bizPlanApplyDetail", bizPlanApplyDetail);
 		mv.setViewName("admin/biz/planApplyDetail");

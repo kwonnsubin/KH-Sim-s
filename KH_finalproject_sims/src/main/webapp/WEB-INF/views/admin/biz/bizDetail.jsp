@@ -126,8 +126,18 @@
 		                                            <input type="text" class="form-control"  name="bizClosedDay" <c:if test="${cmd eq 'read' }">readonly</c:if> value="${applyDetail.bizClosedDay}">
 		                                        </div>
 		                                        <label for="bizClosedDay" class="col-sm-1 col-form-label text-center">고객센터번호</label>
+		                                        <c:set var="netService" value=""/>
+		                                        <c:if test="${not empty applyDetail.ktNetService }">
+		                                        	<c:set var="netService" value="KT : ${applyDetail.ktNetService} / "/>
+		                                        </c:if>
+		                                        <c:if test="${not empty applyDetail.sktNetService }">
+		                                        	<c:set var="netService" value="${netService}SKT : ${applyDetail.sktNetService} / "/>
+		                                        </c:if>
+		                                        <c:if test="${not empty applyDetail.lgNetService }">
+		                                        	<c:set var="netService" value="${netService}LG : ${applyDetail.lgNetService}"/>
+		                                        </c:if>
 		                                        <div class="col-sm-5">
-		                                            <input type="text" class="form-control"  name="bizClosedDay" <c:if test="${cmd eq 'read' }">readonly</c:if> value="${applyDetail.bizClosedDay}">
+		                                            <input type="text" class="form-control"  name="bizClosedDay" <c:if test="${cmd eq 'read' }">readonly</c:if> value="${netService}">
 		                                        </div>
 		                                    </div>
 		                                    <div class="form-group row">

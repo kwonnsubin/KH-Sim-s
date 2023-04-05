@@ -67,6 +67,8 @@ public class AdminBizMngtVo {
 	private Date writeDate;
 	private Date updateDate;
 	private String logoRenameFileName;
+	private String statusCd;
+	private String rvwOpinion;
 	
 	// 통신망
 	// NET_NO				NOT NULL 	VARCHAR2(30)
@@ -79,6 +81,9 @@ public class AdminBizMngtVo {
 	// BIZ_NET_SERVICE		NULL		VARCHAR2(20)
 	
 	private String bizNetService;
+	private String ktNetService;
+	private String sktNetService;
+	private String lgNetService;
 	
 	// 이동통신세대
 	// GEN_NO				NOT NULL	NUMBER

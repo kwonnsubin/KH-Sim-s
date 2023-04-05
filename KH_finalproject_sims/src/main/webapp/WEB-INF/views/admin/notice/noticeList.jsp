@@ -104,19 +104,6 @@
 		</div>
 	</div>
 <jsp:include page="/WEB-INF/views/admin/include/footer.jsp" />
-<script>
-$(document).ready(function(){
-	
-	var result = '<c:out value="${result }"/>';
-	var html = result;
-	result = result.replace(" ", "");
-	if(result == null || result == "" || result == undefined){
-		
-	} else {
-		alert(html);
-	}
-});
 
-</script>
 </body>
 </html>

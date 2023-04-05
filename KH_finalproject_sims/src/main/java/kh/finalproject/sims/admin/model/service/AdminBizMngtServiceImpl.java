@@ -33,6 +33,12 @@ public class AdminBizMngtServiceImpl implements AdminBizMngtService{
 		return dao.selectBizPlanList(bizId);
 	}
 	
+	//통신사 검토결과 수정
+	@Override
+	public int updateBizStatus(AdminBizMngtVo vo) {
+		return dao.updateBizStatus(vo);
+	}
+	
 	/*
 	 * //통신사의 상세 수정 페이지로 이동
 	 * 
@@ -41,10 +47,10 @@ public class AdminBizMngtServiceImpl implements AdminBizMngtService{
 	 */
 	
 	//통신사 상세 수정 저장
-		@Override
-		public int saveBizModify(AdminBizMngtVo vo) {
-			return dao.saveBizModify(vo);
-		}
+	@Override
+	public int saveBizModify(AdminBizMngtVo vo) {
+		return dao.saveBizModify(vo);
+	}
 
 
 	//통신사 탈퇴 신청 리스트

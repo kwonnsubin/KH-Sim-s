@@ -49,11 +49,11 @@
 															</div>
 															<div class="col-sm-5 p-t-10">
 																<div class="custom-control custom-radio custom-control-inline">
-								                                    <input type="radio" id="searchRadioVal1" name="searchRadioVal" class="custom-control-input" value="total" <c:if test="${searchRadioVal ne 'enbale' }">checked</c:if>>
+								                                    <input type="radio" id="customRadioInline1" name="searchRadioVal" class="custom-control-input" value="total" <c:if test="${searchRadioVal ne 'enbale' }">checked</c:if>>
 								                                    <label class="custom-control-label" for="customRadioInline1">전체</label>
 								                                </div>
 								                                <div class="custom-control custom-radio custom-control-inline">
-								                                    <input type="radio" id="searchRadioVal2" name="searchRadioVal" class="custom-control-input" value="enable" <c:if test="${searchRadioVal eq 'enable' }">checked</c:if>>
+								                                    <input type="radio" id="customRadioInline2" name="searchRadioVal" class="custom-control-input" value="enable" <c:if test="${searchRadioVal eq 'enable' }">checked</c:if>>
 								                                    <label class="custom-control-label" for="customRadioInline2">탈퇴 회원</label>
 								                                </div>
 															</div>

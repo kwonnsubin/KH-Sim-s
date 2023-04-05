@@ -61,6 +61,11 @@ public class AdminBizMngtDao {
 		return sqlSession.update("adminBiz.saveBizModify", vo);
 	}
 
+	//통신사 검토 결과 수정
+	public int updateBizStatus(AdminBizMngtVo vo) {
+		return sqlSession.update("adminBiz.updateBizStatus", vo);
+	}
+
 
 
 }

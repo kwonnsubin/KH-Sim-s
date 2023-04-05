@@ -104,7 +104,7 @@
                         <a href="chart-apex.html" class="nav-link "><span class="pcoded-micon"><i class="feather icon-pie-chart"></i></span><span class="pcoded-mtext">통계 조회</span></a>
                     </li>
                     <li class="nav-item">
-                        <a href="chart-apex.html" class="nav-link "><span class="pcoded-micon"><i class="feather icon-lock"></i></span><span class="pcoded-mtext">로그아웃</span></a>
+                        <a href="<%=request.getContextPath()%>/logout" class="nav-link "><span class="pcoded-micon"><i class="feather icon-lock"></i></span><span class="pcoded-mtext">로그아웃</span></a>
                     </li>
                     <!-- <li class="nav-item">
                         <a href="map-google.html" class="nav-link "><span class="pcoded-micon"><i class="feather icon-map"></i></span><span class="pcoded-mtext">로그 아웃</span></a>
