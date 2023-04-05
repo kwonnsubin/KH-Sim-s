@@ -25,6 +25,7 @@ import kh.finalproject.sims.admin.model.vo.AdminFaqVo;
 import kh.finalproject.sims.admin.model.vo.AdminQnaAnsVo;
 import kh.finalproject.sims.admin.model.vo.AdminQnaMngtVo;
 import kh.finalproject.sims.admin.model.vo.AdminQnaReplyVo;
+import kh.finalproject.sims.user.model.service.UserFaqService;
 
 @RequestMapping("/admin")
 @Controller
@@ -32,6 +33,8 @@ public class AdminQnaMngtController {
 
 	@Autowired
 	AdminQnaMngtService service;
+	@Autowired
+	UserFaqService userService;
 	
 	// 자주묻는질문화면 리스트
 	@RequestMapping(value="/faq/list", method = {RequestMethod.GET, RequestMethod.POST})
@@ -163,6 +166,7 @@ public class AdminQnaMngtController {
 			 AdminQnaAnsVo vo
 			) {
 		int result = service.insertQnaAnsWrite(vo);
+		userService.upAnswers(vo.getAqNo());
 		if(result > 0) {
 			return "success";
 		} else {
@@ -202,8 +206,8 @@ public class AdminQnaMngtController {
 	public String deleteQnaAns(
 			 int aaNo
 			) {
+		userService.deAnswers(userService.getAnsByNo(aaNo).getAqNo());
 		int result = service.deleteQnaAns(aaNo);
-		
 		if(result > 0) {
 			return "success";
 		} else {
