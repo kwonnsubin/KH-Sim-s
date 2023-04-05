@@ -33,11 +33,19 @@ public class AdminBizMngtServiceImpl implements AdminBizMngtService{
 		return dao.selectBizPlanList(bizId);
 	}
 	
-	//통신사의 상세 수정 페이지로 이동
-	@Override
-	public AdminNoticeMngtVo selectBizModify(String bizId) {
-		return dao.selectBizModify(bizId);
-	}
+	/*
+	 * //통신사의 상세 수정 페이지로 이동
+	 * 
+	 * @Override public AdminNoticeMngtVo selectBizModify(String bizId) { return
+	 * dao.selectBizModify(bizId); }
+	 */
+	
+	//통신사 상세 수정 저장
+		@Override
+		public int saveBizModify(AdminBizMngtVo vo) {
+			return dao.saveBizModify(vo);
+		}
+
 
 	//통신사 탈퇴 신청 리스트
 	@Override
@@ -63,6 +71,7 @@ public class AdminBizMngtServiceImpl implements AdminBizMngtService{
 		return dao.selectBizPlanApplyDetail(orderNo);
 	}
 
+	
 	
 
 

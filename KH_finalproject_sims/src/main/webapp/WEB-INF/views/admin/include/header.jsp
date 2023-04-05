@@ -52,8 +52,10 @@
                     <li class="nav-item pcoded-hasmenu">
                         <a href="<%=request.getContextPath()%>/admin/applyList" class="nav-link " class="nav-link "><span class="pcoded-micon"><i class="feather icon-layout"></i></span><span class="pcoded-mtext">통신사 관리</span></a>
                         <ul class="pcoded-submenu">
-                            <li><a href="layout-vertical.html" target="_blank">Vertical</a></li>
-                            <li><a href="layout-horizontal.html" target="_blank">Horizontal</a></li>
+                            <li><a href="layout-vertical.html" target="_blank">신청정보</a></li>
+                            <li><a href="layout-horizontal.html" target="_blank">통신사정보</a></li>
+                            <li><a href="layout-horizontal.html" target="_blank">탈퇴정보</a></li>
+                            <li><a href="layout-horizontal.html" target="_blank">통신사 요금제 가입정보</a></li>
                         </ul>
                     </li>
                     <li class="nav-item pcoded-menu-caption">
@@ -90,7 +92,7 @@
                         <a href="<%=request.getContextPath()%>/admin/noticeList" class="nav-link "><span class="pcoded-micon"><i class="feather icon-file-text"></i></span><span class="pcoded-mtext">공지사항 관리</span></a>
                     </li>
                     <li class="nav-item">
-                        <a href="<%=request.getContextPath()%>/admin/reviewreportlist"><span class="pcoded-micon"><i class="feather icon-file-text"></i></span><span class="pcoded-mtext">신고 관리</span></a>
+                        <a href="<%=request.getContextPath()%>/admin/reviewreport/list"><span class="pcoded-micon"><i class="feather icon-file-text"></i></span><span class="pcoded-mtext">신고 관리</span></a>
                     </li>
                     <li class="nav-item">
                         <a href="<%=request.getContextPath()%>/admin/review/list" class="nav-link "><span class="pcoded-micon"><i class="feather icon-align-justify"></i></span><span class="pcoded-mtext">리뷰 관리</span></a>

@@ -31,8 +31,8 @@
 												</h5>
 											</div>
 											<ul class="breadcrumb">
-												<li class="breadcrumb-item"><a href=""><i class="feather icon-home"></i></a></li>
-												<li class="breadcrumb-item"><a href="<%=request.getContextPath()%>/admin/applyList/"><i class="breadcrumb-item"></i>통신사 관리</a></li>
+												<li class="breadcrumb-item"><a href="<%=request.getContextPath()%>/admin/dashboard"><i class="feather icon-home"></i></a></li>
+												<li class="breadcrumb-item"><a href="<%=request.getContextPath()%>/admin/applyList"><i class="breadcrumb-item"></i>통신사 관리</a></li>
 												<li class="breadcrumb-item"><a href=""><i class="breadcrumb-item"></i>통신사 관리 
 													<c:choose>
 														<c:when test="${cmd eq 'read' }"> 상세</c:when>
@@ -44,19 +44,19 @@
 									</div>
 								</div>
 							</div>
-							<form action="<%=request.getContextPath()%>/adminUser/saveUserModify" method="post">
+							<form action="<%=request.getContextPath()%>/admin/saveBizModifyy" method="post">
 								<div class="col-md-12">
 									<div class="simsBtn m-b-15">
 										<input class="btn btn-primary right m-l-10" type="button" onclick="location.href='<%=request.getContextPath()%>/admin/applyList'" value="목록">
 											<c:choose>
 												<c:when test="${cmd eq 'read' }">
-													<input class="btn btn-primary right" type="button" onclick="location.href='<%=request.getContextPath()%>/admin/selectUserModify/${userDetail.userId}'" value="수정">
+													<input class="btn btn-primary right" type="button" onclick="location.href='<%=request.getContextPath()%>/admin/selectBizModify/${applyDetail.bizId}'" value="수정">
 												</c:when>
 												<c:otherwise>
 													<input class="btn btn-primary right" type="submit" value="저장">
 												</c:otherwise>
 											</c:choose>
-										<input type="hidden" value="${userDetail.userId }" name="userId">
+										<input type="hidden" value="${applyDetail.bizId }" name="bizId">
 									</div>
 								</div>
 								</form>
@@ -107,7 +107,7 @@
 				</div>
 			</div>
 		</div>
-	</div>
+	</div>s
 </div>
 		
 <jsp:include page="../include/footer.jsp" />

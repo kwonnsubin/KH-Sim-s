@@ -36,7 +36,7 @@
     		AND A.BIZ_ID = #{bizId}
 	</select>
 	
-	<!-- 통신사 상세 수정 리스트 -->
+	<!--통신사 상세 수정 리스트 
 	<select id="selectBizModify" resultType="adBizVo">
 	/** 관리자의 통신사 상세 수정 리스트 (selectBizModify)**/	
 		SELECT
@@ -45,8 +45,20 @@
 			BIZ
 		WHERE 
 			BIZ_ID = #{bizId}		
+	</select>-->
 	
-	</select>
+	<!-- 통신사 상세 정보 수정 -->
+	<update id ="saveBizModify" parameterType="adBizVo">
+		/** 관리자의 통신사 관리 수정(saveBizModify)**/
+		UPDATE BIZ_TABLE
+		SET
+			BIZ_EMAIL = #{bizEmail}
+			, BIZ_ADDRESS = #{bizAddress}
+			, BIZ_PHONE = #{bizPhone}
+			, BIZ_UP_DATE = SYSDATE
+		WHERE BIZ_ID =#{bizId}
+	</update>
+	
 	
 	
 	<!-- 통신사 탈퇴정보 리스트 -->

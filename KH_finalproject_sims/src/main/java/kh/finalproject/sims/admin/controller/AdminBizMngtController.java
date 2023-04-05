@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
@@ -52,16 +53,32 @@ public class AdminBizMngtController {
 	}
 	
 	//통신사 상세 수정 페이지로 이동
-	@GetMapping("/bizModify/{bizId}")
+	@GetMapping("/selectBizModify/{bizId}")
 	public ModelAndView selectBizModify(
 			ModelAndView mv
 			, @PathVariable String bizId
 			, AdminBizMngtVo vo) {
-		AdminBizMngtVo bizDetail = service.selectApplyDetail(bizId);
-		mv.addObject("bizDetail", bizDetail);
+		AdminBizMngtVo applyDetail = service.selectApplyDetail(bizId);
+		mv.addObject("applyDetail", applyDetail);
 		mv.addObject("cmd", "update");
 		mv.setViewName("/admin/biz/bizDetail");
 		return mv;
+	}
+	
+	//통신사 상세 수정하기
+	@PostMapping("/saveBizModify")
+	public ModelAndView saveBizModify(
+			ModelAndView mv
+			, AdminBizMngtVo vo) {
+			service.saveBizModify(vo);
+			
+			String bizId = vo.getBizId();
+			AdminBizMngtVo applyDetail = service.selectApplyDetail(bizId);
+			mv.addObject("applyDetail", applyDetail);
+			mv.addObject("result", "수정이 완료되었습니다.");
+			mv.addObject("cmd", "read");
+			mv.setViewName("admin/biz/bizDetail");
+			return mv;
 	}
 	
 	

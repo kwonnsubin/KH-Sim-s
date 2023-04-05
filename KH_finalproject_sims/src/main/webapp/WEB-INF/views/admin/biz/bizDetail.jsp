@@ -31,8 +31,8 @@
 												</h5>
 											</div>
 											<ul class="breadcrumb">
-												<li class="breadcrumb-item"><a href=""><i class="feather icon-home"></i></a></li>
-												<li class="breadcrumb-item"><a href="<%=request.getContextPath()%>/admin/applyList/"><i class="breadcrumb-item"></i>통신사 관리</a></li>
+												<li class="breadcrumb-item"><a href="<%=request.getContextPath()%>/admin/dashboard"><i class="feather icon-home"></i></a></li>
+												<li class="breadcrumb-item"><a href="<%=request.getContextPath()%>/admin/applyList"><i class="breadcrumb-item"></i>통신사 관리</a></li>
 												<li class="breadcrumb-item"><a href=""><i class="breadcrumb-item"></i>통신사 관리 
 													<c:choose>
 														<c:when test="${cmd eq 'read' }"> 상세</c:when>
@@ -44,7 +44,7 @@
 									</div>
 								</div>
 							</div>
-							<form action="<%=request.getContextPath()%>/adminUser/saveUserModify" method="post">
+							<form action="<%=request.getContextPath()%>/admin/saveBizModify" method="post">
 								<div class="col-md-12">
 									<div class="simsBtn m-b-15">
 										<input class="btn btn-primary right m-l-10" type="button" onclick="location.href='<%=request.getContextPath()%>/admin/applyList'" value="목록">
@@ -56,7 +56,7 @@
 													<input class="btn btn-primary right" type="submit" value="저장">
 												</c:otherwise>
 											</c:choose>
-										<input type="hidden" value="${userDetail.userId }" name="userId">
+										<input type="hidden" value="${applyDetail.bizId }" name="bizId">
 									</div>
 								</div>
 							    <div class="col-sm-12">
@@ -156,7 +156,7 @@
 															<c:forEach var="list" items="${bizPlanList}" varStatus="status">
 																<tr>
 																	<td>${status.count}</td>
-																	<td>${list.planName}</td>
+																	<td><a href="<%=request.getContextPath()%>/admin/planApplyDetail/${list.planName}">${list.planName}</a></td>
 																</tr>
 															</c:forEach>
 														</tbody>
