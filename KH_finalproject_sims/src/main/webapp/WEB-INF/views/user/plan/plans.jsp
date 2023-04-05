@@ -79,7 +79,7 @@
 											<button type="button" class="btn-close text-end" data-bs-dismiss="modal" aria-label="Close"></button>
 										</div>
 									</div>
-									<div class="btn-div text-start mx-3">
+									<div class="btn-div text-start mx-4">
 										<button data-target="#planData">데이터</button>
 										<button data-target="#planVoice">통화량</button>
 										<button data-target="#planMessage">문자량</button>
@@ -90,35 +90,106 @@
 									<hr style="border:0;border-top:1px solid #555;margin:0;height:1px;" />
 								</div>
 								<div class="modal-body overflow-auto">
-					        		<div class="filter-list text-start">
+					        		<div class="filter-list text-start m-3">
 					        			<div id="planData">
 					        				<div>
-						        				<p>데이터</p>
+						        				<p class="mb-2">데이터</p>
+						        				<div class="range-div my-2 mb-3">
+						        					<div class="text-center">
+						        						<label class="range1-label" for="range1">전체</label>
+						        					</div>
+						        			
+							        				<div slider class="slider1" id="slider-distance">
+													  <div>
+													    <div inverse-left style="width:70%;"></div>
+													    <div inverse-right style="width:70%;"></div>
+													    <div range style="left:0%;right:0%;"></div>
+													    <span thumb style="left:0%;"></span>
+													    <span thumb style="left:100%;"></span>
+													    <div sign style="left:0%;">
+													      <span id="value">0</span>
+													    </div>
+													    <div sign style="left:100%;">
+													      <span id="value">100</span>
+													    </div>
+													  </div>
+													  <input type="range" id="range1" tabindex="0" value="0" max="100" min="0" step="5" oninput="
+													  this.value=Math.min(this.value,this.parentNode.childNodes[5].value-1);
+													  var value=(100/(parseInt(this.max)-parseInt(this.min)))*parseInt(this.value)-(100/(parseInt(this.max)-parseInt(this.min)))*parseInt(this.min);
+													  var children = this.parentNode.childNodes[1].childNodes;
+													  children[1].style.width=value+'%';
+													  children[5].style.left=value+'%';
+													  children[7].style.left=value+'%';children[11].style.left=value+'%';
+													  children[11].childNodes[1].innerHTML=this.value;" />
+													
+													  <input type="range" tabindex="0" value="100" max="100" min="0" step="5" oninput="
+													  this.value=Math.max(this.value,this.parentNode.childNodes[3].value-(-1));
+													  var value=(100/(parseInt(this.max)-parseInt(this.min)))*parseInt(this.value)-(100/(parseInt(this.max)-parseInt(this.min)))*parseInt(this.min);
+													  var children = this.parentNode.childNodes[1].childNodes;
+													  children[3].style.width=(100-value)+'%';
+													  children[5].style.right=(100-value)+'%';
+													  children[9].style.left=value+'%';children[13].style.left=value+'%';
+													  children[13].childNodes[1].innerHTML=this.value;" />
+													</div>
+												</div>
+						        				<div>
+					        						<fieldset>
+														<label class="mx-1">
+													    	<input type="radio" name="data" value="전체" checked />
+													    	<span class="px-2">전체</span>
+														</label>
+													
+													  	<label class="mx-1">
+													    	<input type="radio" name="data" value="100GB 이상" />
+													    	<span class="px-2">100GB 이상</span>
+													  	</label>
+													
+													 	<label class="mx-1">
+													    	<input type="radio" name="data" value="50~100GB" />
+													    	<span class="px-2">50~100GB</span>
+													  	</label>
+													
+													  	<label class="mx-1">
+													    	<input type="radio" name="data" value="10~50GB" />
+													    	<span class="px-2">10~50GB</span>
+													  	</label>
+													  	
+													  	<label class="mx-1">
+													    	<input type="radio" name="data" value="5~10GB" />
+													    	<span class="px-2">5~10GB</span>
+													  	</label>
+													  	
+													  	<label class="mx-1">
+													    	<input type="radio" name="data" value="5GB 이하" />
+													    	<span class="px-2">5GB 이하</span>
+													  	</label>
+													</fieldset>
+						        				</div>
 					        				</div>
 					        				<div>
 					        					
 					        				</div>
 					        			</div>
 					        			<div id="planVoice">
-					        				<p>통화량</p>
+					        				<p class="my-2">통화량</p>
 					        			</div>
 					        			<div id="planMessage">
-					        				<p>문자량</p>
+					        				<p class="my-2">문자량</p>
 					        			</div>
 					        			<div id="netName">
-					        				<p>통신망</p>
+					        				<p class="my-2">통신망</p>
 					        			</div>
 					        			<div id="genName">
-					        				<p>통신기술</p>
+					        				<p class="my-2">통신기술</p>
 					        			</div>
 					        			<div id="bizName">
-					        				<p>통신사</p>
+					        				<p class="mt-2">통신사</p>
 					        			</div>
 					        		</div>
 					      		</div>
 					      		<div class="modal-footer">
-					        		<button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-					        		<button type="button" class="btn btn-primary">Save changes</button>
+					        		<button type="button" class="btn btn-secondary" data-bs-dismiss="modal">취소</button>
+					        		<button type="button" class="btn btn-primary">확인</button>
 					      		</div>
 				    		</div>
 					  	</div>
@@ -189,7 +260,7 @@
   <script src="<%= request.getContextPath() %>/resources/chain/assets/js/imagesloaded.js"></script>
   <script src="<%= request.getContextPath() %>/resources/chain/assets/js/popup.js"></script>
   <script src="<%= request.getContextPath() %>/resources/chain/assets/js/custom.js"></script>
-  <script src="<%= request.getContextPath() %>/resources/js/main/plans.js"></script>
+  <script src="<%= request.getContextPath() %>/resources/js/user/plans.js"></script>
   
   
 </body>
