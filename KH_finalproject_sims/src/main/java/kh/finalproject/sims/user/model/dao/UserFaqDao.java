@@ -30,6 +30,10 @@ public class UserFaqDao {
 		return session.selectList("qna.selectQnaList");
 	}
 
+	public List<UserQnaVo> searchQnaList(UserQnaVo vo) {
+		return session.selectList("qna.searchQnaList", vo);
+	}
+
 	public UserQnaVo selectQnaDetail(int aqNo) {
 		return session.selectOne("qna.selectQnaDetail", aqNo);
 	}

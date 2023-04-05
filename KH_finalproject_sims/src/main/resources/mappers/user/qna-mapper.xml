@@ -23,8 +23,23 @@
   
   	<!-- 문의게시판 질문 목록 -->
   	<select id="selectQnaList" resultType="usQnavo">
-		select *
+		select aq_no, aq_title, aq_date, aq_views, aq_answers
 		from QNA
+		order by aq_no
+	</select>
+	
+	<!-- 문의게시판 질문 검색 -->
+	<select id="searchQnaList" resultType="usQnavo">
+		select aq_no, aq_title, aq_date, aq_views, aq_answers 
+		from QNA
+		<choose>
+			<when test="searchOption != null and searchOption == 'title'">
+				where AQ_TITLE like '%'|| #{searchBox} ||'%'
+			</when>
+			<when test="searchOption != null and searchOption == 'content'">
+				where AQ_CONTENT like '%'|| #{searchBox} ||'%'
+			</when>
+		</choose>
 		order by aq_no
 	</select>
 	
@@ -57,7 +72,7 @@
 	
 	<!-- 내 질문 목록 -->
 	<select id="selectMyQnaList" resultType="usQnavo">
-		select *
+		select aq_no, aq_title, aq_date, aq_redate, aq_answers
 		from QNA
 		where user_id = #{username}
 		order by aq_no
@@ -130,7 +145,7 @@
 
 	<!-- 내 답변 목록 -->
 	<select id="selectMyAnsList" resultType="usAnsvo">
-		select *
+		select aa_no, aq_no, aa_content, aa_date, aa_redate
 		from QNA_ANS
 		where USER_ID = #{username}
 		order by aa_no

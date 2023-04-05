@@ -25,5 +25,7 @@ public class UserQnaVo {
 	private Timestamp aqRedate;
 	private int aqViews;
 	private int aqAnswers;
+	private String searchOption;
+	private String searchBox;
 
 }

@@ -36,6 +36,11 @@ public class UserFaqServiceImpl implements UserFaqService {
 	}
 
 	@Override
+	public List<UserQnaVo> searchQnaList(UserQnaVo vo) {
+		return dao.searchQnaList(vo);
+	}
+
+	@Override
 	public UserQnaVo selectQnaDetail(int aqNo) {
 		return dao.selectQnaDetail(aqNo);
 	}
@@ -126,8 +131,5 @@ public class UserFaqServiceImpl implements UserFaqService {
 	public void upAnswers(int aqNo) {
 		dao.upAnswers(aqNo);
 	}
-
-
-
 
 }

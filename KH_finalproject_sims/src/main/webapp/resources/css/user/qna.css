@@ -8,3 +8,8 @@ hr {
 	border-top: 1px solid;
 	opacity: .25
 }
+
+.lh-xl {
+	line-height: 3 !important
+}
+

@@ -15,6 +15,7 @@ public interface UserFaqService {
 
 	// 질문 목록/조회/작성/삭제/수정
 	public List<UserQnaVo> selectQnaList();
+	public List<UserQnaVo> searchQnaList(UserQnaVo vo);
 	public UserQnaVo selectQnaDetail(int aqNo);
 	public void insertQna(UserQnaVo vo);
 	public int deleteQna(int aqNo);

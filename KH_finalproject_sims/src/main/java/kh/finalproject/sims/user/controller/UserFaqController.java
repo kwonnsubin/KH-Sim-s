@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
 import kh.finalproject.sims.user.model.service.UserFaqService;
@@ -24,10 +25,20 @@ public class UserFaqController {
 	UserFaqService service;
 	
 	// 질문 목록
-	@GetMapping("/faqlist")
-	public ModelAndView selectFaqList(ModelAndView mv) {
+	@RequestMapping(value = "/faqlist", method = {RequestMethod.GET, RequestMethod.POST})
+	public ModelAndView selectFaqList(
+			ModelAndView mv
+			, UserQnaVo vo
+			) {
 		mv.addObject("faqlist", service.selectFaqList());
-		mv.addObject("qnalist", service.selectQnaList());
+		
+		if (vo.getSearchOption() == null) { 
+		  	mv.addObject("qnalist", service.selectQnaList());
+		} else {
+			mv.addObject("qnalist", service.searchQnaList(vo));
+			mv.addObject("searchOption", vo.getSearchOption());
+			mv.addObject("searchBox", vo.getSearchBox());
+		}
 		mv.setViewName("user/faq/faqlist");
 		return mv;
 	}

@@ -34,8 +34,7 @@
 	<jsp:include page="../../header.jsp"/>
 	
 	<section>
-		<div class="container-sm">
-		
+		<div class="container-sm" style="max-width: 960px">
 		
 			<!-- 질문제목 -->
 			<div class="row">
@@ -61,7 +60,7 @@
 			
 			<!-- 질문내용 -->
 			<div class="row my-3">
-				<div class="col-sm-12 p-2">
+				<div class="col-sm-12 p-2 lh-xl">
 				${question.aqContent }
 				</div>
 				<div class="col-sm-auto p-2 pt-5 small">
