@@ -6,8 +6,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import kh.finalproject.sims.admin.model.dao.AdminDashBoardDao;
+import kh.finalproject.sims.admin.model.vo.AdminDashBoardVo;
 import kh.finalproject.sims.admin.model.vo.AdminQnaMngtVo;
 import kh.finalproject.sims.admin.model.vo.AdminReviewMngtVo;
+import kh.finalproject.sims.biz.model.vo.BizPlanMngtVo;
 
 @Service
 public class AdminDashBoardServiceImpl implements AdminDashBoardService {
@@ -48,6 +50,12 @@ public class AdminDashBoardServiceImpl implements AdminDashBoardService {
 	@Override
 	public int selectDashBoardBizTotalCount() {
 		return dao.selectDashBoardBizTotalCount();
+	}
+
+	// 요금제별 가입신청 수
+	@Override
+	public List<AdminDashBoardVo> selectDashBoardPlanOrderChart() {
+		return dao.selectDashBoardPlanOrderChart();
 	}
 	
 	

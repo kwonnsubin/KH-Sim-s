@@ -7,8 +7,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.support.xml.SqlXmlValue;
 import org.springframework.stereotype.Repository;
 
+import kh.finalproject.sims.admin.model.vo.AdminDashBoardVo;
 import kh.finalproject.sims.admin.model.vo.AdminQnaMngtVo;
 import kh.finalproject.sims.admin.model.vo.AdminReviewMngtVo;
+import kh.finalproject.sims.biz.model.vo.BizPlanMngtVo;
 
 @Repository
 public class AdminDashBoardDao {
@@ -43,5 +45,10 @@ public class AdminDashBoardDao {
 	// 통신사 총 등록 수
 	public int selectDashBoardBizTotalCount() {
 		return sqlSesson.selectOne("admin.selectDashBoardBizTotalCount");
+	}
+	
+	// 요금제별 가입신청 수
+	public List<AdminDashBoardVo> selectDashBoardPlanOrderChart() {
+		return sqlSesson.selectList("admin.selectDashBoardPlanOrderChart");
 	}
 }

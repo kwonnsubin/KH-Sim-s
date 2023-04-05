@@ -61,5 +61,17 @@ SELECT * FROM (
 	SELECT COUNT(*) FROM BIZ
 </select>
 
+<!-- 요금제 가입별 수 -->
+<select id="selectDashBoardPlanOrderChart" resultType="kh.finalproject.sims.admin.model.vo.AdminDashBoardVo">
+	select rownum, plan_no, plan_name, cnt, biz_name
+    from (
+    select plan_no, count(*)as cnt 
+    from plan_order
+    group by plan_no
+    order by cnt desc
+    )
+    left outer join plan_table using (plan_no)
+    <![CDATA[ where rownum <=5 ]]>
+</select>
 
 </mapper>
