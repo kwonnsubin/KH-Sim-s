@@ -2,16 +2,80 @@
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
-
+<c:set var="path" value="${pageContext.request.contextPath}"/>
     
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@100;300;400;500;700;900&display=swap" rel="stylesheet">
+
 <title>Insert title here</title>
 <script src="https://code.jquery.com/jquery-3.6.3.js"></script>
+<link rel="stylesheet" href="${path}/resources/css/biz/main.css"/>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
+
+	 <!-- Bootstrap core CSS -->
+    <link href="<%= request.getContextPath() %>/resources/chain/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    
+    <!-- Additional CSS Files -->
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
+    <link rel="stylesheet" href="<%= request.getContextPath() %>/resources/chain/assets/css/templatemo-chain-app-dev.css">
+    <link rel="stylesheet" href="<%= request.getContextPath() %>/resources/chain/assets/css/animated.css">
+    <link rel="stylesheet" href="<%= request.getContextPath() %>/resources/chain/assets/css/owl.css">
+    <link rel="stylesheet" href="<%= request.getContextPath() %>/resources/css/user/myinfo.css"/>
 </head>
 <body>
+
+<jsp:include page="/WEB-INF/views/header.jsp"/>
+
+<!-- 사이드바 -->
+<div id="wrap">
+	    <nav id="header">
+	        <p class="tit">마이페이지</p>
+	        <ul class="list">
+	            <li>
+	                <a href="${path}/biz/infodetail">
+	                   	     내 정보 보기
+	                       <span class="material-symbols-outlined">
+	                        arrow_forward_ios
+	                       </span>
+	                </a>
+	            </li>
+	            <li>
+	                <a href="${path}/biz/planList">
+	                    	요금제 현황
+	                        <span class="material-symbols-outlined">
+	                        arrow_forward_ios
+	                        </span>
+	                </a>
+	            </li>
+	            <li>
+	                <a href="${path}/biz/applyList">
+	                    	가입신청 현황 
+	                        <span class="material-symbols-outlined">
+	                        arrow_forward_ios
+	                        </span>
+	                </a>
+	            </li>
+	            <li>
+	                <a href="#">
+	                    	리뷰 현황
+	                        <span class="material-symbols-outlined">
+	                        arrow_forward_ios
+	                        </span>
+	                </a>
+	            </li>
+	        </ul>
+	    </nav>
+</div>
+
 통신사 정보 수정
 <form action="modifyInfo" method="post" enctype="multipart/form-data" id="modifyForm">
 
@@ -24,13 +88,13 @@
             <label>법인명</label>
             <input type="text" name="bizName" value="${bizinfo.bizName }">
             <label>대표자명</label>
-            <input type="text" name="bizOwnerName" >
+            <input type="text" name="bizOwnerName"  value="${bizinfo.bizOwnerName }">
         </div>
         <div>
             <label>사업자등록번호</label>
-            <input type="text" name="bizCrn">
+            <input type="text" name="bizCrn" value="${bizinfo.bizCrn }">
             <label>법인등록번호</label>
-            <input type="text" name="bizSsn">
+            <input type="text" name="bizSsn" value="${bizinfo.bizSsn }">
         </div>
         
        <!--  <div>
@@ -43,26 +107,26 @@
             <input type="text" name="bizLocation">
         </div> -->
         
-        <input type="text" id="postcode" name="bizZipCode" placeholder="우편번호">
+        <input type="text" id="postcode" name="bizZipCode" placeholder="우편번호" value="${bizinfo.bizZipCode }">
 		<input type="button" onclick="execDaumPostcode()" value="우편번호 찾기"><br>
-		<input type="text" id="roadAddress" placeholder="도로명주소">
+		<input type="text" id="roadAddress" placeholder="도로명주소"  value="${bizinfo.bizLocation }">
 		
-		<span id="guide" style="color:#999;display:none"></span>
-		<input type="text" id="detailAddress" placeholder="상세주소">
+	<%-- 	<span id="guide" style="color:#999;display:none"></span>
+		<input type="text" id="detailAddress" placeholder="상세주소" value="${bizinfo.bizLocation }">
 		<input type="text" id="extraAddress" placeholder="참고항목">
-		        
+		         --%>
         
          <div>
             <label>연락처</label>
-            <input type="text" name="bizPhone">
+            <input type="text" name="bizPhone" value="${bizinfo.bizPhone }">
             <label>팩스</label>
-            <input type="text" name="bizFax" >
+            <input type="text" name="bizFax" value="${bizinfo.bizFax }">
         </div>
         <div>
             <label>이메일</label>
-            <input type="text" name="bizEmail">
+            <input type="text" name="bizEmail" value="${bizinfo.bizEmail }">
             <label>홈페이지</label>
-            <input type="text" name="bizHp">
+            <input type="text" name="bizHp" value="${bizinfo.bizHp }">
         </div>
         
         <div>
@@ -70,21 +134,33 @@
 		</div>
 		
 		<div>
+		<c:set var="aaa" value="${bizinfo.phoneOpTimeUsim*10}"></c:set>
+		[[${aaa }]]
 			<label>개통소요시간</label>
-            <select name="phoneOpTime">
+            <select name="phoneOpTime" >
 			  <c:forEach var="i" begin="0" end="150" step="1">
-			    <option value="${i/10.0}">
-			      <c:out value="${i/10.0}" />
-			    </option>
+			  	<c:choose>
+			  		<c:when test="${bizinfo.phoneOpTimeUsim eq (i/10.0)}">
+				    <option value="${i/10.0}" selected>${i/10.0}</option>
+			  		</c:when>
+			  		<c:otherwise>
+				    <option value="${i/10.0}">${i/10.0}</option>
+			  		</c:otherwise>
+			  	</c:choose>
 			  </c:forEach>
 			</select>일 
             
             <label>개통 소요시간 (유심보유시)</label>
-            <select name="phoneOpTimeUsim">
+            <select name="phoneOpTimeUsim" >
 			  <c:forEach var="i" begin="0" end="150" step="1">
-			    <option value="${i/10.0}">
-			      <c:out value="${i/10.0}" />
-			    </option>
+			  	<c:choose>
+			  		<c:when test="${phoneOpTimeUsim eq (i/10.0)}">
+				    <option value="${i/10.0}" selected>${i/10.0}</option>
+			  		</c:when>
+			  		<c:otherwise>
+				    <option value="${i/10.0}">${i/10.0}</option>
+			  		</c:otherwise>
+			  	</c:choose>
 			  </c:forEach>
 			</select>일 
 		</div>
@@ -98,7 +174,7 @@
             
             <label>영업시간</label>
             <!-- 영업시간 -->
-            <select name="bizBeginTime">
+            <select name="bizBeginTime" >
 			  <c:forEach var="hour" begin="0" end="23">
 			    <option value="${hour}:00">
 			      <c:out value="${hour}:00" />
@@ -109,7 +185,7 @@
 			  </c:forEach>
 			</select>
 			~
-			<select name="bizEndTime">
+			<select name="bizEndTime" >
 			  <c:forEach var="hour" begin="0" end="23">
 			    <option value="${hour}:00">
 			      <c:out value="${hour}:00" />
@@ -142,10 +218,29 @@
 		
 		<div>
 			<label>고객센터번호</label>
-			<span>KT</span><input type="text" name="KtService">
+			<span>KT</span><input type="text" name="KtService" value="">
 			<span>SKT</span><input type="text" name="SktService">
 			<span>LGU+</span><input type="text" name="LguService">
 		</div>
+		
+		<c:forEach items="${serviceList}" var="service">
+	    <label>고객센터번호</label>
+	    <c:choose>
+	        <c:when test="${service.netNo == 1}">
+	            <span>KT</span>
+	            <input type="text" name="KtService" value="${service.bizNetService}">
+	        </c:when>
+	        <c:when test="${service.netNo == 2}">
+	            <span>SKT</span>
+	            <input type="text" name="SktService" value="${service.bizNetService}">
+	        </c:when>
+	        <c:when test="${service.netNo == 3}">
+	            <span>LGU+</span>
+	            <input type="text" name="LguService" value="${service.bizNetService}">
+	        </c:when>
+	    </c:choose>
+		</c:forEach>
+		
 		
 		<div>
 			<label>로고이미지 첨부</label> <!-- 파일첨부 -->
@@ -155,6 +250,20 @@
         <button type="submit">등록</button>
     </form>
 
+
+
+<jsp:include page="/WEB-INF/views/footer.jsp"/>
+	
+	<!-- Scripts -->
+	<script src="<%= request.getContextPath() %>/resources/chain/vendor/jquery/jquery.min.js"></script>
+	<script src="<%= request.getContextPath() %>/resources/chain/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+	<script src="<%= request.getContextPath() %>/resources/chain/assets/js/owl-carousel.js"></script>
+	<script src="<%= request.getContextPath() %>/resources/chain/assets/js/animation.js"></script>
+	<script src="<%= request.getContextPath() %>/resources/chain/assets/js/imagesloaded.js"></script>
+	<script src="<%= request.getContextPath() %>/resources/chain/assets/js/popup.js"></script>
+	<script src="<%= request.getContextPath() %>/resources/chain/assets/js/custom.js"></script>
+	<script src="<%= request.getContextPath() %>/resources/js/user/myinfo.js"></script>
+  
 
 <!-- 우편번호 찾기 API -->
 <script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
@@ -209,6 +318,25 @@
             }
         }).open();
     }
+</script>
+
+<!-- (휴무일) 선택한 값들 한 문자열로 쪼개기 -->
+<script>
+	var bizClosedDay = "${bizClosedDay}"; //bizClosedDay=토,일,공휴일,
+	var bizClosedDayArr = bizClosedDay.splite(",");
+	for(var i=0; i<bizClosedDayArr.length; i++){
+		var day = bizClosedDayArr[i];
+		switch(day){
+		case "mondy":
+			$("[name=weekday]").prop("checked", true);
+			break;
+		case "mondy":
+			$("[name=weekday]").prop("checked", true);
+			break;
+		}
+	}
+
+
 </script>
 <!-- 선택한 값들 한 문자열로 합치기(휴무일) -->
 <!-- <script>

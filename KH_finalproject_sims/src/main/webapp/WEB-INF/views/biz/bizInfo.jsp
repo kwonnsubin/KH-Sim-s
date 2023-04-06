@@ -146,6 +146,8 @@
 		
 	</table>
 	
+	<button type="button" onclick="location.href='<%=request.getContextPath()%>/biz/modifyInfo'">수정하기</button>
+	
 	
 	
 </body>

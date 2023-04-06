@@ -69,6 +69,15 @@ public class BizInfoMngtController {
 		//고객센터 번호
 		List<bizInfoMngServiceVo> serviceList = service.selectListService(bizid);
 		System.out.println(serviceList);
+		//
+		for (bizInfoMngServiceVo service : serviceList) {
+		    int netNo = service.getNetNo();
+		    String bizNetService = service.getBizNetService();
+		    System.out.println(netNo);
+		    System.out.println(bizNetService);
+		    // TODO: 변수를 사용하는 코드 작성
+		    // ...
+		}
 		
 	
 		mv.addObject("bizinfo", vo);
@@ -87,28 +96,28 @@ public class BizInfoMngtController {
 	public String modifyBizInfo(HttpServletRequest request
 			, BizInfoMngtVo vo
 			, bizInfoMngServiceVo svo
-			, @RequestParam(name ="bizName") String bizName
-			, @RequestParam(name ="bizOwnerName") String bizOwnerName
-			, @RequestParam(name ="bizCrn") String bizCrn
-			, @RequestParam(name ="bizSsn") String bizSsn
+			, @RequestParam(name ="bizName" , required = false) String bizName
+			, @RequestParam(name ="bizOwnerName" , required = false) String bizOwnerName
+			, @RequestParam(name ="bizCrn" , required = false) String bizCrn
+			, @RequestParam(name ="bizSsn" , required = false) String bizSsn
 			//주소
-			, @RequestParam(name ="bizZipCode") int bizZipCode
-			, @RequestParam(name ="roadAddress") String roadAddress
-			, @RequestParam(name ="detailAddress") String detailAddress
+			, @RequestParam(name ="bizZipCode", required = false) int bizZipCode
+			, @RequestParam(name ="roadAddress", required = false) String roadAddress
+			, @RequestParam(name ="detailAddress", required = false) String detailAddress
 			// 
-			, @RequestParam(name ="bizPhone") String bizPhone
-			, @RequestParam(name ="bizFax") String bizFax
-			, @RequestParam(name ="bizEmail") String bizEmail
-			, @RequestParam(name ="bizHp") String bizHp
+			, @RequestParam(name ="bizPhone", required = false) String bizPhone
+			, @RequestParam(name ="bizFax", required = false) String bizFax
+			, @RequestParam(name ="bizEmail", required = false) String bizEmail
+			, @RequestParam(name ="bizHp", required = false) String bizHp
 			
-			, @RequestParam(name ="phoneOpTime") String phoneOpTime
-			, @RequestParam(name ="phoneOpTimeUsim") String phoneOpTimeUsim
-			, @RequestParam(name ="bizBeginTime") String bizBeginTime
-			, @RequestParam(name ="bizEndTime") String bizEndTime
+			, @RequestParam(name ="phoneOpTime", required = false) String phoneOpTime
+			, @RequestParam(name ="phoneOpTimeUsim", required = false) String phoneOpTimeUsim
+			, @RequestParam(name ="bizBeginTime", required = false) String bizBeginTime
+			, @RequestParam(name ="bizEndTime", required = false) String bizEndTime
 			//고객센터번호
-			, @RequestParam(name ="KtService") String KtService
-			, @RequestParam(name ="SktService") String SktService
-			, @RequestParam(name ="LguService") String LguService
+			, @RequestParam(name ="KtService", required = false) String KtService
+			, @RequestParam(name ="SktService", required = false) String SktService
+			, @RequestParam(name ="LguService", required = false) String LguService
 			
 			, @RequestParam(name = "weekday", required = false) String[] selectedWeekdays
 			, @RequestParam(name="net", required = false) String[] selectedNetworks
