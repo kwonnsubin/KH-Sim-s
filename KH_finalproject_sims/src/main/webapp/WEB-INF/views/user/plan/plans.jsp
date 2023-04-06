@@ -85,8 +85,7 @@
 										<button onclick="goToScroll('planVoice')">통화량</button>
 										<button onclick="goToScroll('planMessage')">문자량</button>
 										<button onclick="goToScroll('planPrice')">가격</button>
-										<button onclick="goToScroll('netName')">통신망</button>
-										<button onclick="goToScroll('genName')">통신기술</button>
+										<button onclick="goToScroll('netInfo')">통신정보</button>
 										<button onclick="goToScroll('bizName')">통신사</button>
 									</div>
 									<hr style="border:0;border-top:1px solid #555;margin:0;height:1px;" />
@@ -322,13 +321,93 @@
 					        				</div>
 					        			</div>
 					        			<div id="planPrice">
-					        				<p class="my-2">가격</p>
+					        				<div>
+						        				<p class="my-2">가격</p>
+						        				<div>
+					        						<fieldset>
+					        							<div class="row">
+					        								<div class="col-3">
+																<label class="mx-1">
+															    	<input type="radio" name="voice" value="전체" checked />
+															    	<span class="px-2">전체</span>
+																</label>
+															
+															  	<label class="mx-1">
+															    	<input type="radio" name="voice" value="3만원 이상" />
+															    	<span class="px-2">3만원 이상</span>
+															  	</label>
+															  	
+															  	<label class="mx-1">
+															    	<input type="radio" name="voice" value="2~3만원" />
+															    	<span class="px-2">2~3만원</span>
+															  	</label>
+					        								</div>
+					        								<div class="col-3">
+															 	<label class="mx-1">
+															    	<input type="radio" name="voice" value="1~2만원" />
+															    	<span class="px-2">1~2만원</span>
+															  	</label>
+															
+															  	<label class="mx-1">
+															    	<input type="radio" name="voice" value="5천~1만원" />
+															    	<span class="px-2">5천~1만원</span>
+															  	</label>
+															  	
+															  	<label class="mx-1">
+															    	<input type="radio" name="voice" value="5천원 이하" />
+															    	<span class="px-2">5천원 이하</span>
+															  	</label>
+														  	</div>
+					        							</div>
+													
+													</fieldset>
+						        				</div>
+					        				</div>
 					        			</div>
-					        			<div id="netName">
-					        				<p class="my-2">통신망</p>
-					        			</div>
-					        			<div id="genName">
-					        				<p class="my-2">통신기술</p>
+					        			<div id="netInfo">
+					        				<div>
+						        				<p class="my-2">통신정보</p>
+						        				<div class="row info-div">
+						        					<div class="col">
+							        					<p class="my-1">통신망</p>
+						        						<fieldset>
+															<label class="mx-1">
+														    	<input type="radio" name="voice" value="KT" checked />
+														    	<span class="px-2">KT</span>
+															</label>
+														
+														  	<label class="mx-1">
+														    	<input type="radio" name="voice" value="SKT" />
+														    	<span class="px-2">SKT</span>
+														  	</label>
+														  	
+														  	<label class="mx-1">
+														    	<input type="radio" name="voice" value="LGU+" />
+														    	<span class="px-2">LGU+</span>
+														  	</label>
+														</fieldset>
+						        					</div>
+						        					<div class="col">
+							        					<p class="my-1">통신기술</p>
+						        						<fieldset>
+															<label class="mx-1">
+														    	<input type="radio" name="voice" value="KT" checked />
+														    	<span class="px-2">5G</span>
+															</label>
+														
+														  	<label class="mx-1">
+														    	<input type="radio" name="voice" value="SKT" />
+														    	<span class="px-2">LTE</span>
+														  	</label>
+														  	
+														  	<label class="mx-1">
+														    	<input type="radio" name="voice" value="LGU+" />
+														    	<span class="px-2">3G</span>
+														  	</label>
+														</fieldset>
+						        					</div>
+						        				</div>
+					        				</div>
 					        			</div>
 					        			<div id="bizName">
 					        				<p class="mt-2">통신사</p>

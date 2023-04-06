@@ -50,7 +50,7 @@
     }
     
     textarea {
-    	width: 600px;
+    	width: 100%;
     	height: 200px;
     	resize: none;
     	border-color: #dbdbdb;
@@ -69,11 +69,11 @@
 	      <div class="input-form col-md-12 mx-auto">
 			<h3>약관 동의</h3>
 		    <form:form class="userForm validation-form" name="f" novalidate="novalidate">
-			    <div class="form-check form-check-reverse mb-3">
-					<input class="form-check-input all-check" type="checkbox" id="all-check">
-					<label class="form-check-label" for="all-check">
+			    <div class="form-check my-3 text-end">
+					<label class="form-check-label me-4" for="all-check">
 					  	회원가입 약관에 모두 동의합니다.
 					</label>
+					<input class="form-check-input all-check" type="checkbox" id="all-check" style="float:right;">
 				</div>
 		
 		    <section id="fregister_term">

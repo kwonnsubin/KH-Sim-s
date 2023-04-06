@@ -20,6 +20,7 @@ public class PlanVo {
 
 	private int planNo;
 	private String planName;
+	private String bizName;
 	private int netNo;
 	private int genNo;
 	private int planPrice;
@@ -29,7 +30,6 @@ public class PlanVo {
 	private double planVoiceOver;
 	private int planMessageOver;
 	private double planDataOver;
-	private String bizName;
 	private Date planDate;
 	
 }
