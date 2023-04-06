@@ -17,13 +17,10 @@ hr {
 	max-width: 960px
 }
 
-textarea {
-	resize: vertical;
-	width: 100%;
+.none-border {
 	border: none
 }
 
-input {
-	width: 100%;
-	border: none;
+.full {
+	width: 100%
 }

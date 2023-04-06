@@ -82,12 +82,12 @@ public class UserFaqDao {
 		return session.delete("qna.deleteRpl", rplNo);
 	}
 
-	public void deAnswers(int aqNo) {
-		session.update("qna.deAnswers", aqNo);
+	public int deAnswers(int aqNo) {
+		return session.update("qna.deAnswers", aqNo);
 	}
 	
-	public void upAnswers(int aqNo) {
-		session.update("qna.upAnswers", aqNo);
+	public int upAnswers(int aqNo) {
+		return session.update("qna.upAnswers", aqNo);
 	}
 
 	public int updateQna(UserQnaVo vo) {
