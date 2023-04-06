@@ -49,7 +49,7 @@
 															</div>
 															<div class="col-sm-5 p-t-10">
 																<div class="custom-control custom-radio custom-control-inline">
-								                                    <input type="radio" id="customRadioInline1" name="searchRadioVal" class="custom-control-input" value="total" <c:if test="${searchRadioVal ne 'enbale' }">checked</c:if>>
+								                                    <input type="radio" id="customRadioInline1" name="searchRadioVal" class="custom-control-input" value="total" <c:if test="${searchRadioVal ne 'enable' }">checked</c:if>>
 								                                    <label class="custom-control-label" for="customRadioInline1">전체</label>
 								                                </div>
 								                                <div class="custom-control custom-radio custom-control-inline">

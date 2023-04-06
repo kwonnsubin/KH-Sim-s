@@ -9,7 +9,7 @@
 <title>통신사 가입 신청 리스트</title>
 </head>
 <body>
-	<jsp:include page="../include/header.jsp" />
+	<jsp:include page="/WEB-INF/views/admin/include/header.jsp" />
 	<div class="pcoded-main-container">	
 		<div class="pcoded-wrapper container">
 			<div class="pcoded-content">
@@ -26,15 +26,13 @@
 												</div>
 												<ul class="breadcrumb">
 													<li class="breadcrumb-item"><a href="<%=request.getContextPath()%>/admin/dashboard"><i class="feather icon-home"></i></a></li>
-													<li class="breadcrumb-item"><a href="<%=request.getContextPath()%>/admin/applyList"><i class="breadcrumb-item"></i>통신사 관리</a></li>
+													<li class="breadcrumb-item"><a href=""><i class="<%=request.getContextPath()%>/admin/applyList"></i>통신사 관리</a></li>
 												</ul>
 											</div>
 										</div>
 									</div>
 								</div>
 								<div class="col-md-12">
-									<div class="simsBtn m-b-15">
-									</div>
 									<div class="card">
 										<div class="card-body">
 											<form id="searchForm" name="searchForm" action="<%=request.getContextPath()%>/admin/applyList" method="post">
@@ -44,11 +42,32 @@
 															<label class="floating-label"></label>
 															<select class="" name="searchOption">
 																<option value="">선택</option>
-																<option value="title" <c:if test="${searchOption eq 'name' }">selected</c:if>>업체명</option>
-																<option value="writer" <c:if test="${searchOption eq 'enabled' }">selected</c:if>>신청상태</option>
-																<option value="content" <c:if test="${searchOption eq 'writer' }">selected</c:if>>신청자</option>
+																<option value="bizName" <c:if test="${searchOption eq 'bizName' }">selected</c:if>>업체명</option>
+																<option value="bizOwnerName" <c:if test="${searchOption eq 'bizOwnerName' }">selected</c:if>>대표자</option>
 															</select>
 															<input class="form-control" type="text" name="searchBox" value="${searchBox}">
+															<div class="col-sm-5 p-t-10">
+																<div class="custom-control custom-radio custom-control-inline">
+								                                    <input type="radio" id="customRadioInline1" name="searchRadioVal" class="custom-control-input" value="total" <c:if test="${searchRadioVal ne 'enable' }">checked</c:if>>
+								                                    <label class="custom-control-label" for="customRadioInline1">전체</label>
+								                                </div>
+								                                <div class="custom-control custom-radio custom-control-inline">
+								                                    <input type="radio" id="customRadioInline2" name="searchRadioVal" class="custom-control-input" value="enable" <c:if test="${searchRadioVal eq 'enable' }">checked</c:if>>
+								                                    <label class="custom-control-label" for="customRadioInline2">승인</label>
+								                                </div>
+								                                <div class="custom-control custom-radio custom-control-inline">
+								                                    <input type="radio" id="customRadioInline4" name="searchRadioVal" class="custom-control-input" value="enable" <c:if test="${searchRadioVal eq 'enable' }">checked</c:if>>
+								                                    <label class="custom-control-label" for="customRadioInline4">반려</label>
+								                                </div>
+								                                <div class="custom-control custom-radio custom-control-inline">
+								                                    <input type="radio" id="customRadioInline5" name="searchRadioVal" class="custom-control-input" value="enable" <c:if test="${searchRadioVal eq 'enable' }">checked</c:if>>
+								                                    <label class="custom-control-label" for="customRadioInline5">신청 중</label>
+								                                </div>
+								                                <div class="custom-control custom-radio custom-control-inline">
+								                                    <input type="radio" id="customRadioInline6" name="searchRadioVal" class="custom-control-input" value="enable" <c:if test="${searchRadioVal eq 'enable' }">checked</c:if>>
+								                                    <label class="custom-control-label" for="customRadioInline6">탈퇴 회원</label>
+								                                </div>
+															</div>
 															<div class="input-group-append"> 
 																<button class="btn  btn-primary" type="submit">검색</button>
 															</div>
@@ -66,8 +85,8 @@
 														<tr>
 															<th>번호</th>
 															<th>업체명</th>
+															<th>대표자</th>
 															<th>신청상태</th>
-															<th>신청자</th>
 															<th>신청일</th>
 														</tr>
 													</thead>
@@ -75,17 +94,17 @@
 														<c:forEach var="list" items="${applyList}" varStatus="status">
 															<tr>
 																<td>${status.count}</td>
-																<c:set var="divCheck" value="apply"/>
-																<c:if test="${list.statusCd eq '01' }">
-																	<c:set var="divCheck" value="detail"/>
-																</c:if>
+																	<c:set var="divCheck" value="apply"/>
+																	<c:if test="${list.enable eq '1' }">
+																		<c:set var="divCheck" value="detail"/>
+																	</c:if>
 																<td><a href="<%=request.getContextPath()%>/admin/applyDetail/${list.bizId}?divCheck=${divCheck}">${list.bizName}</a></td>
 																<td><a href="<%=request.getContextPath()%>/admin/applyDetail/${list.bizId}?divCheck=${divCheck}">${list.bizOwnerName}</a></td>
 																<td>
 																	<c:choose>
-																		<c:when test="${list.statusCd eq '01'}"> 승인 </c:when>
-																		<c:when test="${list.statusCd eq '02'}"> 보류 </c:when>
-																		<c:when test="${list.statusCd eq '03'}"> 반려 </c:when>
+																		<c:when test="${list.enable eq '1'}"> 승인 </c:when>
+																		<c:when test="${list.enable eq '2'}"> 탈퇴 </c:when>
+																		<c:when test="${list.enable eq '3'}"> 반려 </c:when>
 																		<c:otherwise>신청 중</c:otherwise>
 																	</c:choose>
 																</td>
@@ -114,7 +133,7 @@
 			</div>
 		</div>
 	</div>
-<jsp:include page="../include/footer.jsp" />
+<jsp:include page="/WEB-INF/views/admin/include/footer.jsp" />
 
 </body>
 </html>

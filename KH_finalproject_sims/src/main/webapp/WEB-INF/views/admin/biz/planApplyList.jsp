@@ -45,9 +45,9 @@
 															<label class="floating-label"></label>
 															<select class="" name="searchOption">
 																<option value="">선택</option>
-																<option value="title" <c:if test="${searchOption eq 'name' }">selected</c:if>>요금제명</option>
-																<option value="writer" <c:if test="${searchOption eq 'enabled' }">selected</c:if>>신청상태</option>
-																<option value="content" <c:if test="${searchOption eq 'writer' }">selected</c:if>>신청자</option>
+																<option value="name" <c:if test="${searchOption eq 'name' }">selected</c:if>>요금제명</option>
+																<option value="enabled" <c:if test="${searchOption eq 'enabled' }">selected</c:if>>신청상태</option>
+																<option value="writer" <c:if test="${searchOption eq 'writer' }">selected</c:if>>신청자</option>
 															</select>
 															<input class="form-control" type="text" name="searchBox" value="${searchBox}">
 															<div class="input-group-append"> 

@@ -67,8 +67,8 @@ public class AdminBizMngtVo {
 	private Date writeDate;
 	private Date updateDate;
 	private String logoRenameFileName;
-	private String statusCd;
-	private String rvwOpinion;
+
+	
 	
 	// 통신망
 	// NET_NO				NOT NULL 	VARCHAR2(30)
@@ -164,6 +164,8 @@ public class AdminBizMngtVo {
 	private String pw;
 	private String role;
 	private int enable;
+	private String opinion;
+	
 	
 	//조회용 변수
 	private String searchOption; // 조회 조건

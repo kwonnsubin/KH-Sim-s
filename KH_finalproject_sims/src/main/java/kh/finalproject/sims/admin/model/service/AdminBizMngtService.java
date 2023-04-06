@@ -17,10 +17,6 @@ public interface AdminBizMngtService {
 	//통신사의 요금제 리스트
 	public List<AdminBizMngtVo> selectBizPlanList(String bizId) throws Exception;
 	
-	/*
-	 * //통신사의 상세 수정 페이지로 이동 public AdminNoticeMngtVo selectBizModify(String bizId);
-	 */
-	
 	//통신사 수정 저장
  	public int saveBizModify(AdminBizMngtVo vo) throws Exception;
 	
@@ -36,6 +32,7 @@ public interface AdminBizMngtService {
 	//통신사 요금제 개통 신청 상세 페이지로 이동
 	public AdminBizMngtVo selectBizPlanApplyDetail(int orderNo) throws Exception;
 
+	//통신사 검토결과 변경
 	public int updateBizStatus(AdminBizMngtVo vo) throws Exception;
 
 	

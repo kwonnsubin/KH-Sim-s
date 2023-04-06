@@ -31,11 +31,6 @@ public class AdminBizMngtDao {
 		return sqlSession.selectList("adminBiz.selectBizPlanList", bizId);
 	}
 	
-	/*
-	 * //통신사 상세 수정 페이지로 이동 public AdminNoticeMngtVo selectBizModify(String bizId) {
-	 * return sqlSession.selectOne("adminBiz.selectBizModify", bizId); }
-	 */
-
 	//통신사의 탈퇴 신청 리스트로 이동
 	public List<AdminBizMngtVo> selectWithdrawalList(AdminBizMngtVo vo) {
 		return sqlSession.selectList("adminBiz.selectWithdrawalList",vo);

@@ -2,6 +2,7 @@ package kh.finalproject.sims.admin.controller;
 
 import java.security.Principal;
 
+import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,8 +15,10 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+
 import kh.finalproject.sims.admin.model.service.AdminNoticeMngtService;
 import kh.finalproject.sims.admin.model.vo.AdminNoticeMngtVo;
+import kh.finalproject.sims.common.page.Search;
 
 @RequestMapping("/admin")
 @Controller
@@ -33,6 +36,7 @@ public class AdminNoticeMngtController {
 		mv.setViewName("admin/notice/noticeList");
 		return mv;
 	}
+	
 	
 	//관리자 공지사항 상세 페이지로 이동
 	@GetMapping("/noticeDetail/{ntcNo}")
@@ -119,6 +123,7 @@ public class AdminNoticeMngtController {
 		rttr.addFlashAttribute("result", "삭제가 완료되었습니다.");
 		return "redirect:/adminNotice/noticeList";
 	}
+	
 	
 }
 
