@@ -93,10 +93,10 @@
 		                                        <td>
 											        <c:choose>
 											          <c:when test="${fn:length(bizReview.reviewContent) > 23}">
-											            <a href="<%=request.getContextPath()%>/admin/reviewdetail/${bizReview.reviewNo }" class="text-dark">${fn:substring(bizReview.reviewContent, 0, 23)}...</a>
+											            <a href="<%=request.getContextPath()%>/admin/review/detail/${bizReview.reviewNo }" class="text-dark">${fn:substring(bizReview.reviewContent, 0, 23)}...</a>
 											          </c:when>
 											          <c:otherwise>
-											            <a href="<%=request.getContextPath()%>/admin/reviewdetail/${bizReview.reviewNo }" class="text-dark">${bizReview.reviewContent}</a>
+											            <a href="<%=request.getContextPath()%>/admin/review/detail/${bizReview.reviewNo }" class="text-dark">${bizReview.reviewContent}</a>
 											          </c:otherwise>
 											        </c:choose>  
 		                                        </td>
@@ -152,7 +152,7 @@
 			                        <h5>신고</h5>										            	
 				            	</div>
 				            	<div class="col-6 text-right ">
-		                        	<a href="<%=request.getContextPath()%>/admin/reviewreportdetail"><i class="fa-solid fa-list text-dark"></i></a>										            	
+		                        	<a href="<%=request.getContextPath()%>/admin/reviewreport/detail"><i class="fa-solid fa-list text-dark"></i></a>										            	
 				            	</div>
 				            </div>
 	                    </div>
@@ -165,10 +165,10 @@
 		                                        <td>
 											        <c:choose>
 											          <c:when test="${fn:length(reviewReport.reviewContent) > 23}">
-											           <a href="<%=request.getContextPath()%>/admin/reviewreportdetail/${reviewReport.reviewNo }" class="text-dark">${fn:substring(reviewReport.reviewContent, 0, 23)}...</a>
+											           <a href="<%=request.getContextPath()%>/admin/reviewreport/detail/${reviewReport.reviewNo }" class="text-dark">${fn:substring(reviewReport.reviewContent, 0, 23)}...</a>
 											          </c:when>
 											          <c:otherwise>
-											           <a href="<%=request.getContextPath()%>/admin/reviewreportdetail/${reviewReport.reviewNo }" class="text-dark">${reviewReport.reviewContent}</a>
+											           <a href="<%=request.getContextPath()%>/admin/reviewreport/detail/${reviewReport.reviewNo }" class="text-dark">${reviewReport.reviewContent}</a>
 											          </c:otherwise>
 											        </c:choose>  
 		                                        </td>
