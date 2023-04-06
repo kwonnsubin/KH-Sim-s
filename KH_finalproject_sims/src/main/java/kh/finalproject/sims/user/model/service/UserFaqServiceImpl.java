@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import kh.finalproject.sims.user.model.dao.UserFaqDao;
 import kh.finalproject.sims.user.model.vo.UserAnsVo;
@@ -72,18 +73,24 @@ public class UserFaqServiceImpl implements UserFaqService {
 	}
 
 	@Override
-	public void insertAnswer(int aqNo, UserAnsVo vo) {
-		dao.insertAnswer(aqNo, vo);
+	@Transactional
+	public boolean insertAnswer(int aqNo, UserAnsVo vo) {
+		int count = dao.insertAnswer(aqNo, vo);
+		return count > 0;
 	}
 	
 	@Override
-	public int deleteAns(int aaNo) {
-		return dao.deleteAns(aaNo);
+	@Transactional
+	public boolean deleteAns(int aaNo) {
+		int count = dao.deleteAns(aaNo);
+		return count > 0;
 	}
 
 	@Override
-	public int updateAns(UserAnsVo vo) {
-		return dao.updateAns(vo);
+	@Transactional
+	public boolean updateAns(UserAnsVo vo) {
+		int count = dao.updateAns(vo);
+		return count > 0;
 	}
 	
 	// 댓글 조회/작성/삭제/수정
@@ -92,16 +99,20 @@ public class UserFaqServiceImpl implements UserFaqService {
 		return dao.getRplByNo(rplNo);
 	}
 	@Override
-	public void insertReply(int aaNo, UserRplVo vo) {
-		dao.insertReply(aaNo, vo);
+	@Transactional
+	public boolean insertReply(int aaNo, UserRplVo vo) {
+		int count = dao.insertReply(aaNo, vo);
+		return count > 0;
 	}
 	@Override
-	public int deleteRpl(int rplNo) {
-		return dao.deleteRpl(rplNo);
+	@Transactional
+	public boolean deleteRpl(int rplNo) {
+		return dao.deleteRpl(rplNo) > 0;
 	}
 	@Override
-	public int updateRpl(UserRplVo vo) {
-		return dao.updateRpl(vo);
+	@Transactional
+	public boolean updateRpl(UserRplVo vo) {
+		return dao.updateRpl(vo) > 0;
 	}
 
 	// 아이디로 조회한 질문/답변 목록
@@ -123,13 +134,18 @@ public class UserFaqServiceImpl implements UserFaqService {
 
 	// 답변수 -1/+1
 	@Override
-	public void deAnswers(int aqNo) {
-		dao.deAnswers(aqNo);
+	@Transactional
+	public boolean deAnswers(int aqNo) {
+		return dao.deAnswers(aqNo) > 0;
 	}
 	
 	@Override
-	public void upAnswers(int aqNo) {
-		dao.upAnswers(aqNo);
+	@Transactional
+	public boolean upAnswers(int aqNo) {
+	    int count = dao.upAnswers(aqNo);
+	    return count > 0;
 	}
+
+	
 
 }

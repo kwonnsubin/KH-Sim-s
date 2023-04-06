@@ -24,15 +24,15 @@ public interface UserFaqService {
 	// 답변 목록/조회/작성/삭제/수정
 	public List<UserAnsVo> selectAnsList(int aqNo);
 	public UserAnsVo getAnsByNo(int aaNo);
-	public void insertAnswer(int aqNo, UserAnsVo vo);
-	public int deleteAns(int aaNo);
-	public int updateAns(UserAnsVo vo);
+	public boolean insertAnswer(int aqNo, UserAnsVo vo);
+	public boolean deleteAns(int aaNo);
+	public boolean updateAns(UserAnsVo vo);
 	
 	// 댓글 조회/작성/삭제/수정
 	public UserRplVo getRplByNo(int rplNo);
-	public void insertReply(int aaNo, UserRplVo vo);
-	public int deleteRpl(int rplNo);
-	public int updateRpl(UserRplVo vo);
+	public boolean insertReply(int aaNo, UserRplVo vo);
+	public boolean deleteRpl(int rplNo);
+	public boolean updateRpl(UserRplVo vo);
 
 	// 아이디로 조회한 질문/답변 목록
 	public List<UserQnaVo> selectMyQnaList(String username);
@@ -42,7 +42,7 @@ public interface UserFaqService {
 	public void viewCount(int aqNo);
 
 	// 답변수 -1/+1
-	public void deAnswers(int aqNo);
-	public void upAnswers(int aqNo);
+	public boolean deAnswers(int aqNo);
+	public boolean upAnswers(int aqNo);
 
 }

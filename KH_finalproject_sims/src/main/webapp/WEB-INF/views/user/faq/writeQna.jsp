@@ -37,12 +37,12 @@
 					<form action="${cpath }/faq/qna/write" method="post" id="writeQna">
 						<div class="py-2">
 							<input type="hidden" value="${username }" name="userId"> 
-							<input type="text" name="aqTitle" size="60"
+							<input class="none-border full" type="text" name="aqTitle" size="60"
 								placeholder="예시) 기존 통신사는 직접 해지해야 되나요?">
 						</div>
 						<hr>
 						<div class="py-2">
-							<textarea rows="10" name="aqContent"
+							<textarea class="none-border full" rows="10" name="aqContent"
 							placeholder="현재 사용하시는 통신사 혹은 질문과 관련된 자세한 내용을 함께 적어주시면 더 정확한 답변이 가능해요."></textarea>
 						</div>
 					</form>

@@ -28,6 +28,15 @@
     <link rel="stylesheet" href="<%= request.getContextPath() %>/resources/chain/assets/css/animated.css">
     <link rel="stylesheet" href="<%= request.getContextPath() %>/resources/chain/assets/css/owl.css">
     <link rel="stylesheet" href="<%= request.getContextPath() %>/resources/css/user/qna.css">
+    	
+    <!-- Scripts -->
+	<script src="<%= request.getContextPath() %>/resources/chain/vendor/jquery/jquery.min.js"></script>
+	<script src="<%= request.getContextPath() %>/resources/chain/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+	<script src="<%= request.getContextPath() %>/resources/chain/assets/js/owl-carousel.js"></script>
+	<script src="<%= request.getContextPath() %>/resources/chain/assets/js/animation.js"></script>
+	<script src="<%= request.getContextPath() %>/resources/chain/assets/js/imagesloaded.js"></script>
+	<script src="<%= request.getContextPath() %>/resources/chain/assets/js/popup.js"></script>
+	<script src="<%= request.getContextPath() %>/resources/chain/assets/js/custom.js"></script>
 </head>
 <body>
 
@@ -61,16 +70,16 @@
 			<!-- 질문내용 -->
 			<div class="row my-3">
 				<div class="col-sm-12 p-2 lh-xl">
-				${question.aqContent }
+					${question.aqContent }
 				</div>
 				<div class="col-sm-auto p-2 pt-5 small">
-				조회 ${question.aqViews }
+					조회 ${question.aqViews }
 				</div>
 			</div>
 			<hr>
 			<!-- /질문내용 -->
 			
-			<!-- 답변 -->
+			<!-- n개의 답변이 있어요 -->
 			<div class="row my-3">
 				<div class="col-sm-12">
 					<div class="p-2">
@@ -80,123 +89,122 @@
 				</div>
 			</div>
 			
-			<div>
-				<!-- 답변목록 -->
-				<c:if test="${not empty answers }">
-					<c:forEach items="${answers }" var="ans">
-						<hr> 
-						<div class="row my-4">
-						
-							<div class="col small py-2">
-								<c:if test="${not empty ans.adminId }">
-									${ans.adminId }
-								</c:if>
-								<c:if test="${not empty ans.userId }">
-									${ans.userId } 
-								</c:if>
-							</div>
-							<div class="col-2 small py-2">
-								<!-- 답변 수정,삭제 -->
-								<sec:authorize access="hasRole('ROLE_USER')">
-									<c:if test="${username eq ans.userId}">
-										<button onclick="location.href='<%=request.getContextPath()%>/faq/ansupdate/${ans.aaNo}'">수정</button>
-										<button onclick="location.href='<%=request.getContextPath()%>/faq/ansdelete/${ans.aqNo}/${ans.aaNo}'">삭제</button>
-									</c:if>	
-								</sec:authorize>
-								<!-- /답변 수정,삭제 -->
-							</div>
-							<div class="col-2 small py-2">
-								<c:if test="${empty ans.aaRedate }">
-									${ans.aaDate }
-								</c:if> 
-								<c:if test="${not empty ans.aaRedate }">
-									${ans.aaRedate }
-								</c:if>
-							</div>
+			<!-- 답변목록 -->
+			<div class="faq-answer">
+				<div class="answer-list">
+					<c:if test="${not empty answers }">
+						<c:forEach items="${answers }" var="answer">
+							<hr> 
+							<div class="answer-item row my-4">
 							
-							<div class="py-2">
-								${ans.aaContent } 
-							</div>
+								<div class="answer-writer col-10 small py-2">
+									${answer.adminId == null ? answer.userId : answer.adminId}
+								</div>
 								
-							<!-- 댓글 작성 -->
-							<div class="p-2">
-								<sec:authorize access="hasRole('ROLE_USER')">
-									<form action="${cpath }/faq/ans/${ans.aaNo}/reply" method="post">
-										<input type="hidden" value="${username }" name="userId">
-										<input type="hidden" value="${ans.aaNo }" name="aaNo">
-										<input type="text" name="rplContent" placeholder="댓글을 작성해주세요">
-										<button type="submit">완료</button>
-									</form>
-								</sec:authorize>
-							</div>
-							<!-- /댓글 작성 -->
+								<div class="answer-date col-2 small py-2 text-end">
+									${answer.aaRedate == null ? answer.aaDate : answer.aaRedate}
+								</div>
 								
+								<div class="answer-content col-10 py-4">
+									${answer.aaContent } 
+								</div>
+								
+								<!-- 사용자 접속인 경우 답변 수정,삭제 버튼 표시 -->
+								<div class="btn-ans-mod col-2 small py-1 text-end">
+									<sec:authorize access="hasRole('ROLE_USER')">
+										<c:if test="${username eq answer.userId}">
+											<button onclick="location.href='<%=request.getContextPath()%>/faq/ansupdate/${answer.aaNo}'">수정</button>
+											<button onclick="location.href='<%=request.getContextPath()%>/faq/ansdelete/${answer.aqNo}/${answer.aaNo}'">삭제</button>
+										</c:if>	
+									</sec:authorize>
+								</div>
+								<!-- /답변 수정,삭제 -->
+									
 								<!-- 댓글목록 -->
-								<c:forEach items="${ans.aaRpls}" var="rpl">
-								<div class="py-2">
-									${rpl.rplContent }
-									<div>
-										<c:if test="${not empty rpl.adminId }">
-											${rpl.adminId }
-										</c:if>
-										<c:if test="${not empty rpl.userId }">
-											${rpl.userId } 
-										</c:if>
+								<div id="reply-list" class="reply-list">
+									<c:forEach items="${answer.aaRpls}" var="rpl">
+									<div class="reply-item row py-2">
+										<div class="reply-content">
+											${rpl.rplContent }
+										</div>
+										<div class="reply-writer col-2">
+											${rpl.adminId == null ? rpl.userId : rpl.adminId}
+										</div>
+										<div class="reply-date col-10 text-end">
+											${rpl.rplRedate == null ? rpl.rplDate : rpl.rplRedate}
+										</div>
+										
+										
+										<!-- 댓글 수정,삭제 -->
+										<div class="btn-rpl-mod col-2 small py-1">
+											<sec:authorize access="hasRole('ROLE_USER')">
+												<c:if test="${username eq rpl.userId}">
+													<button onclick="location.href='<%=request.getContextPath()%>/faq/rplupdate/${rpl.rplNo}'">수정</button>
+													<button onclick="location.href='<%=request.getContextPath()%>/faq/rpldelete/${answer.aqNo}/${rpl.aaNo}/${rpl.rplNo}'">삭제</button>
+												</c:if>	
+											</sec:authorize>
+										</div>
+										<!-- /댓글 수정,삭제 -->
 									</div>
-									<div>
-										<c:if test="${empty rpl.rplRedate }">
-											${rpl.rplDate }
-										</c:if>
-										<c:if test="${not empty rpl.rplRedate }">
-											${rpl.rplRedate }
-										</c:if>
+									</c:forEach>
+								</div>
+								<!-- /댓글목록 -->
+																	
+								<sec:authorize access="hasRole('ROLE_USER')">
+								<!-- 댓글 작성 -->
+									<div class="p-2">
+										<form action="${cpath }/faq/ans/${answer.aaNo}/reply" method="post">
+											<input type="hidden" value="${username }" name="userId" id="userId">
+											<input type="hidden" value="${answer.aaNo }" name="aaNo" id="aaNo">
+											<input type="text" name="rplContent" id="rplContent" placeholder="댓글을 작성해주세요">
+											<button type="submit" id="btn-writeRpl">완료</button>
+										</form>
 									</div>
 									
-									<!-- 댓글 수정,삭제 -->
-									<div class="btn-group">
-										<sec:authorize access="hasRole('ROLE_USER')">
-											<c:if test="${username eq rpl.userId}">
-												<button onclick="location.href='<%=request.getContextPath()%>/faq/rplupdate/${rpl.rplNo}'">수정</button>
-												<button onclick="location.href='<%=request.getContextPath()%>/faq/rpldelete/${ans.aqNo}/${rpl.aaNo}/${rpl.rplNo}'">삭제</button>
-											</c:if>	
-										</sec:authorize>
-									</div>
-									<!-- /댓글 수정,삭제 -->
-								</div>
-								</c:forEach>
-								<!-- /댓글목록 -->
-								
+								<!-- /댓글 작성 -->
+								</sec:authorize>
+									
 							</div>
-					</c:forEach>
-				</c:if>
-				<!-- 답변달기 -->
-				<sec:authorize access="hasRole('ROLE_USER')">
-					<hr>
-					<form action="${cpath }/faq/qna/${question.aqNo}/answer" method="post">
-						<input type="hidden" value="${username }" name="userId">
-						<input type="hidden" value="${question.aqNo }" name="aqNo">
-						<input type="text" name="aaContent" size="60" placeholder="답변을 작성해주세요">
-						<button type="submit">답변하기</button>
-					</form>
-				</sec:authorize>
-				<!-- /답변달기 -->
+						</c:forEach>
+					</c:if>
+				</div>
 				<!-- /답변목록 -->
 			</div>
+			<sec:authorize access="hasRole('ROLE_USER')">
+			<!-- 답변달기 모달 -->
+				<div class="modal fade" id="answerModal" tabindex="-1" role="dialog" aria-labelledby="answerModalLabel" aria-hidden="true">
+					<div class="modal-dialog modal-lg" role="document">
+						<div class="modal-content">
+							<div class="modal-header">
+								<h5 class="modal-title" id="answerModalLabel">답변 작성하기</h5>
+								<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+									<span aria-hidden="true">&times;</span>
+								</button>
+							</div>
+							<form id="answerForm" method="post" action="${cpath }/faq/qna/${question.aqNo}/answer">
+								<div class="modal-body">
+									<input type="hidden" name="aqNo" value="${question.aqNo}">
+									<div class="form-group">
+										<label for="content">내용</label>
+										<textarea class="form-control" id="content" name="aaContent" rows="5" required></textarea>
+									</div>
+								</div>
+								<div class="modal-footer">
+									<button type="button" class="btn btn-secondary" data-dismiss="modal">취소</button>
+									<button type="submit" class="btn btn-primary">등록</button>
+								</div>
+							</form>
+						</div>
+					</div>
+				</div>
+			<!-- /답변달기 모달 -->
+			</sec:authorize>
 			
 			
 		</div>
 	</section>
 	
 	<jsp:include page="/WEB-INF/views/footer.jsp"/>
-	
-	<!-- Scripts -->
-	<script src="<%= request.getContextPath() %>/resources/chain/vendor/jquery/jquery.min.js"></script>
-	<script src="<%= request.getContextPath() %>/resources/chain/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
-	<script src="<%= request.getContextPath() %>/resources/chain/assets/js/owl-carousel.js"></script>
-	<script src="<%= request.getContextPath() %>/resources/chain/assets/js/animation.js"></script>
-	<script src="<%= request.getContextPath() %>/resources/chain/assets/js/imagesloaded.js"></script>
-	<script src="<%= request.getContextPath() %>/resources/chain/assets/js/popup.js"></script>
-	<script src="<%= request.getContextPath() %>/resources/chain/assets/js/custom.js"></script>
 	
 </body>
 </html>
