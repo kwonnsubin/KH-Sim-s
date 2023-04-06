@@ -134,13 +134,13 @@
 		</div>
 		
 		<div>
-		<c:set var="aaa" value="${bizinfo.phoneOpTimeUsim*10}"></c:set>
+		<c:set var="aaa" value="${bizinfo.phoneOpTime*10}"></c:set>
 		[[${aaa }]]
 			<label>개통소요시간</label>
             <select name="phoneOpTime" >
 			  <c:forEach var="i" begin="0" end="150" step="1">
 			  	<c:choose>
-			  		<c:when test="${bizinfo.phoneOpTimeUsim eq (i/10.0)}">
+			  		<c:when test="${bizinfo.phoneOpTime eq (i/10.0)}">
 				    <option value="${i/10.0}" selected>${i/10.0}</option>
 			  		</c:when>
 			  		<c:otherwise>
@@ -154,7 +154,7 @@
             <select name="phoneOpTimeUsim" >
 			  <c:forEach var="i" begin="0" end="150" step="1">
 			  	<c:choose>
-			  		<c:when test="${phoneOpTimeUsim eq (i/10.0)}">
+			  		<c:when test="${bizinfo.phoneOpTimeUsim eq (i/10.0)}">
 				    <option value="${i/10.0}" selected>${i/10.0}</option>
 			  		</c:when>
 			  		<c:otherwise>
@@ -169,33 +169,59 @@
 			<label>지원통신망</label>
 			<input type="checkbox" name="net" value="KT망" >KT망
             <input type="checkbox" name="net" value="SKT망" >SKT망
-            <input type="checkbox" name="net" value="LGU+망" >LGU+망
+            <input type="checkbox" name="net" value="LG망" >LGU+망
             
             
             <label>영업시간</label>
             <!-- 영업시간 -->
-            <select name="bizBeginTime" >
+           <%--  <select name="bizBeginTime" >
 			  <c:forEach var="hour" begin="0" end="23">
-			    <option value="${hour}:00">
-			      <c:out value="${hour}:00" />
-			    </option>
+			  <c:choose>
+			  	<c:when test="${bizinfo.bizBeginTime eq (hour:00)}">
+			  	</c:when>
+			    <option value="${hour}:00"></option>
 			    <option value="${hour}:30">
 			      <c:out value="${hour}:30" />
 			    </option>
+			   </c:choose>
 			  </c:forEach>
-			</select>
-			~
-			<select name="bizEndTime" >
-			  <c:forEach var="hour" begin="0" end="23">
-			    <option value="${hour}:00">
-			      <c:out value="${hour}:00" />
-			    </option>
-			    <option value="${hour}:30">
-			      <c:out value="${hour}:30" />
-			    </option>
-			  </c:forEach>
-			</select>
+			</select> --%>
 
+		<select name="bizBeginTime">
+			<c:forEach var="hour" begin="0" end="23">
+			  <c:forEach var="minute" begin="0" end="30" step="30">
+			    <c:set var="time" value="${hour}:${minute == 0 ? '00' : '30'}" />
+			    <c:set var="beginTime" value="${bizinfo.bizBeginTime }" />
+			    <c:choose>
+			    <c:when test="${beginTime eq time}">
+			    <option value="${time}" selected>${time}</option>
+			    </c:when>
+			    <c:otherwise>
+			    <option value="${time}">${time}</option>
+			    </c:otherwise>
+			    </c:choose>
+			  </c:forEach>
+			</c:forEach>
+		</select>
+			
+			<!-- 아 나온다ㅠㅠㅠㅠㅠ -->
+			~
+			<select name="bizEndTime">
+			<c:forEach var="hour" begin="0" end="23">
+			  <c:forEach var="minute" begin="0" end="30" step="30">
+			    <c:set var="time" value="${hour}:${minute == 0 ? '00' : '30'}" />
+			    <c:set var="endTime" value="${bizinfo.bizEndTime }" />
+			    <c:choose>
+			    <c:when test="${endTime eq time}">
+			    <option value="${time}" selected>${time}</option>
+			    </c:when>
+			    <c:otherwise>
+			    <option value="${time}">${time}</option>
+			    </c:otherwise>
+			    </c:choose>
+			  </c:forEach>
+			</c:forEach>
+		</select>
             
             
 		</div>
@@ -216,12 +242,12 @@
 						            
 		</div>
 		
-		<div>
+		<!-- <div>
 			<label>고객센터번호</label>
 			<span>KT</span><input type="text" name="KtService" value="">
 			<span>SKT</span><input type="text" name="SktService">
 			<span>LGU+</span><input type="text" name="LguService">
-		</div>
+		</div> -->
 		
 		<c:forEach items="${serviceList}" var="service">
 	    <label>고객센터번호</label>
@@ -319,23 +345,44 @@
         }).open();
     }
 </script>
-
-<!-- (휴무일) 선택한 값들 한 문자열로 쪼개기 -->
+<!-- (지원통신망) 선택한 값들 한 문자열로 쪼개기  -->
 <script>
-	var bizClosedDay = "${bizClosedDay}"; //bizClosedDay=토,일,공휴일,
-	var bizClosedDayArr = bizClosedDay.splite(",");
-	for(var i=0; i<bizClosedDayArr.length; i++){
-		var day = bizClosedDayArr[i];
-		switch(day){
-		case "mondy":
-			$("[name=weekday]").prop("checked", true);
-			break;
-		case "mondy":
-			$("[name=weekday]").prop("checked", true);
+	var network = "${bizinfo.network}";
+	console.log("network : "+network);
+	var networkArr = network.split(",");
+	console.log("networkArr : "+networkArr);
+	for(var i = 0; i < networkArr.length; i++){
+		var net = networkArr[i];
+		switch(net){
+		case "KT망" :
+		case "SKT망" :
+		case "LG망" :
+			$("[name=net][value="+net+"]").prop("checked", true);
 			break;
 		}
 	}
+</script>
 
+<!-- (휴무일) 선택한 값들 한 문자열로 쪼개기 -->
+<script>
+	var bizClosedDay = "${bizinfo.bizClosedDay}"; //bizClosedDay=토,일,공휴일,
+	console.log("bizClosedDay : " + bizClosedDay);
+	var bizClosedDayArr = bizClosedDay.split(",");
+	console.log("bizClosedDayArr : "+bizClosedDayArr);
+	for(var i=0; i<bizClosedDayArr.length; i++){
+		var day = bizClosedDayArr[i];
+		switch(day){
+	    case "월":
+	    case "화":
+	    case "수":
+	    case "목":
+	    case "토":
+	    case "일":
+	    case "공휴일":
+	      $("[name=weekday][value=" + day + "]").prop("checked", true);
+	      break;
+		  }
+		}
 
 </script>
 <!-- 선택한 값들 한 문자열로 합치기(휴무일) -->

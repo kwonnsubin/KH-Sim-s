@@ -28,4 +28,9 @@ public class BizInfoMngtDao {
 	public List<bizInfoMngServiceVo> selectListService(String bizid){
 		return sqlSession.selectList("biz.selectListService", bizid);
 	}
+
+	//고객센터번호 수정
+	public int modifyNetService(List<bizInfoMngServiceVo> netServiceList) {
+		return sqlSession.update("biz.modifyNetService",netServiceList );
+	}
 }

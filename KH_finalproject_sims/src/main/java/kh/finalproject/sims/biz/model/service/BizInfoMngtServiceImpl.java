@@ -29,4 +29,9 @@ public class BizInfoMngtServiceImpl implements BizInfoMngtService{
 		return dao.selectListService(bizid);
 	}
 
+	@Override
+	public int modifyNetService(List<bizInfoMngServiceVo> netServiceList) {
+		return dao.modifyNetService(netServiceList);
+	}
+
 }

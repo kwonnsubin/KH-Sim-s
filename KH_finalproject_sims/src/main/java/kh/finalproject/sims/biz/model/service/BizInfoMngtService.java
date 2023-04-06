@@ -11,4 +11,5 @@ public interface BizInfoMngtService {
 
 	public BizInfoMngtVo selectBizInfoDetail(String bizid);
 	public List<bizInfoMngServiceVo> selectListService(String bizid);
+	public int modifyNetService(List<bizInfoMngServiceVo> netServiceList);
 }

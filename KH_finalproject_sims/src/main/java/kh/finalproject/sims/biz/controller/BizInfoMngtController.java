@@ -1,21 +1,26 @@
 package kh.finalproject.sims.biz.controller;
 
 import java.security.Principal;
+import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
 import kh.finalproject.sims.biz.model.service.BizInfoMngtService;
 import kh.finalproject.sims.biz.model.vo.BizInfoMngtVo;
 import kh.finalproject.sims.biz.model.vo.bizInfoMngServiceVo;
+import kh.finalproject.sims.common.file.FileUtil;
 
 @Controller
 @RequestMapping("/biz")
@@ -24,7 +29,9 @@ public class BizInfoMngtController {
 	@Autowired
 	private BizInfoMngtService service;
 	
-
+	@Autowired
+	@Qualifier("fileUtil")
+	private FileUtil fileUtil;
 
 	//내 정보관리 상세
 	@GetMapping("/infodetail")
@@ -75,8 +82,7 @@ public class BizInfoMngtController {
 		    String bizNetService = service.getBizNetService();
 		    System.out.println(netNo);
 		    System.out.println(bizNetService);
-		    // TODO: 변수를 사용하는 코드 작성
-		    // ...
+
 		}
 		
 	
@@ -122,10 +128,53 @@ public class BizInfoMngtController {
 			, @RequestParam(name = "weekday", required = false) String[] selectedWeekdays
 			, @RequestParam(name="net", required = false) String[] selectedNetworks
 			
-			//파일 첨부도 가져와야 하는는데.. 
+			//파일 첨부
+			, @RequestParam(name="logo", required = false) MultipartFile multi
 			) {
+		
+		Principal principal = request.getUserPrincipal();
+		String bizid = principal.getName();
+		System.out.println("통신사아이디 : " + bizid);
+		
+		//파일첨부
+		Map<String, String> filePath;
+		
+		try {
+			filePath = fileUtil.saveFile(multi, request, null);
+			vo.setLogoRenameFilename(filePath.get("rename"));
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		System.out.println(vo.getLogoRenameFilename());
+		
+		//고객센터번호
+		List<bizInfoMngServiceVo> netServiceList = new ArrayList<>();
 
-		//휴무일
+		bizInfoMngServiceVo netService1 = new bizInfoMngServiceVo();
+		netService1.setNetNo(1);
+		netService1.setBizNetService(KtService);
+		netService1.setBizId(bizid);
+		netServiceList.add(netService1);
+		
+		
+		bizInfoMngServiceVo netService2 = new bizInfoMngServiceVo();
+		netService2.setNetNo(2);
+		netService2.setBizNetService(SktService);
+		netService2.setBizId(bizid);
+		netServiceList.add(netService2);
+		
+		bizInfoMngServiceVo netService3 = new bizInfoMngServiceVo();
+		netService3.setNetNo(3);
+		netService3.setBizNetService(LguService);
+		netService3.setBizId(bizid);
+		netServiceList.add(netService3);
+		
+		System.out.println("######netServiceList : "+netServiceList);
+		
+		service.modifyNetService(netServiceList);
+
+		
+		//(휴무일) 한 문자열에 담기
 		StringBuilder selectedWeekdaysString = new StringBuilder();
 		if (selectedWeekdays != null) {
 		    for (String weekday : selectedWeekdays) {
@@ -140,7 +189,7 @@ public class BizInfoMngtController {
 		String bizClosedDay = selectedWeekdaysString.toString();
 		System.out.println("Selected weekdays: " + bizClosedDay);
 
-		//통신망
+		//(통신망) 한 문자열에 담기
 		StringBuilder selectedNetworksString = new StringBuilder();
 		if (selectedNetworks != null) {
 		    for (String network : selectedNetworks) {
@@ -155,9 +204,9 @@ public class BizInfoMngtController {
 		String network = selectedNetworksString.toString();
 		System.out.println(network);
 
+		vo.setBizName(bizName);
 		
-		
-
+		System.out.println("@@수정하기 버튼 누른 후 vo :"+vo);
 
 		return "redirect:/biz/infodetail";
 		

@@ -65,4 +65,13 @@
 		where biz_id='kctv' --><!-- 이 경우에는 NET_NO 자료형이  varchar2여야 함.  -->
 	</select>
 	
+	<!-- 고객센터번호 수정 -->
+	<update id="modifyNetService" parameterType="java.util.List">
+	 <foreach collection="list" item="item" index="index" separator=";" open="DECLARE BEGIN" close="; END;">
+	  UPDATE BIZ_NETWORK
+	  SET BIZ_NET_SERVICE = #{item.bizNetService}
+	  WHERE NET_NO = #{item.netNo} AND BIZ_ID = #{item.bizId}
+	  </foreach>
+	</update>
+	
 </mapper>

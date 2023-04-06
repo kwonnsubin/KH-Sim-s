@@ -20,5 +20,8 @@ public class bizInfoMngServiceVo {
 	private int netNo;
 	private String bizNetService;
 	
+	//정보 수정을 위한 
+	private String bizId;
+	
 
 }
