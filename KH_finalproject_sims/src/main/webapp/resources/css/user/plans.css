@@ -37,6 +37,7 @@ p {
 .modalBtn {
 	color: black;
 	background-color: white;
+	border-width: 1px; 
 	border-radius: 30px;
 	font-size: small;
 }
