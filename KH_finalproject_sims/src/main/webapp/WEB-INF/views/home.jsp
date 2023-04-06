@@ -27,15 +27,7 @@
 </head>
 <body>
 
-<<<<<<< Updated upstream
-=======
-<<<<<<< HEAD
 	<jsp:include page="/WEB-INF/views/header.jsp"/>
-=======
->>>>>>> Stashed changes
-
-	<jsp:include page="header.jsp"/>
->>>>>>> 77a44cb32e66f58a07f4b5baf03d46d56960ef25
 	
 	
 	
