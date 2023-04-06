@@ -3,7 +3,7 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
-<%@ page session="false" %>
+<!DOCTYPE html>
 <html>
 <head>
 
@@ -20,14 +20,15 @@
 	 <!-- Bootstrap core CSS -->
     <link href="<%= request.getContextPath() %>/resources/chain/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
     
+    <!-- 아이콘 -->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
+    
     <!-- Additional CSS Files -->
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
     <link rel="stylesheet" href="<%= request.getContextPath() %>/resources/chain/assets/css/templatemo-chain-app-dev.css">
     <link rel="stylesheet" href="<%= request.getContextPath() %>/resources/chain/assets/css/animated.css">
     <link rel="stylesheet" href="<%= request.getContextPath() %>/resources/chain/assets/css/owl.css">
     <link rel="stylesheet" href="<%= request.getContextPath() %>/resources/css/user/plans.css"/>
-    <!-- 아이콘 -->
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
 
 </head>
 <body>
@@ -90,7 +91,7 @@
 									</div>
 									<hr style="border:0;border-top:1px solid #555;margin:0;height:1px;" />
 								</div>
-								<div class="modal-body overflow-auto">
+								<div class="modal-body">
 					        		<div class="filter-list text-start m-3">
 					        			<div id="planData">
 					        				<div>

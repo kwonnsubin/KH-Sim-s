@@ -343,16 +343,8 @@ header
 }
 
 .header-area .main-nav {
-  min-height: 80px;
+  min-height: 100px;
   background: transparent;
-}
-
-.header-area .main-nav .logo {
-  float: left;
-  -webkit-transition: all 0.3s ease 0s;
-  -moz-transition: all 0.3s ease 0s;
-  -o-transition: all 0.3s ease 0s;
-  transition: all 0.3s ease 0s;
 }
 
 .header-area .main-nav .logo {

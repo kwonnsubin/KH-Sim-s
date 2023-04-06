@@ -104,8 +104,13 @@ $(document).ready(function() {
 });
 
 function goToScroll(name) {
-	console.log(name);
-	$(".modal-body").animate({"scrollTop": $("#" + name).offset().top}, 500);
+//	var target = $("#" + name).offset().top;
+//	$(".modal-body").animate({scrollTop: target}, 500);
+//	location.href = "#" + name;
+	
+	if(name === "planData") {
+		$(".modal-body").animate({scrollTop: 10}, 500);
+	}
 }
 
 // planData 컨트롤
@@ -345,7 +350,7 @@ function messageRangeText() {
 	}
 }
 
-function messageeRdoValCheck(e) {
+function messageRdoValCheck(e) {
 	if($(e.target).val() === "전체") {
 		$("#planMessage input[type=range]").eq(0).val("0");
 		$("#planMessage input[type=range]").eq(1).val("300");
@@ -356,7 +361,7 @@ function messageeRdoValCheck(e) {
 		$("#planMessage div[sign]").eq(0).css("left", "0%");
 		$("#planMessage div[sign]").eq(1).css("left", "100%");
 		$("#planMessage div[sign]").eq(0).children("span").text("0");
-		$("#planMessage div[sign]").eq(1).children("span").text("100");
+		$("#planMessage div[sign]").eq(1).children("span").text("300");
 	} else if($(e.target).val() === "기본제공") {
 		$("#planMessage input[type=range]").eq(0).val("0");
 		$("#planMessage input[type=range]").eq(1).val("0");

@@ -20,7 +20,7 @@
 				<nav class="main-nav">
 					<!-- ***** Logo Start ***** -->
 					<a href="<%=request.getContextPath()%>/" class="logo">
-						<img src="<%=request.getContextPath()%>/resources/img/sims.png" alt="Sim-s" style="max-width: 100px;">
+						<img src="<%=request.getContextPath()%>/resources/img/sims.png" alt="Sim-s" style="max-width: 100px; max-height:100px; vertical-align:middle;">
 					</a>
 					<!-- ***** Logo End ***** -->
 					<!-- ***** Menu Start ***** -->
