@@ -27,11 +27,11 @@
 </head>
 <body>
 
-	<jsp:include page="/WEB-INF/views/header.jsp"/>
+	<jsp:include page="./header.jsp"/>
 	
 	
 	
-	<jsp:include page="/WEB-INF/views/footer.jsp"/>
+	<jsp:include page="./footer.jsp"/>
 	
 	<!-- Scripts -->
 	<script src="<%= request.getContextPath() %>/resources/chain/vendor/jquery/jquery.min.js"></script>

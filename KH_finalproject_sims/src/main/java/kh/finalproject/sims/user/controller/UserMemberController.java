@@ -60,16 +60,17 @@ public class UserMemberController {
 	// 회원가입
 	@PostMapping("signup")
 	public ModelAndView insertSignUp(ModelAndView mv, MemberVo memVo, UserMemberVo userVo, BizInfoMngtVo bizVo) {
-		memVo.setEnable(1);
 		
 		String encPw = pwEncoder.encode(memVo.getPw());
 		memVo.setPw(encPw);
 		
 		int result = 0;
 		if(memVo.getRole().equals("ROLE_USER")) {
+			memVo.setEnable(1);
 			userVo.setUserId(memVo.getId());
 			result = service.insertUserSignUp(memVo, userVo);
 		} else {
+			memVo.setEnable(0);
 			bizVo.setBizId(memVo.getId());
 			result = service.insertBizSignUp(memVo, bizVo);
 		}

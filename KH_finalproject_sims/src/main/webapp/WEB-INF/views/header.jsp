@@ -34,7 +34,12 @@
 						<sec:authorize access="isAuthenticated()">
 						<li><a href="<%=request.getContextPath()%>/logout">로그아웃</a></li>
 						</sec:authorize>
+						<sec:authorize access="!hasRole('ROLE_BIZ')">
 						<li><a href="<%=request.getContextPath()%>/mypage" class="mypage">마이페이지</a></li>
+						</sec:authorize>
+						<sec:authorize access="hasRole('ROLE_BIZ')">
+						<li><a href="<%=request.getContextPath()%>/biz/main" class="mypage">마이페이지</a></li>
+						</sec:authorize>
 					</ul>
 					<a class='menu-trigger'> 
 						<span>Menu</span>
