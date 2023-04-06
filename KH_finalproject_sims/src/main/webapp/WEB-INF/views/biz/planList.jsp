@@ -19,6 +19,7 @@
 <title>Insert title here</title>
 <script src="https://code.jquery.com/jquery-3.6.3.js"></script>
 <link rel="stylesheet" href="${path}/resources/css/biz/main.css"/>
+<link type="text/css" rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
 
 	 <!-- Bootstrap core CSS -->
@@ -122,7 +123,7 @@
 	                    <td>${plan.planDate } </td>
 	                    <td>
 	                    <button>수정</button><!-- 요금제 수정이 필요한가??? -->
-	                    <button type="button" id="deleteBtn" data-bs-toggle="modal" data-bs-target="#deleteleModal" data-planNo="${plan.planNo}">삭제</button>       
+	                    <button type="button" class="deleteBtn" data-bs-toggle="modal" data-bs-target="#deleteleModal" data-planno="${plan.planNo}">삭제</button>       
 	                    </td>
 	                </tr>
 	                </c:forEach>   
@@ -143,8 +144,8 @@
 	    	요금제를 정말로 삭제하시겠습니까?
 	      </div>
 	      <div class="modal-footer">
-	      	
-	        <button type="button" class="btn delete btn-secondary" id="deletePostBtn">삭제</button>
+	      	<input type="hidden" id="selectedPlanNo">
+	        <button type="button" class="btn modalDelete btn-secondary" id="deletePostBtn">삭제</button>
 	        <button type="button" class="btn btn-primary" data-bs-dismiss="modal">취소</button>
 	      </div>
 	    </div>
@@ -213,11 +214,50 @@
 </script>
 
 <script>
-$(document).ready(function(){
+//planNo 값이 undefined...
+/* var planNo ='';
+var planNo = $('.deleteBtn').data('planNo');
+console.log('함수 호출 전 planNo : '+planNo); //undefined 가 나오네...  */
+
+/* let deleteBtn = document.getElementById('deleteBtn');
+let planNo = deleteBtn.getAttribute('data-planNo');
+console.log('let으로 변수 설정'+planNo); // 이렇게 하면 어떤 요금제를 선택하든 planNo가 113만 나옴..  */
+
+$(document).ready(function() {
+	
+$(".deleteBtn").click(function(){
+	console.log($("#selectedPlanNo").val());
+	console.log($(this).data("planno"));
+	$("#selectedPlanNo").val($(this).data("planno"));
+});
+$('.btn.modalDelete').click(function() {
+	  console.log("모달창의 삭제 버튼을 누름");
+	  console.log('에이작스 전 planNo : '+ $("#selectedPlanNo").val());
+//	  var planNo = $('.deleteBtn').data('planNo');
+	  var planNo = $("#selectedPlanNo").val();
+	  $.ajax({
+	      url: "${pageContext.request.contextPath}/biz/deletePlan"
+	    , type: "post"
+	    , data: {planNo: planNo}
+	    , success: function(result) {
+	    	console.log('성공했을 때'+planNo);
+	    	location.reload();
+	    	}
+	    , error: function(xhr, status, error) {
+	    	
+	    	alert("에러가 발생했습니다. 왜?????????????");
+	    	console.log('에이작스 후 planNo : '+planNo);
+	    }
+	  });
+	});
+});
+
+<%-- $(document).ready(function(){
     $('#deleteleModal').on("show.bs.modal", function(e){
         var button = $(e.relatedTarget);
         var planNo = button.data('planNo');
         var modal = $(this);
+        console.log(planNo);
         modal.find('#deletePostBtn').on('click', function(){
             $.ajax({
                 url: "<%=request.getContextPath()%>/biz/deletePlan",
@@ -233,7 +273,7 @@ $(document).ready(function(){
         }).data('planNo', planNo); // 삭제 버튼에도 planNo 값을 설정
         console.log(planNo);
     });
-});
+}); --%>
 
 </script>	
 	
@@ -251,7 +291,7 @@ $(document).ready(function(){
 		      alert("에러가 발생했습니다.");
 		    }
 		  });
-	 --%>
+	 
 	<%-- /*TODO 삭제*/
 	$(".btn.delete").on("click", deleteClickHandler);
 	function deleteClickHandler(){
