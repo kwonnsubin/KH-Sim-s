@@ -24,8 +24,8 @@ public interface UserFaqService {
 	// 답변 목록/조회/작성/삭제/수정
 	public List<UserAnsVo> selectAnsList(int aqNo);
 	public UserAnsVo getAnsByNo(int aaNo);
-	public boolean insertAnswer(int aqNo, UserAnsVo vo);
-	public boolean deleteAns(int aaNo);
+	public int insertAnswer(int aqNo, UserAnsVo vo);
+	public int deleteAns(int aaNo);
 	public boolean updateAns(UserAnsVo vo);
 	
 	// 댓글 조회/작성/삭제/수정

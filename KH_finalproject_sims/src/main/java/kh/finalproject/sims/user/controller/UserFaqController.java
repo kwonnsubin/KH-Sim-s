@@ -1,6 +1,8 @@
 package kh.finalproject.sims.user.controller;
 
 import java.security.Principal;
+import java.util.List;
+
 import javax.servlet.http.HttpServletRequest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
@@ -10,7 +12,12 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
+
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
 
 import kh.finalproject.sims.user.model.service.UserFaqService;
 import kh.finalproject.sims.user.model.vo.UserAnsVo;
@@ -68,12 +75,24 @@ public class UserFaqController {
 		return mv;
 	}
 	
+	// 답변 불러오기 ajax
+	@ResponseBody
+	@GetMapping(value = "/qna/ansList", produces = "application/json;charset=utf-8")
+	public String ansList(@RequestParam("aqNo") int aqNo) {
+		service.selectQnaDetail(aqNo);
+		List<UserAnsVo> ansList = service.selectAnsList(aqNo);
+		if (!ansList.isEmpty()) {
+			Gson gson = new GsonBuilder().setDateFormat("yyyy-MM-dd").create();
+			return gson.toJson(ansList);
+		}
+		return null;
+	}
+	
 	// 답변달기
 	@PostMapping("/qna/{aqNo}/answer")
 	public String insertAnswer(
 			@PathVariable int aqNo
 			, UserAnsVo vo
-			, Authentication authentication
 			) {
 		service.insertAnswer(aqNo, vo);
 		service.upAnswers(aqNo);
@@ -85,7 +104,6 @@ public class UserFaqController {
 	public String insertReply(
 			@PathVariable int aaNo
 			, UserRplVo vo
-			, Authentication authentication
 			) {
 		service.insertReply(aaNo, vo);
 		UserAnsVo ansVo = service.getAnsByNo(aaNo);

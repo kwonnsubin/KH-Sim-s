@@ -74,16 +74,14 @@ public class UserFaqServiceImpl implements UserFaqService {
 
 	@Override
 	@Transactional
-	public boolean insertAnswer(int aqNo, UserAnsVo vo) {
-		int count = dao.insertAnswer(aqNo, vo);
-		return count > 0;
+	public int insertAnswer(int aqNo, UserAnsVo vo) {
+		return dao.insertAnswer(aqNo, vo);
 	}
 	
 	@Override
 	@Transactional
-	public boolean deleteAns(int aaNo) {
-		int count = dao.deleteAns(aaNo);
-		return count > 0;
+	public int deleteAns(int aaNo) {
+		return dao.deleteAns(aaNo);
 	}
 
 	@Override

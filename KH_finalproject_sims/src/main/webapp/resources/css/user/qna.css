@@ -24,3 +24,13 @@ hr {
 .full {
 	width: 100%
 }
+
+#input-answer {
+	position: fixed;
+	bottom: 0;
+	max-width: 800px
+}
+
+textarea {
+	resize: none
+}

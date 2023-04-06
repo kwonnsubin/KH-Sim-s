@@ -5,6 +5,8 @@
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <c:set var="cpath" value="${pageContext.request.contextPath }"/>
 <!DOCTYPE html>
 <html>
@@ -37,6 +39,7 @@
 	<script src="<%= request.getContextPath() %>/resources/chain/assets/js/imagesloaded.js"></script>
 	<script src="<%= request.getContextPath() %>/resources/chain/assets/js/popup.js"></script>
 	<script src="<%= request.getContextPath() %>/resources/chain/assets/js/custom.js"></script>
+	
 </head>
 <body>
 
@@ -45,6 +48,8 @@
 	<section>
 		<div class="container-sm div-m">
 		
+			<div id="ansList"></div>
+			
 			<!-- 질문제목 -->
 			<div class="row">
 				<div class="col-sm-12 p-2 float-sm-none mt-5">
@@ -170,36 +175,15 @@
 				</div>
 				<!-- /답변목록 -->
 			</div>
-			<sec:authorize access="hasRole('ROLE_USER')">
-			<!-- 답변달기 모달 -->
-				<div class="modal fade" id="answerModal" tabindex="-1" role="dialog" aria-labelledby="answerModalLabel" aria-hidden="true">
-					<div class="modal-dialog modal-lg" role="document">
-						<div class="modal-content">
-							<div class="modal-header">
-								<h5 class="modal-title" id="answerModalLabel">답변 작성하기</h5>
-								<button type="button" class="close" data-dismiss="modal" aria-label="Close">
-									<span aria-hidden="true">&times;</span>
-								</button>
-							</div>
-							<form id="answerForm" method="post" action="${cpath }/faq/qna/${question.aqNo}/answer">
-								<div class="modal-body">
-									<input type="hidden" name="aqNo" value="${question.aqNo}">
-									<div class="form-group">
-										<label for="content">내용</label>
-										<textarea class="form-control" id="content" name="aaContent" rows="5" required></textarea>
-									</div>
-								</div>
-								<div class="modal-footer">
-									<button type="button" class="btn btn-secondary" data-dismiss="modal">취소</button>
-									<button type="submit" class="btn btn-primary">등록</button>
-								</div>
-							</form>
-						</div>
-					</div>
-				</div>
-			<!-- /답변달기 모달 -->
-			</sec:authorize>
 			
+			<!-- 답변달기 -->
+			<sec:authorize access="hasRole('ROLE_USER')">
+				<div class="input-group p-4" id="input-answer">
+			 		<textarea id="aaContent" name="aaContent" class="form-control" rows="1" cols="80" placeholder="답변은 구체적으로 남길수록  도움이 돼요"></textarea>
+			  		<button class="btn" type="button" id="button-addon2">등록</button>
+				</div>
+			</sec:authorize>
+			<!-- /답변달기 -->
 			
 		</div>
 	</section>
@@ -207,4 +191,55 @@
 	<jsp:include page="/WEB-INF/views/footer.jsp"/>
 	
 </body>
+<script>
+	// 답변달기 ajax
+	$('#button-addon2').on("click", function() {
+		var aaContent = $("#aaContent").val();
+		var aqNo = "${aqNo}"
+		var userId = "${username}"
+		$.ajax({
+			url: "<%=request.getContextPath()%>/faq/qna/${aqNo}/answer",
+			data: {
+				"aaContent" : aaContent,
+				"aqNo" : aqNo,
+				"userId" : userId
+			},
+			type: "post",
+			success: function(result) {
+				if(result == "success") {
+					alert("답변 등록 성공")
+					$('#aaContent').val('')
+					getAnsList();
+				}
+			},
+			error: function() {
+				alert("답변 등록 실패")
+			}
+		})
+	})
+	
+	// 답변 불러오기 ajax
+	function getAnsList() {
+		var aqNo = "${aqNo}"
+		$.ajax({
+			type: 'get',
+			url: '<%=request.getContextPath()%>/faq/qna/ansList',
+			data: {"aqNo": aqNo},
+			success: function(result) {
+				alert("답변 조회 성공")
+				if(result != null) {
+					console.log(result);
+					displayAns(result);
+				}
+			},
+			error: function() {
+				alert("답변 조회 실패")
+			}
+		})
+	}
+	
+/* 	function displayAns(result) {
+		
+	} */
+</script>
 </html>
