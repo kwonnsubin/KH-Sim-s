@@ -34,3 +34,15 @@ hr {
 textarea {
 	resize: none
 }
+
+.btn-gray {
+	color: white;
+	background-color: gray;
+	border-style: none
+}
+
+.btn-gray:hover {
+	color: black;
+	background-color: gray-dark;
+	border-style: none
+}
