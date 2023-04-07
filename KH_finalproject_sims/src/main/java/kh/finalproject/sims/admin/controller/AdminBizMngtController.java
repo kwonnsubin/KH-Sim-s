@@ -127,19 +127,26 @@ public class AdminBizMngtController {
 		mv.addObject("searchOption", vo.getSearchOption());
 		mv.addObject("searchBox", vo.getSearchBox());
 		mv.setViewName("admin/biz/planApplyList");
-		mv.addObject("cmd", "read");
 		return mv;
 	}
 	
 	//통신사 요금제 개통 신청 상세 페이지로 이동
-	@GetMapping("/bizPlanApplyDetail/{orderNo}")
-	public ModelAndView selectBizPlanApplyDetail(ModelAndView mv, @PathVariable int orderNo) throws Exception {
-		AdminBizMngtVo bizPlanApplyDetail = service.selectBizPlanApplyDetail(orderNo);
+	/*
+	 * @GetMapping("/bizPlanApplyDetail/{orderNo}") public ModelAndView
+	 * selectBizPlanApplyDetail(ModelAndView mv, @PathVariable int orderNo) throws
+	 * Exception { AdminBizMngtVo bizPlanApplyDetail =
+	 * service.selectBizPlanApplyDetail(orderNo); mv.addObject("bizPlanApplyDetail",
+	 * bizPlanApplyDetail); mv.setViewName("admin/biz/planApplyDetail");
+	 * mv.addObject("cmd", "read"); return mv; }
+	 */
+	@GetMapping("/bizPlanApplyDetail/{userId}")
+	public ModelAndView selectBizPlanApplyDetail(ModelAndView mv, @PathVariable String userId) throws Exception {
+		AdminBizMngtVo bizPlanApplyDetail = service.selectWithdrawalDetail(userId);
 		mv.addObject("bizPlanApplyDetail", bizPlanApplyDetail);
 		mv.setViewName("admin/biz/planApplyDetail");
 		mv.addObject("cmd", "read");
 		return mv;
-	}
+	}	
 	
 	
 }

@@ -55,7 +55,7 @@
                             <li><a href="layout-vertical.html" target="_blank">신청정보</a></li>
                             <li><a href="layout-horizontal.html" target="_blank">통신사정보</a></li>
                             <li><a href="layout-horizontal.html" target="_blank">탈퇴정보</a></li>
-                            <li><a href="layout-horizontal.html" target="_blank">통신사 요금제 가입정보</a></li>
+                            <li><a href="<%=request.getContextPath()%>/admin/bizPlanApplyList">통신사 요금제 가입정보</a></li>
                         </ul>
                     </li>
                     <li class="nav-item pcoded-menu-caption">

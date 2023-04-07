@@ -91,9 +91,15 @@
 			                                        </div>
 			                                    </div>
 			                           			 <div class="form-group row">
-			                                        <label for="bizPhone" class="col-sm-2 col-form-label text-center">연락처</label>
+			                                        <label for="bizPhone" class="col-sm-2 col-form-label text-center">전화</label>
 			                                        <div class="col-sm-10">
 			                                            <input type="text" class="form-control"  name="bizPhone" <c:if test="${cmd eq 'read' }">readonly</c:if> value="${applyDetail.bizPhone}">
+			                                        </div>
+			                                    </div>
+			                           			 <div class="form-group row">
+			                                        <label for="bizLocation" class="col-sm-2 col-form-label text-center">주소</label>
+			                                        <div class="col-sm-10">
+			                                            <input type="text" class="form-control"  name="bizLocation" <c:if test="${cmd eq 'read' }">readonly</c:if> value="${applyDetail.bizLocation}">
 			                                        </div>
 			                                    </div>
 		                            		</div>	
@@ -107,10 +113,6 @@
 			                    			<div class="card-body">
 			                    				<div class="row">
 			                    					<div class="col-md-12 pagination justify-content-center">
-				                    					<%-- <div class="custom-control custom-radio custom-control-inline">
-				                    						<input type="radio" class="custom-control-input" name="enable" id=enable0 value="0" <c:if test="${applyDetail.enable eq 0'}">checked</c:if>>
-				                    						<label class="custom-control-label" for="enable0">신청 중</label>
-				                    					</div> --%>
 				                    					<div class="custom-control custom-radio custom-control-inline">
 				                    						<input type="radio" class="custom-control-input" name="enable" id="enable1" value="1" <c:if test="${applyDetail.enable eq '1'}">checked</c:if>>
 				                    						<label class="custom-control-label" for="enable1">승인</label>

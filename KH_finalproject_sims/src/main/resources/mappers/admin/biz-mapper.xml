@@ -9,6 +9,7 @@
 			*
 		FROM 
 			BIZ A
+			INNER JOIN MEMBER B ON A.BIZ_ID = B.ID
 		
 	</select>
 	<!-- 통신사 신청정보 상세 -->
@@ -22,7 +23,7 @@
 		FROM
 		    BIZ A
 		WHERE 
-			A.BIZ_ID = #{bizId}		
+			A.BIZ_ID = #{bizId}				
 	
 	</select>
 	
@@ -38,22 +39,12 @@
     		AND A.BIZ_ID = #{bizId}
 	</select>
 	
-	<!-- 통신사 검토 결과 수정 -->
-	<update id ="updateBizStatus" parameterType="adBizVo">
-		/** 관리자의 검토 결과 수정 수정(updateBizStatus)**/
-		UPDATE MEMBER
-		SET
-			ENABLE = #{enable}
-			, OPINION = #{opinion}
-		WHERE ID =#{id}
-		
-		
-	</update>
+	
 	
 	<!-- 통신사 상세 정보 수정 -->
 	<update id ="saveBizModify" parameterType="adBizVo">
 		/** 관리자의 통신사 관리 수정(saveBizModify)**/
-		UPDATE BIZ
+		UPDATE BIZ_TABLE
 		SET
 			BIZ_EMAIL = #{bizEmail}
 			, BIZ_ADDRESS = #{bizAddress}
@@ -62,6 +53,7 @@
 		WHERE BIZ_ID =#{bizId}
 	</update>
 	
+
 	
 	
 	<!-- 통신사 탈퇴정보 리스트 -->
@@ -106,27 +98,13 @@
 	
 		SELECT
 				*
-			FROM
-				USER_TABLE A
-			 JOIN
-				PLAN_ORDER B ON A.USER_ID = B.USER_ID
-			 JOIN			
-				PLAN_TABLE C ON B.PLAN_NO = C.PLAN_NO
-			WHERE
-			ORDER_NO =#{orderNo}
+			from
+			 plan_order
+			where
+			 user_id =#{userId} 
 	  
 	   
-	  <!--  SELECT
-	   		*
-	   	FROM 
-	   		PLAN_ORDER A
-	   	JOIN
-	   		USER_TABLE B ON A.USER_ID = B.USER_ID
-	   	JOIN 
-	   		PLAN_TABLE C ON A.PLAN_NO = C.PLAN_NO
-	   	WHERE
-	   	ORDER_NO = #{orderNo}	 -->	  		
-	   
+	  
 		 
 	</select>
 	

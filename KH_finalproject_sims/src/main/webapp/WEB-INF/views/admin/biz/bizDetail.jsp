@@ -109,7 +109,7 @@
 		                                    </div>
 		                           			 <div class="form-group row">
 		                                        <label for="phoneOpTime" class="col-sm-1 col-form-label text-center">개통 소요시간</label>
-		                                        <div class="col-sm-5">
+		                                        <div class="col-sm-5" >
 		                                            <input type="text" class="form-control"  name="phoneOpTime" <c:if test="${cmd eq 'read' }">readonly</c:if> value="${applyDetail.phoneOpTime}">
 		                                        </div>
 		                                         <label for="bizTime" class="col-sm-1 col-form-label text-center">영업시간</label>
@@ -131,10 +131,10 @@
 		                                        	<c:set var="netService" value="KT : ${applyDetail.ktNetService} / "/>
 		                                        </c:if>
 		                                        <c:if test="${not empty applyDetail.sktNetService }">
-		                                        	<c:set var="netService" value="${netService}SKT : ${applyDetail.sktNetService} / "/>
+		                                        	<c:set var="netService" value="${netService} SKT : ${applyDetail.sktNetService} / "/>
 		                                        </c:if>
 		                                        <c:if test="${not empty applyDetail.lgNetService }">
-		                                        	<c:set var="netService" value="${netService}LG : ${applyDetail.lgNetService}"/>
+		                                        	<c:set var="netService" value="${netService} LG : ${applyDetail.lgNetService}"/>
 		                                        </c:if>
 		                                        <div class="col-sm-5">
 		                                            <input type="text" class="form-control"  name="bizClosedDay" <c:if test="${cmd eq 'read' }">readonly</c:if> value="${netService}">
@@ -148,6 +148,12 @@
 		                                        <label for="network" class="col-sm-1 col-form-label text-center">지원통신망</label>
 		                                        <div class="col-sm-5">
 		                                            <input type="text" class="form-control"  name="network" <c:if test="${cmd eq 'read' }">readonly</c:if> value="${applyDetail.network}">
+		                                        </div>
+		                                    </div>
+		                                    <div class="form-group row">
+		                                        <label for="bizLocation" class="col-sm-1 col-form-label text-center">주소</label>
+		                                        <div class="col-sm-11">
+		                                            <input type="text" class="form-control"  name="bizLocation" <c:if test="${cmd eq 'read' }">readonly</c:if> value="${applyDetail.bizLocation}">
 		                                        </div>
 		                                    </div>
 		                                    
@@ -166,7 +172,7 @@
 															<c:forEach var="list" items="${bizPlanList}" varStatus="status">
 																<tr>
 																	<td>${status.count}</td>
-																	<td><a href="<%=request.getContextPath()%>/admin/planApplyDetail/${list.planName}">${list.planName}</a></td>
+																	<td>${list.planName}</td>
 																</tr>
 															</c:forEach>
 														</tbody>

@@ -66,8 +66,8 @@ public class AdminBizMngtServiceImpl implements AdminBizMngtService{
 
 	//통신사 요금제 개통 상세 페이지로 이동
 	@Override
-	public AdminBizMngtVo selectBizPlanApplyDetail(int orderNo) {
-		return dao.selectBizPlanApplyDetail(orderNo);
+	public AdminBizMngtVo selectBizPlanApplyDetail(String userId) {
+		return dao.selectBizPlanApplyDetail(userId);
 	}
 
 	

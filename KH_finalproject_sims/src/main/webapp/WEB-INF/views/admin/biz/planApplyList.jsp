@@ -66,15 +66,26 @@
 													<thead>
 														<tr>
 															<th>번호</th>
+															<th>신청자</th>
 															<th>요금제명</th>
+															<!-- <th>신청상태</th> -->
+															<th>신청일</th>
 														</tr>
 													</thead>
 													<tbody>
 														<c:forEach var="list" items="${bizPlanApplyList}" varStatus="status">
 															<tr>
 																<td>${list.orderNo}</td>
-																<td><a href="<%=request.getContextPath()%>/admin/planApplyDetail/${list.planName}">${list.planName}</a></td>
-															
+																<td><a href="<%=request.getContextPath()%>/admin/bizPlanApplyDetail">${list.userId}</td>
+																<td>${list.planName}</td>
+																<%-- <td>
+																	<c:choose>
+																		<c:when test="${list.orderStatus eq '1'}"> 신청완료 </c:when>
+																		<c:when test="${list.orderStatus eq '2'}"> 승인완료 </c:when>
+																		<c:otherwise>승인보류</c:otherwise>
+																	</c:choose>
+																</td> --%>
+																<td><fmt:formatDate value="${list.orderDate}" pattern="yyyy.MM.dd"/> </td>															
 															</tr>
 														</c:forEach>
 													</tbody>

@@ -86,7 +86,7 @@
 															<th>번호</th>
 															<th>업체명</th>
 															<th>대표자</th>
-															<th>신청상태</th>
+															<!-- <th>신청상태</th> -->
 															<th>신청일</th>
 														</tr>
 													</thead>
@@ -100,14 +100,14 @@
 																	</c:if>
 																<td><a href="<%=request.getContextPath()%>/admin/applyDetail/${list.bizId}?divCheck=${divCheck}">${list.bizName}</a></td>
 																<td><a href="<%=request.getContextPath()%>/admin/applyDetail/${list.bizId}?divCheck=${divCheck}">${list.bizOwnerName}</a></td>
-																<td>
+																<%-- <td>
 																	<c:choose>
-																		<c:when test="${list.enable eq '1'}"> 승인 </c:when>
-																		<c:when test="${list.enable eq '2'}"> 탈퇴 </c:when>
-																		<c:when test="${list.enable eq '3'}"> 반려 </c:when>
-																		<c:otherwise>신청 중</c:otherwise>
+																		<c:when test="${list.enable eq '0'}"> 인증 전 </c:when>
+																		<c:when test="${list.enable eq '1'}"> 인증 완료 </c:when>
+																		<c:when test="${list.enable eq '3'}"> 반려</c:when>
+																		<c:otherwise>탈퇴</c:otherwise>
 																	</c:choose>
-																</td>
+																</td> --%>
 																<td><fmt:formatDate value="${list.writeDate}" pattern="yyyy.MM.dd"/> </td>
 															</tr>
 														</c:forEach>
