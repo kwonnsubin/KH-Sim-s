@@ -73,5 +73,4 @@ SELECT * FROM (
     left outer join plan_table using (plan_no)
     <![CDATA[ where rownum <=5 ]]>
 </select>
-
 </mapper>

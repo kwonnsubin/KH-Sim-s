@@ -19,7 +19,10 @@ public class AdminStatisticsController {
 	public ModelAndView selectOrderByRegistration(
 			ModelAndView mv
 			) {
-		mv.addObject("orderByRegistration", service.selectOrderByRegistration());
+		mv.addObject("orderByRegistration", service.selectOrderByRegistration()); // 가입자 많은 순
+		mv.addObject("ageGroupPlans",service.selectAgeGroupPlans()); // 연령대별 요금제 
+		mv.addObject("starRating", service.selectStarRating()); // 별점순 통신사
+		mv.addObject("monthlyPlanOrderCount", service.selectMonthlyPlanOrderCount()); // 월별 가입자 수
 		mv.setViewName("/admin/statistics");
 		return mv;
 		

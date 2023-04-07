@@ -16,6 +16,12 @@
 
   // Set a callback to run when the Google Visualization API is loaded.
   google.charts.setOnLoadCallback(drawChart); // drawChart 자바스크립트 호출
+  
+  google.charts.setOnLoadCallback(drawChartt); // drawChart 자바스크립트 호출
+  
+  google.charts.setOnLoadCallback(starRating); // drawChart 자바스크립트 호출
+  
+  google.charts.setOnLoadCallback(monthlyPlanOrderCount); // 월별 가입자 수
 
   // Callback that creates and populates a data table,
   // instantiates the pie chart, passes in the data and
@@ -23,8 +29,6 @@
   function drawChart() {
 
     // Create the data table.
-    var data = new google.visualization.DataTable();
-    
      var data = google.visualization.arrayToDataTable([
         ['Element', 'Density', { role: 'style' }, { role: 'annotation' } ],
         ['${orderByRegistration[0].planName}', ${orderByRegistration[0].cnt}, '#FF8000', '${orderByRegistration[0].bizName}' ],
@@ -32,7 +36,7 @@
         ['${orderByRegistration[2].planName}', ${orderByRegistration[2].cnt}, '#5858FA', '${orderByRegistration[2].bizName}' ],
         ['${orderByRegistration[3].planName}', ${orderByRegistration[3].cnt}, '#0080FF', '${orderByRegistration[3].bizName}' ],
         ['${orderByRegistration[4].planName}', ${orderByRegistration[4].cnt}, '#0489B1', '${orderByRegistration[4].bizName}' ],
-     ]); 
+     ]);
      
 
     // Set chart options
@@ -42,9 +46,81 @@
                    };
 
     // Instantiate and draw our chart, passing in some options.
-    var chart = new google.visualization.BarChart(document.getElementById('chart_div'));
+    var chart = new google.visualization.BarChart(document.getElementById('chart_chart_div'));
     chart.draw(data, options);
   }
+  
+	// 연령대별 요금제 랭킹
+  function drawChartt() {
+	    // Create the data table.
+		  var data = google.visualization.arrayToDataTable([
+		      ['Element', 'Density', { role: 'style' }, { role: 'annotation' } ],
+		      ['${ageGroupPlans[0].ageGroup}', ${ageGroupPlans[0].cnt}, '#FF8000', '${ageGroupPlans[0].planName}' ],
+		      ['${ageGroupPlans[1].ageGroup}', ${ageGroupPlans[1].cnt}, '#B404AE', '${ageGroupPlans[1].planName}' ],
+		      ['${ageGroupPlans[2].ageGroup}', ${ageGroupPlans[2].cnt}, '#5858FA', '${ageGroupPlans[2].planName}' ],
+		      ['${ageGroupPlans[3].ageGroup}', ${ageGroupPlans[3].cnt}, '#0080FF', '${ageGroupPlans[3].planName}' ],
+		      ['${ageGroupPlans[4].ageGroup}', ${ageGroupPlans[4].cnt}, '#0489B1', '${ageGroupPlans[4].planName}' ],
+		   ]); 
+	   
+	    // Set chart options
+	    var options = {'title':'연령대별 인기 요금제',
+	                   'legend':'none',
+	                   'chartArea': {'width': '80%', 'height': '80%'}
+	                   };
+
+	    // Instantiate and draw our chart, passing in some options.
+	    var chart = new google.visualization.BarChart(document.getElementById('chartt_chart_div'));
+	    chart.draw(data, options);
+	  }
+  
+
+	  // 별점순 통신사 랭킹
+	  function starRating() {
+		    // Create the data table.
+			  var data = google.visualization.arrayToDataTable([
+			      ['Element', 'Density', { role: 'style' }, { role: 'annotation' } ],
+			      ['1위', ${starRating[0].bizReviewStar}, '#FF8000', '${starRating[0].bizName}' ],
+			      ['2위', ${starRating[1].bizReviewStar}, '#B404AE', '${starRating[1].bizName}' ],
+			      ['3위', ${starRating[2].bizReviewStar}, '#5858FA', '${starRating[2].bizName}' ],
+			      ['4위', ${starRating[3].bizReviewStar}, '#0080FF', '${starRating[3].bizName}' ],
+			      ['5위', ${starRating[4].bizReviewStar}, '#0489B1', '${starRating[4].bizName}' ],
+			   ]); 
+		   
+		    // Set chart options
+		    var options = {'title':'별점순 통신사',
+		                   'legend':'none',
+		                   'chartArea': {'width': '80%', 'height': '80%'}
+		                   };
+	
+		    // Instantiate and draw our chart, passing in some options.
+		    var chart = new google.visualization.BarChart(document.getElementById('starRating_chart_div'));
+		    chart.draw(data, options);
+		  }
+	  
+	  
+	  
+	  // 월별 가입자 수
+	  function monthlyPlanOrderCount() {
+		    // Create the data table.
+			  var data = google.visualization.arrayToDataTable([
+			      ['Element', 'Density', { role: 'style' }, { role: 'annotation' } ],
+			      ['${monthlyPlanOrderCount[0].orderMonth}', ${monthlyPlanOrderCount[0].cnt}, '#FF8000', '1' ],
+			      ['${monthlyPlanOrderCount[1].orderMonth}', ${monthlyPlanOrderCount[1].cnt}, '#B404AE', '1' ],
+			      ['${monthlyPlanOrderCount[2].orderMonth}', ${monthlyPlanOrderCount[2].cnt}, '#5858FA', '1' ],
+			      ['${monthlyPlanOrderCount[3].orderMonth}', ${monthlyPlanOrderCount[3].cnt}, '#0080FF', '1' ],
+			      ['${monthlyPlanOrderCount[4].orderMonth}', ${monthlyPlanOrderCount[4].cnt}, '#0489B1', '1' ],
+			   ]); 
+		   
+		    // Set chart options
+		    var options = {'title':'월별 가입자 수',
+		                   'legend':'none',
+		                   'chartArea': {'width': '80%', 'height': '80%'}
+		                   };
+	
+		    // Instantiate and draw our chart, passing in some options.
+		    var chart = new google.visualization.BarChart(document.getElementById('monthlyPlanOrderCount_chart_div'));
+		    chart.draw(data, options);
+		  }
 </script>
 
 </head>
@@ -62,10 +138,48 @@
 	                        <h5>가입자 많은 순</h5>
 	                    </div>
 	                    <div class="card-body">
-	                    	<div id="chart_div" style="width:799px; height:540px;"></div>
+	                    	<div id="chart_chart_div" style="width:799px; height:540px;"></div>
 						</div>
 					 </div>
 	            </div>
+	            <!-- 연령대별 인기 요금제 -->
+				<div class="col-md-7">
+	                <div class="card">
+	                    <div class="card-header">
+	                        <h5>연령대별 인기 요금제</h5>
+	                    </div>
+	                    <div class="card-body">
+	                    	<div id="chartt_chart_div" style="width:799px; height:540px;"></div>
+						</div>
+					 </div>
+	            </div>
+	            <!-- 별점순 통신사 -->
+				<div class="col-md-7">
+	                <div class="card">
+	                    <div class="card-header">
+	                        <h5>별점순 통신사</h5>
+	                    </div>
+	                    <div class="card-body">
+	                    	<div id="starRating_chart_div" style="width:799px; height:540px;"></div>
+						</div>
+					 </div>
+	            </div>
+	            <!-- 월별 가입자 수 -->
+				<div class="col-md-7">
+	                <div class="card">
+	                    <div class="card-header">
+	                        <h5>월별 가입자 수</h5>
+	                    </div>
+	                    <div class="card-body">
+	                    	<div id="monthlyPlanOrderCount_chart_div" style="width:799px; height:540px;"></div>
+						</div>
+					 </div>
+	            </div>
+	            
+	            
+	            
+	            
+	            
 			</div>
 		</div>
 	</div>

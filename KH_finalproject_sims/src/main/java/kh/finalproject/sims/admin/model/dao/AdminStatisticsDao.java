@@ -17,4 +17,19 @@ public class AdminStatisticsDao {
 	public List<AdminStatisticsVo> selectOrderByRegistration() {
 		return sqlSession.selectList("admin.selectOrderByRegistration");
 	}
+	
+	// 연령대별 가장 인기있는 요금제
+	public  List<AdminStatisticsVo> selectAgeGroupPlans() {
+		return sqlSession.selectList("admin.selectAgeGroupPlans");
+	}
+	
+	// 별점순 통신사
+	public List<AdminStatisticsVo> selectStarRating() {
+		return sqlSession.selectList("admin.selectStarRating");
+	}
+	
+	// 월별 가입자 수
+	public List<AdminStatisticsVo> selectMonthlyPlanOrderCount() {
+		return sqlSession.selectList("admin.selectMonthlyPlanOrderCount");
+	}
 }

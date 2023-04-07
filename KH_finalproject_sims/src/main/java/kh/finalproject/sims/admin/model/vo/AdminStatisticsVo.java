@@ -19,4 +19,17 @@ public class AdminStatisticsVo {
 	private String planName;
 	private String bizName; 
 	private int cnt; 
+	
+	// 연령대별 가장 인기있는 요금제
+	private String ageGroup;
+	//private String bizName;
+	//private String planName;
+	//private int cnt;
+	int rn;
+	
+	// 별점순 통신사 랭킹
+	double bizReviewStar;
+	
+	// 월별 가입자 수
+	String orderMonth;
 }
