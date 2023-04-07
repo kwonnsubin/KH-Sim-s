@@ -26,5 +26,9 @@ public class UserPlanFindDao {
 	public List<BizInfoMngtVo> selectBizNameList() {
 		return sqlSession.selectList("plan.bizNameList");
 	}
+
+	public List<PlanVo> selectPlanList(PlanVo pvo) {
+		return sqlSession.selectList("plan.selectSearchPlanList", pvo);
+	}
 	
 }

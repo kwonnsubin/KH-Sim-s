@@ -21,6 +21,43 @@
 		select * from plan_table
 	</select>
 	
+	<select id="selectSearchPlanList" resultType="planVo">
+		select * from plan_table 
+		<trim prefix="where" prefixOverrides="and|or">
+			<if test="planData == 100000">plan_data >= 100000 and</if>
+			<if test="planData == 50000"><![CDATA[ (plan_data < 100000 and plan_data >= 50000) and]]> </if>
+			<if test="planData == 10000"><![CDATA[ (plan_data < 50000 and plan_data >= 10000) and]]> </if>
+			<if test="planData == 5000"><![CDATA[ (plan_data < 10000 and plan_data >= 5000) and]]> </if>
+			<if test="planData == 1000"><![CDATA[ plan_data <= 5000 and]]> </if>
+			
+			<if test="planVoice == 0"><![CDATA[ plan_voice = 0 and ]]> </if>
+			<if test="planVoice == 300"><![CDATA[ plan_voice >= 300 and ]]> </if>
+			<if test="planVoice == 180"><![CDATA[ (plan_voice < 300 and plan_voice >= 180) and ]]> </if>
+			<if test="planVoice == 60"><![CDATA[ (plan_voice < 180 and plan_voice >= 60) and ]]> </if>
+			<if test="planVoice == 30"><![CDATA[ plan_voice <= 60 and ]]> </if>
+			
+			<if test="planMessage == 0"><![CDATA[ plan_message = 0 and ]]> </if>
+			<if test="planMessage == 300"><![CDATA[ plan_message >= 300 and ]]> </if>
+			<if test="planMessage == 100"><![CDATA[ (plan_message < 300 and plan_message >= 100) and ]]> </if>
+			<if test="planMessage == 50"><![CDATA[ (plan_message < 100 and plan_message >= 50) and ]]> </if>
+			<if test="planMessage == 10"><![CDATA[ plan_message <= 50 and ]]> </if>
+			
+			<if test="planPrice == 30000"><![CDATA[ plan_price >= 30000 and ]]> </if>
+			<if test="planPrice == 20000"><![CDATA[ (plan_price < 30000 and plan_price >= 20000) and ]]> </if>
+			<if test="planPrice == 10000"><![CDATA[ (plan_price < 20000 and plan_price >= 10000) and ]]> </if>
+			<if test="planPrice == 5000"><![CDATA[ (plan_price < 10000 and plan_price >= 5000) and ]]> </if>
+			<if test="planPrice == 1000"><![CDATA[ plan_price <= 5000 and ]]> </if>
+			
+			<if test="netNo != null"><![CDATA[ net_no = #{netNo} and ]]> </if>
+			
+			<if test="genNo == 1"><![CDATA[ gen_no = #{genNo}]]> </if>
+			<if test="genNo == 2"><![CDATA[ (gen_no = #{genNo} or gen_no = 4)]]> </if>
+			<if test="genNo == 3"><![CDATA[ (gen_no = #{genNo} or gen_no = 4)]]> </if>
+			
+			<if test="bizName != null"><![CDATA[and biz_name = #{bizName} ]]> </if>
+		</trim>
+	</select>
+	
 	<select id="cntPlanList" resultType="int">
 		select count(*) from plan_table
 	</select>

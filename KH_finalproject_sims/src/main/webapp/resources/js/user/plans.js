@@ -15,7 +15,7 @@ $(document).ready(function() {
 		// 버튼 클릭 시 색 변경
 		dataInputChecked();
 		
-		var dataText = $("#planData fieldset label input:checked").val();
+		var dataText = $("#planData fieldset label input:checked").next().text();
 		$(".filter-area p").eq(1).text(dataText);
 	});
 	
@@ -40,7 +40,7 @@ $(document).ready(function() {
 		dataRangeText();
 		dataInputChecked();
 		
-		var dataText = $("#planData fieldset label input:checked").val();
+		var dataText = $("#planData fieldset label input:checked").next().text();
 		$(".filter-area p").eq(1).text(dataText);
 	});
 	
@@ -53,7 +53,7 @@ $(document).ready(function() {
 		// 버튼 클릭 시 색 변경
 		voiceInputChecked();
 		
-		var voiceText = $("#planVoice fieldset label input:checked").val();
+		var voiceText = $("#planVoice fieldset label input:checked").next().text();
 		$(".filter-area p").eq(3).text(voiceText);
 	});
 	
@@ -78,7 +78,7 @@ $(document).ready(function() {
 		voiceRangeText();
 		voiceInputChecked();
 		
-		var voiceText = $("#planData fieldset label input:checked").val();
+		var voiceText = $("#planData fieldset label input:checked").next().text();
 		$(".filter-area p").eq(3).text(voiceText);
 	});
 	
@@ -119,7 +119,7 @@ $(document).ready(function() {
 		// 버튼 클릭 시 색 변경
 		priceInputChecked();
 		
-		var priceText = $("#planPrice fieldset label input:checked").val();
+		var priceText = $("#planPrice fieldset label input:checked").next().text();
 		$(".filter-area p").eq(5).text(priceText);
 	});
 	
@@ -143,13 +143,8 @@ $(document).ready(function() {
 });
 
 function goToScroll(name) {
-//	var target = $("#" + name).offset().top;
-//	$(".modal-body").animate({scrollTop: target}, 500);
-//	location.href = "#" + name;
-	
-	if(name === "planData") {
-		$(".modal-body").animate({scrollTop: 10}, 500);
-	}
+	var target = $("#" + name).position().top;
+	$(".modal-body").animate({scrollTop: $(".modal-body").scrollTop() + target - 30}, 500);
 }
 
 // planData 컨트롤
@@ -184,7 +179,7 @@ function dataRangeText() {
 }
 
 function dataRdoValCheck(e) {
-	if($(e.target).val() === "전체") {
+	if($(e.target).next().text() === "전체") {
 		$("#planData input[type=range]").eq(0).val("0");
 		$("#planData input[type=range]").eq(1).val("100");
 		$("#planData div[range]").css("left", "0%");
@@ -195,7 +190,7 @@ function dataRdoValCheck(e) {
 		$("#planData div[sign]").eq(1).css("left", "100%");
 		$("#planData div[sign]").eq(0).children("span").text("0");
 		$("#planData div[sign]").eq(1).children("span").text("100");
-	} else if($(e.target).val() === "100GB 이상") {
+	} else if($(e.target).next().text() === "100GB 이상") {
 		$("#planData input[type=range]").eq(0).val("100");
 		$("#planData input[type=range]").eq(1).val("100");
 		$("#planData div[range]").css("left", "100%");
@@ -206,7 +201,7 @@ function dataRdoValCheck(e) {
 		$("#planData div[sign]").eq(1).css("left", "100%");
 		$("#planData div[sign]").eq(0).children("span").text("100");
 		$("#planData div[sign]").eq(1).children("span").text("100");
-	} else if($(e.target).val() === "50~100GB") {
+	} else if($(e.target).next().text() === "50~100GB") {
 		$("#planData input[type=range]").eq(0).val("50");
 		$("#planData input[type=range]").eq(1).val("100");
 		$("#planData div[range]").css("left", "50%");
@@ -217,7 +212,7 @@ function dataRdoValCheck(e) {
 		$("#planData div[sign]").eq(1).css("left", "100%");
 		$("#planData div[sign]").eq(0).children("span").text("50");
 		$("#planData div[sign]").eq(1).children("span").text("100");
-	} else if($(e.target).val() === "10~50GB") {
+	} else if($(e.target).next().text() === "10~50GB") {
 		$("#planData input[type=range]").eq(0).val("10");
 		$("#planData input[type=range]").eq(1).val("50");
 		$("#planData div[range]").css("left", "10%");
@@ -228,7 +223,7 @@ function dataRdoValCheck(e) {
 		$("#planData div[sign]").eq(1).css("left", "50%");
 		$("#planData div[sign]").eq(0).children("span").text("10");
 		$("#planData div[sign]").eq(1).children("span").text("50");
-	} else if($(e.target).val() === "5~10GB") {
+	} else if($(e.target).next().text() === "5~10GB") {
 		$("#planData input[type=range]").eq(0).val("5");
 		$("#planData input[type=range]").eq(1).val("10");
 		$("#planData div[range]").css("left", "5%");
@@ -239,7 +234,7 @@ function dataRdoValCheck(e) {
 		$("#planData div[sign]").eq(1).css("left", "10%");
 		$("#planData div[sign]").eq(0).children("span").text("5");
 		$("#planData div[sign]").eq(1).children("span").text("10");
-	} else if($(e.target).val() === "5GB 이하") {
+	} else if($(e.target).next().text() === "5GB 이하") {
 		$("#planData input[type=range]").eq(0).val("0");
 		$("#planData input[type=range]").eq(1).val("5");
 		$("#planData div[range]").css("left", "0%");
@@ -287,7 +282,7 @@ function voiceRangeText() {
 }
 
 function voiceRdoValCheck(e) {
-	if($(e.target).val() === "전체") {
+	if($(e.target).next().text() === "전체") {
 		$("#planVoice input[type=range]").eq(0).val("0");
 		$("#planVoice input[type=range]").eq(1).val("300");
 		$("#planVoice div[range]").css("left", "0%");
@@ -298,7 +293,7 @@ function voiceRdoValCheck(e) {
 		$("#planVoice div[sign]").eq(1).css("left", "100%");
 		$("#planVoice div[sign]").eq(0).children("span").text("0");
 		$("#planVoice div[sign]").eq(1).children("span").text("100");
-	} else if($(e.target).val() === "기본제공") {
+	} else if($(e.target).next().text() === "기본제공") {
 		$("#planVoice input[type=range]").eq(0).val("0");
 		$("#planVoice input[type=range]").eq(1).val("0");
 		$("#planVoice div[range]").css("left", "0%");
@@ -309,7 +304,7 @@ function voiceRdoValCheck(e) {
 		$("#planVoice div[sign]").eq(1).css("left", "0%");
 		$("#planVoice div[sign]").eq(0).children("span").text("0");
 		$("#planVoice div[sign]").eq(1).children("span").text("0");
-	} else if($(e.target).val() === "300분 이상") {
+	} else if($(e.target).next().text() === "300분 이상") {
 		$("#planVoice input[type=range]").eq(0).val("300");
 		$("#planVoice input[type=range]").eq(1).val("300");
 		$("#planVoice div[range]").css("left", "100%");
@@ -320,7 +315,7 @@ function voiceRdoValCheck(e) {
 		$("#planVoice div[sign]").eq(1).css("left", "100%");
 		$("#planVoice div[sign]").eq(0).children("span").text("300");
 		$("#planVoice div[sign]").eq(1).children("span").text("300");
-	} else if($(e.target).val() === "180~300분") {
+	} else if($(e.target).next().text() === "180~300분") {
 		$("#planVoice input[type=range]").eq(0).val("180");
 		$("#planVoice input[type=range]").eq(1).val("300");
 		$("#planVoice div[range]").css("left", "60%");
@@ -331,7 +326,7 @@ function voiceRdoValCheck(e) {
 		$("#planVoice div[sign]").eq(1).css("left", "100%");
 		$("#planVoice div[sign]").eq(0).children("span").text("180");
 		$("#planVoice div[sign]").eq(1).children("span").text("300");
-	} else if($(e.target).val() === "60~180분") {
+	} else if($(e.target).next().text() === "60~180분") {
 		$("#planVoice input[type=range]").eq(0).val("60");
 		$("#planVoice input[type=range]").eq(1).val("180");
 		$("#planVoice div[range]").css("left", "20%");
@@ -342,7 +337,7 @@ function voiceRdoValCheck(e) {
 		$("#planVoice div[sign]").eq(1).css("left", "60%");
 		$("#planVoice div[sign]").eq(0).children("span").text("60");
 		$("#planVoice div[sign]").eq(1).children("span").text("180");
-	} else if($(e.target).val() === "60분 이하") {
+	} else if($(e.target).next().text() === "60분 이하") {
 		$("#planVoice input[type=range]").eq(0).val("0");
 		$("#planVoice input[type=range]").eq(1).val("60");
 		$("#planVoice div[range]").css("left", "0%");
@@ -390,7 +385,7 @@ function messageRangeText() {
 }
 
 function messageRdoValCheck(e) {
-	if($(e.target).val() === "전체") {
+	if($(e.target).next().text() === "전체") {
 		$("#planMessage input[type=range]").eq(0).val("0");
 		$("#planMessage input[type=range]").eq(1).val("300");
 		$("#planMessage div[range]").css("left", "0%");
@@ -401,7 +396,7 @@ function messageRdoValCheck(e) {
 		$("#planMessage div[sign]").eq(1).css("left", "100%");
 		$("#planMessage div[sign]").eq(0).children("span").text("0");
 		$("#planMessage div[sign]").eq(1).children("span").text("300");
-	} else if($(e.target).val() === "기본제공") {
+	} else if($(e.target).next().text() === "기본제공") {
 		$("#planMessage input[type=range]").eq(0).val("0");
 		$("#planMessage input[type=range]").eq(1).val("0");
 		$("#planMessage div[range]").css("left", "0%");
@@ -412,7 +407,7 @@ function messageRdoValCheck(e) {
 		$("#planMessage div[sign]").eq(1).css("left", "0%");
 		$("#planMessage div[sign]").eq(0).children("span").text("0");
 		$("#planMessage div[sign]").eq(1).children("span").text("0");
-	} else if($(e.target).val() === "300건 이상") {
+	} else if($(e.target).next().text() === "300건 이상") {
 		$("#planMessage input[type=range]").eq(0).val("300");
 		$("#planMessage input[type=range]").eq(1).val("300");
 		$("#planMessage div[range]").css("left", "100%");
@@ -423,7 +418,7 @@ function messageRdoValCheck(e) {
 		$("#planMessage div[sign]").eq(1).css("left", "100%");
 		$("#planMessage div[sign]").eq(0).children("span").text("300");
 		$("#planMessage div[sign]").eq(1).children("span").text("300");
-	} else if($(e.target).val() === "100~300건") {
+	} else if($(e.target).next().text() === "100~300건") {
 		$("#planMessage input[type=range]").eq(0).val("100");
 		$("#planMessage input[type=range]").eq(1).val("300");
 		$("#planMessage div[range]").css("left", "33%");
@@ -434,7 +429,7 @@ function messageRdoValCheck(e) {
 		$("#planMessage div[sign]").eq(1).css("left", "100%");
 		$("#planMessage div[sign]").eq(0).children("span").text("100");
 		$("#planMessage div[sign]").eq(1).children("span").text("300");
-	} else if($(e.target).val() === "50~100건") {
+	} else if($(e.target).next().text() === "50~100건") {
 		$("#planMessage input[type=range]").eq(0).val("50");
 		$("#planMessage input[type=range]").eq(1).val("100");
 		$("#planMessage div[range]").css("left", "16%");
@@ -445,7 +440,7 @@ function messageRdoValCheck(e) {
 		$("#planMessage div[sign]").eq(1).css("left", "33%");
 		$("#planMessage div[sign]").eq(0).children("span").text("50");
 		$("#planMessage div[sign]").eq(1).children("span").text("100");
-	} else if($(e.target).val() === "50건 이하") {
+	} else if($(e.target).next().text() === "50건 이하") {
 		$("#planMessage input[type=range]").eq(0).val("0");
 		$("#planMessage input[type=range]").eq(1).val("50");
 		$("#planMessage div[range]").css("left", "0%");
@@ -521,4 +516,34 @@ function bizNameInputChecked() {
 			len.eq(i).children('span').css("color", '#333');
 		}
 	}
+}
+
+// 모달창 컨트롤 끝
+
+// url 경로
+function getContextPath() {
+	var hostIndex = location.href.indexOf(location.host) + location.host.length;
+	return location.href.substring(hostIndex, location.href.indexOf('/', hostIndex + 1));
+}
+
+var cPath = getContextPath();
+
+// 검색한 리스트 가져오기
+$(".search-btn").on("click", searchList);
+
+function searchList() {
+	$.ajax({
+		url : cPath + "/plans",
+		type : "get",
+		async : false,
+		data : {
+			planData : $("#planData fieldset label input:checked").val(),
+			planVoice : $("#planVoice fieldset label input:checked").val(),
+			planMessage : $("#planMessage fieldset label input:checked").val(),
+			planPrice : $("#planPrice fieldset label input:checked").val(),
+			netNo : $("#netNo fieldset label input:checked").val(),
+			genNo : $("#genNo fieldset label input:checked").val(),
+			bizName : $("#bizName fieldset label input:checked").val()
+		}
+	 });
 }

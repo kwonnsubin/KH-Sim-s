@@ -137,32 +137,32 @@
 						        				<div>
 					        						<fieldset>
 														<label class="mx-1">
-													    	<input type="radio" name="data" value="전체" checked />
+													    	<input type="radio" name="data" value="999999" checked />
 													    	<span class="px-2">전체</span>
 														</label>
 													
 													  	<label class="mx-1">
-													    	<input type="radio" name="data" value="100GB 이상" />
+													    	<input type="radio" name="data" value="100000" />
 													    	<span class="px-2">100GB 이상</span>
 													  	</label>
 													
 													 	<label class="mx-1">
-													    	<input type="radio" name="data" value="50~100GB" />
+													    	<input type="radio" name="data" value="50000" />
 													    	<span class="px-2">50~100GB</span>
 													  	</label>
 													
 													  	<label class="mx-1">
-													    	<input type="radio" name="data" value="10~50GB" />
+													    	<input type="radio" name="data" value="10000" />
 													    	<span class="px-2">10~50GB</span>
 													  	</label>
 													  	
 													  	<label class="mx-1">
-													    	<input type="radio" name="data" value="5~10GB" />
+													    	<input type="radio" name="data" value="5000" />
 													    	<span class="px-2">5~10GB</span>
 													  	</label>
 													  	
 													  	<label class="mx-1">
-													    	<input type="radio" name="data" value="5GB 이하" />
+													    	<input type="radio" name="data" value="1000" />
 													    	<span class="px-2">5GB 이하</span>
 													  	</label>
 													</fieldset>
@@ -213,32 +213,32 @@
 						        				<div>
 					        						<fieldset>
 														<label class="mx-1">
-													    	<input type="radio" name="voice" value="전체" checked />
+													    	<input type="radio" name="voice" value="999999" checked />
 													    	<span class="px-2">전체</span>
 														</label>
 													
 													  	<label class="mx-1">
-													    	<input type="radio" name="voice" value="기본제공" />
+													    	<input type="radio" name="voice" value="0" />
 													    	<span class="px-2">기본제공</span>
 													  	</label>
 													  	
 													  	<label class="mx-1">
-													    	<input type="radio" name="voice" value="300분 이상" />
+													    	<input type="radio" name="voice" value="300" />
 													    	<span class="px-2">300분 이상</span>
 													  	</label>
 													
 													 	<label class="mx-1">
-													    	<input type="radio" name="voice" value="180~300분" />
+													    	<input type="radio" name="voice" value="180" />
 													    	<span class="px-2">180~300분</span>
 													  	</label>
 													
 													  	<label class="mx-1">
-													    	<input type="radio" name="voice" value="60~180분" />
+													    	<input type="radio" name="voice" value="60" />
 													    	<span class="px-2">60~180분</span>
 													  	</label>
 													  	
 													  	<label class="mx-1">
-													    	<input type="radio" name="voice" value="60분 이하" />
+													    	<input type="radio" name="voice" value="30" />
 													    	<span class="px-2">60분 이하</span>
 													  	</label>
 													</fieldset>
@@ -289,32 +289,32 @@
 						        				<div>
 					        						<fieldset>
 														<label class="mx-1">
-													    	<input type="radio" name="voice" value="전체" checked />
+													    	<input type="radio" name="voice" value="999999" checked />
 													    	<span class="px-2">전체</span>
 														</label>
 													
 													  	<label class="mx-1">
-													    	<input type="radio" name="voice" value="기본제공" />
+													    	<input type="radio" name="voice" value="0" />
 													    	<span class="px-2">기본제공</span>
 													  	</label>
 													  	
 													  	<label class="mx-1">
-													    	<input type="radio" name="voice" value="300건 이상" />
+													    	<input type="radio" name="voice" value="300" />
 													    	<span class="px-2">300건 이상</span>
 													  	</label>
 													
 													 	<label class="mx-1">
-													    	<input type="radio" name="voice" value="100~300건" />
+													    	<input type="radio" name="voice" value="100" />
 													    	<span class="px-2">100~300건</span>
 													  	</label>
 													
 													  	<label class="mx-1">
-													    	<input type="radio" name="voice" value="50~100건" />
+													    	<input type="radio" name="voice" value="50" />
 													    	<span class="px-2">50~100건</span>
 													  	</label>
 													  	
 													  	<label class="mx-1">
-													    	<input type="radio" name="voice" value="50건 이하" />
+													    	<input type="radio" name="voice" value="10" />
 													    	<span class="px-2">50건 이하</span>
 													  	</label>
 													</fieldset>
@@ -329,33 +329,33 @@
 					        							<div class="row">
 					        								<div class="col">
 																<label class="mx-1">
-															    	<input type="radio" name="voice" value="전체" checked />
+															    	<input type="radio" name="voice" value="999999" checked />
 															    	<span class="px-2">전체</span>
 																</label>
 															
 															  	<label class="mx-1">
-															    	<input type="radio" name="voice" value="3만원 이상" />
+															    	<input type="radio" name="voice" value="30000" />
 															    	<span class="px-2">3만원 이상</span>
 															  	</label>
 															  	
 															  	<label class="mx-1">
-															    	<input type="radio" name="voice" value="2~3만원" />
+															    	<input type="radio" name="voice" value="20000" />
 															    	<span class="px-2">2~3만원</span>
 															  	</label>
 					        								</div>
 					        								<div class="col">
 															 	<label class="mx-1">
-															    	<input type="radio" name="voice" value="1~2만원" />
+															    	<input type="radio" name="voice" value="10000" />
 															    	<span class="px-2">1~2만원</span>
 															  	</label>
 															
 															  	<label class="mx-1">
-															    	<input type="radio" name="voice" value="5천~1만원" />
+															    	<input type="radio" name="voice" value="5000" />
 															    	<span class="px-2">5천~1만원</span>
 															  	</label>
 															  	
 															  	<label class="mx-1">
-															    	<input type="radio" name="voice" value="5천원 이하" />
+															    	<input type="radio" name="voice" value="1000" />
 															    	<span class="px-2">5천원 이하</span>
 															  	</label>
 														  	</div>
@@ -374,17 +374,17 @@
 							        					<div id="netNo">
 							        						<fieldset>
 																<label class="mx-1">
-															    	<input type="radio" name="netNo" value="KT" checked />
+															    	<input type="radio" name="netNo" value="1" />
 															    	<span class="px-2">KT</span>
 																</label>
 															
 															  	<label class="mx-1">
-															    	<input type="radio" name="netNo" value="SKT" />
+															    	<input type="radio" name="netNo" value="2" />
 															    	<span class="px-2">SKT</span>
 															  	</label>
 															  	
 															  	<label class="mx-1">
-															    	<input type="radio" name="netNo" value="LGU+" />
+															    	<input type="radio" name="netNo" value="3" />
 															    	<span class="px-2">LGU+</span>
 															  	</label>
 															</fieldset>
@@ -395,17 +395,17 @@
 							        					<div id="genNo">
 							        						<fieldset>
 																<label class="mx-1">
-															    	<input type="radio" name="genNo" value="KT" checked />
+															    	<input type="radio" name="genNo" value="1" />
 															    	<span class="px-2">5G</span>
 																</label>
 															
 															  	<label class="mx-1">
-															    	<input type="radio" name="genNo" value="SKT" />
+															    	<input type="radio" name="genNo" value="2" />
 															    	<span class="px-2">LTE</span>
 															  	</label>
 															  	
 															  	<label class="mx-1">
-															    	<input type="radio" name="genNo" value="LGU+" />
+															    	<input type="radio" name="genNo" value="3" />
 															    	<span class="px-2">3G</span>
 															  	</label>
 															</fieldset>
@@ -473,7 +473,7 @@
 					      		</div>
 					      		<div class="modal-footer">
 					        		<button type="button" class="btn btn-secondary" data-bs-dismiss="modal">취소</button>
-					        		<button type="button" class="btn btn-primary">확인</button>
+					        		<button type="button" class="btn btn-primary search-btn">확인</button>
 					      		</div>
 				    		</div>
 					  	</div>

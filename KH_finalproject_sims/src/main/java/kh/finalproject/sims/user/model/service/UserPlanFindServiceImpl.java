@@ -20,6 +20,12 @@ public class UserPlanFindServiceImpl implements UserPlanFindService {
 	public List<PlanVo> selectPlanList() {
 		return dao.selectPlanList();
 	}
+	
+	// 검색 요금제 리스트
+	@Override
+	public List<PlanVo> selectPlanList(PlanVo pvo) {
+		return dao.selectPlanList(pvo);
+	}
 
 	// 요금제 총 갯수
 	@Override

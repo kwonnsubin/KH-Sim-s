@@ -9,6 +9,8 @@ public interface UserPlanFindService {
 	
 	public List<PlanVo> selectPlanList();
 
+	public List<PlanVo> selectPlanList(PlanVo pvo);
+	
 	public int cntPlanList();
 
 	public List<BizInfoMngtVo> selectBizNameList();
