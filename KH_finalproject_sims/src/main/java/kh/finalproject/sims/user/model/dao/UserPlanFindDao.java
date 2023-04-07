@@ -6,6 +6,7 @@ import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import kh.finalproject.sims.biz.model.vo.BizInfoMngtVo;
 import kh.finalproject.sims.user.model.vo.PlanVo;
 
 @Repository
@@ -20,6 +21,10 @@ public class UserPlanFindDao {
 
 	public int cntPlanList() {
 		return sqlSession.selectOne("plan.cntPlanList");
+	}
+
+	public List<BizInfoMngtVo> selectBizNameList() {
+		return sqlSession.selectList("plan.bizNameList");
 	}
 	
 }

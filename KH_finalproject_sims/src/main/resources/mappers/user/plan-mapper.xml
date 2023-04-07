@@ -25,4 +25,8 @@
 		select count(*) from plan_table
 	</select>
 	
+	<select id="bizNameList" resultType="bvo">
+		select biz_name from biz
+	</select>
+	
 </mapper>

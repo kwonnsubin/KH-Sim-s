@@ -32,6 +32,11 @@ p {
 	border-radius: 30px;
 	font-size: small;
 	padding: 10px 20px 10px 20px;
+	cursor: pointer;
+}
+
+.select:hover {
+	background-color: E4E4E2;
 }
 
 .modalBtn {
@@ -159,6 +164,12 @@ fieldset label{
 	max-width: 120px;	
 }
 
+#bizName fieldset label{
+	display: block;
+	margin-bottom: 10px;
+	max-width: 150px;	
+}
+
 #netInfo fieldset label {
 	display: block;
 	margin-bottom: 10px;
@@ -167,6 +178,19 @@ fieldset label{
 
 fieldset label:hover {
 	background-color: #eef8ff;
+}
+
+.float-div {
+	position: sticky;
+	top: 130px;
+}
+
+.recent-p, .plus-p {
+	font-size: 14px;
+}
+
+.plus-p {
+	cursor: pointer;
 }
 
 

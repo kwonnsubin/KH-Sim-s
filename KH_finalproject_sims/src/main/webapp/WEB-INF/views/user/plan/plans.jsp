@@ -3,6 +3,7 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -326,7 +327,7 @@
 						        				<div>
 					        						<fieldset>
 					        							<div class="row">
-					        								<div class="col-3">
+					        								<div class="col">
 																<label class="mx-1">
 															    	<input type="radio" name="voice" value="전체" checked />
 															    	<span class="px-2">전체</span>
@@ -342,7 +343,7 @@
 															    	<span class="px-2">2~3만원</span>
 															  	</label>
 					        								</div>
-					        								<div class="col-3">
+					        								<div class="col">
 															 	<label class="mx-1">
 															    	<input type="radio" name="voice" value="1~2만원" />
 															    	<span class="px-2">1~2만원</span>
@@ -370,47 +371,103 @@
 						        				<div class="row info-div">
 						        					<div class="col">
 							        					<p class="my-1">통신망</p>
-						        						<fieldset>
-															<label class="mx-1">
-														    	<input type="radio" name="voice" value="KT" checked />
-														    	<span class="px-2">KT</span>
-															</label>
-														
-														  	<label class="mx-1">
-														    	<input type="radio" name="voice" value="SKT" />
-														    	<span class="px-2">SKT</span>
-														  	</label>
-														  	
-														  	<label class="mx-1">
-														    	<input type="radio" name="voice" value="LGU+" />
-														    	<span class="px-2">LGU+</span>
-														  	</label>
-														</fieldset>
+							        					<div id="netNo">
+							        						<fieldset>
+																<label class="mx-1">
+															    	<input type="radio" name="netNo" value="KT" checked />
+															    	<span class="px-2">KT</span>
+																</label>
+															
+															  	<label class="mx-1">
+															    	<input type="radio" name="netNo" value="SKT" />
+															    	<span class="px-2">SKT</span>
+															  	</label>
+															  	
+															  	<label class="mx-1">
+															    	<input type="radio" name="netNo" value="LGU+" />
+															    	<span class="px-2">LGU+</span>
+															  	</label>
+															</fieldset>
+														</div>
 						        					</div>
 						        					<div class="col">
 							        					<p class="my-1">통신기술</p>
-						        						<fieldset>
-															<label class="mx-1">
-														    	<input type="radio" name="voice" value="KT" checked />
-														    	<span class="px-2">5G</span>
-															</label>
-														
-														  	<label class="mx-1">
-														    	<input type="radio" name="voice" value="SKT" />
-														    	<span class="px-2">LTE</span>
-														  	</label>
-														  	
-														  	<label class="mx-1">
-														    	<input type="radio" name="voice" value="LGU+" />
-														    	<span class="px-2">3G</span>
-														  	</label>
-														</fieldset>
+							        					<div id="genNo">
+							        						<fieldset>
+																<label class="mx-1">
+															    	<input type="radio" name="genNo" value="KT" checked />
+															    	<span class="px-2">5G</span>
+																</label>
+															
+															  	<label class="mx-1">
+															    	<input type="radio" name="genNo" value="SKT" />
+															    	<span class="px-2">LTE</span>
+															  	</label>
+															  	
+															  	<label class="mx-1">
+															    	<input type="radio" name="genNo" value="LGU+" />
+															    	<span class="px-2">3G</span>
+															  	</label>
+															</fieldset>
+							        					</div>
 						        					</div>
 						        				</div>
 					        				</div>
 					        			</div>
 					        			<div id="bizName">
-					        				<p class="mt-2">통신사</p>
+					        				<div>
+						        				<p class="mt-2">통신사</p>
+						        				<div>
+					        						<fieldset>
+					        							<div class="row">
+					        								<div class="col">
+						        								<c:choose>
+						        									<c:when test="${fn:length(bizList) % 2 eq 0}">
+					        										<fmt:parseNumber var="endNum" integerOnly="true" value="${fn:length(bizList) / 2 - 1}" />
+						        										<c:forEach items="${bizList}" var="bizList" end="${endNum}">
+																			<label class="mx-1">
+																		    	<input type="radio" name="bizName" value="${bizList.bizName}" />
+																		    	<span class="px-2">${bizList.bizName}</span>
+																			</label>
+						        										</c:forEach>
+						        									</c:when>
+						        									<c:when test="${fn:length(bizList) % 2 eq 1}">
+					        										<fmt:parseNumber var="endNum" integerOnly="true" value="${fn:length(bizList) / 2}" />
+						        										<c:forEach items="${bizList}" var="bizList" end="${endNum}">
+																			<label class="mx-1">
+																		    	<input type="radio" name="bizName" value="${bizList.bizName}" />
+																		    	<span class="px-2">${bizList.bizName}</span>
+																			</label>
+						        										</c:forEach>
+						        									</c:when>
+						        								</c:choose>
+					        								</div>
+					        								<div class="col">
+					        									<c:choose>
+						        									<c:when test="${fn:length(bizList) % 2 eq 0}">
+					        										<fmt:parseNumber var="begNum" integerOnly="true" value="${fn:length(bizList) / 2}" />
+						        										<c:forEach items="${bizList}" var="bizList" begin="${begNum}">
+																			<label class="mx-1">
+																		    	<input type="radio" name="bizName" value="${bizList.bizName}" />
+																		    	<span class="px-2">${bizList.bizName}</span>
+																			</label>
+						        										</c:forEach>
+						        									</c:when>
+						        									<c:when test="${fn:length(bizList) % 2 eq 1}">
+					        										<fmt:parseNumber var="begNum" integerOnly="true" value="${fn:length(bizList) / 2 + 1}" />
+						        										<c:forEach items="${bizList}" var="bizList" begin="${begNum}">
+																			<label class="mx-1">
+																		    	<input type="radio" name="bizName" value="${bizList.bizName}" />
+																		    	<span class="px-2">${bizList.bizName}</span>
+																			</label>
+						        										</c:forEach>
+						        									</c:when>
+						        								</c:choose>
+														  	</div>
+					        							</div>
+													</fieldset>
+						        				</div>
+					        				</div>
 					        			</div>
 					        		</div>
 					      		</div>
@@ -453,23 +510,25 @@
 	    			</c:forEach>
 	    		</div>
 	    		<div class="col-4">
-	    			<div class="input-div">
-	    				<input type="text" class="form-control" placeholder="검색어">
-	    				<span class="material-symbols-outlined search-icon">search</span>
-	    			</div>
-	    			<div class="row my-4">
-        				<div class="col">
-	        				최근 본 요금제
-        				</div>
-        				<div class="col text-end">
-	        				더보기
-        				</div>
-        			</div>
-        			<div class="mt-3 recent-list">
-	    				<div>
-	    					<p>요금제 이름</p>
-	    					<p>요금제 가격</p>
-	    				</div>
+	    			<div class="float-div">
+		    			<div class="input-div">
+		    				<input type="text" class="form-control" placeholder="검색어">
+		    				<span class="material-symbols-outlined search-icon">search</span>
+		    			</div>
+		    			<div class="row my-3">
+	        				<div class="col">
+		        				<p class="recent-p">최근 본 요금제</p>
+	        				</div>
+	        				<div class="col text-end">
+		        				<p class="plus-p">더보기</p>
+	        				</div>
+	        			</div>
+	        			<div class="mt-3 recent-list">
+		    				<div>
+		    					<p>요금제 이름</p>
+		    					<p>요금제 가격</p>
+		    				</div>
+		    			</div>
 	    			</div>
 	    		</div>
 	    	</div>

@@ -14,6 +14,9 @@ $(document).ready(function() {
 		dataRangeText();
 		// 버튼 클릭 시 색 변경
 		dataInputChecked();
+		
+		var dataText = $("#planData fieldset label input:checked").val();
+		$(".filter-area p").eq(1).text(dataText);
 	});
 	
 	$("#planData input[type=range]").on("change", function() {
@@ -36,6 +39,9 @@ $(document).ready(function() {
 		
 		dataRangeText();
 		dataInputChecked();
+		
+		var dataText = $("#planData fieldset label input:checked").val();
+		$(".filter-area p").eq(1).text(dataText);
 	});
 	
 	// planVoice Div 컨트롤
@@ -46,6 +52,9 @@ $(document).ready(function() {
 		voiceRangeText();
 		// 버튼 클릭 시 색 변경
 		voiceInputChecked();
+		
+		var voiceText = $("#planVoice fieldset label input:checked").val();
+		$(".filter-area p").eq(3).text(voiceText);
 	});
 	
 	$("#planVoice input[type=range]").on("change", function() {
@@ -68,6 +77,9 @@ $(document).ready(function() {
 		
 		voiceRangeText();
 		voiceInputChecked();
+		
+		var voiceText = $("#planData fieldset label input:checked").val();
+		$(".filter-area p").eq(3).text(voiceText);
 	});
 	
 	// planMessage Div 컨트롤
@@ -100,6 +112,33 @@ $(document).ready(function() {
 		
 		messageRangeText();
 		messageInputChecked();
+	});
+	
+	// planPrice Div 컨트롤
+	$("#planPrice fieldset label").on("click", function(e) {
+		// 버튼 클릭 시 색 변경
+		priceInputChecked();
+		
+		var priceText = $("#planPrice fieldset label input:checked").val();
+		$(".filter-area p").eq(5).text(priceText);
+	});
+	
+	// netNo Div 컨트롤
+	$("#netNo fieldset label").on("click", function(e) {
+		// 버튼 클릭 시 색 변경
+		netInputChecked();
+	});
+	
+	// genNo Div 컨트롤
+	$("#genNo fieldset label").on("click", function(e) {
+		// 버튼 클릭 시 색 변경
+		genInputChecked();
+	});
+	
+	// bizName Div 컨트롤
+	$("#bizName fieldset label").on("click", function(e) {
+		// 버튼 클릭 시 색 변경
+		bizNameInputChecked();
 	});
 });
 
@@ -417,5 +456,69 @@ function messageRdoValCheck(e) {
 		$("#planMessage div[sign]").eq(1).css("left", "16%");
 		$("#planMessage div[sign]").eq(0).children("span").text("0");
 		$("#planMessage div[sign]").eq(1).children("span").text("50");
+	}
+}
+
+//planPrice 컨트롤
+function priceInputChecked() {
+	var len = $("#planPrice fieldset label");
+	
+	for(var i = 0; i < len.length; i++) {
+		var inp = len.eq(i).children('input');
+		if(inp.is(':checked')){
+			len.eq(i).css("border-color", '#425AD5');
+			len.eq(i).children('span').css("color", '#425AD5');
+		} else {
+			len.eq(i).css("border-color", '#d7d7d7');
+			len.eq(i).children('span').css("color", '#333');
+		}
+	}
+}
+
+//netNo 컨트롤
+function netInputChecked() {
+	var len = $("#netNo fieldset label");
+	
+	for(var i = 0; i < len.length; i++) {
+		var inp = len.eq(i).children('input');
+		if(inp.is(':checked')){
+			len.eq(i).css("border-color", '#425AD5');
+			len.eq(i).children('span').css("color", '#425AD5');
+		} else {
+			len.eq(i).css("border-color", '#d7d7d7');
+			len.eq(i).children('span').css("color", '#333');
+		}
+	}
+}
+
+//genNo 컨트롤
+function genInputChecked() {
+	var len = $("#genNo fieldset label");
+	
+	for(var i = 0; i < len.length; i++) {
+		var inp = len.eq(i).children('input');
+		if(inp.is(':checked')){
+			len.eq(i).css("border-color", '#425AD5');
+			len.eq(i).children('span').css("color", '#425AD5');
+		} else {
+			len.eq(i).css("border-color", '#d7d7d7');
+			len.eq(i).children('span').css("color", '#333');
+		}
+	}
+}
+
+//bizName 컨트롤
+function bizNameInputChecked() {
+	var len = $("#bizName fieldset label");
+	
+	for(var i = 0; i < len.length; i++) {
+		var inp = len.eq(i).children('input');
+		if(inp.is(':checked')){
+			len.eq(i).css("border-color", '#425AD5');
+			len.eq(i).children('span').css("color", '#425AD5');
+		} else {
+			len.eq(i).css("border-color", '#d7d7d7');
+			len.eq(i).children('span').css("color", '#333');
+		}
 	}
 }

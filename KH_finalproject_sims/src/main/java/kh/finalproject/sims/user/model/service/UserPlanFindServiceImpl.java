@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import kh.finalproject.sims.biz.model.vo.BizInfoMngtVo;
 import kh.finalproject.sims.user.model.dao.UserPlanFindDao;
 import kh.finalproject.sims.user.model.vo.PlanVo;
 
@@ -24,6 +25,11 @@ public class UserPlanFindServiceImpl implements UserPlanFindService {
 	@Override
 	public int cntPlanList() {
 		return dao.cntPlanList();
+	}
+
+	@Override
+	public List<BizInfoMngtVo> selectBizNameList() {
+		return dao.selectBizNameList();
 	}
 
 }

@@ -7,6 +7,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.servlet.ModelAndView;
 
+import kh.finalproject.sims.biz.model.vo.BizInfoMngtVo;
 import kh.finalproject.sims.user.model.service.UserPlanFindService;
 import kh.finalproject.sims.user.model.vo.PlanVo;
 
@@ -18,10 +19,13 @@ public class UserPlanFindController {
 	
 	@GetMapping("/plans")
 	public ModelAndView plan(ModelAndView mv) {
-		List<PlanVo> result = service.selectPlanList();
+		List<PlanVo> planList = service.selectPlanList();
 		int cnt = service.cntPlanList();
 		
-		mv.addObject("planList", result);
+		List<BizInfoMngtVo> bizList = service.selectBizNameList();
+		
+		mv.addObject("bizList", bizList);
+		mv.addObject("planList", planList);
 		mv.addObject("cnt", cnt);
 		mv.setViewName("user/plan/plans");
 		
