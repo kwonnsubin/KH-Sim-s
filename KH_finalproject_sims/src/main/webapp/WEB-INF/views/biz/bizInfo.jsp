@@ -93,14 +93,24 @@
 			<th scope="row">
 				<span>개통 소요시간</span>
 			</th>
-			<td colspan="2">${bizinfo.phoneOpTime }</td>
-		</tr>
-		<tr>
+			<td >평균 ${bizinfo.phoneOpTime }일</td>
 			<th scope="row">
 				<span>개통 소요시간 (유심보유시)</span>
 			</th>
-			<td colspan="2">${bizinfo.phoneOpTimeUsim }</td>
+			<td >평균 ${bizinfo.phoneOpTimeUsim }일</td>
 		</tr>
+		
+		<tr>
+			<th scope="row">
+				<span>카드 결제일</span>
+			</th>
+			<td >${bizinfo.bizCardPayDate }일</td>
+			<th scope="row">
+				<span>계좌이체 결제일</span>
+			</th>
+			<td >${bizinfo.bizAccPayDate }일</td>
+		</tr>
+
 		<tr>
 			<th scope="row">
 				<span>지원통신망</span>

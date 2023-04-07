@@ -74,4 +74,29 @@
 	  </foreach>
 	</update>
 	
+	<!-- 고객센터번호 제외 나머지 정보 수정 -->
+	<update id="modifyBizInfo" parameterType="bvo">
+		update biz
+		   set BIZ_NAME = #{bizName},
+		    BIZ_SSN = #{bizSsn},
+		    BIZ_CRN = #{bizCrn},
+		    BIZ_EMAIL = #{bizEmail},
+		    BIZ_PHONE = #{bizPhone},
+		    BIZ_FAX = #{bizFax},
+		    BIZ_OWNER_NAME = #{bizOwnerName},
+		    BIZ_HP = #{bizHp},
+		    BIZ_ZIP_CODE = #{bizZipCode},
+		    BIZ_LOCATION = #{bizLocation},
+		    BIZ_CARD_PAY_DATE = #{bizCardPayDate},
+		    BIZ_ACC_PAY_DATE = #{bizAccPayDate},
+		    BIZ_BEGIN_TIME = #{bizBeginTime},
+		    BIZ_END_TIME = #{bizEndTime},
+		    BIZ_CLOSED_DAY = #{bizClosedDay},
+		    PHONE_OP_TIME = #{phoneOpTime},
+		    PHONE_OP_TIME_USIM = #{phoneOpTimeUsim},
+		    NETWORK = #{network},
+		    LOGO_RENAME_FILENAME = #{logoRenameFilename}
+		WHERE BIZ_ID = #{bizId}
+	</update>
+	
 </mapper>

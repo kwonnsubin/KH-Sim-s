@@ -34,4 +34,9 @@ public class BizInfoMngtServiceImpl implements BizInfoMngtService{
 		return dao.modifyNetService(netServiceList);
 	}
 
+	@Override
+	public int modifyBizInfo(BizInfoMngtVo vo) {
+		return dao.modifyBizInfo(vo);
+	}
+
 }

@@ -110,6 +110,7 @@ public class BizInfoMngtController {
 			, @RequestParam(name ="bizZipCode", required = false) int bizZipCode
 			, @RequestParam(name ="roadAddress", required = false) String roadAddress
 			, @RequestParam(name ="detailAddress", required = false) String detailAddress
+			, @RequestParam(name ="bizLocation", required = false) String bizLocation
 			// 
 			, @RequestParam(name ="bizPhone", required = false) String bizPhone
 			, @RequestParam(name ="bizFax", required = false) String bizFax
@@ -118,6 +119,8 @@ public class BizInfoMngtController {
 			
 			, @RequestParam(name ="phoneOpTime", required = false) String phoneOpTime
 			, @RequestParam(name ="phoneOpTimeUsim", required = false) String phoneOpTimeUsim
+			, @RequestParam(name ="bizCardPayDate", required = false) String bizCardPayDate
+			, @RequestParam(name ="bizAccPayDate", required = false) String bizAccPayDate
 			, @RequestParam(name ="bizBeginTime", required = false) String bizBeginTime
 			, @RequestParam(name ="bizEndTime", required = false) String bizEndTime
 			//고객센터번호
@@ -135,6 +138,10 @@ public class BizInfoMngtController {
 		Principal principal = request.getUserPrincipal();
 		String bizid = principal.getName();
 		System.out.println("통신사아이디 : " + bizid);
+		
+		
+		
+		
 		
 		//파일첨부
 		Map<String, String> filePath;
@@ -204,7 +211,30 @@ public class BizInfoMngtController {
 		String network = selectedNetworksString.toString();
 		System.out.println(network);
 
+
+		//vo에 담기
 		vo.setBizName(bizName);
+		vo.setBizSsn(bizSsn);
+		vo.setBizCrn(bizCrn);
+		vo.setBizEmail(bizEmail);
+		vo.setBizPhone(bizPhone);
+		vo.setBizFax(bizFax);
+		vo.setBizOwnerName(bizOwnerName);
+		vo.setBizHp(bizHp);
+		vo.setBizZipCode(bizZipCode);
+		vo.setBizLocation(bizLocation);
+		vo.setBizCardPayDate(bizCardPayDate);
+		vo.setBizAccPayDate(bizAccPayDate);
+		vo.setBizBeginTime(bizBeginTime);
+		vo.setBizEndTime(bizEndTime);
+		vo.setBizClosedDay(bizClosedDay);
+		vo.setPhoneOpTime(phoneOpTime);
+		vo.setPhoneOpTimeUsim(phoneOpTimeUsim);
+		vo.setNetwork(network);
+		vo.setBizId(bizid);
+		
+		service.modifyBizInfo(vo);
+
 		
 		System.out.println("@@수정하기 버튼 누른 후 vo :"+vo);
 

@@ -33,4 +33,8 @@ public class BizInfoMngtDao {
 	public int modifyNetService(List<bizInfoMngServiceVo> netServiceList) {
 		return sqlSession.update("biz.modifyNetService",netServiceList );
 	}
+
+	public int modifyBizInfo(BizInfoMngtVo vo) {
+		return sqlSession.update("biz.modifyBizInfo", vo);
+	}
 }

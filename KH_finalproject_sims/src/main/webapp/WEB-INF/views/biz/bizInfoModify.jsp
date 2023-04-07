@@ -109,7 +109,7 @@
         
         <input type="text" id="postcode" name="bizZipCode" placeholder="우편번호" value="${bizinfo.bizZipCode }">
 		<input type="button" onclick="execDaumPostcode()" value="우편번호 찾기"><br>
-		<input type="text" id="roadAddress" placeholder="도로명주소"  value="${bizinfo.bizLocation }">
+		<input type="text" id="roadAddress" name="bizLocation" placeholder="도로명주소"  value="${bizinfo.bizLocation }">
 		
 	<%-- 	<span id="guide" style="color:#999;display:none"></span>
 		<input type="text" id="detailAddress" placeholder="상세주소" value="${bizinfo.bizLocation }">
@@ -134,9 +134,9 @@
 		</div>
 		
 		<div>
-		<c:set var="aaa" value="${bizinfo.phoneOpTime*10}"></c:set>
-		[[${aaa }]]
-			<label>개통소요시간</label>
+		<%-- <c:set var="aaa" value="${bizinfo.phoneOpTime*10}"></c:set>
+		[[${aaa }]] --%>
+			평균<label>개통소요시간</label>
             <select name="phoneOpTime" >
 			  <c:forEach var="i" begin="0" end="150" step="1">
 			  	<c:choose>
@@ -151,7 +151,7 @@
 			</select>일 
             
             <label>개통 소요시간 (유심보유시)</label>
-            <select name="phoneOpTimeUsim" >
+            평균<select name="phoneOpTimeUsim" >
 			  <c:forEach var="i" begin="0" end="150" step="1">
 			  	<c:choose>
 			  		<c:when test="${bizinfo.phoneOpTimeUsim eq (i/10.0)}">
@@ -166,11 +166,7 @@
 		</div>
 		
 		<div>
-			<label>지원통신망</label>
-			<input type="checkbox" name="net" value="KT망" >KT망
-            <input type="checkbox" name="net" value="SKT망" >SKT망
-            <input type="checkbox" name="net" value="LG망" >LGU+망
-            
+			
             
             <label>영업시간</label>
             <!-- 영업시간 -->
@@ -221,9 +217,22 @@
 			    </c:choose>
 			  </c:forEach>
 			</c:forEach>
-		</select>
-            
-            
+		</select>  
+		</div>
+		
+		<div>
+			<label>카드 결제일</label>
+			<select name="bizCardPayDate">
+				<c:forEach var="date" begin="1" end="31" step="1">
+					<option value="${date }" ${bizinfo.bizCardPayDate eq date ? "selected" : "" }>${date} 일</option>
+				</c:forEach>
+			</select>
+			<label>계좌이체 결제일</label>
+			<select name="bizAccPayDate">
+				<c:forEach var="date" begin="1" end="31" step="1">
+					<option value="${date }" ${bizinfo.bizAccPayDate eq date ? "selected" : "" }>${date} 일</option>
+				</c:forEach>
+			</select>
 		</div>
 		
 		<div>
@@ -247,22 +256,32 @@
 			<span>KT</span><input type="text" name="KtService" value="">
 			<span>SKT</span><input type="text" name="SktService">
 			<span>LGU+</span><input type="text" name="LguService">
-		</div> -->
+		</div> 
 		
-		<c:forEach items="${serviceList}" var="service">
+		<!-- 지원통신망에 체크되어있는 애들만 뜨게 해야 함..  -->
+		
+		<div>
+		<label>지원통신망</label>
+		<input type="checkbox" name="net" value="KT망" >KT망
+        <input type="checkbox" name="net" value="SKT망" >SKT망
+        <input type="checkbox" name="net" value="LG망" >LGU+망
+           
+		</div>
+		
 	    <label>고객센터번호</label>
+		<c:forEach items="${serviceList}" var="service">
 	    <c:choose>
 	        <c:when test="${service.netNo == 1}">
-	            <span>KT</span>
-	            <input type="text" name="KtService" value="${service.bizNetService}">
+	            <span style="display: none">KT</span>
+	            <input style="display: none" type="text" name="KtService" value="${service.bizNetService}">
 	        </c:when>
 	        <c:when test="${service.netNo == 2}">
-	            <span>SKT</span>
-	            <input type="text" name="SktService" value="${service.bizNetService}">
+	            <span style="display: none">SKT</span>
+	            <input style="display: none" type="text" name="SktService" value="${service.bizNetService}">
 	        </c:when>
 	        <c:when test="${service.netNo == 3}">
-	            <span>LGU+</span>
-	            <input type="text" name="LguService" value="${service.bizNetService}">
+	            <span style="display: none">LGU+</span>
+	            <input style="display: none" type="text" name="LguService" value="${service.bizNetService}">
 	        </c:when>
 	    </c:choose>
 		</c:forEach>
@@ -271,6 +290,7 @@
 		<div>
 			<label>로고이미지 첨부</label> <!-- 파일첨부 -->
 			<input type="file" name="logo" placeholder="첨부파일" multiple="multiple">
+
 		</div>
         
         <button type="submit">등록</button>
@@ -345,6 +365,97 @@
         }).open();
     }
 </script>
+
+<!-- 지원통신망 체크에 따라 고객센터번호 칸 출력 -->
+<script>
+$(document).ready(function() {
+    // 첫 번째 체크박스 초기화
+    if ($('input[type="checkbox"][name="net"][value="KT망"]').is(':checked')) {
+        $('span:contains("KT"):first').show();
+        $('input[type="text"][name="KtService"]').show();
+    }
+
+    // 두 번째 체크박스 초기화
+    if ($('input[type="checkbox"][name="net"][value="SKT망"]').is(':checked')) {
+        $('span:contains("SKT")').show();
+        $('input[type="text"][name="SktService"]').show();
+    }
+
+    // 세 번째 체크박스 초기화
+    if ($('input[type="checkbox"][name="net"][value="LG망"]').is(':checked')) {
+        $('span:contains("LGU+")').show();
+        $('input[type="text"][name="LguService"]').show();
+    }
+
+    // 체크박스 클릭 이벤트 처리
+    $('input[type="checkbox"][name="net"][value="KT망"]').click(function() {
+        if($(this).is(':checked')) {
+            $('span:contains("KT"):first').show();
+            $('input[type="text"][name="KtService"]').show();
+        } else {
+            $('span:contains("KT"):first').hide();
+            $('input[type="text"][name="KtService"]').hide();
+        }
+    });
+
+    $('input[type="checkbox"][name="net"][value="SKT망"]').click(function() {
+        if($(this).is(':checked')) {
+            $('span:contains("SKT")').show();
+            $('input[type="text"][name="SktService"]').show();
+        } else {
+            $('span:contains("SKT")').hide();
+            $('input[type="text"][name="SktService"]').hide();
+        }
+    });
+
+    $('input[type="checkbox"][name="net"][value="LG망"]').click(function() {
+        if($(this).is(':checked')) {
+            $('span:contains("LGU+")').show();
+            $('input[type="text"][name="LguService"]').show();
+        } else {
+            $('span:contains("LGU+")').hide();
+            $('input[type="text"][name="LguService"]').hide();
+        }
+    });
+});
+
+/* $(document).ready(function() {
+    $('input[type="checkbox"][name="net"][value="KT망"]').click(function() {
+        if($(this).is(':checked')) {
+            $('span:contains("KT"):first').show();
+            $('input[type="text"][name="KtService"]').show();
+        } else {
+            $('span:contains("KT"):first').hide();
+            $('input[type="text"][name="KtService"]').hide();
+        }
+    });
+});
+$(document).ready(function() {
+    $('input[type="checkbox"][name="net"][value="SKT망"]').click(function() {
+        if($(this).is(':checked')) {
+            $('span:contains("SKT")').show();
+            $('input[type="text"][name="SktService"]').show();
+        } else {
+            $('span:contains("SKT")').hide();
+            $('input[type="text"][name="SktService"]').hide();
+        }
+    });
+});
+$(document).ready(function() {
+    $('input[type="checkbox"][name="net"][value="LG망"]').click(function() {
+        if($(this).is(':checked')) {
+            $('span:contains("LGU+")').show();
+            $('input[type="text"][name="LguService"]').show();
+        } else {
+            $('span:contains("LGU+")').hide();
+            $('input[type="text"][name="LguService"]').hide();
+        }
+    });
+}); */
+</script>
+
+
+
 <!-- (지원통신망) 선택한 값들 한 문자열로 쪼개기  -->
 <script>
 	var network = "${bizinfo.network}";
