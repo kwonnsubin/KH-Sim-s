@@ -39,4 +39,18 @@ public class AdminStatisticsServiceImpl implements AdminStatisticsService {
 		return dao.selectMonthlyPlanOrderCount();
 	}
 
+	// 연령대별 총 가입자 수
+	@Override
+	public List<AdminStatisticsVo> selectAgeGroupPlanOrderCount() {
+		return dao.selectAgeGroupPlanOrderCount();
+	}
+
+	// 일별 가입자 수 변화
+	@Override
+	public List<AdminStatisticsVo> selectDailyUserWriteCount() {
+		return dao.selectDailyUserWriteCount();
+	}
+	
+	
+
 }

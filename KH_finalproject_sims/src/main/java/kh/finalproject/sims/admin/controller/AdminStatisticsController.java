@@ -22,7 +22,9 @@ public class AdminStatisticsController {
 		mv.addObject("orderByRegistration", service.selectOrderByRegistration()); // 가입자 많은 순
 		mv.addObject("ageGroupPlans",service.selectAgeGroupPlans()); // 연령대별 요금제 
 		mv.addObject("starRating", service.selectStarRating()); // 별점순 통신사
-		mv.addObject("monthlyPlanOrderCount", service.selectMonthlyPlanOrderCount()); // 월별 가입자 수
+		mv.addObject("monthlyPlanOrderCount", service.selectMonthlyPlanOrderCount()); // 월별 총 가입자 수
+		mv.addObject("ageGroupPlanOrderCount", service.selectAgeGroupPlanOrderCount()); // 연령대별 총 가입자 수 
+		mv.addObject("dailyUserWriteCount", service.selectDailyUserWriteCount()); // 일별 가입자 수 변화
 		mv.setViewName("/admin/statistics");
 		return mv;
 		

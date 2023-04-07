@@ -17,4 +17,10 @@ public interface AdminStatisticsService {
 	
 	// 월별 가입자 수
 	public List<AdminStatisticsVo> selectMonthlyPlanOrderCount();
+	
+	// 연령대별 총 가입자 수
+	public List<AdminStatisticsVo> selectAgeGroupPlanOrderCount();
+	
+	// 일별 가입자 수 변화
+	public List<AdminStatisticsVo> selectDailyUserWriteCount();
 }

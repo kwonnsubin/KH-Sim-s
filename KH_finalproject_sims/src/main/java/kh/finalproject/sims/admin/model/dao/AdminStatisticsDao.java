@@ -28,8 +28,18 @@ public class AdminStatisticsDao {
 		return sqlSession.selectList("admin.selectStarRating");
 	}
 	
-	// 월별 가입자 수
+	// 월별 총 가입자 수
 	public List<AdminStatisticsVo> selectMonthlyPlanOrderCount() {
 		return sqlSession.selectList("admin.selectMonthlyPlanOrderCount");
+	}
+	
+	// 연령대별 총 가입자 수
+	public List<AdminStatisticsVo> selectAgeGroupPlanOrderCount() {
+		return sqlSession.selectList("admin.selectAgeGroupPlanOrderCount");
+	}
+	
+	// 일별 가입자 수 변화
+	public List<AdminStatisticsVo> selectDailyUserWriteCount() {
+		return sqlSession.selectList("admin.selectDailyUserWriteCount");
 	}
 }

@@ -12,16 +12,16 @@
 <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
 <script type="text/javascript">
   // Load the Visualization API and the corechart package.
-  google.charts.load('current', {'packages':['corechart']}); // 특정  차트 유형의 패키지를 로드 (버전,차트유형)
+  google.charts.load('current', {'packages':['corechart', 'bar']}); // 특정  차트 유형의 패키지를 로드 (버전,차트유형)
 
   // Set a callback to run when the Google Visualization API is loaded.
   google.charts.setOnLoadCallback(drawChart); // drawChart 자바스크립트 호출
-  
   google.charts.setOnLoadCallback(drawChartt); // drawChart 자바스크립트 호출
-  
   google.charts.setOnLoadCallback(starRating); // drawChart 자바스크립트 호출
-  
   google.charts.setOnLoadCallback(monthlyPlanOrderCount); // 월별 가입자 수
+  google.charts.setOnLoadCallback(ageGroupPlanOrderCount); // 연령대별 총 가입자 수
+  google.charts.setOnLoadCallback(dailyUserWriteCount); // 일별 가입자 수
+  
 
   // Callback that creates and populates a data table,
   // instantiates the pie chart, passes in the data and
@@ -99,7 +99,7 @@
 	  
 	  
 	  
-	  // 월별 가입자 수
+	  // 월별 총 가입자 수
 	  function monthlyPlanOrderCount() {
 		    // Create the data table.
 			  var data = google.visualization.arrayToDataTable([
@@ -120,6 +120,56 @@
 		    // Instantiate and draw our chart, passing in some options.
 		    var chart = new google.visualization.BarChart(document.getElementById('monthlyPlanOrderCount_chart_div'));
 		    chart.draw(data, options);
+		  }
+	  
+	  
+	  // 연령대별 총 가입자 수 
+	  function ageGroupPlanOrderCount() {
+		    // Create the data table.
+			  var data = google.visualization.arrayToDataTable([
+			      ['Element', 'Density', { role: 'style' }, { role: 'annotation' } ],
+			      ['${ageGroupPlanOrderCount[0].ageGroup}', ${ageGroupPlanOrderCount[0].cnt}, '#FF8000', '1' ],
+			      ['${ageGroupPlanOrderCount[1].ageGroup}', ${ageGroupPlanOrderCount[1].cnt}, '#B404AE', '1' ],
+			      ['${ageGroupPlanOrderCount[2].ageGroup}', ${ageGroupPlanOrderCount[2].cnt}, '#5858FA', '1' ],
+			      ['${ageGroupPlanOrderCount[3].ageGroup}', ${ageGroupPlanOrderCount[3].cnt}, '#0080FF', '1' ],
+			      ['${ageGroupPlanOrderCount[4].ageGroup}', ${ageGroupPlanOrderCount[4].cnt}, '#0489B1', '1' ],
+			   ]); 
+		   
+		    // Set chart options
+		    var options = {'title':'연령대별 총 가입자 수',
+		                   'legend':'none',
+		                   'chartArea': {'width': '80%', 'height': '80%'}
+		                   };
+	
+		    // Instantiate and draw our chart, passing in some options.
+		    var chart = new google.visualization.BarChart(document.getElementById('ageGroupPlanOrderCount_chart_div'));
+		    chart.draw(data, options);
+		  }
+	  
+	  
+	  // 일별 가입자 수
+	  function dailyUserWriteCount() {
+		    // Create the data table.
+	        var data = google.visualization.arrayToDataTable([
+	            ['Year', 'Sales', 'Expenses', 'Profit'],
+	            ['${dailyUserWriteCount[0].userWrDate}', ${dailyUserWriteCount[0].cnt}, 5, 5],
+	            ['${dailyUserWriteCount[1].userWrDate}', ${dailyUserWriteCount[1].cnt}, 5, 5]
+	            //['${dailyUserWriteCount[2].userWrDate}', ${dailyUserWriteCount[2].cnt}, 1120, 300],
+	            //['${dailyUserWriteCount[3].userWrDate}', ${dailyUserWriteCount[3].cnt}, 1120, 300],
+	            //['${dailyUserWriteCount[4].userWrDate}', ${dailyUserWriteCount[4].cnt}, 1120, 300],
+	            //['${dailyUserWriteCount[5].userWrDate}', ${dailyUserWriteCount[5].cnt}, 1120, 300],
+	            //['${dailyUserWriteCount[6].userWrDate}', ${dailyUserWriteCount[6].cnt}, 540, 350]
+	          ]);
+
+	          var options = {
+	            chart: {
+	              title: '일별 가입자 수 변화',
+	              subtitle: 'Sales, Expenses, and Profit: 2014-2017',
+	            }
+	          };
+
+	          var chart = new google.charts.Bar(document.getElementById('dailyUserWriteCount_chart_div'));
+	          chart.draw(data, google.charts.Bar.convertOptions(options));
 		  }
 </script>
 
@@ -175,11 +225,30 @@
 						</div>
 					 </div>
 	            </div>
+	            <!-- 연령대별 총 가입자 수 -->
+				<div class="col-md-7">
+	                <div class="card">
+	                    <div class="card-header">
+	                        <h5>연령대별 총 가입자 수</h5>
+	                    </div>
+	                    <div class="card-body">
+	                    	<div id="ageGroupPlanOrderCount_chart_div" style="width:799px; height:540px;"></div>
+						</div>
+					 </div>
+	            </div>
+	         	<!-- 일별 가입자 수 변화 -->
+				<div class="col-md-7">
+	                <div class="card">
+	                    <div class="card-header">
+	                        <h5>일별 가입자 수 변화</h5>
+	                    </div>
+	                    <div class="card-body">
+	                    	<div id="dailyUserWriteCount_chart_div" style="width:799px; height:540px;"></div>
+						</div>
+					 </div>
+	            </div>
 	            
-	            
-	            
-	            
-	            
+
 			</div>
 		</div>
 	</div>

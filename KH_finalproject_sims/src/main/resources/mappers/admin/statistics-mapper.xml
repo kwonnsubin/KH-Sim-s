@@ -77,4 +77,50 @@
 		    GROUP BY ORDER_MONTH
 		    ORDER BY ORDER_MONTH
 	</select>
+	
+	<!-- 연령대 별 총 가입자 수  -->
+	<select id="selectAgeGroupPlanOrderCount" resultType="kh.finalproject.sims.admin.model.vo.AdminStatisticsVo">
+		SELECT AGE_GROUP, COUNT(*) AS CNT
+		FROM
+		(SELECT USER_ID,
+		            CASE 
+		                WHEN TRUNC(MONTHS_BETWEEN(SYSDATE, TO_DATE(SUBSTR(USER_SSN, 1, 6), 'RRMMDD'))/12) BETWEEN 10 AND 19 THEN '10대'
+		                WHEN TRUNC(MONTHS_BETWEEN(SYSDATE, TO_DATE(SUBSTR(USER_SSN, 1, 6), 'RRMMDD'))/12) BETWEEN 20 AND 29 THEN '20대'
+		                WHEN TRUNC(MONTHS_BETWEEN(SYSDATE, TO_DATE(SUBSTR(USER_SSN, 1, 6), 'RRMMDD'))/12) BETWEEN 30 AND 39 THEN '30대'
+		                WHEN TRUNC(MONTHS_BETWEEN(SYSDATE, TO_DATE(SUBSTR(USER_SSN, 1, 6), 'RRMMDD'))/12) BETWEEN 40 AND 49 THEN '40대'
+		                WHEN TRUNC(MONTHS_BETWEEN(SYSDATE, TO_DATE(SUBSTR(USER_SSN, 1, 6), 'RRMMDD'))/12) BETWEEN 50 AND 59 THEN '50대'
+		                ELSE '60+' 
+		            END AS AGE_GROUP
+		FROM 
+		    PLAN_ORDER
+		    LEFT OUTER JOIN USER_TABLE USING (USER_ID)
+		    GROUP BY USER_ID,             
+		    CASE 
+		            WHEN TRUNC(MONTHS_BETWEEN(SYSDATE, TO_DATE(SUBSTR(USER_SSN, 1, 6), 'RRMMDD'))/12) BETWEEN 10 AND 19 THEN '10대'
+		            WHEN TRUNC(MONTHS_BETWEEN(SYSDATE, TO_DATE(SUBSTR(USER_SSN, 1, 6), 'RRMMDD'))/12) BETWEEN 20 AND 29 THEN '20대'
+		            WHEN TRUNC(MONTHS_BETWEEN(SYSDATE, TO_DATE(SUBSTR(USER_SSN, 1, 6), 'RRMMDD'))/12) BETWEEN 30 AND 39 THEN '30대'
+		            WHEN TRUNC(MONTHS_BETWEEN(SYSDATE, TO_DATE(SUBSTR(USER_SSN, 1, 6), 'RRMMDD'))/12) BETWEEN 40 AND 49 THEN '40대'
+		            WHEN TRUNC(MONTHS_BETWEEN(SYSDATE, TO_DATE(SUBSTR(USER_SSN, 1, 6), 'RRMMDD'))/12) BETWEEN 50 AND 59 THEN '50대'
+		            ELSE '60+' 
+		        END
+		    ORDER BY AGE_GROUP)
+		    GROUP BY AGE_GROUP
+		    ORDER BY AGE_GROUP
+	</select>
+	
+	<!-- 일별(7일 이내) 가입자 수 변화 -->
+	<select id="selectDailyUserWriteCount" resultType="kh.finalproject.sims.admin.model.vo.AdminStatisticsVo">
+	<![CDATA[
+	    SELECT TRUNC(USER_WR_DATE), COUNT(*) AS CNT
+	    FROM
+	    (SELECT USER_NAME,
+	       TRUNC(USER_WR_DATE) AS USER_WR_DATE
+	        FROM USER_TABLE
+	        WHERE USER_WR_DATE >= TRUNC(SYSDATE) - 6 AND USER_WR_DATE < TRUNC(SYSDATE) + 1
+	        ORDER BY USER_WR_DATE ASC
+	        )
+	    GROUP BY USER_WR_DATE
+	    ORDER BY USER_WR_DATE
+	 ]]>
+	</select>
 </mapper>

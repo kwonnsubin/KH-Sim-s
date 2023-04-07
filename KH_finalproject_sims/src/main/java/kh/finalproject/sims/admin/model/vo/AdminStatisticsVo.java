@@ -32,4 +32,7 @@ public class AdminStatisticsVo {
 	
 	// 월별 가입자 수
 	String orderMonth;
+	
+	// 일별 가입자 수
+	String userWrDate;
 }
