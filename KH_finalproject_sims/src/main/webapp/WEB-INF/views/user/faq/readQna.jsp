@@ -97,8 +97,8 @@
 			<!-- 답변목록 -->
 			<div class="row">
 				<c:if test="${not empty answers }">
-					<c:forEach items="${answers }" var="answer">
-						<div class="answer-item">
+					<div class="answer-item">
+						<c:forEach items="${answers }" var="answer">
 							<div class="row my-4">
 								<div class="answer-writer col-6 small py-2">
 									${answer.adminId == null ? answer.userId : answer.adminId}
@@ -133,7 +133,7 @@
 														<div class="btn-group btn-group-sm" role="group">
 														  	<button type="button" class="btn btn-gray" 
 														  	onclick="location.href='<%=request.getContextPath()%>/faq/rplupdate/${rpl.rplNo}'">수정</button>
-														  	<button type="button" class="btn btn-gray" 
+															<button type="button" class="btn btn-gray" 
 														  	onclick="location.href='<%=request.getContextPath()%>/faq/rpldelete/${answer.aqNo}/${rpl.aaNo}/${rpl.rplNo}'">삭제</button>
 														</div>
 													</c:if>	
@@ -160,9 +160,9 @@
 								</sec:authorize>
 								<!-- /댓글 작성 -->
 							</div>
-						</div>
-						<hr>
-					</c:forEach>
+							<hr>
+						</c:forEach>	
+					</div>
 				</c:if>
 			</div>
 				<!-- /답변목록 -->
