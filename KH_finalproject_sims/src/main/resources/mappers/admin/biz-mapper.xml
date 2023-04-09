@@ -9,8 +9,25 @@
 			*
 		FROM 
 			BIZ A
-			INNER JOIN MEMBER B ON A.BIZ_ID = B.ID
-		
+		INNER JOIN MEMBER B ON A.BIZ_ID = B.ID
+		WHERE 1=1
+		<if test="searchRadioVal != null">
+			<choose>
+				<when test="searchRadioVal != 'total'">
+					AND B.ENABLE = #{searchRadioVal}
+				</when>
+			</choose>
+		</if>
+		<if test="searchOption != null">
+			<choose>
+				<when test="searchOption == 'bizName'">
+					AND UPPER(A.BIZ_NAME) LIKE UPPER('%'||#{searchBox}||'%')
+				</when>
+				<when test="searchOption == 'bizOwnerName'">
+					AND UPPER(A.BIZ_OWNER_NAME) LIKE UPPER('%'||#{searchBox}||'%')
+				</when>
+			</choose>
+		</if>
 	</select>
 	<!-- 통신사 신청정보 상세 -->
 	<select id="selectApplyDetail" resultType="adBizVo">
@@ -44,12 +61,12 @@
 	<!-- 통신사 상세 정보 수정 -->
 	<update id ="saveBizModify" parameterType="adBizVo">
 		/** 관리자의 통신사 관리 수정(saveBizModify)**/
-		UPDATE BIZ_TABLE
+		UPDATE BIZ
 		SET
 			BIZ_EMAIL = #{bizEmail}
-			, BIZ_ADDRESS = #{bizAddress}
+			, BIZ_LOCATION = #{bizLocation}
 			, BIZ_PHONE = #{bizPhone}
-			, BIZ_UP_DATE = SYSDATE
+			, UPDATE_DATE = SYSDATE
 		WHERE BIZ_ID =#{bizId}
 	</update>
 	

@@ -25,9 +25,11 @@ public class AdminBizMngtController {
 	//통신사 리스트로 이동
 	@RequestMapping(value="/applyList", method = {RequestMethod.GET, RequestMethod.POST})
 	public ModelAndView selectApplyList(ModelAndView mv, AdminBizMngtVo vo) throws Exception {
+		
 		mv.addObject("applyList", service.selectApplyList(vo));
 		mv.addObject("searchOption", vo.getSearchOption());
 		mv.addObject("searchBox", vo.getSearchBox());
+		mv.addObject("searchRadioVal", vo.getSearchRadioVal());
 		mv.setViewName("admin/biz/applyList");
 		return mv;
 	}

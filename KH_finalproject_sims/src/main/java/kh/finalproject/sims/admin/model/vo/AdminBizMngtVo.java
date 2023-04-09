@@ -170,6 +170,7 @@ public class AdminBizMngtVo {
 	//조회용 변수
 	private String searchOption; // 조회 조건
 	private String searchBox; // 조회 문구
+	private String searchRadioVal;	// 조회 라디오버튼 값
 	
 	//사용자
 	// USER_NAME	NOT NULL		VARCHAR2(20)
@@ -189,4 +190,5 @@ public class AdminBizMngtVo {
 	private String userPhone;
 	private String userEmail;
 	private String userAddress;
+	
 }	

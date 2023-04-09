@@ -7,7 +7,6 @@ import org.springframework.stereotype.Service;
 
 import kh.finalproject.sims.admin.model.dao.AdminBizMngtDao;
 import kh.finalproject.sims.admin.model.vo.AdminBizMngtVo;
-import kh.finalproject.sims.admin.model.vo.AdminNoticeMngtVo;
 
 @Service
 public class AdminBizMngtServiceImpl implements AdminBizMngtService{

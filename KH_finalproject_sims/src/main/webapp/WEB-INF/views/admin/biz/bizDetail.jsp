@@ -44,7 +44,7 @@
 									</div>
 								</div>
 							</div>
-							<form action="<%=request.getContextPath()%>/admin/saveBizModify" method="post">
+							<form action="<%=request.getContextPath()%>/admin/saveBizModify" method="post" onsubmit="return confirm('저장 하시겠습니까?');">
 								<div class="col-md-12">
 									<div class="simsBtn m-b-15">
 										<input class="btn btn-primary right m-l-10" type="button" onclick="location.href='<%=request.getContextPath()%>/admin/applyList'" value="목록">
@@ -56,7 +56,7 @@
 													<input class="btn btn-primary right" type="submit" value="저장">
 												</c:otherwise>
 											</c:choose>
-										<input type="hidden" value="${applyDetail.bizId }" name="bizId">
+										<%-- <input type="hidden" value="${applyDetail.bizId }" name="bizId"> --%>
 									</div>
 								</div>
 							    <div class="col-sm-12">

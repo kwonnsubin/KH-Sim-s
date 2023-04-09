@@ -32,10 +32,11 @@
 										</div>
 									</div>
 								</div>
-								<div class="col-md-12">
-									<div class="card">
-										<div class="card-body">
-											<form id="searchForm" name="searchForm" action="<%=request.getContextPath()%>/admin/applyList" method="post">
+								<form id="searchForm" name="searchForm" action="<%=request.getContextPath()%>/admin/applyList" method="post">
+									<input type="hidden" name="currentPage" value="${currentPage}"/>
+									<div class="col-md-12">
+										<div class="card">
+											<div class="card-body">
 												<div class="row">
 													<div class="col-sm-12">
 														<div class="input-group">
@@ -48,23 +49,23 @@
 															<input class="form-control" type="text" name="searchBox" value="${searchBox}">
 															<div class="col-sm-5 p-t-10">
 																<div class="custom-control custom-radio custom-control-inline">
-								                                    <input type="radio" id="customRadioInline1" name="searchRadioVal" class="custom-control-input" value="total" <c:if test="${searchRadioVal ne 'enable' }">checked</c:if>>
+								                                    <input type="radio" id="customRadioInline1" name="searchRadioVal" class="custom-control-input" value="total" <c:if test="${searchRadioVal eq 'total' }">checked</c:if>>
 								                                    <label class="custom-control-label" for="customRadioInline1">전체</label>
 								                                </div>
 								                                <div class="custom-control custom-radio custom-control-inline">
-								                                    <input type="radio" id="customRadioInline2" name="searchRadioVal" class="custom-control-input" value="enable" <c:if test="${searchRadioVal eq 'enable' }">checked</c:if>>
+								                                    <input type="radio" id="customRadioInline2" name="searchRadioVal" class="custom-control-input" value="1" <c:if test="${searchRadioVal eq '1' }">checked</c:if>>
 								                                    <label class="custom-control-label" for="customRadioInline2">승인</label>
 								                                </div>
 								                                <div class="custom-control custom-radio custom-control-inline">
-								                                    <input type="radio" id="customRadioInline4" name="searchRadioVal" class="custom-control-input" value="enable" <c:if test="${searchRadioVal eq 'enable' }">checked</c:if>>
+								                                    <input type="radio" id="customRadioInline4" name="searchRadioVal" class="custom-control-input" value="3" <c:if test="${searchRadioVal eq '3' }">checked</c:if>>
 								                                    <label class="custom-control-label" for="customRadioInline4">반려</label>
 								                                </div>
 								                                <div class="custom-control custom-radio custom-control-inline">
-								                                    <input type="radio" id="customRadioInline5" name="searchRadioVal" class="custom-control-input" value="enable" <c:if test="${searchRadioVal eq 'enable' }">checked</c:if>>
+								                                    <input type="radio" id="customRadioInline5" name="searchRadioVal" class="custom-control-input" value="0" <c:if test="${searchRadioVal eq '0' }">checked</c:if>>
 								                                    <label class="custom-control-label" for="customRadioInline5">신청 중</label>
 								                                </div>
 								                                <div class="custom-control custom-radio custom-control-inline">
-								                                    <input type="radio" id="customRadioInline6" name="searchRadioVal" class="custom-control-input" value="enable" <c:if test="${searchRadioVal eq 'enable' }">checked</c:if>>
+								                                    <input type="radio" id="customRadioInline6" name="searchRadioVal" class="custom-control-input" value="2" <c:if test="${searchRadioVal eq '2' }">checked</c:if>>
 								                                    <label class="custom-control-label" for="customRadioInline6">탈퇴 회원</label>
 								                                </div>
 															</div>
@@ -74,58 +75,58 @@
 														</div>
 													</div>
 												</div>
-											</form>
-										</div>
-									</div>
-									<div class="card">
-										<div class="card-body table-border-style">
-											<div class="table-responsive">
-												<table class="table table-hover">
-													<thead>
-														<tr>
-															<th>번호</th>
-															<th>업체명</th>
-															<th>대표자</th>
-															<!-- <th>신청상태</th> -->
-															<th>신청일</th>
-														</tr>
-													</thead>
-													<tbody>
-														<c:forEach var="list" items="${applyList}" varStatus="status">
-															<tr>
-																<td>${status.count}</td>
-																	<c:set var="divCheck" value="apply"/>
-																	<c:if test="${list.enable eq '1' }">
-																		<c:set var="divCheck" value="detail"/>
-																	</c:if>
-																<td><a href="<%=request.getContextPath()%>/admin/applyDetail/${list.bizId}?divCheck=${divCheck}">${list.bizName}</a></td>
-																<td><a href="<%=request.getContextPath()%>/admin/applyDetail/${list.bizId}?divCheck=${divCheck}">${list.bizOwnerName}</a></td>
-																<%-- <td>
-																	<c:choose>
-																		<c:when test="${list.enable eq '0'}"> 인증 전 </c:when>
-																		<c:when test="${list.enable eq '1'}"> 인증 완료 </c:when>
-																		<c:when test="${list.enable eq '3'}"> 반려</c:when>
-																		<c:otherwise>탈퇴</c:otherwise>
-																	</c:choose>
-																</td> --%>
-																<td><fmt:formatDate value="${list.writeDate}" pattern="yyyy.MM.dd"/> </td>
-															</tr>
-														</c:forEach>
-													</tbody>
-												</table>
 											</div>
-											<nav aria-label="Page navigation example">
-												<ul class="pagination justify-content-center">
-													<li class="page-item"><a class="page-link" href="" aria-label="Previous"><span aria-hidden="true">«</span><span class="sr-only">Previous</span></a></li>
-													<li class="page-item"><a class="page-link" href="" aria-label="Previous">1</a></li>
-													<li class="page-item"><a class="page-link" href="" aria-label="Previous">2</a></li>
-													<li class="page-item"><a class="page-link" href="" aria-label="Previous">3</a></li>
-													<li class="page-item"><a class="page-link" href="" aria-label="Previous"><span aria-hidden="true">»</span><span class="sr-only">Next</span></a></li>
-												</ul>
-											</nav>
+										</div>
+										<div class="card">
+											<div class="card-body table-border-style">
+												<div class="table-responsive">
+													<table class="table table-hover">
+														<thead>
+															<tr>
+																<th>번호</th>
+																<th>업체명</th>
+																<th>대표자</th>
+																<th>신청상태</th>
+																<th>신청일</th>
+															</tr>
+														</thead>
+														<tbody>
+															<c:forEach var="list" items="${applyList}" varStatus="status">
+																<tr>
+																	<td>${status.count}</td>
+																		<c:set var="divCheck" value="apply"/>
+																		<c:if test="${list.enable eq '1' }">
+																			<c:set var="divCheck" value="detail"/>
+																		</c:if>
+																	<td><a href="<%=request.getContextPath()%>/admin/applyDetail/${list.bizId}?divCheck=${divCheck}">${list.bizName}</a></td>
+																	<td><a href="<%=request.getContextPath()%>/admin/applyDetail/${list.bizId}?divCheck=${divCheck}">${list.bizOwnerName}</a></td>
+																	<td>
+																		<c:choose>
+																			<c:when test="${list.enable eq '0'}"> 인증 전 </c:when>
+																			<c:when test="${list.enable eq '1'}"> 인증 완료 </c:when>
+																			<c:when test="${list.enable eq '3'}"> 반려</c:when>
+																			<c:otherwise>탈퇴</c:otherwise>
+																		</c:choose>
+																	</td>
+																	<td><fmt:formatDate value="${list.writeDate}" pattern="yyyy.MM.dd"/> </td>
+																</tr>
+															</c:forEach>
+														</tbody>
+													</table>
+												</div>
+												<nav aria-label="Page navigation example">
+													<ul class="pagination justify-content-center">
+														<li class="page-item"><a class="page-link" href="" aria-label="Previous"><span aria-hidden="true">«</span><span class="sr-only">Previous</span></a></li>
+														<li class="page-item"><a class="page-link" href="" aria-label="Previous">1</a></li>
+														<li class="page-item"><a class="page-link" href="" aria-label="Previous">2</a></li>
+														<li class="page-item"><a class="page-link" href="" aria-label="Previous">3</a></li>
+														<li class="page-item"><a class="page-link" href="" aria-label="Previous"><span aria-hidden="true">»</span><span class="sr-only">Next</span></a></li>
+													</ul>
+												</nav>
+											</div>
 										</div>
 									</div>
-								</div>
+								</form>
 							</div>
 						</div>
 					</div>
