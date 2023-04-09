@@ -1,6 +1,7 @@
 package kh.finalproject.sims.user.model.dao;
 
 import java.util.List;
+import java.util.Map;
 
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,20 +16,24 @@ public class UserPlanFindDao {
 	@Autowired
 	private SqlSession sqlSession;
 	
-	public List<PlanVo> selectPlanList() {
-		return sqlSession.selectList("plan.selectPlanList");
+	public List<PlanVo> selectPlanList(String searchText) {
+		return sqlSession.selectList("plan.selectPlanList", searchText);
 	}
 
-	public int cntPlanList() {
-		return sqlSession.selectOne("plan.cntPlanList");
+	public int cntPlanList(String searchText) {
+		return sqlSession.selectOne("plan.cntPlanList", searchText);
+	}
+	
+	public List<PlanVo> selectPlanList(Map searchMap) {
+		return sqlSession.selectList("plan.selectSearchPlanList", searchMap);
+	}
+	
+	public int cntPlanList(Map searchMap) {
+		return sqlSession.selectOne("plan.cntSearchPlanList", searchMap);
 	}
 
 	public List<BizInfoMngtVo> selectBizNameList() {
 		return sqlSession.selectList("plan.bizNameList");
-	}
-
-	public List<PlanVo> selectPlanList(PlanVo pvo) {
-		return sqlSession.selectList("plan.selectSearchPlanList", pvo);
 	}
 	
 }

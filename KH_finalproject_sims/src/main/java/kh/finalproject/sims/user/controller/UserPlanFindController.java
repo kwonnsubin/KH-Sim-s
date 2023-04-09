@@ -1,6 +1,8 @@
 package kh.finalproject.sims.user.controller;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -21,20 +23,35 @@ public class UserPlanFindController {
 	@GetMapping("/plans")
 	public ModelAndView plan(ModelAndView mv
 			, PlanVo pvo
+			, String searchText
 			) {
-		System.out.println(pvo.toString());
+		
+		List<PlanVo> planList = null;
+		int cnt = 0;
+		
 		if(pvo.getPlanData() == 0) {
-			List<PlanVo> planList = service.selectPlanList();
-			int cnt = service.cntPlanList();
-			mv.addObject("planList", planList);
-			mv.addObject("cnt", cnt);
+			planList = service.selectPlanList(searchText);
+			cnt = service.cntPlanList(searchText);
 		} else {
-			List<PlanVo> planList = service.selectPlanList(pvo);
-			mv.addObject("planList", planList);
+			Map<String, Object> searchMap = new HashMap<String, Object>();
+			
+			searchMap.put("planData", pvo.getPlanData());
+			searchMap.put("planVoice", pvo.getPlanVoice());
+			searchMap.put("planMessage", pvo.getPlanMessage());
+			searchMap.put("planPrice", pvo.getPlanPrice());
+			searchMap.put("netNo", pvo.getNetNo());
+			searchMap.put("genNo", pvo.getGenNo());
+			searchMap.put("bizName", pvo.getBizName());
+			searchMap.put("searchText", searchText);
+			
+			planList = service.selectPlanList(searchMap);
+			cnt = service.cntPlanList(searchMap);
 		}
 		
 		List<BizInfoMngtVo> bizList = service.selectBizNameList();
 		
+		mv.addObject("cnt", cnt);
+		mv.addObject("planList", planList);
 		mv.addObject("bizList", bizList);
 		mv.setViewName("user/plan/plans");
 		

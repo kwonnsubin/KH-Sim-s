@@ -17,49 +17,100 @@
 	    	, #{overVoiceAmtUnit}, #{overMessageAmtUnit}, #{overDataAmtUnit}, sysdate)
 	</insert>
 	
-	<select id="selectPlanList" resultType="planVo">
+	<select id="selectPlanList" parameterType="string" resultType="planVo">
 		select * from plan_table
+		<if test="searchText != null">
+			where plan_name like '%${searchText}%' or biz_name like '%${searchText}%'
+		</if>
 	</select>
 	
-	<select id="selectSearchPlanList" resultType="planVo">
+	<select id="selectSearchPlanList" parameterType="map" resultType="planVo">
 		select * from plan_table 
 		<trim prefix="where" prefixOverrides="and|or">
-			<if test="planData == 100000">plan_data >= 100000 and</if>
-			<if test="planData == 50000"><![CDATA[ (plan_data < 100000 and plan_data >= 50000) and]]> </if>
-			<if test="planData == 10000"><![CDATA[ (plan_data < 50000 and plan_data >= 10000) and]]> </if>
-			<if test="planData == 5000"><![CDATA[ (plan_data < 10000 and plan_data >= 5000) and]]> </if>
-			<if test="planData == 1000"><![CDATA[ plan_data <= 5000 and]]> </if>
+			<if test="planData == 100000">plan_data >= 100000</if>
+			<if test="planData == 50000"><![CDATA[ (plan_data < 100000 and plan_data >= 50000)]]> </if>
+			<if test="planData == 10000"><![CDATA[ (plan_data < 50000 and plan_data >= 10000)]]> </if>
+			<if test="planData == 5000"><![CDATA[ (plan_data < 10000 and plan_data >= 5000)]]> </if>
+			<if test="planData == 1000"><![CDATA[ plan_data <= 5000]]> </if>
 			
-			<if test="planVoice == 0"><![CDATA[ plan_voice = 0 and ]]> </if>
-			<if test="planVoice == 300"><![CDATA[ plan_voice >= 300 and ]]> </if>
-			<if test="planVoice == 180"><![CDATA[ (plan_voice < 300 and plan_voice >= 180) and ]]> </if>
-			<if test="planVoice == 60"><![CDATA[ (plan_voice < 180 and plan_voice >= 60) and ]]> </if>
-			<if test="planVoice == 30"><![CDATA[ plan_voice <= 60 and ]]> </if>
+			<if test="planVoice == 0"><![CDATA[and plan_voice = 0 ]]> </if>
+			<if test="planVoice == 300"><![CDATA[and plan_voice >= 300 ]]> </if>
+			<if test="planVoice == 180"><![CDATA[and (plan_voice < 300 and plan_voice >= 180) ]]> </if>
+			<if test="planVoice == 60"><![CDATA[and (plan_voice < 180 and plan_voice >= 60) ]]> </if>
+			<if test="planVoice == 30"><![CDATA[and plan_voice <= 60 ]]> </if>
 			
-			<if test="planMessage == 0"><![CDATA[ plan_message = 0 and ]]> </if>
-			<if test="planMessage == 300"><![CDATA[ plan_message >= 300 and ]]> </if>
-			<if test="planMessage == 100"><![CDATA[ (plan_message < 300 and plan_message >= 100) and ]]> </if>
-			<if test="planMessage == 50"><![CDATA[ (plan_message < 100 and plan_message >= 50) and ]]> </if>
-			<if test="planMessage == 10"><![CDATA[ plan_message <= 50 and ]]> </if>
+			<if test="planMessage == 0"><![CDATA[and plan_message = 0 ]]> </if>
+			<if test="planMessage == 300"><![CDATA[and plan_message >= 300 ]]> </if>
+			<if test="planMessage == 100"><![CDATA[and (plan_message < 300 and plan_message >= 100) ]]> </if>
+			<if test="planMessage == 50"><![CDATA[and (plan_message < 100 and plan_message >= 50) ]]> </if>
+			<if test="planMessage == 10"><![CDATA[and plan_message <= 50 ]]> </if>
 			
-			<if test="planPrice == 30000"><![CDATA[ plan_price >= 30000 and ]]> </if>
-			<if test="planPrice == 20000"><![CDATA[ (plan_price < 30000 and plan_price >= 20000) and ]]> </if>
-			<if test="planPrice == 10000"><![CDATA[ (plan_price < 20000 and plan_price >= 10000) and ]]> </if>
-			<if test="planPrice == 5000"><![CDATA[ (plan_price < 10000 and plan_price >= 5000) and ]]> </if>
-			<if test="planPrice == 1000"><![CDATA[ plan_price <= 5000 and ]]> </if>
+			<if test="planPrice == 30000"><![CDATA[and plan_price >= 30000 ]]> </if>
+			<if test="planPrice == 20000"><![CDATA[and (plan_price < 30000 and plan_price >= 20000) ]]> </if>
+			<if test="planPrice == 10000"><![CDATA[and (plan_price < 20000 and plan_price >= 10000) ]]> </if>
+			<if test="planPrice == 5000"><![CDATA[and (plan_price < 10000 and plan_price >= 5000) ]]> </if>
+			<if test="planPrice == 1000"><![CDATA[and plan_price <= 5000 ]]> </if>
 			
-			<if test="netNo != null"><![CDATA[ net_no = #{netNo} and ]]> </if>
+			<if test="netNo != null"><![CDATA[ and net_no = #{netNo} ]]> </if>
 			
-			<if test="genNo == 1"><![CDATA[ gen_no = #{genNo}]]> </if>
-			<if test="genNo == 2"><![CDATA[ (gen_no = #{genNo} or gen_no = 4)]]> </if>
-			<if test="genNo == 3"><![CDATA[ (gen_no = #{genNo} or gen_no = 4)]]> </if>
+			<if test="genNo == 1"><![CDATA[ and gen_no = #{genNo}]]> </if>
+			<if test="genNo == 2"><![CDATA[ and (gen_no = #{genNo} or gen_no = 4)]]> </if>
+			<if test="genNo == 3"><![CDATA[ and (gen_no = #{genNo} or gen_no = 4)]]> </if>
 			
 			<if test="bizName != null"><![CDATA[and biz_name = #{bizName} ]]> </if>
+			
+			<if test="searchText != null">
+				and (plan_name like '%${searchText}%' or biz_name like '%${searchText}%')
+			</if>
 		</trim>
 	</select>
 	
-	<select id="cntPlanList" resultType="int">
+	<select id="cntPlanList" parameterType="string" resultType="int">
 		select count(*) from plan_table
+		<if test="searchText != null">
+			where plan_name like '%${searchText}%' or biz_name like '%${searchText}%'
+		</if>
+	</select>
+	
+	<select id="cntSearchPlanList" parameterType="map" resultType="int">
+		select count(*) from plan_table 
+		<trim prefix="where" prefixOverrides="and|or">
+			<if test="planData == 100000">plan_data >= 100000</if>
+			<if test="planData == 50000"><![CDATA[ (plan_data < 100000 and plan_data >= 50000)]]> </if>
+			<if test="planData == 10000"><![CDATA[ (plan_data < 50000 and plan_data >= 10000)]]> </if>
+			<if test="planData == 5000"><![CDATA[ (plan_data < 10000 and plan_data >= 5000)]]> </if>
+			<if test="planData == 1000"><![CDATA[ plan_data <= 5000]]> </if>
+			
+			<if test="planVoice == 0"><![CDATA[and plan_voice = 0 ]]> </if>
+			<if test="planVoice == 300"><![CDATA[and plan_voice >= 300 ]]> </if>
+			<if test="planVoice == 180"><![CDATA[and (plan_voice < 300 and plan_voice >= 180) ]]> </if>
+			<if test="planVoice == 60"><![CDATA[and (plan_voice < 180 and plan_voice >= 60) ]]> </if>
+			<if test="planVoice == 30"><![CDATA[and plan_voice <= 60 ]]> </if>
+			
+			<if test="planMessage == 0"><![CDATA[and plan_message = 0 ]]> </if>
+			<if test="planMessage == 300"><![CDATA[and plan_message >= 300 ]]> </if>
+			<if test="planMessage == 100"><![CDATA[and (plan_message < 300 and plan_message >= 100) ]]> </if>
+			<if test="planMessage == 50"><![CDATA[and (plan_message < 100 and plan_message >= 50) ]]> </if>
+			<if test="planMessage == 10"><![CDATA[and plan_message <= 50 ]]> </if>
+			
+			<if test="planPrice == 30000"><![CDATA[and plan_price >= 30000 ]]> </if>
+			<if test="planPrice == 20000"><![CDATA[and (plan_price < 30000 and plan_price >= 20000) ]]> </if>
+			<if test="planPrice == 10000"><![CDATA[and (plan_price < 20000 and plan_price >= 10000) ]]> </if>
+			<if test="planPrice == 5000"><![CDATA[and (plan_price < 10000 and plan_price >= 5000) ]]> </if>
+			<if test="planPrice == 1000"><![CDATA[and plan_price <= 5000 ]]> </if>
+			
+			<if test="netNo != null"><![CDATA[ and net_no = #{netNo} ]]> </if>
+			
+			<if test="genNo == 1"><![CDATA[ and gen_no = #{genNo}]]> </if>
+			<if test="genNo == 2"><![CDATA[ and (gen_no = #{genNo} or gen_no = 4)]]> </if>
+			<if test="genNo == 3"><![CDATA[ and (gen_no = #{genNo} or gen_no = 4)]]> </if>
+			
+			<if test="bizName != null"><![CDATA[and biz_name = #{bizName} ]]> </if>
+			
+			<if test="searchText != null">
+				and (plan_name like '%${searchText}%' or biz_name like '%${searchText}%')
+			</if>
+		</trim>
 	</select>
 	
 	<select id="bizNameList" resultType="bvo">

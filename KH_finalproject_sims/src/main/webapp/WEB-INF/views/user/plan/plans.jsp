@@ -40,15 +40,72 @@
 	       	<div class="row align-self-center border-0 rounded-3">
 	       		<div class="col m-3 filter-area">
 	       			<p>데이터</p>
-	       			<p class="fs-4">전체</p>
+	       			<c:choose>
+		       			<c:when test="${param.planData eq 100000}">
+		       				<p class="fs-4">100GB 이상</p>
+		       			</c:when>
+		       			<c:when test="${param.planData eq 50000}">
+		       				<p class="fs-4">50~100GB</p>
+		       			</c:when>
+		       			<c:when test="${param.planData eq 10000}">
+		       				<p class="fs-4">10~50GB</p>
+		       			</c:when>
+		       			<c:when test="${param.planData eq 5000}">
+		       				<p class="fs-4">5~10GB</p>
+		       			</c:when>
+		       			<c:when test="${param.planData eq 1000}">
+		       				<p class="fs-4">5GB 이하</p>
+		       			</c:when>
+	       				<c:otherwise>
+	       					<p class="fs-4">전체</p>
+	       				</c:otherwise>
+	       			</c:choose>
 	       		</div>
 	       		<div class="col m-3 filter-area">
 	       			<p>통화량</p>
-	       			<p class="fs-4">전체</p>
+	       			<c:choose>
+		       			<c:when test="${param.planVoice eq 0}">
+		       				<p class="fs-4">기본제공</p>
+		       			</c:when>
+		       			<c:when test="${param.planVoice eq 300}">
+		       				<p class="fs-4">300분 이상</p>
+		       			</c:when>
+		       			<c:when test="${param.planVoice eq 180}">
+		       				<p class="fs-4">180~300분</p>
+		       			</c:when>
+		       			<c:when test="${param.planVoice eq 60}">
+		       				<p class="fs-4">60~180분</p>
+		       			</c:when>
+		       			<c:when test="${param.planVoice eq 30}">
+		       				<p class="fs-4">60분 이하</p>
+		       			</c:when>
+	       				<c:otherwise>
+	       					<p class="fs-4">전체</p>
+	       				</c:otherwise>
+	       			</c:choose>
 	       		</div>
 	       		<div class="col m-3 filter-area">
 	       			<p>가격</p>
-	       			<p class="fs-4">전체</p>
+	       			<c:choose>
+		       			<c:when test="${param.planPrice eq 30000}">
+		       				<p class="fs-4">3만원 이상</p>
+		       			</c:when>
+		       			<c:when test="${param.planPrice eq 20000}">
+		       				<p class="fs-4">2~3만원</p>
+		       			</c:when>
+		       			<c:when test="${param.planPrice eq 10000}">
+		       				<p class="fs-4">1~2만원</p>
+		       			</c:when>
+		       			<c:when test="${param.planPrice eq 5000}">
+		       				<p class="fs-4">5천~1만원</p>
+		       			</c:when>
+		       			<c:when test="${param.planPrice eq 1000}">
+		       				<p class="fs-4">5천원 이하</p>
+		       			</c:when>
+	       				<c:otherwise>
+	       					<p class="fs-4">전체</p>
+	       				</c:otherwise>
+	       			</c:choose>
 	       		</div>
 	       	</div>
        	</div>
@@ -289,32 +346,32 @@
 						        				<div>
 					        						<fieldset>
 														<label class="mx-1">
-													    	<input type="radio" name="voice" value="999999" checked />
+													    	<input type="radio" name="message" value="999999" checked />
 													    	<span class="px-2">전체</span>
 														</label>
 													
 													  	<label class="mx-1">
-													    	<input type="radio" name="voice" value="0" />
+													    	<input type="radio" name="message" value="0" />
 													    	<span class="px-2">기본제공</span>
 													  	</label>
 													  	
 													  	<label class="mx-1">
-													    	<input type="radio" name="voice" value="300" />
+													    	<input type="radio" name="message" value="300" />
 													    	<span class="px-2">300건 이상</span>
 													  	</label>
 													
 													 	<label class="mx-1">
-													    	<input type="radio" name="voice" value="100" />
+													    	<input type="radio" name="message" value="100" />
 													    	<span class="px-2">100~300건</span>
 													  	</label>
 													
 													  	<label class="mx-1">
-													    	<input type="radio" name="voice" value="50" />
+													    	<input type="radio" name="message" value="50" />
 													    	<span class="px-2">50~100건</span>
 													  	</label>
 													  	
 													  	<label class="mx-1">
-													    	<input type="radio" name="voice" value="10" />
+													    	<input type="radio" name="message" value="10" />
 													    	<span class="px-2">50건 이하</span>
 													  	</label>
 													</fieldset>
@@ -329,33 +386,33 @@
 					        							<div class="row">
 					        								<div class="col">
 																<label class="mx-1">
-															    	<input type="radio" name="voice" value="999999" checked />
+															    	<input type="radio" name="price" value="999999" checked />
 															    	<span class="px-2">전체</span>
 																</label>
 															
 															  	<label class="mx-1">
-															    	<input type="radio" name="voice" value="30000" />
+															    	<input type="radio" name="price" value="30000" />
 															    	<span class="px-2">3만원 이상</span>
 															  	</label>
 															  	
 															  	<label class="mx-1">
-															    	<input type="radio" name="voice" value="20000" />
+															    	<input type="radio" name="price" value="20000" />
 															    	<span class="px-2">2~3만원</span>
 															  	</label>
 					        								</div>
 					        								<div class="col">
 															 	<label class="mx-1">
-															    	<input type="radio" name="voice" value="10000" />
+															    	<input type="radio" name="price" value="10000" />
 															    	<span class="px-2">1~2만원</span>
 															  	</label>
 															
 															  	<label class="mx-1">
-															    	<input type="radio" name="voice" value="5000" />
+															    	<input type="radio" name="price" value="5000" />
 															    	<span class="px-2">5천~1만원</span>
 															  	</label>
 															  	
 															  	<label class="mx-1">
-															    	<input type="radio" name="voice" value="1000" />
+															    	<input type="radio" name="price" value="1000" />
 															    	<span class="px-2">5천원 이하</span>
 															  	</label>
 														  	</div>
@@ -485,7 +542,12 @@
 	    	<div class="row list-par-div">
 	    		<div class="col-8">
 	    			<div>
-	    				<p class="ms-3">총 ${cnt}개</p>
+	    				<c:if test="${param.searchText ne null}">
+	    					<p class="ms-3">검색어 '${param.searchText}' 총 ${cnt}개</p>
+	    				</c:if>
+	    				<c:if test="${param.searchText eq null}">
+	    					<p class="ms-3">총 ${cnt}개</p>
+	    				</c:if>
 	    			</div>
 	    			<c:forEach var="list" items="${planList}">
 	    			<div class="row mt-3 list-div">
@@ -512,7 +574,7 @@
 	    		<div class="col-4">
 	    			<div class="float-div">
 		    			<div class="input-div">
-		    				<input type="text" class="form-control" placeholder="검색어">
+		    				<input type="text" class="form-control searchText" placeholder="요금제이름 또는 통신사">
 		    				<span class="material-symbols-outlined search-icon">search</span>
 		    			</div>
 		    			<div class="row my-3">

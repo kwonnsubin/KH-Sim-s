@@ -1,4 +1,51 @@
 $(document).ready(function() {
+	const urlParams = new URL(location.href).searchParams;
+	const planData = urlParams.get('planData');
+	const planVoice = urlParams.get('planVoice');
+	const planMessage = urlParams.get('planMessage');
+	const planPrice = urlParams.get('planPrice');
+	const netNo = urlParams.get('netNo');
+	const genNo = urlParams.get('genNo');
+	const bizName = urlParams.get('bizName');
+	for(var i = 0; i < 6; i++) {
+		if($("#planData fieldset label input").eq(i).val() == planData) {
+			$("#planData fieldset label input").eq(i).prop("checked", true);
+			dataRdoValCheck($("#planData fieldset label input:checked"));
+		}
+		if($("#planVoice fieldset label input").eq(i).val() == planVoice) {
+			$("#planVoice fieldset label input").eq(i).prop("checked", true);
+			voiceRdoValCheck($("#planVoice fieldset label input:checked"));
+		} 
+		if($("#planMessage fieldset label input").eq(i).val() == planMessage) {
+			$("#planMessage fieldset label input").eq(i).prop("checked", true);
+			messageRdoValCheck($("#planMessage fieldset label input:checked"));
+		} 
+		if($("#planPrice fieldset label input").eq(i).val() == planPrice) {
+			$("#planPrice fieldset label input").eq(i).prop("checked", true);
+		} 
+	}
+	for(var i = 0; i < 3; i++) {
+		if($("#netNo fieldset label input").eq(i).val() == netNo) {
+			$("#netNo fieldset label input").eq(i).prop("checked", true);
+		}
+		if($("#genNo fieldset label input").eq(i).val() == genNo) {
+			$("#genNo fieldset label input").eq(i).prop("checked", true);
+		}
+	}
+	for(var i = 0; i < $("#bizName fieldset label input").length; i++) {
+		if($("#netNo fieldset label input").eq(i).val() == netNo) {
+			$("#netNo fieldset label input").eq(i).prop("checked", true);
+		}
+	}
+	
+	dataInputChecked();
+	voiceInputChecked();
+	messageInputChecked();
+	priceInputChecked();
+	netInputChecked();
+	genInputChecked();
+	bizNameInputChecked();
+	
 	$('.modal').on('shown.bs.modal', function () {
 		$("body").css("overflow", "hidden");
 	});
@@ -14,9 +61,6 @@ $(document).ready(function() {
 		dataRangeText();
 		// 버튼 클릭 시 색 변경
 		dataInputChecked();
-		
-		var dataText = $("#planData fieldset label input:checked").next().text();
-		$(".filter-area p").eq(1).text(dataText);
 	});
 	
 	$("#planData input[type=range]").on("change", function() {
@@ -39,9 +83,6 @@ $(document).ready(function() {
 		
 		dataRangeText();
 		dataInputChecked();
-		
-		var dataText = $("#planData fieldset label input:checked").next().text();
-		$(".filter-area p").eq(1).text(dataText);
 	});
 	
 	// planVoice Div 컨트롤
@@ -77,9 +118,6 @@ $(document).ready(function() {
 		
 		voiceRangeText();
 		voiceInputChecked();
-		
-		var voiceText = $("#planData fieldset label input:checked").next().text();
-		$(".filter-area p").eq(3).text(voiceText);
 	});
 	
 	// planMessage Div 컨트롤
@@ -118,9 +156,6 @@ $(document).ready(function() {
 	$("#planPrice fieldset label").on("click", function(e) {
 		// 버튼 클릭 시 색 변경
 		priceInputChecked();
-		
-		var priceText = $("#planPrice fieldset label input:checked").next().text();
-		$(".filter-area p").eq(5).text(priceText);
 	});
 	
 	// netNo Div 컨트롤
@@ -282,6 +317,8 @@ function voiceRangeText() {
 }
 
 function voiceRdoValCheck(e) {
+	console.log($(e.target));
+	console.log(e);
 	if($(e.target).next().text() === "전체") {
 		$("#planVoice input[type=range]").eq(0).val("0");
 		$("#planVoice input[type=range]").eq(1).val("300");
@@ -532,18 +569,42 @@ var cPath = getContextPath();
 $(".search-btn").on("click", searchList);
 
 function searchList() {
-	$.ajax({
-		url : cPath + "/plans",
-		type : "get",
-		async : false,
-		data : {
-			planData : $("#planData fieldset label input:checked").val(),
-			planVoice : $("#planVoice fieldset label input:checked").val(),
-			planMessage : $("#planMessage fieldset label input:checked").val(),
-			planPrice : $("#planPrice fieldset label input:checked").val(),
-			netNo : $("#netNo fieldset label input:checked").val(),
-			genNo : $("#genNo fieldset label input:checked").val(),
-			bizName : $("#bizName fieldset label input:checked").val()
-		}
-	 });
+	var planData = $("#planData fieldset label input:checked").val();
+	var planVoice = $("#planVoice fieldset label input:checked").val();
+	var planMessage = $("#planMessage fieldset label input:checked").val();
+	var planPrice = $("#planPrice fieldset label input:checked").val();
+	var netNo = $("#netNo fieldset label input:checked").val();
+	var genNo = $("#genNo fieldset label input:checked").val();
+	var bizName = $("#bizName fieldset label input:checked").val();
+	
+	var href = cPath + "/plans?&planData=" + planData + "&planVoice=" + planVoice + "&planMessage=" + planMessage + "&planPrice=" + planPrice;
+	
+	if(netNo != undefined) {
+		href = href + "&netNo=" + netNo;
+	}
+	
+	if(genNo != undefined) {
+		href = href + "&genNo=" + genNo;
+	}
+	
+	if(bizName != undefined) {
+		href = href + "&bizName=" + bizName;		
+	}
+	
+	location.href = href;
+}
+
+$(document).ready(function() {
+	$(".searchText").on("change", searchText);
+	$(".searchText").on("blur", searchText);
+});
+
+function searchText() {
+	var url = window.location.href;
+	var searchText = $('.searchText').val();
+	if(url.includes("?")) {
+		location.href = url + "&searchText=" + searchText;
+	} else {
+		location.href = url + "?&searchText=" + searchText;
+	}
 }
