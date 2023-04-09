@@ -78,24 +78,23 @@
 	        <input type="hidden" name="role" value="ROLE_USER">
 	        
 	        <div class="user">
-		          <div class="mb-3">
-		              <label for="userName">이름</label>
-		              <input type="text" class="form-control" name="userName" placeholder="이름" required>
-		              <div class="invalid-feedback">이름을 입력해주세요.</div>
-		          </div>
-				
-				<div class="container">
-		            <div class="row">
-			          <div class="col-9 mb-3 text-left">
-			            <label for="userEmail">이메일</label>
-			            <input type="email" class="form-control" name="userEmail" placeholder="you@example.com" required>
-			            <div class="invalid-feedback">이메일을 입력해주세요.</div>
-			          </div>
-			          <div class="col-3 mb-3 text-center align-self-end">
-			            <button class="btn btn-primary btn-sm btn-block" name="emailBtn" type="button" disabled="disabled">본인인증</button>
-			          </div>
-		            </div>
+		        <div class="mb-3">
+		            <label for="userName">이름</label>
+		            <input type="text" class="form-control" name="userName" placeholder="이름" required>
+		            <div class="invalid-feedback">이름을 입력해주세요.</div>
 		        </div>
+				
+				
+	            <div class="row">
+		          <div class="col-9 mb-3 text-left">
+		            <label for="userEmail">이메일</label>
+		            <input type="email" class="form-control" name="userEmail" placeholder="you@example.com" required>
+		            <div class="invalid-feedback">이메일을 입력해주세요.</div>
+		          </div>
+		          <div class="col-3 mb-3 text-center align-self-end">
+		            <button class="btn btn-primary btn-sm btn-block" name="emailBtn" type="button" disabled="disabled">본인인증</button>
+		          </div>
+	            </div>
 		
 		          <div class="mb-3">
 		            <label for="emailCheck">인증번호</label>
@@ -105,17 +104,15 @@
 		          
 		        <div class="emailCheckDiv" style="display:none;"></div>
 		          
-		          <div class="container">
-		            <div class="row">
-			          <div class="col-9 mb-3 text-left">
+		        <div class="row">
+			    	<div class="col-9 mb-3 text-left">
 			            <label for="id">아이디</label>
 			            <input type="text" class="form-control" name="id" placeholder="아이디" required>
-			            <div class="invalid-feedback">아이디를 입력해주세요.</div>
-			          </div>
-			          <div class="col-3 mb-3 text-center align-self-end">
-			            <button class="btn btn-primary btn-sm btn-block" name="idBtn" type="button" disabled="disabled">중복확인</button>
-			          </div>
-		            </div>
+			       		<div class="invalid-feedback">아이디를 입력해주세요.</div>
+			        </div>
+		        	<div class="col-3 mb-3 text-center align-self-end">
+		            	<button class="btn btn-primary btn-sm btn-block" name="idBtn" type="button" disabled="disabled">중복확인</button>
+		          	</div>
 		        </div>
 		        
 		        <div class="idCheckDiv" style="display:none;"></div>
@@ -136,21 +133,19 @@
 		          
 		          <!-- 성별 -->
             	<label for="genderDiv">성별</label>
-		          <div class="container text-center" name="genderDiv">
-		            <div class="row">
-			          <div class="col input-group mb-3">
-						  <div class="input-group-text">
-						    <input class="form-check-input mt-0" type="radio" value="M" name="userGender" checked>
-						  </div>
-						  <input type="text" class="form-control" value="여성" readonly>
+	            <div class="row text-center">
+		          <div class="col input-group mb-3">
+					  <div class="input-group-text">
+					    <input class="form-check-input mt-0" type="radio" value="M" name="userGender" checked>
 					  </div>
-					  <div class="col input-group mb-3">
-						  <div class="input-group-text">
-						    <input class="form-check-input mt-0" type="radio" value="F" name="userGender">
-						  </div>
-						  <input type="text" class="form-control" value="남성" readonly>
+					  <input type="text" class="form-control" value="여성" readonly style="background-color:white;">
+				  </div>
+				  <div class="col input-group mb-3">
+					  <div class="input-group-text">
+					    <input class="form-check-input mt-0" type="radio" value="F" name="userGender">
 					  </div>
-		            </div>
+					  <input type="text" class="form-control" value="남성" readonly style="background-color:white;">
+				  </div>
 	        	</div>
 		          
 		          <div class="mb-3">
@@ -193,18 +188,16 @@
 		            <div class="invalid-feedback">사업자등록번호를 입력하세요</div>
 		          </div>
 		          
-		          <div class="container">
-		            <div class="row">
-			          <div class="col-9 mb-3 text-left">
-			            <label for="id">아이디</label>
-			            <input type="text" class="form-control" name="id" placeholder="아이디" required>
-			            <div class="invalid-feedback">아이디를 입력해주세요.</div>
-			          </div>
-			          <div class="col-3 mb-3 text-center align-self-end">
-			            <button class="btn btn-primary btn-sm btn-block" name="idBtn" type="button" disabled="disabled">중복확인</button>
-			          </div>
-		            </div>
+	            <div class="row">
+		          <div class="col-9 mb-3 text-left">
+		            <label for="id">아이디</label>
+		            <input type="text" class="form-control" name="id" placeholder="아이디" required>
+		            <div class="invalid-feedback">아이디를 입력해주세요.</div>
 		          </div>
+		          <div class="col-3 mb-3 text-center align-self-end">
+		            <button class="btn btn-primary btn-sm btn-block" name="idBtn" type="button" disabled="disabled">중복확인</button>
+		          </div>
+	            </div>
 		        
 		        <div class="idCheckDiv" style="display:none;"></div>
 		          

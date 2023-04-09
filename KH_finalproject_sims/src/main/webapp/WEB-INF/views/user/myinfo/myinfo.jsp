@@ -63,13 +63,13 @@
 	      
 	        <div class="mb-3">
 	              <label for="userName">이름</label>
-	              <input type="text" class="form-control" name="userName" value="${userInfo.userName}" readonly>
+	              <input type="text" class="form-control" name="userName" value="${userInfo.userName}" style="background-color:white;" readonly>
 	              <div class="invalid-feedback">이름을 입력해주세요.</div>
 	        </div>
 	        
 	        <div class="mb-3">
 	              <label for="id">아이디</label>
-	              <input type="text" class="form-control" name="id" value="${userInfo.userId}" readonly>
+	              <input type="text" class="form-control" name="id" value="${userInfo.userId}" style="background-color:white;" readonly>
 	              <div class="invalid-feedback">아이디를 입력해주세요.</div>
 	        </div>
 	        
@@ -87,20 +87,18 @@
 	          
 	        <div class="pwCheckDiv" style="display:none;"></div>
 				
-			<div class="container">
-	            <div class="row">
-		          <div class="col-9 mb-3 text-left">
-		            <label for="userEmail">이메일</label>
-		            <input type="email" class="form-control" name="userEmail" value="${userInfo.userEmail}" required>
-		            <div class="invalid-feedback">이메일을 입력해주세요.</div>
-		          </div>
-		          <div class="col-3 mb-3 text-center align-self-end">
-		            <button class="btn btn-primary btn-sm btn-block" name="emailBtn" type="button" disabled="disabled">본인인증</button>
-		          </div>
-	            </div>
-	        </div>
+            <div class="row">
+	          <div class="col-9 mb-3 text-left">
+	            <label for="userEmail">이메일</label>
+	            <input type="email" class="form-control" name="userEmail" value="${userInfo.userEmail}" required>
+	            <div class="invalid-feedback">이메일을 입력해주세요.</div>
+	          </div>
+	          <div class="col-3 mb-3 text-center align-self-end">
+	            <button class="btn btn-primary btn-sm btn-block" name="emailBtn" type="button" disabled="disabled">본인인증</button>
+	          </div>
+            </div>
 	
-	          <div class="mb-3">
+	        <div class="mb-3">
 	            <label for="emailCheck">인증번호</label>
 	            <input type="text" class="form-control" name="emailCheck" placeholder="인증번호" required>
 	            <div class="invalid-feedback">인증번호를 입력하세요</div>
