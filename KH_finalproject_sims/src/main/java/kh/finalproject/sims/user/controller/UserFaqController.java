@@ -1,7 +1,9 @@
 package kh.finalproject.sims.user.controller;
 
 import java.security.Principal;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -82,10 +84,21 @@ public class UserFaqController {
 		service.selectQnaDetail(aqNo);
 		List<UserAnsVo> ansList = service.selectAnsList(aqNo);
 		if (!ansList.isEmpty()) {
-			Gson gson = new GsonBuilder().setDateFormat("yyyy-MM-dd").create();
+			Gson gson = new GsonBuilder().setDateFormat("yyyy.MM.dd HH:mm").create();
 			return gson.toJson(ansList);
 		}
 		return null;
+	}
+	
+	// 답변수 ajax
+	@ResponseBody
+	@GetMapping(value = "/qna/ansCount")
+	public Map<String, Integer> answerCount(@RequestParam("aqNo") int aqNo) {
+	    Map<String, Integer> map = new HashMap<>();
+	    UserQnaVo vo = service.selectQnaDetail(aqNo);
+	    int count = vo.getAqAnswers();
+	    map.put("answer_count", count);
+	    return map;
 	}
 	
 	// 답변달기

@@ -87,7 +87,7 @@
 			
 			<!-- n개의 답변이 있어요 -->
 			<div class="row">
-				<div class="col-sm-12 p-3 my-2">
+				<div class="answer-count col-sm-12 p-3 my-2">
 					<span style="color: blue">${question.aqAnswers }개</span>
 					<span>의 답변이 있어요</span>
 				</div>
@@ -201,6 +201,7 @@
 				alert("답변 등록 성공");
 				$('#aaContent').val('');
 				getAnsList();
+				getAnsCount();
 			},
 			error: function(error) {
 				alert("답변 등록 실패");
@@ -217,7 +218,7 @@
 			type: 'get',
 			success: function(result) {
 				$(".answer-item").empty();
-				displayAns(result);
+				displayAnswers(result);
 				alert("답변 조회 성공");
 			},
 			error: function() {
@@ -226,7 +227,26 @@
 		})
 	}
 	
-	function displayAns(result) {
+	// 답변수 불러오기 ajax
+	function getAnsCount() {
+		var aqNo = "${aqNo}"
+	    $.ajax({
+	        url: '<%=request.getContextPath()%>/faq/qna/ansCount',
+	        data: {aqNo: aqNo},
+	        type: "GET",
+	        success: function(response) {
+	        	console.log(response);
+	            $(".answer-count").html("<span style='color: blue'>" + response.answer_count + "개</span>의 답변이 있어요");
+	            alert("답변수 조회 성공");
+	        },
+	        error: function() {
+	        	alert("답변수 조회 실패");
+	        }
+	    });
+	};
+	
+	// 답변 목록
+	function displayAnswers(result) {
 		var html = '';
 		for(var i in result) {
 			html += '<div class="answer-item">';
@@ -239,7 +259,11 @@
 			}
 			html += '</div>';
 			html += '<div class="answer-date col-6 small py-2 text-end">';
-			/* html += '<fmt:formatDate value="${answer.aaRedate == null ? answer.aaDate : answer.aaRedate}" pattern="yyyy.MM.dd HH:mm"/>'; */
+			if(result[i].aaRedate) {
+				html += result[i].aaRedate;
+			} else {
+				html += result[i].aaDate;
+			}
 			html += '</div>';
 			html += '<div class="answer-content col-12 py-4">';
 			html += result[i].aaContent;
@@ -255,7 +279,11 @@
 				}
 				html += '</div>';
 				html += '<div class="reply-date col-6 small py-1 text-end">';
-				/* html += '<fmt:formatDate value="${rpl.rplRedate == null ? rpl.rplDate : rpl.rplRedate}" pattern="yyyy.MM.dd HH:mm"/>'; */
+				if(result[i].aaRpls[j].rplRedate) {
+					html += result[i].aaRpls[j].rplRedate;
+				} else {
+					html += result[i].aaRpls[j].rplDate;
+				}
 				html += '</div>';
 				html += '<div class="reply-content col-10 py-2">';
 				html += result[i].aaRpls[j].rplContent;
@@ -263,20 +291,18 @@
 				html += '</div>';
 			}
 			html += '</div>';
-/* 			<!-- 댓글 작성 -->
-			<sec:authorize access="hasRole('ROLE_USER')">
-				<div class="p-3 pb-1">
-					<form action="${cpath }/faq/ans/${answer.aaNo}/reply" method="post">
-						<input type="hidden" value="${username }" name="userId" id="userId">
-						<input type="hidden" value="${answer.aaNo }" name="aaNo" id="aaNo">
-						<div class="input-group">
-						  	<input type="text" name="rplContent" id="rplContent" class="form-control" placeholder="댓글을 작성해주세요">
-						  	<button class="btn" type="submit" id="btn-writeRpl">완료</button>
-						</div>
-					</form>
-				</div>
-			</sec:authorize>
-			<!-- /댓글 작성 --> */
+			html += '<div class="btn-rpl-mod col-2 small py-1 text-end">';
+			html += '<div class="p-3 pb-1">';
+			html += '<form action="${cpath }/faq/ans/' + result[i].aaNo + '/reply" method="post">';
+			html += '<input type="hidden" value="${username }" name="userId" id="userId">';
+			html += '<input type="hidden" value="' + result[i].aaNo + '" name="aaNo" id="aaNo">';
+			html += '<div class="input-group">';
+			html += '<input type="text" name="rplContent" id="rplContent" class="form-control" placeholder="댓글을 작성해주세요">';
+			html += '<button class="btn" type="submit" id="btn-writeRpl">완료</button>';
+			html += '</div>';
+			html += '</form>';
+			html += '</div>';
+			html += '</div>';
 			html += '</div>';
 			html += '</div>';
 			html += '<hr>';			
