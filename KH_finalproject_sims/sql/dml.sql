@@ -255,6 +255,7 @@ insert into biz_network values ('kctv',2,'1877-7784');
 insert into biz_network values ('kctv',3,'1877-7030');
 
 insert into biz_network values ('sejong',1,'1899-7700');
+insert into biz_network values ('sejong',2,null);
 insert into biz_network values ('sejong',3,'1899-7800');
 
 insert into biz_network values ('eyesmb',1,'1800-6200');
@@ -264,11 +265,15 @@ insert into biz_network values ('eyesmb',3,'1800-4100');
 
 insert into biz_network values ('annex',1,'1855-1144');
 insert into biz_network values ('annex',2,'1855-2114');
+insert into biz_network values ('annex',3,'1855-2114');
 
 insert into biz_network values ('yytel',1,'1661-5146');
+insert into biz_network values ('yytel',2,null);
 insert into biz_network values ('yytel',3,'1661-5646');
 
 insert into biz_network values ('idowell',1,'1688-8466');
+insert into biz_network values ('idowell',2,null);
+insert into biz_network values ('idowell',3,null);
 
 insert into biz_network values ('unicomz',1,'1899-3666');
 insert into biz_network values ('unicomz',2,'1666-9980');
