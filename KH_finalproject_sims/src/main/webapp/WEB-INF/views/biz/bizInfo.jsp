@@ -6,159 +6,189 @@
 <html>
 <head>
 <meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@100;300;400;500;700;900&display=swap" rel="stylesheet">
+
 <title>Insert title here</title>
-<link rel="stylesheet" href="${path}/resources/css/biz/info.css"/>
+<link rel="stylesheet" href="${path}/resources/css/biz/bizInfo.css"/>
 <script src="https://code.jquery.com/jquery-3.6.3.js"></script>
 <link type="text/css" rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css">
 <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
+
+	<!-- Bootstrap core CSS -->
+    <link href="<%= request.getContextPath() %>/resources/chain/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    
+    <!-- Additional CSS Files -->
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
+    <link rel="stylesheet" href="<%= request.getContextPath() %>/resources/chain/assets/css/templatemo-chain-app-dev.css">
+    <link rel="stylesheet" href="<%= request.getContextPath() %>/resources/chain/assets/css/animated.css">
+    <link rel="stylesheet" href="<%= request.getContextPath() %>/resources/chain/assets/css/owl.css">
+    <link rel="stylesheet" href="<%= request.getContextPath() %>/resources/css/user/myinfo.css"/>
+   
+
 </head>
 <body>
-	
+<jsp:include page="/WEB-INF/views/header.jsp"/>
+<jsp:include page="/WEB-INF/views/biz/nav.jsp"/>
+
 	<img src="${path}${imagePath}"/>
-	
-	<nav>
-		<p> 마이페이지
-		<ul>
-		 
-		</ul>
-	</nav>
 
 	<div>
 		<span>기본정보</span>
-	</div>
+	
 
-	<table>
-		<tbody>
-			<tr>
-				<th scope="row">
-					<span>법인명</span>
-				</th>
-				<td>${bizinfo.bizName }</td>
-				<th scope="row">
-					<span>대표자명</span>
-				</th>
-				<td>${bizinfo.bizOwnerName }</td>
-			</tr>
-			<tr>
-				<th scope="row">
-					<span>사업자등록번호</span>
-				</th>
-				<td>${bizinfo.bizCrn }</td>
-				<th scope="row">
-					<span>법인등록번호</span>
-				</th>
-				<td>${bizinfo.bizSsn }</td>
-			</tr>
-			<tr>
-				<th scope="row">
-					<span>회사우편번호</span>
-				</th>
-				<td colspan="2">${bizinfo.bizZipCode }</td>
-			</tr>
-			<tr>
-				<th scope="row">
-					<span>회사주소</span>
-				</th>
-				<td colspan="2">${bizinfo.bizLocation }</td>
-			</tr>
-			<tr>
-				<th scope="row">
-					<span>전화</span>
-				</th>
-				<td>${bizinfo.bizPhone }</td>
-				<th scope="row">
-					<span>팩스</span>
-				</th>
-				<td>${bizinfo.bizFax }</td>
-			</tr>
-			<tr>
-				<th scope="row">
-					<span>이메일</span>
-				</th>
-				<td>${bizinfo.bizEmail }</td>
-				<th scope="row">
-					<span>홈페이지</span>
-				</th>
-				<td>${bizinfo.bizHp }</td>
-			</tr>
-		</tbody>
-	</table>
+		<table class="table">
+			<tbody>
+				<tr>
+					<th scope="row">
+						<span>법인명</span>
+					</th>
+					<td>${bizinfo.bizName }</td>
+					<th scope="row">
+						<span>대표자명</span>
+					</th>
+					<td>${bizinfo.bizOwnerName }</td>
+				</tr>
+				<tr>
+					<th scope="row">
+						<span>사업자등록번호</span>
+					</th>
+					<td>${bizinfo.bizCrn }</td>
+					<th scope="row">
+						<span>법인등록번호</span>
+					</th>
+					<td>${bizinfo.bizSsn }</td>
+				</tr>
+				<tr>
+					<th scope="row">
+						<span>회사우편번호</span>
+					</th>
+					<td colspan="3">${bizinfo.bizZipCode }</td>
+				</tr>
+				<tr>
+					<th scope="row">
+						<span>회사주소</span>
+					</th>
+					<td colspan="3">${bizinfo.bizLocation }</td>
+				</tr>
+				<tr>
+					<th scope="row">
+						<span>전화</span>
+					</th>
+					<td>${bizinfo.bizPhone }</td>
+					<th scope="row">
+						<span>팩스</span>
+					</th>
+					<td>${bizinfo.bizFax }</td>
+				</tr>
+				<tr>
+					<th scope="row">
+						<span>이메일</span>
+					</th>
+					<td>${bizinfo.bizEmail }</td>
+					<th scope="row">
+						<span>홈페이지</span>
+					</th>
+					<td><a href="${bizinfo.bizHp }">${bizinfo.bizHp }</a></td>
+				</tr>
+			</tbody>
+		</table>
 	
-	<div>
-		<span>상세정보</span>
+		<div>
+			<span>상세정보</span>
+		</div>
+		
+		<table class="table">
+			<tr>
+				<th scope="row">
+					<span>개통 소요시간</span>
+				</th>
+				<td >평균 ${bizinfo.phoneOpTime }일</td>
+				<th scope="row">
+					<span>개통 소요시간 (유심보유시)</span>
+				</th>
+				<td >평균 ${bizinfo.phoneOpTimeUsim }일</td>
+			</tr>
+			
+			<tr>
+				<th scope="row">
+					<span>카드 결제일</span>
+				</th>
+				<td >${bizinfo.bizCardPayDate }일</td>
+				<th scope="row">
+					<span>계좌이체 결제일</span>
+				</th>
+				<td >${bizinfo.bizAccPayDate }일</td>
+			</tr>
+	
+			<tr>
+				<th scope="row">
+					<span>지원통신망</span>
+				</th>
+				<td colspan="2">${bizinfo.network }</td>
+			</tr>
+			<tr>
+				<th scope="row">
+					<span>영업시간</span>
+				</th>
+				<td >${bizinfo.bizBeginTime } ~ ${bizinfo.bizEndTime }</td>
+				<th scope="row">
+					<span>휴무일</span>
+				</th>
+				<td >${bizinfo.bizClosedDay }</td>
+			</tr>
+	
+			<c:forEach var="service" items="${serviceList }">
+				<tr>
+					<th scope="row">
+						<span>고객센터번호</span>
+					</th>
+					<td colspan="2">
+					<c:choose>
+						<c:when test="${service.netNo eq 1}">
+					      KT
+					    </c:when>
+					    <c:when test="${service.netNo eq 2}">
+					      SKT
+					    </c:when>
+					    <c:when test="${service.netNo eq 3}">
+					      LGU+
+					    </c:when>
+					</c:choose>
+					</td>
+					<c:if test="${not empty service.bizNetService}">
+						<td>${service.bizNetService}</td>
+					</c:if>
+					<c:if test="${empty service.bizNetService}">
+						<td>미운영</td>
+					</c:if>
+					
+				</tr>
+			</c:forEach>
+			
+			
+			
+		</table>
+		
+		<button type="button" onclick="location.href='<%=request.getContextPath()%>/biz/modifyInfo'">수정하기</button>
+		
 	</div>
 	
-	<table>
-		<tr>
-			<th scope="row">
-				<span>개통 소요시간</span>
-			</th>
-			<td >평균 ${bizinfo.phoneOpTime }일</td>
-			<th scope="row">
-				<span>개통 소요시간 (유심보유시)</span>
-			</th>
-			<td >평균 ${bizinfo.phoneOpTimeUsim }일</td>
-		</tr>
-		
-		<tr>
-			<th scope="row">
-				<span>카드 결제일</span>
-			</th>
-			<td >${bizinfo.bizCardPayDate }일</td>
-			<th scope="row">
-				<span>계좌이체 결제일</span>
-			</th>
-			<td >${bizinfo.bizAccPayDate }일</td>
-		</tr>
-
-		<tr>
-			<th scope="row">
-				<span>지원통신망</span>
-			</th>
-			<td colspan="2">${bizinfo.network }</td>
-		</tr>
-		<tr>
-			<th scope="row">
-				<span>영업시간</span>
-			</th>
-			<td colspan="2">${bizinfo.bizBeginTime } ~ ${bizinfo.bizEndTime }</td>
-		</tr>
-		<tr>
-			<th scope="row">
-				<span>휴무일</span>
-			</th>
-			<td colspan="2">${bizinfo.bizClosedDay }</td>
-		</tr>
-		
-		<c:forEach var="service" items="${serviceList }">
-			<tr>
-				<th scope="row">
-					<span>고객센터번호</span>
-				</th>
-				<td colspan="2">
-				<c:choose>
-					<c:when test="${service.netNo eq 1}">
-				      SKT
-				    </c:when>
-				    <c:when test="${service.netNo eq 2}">
-				      KT
-				    </c:when>
-				    <c:when test="${service.netNo eq 3}">
-				      LGU+
-				    </c:when>
-				</c:choose>
-				</td>
-				<td>${service.bizNetService}</td>
-			</tr>
-		</c:forEach>
-		
-		
-		
-	</table>
+	<jsp:include page="/WEB-INF/views/footer.jsp"/>
 	
-	<button type="button" onclick="location.href='<%=request.getContextPath()%>/biz/modifyInfo'">수정하기</button>
-	
-	
-	
+	<!-- Scripts -->
+	<script src="<%= request.getContextPath() %>/resources/chain/vendor/jquery/jquery.min.js"></script>
+	<script src="<%= request.getContextPath() %>/resources/chain/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+	<script src="<%= request.getContextPath() %>/resources/chain/assets/js/owl-carousel.js"></script>
+	<script src="<%= request.getContextPath() %>/resources/chain/assets/js/animation.js"></script>
+	<script src="<%= request.getContextPath() %>/resources/chain/assets/js/imagesloaded.js"></script>
+	<script src="<%= request.getContextPath() %>/resources/chain/assets/js/popup.js"></script>
+	<script src="<%= request.getContextPath() %>/resources/chain/assets/js/custom.js"></script>
+	<script src="<%= request.getContextPath() %>/resources/js/user/myinfo.js"></script>
+  
 </body>
 </html>

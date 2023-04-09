@@ -273,15 +273,30 @@
 	    <c:choose>
 	        <c:when test="${service.netNo == 1}">
 	            <span style="display: none">KT</span>
-	            <input style="display: none" type="text" name="KtService" value="${service.bizNetService}">
+	            <c:if test="${not empty service.bizNetService}">
+			        <input style="display: none" type="text" name="KtService" value="${service.bizNetService}">
+			    </c:if>
+			    <c:if test="${empty service.bizNetService}">
+			        <input style="display: none" type="text" name="KtService">
+			    </c:if>
 	        </c:when>
 	        <c:when test="${service.netNo == 2}">
 	            <span style="display: none">SKT</span>
-	            <input style="display: none" type="text" name="SktService" value="${service.bizNetService}">
+	            <c:if test="${not empty service.bizNetService}">
+			        <input style="display: none" type="text" name="SktService" value="${service.bizNetService}">
+			    </c:if>
+			    <c:if test="${empty service.bizNetService}">
+			        <input style="display: none" type="text" name="SktService">
+			    </c:if>
 	        </c:when>
 	        <c:when test="${service.netNo == 3}">
 	            <span style="display: none">LGU+</span>
-	            <input style="display: none" type="text" name="LguService" value="${service.bizNetService}">
+	            <c:if test="${not empty service.bizNetService}">
+			        <input style="display: none" type="text" name="LguService" value="${service.bizNetService}">
+			    </c:if>
+			    <c:if test="${empty service.bizNetService}">
+			        <input style="display: none" type="text" name="LguService">
+			    </c:if>
 	        </c:when>
 	    </c:choose>
 		</c:forEach>
@@ -293,10 +308,15 @@
 
 		</div>
         
+        <button onclick="goBack()">뒤로 가기</button>
         <button type="submit">등록</button>
     </form>
 
-
+<script>
+	function goBack() {
+	  window.history.back();
+	}
+</script>
 
 <jsp:include page="/WEB-INF/views/footer.jsp"/>
 	
@@ -369,7 +389,8 @@
 <!-- 지원통신망 체크에 따라 고객센터번호 칸 출력 -->
 <script>
 $(document).ready(function() {
-    // 첫 번째 체크박스 초기화
+	/*페이지로딩시 체크 된 상태로 고객센터번호칸이 나옴. 근데 애초에 db에 값이 없으면 새로 추가를 못함. */
+   // 첫 번째 체크박스 초기화
     if ($('input[type="checkbox"][name="net"][value="KT망"]').is(':checked')) {
         $('span:contains("KT"):first').show();
         $('input[type="text"][name="KtService"]').show();
@@ -394,7 +415,9 @@ $(document).ready(function() {
             $('input[type="text"][name="KtService"]').show();
         } else {
             $('span:contains("KT"):first').hide();
+            $('input[type="text"][name="KtService"]').val(''); // 입력값을 빈 문자열로 초기화
             $('input[type="text"][name="KtService"]').hide();
+
         }
     });
 
@@ -404,7 +427,9 @@ $(document).ready(function() {
             $('input[type="text"][name="SktService"]').show();
         } else {
             $('span:contains("SKT")').hide();
+            $('input[type="text"][name="SktService"]').val(''); // 입력값을 빈 문자열로 초기화
             $('input[type="text"][name="SktService"]').hide();
+
         }
     });
 
@@ -414,44 +439,14 @@ $(document).ready(function() {
             $('input[type="text"][name="LguService"]').show();
         } else {
             $('span:contains("LGU+")').hide();
+            $('input[type="text"][name="LguService"]').val(''); // 입력값을 빈 문자열로 초기화
             $('input[type="text"][name="LguService"]').hide();
+
         }
     });
 });
 
-/* $(document).ready(function() {
-    $('input[type="checkbox"][name="net"][value="KT망"]').click(function() {
-        if($(this).is(':checked')) {
-            $('span:contains("KT"):first').show();
-            $('input[type="text"][name="KtService"]').show();
-        } else {
-            $('span:contains("KT"):first').hide();
-            $('input[type="text"][name="KtService"]').hide();
-        }
-    });
-});
-$(document).ready(function() {
-    $('input[type="checkbox"][name="net"][value="SKT망"]').click(function() {
-        if($(this).is(':checked')) {
-            $('span:contains("SKT")').show();
-            $('input[type="text"][name="SktService"]').show();
-        } else {
-            $('span:contains("SKT")').hide();
-            $('input[type="text"][name="SktService"]').hide();
-        }
-    });
-});
-$(document).ready(function() {
-    $('input[type="checkbox"][name="net"][value="LG망"]').click(function() {
-        if($(this).is(':checked')) {
-            $('span:contains("LGU+")').show();
-            $('input[type="text"][name="LguService"]').show();
-        } else {
-            $('span:contains("LGU+")').hide();
-            $('input[type="text"][name="LguService"]').hide();
-        }
-    });
-}); */
+
 </script>
 
 
@@ -496,38 +491,6 @@ $(document).ready(function() {
 		}
 
 </script>
-<!-- 선택한 값들 한 문자열로 합치기(휴무일) -->
-<!-- <script>
-	var form = document.getElementById("modifyForm"); // form 태그의 id 값
-	var weekdays = "";
-	for (var i = 0; i < form.elements.length; i++) {
-	  var element = form.elements[i];
-	  if (element.name === "weekday" && element.checked) {
-	    weekdays += element.value;
-	    if (i < form.elements.length - 1) {
-	      weekdays += ",";
-	    }
-	  }
-	}
-	var bizClosedDay = document.querySelector('input[name="bizClosedDay"]'); // name이 "bizClosedDay"인 input element 선택
-	bizClosedDay.value = weekdays; // 선택된 input element의 value 값을 weekdays로 설정
-	console.log("BizClosedDay:", weekdays); // 콘솔창에서 확인 불가.. 
-</script> -->
-<!-- 선택한 값들 한 문자열로 합치기(지원통신망) -->
-<!-- <script>
-	var form = document.getElementById("modifyForm");
-	var net ="";
-	for (var i = 0; i < form.elements.length; i++) {
-		  var element = form.elements[i];
-		  if(element.name === "net" && element.checked ){
-			  net += element.value;
-			  if (i < form.elements.length - 1) {
-			      net += ",";
-			    }
-			  }
-		  }
-	var netNo = document.querySelector('input[name="netNo"]');
-	netNo.value= net;
-</script> -->
+
 </body>
 </html>
