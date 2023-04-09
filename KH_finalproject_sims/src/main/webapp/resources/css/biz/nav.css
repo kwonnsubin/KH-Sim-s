@@ -1,0 +1,114 @@
+@charset "UTF-8";
+@import url('https://fonts.googleapis.com/css?family=Open+Sans&display=swap');
+*{
+    margin: 0;
+    padding: 0;
+    font-family: 'poppins', sans-serif;
+}
+.material-symbols-outlined{
+  font-family: 'Material Icons';
+  font-weight: normal;
+  font-style: normal;
+  font-size: 20px;  /* Preferred icon size */
+  display: block;
+  line-height: 1;
+  text-transform: none;
+  letter-spacing: normal;
+  word-wrap: normal;
+  white-space: nowrap;
+  direction: ltr;
+  float: right;
+
+  /* Support for all WebKit browsers. */
+  -webkit-font-smoothing: antialiased;
+  /* Support for Safari and Chrome. */
+  text-rendering: optimizeLegibility;
+
+  /* Support for Firefox. */
+  -moz-osx-font-smoothing: grayscale;
+
+  /* Support for IE. */
+  font-feature-settings: 'liga';
+}
+div{
+    display: block;
+}
+#header{
+    float: left;
+    width: 240px;
+    min-height: 100vh;
+    padding: 10px;
+    padding-left: 50px;
+    margin-right : 20px;
+    /* border-style: dotted; */
+}
+#header .tit{
+    margin: 0;
+    padding: 0 0 20px 0;
+    color: #333;
+    font-size: 1.7143em;
+    line-height: 1.1;
+    font-weight: 700;
+    letter-spacing: -0.05em;
+}
+#containerWrap{
+    /* border-style: solid; */
+    box-sizing: border-box;
+    min-height: 100vh;
+}
+.contents{
+    box-sizing: border-box;
+    /* border-style: groove; */
+}
+#header .list{
+    border-top: 3px solid #555;
+}
+#header .list >li{
+    border-bottom: 1px solid #e0e0e0;
+}
+#header .list > li > a::before{
+    content: '';
+    display: block;
+    position: absolute;
+    right: 0;
+    top: 50%;
+    width: 12px;
+    height: 8px;
+    margin: -4px 0 0 0;
+    padding: 0;
+    background: url(img/arr.png) no-repeat 0 0;
+    transform: rotate(-90deg);
+    transition: transform 0.1s ease-in-out;
+}
+
+#header .list >li > a{
+    display: block;
+    position: relative;
+    width: 100%;
+    margin: 0;
+    padding: 20px 0;
+    line-height: 1.1;
+    font-size: 1.2857em;
+    font-weight: 700;
+    letter-spacing: -0.05em;
+    color: #333;
+    text-decoration: none;
+}
+/*이거 왜 안먹힐까.. */
+#header .list li.active > a {
+    color: #2775c4 ;
+}
+a:visited, a:hover, a:focus{
+	color: #2775c4;
+}
+
+a{
+    cursor: pointer;
+    background-color: transparent;
+}
+ul{
+    list-style-type: none;
+}
+li{
+    display: list-item;
+}

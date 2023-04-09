@@ -17,8 +17,9 @@
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@100;300;400;500;700;900&display=swap" rel="stylesheet">
 
 <title>Insert title here</title>
+<link rel="stylesheet" href="${path}/resources/css/biz/planList.css"/>
 <script src="https://code.jquery.com/jquery-3.6.3.js"></script>
-<link rel="stylesheet" href="${path}/resources/css/biz/main.css"/>
+
 <link type="text/css" rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
 
@@ -36,47 +37,7 @@
 </head>
 <body>
 <jsp:include page="/WEB-INF/views/header.jsp"/>
-
-<!-- 사이드바 -->
-<div id="wrap">
-	    <nav id="header">
-	        <p class="tit">마이페이지</p>
-	        <ul class="list">
-	            <li>
-	                <a href="${path}/biz/infodetail">
-	                   	     내 정보 보기
-	                       <span class="material-symbols-outlined">
-	                        arrow_forward_ios
-	                       </span>
-	                </a>
-	            </li>
-	            <li>
-	                <a href="${path}/biz/planList">
-	                    	요금제 현황
-	                        <span class="material-symbols-outlined">
-	                        arrow_forward_ios
-	                        </span>
-	                </a>
-	            </li>
-	            <li>
-	                <a href="${path}/biz/applyList">
-	                    	가입신청 현황 
-	                        <span class="material-symbols-outlined">
-	                        arrow_forward_ios
-	                        </span>
-	                </a>
-	            </li>
-	            <li>
-	                <a href="#">
-	                    	리뷰 현황
-	                        <span class="material-symbols-outlined">
-	                        arrow_forward_ios
-	                        </span>
-	                </a>
-	            </li>
-	        </ul>
-	    </nav>
-</div>
+<jsp:include page="/WEB-INF/views/biz/nav.jsp"/>
 
 <sec:authorize access="isAuthenticated()">
 	<p><sec:authentication property="name"/>의 요금제 목록 </p>
@@ -100,7 +61,7 @@
 	</div>
     
     <div>
-        <table border="solid">
+        <table class="table">
             <thead>
                 <tr>
                     <th>번호</th>
@@ -109,7 +70,7 @@
                     <th>관리</th>
                 </tr>
             </thead>
-            <tbody>
+            <tbody >
             	<c:if test="${empty requestScope.paging.page}">
             		<tr>
             			<td colspan="4">등록된 요금제가 없습니다.</td>
@@ -192,9 +153,6 @@
     <div>
     	<button type="button"  onclick="registerBtn(this);">요금제 등록하기</button>
     </div>
-    <%-- location.href='<%=request.getContextPath()%>/biz/registerPlan'" --%>
-    
-    
     
     
 <script>
@@ -214,14 +172,6 @@
 </script>
 
 <script>
-//planNo 값이 undefined...
-/* var planNo ='';
-var planNo = $('.deleteBtn').data('planNo');
-console.log('함수 호출 전 planNo : '+planNo); //undefined 가 나오네...  */
-
-/* let deleteBtn = document.getElementById('deleteBtn');
-let planNo = deleteBtn.getAttribute('data-planNo');
-console.log('let으로 변수 설정'+planNo); // 이렇게 하면 어떤 요금제를 선택하든 planNo가 113만 나옴..  */
 
 $(document).ready(function() {
 	
@@ -252,74 +202,9 @@ $('.btn.modalDelete').click(function() {
 	});
 });
 
-<%-- $(document).ready(function(){
-    $('#deleteleModal').on("show.bs.modal", function(e){
-        var button = $(e.relatedTarget);
-        var planNo = button.data('planNo');
-        var modal = $(this);
-        console.log(planNo);
-        modal.find('#deletePostBtn').on('click', function(){
-            $.ajax({
-                url: "<%=request.getContextPath()%>/biz/deletePlan",
-                type: "POST",
-                data: {planNo: planNo},
-                success: function(result) {
-                    location.reload();
-                },
-                error: function() {
-                    alert("에러가 발생했습니다.");
-                }
-            });
-        }).data('planNo', planNo); // 삭제 버튼에도 planNo 값을 설정
-        console.log(planNo);
-    });
-}); --%>
 
 </script>	
-	
-	<%-- $(".btn.delete").on("click", deleteClickHandler);
-	function deleteClickHandler(){
-	  console.log("삭제버튼 누름");
-	  var planNo = $('#deleteBtn').data('planNo');
-	  $.ajax({
-		    url:"<%=request.getContextPath()%>/biz/deletePlan"
-		    , data : {planNo : planNo}
-		    , success:function(result){
-		      location.reload();
-		    }
-		    ,error:function(){
-		      alert("에러가 발생했습니다.");
-		    }
-		  });
-	 
-	<%-- /*TODO 삭제*/
-	$(".btn.delete").on("click", deleteClickHandler);
-	function deleteClickHandler(){
-	  console.log("삭제버튼 누름");
-	  var planNo = $('#deleteBtn').data()
-	 // var planNo = $('#deleteBtn').data('planNo');
-	// var planNo = $('#deleteBtn' + ${plan.planNo}).data('planNo');
 
-	  console.log(planNo); //planNo이 113 하나만 나옴. 
-	  //TODO planNo를 어떻게 가져와야하나...
-	/*   $("#deleteleModal").on("show.bs.modal", function(e){
-			var planNo =  $(e.relatedTarget).data("planNo");
-			alert(planNo);
-	  });
-	   */
-	  //var planNo = $(this).closest('tr').find('td:eq(0)').text(); 
-	  $.ajax({
-	    url:"<%=request.getContextPath()%>/biz/deletePlan"
-	    , data : {planNo : planNo}
-	    , success:function(result){
-	      location.reload();
-	    },
-	    error:function(){
-	      alert("에러가 발생했습니다.");
-	    }
-	  });
-	} --%>
- 
 
 	<jsp:include page="/WEB-INF/views/footer.jsp"/>
 	

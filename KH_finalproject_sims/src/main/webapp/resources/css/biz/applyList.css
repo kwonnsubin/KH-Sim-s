@@ -6,20 +6,8 @@
 	box-sizing: border-box;
 	font-family: 'poppins', sans-serif;
 }
-/* table{
-	border:medium;
-	display: flex;
-	height: 100vh;
-	justify-content: center;
-	align-items: center;
-	background: #fff;
-}
-table th{
-	width: 180px;
-	margin: 10px;
-}
- */
  table {
+    display:block;
     width: 100%;
     margin: 0;
     /* border: 0; */
@@ -28,12 +16,5 @@ table th{
     empty-cells: show;
     justify-content: center;
 	align-items: center;
-	border-style: solid;
+	border-style: none;
 }
-table tr, 
-table th,
-table td{
-    border-color: inherit;
-    border-style: dotted;
-    border-width: thin;
- }

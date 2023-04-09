@@ -62,7 +62,7 @@
 	                </a>
 	            </li>
 	            <li>
-	                <a href="#">
+	                <a href="${path}/biz/reviewList">
 	                    	리뷰 현황
 	                        <span class="material-symbols-outlined">
 	                        arrow_forward_ios

@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="bizReview">
+  <!-- 리뷰 리스트 출력 개수 -->
+  <select id="getReviewListCount" resultType="_int">
+  	SELECT count(*) listCnt
+	FROM (
+	    SELECT  REVIEW_CONTENT, REVIEW_STAR, USER_ID, REVIEW_DATE
+	    FROM biz_review
+	    WHERE biz_id = #{bizid}
+	    AND REVIEW_HIDDEN != 1
+)
+  </select>
+  
+  <!-- paging -->
+  <select id="selectPage" parameterType="map" resultType="kh.finalproject.sims.biz.model.vo.BizReviewMngtVo">
+  	SELECT * 
+	FROM (
+	    SELECT rownum rn, REVIEW_CONTENT, REVIEW_STAR, USER_ID, REVIEW_DATE, REVIEW_NO
+	    FROM biz_review
+	    WHERE biz_id = #{bizid}
+	    AND REVIEW_HIDDEN != 1
+	) 
+	WHERE rn BETWEEN #{start} AND #{end}
+  </select>
+  
+  
+  <!-- 리뷰 신고 -->
+  <insert id="reportReview">
+  insert into review_report (REVIEW_NO, REPORT_DATE, REPORT_STATUS, REPORT_REASON)
+ 	values( #{reviewNo}, sysdate, 1, #{reportReason})
+  </insert>
+</mapper>
