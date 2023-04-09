@@ -141,5 +141,8 @@ public class BizApplyVo {
 	private int rownum;
 	private String serialNo;
 	
+	private int rn;
+	private int searchCnt;
+	
 	private int listCnt;
 }

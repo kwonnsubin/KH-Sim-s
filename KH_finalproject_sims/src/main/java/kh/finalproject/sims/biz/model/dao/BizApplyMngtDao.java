@@ -41,4 +41,12 @@ public class BizApplyMngtDao {
 	public List<BizApplyVo> selectPage(Map<String, Object> map) {
 		return sqlSession.selectList("apply.selectPage", map);
 	}
+
+	public int getSearchApplyListCount(Map<String, String> mapCnt) {
+		return sqlSession.selectOne("apply.getSearchApplyListCount");
+	}
+
+	public List<BizApplyVo> searchApplyList(Map<String, Object> map) {
+		return sqlSession.selectList("apply.searchApplyList", map);
+	}
 }

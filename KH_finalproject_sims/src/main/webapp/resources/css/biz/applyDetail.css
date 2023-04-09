@@ -1,9 +1,24 @@
 @charset "UTF-8";
+@import url('https://fonts.googleapis.com/css?family=Open+Sans&display=swap');
+*{
+	margin: 0;
+	padding:0;
+	box-sizing: border-box;
+	font-family: 'poppins', sans-serif;
+}
 .applyStatus{
 	display: flex;
 	align-items: center; /*행을 수직으로 중앙정렬*/
 }
-/* table{
-	flex:1; 테이블이 남은 공간을 모두 차지하도록 함
-	margin-left: 20px;
-} */
+ table {
+    display:block;
+    width: 100%;
+    margin: 0;
+    /* border: 0; */
+    table-layout: fixed;
+    border-collapse: collapse;
+    empty-cells: show;
+    justify-content: center;
+	align-items: center;
+	border-style: none;
+}
