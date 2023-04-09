@@ -196,6 +196,7 @@ $(document).ready(function(){
 			}
 			, error : function(xhr, status, error){
 				alert("에러가 발생했습니다.");
+				// 이미 신고된 리뷰일 경우 에러 창 뜨게 됨. reviewNo가 pk 걸려있어서.. 
 			}
  		}); //ajax
 		
