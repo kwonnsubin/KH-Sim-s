@@ -21,6 +21,9 @@
   google.charts.setOnLoadCallback(monthlyPlanOrderCount); // 월별 가입자 수
   google.charts.setOnLoadCallback(ageGroupPlanOrderCount); // 연령대별 총 가입자 수
   google.charts.setOnLoadCallback(dailyUserWriteCount); // 일별 가입자 수
+  google.charts.setOnLoadCallback(genderPlanOrderCount); // 일별 가입자 수
+  google.charts.setOnLoadCallback(genderRatioByTotalUserRatio); // 성별 가입자 수 비율
+  google.charts.setOnLoadCallback(ageGroupByTotalUserRatio); // 연령대별 가입자 수 비율
   
 
   // Callback that creates and populates a data table,
@@ -147,30 +150,94 @@
 		  }
 	  
 	  
-	  // 일별 가입자 수
+	  // 일별 총 가입자 수
 	  function dailyUserWriteCount() {
 		    // Create the data table.
 	        var data = google.visualization.arrayToDataTable([
-	            ['Year', 'Sales', 'Expenses', 'Profit'],
-	            ['${dailyUserWriteCount[0].userWrDate}', ${dailyUserWriteCount[0].cnt}, 5, 5],
-	            ['${dailyUserWriteCount[1].userWrDate}', ${dailyUserWriteCount[1].cnt}, 5, 5]
-	            //['${dailyUserWriteCount[2].userWrDate}', ${dailyUserWriteCount[2].cnt}, 1120, 300],
-	            //['${dailyUserWriteCount[3].userWrDate}', ${dailyUserWriteCount[3].cnt}, 1120, 300],
-	            //['${dailyUserWriteCount[4].userWrDate}', ${dailyUserWriteCount[4].cnt}, 1120, 300],
-	            //['${dailyUserWriteCount[5].userWrDate}', ${dailyUserWriteCount[5].cnt}, 1120, 300],
-	            //['${dailyUserWriteCount[6].userWrDate}', ${dailyUserWriteCount[6].cnt}, 540, 350]
+	            ['일자', '가입자 수'],
+	            ['${dailyTotalUserWriteCount[0].userWrDate}', ${dailyTotalUserWriteCount[0].cnt}],
+	            ['${dailyTotalUserWriteCount[1].userWrDate}', ${dailyTotalUserWriteCount[1].cnt}],
+	            ['${dailyTotalUserWriteCount[2].userWrDate}', ${dailyTotalUserWriteCount[2].cnt}],
+	            ['${dailyTotalUserWriteCount[3].userWrDate}', ${dailyTotalUserWriteCount[3].cnt}],
+	            ['${dailyTotalUserWriteCount[4].userWrDate}', ${dailyTotalUserWriteCount[4].cnt}],
+	            ['${dailyTotalUserWriteCount[5].userWrDate}', ${dailyTotalUserWriteCount[5].cnt}],
+	            ['${dailyTotalUserWriteCount[6].userWrDate}', ${dailyTotalUserWriteCount[6].cnt}]
 	          ]);
 
 	          var options = {
 	            chart: {
-	              title: '일별 가입자 수 변화',
-	              subtitle: 'Sales, Expenses, and Profit: 2014-2017',
+	              title: '일별  총 가입자 수 변화',
 	            }
 	          };
 
 	          var chart = new google.charts.Bar(document.getElementById('dailyUserWriteCount_chart_div'));
 	          chart.draw(data, google.charts.Bar.convertOptions(options));
 		  }
+	  
+	  
+	  // 일별 성별 가입자 수
+	  function genderPlanOrderCount() {
+		    // Create the data table.
+	        var data = google.visualization.arrayToDataTable([
+	            ['일자', '남', '여'],
+	            ['${dailyGenderUserWriteCount[0].userWrDate}', ${dailyGenderUserWriteCount[0].maleCnt}, ${dailyGenderUserWriteCount[0].femaleCnt}],
+	            ['${dailyGenderUserWriteCount[1].userWrDate}', ${dailyGenderUserWriteCount[1].maleCnt}, ${dailyGenderUserWriteCount[1].femaleCnt}],
+	            ['${dailyGenderUserWriteCount[2].userWrDate}', ${dailyGenderUserWriteCount[2].maleCnt}, ${dailyGenderUserWriteCount[2].femaleCnt}],
+	            ['${dailyGenderUserWriteCount[3].userWrDate}', ${dailyGenderUserWriteCount[3].maleCnt}, ${dailyGenderUserWriteCount[3].femaleCnt}],
+	            ['${dailyGenderUserWriteCount[4].userWrDate}', ${dailyGenderUserWriteCount[4].maleCnt}, ${dailyGenderUserWriteCount[4].femaleCnt}],
+	            ['${dailyGenderUserWriteCount[5].userWrDate}', ${dailyGenderUserWriteCount[5].maleCnt}, ${dailyGenderUserWriteCount[5].femaleCnt}],
+	            ['${dailyGenderUserWriteCount[6].userWrDate}', ${dailyGenderUserWriteCount[6].maleCnt}, ${dailyGenderUserWriteCount[6].femaleCnt}]
+	          ]);
+
+	          var options = {
+	            chart: {
+	              title: '일별 성별 가입자 수 변화',
+	            }
+	          };
+
+	          var chart = new google.charts.Bar(document.getElementById('genderPlanOrderCount_chart_div'));
+	          chart.draw(data, google.charts.Bar.convertOptions(options));
+		  }
+	  
+	  // 성별 가입자 수 비율
+      function genderRatioByTotalUserRatio() {
+
+          var data = google.visualization.arrayToDataTable([
+            ['남', 'Hours per Day'],
+            ['남', ${genderRatioByTotalUserRatio.maleRatio}],
+            ['여', ${genderRatioByTotalUserRatio.femaleRatio}],
+
+          ]);
+
+          var options = {
+            title: 'My Daily Activities'
+          };
+
+          var chart = new google.visualization.PieChart(document.getElementById('genderRatioByTotalUserRatio_chart_div'));
+          chart.draw(data, options);
+        }
+	  
+	  // 연령대별 가입자 수 비율
+	      function ageGroupByTotalUserRatio() {
+
+          var data = google.visualization.arrayToDataTable([
+            ['남', 'Hours per Day'],
+            ['${ageGroupByTotalUserRatio[0].ageGroup}', ${ageGroupByTotalUserRatio[0].ageGroupRatio}],
+            ['${ageGroupByTotalUserRatio[1].ageGroup}', ${ageGroupByTotalUserRatio[1].ageGroupRatio}],
+            ['${ageGroupByTotalUserRatio[2].ageGroup}', ${ageGroupByTotalUserRatio[2].ageGroupRatio}],
+            ['${ageGroupByTotalUserRatio[3].ageGroup}', ${ageGroupByTotalUserRatio[3].ageGroupRatio}],
+            ['${ageGroupByTotalUserRatio[4].ageGroup}', ${ageGroupByTotalUserRatio[4].ageGroupRatio}],
+            ['${ageGroupByTotalUserRatio[5].ageGroup}', ${ageGroupByTotalUserRatio[5].ageGroupRatio}],
+          ]);
+
+          var options = {
+            title: 'My Daily Activities'
+          };
+
+          var chart = new google.visualization.PieChart(document.getElementById('ageGroupByTotalUserRatio_chart_div'));
+          chart.draw(data, options);
+        }
+	  
 </script>
 
 </head>
@@ -236,7 +303,7 @@
 						</div>
 					 </div>
 	            </div>
-	         	<!-- 일별 가입자 수 변화 -->
+	         	<!-- 일별 총 가입자 수 변화 -->
 				<div class="col-md-7">
 	                <div class="card">
 	                    <div class="card-header">
@@ -244,6 +311,39 @@
 	                    </div>
 	                    <div class="card-body">
 	                    	<div id="dailyUserWriteCount_chart_div" style="width:799px; height:540px;"></div>
+						</div>
+					 </div>
+	            </div>
+	            <!-- 일별 성별 가입자 수 변화 -->
+				<div class="col-md-7">
+	                <div class="card">
+	                    <div class="card-header">
+	                        <h5>일별 가입자 수 변화</h5>
+	                    </div>
+	                    <div class="card-body">
+	                    	<div id="genderPlanOrderCount_chart_div" style="width:799px; height:540px;"></div>
+						</div>
+					 </div>
+	            </div>
+	            <!-- 성별 가입자 수 비율 -->
+				<div class="col-md-7">
+	                <div class="card">
+	                    <div class="card-header">
+	                        <h5>성별 가입자 수 비율</h5>
+	                    </div>
+	                    <div class="card-body">
+	                    	<div id="genderRatioByTotalUserRatio_chart_div" style="width:799px; height:540px;"></div>
+						</div>
+					 </div>
+	            </div>
+	            <!-- 연령대별 가입자 수 비율 -->
+				<div class="col-md-7">
+	                <div class="card">
+	                    <div class="card-header">
+	                        <h5>연령대별 가입자 수 비율</h5>
+	                    </div>
+	                    <div class="card-body">
+	                    	<div id="ageGroupByTotalUserRatio_chart_div" style="width:799px; height:540px;"></div>
 						</div>
 					 </div>
 	            </div>

@@ -47,8 +47,26 @@ public class AdminStatisticsServiceImpl implements AdminStatisticsService {
 
 	// 일별 가입자 수 변화
 	@Override
-	public List<AdminStatisticsVo> selectDailyUserWriteCount() {
+	public List<AdminStatisticsVo> selectDailyTotalUserWriteCount() {
 		return dao.selectDailyUserWriteCount();
+	}
+
+	// 일별 성별 가입자 수 변화
+	@Override
+	public List<AdminStatisticsVo> selectDailyGenderUserWriteCount() {
+		return dao.selectDailyGenderUserWriteCount();
+	}
+
+	// 성별 가입자 수 비율
+	@Override
+	public AdminStatisticsVo selectGenderRatioByTotalUserRatio() {
+		return dao.selectGenderRatioByTotalUserRatio();
+	}
+
+	// 연령대 가입자 수 비율
+	@Override
+	public List<AdminStatisticsVo> selectAgeGroupByTotalUserRatio() {
+		return dao.selectAgeGroupByTotalUserRatio();
 	}
 	
 	

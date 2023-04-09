@@ -33,6 +33,20 @@ public class AdminStatisticsVo {
 	// 월별 가입자 수
 	String orderMonth;
 	
-	// 일별 가입자 수
+	// 일별 총 가입자 수
 	String userWrDate;
+	
+	// 일별 성별 가입자 수
+	int maleCnt;
+	int femaleCnt;
+	
+	// 성별 가입자 수 비율
+	int totalCnt;
+	double maleRatio;
+	double femaleRatio;
+	
+	// 연령대 가입자 수 비율
+	int ageGroupCnt;
+	double ageGroupRatio;
+	
 }

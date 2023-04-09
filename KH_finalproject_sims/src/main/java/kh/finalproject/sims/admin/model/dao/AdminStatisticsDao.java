@@ -38,8 +38,23 @@ public class AdminStatisticsDao {
 		return sqlSession.selectList("admin.selectAgeGroupPlanOrderCount");
 	}
 	
-	// 일별 가입자 수 변화
+	// 일별 총 가입자 수 변화
 	public List<AdminStatisticsVo> selectDailyUserWriteCount() {
-		return sqlSession.selectList("admin.selectDailyUserWriteCount");
+		return sqlSession.selectList("admin.selectDailyTotalUserWriteCount");
+	}
+	
+	// 일별 성별 가입자 수 변화
+	public List<AdminStatisticsVo> selectDailyGenderUserWriteCount() {
+		return sqlSession.selectList("admin.selectDailyGenderUserWriteCount");
+	}
+	
+	// 성별 가입자 수 비율
+	public AdminStatisticsVo selectGenderRatioByTotalUserRatio() {
+		return sqlSession.selectOne("admin.selectGenderRatioByTotalUserRatio");
+	}
+	
+	// 연령대 가입자 수 비율
+	public List<AdminStatisticsVo> selectAgeGroupByTotalUserRatio() {
+		return sqlSession.selectList("admin.selectAgeGroupByTotalUserRatio");
 	}
 }

@@ -21,6 +21,15 @@ public interface AdminStatisticsService {
 	// 연령대별 총 가입자 수
 	public List<AdminStatisticsVo> selectAgeGroupPlanOrderCount();
 	
-	// 일별 가입자 수 변화
-	public List<AdminStatisticsVo> selectDailyUserWriteCount();
+	// 일별 총 가입자 수 변화
+	public List<AdminStatisticsVo> selectDailyTotalUserWriteCount();
+	
+	// 일별 성별 가입자 수 변화
+	public List<AdminStatisticsVo> selectDailyGenderUserWriteCount();
+	
+	// 성별 가입자 수 비율
+	public AdminStatisticsVo selectGenderRatioByTotalUserRatio();
+	
+	// 연령대 가입자 수 비율
+	public List<AdminStatisticsVo> selectAgeGroupByTotalUserRatio();
 }
