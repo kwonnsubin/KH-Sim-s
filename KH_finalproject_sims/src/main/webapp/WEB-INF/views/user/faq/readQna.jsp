@@ -107,10 +107,36 @@
 									<fmt:formatDate value="${answer.aaRedate == null ? answer.aaDate : answer.aaRedate}" pattern="yyyy.MM.dd HH:mm"/>
 								</div>
 								
-								<div class="answer-content col-12 py-4">
+								<div class="answer-content col-10 py-4">
 									${answer.aaContent } 
 								</div>
-									
+
+								<!-- 작성자=사용자이면 답변 수정,삭제 버튼 표시 -->
+								<div class="btn-ans-mod col-2 small py-1 text-end">
+									<sec:authorize access="hasRole('ROLE_USER')">
+										<c:if test="${username eq answer.userId}">
+											<div class="btn-group btn-group-sm" role="group">
+												<button data-bs-target="#ans${answer.aaNo}" class="btn btn-gray" type="button"
+													data-bs-toggle="collapse" aria-expanded="false" aria-controls="collapseExample">수정</button>
+												<button type="button" class="btn btn-gray"
+												onclick="location.href='<%=request.getContextPath()%>/faq/ansdelete/${answer.aqNo}/${answer.aaNo}'">
+													삭제</button>
+											</div>
+										</c:if>
+									</sec:authorize>
+								</div>
+								<!-- /답변 수정,삭제 버튼 -->
+								<!-- 답변 수정 폼 -->
+								<div class="collapse" id="ans${answer.aaNo}">
+									<form action="${cpath }/faq/ansupdate/${answer.aaNo }" method="post">
+										<div class="input-group">
+											<input type="text" name="aaContent" class="form-control" value="${answer.aaContent }" size="60">
+											<button class="btn" type="submit">수정</button>
+										</div>
+									</form>
+								</div>
+								<!-- /답변 수정 폼 -->
+
 								<!-- 댓글목록 -->
 								<div class="reply-item">
 									<c:forEach items="${answer.aaRpls}" var="rpl">
@@ -133,7 +159,7 @@
 												<sec:authorize access="hasRole('ROLE_USER')">
 													<c:if test="${username eq rpl.userId}">
 														<div class="btn-group btn-group-sm" role="group">
-															<button data-bs-target="#collapse${rpl.rplNo}" class="btn btn-gray" 
+															<button data-bs-target="#rpl${rpl.rplNo}" class="btn btn-gray" 
 															type="button" data-bs-toggle="collapse" aria-expanded="false"
 																aria-controls="collapseExample">수정</button>
 															<button type="button" class="btn btn-gray" 
@@ -147,7 +173,7 @@
 										</div>
 										<!-- /기존 댓글 -->
 										<!-- 댓글 수정 폼 -->
-										<div class="collapse" id="collapse${rpl.rplNo}">
+										<div class="collapse" id="rpl${rpl.rplNo}">
 											<form action="${cpath }/faq/rplupdate/${rpl.rplNo }" method="post">
 												<div class="input-group">
 													<input type="text" name="rplContent" class="form-control" value="${rpl.rplContent }" size="60">
@@ -229,27 +255,6 @@
 		})
 	})
 	
-	// 댓글 수정
-	$('#btn-updateRpl').on("click", function() {
-		var rplContent = $("#rplContent").val();
-		$.ajax({
-			url: "<%=request.getContextPath()%>/faq/qna/updaterpl",
-			data: {
-				rplContent: rplContent
-			},
-			type: "post",
-			success: function(result) {
-				if (result == "success") {
-					alert("댓글 수정 성공");
-					getAnsList();
-				}
-			},
-			error: function() {
-				alert("댓글 수정 실패");
-			}
-		})
-	})
-	
 	// 답변 불러오기 ajax
 	function getAnsList() {
 		var aqNo = "${aqNo}"
@@ -310,9 +315,31 @@
 				html += result[i].aaDate;
 			}
 			html += '</div>';
-			html += '<div class="answer-content col-12 py-4">';
+			html += '<div class="answer-content col-10 py-4">';
 			html += result[i].aaContent;
 			html += '</div>';
+			html += '<div class="btn-ans-mod col-2 small py-1 text-end">';
+			if("${username}" == result[i].userId) {
+				html += '<div class="btn-group btn-group-sm" role="group">';
+				html += '<button data-bs-target="#ans' + result[i].aaNo + '" class="btn btn-gray" type="button" ';
+				html += 'data-bs-toggle="collapse" aria-expanded="false" aria-controls="collapseExample">수정</button>';
+				html += '<button type="button" class="btn btn-gray"';
+				var location = "location.href='<%=request.getContextPath()%>/faq/ansdelete/" + result[i].aqNo + "/" + result[i].aaNo + "'";
+				html += 'onclick="' + location + '">삭제</button>';
+				html += '</div>';
+			}
+			html += '</div>';
+			<!-- 답변 수정 폼 -->
+			html += '<div class="collapse" id="ans' + result[i].aaNo + '">';
+			html += '<form action="${cpath }/faq/ansupdate/' + result[i].aaNo + '" method="post">';
+			html += '<div class="input-group">';
+			html += '<input type="text" name="aaContent" class="form-control" value="';
+			html += result[i].aaContent + '" size="60">';
+			html += '<button class="btn" type="submit">수정</button>';
+			html += '</div>';
+			html += '</form>';
+			html += '</div>';
+			<!-- /답변 수정 폼 -->
 			for(var j in result[i].aaRpls) {
 				html += '<div class="reply-item">';
 				html += '<div class="row">';
@@ -379,5 +406,26 @@
 		}
 		$(".answer-item").append(html);
 	}
+	
+	<%-- 	// 댓글 수정
+		$('#btn-updateRpl').on("click", function() {
+			var rplContent = $("#rplContent").val();
+			$.ajax({
+				url: "<%=request.getContextPath()%>/faq/qna/updaterpl",
+				data: {
+					rplContent: rplContent
+				},
+				type: "post",
+				success: function(result) {
+					if (result == "success") {
+						alert("댓글 수정 성공");
+						getAnsList();
+					}
+				},
+				error: function() {
+					alert("댓글 수정 실패");
+				}
+			})
+		}) --%>
 </script>
 </html>
