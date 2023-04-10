@@ -303,8 +303,8 @@
 	function displayAnswers(result) {
 		var html = '';
 		for(var i in result) {
-			html += '<div class="answer-item">';
-			html += '<div class="row my-4">'
+			html += '<div class="row my-4">' 
+			
 			html += '<div class="answer-writer col-6 small py-2">';
 			if(result[i].userId) {
 				html += result[i].userId;
@@ -333,6 +333,7 @@
 				html += '</div>';
 			}
 			html += '</div>';
+			
 			<!-- 답변 수정 폼 -->
 			html += '<div class="collapse" id="ans' + result[i].aaNo + '">';
 			html += '<form action="${cpath }/faq/ansupdate/' + result[i].aaNo + '" method="post">';
@@ -344,11 +345,13 @@
 			html += '</form>';
 			html += '</div>';
 			<!-- /답변 수정 폼 -->
+			
 			html += '<button data-bs-target="#rplsBy' + result[i].aaNo + '" class="btn btn-primary" type="button" ';
 			html += 'data-bs-toggle="collapse" aria-expanded="false" aria-controls="collapseExample">댓글</button>';
-			html += '<div class="collapse" id="rplsBy' + result[i].aaNo + '">';
+			html += '<div class="collapse" id="rplsBy' + result[i].aaNo + '">';  
 			for(var j in result[i].aaRpls) {
-				html += '<div class="reply-item">';
+				html += '<div class="reply-item">'; 
+				
 				html += '<div class="row">';
 				html += '<div class="reply-writer col small py-1">';
 				if(result[i].aaRpls[j].userId) {
@@ -365,11 +368,14 @@
 				}
 				html += '</div>';
 				html += '</div>';
-				html += '<div class="reply-content row">';
+				
+				html += '<div class="reply-content row">'; 
+				
 				html += '<div class="col-10 py-2">';
 				html += result[i].aaRpls[j].rplContent;
 				html += '</div>';
 				html += '<div class="btn-rpl-mod col-2 small py-1 text-end">';
+				
 				if("${username}" == result[i].aaRpls[j].userId) {
 					html += '<div class="btn-group btn-group-sm" role="group">';
 					html += '<button data-bs-target="#rpl';
@@ -384,6 +390,7 @@
 				}
 				html += '</div>';
 				html += '</div>';
+				
 				html += '<div class="collapse" id="rpl';
 				html += result[i].aaRpls[j].rplNo;
 				html += '">';
@@ -396,9 +403,9 @@
 				html += '</div>';		
 				html += '</form>';					
 				html += '</div>';
+				html += '</div>';
 			}
 			<!-- 댓글작성 -->
-			html += '</div>';
 			html += '<div class="p-3 pb-1">';
 			html += '<form action="${cpath }/faq/ans/' + result[i].aaNo + '/reply" method="post">';
 			html += '<input type="hidden" value="${username }" name="userId" id="userId">';
@@ -409,9 +416,9 @@
 			html += '</div>';
 			html += '</form>';
 			html += '</div>';
+			html += '</div>';
 			<!-- /댓글작성 -->
 			
-			html += '</div>';
 			html += '</div>';
 			html += '<hr>';			
 		}
