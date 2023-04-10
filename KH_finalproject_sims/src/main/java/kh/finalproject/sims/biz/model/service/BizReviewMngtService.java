@@ -7,4 +7,5 @@ public interface BizReviewMngtService {
 	public int getReviewListCount(String bizid);
 	public Paging getPage(String bizid, int pNum, int cnt);
 	public int reportReview(BizReviewMngtVo vo);
+	public int cancleReport(int reviewNo);
 }

@@ -100,5 +100,16 @@ public class BizReviewMngtController {
         service.reportReview(vo);
         return "success";
 	}
+	
+	//리뷰신고 취소하기
+	@PostMapping("/cancleReport")
+	@ResponseBody
+	public String cancleReport(@RequestParam("reviewNo") int reviewNo) {
+		System.out.println("신고 취소하고자하는 리뷰번호 :"+reviewNo);
+		
+		service.cancleReport(reviewNo);		
+		return "success";
+	}
+	
 
 }

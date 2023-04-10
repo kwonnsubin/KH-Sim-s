@@ -56,8 +56,8 @@
 				<th>별점</th>
 				<th>작성자</th>
 				<th>작성일자</th>	
-				<!-- <th>상태</th> 신고처리중이라는 걸 어떻게 알리지?  -->	
 				<th>관리</th>
+				<th>상태</th>
 	 		</tr>
 	 	</thead>
 	 	<tbody>
@@ -83,11 +83,24 @@
  
 	 						<td>${reviewList.userId} </td>
 	 						<td>${reviewList.reviewDate} </td>
-	 						<!-- <td></td> -->
+	 						
+	 						<c:choose>
+	 						<c:when test="${reviewList.reportStatus == '' }">
 	 						<td><button type="button" class="reportBtn" 
 	 						data-bs-toggle="modal" data-bs-target="#reportModal" 
 	 						data-bs-whatever="${reviewList.userId}"
-	 						data-reviewno="${reviewList.reviewNo}">신고하기</button></td>
+	 						data-reviewno="${reviewList.reviewNo}"
+	 						data-reportstatus="${reviewList.reportStatus }">신고하기</button></td>
+	 						</c:when>
+	 						<c:when test="${reviewList.reportStatus == 2 || reviewList.reportStatus == 3  }">
+	 							<td><button disabled>신고하기</button></td>
+	 						</c:when>
+	 						<c:when test="${reviewList.reportStatus == 1 }">
+	 							<td><button type="button" class="cancleBtn"
+	 							data-reviewno="${reviewList.reviewNo}">신고취소</button></td>
+	 						</c:when>
+	 						</c:choose>
+	 						<td>${reviewList.reportStatus == 1 ? '신고처리중' : reviewList.reportStatus == 2 ? '삭제완료' : reviewList.reportStatus == 3 ? '반려' : ''  }</td>
 	 					</tr>
 	 				</c:forEach>
 	 			</c:if>
@@ -192,7 +205,7 @@ $(document).ready(function(){
 			, success :function(result){
 				console.log("컨트롤러로 보내기 성공");
 				location.reload();
-				alert("관리자가 승인해야 보이지 않습니다. ");
+				alert("관리자가 승인 과정이 필요합니다. 조금만 기다려주세요. ");
 			}
 			, error : function(xhr, status, error){
 				alert("에러가 발생했습니다.");
@@ -203,6 +216,27 @@ $(document).ready(function(){
 	});
 });
 </script>
+<script>
+$(document).ready(function(){
+	$(".cancleBtn").click(function(){
+		var reviewNo = $(this).data("reviewno");
+		console.log("신고 취소 버튼 누르고 reviewNo :"+reviewNo)
+		$.ajax({
+			  url: "${pageContext.request.contextPath}/biz/cancleReport"
+			, type : "post"
+			, data : {reviewNo : reviewNo}
+			, success : function(result){
+				alert("신고가 취소되었습니다.");
+				location.reload();
+			}
+			, error : function(){
+				alert("에러가 발생했습니다. ");
+			}
+		})
+	})
+});
+</script>
+
 
 	<jsp:include page="/WEB-INF/views/footer.jsp"/>
 	

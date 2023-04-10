@@ -97,7 +97,7 @@ public class BizInfoMngtController {
 
 	
 	//내 정보 수정하기
-	//TODO
+	//TODO 요금제 테이블의 bizName도 같이 바꿔야 함. 
 	@PostMapping("/modifyInfo")
 	public String modifyBizInfo(HttpServletRequest request
 			, BizInfoMngtVo vo
@@ -234,10 +234,13 @@ public class BizInfoMngtController {
 		vo.setBizId(bizid);
 		
 		service.modifyBizInfo(vo);
-
-		
 		System.out.println("@@수정하기 버튼 누른 후 vo :"+vo);
 
+		//TODO
+		//요금제 테이블의 bizName도 변경 bizid, bizName
+		//일단 수정전 이름을 가지고 와서 그걸 식별값으로?
+		//String beforeBizName = service.getBeforeBizName(bizid);
+		
 		return "redirect:/biz/infodetail";
 		
 	}

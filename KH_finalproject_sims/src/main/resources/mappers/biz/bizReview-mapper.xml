@@ -16,8 +16,10 @@
   <select id="selectPage" parameterType="map" resultType="kh.finalproject.sims.biz.model.vo.BizReviewMngtVo">
   	SELECT * 
 	FROM (
-	    SELECT rownum rn, REVIEW_CONTENT, REVIEW_STAR, USER_ID, REVIEW_DATE, REVIEW_NO
+	    SELECT rownum rn, REVIEW_CONTENT, REVIEW_STAR, USER_ID, REVIEW_DATE, REVIEW_NO, REPORT_STATUS
 	    FROM biz_review
+	    LEFT JOIN  REVIEW_REPORT
+        USING(REVIEW_NO)
 	    WHERE biz_id = #{bizid}
 	    AND REVIEW_HIDDEN != 1
 	) 
@@ -30,4 +32,9 @@
   insert into review_report (REVIEW_NO, REPORT_DATE, REPORT_STATUS, REPORT_REASON)
  	values( #{reviewNo}, sysdate, 1, #{reportReason})
   </insert>
+  
+  <!-- 리뷰 신고 취소하기 -->
+  <delete id="cancleReport">
+  delete from review_report where REVIEW_NO = ${reviewNo}
+  </delete>
 </mapper>

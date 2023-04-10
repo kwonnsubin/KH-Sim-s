@@ -44,4 +44,9 @@ public class BizReviewMngtServiceImpl implements BizReviewMngtService {
 		return dao.reportReview(vo);
 	}
 
+	@Override
+	public int cancleReport(int reviewNo) {
+		return dao.cancleReport(reviewNo);
+	}
+
 }

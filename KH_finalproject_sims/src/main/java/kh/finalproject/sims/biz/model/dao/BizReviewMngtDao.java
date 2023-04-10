@@ -25,5 +25,9 @@ public class BizReviewMngtDao {
 	public int reportReview(BizReviewMngtVo vo) {
 		return sqlSession.insert("bizReview.reportReview", vo);
 	}
+
+	public int cancleReport(int reviewNo) {
+		return sqlSession.delete("bizReview.cancleReport",reviewNo );
+	}
 	
 }
