@@ -8,39 +8,8 @@
 <link rel="stylesheet" href="${path}/resources/css/admin/statistics.css"/>
 <script src="https://code.jquery.com/jquery-latest.min.js"></script>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
-
 <!-- charts cdn -->
 <script src="https://cdn.jsdelivr.net/npm/apexcharts"></script>
-<!-- <script>
-  // Callback that creates and populates a data table,
-  // instantiates the pie chart, passes in the data and
-  // draws it.
-  
-/*  function drawChart() {
-
-    // Create the data table.
-     var data = google.visualization.arrayToDataTable([
-        ['Element', 'Density', { role: 'style' }, { role: 'annotation' } ],
-        ['${orderByRegistration[0].planName}', ${orderByRegistration[0].cnt}, '#FF8000', '${orderByRegistration[0].bizName}' ],
-        ['${orderByRegistration[1].planName}', ${orderByRegistration[1].cnt}, '#B404AE', '${orderByRegistration[1].bizName}' ],
-        ['${orderByRegistration[2].planName}', ${orderByRegistration[2].cnt}, '#5858FA', '${orderByRegistration[2].bizName}' ],
-        ['${orderByRegistration[3].planName}', ${orderByRegistration[3].cnt}, '#0080FF', '${orderByRegistration[3].bizName}' ],
-        ['${orderByRegistration[4].planName}', ${orderByRegistration[4].cnt}, '#0489B1', '${orderByRegistration[4].bizName}' ],
-     ]);
-     
-
-    // Set chart options
-    var options = {'title':'가입자 많은 순',
-                   'legend':'none',
-                   'chartArea': {'width': '80%', 'height': '80%'}
-                   };
-
-    // Instantiate and draw our chart, passing in some options.
-    var chart = new google.visualization.BarChart(document.getElementById('chart_chart_div'));
-    chart.draw(data, options);
-  }
-
-</script> -->
 </head>
 <body>
 <jsp:include page="/WEB-INF/views/admin/include/header.jsp" />
@@ -51,20 +20,41 @@
 				<!-- 차트 -->
  				<!-- 가입자 많은 순 -->
 				<div class="col-md-7">
-	                <div class="card">
-	                    <div class="card-header">
-	                        <h5>요금제 랭킹</h5>
-	                    </div>
-	                    <div class="card-body">
-	                    	<div id="orderByRegistration_chart_div"></div>
-						</div>
-					 </div>
-	            </div>
+				<div class="card">
+                    <div class="card-header">
+                        <h5>요금제 가입자 순</h5>
+                    </div>
+                    <div class="card-body table-border-style">
+                        <div class="table-responsive">
+                            <table class="table text-center">
+                                <thead>
+                                    <tr>
+                                    	<th>순위</th>
+                                        <th>요금제명</th>
+                                        <th>통신사명</th>
+                                        <th>가입자수</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                <c:forEach items="${orderByRegistration}" var="orderByRegistration">
+                                    <tr>
+                                    	<td>${orderByRegistration.planLanking}</td>
+                                        <td>${orderByRegistration.planName}</td>
+                                        <td>${orderByRegistration.bizName}</td>
+                                        <td>${orderByRegistration.cnt}</td>
+                                    </tr>
+                                </c:forEach>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+				</div>
 	            <!-- 연령대별 인기 요금제 -->
 				<div class="col-md-7">
 				<div class="card">
                     <div class="card-header">
-                        <h5>연령대별 베스트 요금제</h5>
+                        <h5>연령대별 인기요금제</h5>
                     </div>
                     <div class="card-body table-border-style">
                         <div class="table-responsive">
@@ -73,7 +63,7 @@
                                     <tr>
                                         <th>연령대</th>
                                         <th>요금제명</th>
-                                        <th>가입수</th>
+                                        <th>가입자수</th>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -252,10 +242,6 @@
 	                              stroke: {
 	                                curve: 'straight'
 	                              },
-	                              title: {
-	                                text: 'Product Trends by Month',
-	                                align: 'left'
-	                              },
 	                              grid: {
 	                                row: {
 	                                  colors: ['#f3f3f3', 'transparent'], // takes an array which will be repeated on columns
@@ -342,10 +328,6 @@
 					        },
 					        stroke: {
 					          curve: 'straight'
-					        },
-					        title: {
-					          text: 'Product Trends by Month',
-					          align: 'left'
 					        },
 					        grid: {
 					          row: {

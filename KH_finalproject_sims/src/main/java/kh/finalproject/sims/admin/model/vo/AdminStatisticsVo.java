@@ -26,6 +26,7 @@ public class AdminStatisticsVo {
 	//private String planName;
 	//private int cnt;
 	int rn;
+	int planLanking;
 	
 	// 별점순 통신사 랭킹
 	double bizReviewStar;

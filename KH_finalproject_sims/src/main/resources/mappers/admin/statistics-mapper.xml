@@ -3,16 +3,22 @@
 <mapper namespace="admin" >
 	<!-- 요금제 랭킹 - 가입자 많은 순 -->
 	<select id="selectOrderByRegistration" resultType="kh.finalproject.sims.admin.model.vo.AdminStatisticsVo">
-		select rownum, plan_no, plan_name, cnt, biz_name
-	    from (
-	    select plan_no, count(*)as cnt 
-	    from plan_order
-	    group by plan_no
-	    order by cnt desc
-	    )
-	    left outer join plan_table using (plan_no)
-	    <![CDATA[ where rownum <=5 ]]>
-	    order by cnt desc
+	<![CDATA[
+		SELECT ROWNUM AS PLAN_LANKING, PLAN_NAME, CNT, BIZ_NAME
+		FROM
+		(
+		    SELECT ROWNUM, PLAN_NO, PLAN_NAME, CNT, BIZ_NAME
+		    FROM (
+		        SELECT PLAN_NO, COUNT(*) AS CNT 
+		        FROM PLAN_ORDER
+		        GROUP BY PLAN_NO
+		        ORDER BY CNT DESC
+		    )
+		    LEFT OUTER JOIN PLAN_TABLE USING (PLAN_NO)
+		    WHERE ROWNUM <=5
+		    ORDER BY CNT DESC
+		)
+    ]]>
 	</select>
 	
 	<!-- 연령대별 가장 인기있는 요금제  -->
