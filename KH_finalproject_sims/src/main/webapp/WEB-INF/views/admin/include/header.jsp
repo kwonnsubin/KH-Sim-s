@@ -52,9 +52,9 @@
                     <li class="nav-item pcoded-hasmenu">
                         <a href="<%=request.getContextPath()%>/admin/applyList" class="nav-link " class="nav-link "><span class="pcoded-micon"><i class="feather icon-layout"></i></span><span class="pcoded-mtext">통신사 관리</span></a>
                         <ul class="pcoded-submenu">
-                            <li><a href="layout-vertical.html" target="_blank">신청정보</a></li>
-                            <li><a href="layout-horizontal.html" target="_blank">통신사정보</a></li>
-                            <li><a href="layout-horizontal.html" target="_blank">탈퇴정보</a></li>
+                            <li><a href="<%=request.getContextPath()%>/admin/applyList">통신사 정보</a></li>
+                           <!--  <li><a href="layout-horizontal.html" target="_blank">통신사정보</a></li>
+                            <li><a href="layout-horizontal.html" target="_blank">탈퇴정보</a></li> -->
                             <li><a href="<%=request.getContextPath()%>/admin/bizPlanApplyList">통신사 요금제 가입정보</a></li>
                         </ul>
                     </li>
@@ -101,7 +101,7 @@
                     	<label>문의내역 관리</label>
                     </li>
                     <li class="nav-item">
-                        <a href="chart-apex.html" class="nav-link "><span class="pcoded-micon"><i class="feather icon-pie-chart"></i></span><span class="pcoded-mtext">통계 조회</span></a>
+                        <a href="<%=request.getContextPath()%>/admin/statistics" class="nav-link "><span class="pcoded-micon"><i class="feather icon-pie-chart"></i></span><span class="pcoded-mtext">통계 조회</span></a>
                     </li>
                     <li class="nav-item">
                         <a href="<%=request.getContextPath()%>/logout" class="nav-link "><span class="pcoded-micon"><i class="feather icon-lock"></i></span><span class="pcoded-mtext">로그아웃</span></a>

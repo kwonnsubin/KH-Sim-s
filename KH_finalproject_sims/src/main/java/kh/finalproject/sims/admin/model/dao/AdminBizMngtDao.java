@@ -47,8 +47,8 @@ public class AdminBizMngtDao {
 	}
 
 	//통신사 요금제 게통 상세 페이지로 이동
-	public AdminBizMngtVo selectBizPlanApplyDetail(String userId) {
-		return sqlSession.selectOne("adminBiz.selectBizPlanApplyDetail", userId);
+	public AdminBizMngtVo selectBizPlanApplyDetail(int orderNo) {
+		return sqlSession.selectOne("adminBiz.selectBizPlanApplyDetail", orderNo);
 	}
 
 	//통신사 수정 저장

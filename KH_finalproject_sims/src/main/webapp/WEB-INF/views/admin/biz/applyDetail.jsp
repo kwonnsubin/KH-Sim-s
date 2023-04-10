@@ -52,8 +52,8 @@
 									</div>
 								</div>
 							
-								<div class="row">
-									 <div class="col-sm-8">
+								<div class="card">
+									 <div class="col-sm-12">
 		                				<div class="card">
 		                    				<div class="card-header">
 		                        				<h5>통신사 정보</h5>

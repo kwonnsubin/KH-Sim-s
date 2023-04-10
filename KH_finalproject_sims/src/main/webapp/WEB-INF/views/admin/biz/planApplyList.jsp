@@ -6,10 +6,10 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>통신사 가입 신청 리스트</title>
+<title>통신사 요금제 개통 신청 리스트</title>
 </head>
 <body>
-	<jsp:include page="../include/header.jsp" />
+	<jsp:include page="/WEB-INF/views/admin/include/header.jsp" />
 	<div class="pcoded-main-container">	
 		<div class="pcoded-wrapper container">
 			<div class="pcoded-content">
@@ -26,83 +26,98 @@
 												</div>
 												<ul class="breadcrumb">
 													<li class="breadcrumb-item"><a href="<%=request.getContextPath()%>/admin/dashboard"><i class="feather icon-home"></i></a></li>
-													<li class="breadcrumb-item"><a href="<%=request.getContextPath()%>/admin/applyList"><i class="breadcrumb-item"></i>통신사 관리</a></li>
-													<li class="breadcrumb-item"><a href="<%=request.getContextPath()%>/admin/bizPlanApplyList"><i class="breadcrumb-item"></i>통신사 요금제 가입신청</a></li>
+													<li class="breadcrumb-item"><a href=""><i class="<%=request.getContextPath()%>/admin/bizPlanApplyList"></i>통신사 관리</a></li>
 												</ul>
 											</div>
 										</div>
 									</div>
 								</div>
-								<div class="col-md-12">
-									<div class="simsBtn m-b-15">
-									</div>
-									<div class="card">
-										<div class="card-body">
-											<form id="searchForm" name="searchForm" action="<%=request.getContextPath()%>/admin/applyList" method="post">
+								<form id="searchForm" name="searchForm" action="<%=request.getContextPath()%>/admin/bizPlanApplyList" method="post">
+									<input type="hidden" name="currentPage" value="${currentPage}"/>
+									<div class="col-md-12">
+										<div class="card">
+											<div class="card-body">
 												<div class="row">
 													<div class="col-sm-12">
 														<div class="input-group">
 															<label class="floating-label"></label>
 															<select class="" name="searchOption">
 																<option value="">선택</option>
-																<option value="name" <c:if test="${searchOption eq 'name' }">selected</c:if>>요금제명</option>
-																<option value="enabled" <c:if test="${searchOption eq 'enabled' }">selected</c:if>>신청상태</option>
-																<option value="writer" <c:if test="${searchOption eq 'writer' }">selected</c:if>>신청자</option>
+																<option value="planName" <c:if test="${searchOption eq 'planName' }">selected</c:if>>요금제명</option>
+																<option value="userId" <c:if test="${searchOption eq 'userId' }">selected</c:if>>신청자</option>
 															</select>
 															<input class="form-control" type="text" name="searchBox" value="${searchBox}">
+															<div class="col-sm-5 p-t-10">
+																<div class="custom-control custom-radio custom-control-inline">
+								                                    <input type="radio" id="customRadioInline1" name="searchRadioVal" class="custom-control-input" value="total" <c:if test="${searchRadioVal eq 'total' }">checked</c:if>>
+								                                    <label class="custom-control-label" for="customRadioInline1">전체</label>
+								                                </div>
+								                                <div class="custom-control custom-radio custom-control-inline">
+								                                    <input type="radio" id="customRadioInline2" name="searchRadioVal" class="custom-control-input" value="1" <c:if test="${searchRadioVal eq '1' }">checked</c:if>>
+								                                    <label class="custom-control-label" for="customRadioInline2">신청 완료</label>
+								                                </div>
+								                                <div class="custom-control custom-radio custom-control-inline">
+								                                    <input type="radio" id="customRadioInline4" name="searchRadioVal" class="custom-control-input" value="2" <c:if test="${searchRadioVal eq '2' }">checked</c:if>>
+								                                    <label class="custom-control-label" for="customRadioInline4">승인 완료</label>
+								                                </div>
+								                                <div class="custom-control custom-radio custom-control-inline">
+								                                    <input type="radio" id="customRadioInline5" name="searchRadioVal" class="custom-control-input" value="3" <c:if test="${searchRadioVal eq '3' }">checked</c:if>>
+								                                    <label class="custom-control-label" for="customRadioInline5">승인 보류</label>
+								                                </div>
+															</div>
 															<div class="input-group-append"> 
 																<button class="btn  btn-primary" type="submit">검색</button>
 															</div>
 														</div>
 													</div>
 												</div>
-											</form>
-										</div>
-									</div>
-									<div class="card">
-										<div class="card-body table-border-style">
-											<div class="table-responsive">
-												<table class="table table-hover">
-													<thead>
-														<tr>
-															<th>번호</th>
-															<th>신청자</th>
-															<th>요금제명</th>
-															<!-- <th>신청상태</th> -->
-															<th>신청일</th>
-														</tr>
-													</thead>
-													<tbody>
-														<c:forEach var="list" items="${bizPlanApplyList}" varStatus="status">
-															<tr>
-																<td>${list.orderNo}</td>
-																<td><a href="<%=request.getContextPath()%>/admin/bizPlanApplyDetail">${list.userId}</td>
-																<td>${list.planName}</td>
-																<%-- <td>
-																	<c:choose>
-																		<c:when test="${list.orderStatus eq '1'}"> 신청완료 </c:when>
-																		<c:when test="${list.orderStatus eq '2'}"> 승인완료 </c:when>
-																		<c:otherwise>승인보류</c:otherwise>
-																	</c:choose>
-																</td> --%>
-																<td><fmt:formatDate value="${list.orderDate}" pattern="yyyy.MM.dd"/> </td>															
-															</tr>
-														</c:forEach>
-													</tbody>
-												</table>
 											</div>
-											<nav aria-label="Page navigation example">
-												<ul class="pagination justify-content-center">
-													<li class="page-item"><a class="page-link" href="" aria-label="Previous"><span aria-hidden="true">«</span><span class="sr-only">Previous</span></a></li>
-													<li class="page-item"><a class="page-link" href="" aria-label="Previous">1</a></li>
-													<li class="page-item"><a class="page-link" href="" aria-label="Previous">2</a></li>
-													<li class="page-item"><a class="page-link" href="" aria-label="Previous">3</a></li>
-													<li class="page-item"><a class="page-link" href="" aria-label="Previous"><span aria-hidden="true">»</span><span class="sr-only">Next</span></a></li>
-												</ul>
-											</nav>
+										</div>
+										<div class="card">
+											<div class="card-body table-border-style">
+												<div class="table-responsive">
+													<table class="table table-hover">
+														<thead>
+															<tr>
+																<th>번호</th>
+																<th>요금제명</th>
+																<th>신청자</th>
+																<th>신청상태</th>
+																<th>신청일</th>
+															</tr>
+														</thead>
+														<tbody>
+															<c:forEach var="list" items="${bizPlanApplyList}" varStatus="status">
+																<tr>
+																	<td><a href="<%=request.getContextPath()%>/admin/bizPlanApplyDetail/${list.orderNo}?divCheck=${divCheck}">${list.orderNo}</a></td>
+																	<td>${list.planName}</td>
+																	<td><a href="<%=request.getContextPath()%>/admin/bizPlanApplyDetail/${list.userId}?divCheck=${divCheck}">${list.userId}</a></td>
+																	<td>
+																		<c:choose>
+																			<c:when test="${list.orderStatus eq '1'}"> 신청 완료 </c:when>
+																			<c:when test="${list.orderStatus eq '2'}"> 승인 완료 </c:when>
+																			<c:otherwise>승인 보류</c:otherwise>
+																		</c:choose>
+																	</td>
+																	<td><fmt:formatDate value="${list.orderDate}" pattern="yyyy.MM.dd"/> </td>
+																</tr>
+															</c:forEach>
+														</tbody>
+													</table>
+												</div>
+												<nav aria-label="Page navigation example">
+													<ul class="pagination justify-content-center">
+														<li class="page-item"><a class="page-link" href="" aria-label="Previous"><span aria-hidden="true">«</span><span class="sr-only">Previous</span></a></li>
+														<li class="page-item"><a class="page-link" href="" aria-label="Previous">1</a></li>
+														<li class="page-item"><a class="page-link" href="" aria-label="Previous">2</a></li>
+														<li class="page-item"><a class="page-link" href="" aria-label="Previous">3</a></li>
+														<li class="page-item"><a class="page-link" href="" aria-label="Previous"><span aria-hidden="true">»</span><span class="sr-only">Next</span></a></li>
+													</ul>
+												</nav>
+											</div>
 										</div>
 									</div>
-								</div>
+								</form>
 							</div>
 						</div>
 					</div>
@@ -110,7 +125,7 @@
 			</div>
 		</div>
 	</div>
-<jsp:include page="../include/footer.jsp" />
+<jsp:include page="/WEB-INF/views/admin/include/footer.jsp" />
 
 </body>
 </html>

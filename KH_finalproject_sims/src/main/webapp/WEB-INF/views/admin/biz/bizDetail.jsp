@@ -48,6 +48,7 @@
 								<div class="col-md-12">
 									<div class="simsBtn m-b-15">
 										<input class="btn btn-primary right m-l-10" type="button" onclick="location.href='<%=request.getContextPath()%>/admin/applyList'" value="목록">
+										<input class="btn btn-primary right m-l-10" type="button" onclick="location.href='<%=request.getContextPath()%>/admin/withdrawalDetail/${applyDetail.bizId}'" value="탈퇴">
 											<c:choose>
 												<c:when test="${cmd eq 'read' }">
 													<input class="btn btn-primary right" type="button" onclick="location.href='<%=request.getContextPath()%>/admin/selectBizModify/${applyDetail.bizId}'" value="수정">

@@ -30,7 +30,7 @@ public interface AdminBizMngtService {
 	public List<AdminBizMngtVo> selectBizPlanApplyList(AdminBizMngtVo vo) throws Exception;
 
 	//통신사 요금제 개통 신청 상세 페이지로 이동
-	public AdminBizMngtVo selectBizPlanApplyDetail(String userId) throws Exception;
+	public AdminBizMngtVo selectBizPlanApplyDetail(int orderNo) throws Exception;
 
 	//통신사 검토결과 변경
 	public int updateBizStatus(AdminBizMngtVo vo) throws Exception;

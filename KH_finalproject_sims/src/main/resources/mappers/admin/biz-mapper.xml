@@ -105,20 +105,53 @@
 		FROM 
 			PLAN_ORDER A
 			INNER JOIN PLAN_TABLE B ON A.PLAN_NO = B.PLAN_NO
+		WHERE 1=1
+		<if test="searchRadioVal != null">
+			<choose>
+				<when test="searchRadioVal != 'total'">
+					AND A.ORDER_STATUS = #{searchRadioVal}
+				</when>
+			</choose>
+		</if>
+		<if test="searchOption != null">
+			<choose>
+				<when test="searchOption == 'planName'">
+					AND UPPER(B.PLAN_NAME) LIKE UPPER('%'||#{searchBox}||'%')
+				</when>
+				<when test="searchOption == 'userId'">
+					AND UPPER(A.USER_ID) LIKE UPPER('%'||#{searchBox}||'%')
+				</when>
+			</choose>
+		</if>
+				
 	</select>
 	
 	<!-- 통신사 요금제 개통 신청 상세 -->
 	<select id="selectBizPlanApplyDetail" resultType="adBizVo">
 	/** 통신사 요금제 개통 신청 상세 (selectBizPlanApplyDetail)**/
 		
+		 SELECT
+		    A.*
+		    , (SELECT user_name FROM user_table WHERE user_id = A.user_id) as userName
+		    , (SELECT user_ssn FROM user_table WHERE user_id = A.user_id) as userSsn
+		    , (SELECT user_phone FROM user_table WHERE user_id = A.user_id) as userPhone
+		    , (SELECT user_address FROM user_table WHERE user_id = A.user_id) as userAddress
+		    , (SELECT user_email FROM user_table WHERE user_id = A.user_id) as userEmail
+		    , (SELECT plan_name FROM plan_table WHERE plan_no = A.plan_no) as planName
+		   
+		 FROM
+		    plan_order A
+		 WHERE 
+			A.order_no = #{orderNo}
+		
 	
 	
-		SELECT
+		<!-- SELECT
 				*
 			from
 			 plan_order
 			where
-			 user_id =#{userId} 
+			 order_no =#{orderNo}  -->
 	  
 	   
 	  
