@@ -94,8 +94,8 @@
 																	<td><a href="<%=request.getContextPath()%>/admin/bizPlanApplyDetail/${list.userId}?divCheck=${divCheck}">${list.userId}</a></td>
 																	<td>
 																		<c:choose>
-																			<c:when test="${list.orderStatus eq '1'}"> 신청 완료 </c:when>
-																			<c:when test="${list.orderStatus eq '2'}"> 승인 완료 </c:when>
+																			<c:when test="${list.orderStatus eq '1'.charAt(0)}"> 신청 완료 </c:when>
+																			<c:when test="${list.orderStatus eq '2'.charAt(0)}"> 승인 완료 </c:when>
 																			<c:otherwise>승인 보류</c:otherwise>
 																		</c:choose>
 																	</td>

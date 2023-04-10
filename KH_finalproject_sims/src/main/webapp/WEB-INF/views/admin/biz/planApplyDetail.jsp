@@ -77,7 +77,7 @@
 		                           			 <div class="form-group row">
 		                                        <label for="orderDate" class="col-sm-1 col-form-label text-center">신청일자</label>
 		                                        <div class="col-sm-5">
-		                                            <input type="text" class="form-control"  name="orderDate" <c:if test="${cmd eq 'read' }">readonly</c:if> value="${bizPlanApplyDetail.orderDate}">
+		                                            <input type="text" class="form-control"  name="orderDate" <c:if test="${cmd eq 'read' }">readonly</c:if> value="<fmt:formatDate value="${bizPlanApplyDetail.orderDate}" pattern="yyyy.MM.dd"/>">
 		                                        </div>
 		                                         <label for="userSsn" class="col-sm-1 col-form-label text-center">주민등록번호</label>
 		                                        <div class="col-sm-5">
@@ -104,10 +104,11 @@
 		                                        <div class="col-sm-5">
 		                                            <input type="text" class="form-control"  name="joinCategory" <c:if test="${cmd eq 'read' }">readonly</c:if>                                          
 		                                             <c:choose>
-															<c:when test="${bizPlanApplyDetail.joinCategory eq '1'}"> 번호 이동 </c:when>
-															<c:otherwise>신규가입</c:otherwise>
+															<c:when test="${bizPlanApplyDetail.joinCategory eq '1'.charAt(0)}">value="번호 이동" </c:when>
+															<c:otherwise>value="신규 가입"</c:otherwise>
 													 </c:choose>
-		    										 value="${bizPlanApplyDetail.joinCategory}">
+		    										 <%-- value="${bizPlanApplyDetail.joinCategory}" --%>
+		    										 >
 				                                </div>
 		                                    </div>
 		                                    <div class="form-group row">

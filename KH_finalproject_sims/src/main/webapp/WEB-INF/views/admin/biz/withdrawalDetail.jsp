@@ -44,11 +44,11 @@
 									</div>
 								</div>
 							</div>
-							<form action="<%=request.getContextPath()%>/admin/updateBizStatus" method="post">
+							<form action="<%=request.getContextPath()%>/admin/updateWithdrawalBizStatus" method="post">
 								<div class="col-md-12">
 									<div class="simsBtn m-b-15">
 										<input class="btn btn-primary right m-l-10" type="button" onclick="location.href='<%=request.getContextPath()%>/admin/applyList'" value="목록">
-										<input class="btn btn-primary right" type="submit" value="저장">
+										<input class="btn btn-primary right" type="submit" value="탈퇴 확정">
 									</div>
 								</div>
 							
@@ -62,44 +62,44 @@
 			                                    <div class="form-group row">
 			                                        <label for="bizName" class="col-sm-2 col-form-label text-center">법인명</label>
 			                                        <div class="col-sm-10">
-			                                            <input type="text" class="form-control"  name="bizName" <c:if test="${cmd eq 'read' }">readonly</c:if> value="${applyDetail.bizName}">
+			                                            <input type="text" class="form-control"  name="bizName" <c:if test="${cmd eq 'read' }">readonly</c:if> value="${withdrawalDetail.bizName}">
 			                                        </div>
 			                                    </div>
 			                           			 <div class="form-group row">
 			                                        <label for="bizSsn" class="col-sm-2 col-form-label text-center">법인 등록번호</label>
 			                                        <div class="col-sm-10">
-			                                            <input type="text" class="form-control"  name="bizSsn" <c:if test="${cmd eq 'read' }">readonly</c:if> value="${applyDetail.bizSsn}">
+			                                            <input type="text" class="form-control"  name="bizSsn" <c:if test="${cmd eq 'read' }">readonly</c:if> value="${withdrawalDetail.bizSsn}">
 			                                        </div>
 			                                    </div>
 			                           			 <div class="form-group row">
 			                                        <label for="bizCrn" class="col-sm-2 col-form-label text-center">사업자등록번호</label>
 			                                        <div class="col-sm-10">
-			                                            <input type="text" class="form-control"  name="bizCrn" <c:if test="${cmd eq 'read' }">readonly</c:if> value="${applyDetail.bizCrn}">
+			                                            <input type="text" class="form-control"  name="bizCrn" <c:if test="${cmd eq 'read' }">readonly</c:if> value="${withdrawalDetail.bizCrn}">
 			                                        </div>
 			                                    </div>
 			                           			 <div class="form-group row">
 			                                         <label for="bizId" class="col-sm-2 col-form-label text-center">아이디</label>
 			                                        <div class="col-sm-10">
-			                                            <input type="text" class="form-control"  name="bizId" <c:if test="${cmd eq 'read' }">readonly</c:if> value="${applyDetail.bizId}">
+			                                            <input type="text" class="form-control"  name="bizId" <c:if test="${cmd eq 'read' }">readonly</c:if> value="${withdrawalDetail.bizId}">
 			                                        </div>
 			                                        
 			                                    </div>
 			                                    <div class="form-group row">
 			                                        <label for="bizEmail" class="col-sm-2 col-form-label text-center">이메일</label>
 			                                        <div class="col-sm-10">
-			                                            <input type="text" class="form-control"  name="bizEmail" <c:if test="${cmd eq 'read' }">readonly</c:if> value="${applyDetail.bizEmail}">
+			                                            <input type="text" class="form-control"  name="bizEmail" <c:if test="${cmd eq 'read' }">readonly</c:if> value="${withdrawalDetail.bizEmail}">
 			                                        </div>
 			                                    </div>
 			                           			 <div class="form-group row">
 			                                        <label for="bizPhone" class="col-sm-2 col-form-label text-center">연락처</label>
 			                                        <div class="col-sm-10">
-			                                            <input type="text" class="form-control"  name="bizPhone" <c:if test="${cmd eq 'read' }">readonly</c:if> value="${applyDetail.bizPhone}">
+			                                            <input type="text" class="form-control"  name="bizPhone" <c:if test="${cmd eq 'read' }">readonly</c:if> value="${withdrawalDetail.bizPhone}">
 			                                        </div>
 			                                    </div>
 			                           			 <div class="form-group row">
 			                                        <label for="bizLocation" class="col-sm-2 col-form-label text-center">주소</label>
 			                                        <div class="col-sm-10">
-			                                            <input type="text" class="form-control"  name="bizLocation" <c:if test="${cmd eq 'read' }">readonly</c:if> value="${applyDetail.bizLocation}">
+			                                            <input type="text" class="form-control"  name="bizLocation" <c:if test="${cmd eq 'read' }">readonly</c:if> value="${withdrawalDetail.bizLocation}">
 			                                        </div>
 			                                    </div>
 		                            		</div>	
@@ -113,7 +113,7 @@
 			                    			<div class="card-body">
 			                    				<div class="row">
 			                    					<div class="col-md-12">
-			                    						<textarea class="form-control" aria-label="with textarea" name="opinion" style= height:277px;resize:none;>${applyDetail.opinion }</textarea>
+			                    						<textarea class="form-control" aria-label="with textarea" name="opinion" style="height:427px; resize:none;">${withdrawalDetail.opinion }</textarea>
 			                    						<%-- <textarea class="col-md-12 bg-light p-4 mb-2" style="height:277px; resize:none; border:2px solid rgba(0, 0, 0, 0.15);" name="rvwOpinion">${applyDetail.opinion }</textarea> --%>
 			                    					</div>
 			                    				</div>

@@ -117,6 +117,20 @@ public class AdminBizMngtController {
 		mv.addObject("cmd", "read");
 		return mv;
 	}
+	
+	// 통신사 탈퇴 확정
+	@PostMapping("/updateWithdrawalBizStatus")
+	public ModelAndView updateWithdrawalBizStatus(ModelAndView mv, AdminBizMngtVo vo) throws Exception {
+		service.updateWithdrawalBizStatus(vo);
+
+		String bizId = vo.getBizId();
+		AdminBizMngtVo withdrawalDetail = service.selectWithdrawalDetail(bizId);
+		mv.addObject("withdrawalDetail", withdrawalDetail);
+		mv.addObject("result", "탈퇴 되었습니다.");
+		mv.setViewName("admin/biz/withdrawalDetail");
+		mv.addObject("cmd", "read");
+		return mv;
+	}
 
 	// 통신사 요금제 개통 신청 리스트로 이동
 	@RequestMapping(value = "/bizPlanApplyList", method = { RequestMethod.GET, RequestMethod.POST })

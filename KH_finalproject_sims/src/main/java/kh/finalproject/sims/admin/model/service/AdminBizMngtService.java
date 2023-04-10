@@ -34,6 +34,9 @@ public interface AdminBizMngtService {
 
 	//통신사 검토결과 변경
 	public int updateBizStatus(AdminBizMngtVo vo) throws Exception;
+	
+	//통신사 탈퇴 확정
+	public int updateWithdrawalBizStatus(AdminBizMngtVo vo) throws Exception;
 
 	
 

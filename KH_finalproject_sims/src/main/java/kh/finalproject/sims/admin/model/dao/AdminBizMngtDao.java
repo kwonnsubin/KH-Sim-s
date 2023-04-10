@@ -61,6 +61,10 @@ public class AdminBizMngtDao {
 		return sqlSession.update("adminBiz.updateBizStatus", vo);
 	}
 
+	public int updateWithdrawalBizStatus(AdminBizMngtVo vo) {
+		return sqlSession.update("adminBiz.updateWithdrawalBizStatus", vo);
+	}
+
 
 
 }
