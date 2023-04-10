@@ -10,45 +10,51 @@ import org.springframework.stereotype.Repository;
 import kh.finalproject.sims.admin.model.vo.AdminDashBoardVo;
 import kh.finalproject.sims.admin.model.vo.AdminQnaMngtVo;
 import kh.finalproject.sims.admin.model.vo.AdminReviewMngtVo;
+import kh.finalproject.sims.admin.model.vo.AdminStatisticsVo;
 import kh.finalproject.sims.biz.model.vo.BizPlanMngtVo;
 
 @Repository
 public class AdminDashBoardDao {
 	@Autowired
-	SqlSession sqlSesson;
+	SqlSession sqlSession;
 	
 	// 리뷰 리스트
 	public List<AdminReviewMngtVo> selectDashboardBizReview() {
-		return sqlSesson.selectList("admin.selectDashboardBizReview");
+		return sqlSession.selectList("admin.selectDashboardBizReview");
 	}
 	
 	// 질문/답변 리스트
 	public List<AdminQnaMngtVo> selectDashBoardQna() {
-		return sqlSesson.selectList("admin.selectDashBoardQna");
+		return sqlSession.selectList("admin.selectDashBoardQna");
 	}
 	
 	// 신고 리스트
 	public List<AdminReviewMngtVo> selectDashBoardReviewReport() {
-		return sqlSesson.selectList("admin.selectDashBoardReviewReport");
+		return sqlSession.selectList("admin.selectDashBoardReviewReport");
 	}
 	
 	// 가입자 수
 	public int selectDashBoardPlanOrderCount() {
-		return sqlSesson.selectOne("admin.selectDashBoardPlanOrderCount");
+		return sqlSession.selectOne("admin.selectDashBoardPlanOrderCount");
 	}
 	
 	// 통신사 신청 수
 	public int selectDashBoardBizWriteCount() {
-		return sqlSesson.selectOne("admin.selectDashBoardBizWriteCount");
+		return sqlSession.selectOne("admin.selectDashBoardBizWriteCount");
 	}
 	
 	// 통신사 총 등록 수
 	public int selectDashBoardBizTotalCount() {
-		return sqlSesson.selectOne("admin.selectDashBoardBizTotalCount");
+		return sqlSession.selectOne("admin.selectDashBoardBizTotalCount");
 	}
 	
 	// 요금제별 가입신청 수
 	public List<AdminDashBoardVo> selectDashBoardPlanOrderChart() {
-		return sqlSesson.selectList("admin.selectDashBoardPlanOrderChart");
+		return sqlSession.selectList("admin.selectDashBoardPlanOrderChart");
+	}
+	
+	// 일별 총 가입자 수 변화
+	public List<AdminDashBoardVo> selectDashBoardDailyTotalUserWriteCount() {
+		return sqlSession.selectList("admin.selectDashBoardDailyTotalUserWriteCount");
 	}
 }

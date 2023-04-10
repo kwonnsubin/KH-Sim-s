@@ -13,60 +13,72 @@
 <title>문의내역 상세페이지</title>
 <script src="https://code.jquery.com/jquery-latest.min.js"></script>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
-<!--Load the AJAX API-->
-<script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
-<script type="text/javascript">
-
-  // Load the Visualization API and the corechart package.
-  google.charts.load('current', {'packages':['corechart']}); // 특정  차트 유형의 패키지를 로드 (버전,차트유형)
-
-  // Set a callback to run when the Google Visualization API is loaded.
-  google.charts.setOnLoadCallback(drawChart); // drawChart 자바스크립트 호출
-
-  // Callback that creates and populates a data table,
-  // instantiates the pie chart, passes in the data and
-  // draws it.
-  function drawChart() {
-
-    // Create the data table.
-    var data = new google.visualization.DataTable();
-    
-     var data = google.visualization.arrayToDataTable([
-        ['Element', 'Density', { role: 'style' }, { role: 'annotation' } ],
-        ['${planOrderChartList[0].planName}', ${planOrderChartList[0].cnt}, '#FF8000', '${planOrderChartList[0].bizName}' ],
-        ['${planOrderChartList[1].planName}', ${planOrderChartList[1].cnt}, '#B404AE', '${planOrderChartList[1].bizName}' ],
-        ['${planOrderChartList[2].planName}', ${planOrderChartList[2].cnt}, '#5858FA', '${planOrderChartList[2].bizName}' ],
-        ['${planOrderChartList[3].planName}', ${planOrderChartList[3].cnt}, '#0080FF', '${planOrderChartList[3].bizName}' ],
-        ['${planOrderChartList[4].planName}', ${planOrderChartList[4].cnt}, '#0489B1', '${planOrderChartList[4].bizName}' ],
-     ]); 
-     
-
-    // Set chart options
-    var options = {'title':'요금제별 가입 신청 수',
-                   'legend':'none',
-                   'chartArea': {'width': '80%', 'height': '80%'}
-                   };
-
-    // Instantiate and draw our chart, passing in some options.
-    var chart = new google.visualization.ColumnChart(document.getElementById('chart_div'));
-    chart.draw(data, options);
-  }
-</script>
+<!-- charts cdn -->
+<script src="https://cdn.jsdelivr.net/npm/apexcharts"></script>
 </head>
 <body>
 <jsp:include page="/WEB-INF/views/admin/include/header.jsp" />
 <div class="pcoded-main-container">
-	<div class="pcoded-wrapper container">
 		<div class="pcoded-content">
+			<div class="page-header">
+	            <div class="page-block">
+	                <div class="row align-items-center">
+	                    <div class="col-md-12">
+	                        <div class="page-header-title">
+	                            <h5 class="m-b-10">Dashboard</h5>
+	                        </div>
+	                        <ul class="breadcrumb">
+	                            <li class="breadcrumb-item"><a href="<%=request.getContextPath()%>/admin/dashboard"<i class="feather icon-home"></i></a></li>
+	                            <li class="breadcrumb-item"><a href="#!">Dashboard</a></li>
+	                        </ul>
+	                    </div>
+	                </div>
+	            </div>
+	        </div>
 			<div class="row align-items-center">
 				<!-- 차트 -->
+				<!-- 일별 총 가입자 수 변화 -->
 				<div class="col-md-7">
 	                <div class="card">
 	                    <div class="card-header">
-	                        <h5>요금제별 가입신청 수</h5>
+	                        <h5>일별 가입자 수</h5>
 	                    </div>
 	                    <div class="card-body">
-	                    	<div id="chart_div" style="width:799px; height:540px;"></div>
+	                    	<div id="dailyTotalUserWriteCount_chart_div"></div>
+	                    	<script>
+	                        var options = {
+	                                series: [{
+	                                  name: "Today",
+	                                  data: [${dailyTotalUserWriteCount[0].cnt}, ${dailyTotalUserWriteCount[1].cnt}, ${dailyTotalUserWriteCount[2].cnt}, ${dailyTotalUserWriteCount[3].cnt}, ${dailyTotalUserWriteCount[4].cnt}, ${dailyTotalUserWriteCount[5].cnt}, ${dailyTotalUserWriteCount[6].cnt}]
+	                              }],
+	                                chart: {
+	                                height: 640,
+	                                type: 'line',
+	                                type: 'area',
+	                                zoom: {
+	                                  enabled: false
+	                                }
+	                              },
+	                              dataLabels: {
+	                                enabled: false
+	                              },
+	                              stroke: {
+	                                curve: 'smooth'
+	                              },
+	                              grid: {
+	                                row: {
+	                                  colors: ['#f3f3f3', 'transparent'], // takes an array which will be repeated on columns
+	                                  opacity: 0.5
+	                                },
+	                              },
+	                              xaxis: {
+	                                categories: ['${dailyTotalUserWriteCount[0].userWrDate}', '${dailyTotalUserWriteCount[1].userWrDate}', '${dailyTotalUserWriteCount[2].userWrDate}', '${dailyTotalUserWriteCount[3].userWrDate}', '${dailyTotalUserWriteCount[4].userWrDate}', '${dailyTotalUserWriteCount[5].userWrDate}', '${dailyTotalUserWriteCount[6].userWrDate}'],
+	                              }
+	                              };
+
+	                              var chart = new ApexCharts(document.querySelector("#dailyTotalUserWriteCount_chart_div"), options);
+	                              chart.render();
+	                    	</script>
 						</div>
 					 </div>
 	            </div>
@@ -214,7 +226,6 @@
 			${planOrderChartList} --%>
 			</div>
 		</div>
-	</div>
 </div>
 <jsp:include page="/WEB-INF/views/admin/include/footer.jsp" />
 </body>

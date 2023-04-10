@@ -29,4 +29,7 @@ public interface AdminDashBoardService{
 	
 	// 요금제별 가입신청 수
 	public List<AdminDashBoardVo> selectDashBoardPlanOrderChart();
+	
+	// 일별 총 가입자 수 변화
+	public List<AdminDashBoardVo> selectDashBoardDailyTotalUserWriteCount();
 }

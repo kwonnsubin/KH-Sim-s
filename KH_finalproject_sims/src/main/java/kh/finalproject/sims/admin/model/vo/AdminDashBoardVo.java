@@ -21,6 +21,7 @@ public class AdminDashBoardVo {
 	private int planNo;
 	private String planName;
 	private String bizName; 
-	private int cnt; 
+	private int cnt;
+	private String userWrDate;
 	
 }

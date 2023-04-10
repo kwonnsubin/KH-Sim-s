@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="admin">
-
 <!-- 리뷰 리스트 -->
 <select id="selectDashboardBizReview" resultType="kh.finalproject.sims.admin.model.vo.AdminReviewMngtVo">
 SELECT * FROM (
@@ -72,5 +71,27 @@ SELECT * FROM (
     )
     left outer join plan_table using (plan_no)
     <![CDATA[ where rownum <=5 ]]>
+</select>
+
+<!-- 일별(7일 이내) 총 가입자 수 변화 -->
+<select id="selectDashBoardDailyTotalUserWriteCount" resultType="kh.finalproject.sims.admin.model.vo.AdminDashBoardVo">
+<![CDATA[
+	SELECT TO_CHAR(TRUNC(CALENDAR_DATE), 'YYYY-MM-DD') AS USER_WR_DATE, NVL(CNT, 0) AS CNT
+	FROM
+	(
+	  SELECT TRUNC(SYSDATE) - LEVEL + 1 AS CALENDAR_DATE
+	  FROM DUAL
+	  CONNECT BY LEVEL <= 7
+	) CALENDAR
+	LEFT OUTER JOIN
+	(
+	  SELECT TRUNC(USER_WR_DATE) AS USER_WR_DATE, COUNT(*) AS CNT
+	  FROM USER_TABLE
+	  WHERE USER_WR_DATE >= TRUNC(SYSDATE) - 6 AND USER_WR_DATE < TRUNC(SYSDATE) + 1
+	  GROUP BY TRUNC(USER_WR_DATE)
+	) USER_COUNT
+	ON CALENDAR.CALENDAR_DATE = USER_COUNT.USER_WR_DATE
+	ORDER BY TRUNC(CALENDAR_DATE) ASC
+ ]]>
 </select>
 </mapper>

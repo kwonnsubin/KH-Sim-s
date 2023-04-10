@@ -57,6 +57,12 @@ public class AdminDashBoardServiceImpl implements AdminDashBoardService {
 	public List<AdminDashBoardVo> selectDashBoardPlanOrderChart() {
 		return dao.selectDashBoardPlanOrderChart();
 	}
+
+	// 일별 총 가입자 수 변화
+	@Override
+	public List<AdminDashBoardVo> selectDashBoardDailyTotalUserWriteCount() {
+		return dao.selectDashBoardDailyTotalUserWriteCount();
+	}
 	
 	
 

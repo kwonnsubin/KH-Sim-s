@@ -26,7 +26,7 @@ public class AdminDashBoardController {
 		List<AdminReviewMngtVo> bizReviewList = service.selectDashboardBizReview(); // 리뷰 리스트
 		List<AdminQnaMngtVo> qnaList = service.selectDashBoardQna(); // 질문/답변 리스트
 		List<AdminReviewMngtVo> reviewReportList = service.selectDashBoardReviewReport(); // 신고 리스트
-		List<AdminDashBoardVo> planOrderChartList = service.selectDashBoardPlanOrderChart(); // 요금제별 가입신청 수
+		List<AdminDashBoardVo> dailyTotalUserWriteCount = service.selectDashBoardDailyTotalUserWriteCount(); // 일별 가입자 수 변화
 		
 		int planOrderCount = service.selectDashBoardPlanOrderCount(); // 가입자 수
 		int bizWriteCount = service.selectDashBoardBizWriteCount();	// 통신사 신청 수
@@ -38,7 +38,7 @@ public class AdminDashBoardController {
 		mv.addObject("planOrderCount", planOrderCount); // 가입자 수를 뷰에 전달
 		mv.addObject("bizWriteCount", bizWriteCount); // 통신사 신청 수를 뷰에 전달
 		mv.addObject("bizTotalCount", bizTotalCount); // 통신사 총 등록 수를 뷰에 전달
-		mv.addObject("planOrderChartList", planOrderChartList); // 요금제별 가입신청 수를 뷰에 전달
+		mv.addObject("dailyTotalUserWriteCount", dailyTotalUserWriteCount); // 일별 가입자 수 변화
 		
 		mv.setViewName("admin/dashboard");
 		return mv;		
