@@ -136,70 +136,74 @@
 									</form>
 								</div>
 								<!-- /답변 수정 폼 -->
-
-								<!-- 댓글목록 -->
-								<div class="reply-item">
-									<c:forEach items="${answer.aaRpls}" var="rpl">
-										<div class="row">
-											<div class="reply-writer col small py-1">
-												${rpl.adminId == null ? rpl.userId : rpl.adminId}
+								
+								<button data-bs-target="#rplsBy${answer.aaNo}" class="btn btn-primary" type="button"
+									data-bs-toggle="collapse" aria-expanded="false" aria-controls="collapseExample">댓글</button>
+								<div class="collapse" id="rplsBy${answer.aaNo}">
+									<!-- 댓글목록 -->
+									<div class="reply-item">
+										<c:forEach items="${answer.aaRpls}" var="rpl">
+											<div class="row">
+												<div class="reply-writer col small py-1">
+													${rpl.adminId == null ? rpl.userId : rpl.adminId}
+												</div>
+												<div class="reply-date col small py-1 text-end">
+													<fmt:formatDate value="${rpl.rplRedate == null ? rpl.rplDate : rpl.rplRedate}" pattern="yyyy.MM.dd HH:mm"/>
+												</div>
 											</div>
-											<div class="reply-date col small py-1 text-end">
-												<fmt:formatDate value="${rpl.rplRedate == null ? rpl.rplDate : rpl.rplRedate}" pattern="yyyy.MM.dd HH:mm"/>
+											<!-- 기존 댓글 -->
+											<div class="reply-content row">
+												<div class="col-10 py-2">
+													${rpl.rplContent }
+												</div>
+												
+												<!-- 작성자=사용자이면 댓글 수정,삭제 버튼 표시 -->
+												<div class="btn-rpl-mod col-2 small py-1 text-end">
+													<sec:authorize access="hasRole('ROLE_USER')">
+														<c:if test="${username eq rpl.userId}">
+															<div class="btn-group btn-group-sm" role="group">
+																<button data-bs-target="#rpl${rpl.rplNo}" class="btn btn-gray" 
+																type="button" data-bs-toggle="collapse" aria-expanded="false"
+																	aria-controls="collapseExample">수정</button>
+																<button type="button" class="btn btn-gray" 
+															  	onclick="location.href='<%=request.getContextPath()%>/faq/rpldelete/${answer.aqNo}/${rpl.aaNo}/${rpl.rplNo}'">
+															  	삭제</button>
+															</div>
+														</c:if>	
+													</sec:authorize>
+												</div>
+												<!-- /댓글 수정,삭제 버튼 -->
 											</div>
-										</div>
-										<!-- 기존 댓글 -->
-										<div class="reply-content row">
-											<div class="col-10 py-2">
-												${rpl.rplContent }
+											<!-- /기존 댓글 -->
+											<!-- 댓글 수정 폼 -->
+											<div class="collapse" id="rpl${rpl.rplNo}">
+												<form action="${cpath }/faq/rplupdate/${rpl.rplNo }" method="post">
+													<div class="input-group">
+														<input type="text" name="rplContent" class="form-control" value="${rpl.rplContent }" size="60">
+														<button class="btn" type="submit">수정</button>
+													</div>
+												</form>
 											</div>
-											
-											<!-- 작성자=사용자이면 댓글 수정,삭제 버튼 표시 -->
-											<div class="btn-rpl-mod col-2 small py-1 text-end">
-												<sec:authorize access="hasRole('ROLE_USER')">
-													<c:if test="${username eq rpl.userId}">
-														<div class="btn-group btn-group-sm" role="group">
-															<button data-bs-target="#rpl${rpl.rplNo}" class="btn btn-gray" 
-															type="button" data-bs-toggle="collapse" aria-expanded="false"
-																aria-controls="collapseExample">수정</button>
-															<button type="button" class="btn btn-gray" 
-														  	onclick="location.href='<%=request.getContextPath()%>/faq/rpldelete/${answer.aqNo}/${rpl.aaNo}/${rpl.rplNo}'">
-														  	삭제</button>
-														</div>
-													</c:if>	
-												</sec:authorize>
-											</div>
-											<!-- /댓글 수정,삭제 버튼 -->
-										</div>
-										<!-- /기존 댓글 -->
-										<!-- 댓글 수정 폼 -->
-										<div class="collapse" id="rpl${rpl.rplNo}">
-											<form action="${cpath }/faq/rplupdate/${rpl.rplNo }" method="post">
+											<!-- /댓글 수정 폼 -->
+										</c:forEach>
+									</div>
+									<!-- /댓글목록 -->
+																
+									<!-- 댓글 작성 -->
+									<sec:authorize access="hasRole('ROLE_USER')">
+										<div class="p-3 pb-1">
+											<form action="${cpath }/faq/ans/${answer.aaNo}/reply" method="post">
+												<input type="hidden" value="${username }" name="userId" id="userId">
+												<input type="hidden" value="${answer.aaNo }" name="aaNo" id="aaNo">
 												<div class="input-group">
-													<input type="text" name="rplContent" class="form-control" value="${rpl.rplContent }" size="60">
-													<button class="btn" type="submit">수정</button>
+												  	<input type="text" name="rplContent" id="rplContent" class="form-control" placeholder="댓글을 작성해주세요">
+												  	<button class="btn" type="submit" id="btn-writeRpl">완료</button>
 												</div>
 											</form>
 										</div>
-										<!-- /댓글 수정 폼 -->
-									</c:forEach>
+									</sec:authorize>
+									<!-- /댓글 작성 -->
 								</div>
-								<!-- /댓글목록 -->
-															
-								<!-- 댓글 작성 -->
-								<sec:authorize access="hasRole('ROLE_USER')">
-									<div class="p-3 pb-1">
-										<form action="${cpath }/faq/ans/${answer.aaNo}/reply" method="post">
-											<input type="hidden" value="${username }" name="userId" id="userId">
-											<input type="hidden" value="${answer.aaNo }" name="aaNo" id="aaNo">
-											<div class="input-group">
-											  	<input type="text" name="rplContent" id="rplContent" class="form-control" placeholder="댓글을 작성해주세요">
-											  	<button class="btn" type="submit" id="btn-writeRpl">완료</button>
-											</div>
-										</form>
-									</div>
-								</sec:authorize>
-								<!-- /댓글 작성 -->
 								
 							</div>
 							<hr>
@@ -340,6 +344,9 @@
 			html += '</form>';
 			html += '</div>';
 			<!-- /답변 수정 폼 -->
+			html += '<button data-bs-target="#rplsBy' + result[i].aaNo + '" class="btn btn-primary" type="button" ';
+			html += 'data-bs-toggle="collapse" aria-expanded="false" aria-controls="collapseExample">댓글</button>';
+			html += '<div class="collapse" id="rplsBy' + result[i].aaNo + '">';
 			for(var j in result[i].aaRpls) {
 				html += '<div class="reply-item">';
 				html += '<div class="row">';
@@ -365,7 +372,7 @@
 				html += '<div class="btn-rpl-mod col-2 small py-1 text-end">';
 				if("${username}" == result[i].aaRpls[j].userId) {
 					html += '<div class="btn-group btn-group-sm" role="group">';
-					html += '<button data-bs-target="#collapse';
+					html += '<button data-bs-target="#rpl';
 					html += result[i].aaRpls[j].rplNo;
 					html += '" class="btn btn-gray" type="button" data-bs-toggle="collapse" aria-expanded="false"';
 					html += ' aria-controls="collapseExample">수정</button>';
@@ -377,7 +384,7 @@
 				}
 				html += '</div>';
 				html += '</div>';
-				html += '<div class="collapse" id="collapse';
+				html += '<div class="collapse" id="rpl';
 				html += result[i].aaRpls[j].rplNo;
 				html += '">';
 				html += '<form action="${cpath }/faq/rplupdate/';
@@ -390,6 +397,8 @@
 				html += '</form>';					
 				html += '</div>';
 			}
+			<!-- 댓글작성 -->
+			html += '</div>';
 			html += '<div class="p-3 pb-1">';
 			html += '<form action="${cpath }/faq/ans/' + result[i].aaNo + '/reply" method="post">';
 			html += '<input type="hidden" value="${username }" name="userId" id="userId">';
@@ -400,6 +409,8 @@
 			html += '</div>';
 			html += '</form>';
 			html += '</div>';
+			<!-- /댓글작성 -->
+			
 			html += '</div>';
 			html += '</div>';
 			html += '<hr>';			
