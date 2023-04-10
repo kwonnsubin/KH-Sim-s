@@ -98,9 +98,8 @@ public class UserFaqServiceImpl implements UserFaqService {
 	}
 	@Override
 	@Transactional
-	public boolean insertReply(int aaNo, UserRplVo vo) {
-		int count = dao.insertReply(aaNo, vo);
-		return count > 0;
+	public int insertReply(int aaNo, UserRplVo vo) {
+		return dao.insertReply(aaNo, vo);
 	}
 	@Override
 	@Transactional
@@ -109,8 +108,8 @@ public class UserFaqServiceImpl implements UserFaqService {
 	}
 	@Override
 	@Transactional
-	public boolean updateRpl(UserRplVo vo) {
-		return dao.updateRpl(vo) > 0;
+	public int updateRpl(UserRplVo vo) {
+		return dao.updateRpl(vo);
 	}
 
 	// 아이디로 조회한 질문/답변 목록

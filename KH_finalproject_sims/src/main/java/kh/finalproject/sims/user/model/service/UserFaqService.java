@@ -30,9 +30,9 @@ public interface UserFaqService {
 	
 	// 댓글 조회/작성/삭제/수정
 	public UserRplVo getRplByNo(int rplNo);
-	public boolean insertReply(int aaNo, UserRplVo vo);
+	public int insertReply(int aaNo, UserRplVo vo);
 	public boolean deleteRpl(int rplNo);
-	public boolean updateRpl(UserRplVo vo);
+	public int updateRpl(UserRplVo vo);
 
 	// 아이디로 조회한 질문/답변 목록
 	public List<UserQnaVo> selectMyQnaList(String username);

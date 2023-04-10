@@ -39,7 +39,6 @@
 	<script src="<%= request.getContextPath() %>/resources/chain/assets/js/imagesloaded.js"></script>
 	<script src="<%= request.getContextPath() %>/resources/chain/assets/js/popup.js"></script>
 	<script src="<%= request.getContextPath() %>/resources/chain/assets/js/custom.js"></script>
-	<script src="https://code.jquery.com/jquery-latest.min.js"></script>
 	
 </head>
 <body>
@@ -113,16 +112,19 @@
 								</div>
 									
 								<!-- 댓글목록 -->
-								<div class="m-2">
+								<div class="reply-item">
 									<c:forEach items="${answer.aaRpls}" var="rpl">
-										<div class="reply-item row">
-											<div class="reply-writer col-6 small py-1">
+										<div class="row">
+											<div class="reply-writer col small py-1">
 												${rpl.adminId == null ? rpl.userId : rpl.adminId}
 											</div>
-											<div class="reply-date col-6 small py-1 text-end">
+											<div class="reply-date col small py-1 text-end">
 												<fmt:formatDate value="${rpl.rplRedate == null ? rpl.rplDate : rpl.rplRedate}" pattern="yyyy.MM.dd HH:mm"/>
 											</div>
-											<div class="reply-content col-10 py-2">
+										</div>
+										<!-- 기존 댓글 -->
+										<div class="reply-content row">
+											<div class="col-10 py-2">
 												${rpl.rplContent }
 											</div>
 											
@@ -131,20 +133,33 @@
 												<sec:authorize access="hasRole('ROLE_USER')">
 													<c:if test="${username eq rpl.userId}">
 														<div class="btn-group btn-group-sm" role="group">
-														  	<button type="button" class="btn btn-gray" 
-														  	onclick="location.href='<%=request.getContextPath()%>/faq/rplupdate/${rpl.rplNo}'">수정</button>
+															<button data-bs-target="#collapse${rpl.rplNo}" class="btn btn-gray" 
+															type="button" data-bs-toggle="collapse" aria-expanded="false"
+																aria-controls="collapseExample">수정</button>
 															<button type="button" class="btn btn-gray" 
-														  	onclick="location.href='<%=request.getContextPath()%>/faq/rpldelete/${answer.aqNo}/${rpl.aaNo}/${rpl.rplNo}'">삭제</button>
+														  	onclick="location.href='<%=request.getContextPath()%>/faq/rpldelete/${answer.aqNo}/${rpl.aaNo}/${rpl.rplNo}'">
+														  	삭제</button>
 														</div>
 													</c:if>	
 												</sec:authorize>
 											</div>
-											<!-- /댓글 수정,삭제 -->
+											<!-- /댓글 수정,삭제 버튼 -->
 										</div>
+										<!-- /기존 댓글 -->
+										<!-- 댓글 수정 폼 -->
+										<div class="collapse" id="collapse${rpl.rplNo}">
+											<form action="${cpath }/faq/rplupdate/${rpl.rplNo }" method="post">
+												<div class="input-group">
+													<input type="text" name="rplContent" class="form-control" value="${rpl.rplContent }" size="60">
+													<button class="btn" type="submit">수정</button>
+												</div>
+											</form>
+										</div>
+										<!-- /댓글 수정 폼 -->
 									</c:forEach>
 								</div>
 								<!-- /댓글목록 -->
-																	
+															
 								<!-- 댓글 작성 -->
 								<sec:authorize access="hasRole('ROLE_USER')">
 									<div class="p-3 pb-1">
@@ -159,6 +174,7 @@
 									</div>
 								</sec:authorize>
 								<!-- /댓글 작성 -->
+								
 							</div>
 							<hr>
 						</c:forEach>	
@@ -184,7 +200,9 @@
 </body>
 <script>
 
-	// 답변달기 ajax
+	/* $(document).ready(getAnsList()) */
+
+	// 답변달기 
 	$('#btn-writeAns').on("click", function() {
 		var aaContent = $("#aaContent").val();
 		var aqNo = "${aqNo}";
@@ -192,19 +210,42 @@
 		$.ajax({
 			url: "<%=request.getContextPath()%>/faq/qna/${aqNo}/answer",
 			data: {
-				"aaContent" : aaContent,
-				"aqNo" : aqNo,
-				"userId" : userId
+				aaContent : aaContent,
+				aqNo : aqNo,
+				userId : userId
 			},
 			type: "post",
 			success: function(result) {
-				alert("답변 등록 성공");
-				$('#aaContent').val('');
-				getAnsList();
-				getAnsCount();
+				if (result == "success") {
+					alert("답변 등록 성공");
+					$('#aaContent').val('');
+					getAnsList();
+					getAnsCount();
+				}
 			},
-			error: function(error) {
+			error: function() {
 				alert("답변 등록 실패");
+			}
+		})
+	})
+	
+	// 댓글 수정
+	$('#btn-updateRpl').on("click", function() {
+		var rplContent = $("#rplContent").val();
+		$.ajax({
+			url: "<%=request.getContextPath()%>/faq/qna/updaterpl",
+			data: {
+				rplContent: rplContent
+			},
+			type: "post",
+			success: function(result) {
+				if (result == "success") {
+					alert("댓글 수정 성공");
+					getAnsList();
+				}
+			},
+			error: function() {
+				alert("댓글 수정 실패");
 			}
 		})
 	})
@@ -217,6 +258,10 @@
 			data: {aqNo: aqNo},
 			type: 'get',
 			success: function(result) {
+				console.log(result);
+				if(!Array.isArray(result)) {
+					result = [result];
+				}
 				$(".answer-item").empty();
 				displayAnswers(result);
 				alert("답변 조회 성공");
@@ -245,7 +290,7 @@
 	    });
 	};
 	
-	// 답변 목록
+	// 답변 html
 	function displayAnswers(result) {
 		var html = '';
 		for(var i in result) {
@@ -268,30 +313,56 @@
 			html += '<div class="answer-content col-12 py-4">';
 			html += result[i].aaContent;
 			html += '</div>';
-			html += '<div class="m-2">';
 			for(var j in result[i].aaRpls) {
-				html += '<div class="reply-item row">';
-				html += '<div class="reply-writer col-6 small py-1">';
+				html += '<div class="reply-item">';
+				html += '<div class="row">';
+				html += '<div class="reply-writer col small py-1">';
 				if(result[i].aaRpls[j].userId) {
 					html += result[i].aaRpls[j].userId;
 				} else {
 					html += result[i].aaRpls[j].adminId;
 				}
 				html += '</div>';
-				html += '<div class="reply-date col-6 small py-1 text-end">';
+				html += '<div class="reply-date col small py-1 text-end">';
 				if(result[i].aaRpls[j].rplRedate) {
 					html += result[i].aaRpls[j].rplRedate;
 				} else {
 					html += result[i].aaRpls[j].rplDate;
 				}
 				html += '</div>';
-				html += '<div class="reply-content col-10 py-2">';
+				html += '</div>';
+				html += '<div class="reply-content row">';
+				html += '<div class="col-10 py-2">';
 				html += result[i].aaRpls[j].rplContent;
 				html += '</div>';
+				html += '<div class="btn-rpl-mod col-2 small py-1 text-end">';
+				if("${username}" == result[i].aaRpls[j].userId) {
+					html += '<div class="btn-group btn-group-sm" role="group">';
+					html += '<button data-bs-target="#collapse';
+					html += result[i].aaRpls[j].rplNo;
+					html += '" class="btn btn-gray" type="button" data-bs-toggle="collapse" aria-expanded="false"';
+					html += ' aria-controls="collapseExample">수정</button>';
+					var location = "location.href='<%=request.getContextPath()%>/faq/rpldelete/" + result[i].aqNo + "/" + result[i].aaRpls[j].aaNo + "/" + result[i].aaRpls[j].rplNo + "'";
+					html += '<button type="button" class="btn btn-gray" onclick="';
+					html += location;
+					html += '">삭제</button>';
+					html += '</div>';
+				}
+				html += '</div>';
+				html += '</div>';
+				html += '<div class="collapse" id="collapse';
+				html += result[i].aaRpls[j].rplNo;
+				html += '">';
+				html += '<form action="${cpath }/faq/rplupdate/';
+				html += result[i].aaRpls[j].rplNo;
+				html += '" method="post">';
+				html += '<div class="input-group">';
+				html += '<input type="text" name="rplContent" class="form-control" value="' + result[i].aaRpls[j].rplContent + '" size="60">';
+				html += '<button class="btn" type="submit">수정</button>';
+				html += '</div>';		
+				html += '</form>';					
 				html += '</div>';
 			}
-			html += '</div>';
-			html += '<div class="btn-rpl-mod col-2 small py-1 text-end">';
 			html += '<div class="p-3 pb-1">';
 			html += '<form action="${cpath }/faq/ans/' + result[i].aaNo + '/reply" method="post">';
 			html += '<input type="hidden" value="${username }" name="userId" id="userId">';
@@ -301,7 +372,6 @@
 			html += '<button class="btn" type="submit" id="btn-writeRpl">완료</button>';
 			html += '</div>';
 			html += '</form>';
-			html += '</div>';
 			html += '</div>';
 			html += '</div>';
 			html += '</div>';

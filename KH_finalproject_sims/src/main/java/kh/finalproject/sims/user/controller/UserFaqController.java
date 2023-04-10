@@ -101,15 +101,20 @@ public class UserFaqController {
 	    return map;
 	}
 	
-	// 답변달기
-	@PostMapping("/qna/{aqNo}/answer")
+	// 답변달기 ajax
+	@ResponseBody
+	@PostMapping(value = "/qna/{aqNo}/answer")
 	public String insertAnswer(
 			@PathVariable int aqNo
 			, UserAnsVo vo
 			) {
-		service.insertAnswer(aqNo, vo);
+		int result = service.insertAnswer(aqNo, vo);
 		service.upAnswers(aqNo);
-		return "redirect:/faq/qna/" + aqNo;
+		if(result > 0) {
+			return "success";
+		} else {
+			return "fail";
+		}
 	}
 	
 	// 댓글달기
@@ -243,17 +248,6 @@ public class UserFaqController {
 		return mv;
 	}
 	
-	// 댓글 수정 페이지
-	@GetMapping("/rplupdate/{rplNo}")
-	public ModelAndView updateRplForm(
-			ModelAndView mv
-			, @PathVariable int rplNo
-			) {
-		mv.addObject("myrpl", service.getRplByNo(rplNo));
-		mv.setViewName("user/faq/updateRpl");
-		return mv;
-	}
-	
 	// 댓글 수정하기
 	@PostMapping("/rplupdate/{rplNo}")
 	public ModelAndView updateRpl(
@@ -268,4 +262,29 @@ public class UserFaqController {
 		return mv;
 	}
 	
+//	// 댓글 수정 페이지
+//	@GetMapping("/rplupdate/{rplNo}")
+//	public ModelAndView updateRplForm(
+//			ModelAndView mv
+//			, @PathVariable int rplNo
+//			) {
+//		mv.addObject("myrpl", service.getRplByNo(rplNo));
+//		mv.setViewName("user/faq/updateRpl");
+//		return mv;
+//	}
+	
+//	// 댓글달기 ajax
+//	@ResponseBody
+//	@PostMapping("/ans/{aaNo}/reply2")
+//	public String insertReply2(
+//			@PathVariable int aaNo
+//			, UserRplVo vo
+//			) {
+//		int result = service.insertReply(aaNo, vo);
+//		if (result > 0) {
+//			return "success";
+//		} else {
+//			return "fail";
+//		}
+//	}
 }
