@@ -13,4 +13,6 @@ public interface BizInfoMngtService {
 	public List<bizInfoMngServiceVo> selectListService(String bizid);
 	public int modifyNetService(List<bizInfoMngServiceVo> netServiceList);
 	public int modifyBizInfo(BizInfoMngtVo vo);
+	public String getBeforeBizName(String bizid);
+	public int updatePlanTable(String beforeBizName, String bizName);
 }

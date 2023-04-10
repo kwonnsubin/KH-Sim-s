@@ -140,6 +140,12 @@ public class BizInfoMngtController {
 		System.out.println("통신사아이디 : " + bizid);
 		
 		
+		//요금제 테이블의 bizName도 변경 bizid, bizName
+		String beforeBizName = service.getBeforeBizName(bizid);
+		System.out.println("수정전 법인명 : "+beforeBizName);
+		System.out.println("수정후 법인명 : "+bizName);
+		//plan_table의 bizName 업데이트, 여기서 먼저 수정하고 biz 테이블이 수정되어야 함. 순서
+		service.updatePlanTable(beforeBizName, bizName);
 		
 		
 		
@@ -236,10 +242,7 @@ public class BizInfoMngtController {
 		service.modifyBizInfo(vo);
 		System.out.println("@@수정하기 버튼 누른 후 vo :"+vo);
 
-		//TODO
-		//요금제 테이블의 bizName도 변경 bizid, bizName
-		//일단 수정전 이름을 가지고 와서 그걸 식별값으로?
-		//String beforeBizName = service.getBeforeBizName(bizid);
+		
 		
 		return "redirect:/biz/infodetail";
 		

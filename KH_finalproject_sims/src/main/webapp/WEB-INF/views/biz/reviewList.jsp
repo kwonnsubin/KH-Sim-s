@@ -1,6 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
+
 <c:set var="path" value="${pageContext.request.contextPath}"/>
 <!DOCTYPE html>
 <html>
@@ -71,8 +73,16 @@
 	 				<c:forEach var="reviewList" items="${requestScope.paging.page}">
 	 					<tr>
 	 						<td>${reviewList.rn} </td>
-	 						<td>${reviewList.reviewContent} </td>
-
+	 						<%-- <td>${reviewList.reviewContent} </td> --%>
+							<c:choose>
+					          <c:when test="${fn:length(reviewList.reviewContent) > 40}">
+					            <td><a href="${path }/biz/reviewDetail?reviewNo=${reviewList.reviewNo }" class="">${fn:substring(reviewList.reviewContent, 0, 40)}...&nbsp;</a></td>
+					          </c:when>
+					          <c:otherwise>
+					            <td><a href="${path }/biz/reviewDetail?reviewNo=${reviewList.reviewNo }" class="">${reviewList.reviewContent}&nbsp;</a></td>
+					          </c:otherwise>
+					        </c:choose>  
+					        
 	 						<td>
 	 						<div class="form-control-plaintext">
 							  <c:forEach var="i" begin="1" end="5">

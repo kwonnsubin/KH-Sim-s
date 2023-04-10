@@ -99,4 +99,13 @@
 		WHERE BIZ_ID = #{bizId}
 	</update>
 	
+	
+	<!-- 수정 전 법인명 가져오기 -->
+	<select id="getBeforeBizName" resultType="string">
+	select biz_name from biz where biz_id = #{bizid}
+	</select>
+	
+	<update id="updatePlanTable" parameterType="map">
+		update plan_table set biz_name = #{bizName} where biz_name =#{beforeBizName}
+	</update>
 </mapper>

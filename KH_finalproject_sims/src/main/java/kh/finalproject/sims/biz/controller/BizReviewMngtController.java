@@ -111,5 +111,15 @@ public class BizReviewMngtController {
 		return "success";
 	}
 	
+	//리뷰상세보기
+	//TODO
+	@GetMapping("/reviewDetail")
+	public ModelAndView reviewDetail(ModelAndView mv
+			,@RequestParam("reviewNo") int reviewNo
+			) {
+		
+		mv.setViewName("biz/reviewDetail");
+		return mv;
+	}
 
 }

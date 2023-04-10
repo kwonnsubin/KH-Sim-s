@@ -1,6 +1,7 @@
 package kh.finalproject.sims.biz.model.dao;
 
 import java.util.List;
+import java.util.Map;
 
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -36,5 +37,13 @@ public class BizInfoMngtDao {
 
 	public int modifyBizInfo(BizInfoMngtVo vo) {
 		return sqlSession.update("biz.modifyBizInfo", vo);
+	}
+
+	public String getBeforeBizName(String bizid) {
+		return sqlSession.selectOne("biz.getBeforeBizName", bizid);
+	}
+
+	public int updatePlanTable(Map<String, String> map) {
+		return sqlSession.update("biz.updatePlanTable", map);
 	}
 }

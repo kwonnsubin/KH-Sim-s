@@ -30,51 +30,6 @@ public class BizPlanMngtController {
 	@Autowired
 	private BizPlanMngtService service;
 
-	/*
-	 * // 자사 요금제 목록
-	 * 
-	 * @GetMapping("/planList") public ModelAndView selectBizPlanList(ModelAndView
-	 * mv , HttpServletRequest request , HttpServletResponse response
-	 * 
-	 * ) {
-	 * 
-	 * Principal principal = request.getUserPrincipal(); String bizid =
-	 * principal.getName(); System.out.println("통신사아이디 : " + bizid);
-	 * 
-	 * List<BizPlanMngtVo> planList = service.selectBizPlanList(bizid);
-	 * System.out.println(planList);
-	 * 
-	 * int listCnt = service.getPlanListCnt(bizid);
-	 * System.out.println("요금제 목록 개수는 : " + listCnt); BizPlanMngtVo vo = new
-	 * BizPlanMngtVo(); vo.setListCnt(listCnt);
-	 * System.out.println("listCnt를 저장한 vo : " + vo);
-	 * 
-	 * //페이징 String pageNumber = request.getParameter("p"); int pNum; if (pageNumber
-	 * == null || pageNumber.isEmpty()) { pNum = 1; } else { pNum =
-	 * Integer.parseInt(pageNumber); }
-	 * 
-	 * Cookie cookie = null; Cookie[] cookies = request.getCookies(); for (Cookie c
-	 * : cookies) { if (c.getName().equals("cnt")) { cookie = c; } }
-	 * 
-	 * String cnt = request.getParameter("cnt"); if (cnt != null) { if
-	 * (cnt.isEmpty()) { if (cookie != null) { cnt = cookie.getValue(); } else { cnt
-	 * = "10"; // 초기값 } } } else { if (cookie != null) { cnt = cookie.getValue(); }
-	 * else { cnt = "10"; } }
-	 * 
-	 * cookie = new Cookie("cnt", cnt); cookie.setMaxAge(60 * 60 * 24 * 5);
-	 * response.addCookie(cookie);
-	 * 
-	 * Paging paging = service.getPage(bizid, pNum, Integer.parseInt(cnt));
-	 * request.setAttribute("paging", paging);
-	 * 
-	 * System.out.println("@@@@paging.getPage() : " +paging.getPage());//확인용
-	 * System.out.println("#########getPageList : "+ paging.getPageList()); //하단 개수
-	 * 
-	 * mv.addObject("vo", vo); mv.addObject("planList", planList);
-	 * 
-	 * mv.setViewName("/biz/planList"); return mv; }
-	 */
-	
 	//search 요금제 목록
 	@GetMapping("/planList")
 	public ModelAndView searchBizPlanList(ModelAndView mv
@@ -88,10 +43,7 @@ public class BizPlanMngtController {
 		
 		int searchListCnt = service.getSearchPlanListCount(bizid, keyword);
 		System.out.println("요금제 목록 개수는 : " + searchListCnt);
-		/*
-		 * BizPlanMngtVo vo = new BizPlanMngtVo(); vo.setListCnt(searchListCnt);
-		 * System.out.println("listCnt를 저장한 vo : " + vo);
-		 */
+	
 		mv.addObject("vo", searchListCnt);
 		
 		//페이징

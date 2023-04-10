@@ -31,70 +31,6 @@ public class BizApplyMngtController {
 	@Autowired
 	private BizApplyMngtService service;
 	
-//	//요금제 가입 신청 리스트
-//	@GetMapping("/applyList")
-//	public ModelAndView selectBizPlanApplyList(ModelAndView mv
-//			, HttpServletRequest request
-//			, HttpServletResponse response
-//			) {
-//		Principal principal = request.getUserPrincipal();
-//		String bizid = principal.getName();
-//		System.out.println("통신사아이디 : "+bizid);
-//		
-//		List<BizApplyVo> applyList = service.selectBizPlanApplyList(bizid);
-//		System.out.println(applyList);
-//		
-//		//페이징
-//		String pageNumber = request.getParameter("p");
-//		int pNum;
-//		if (pageNumber == null || pageNumber.isEmpty()) {
-//			pNum = 1;
-//		} else {
-//			pNum = Integer.parseInt(pageNumber);
-//		}
-//	
-//		Cookie cookie = null;
-//		Cookie[] cookies = request.getCookies();
-//		for (Cookie c : cookies) {
-//			if (c.getName().equals("cnt")) {
-//				cookie = c;
-//			}
-//		}
-//	
-//		String cnt = request.getParameter("cnt");
-//		if (cnt != null) {
-//			if (cnt.isEmpty()) {
-//				if (cookie != null) {
-//					cnt = cookie.getValue();
-//				} else {
-//					cnt = "10"; // 초기값
-//				}
-//			}
-//		} else {
-//			if (cookie != null) {
-//				cnt = cookie.getValue();
-//			} else {
-//				cnt = "10";
-//			}
-//		}
-//	
-//		cookie = new Cookie("cnt", cnt);
-//		cookie.setMaxAge(60 * 60 * 24 * 5);
-//		response.addCookie(cookie);
-//	
-//		Paging paging = service.getPage(bizid, pNum, Integer.parseInt(cnt));
-//		request.setAttribute("paging", paging);
-//		
-//		System.out.println("@@@@paging.getPage() : " +paging.getPage());//확인용
-//		System.out.println("#########getPageList : "+ paging.getPageList()); //하단 개수
-//
-//		
-//		
-//		mv.addObject("applyList",applyList);
-//		mv.setViewName("biz/applyList");
-//		return mv;
-//	}
-//	
 	//search 가입신청 목록
 	@GetMapping("/applyList")
 	public ModelAndView selectBizPlanApplyList(ModelAndView mv
@@ -106,11 +42,6 @@ public class BizApplyMngtController {
 		Principal principal = request.getUserPrincipal();
 		String bizid = principal.getName();
 		System.out.println("통신사아이디 : "+bizid);
-		
-		
-		
-		int applyList = service.getSearchApplyListCount(bizid, searchType, keyword);
-		System.out.println("~~~~~~~~~~~getSearchApplyListCount : "+applyList);
 		
 		//페이징
 		String pageNumber = request.getParameter("p");
@@ -150,6 +81,7 @@ public class BizApplyMngtController {
 		cookie.setMaxAge(60 * 60 * 24 * 5);
 		response.addCookie(cookie);
 		
+		
 		int searchApplyListCount = service.getSearchApplyListCount(bizid,searchType,keyword);
 		System.out.println("검색 결과 가입신청 목록 개수는 : "+searchApplyListCount);
 		
@@ -161,10 +93,11 @@ public class BizApplyMngtController {
 		System.out.println("@@@@search.getPage() : " +search.getPage());//확인용
 		System.out.println("#########getPageList : "+ search.getPageList()); //하단 개수
 
-		
-		System.out.println(applyList);
-		mv.addObject("applyList",applyList);
+		mv.addObject("applyListCnt",searchApplyListCount);
 		mv.setViewName("biz/applyList");
+		
+		mv.addObject("searchType",searchType);
+		mv.addObject("keyword", keyword);
 		return mv;
 	}
 	

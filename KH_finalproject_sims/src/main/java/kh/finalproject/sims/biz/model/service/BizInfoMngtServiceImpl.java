@@ -1,6 +1,8 @@
 package kh.finalproject.sims.biz.model.service;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -37,6 +39,19 @@ public class BizInfoMngtServiceImpl implements BizInfoMngtService{
 	@Override
 	public int modifyBizInfo(BizInfoMngtVo vo) {
 		return dao.modifyBizInfo(vo);
+	}
+
+	@Override
+	public String getBeforeBizName(String bizid) {
+		return dao.getBeforeBizName(bizid);
+	}
+
+	@Override
+	public int updatePlanTable(String beforeBizName, String bizName) {
+		Map<String, String> map = new HashMap<String, String>();
+		map.put("bizName", bizName );
+		map.put("beforeBizName", beforeBizName);
+		return dao.updatePlanTable(map);
 	}
 
 }

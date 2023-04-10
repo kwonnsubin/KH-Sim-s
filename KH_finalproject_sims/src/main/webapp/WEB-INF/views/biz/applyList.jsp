@@ -54,6 +54,12 @@
 		<button name="btnSearch" id="btnSearch">검색</button>
 	</div>
 
+	<span>총 ${applyListCnt}개의 결과가 있습니다.</span>
+
+ 	<% if (request.getParameter("keyword") != null && !request.getParameter("keyword").isEmpty()) { %>
+    <span>"<%=request.getParameter("keyword")%>"의 검색 결과입니다.</span>
+	<% } %>
+
 
  <table class="table">
             <thead>
@@ -111,18 +117,21 @@
 					<li class="page-item disabled"><a class="page-link">prev</a></li>
 				</c:when>
 				<c:otherwise>
-					<li class="page-item"><a class="page-link" href="${path}/biz/applyList?p=${requestScope.paging.prevPage }">prev</a></li>
+					<li class="page-item"><a class="page-link" 
+					href="${path}/biz/applyList?p=${requestScope.paging.prevPage }&searchType=${searchType }&keyword=${keyword }">prev</a></li>
 				</c:otherwise>
 			</c:choose>
 			<c:forEach var="pNum" items="${requestScope.paging.pageList }">
-				<li class="page-item ${pNum eq pageNumber ? 'active' : '' }"><a class="page-link" href="${path}/biz/applyList?p=${pNum }">${pNum }</a></li>
+				<li class="page-item ${pNum eq pageNumber ? 'active' : '' }"><a class="page-link"
+				 href="${path}/biz/applyList?p=${pNum }&searchType=${searchType }&keyword=${keyword }">${pNum }</a></li>
 			</c:forEach>
 			<c:choose>
 				<c:when test="${requestScope.paging.nextPage eq -1 }">
 					<li class="page-item disabled"><a class="page-link">next</a></li>
 				</c:when>
 				<c:otherwise>
-					<li class="page-item"><a class="page-link" href="${path}/biz/applyList?p=${requestScope.paging.nextPage }">next</a></li>
+					<li class="page-item"><a class="page-link" 
+					href="${path}/biz/applyList?p=${requestScope.paging.nextPage }&searchType=${searchType }&keyword=${keyword }">next</a></li>
 				</c:otherwise>
 			</c:choose>
 		</ul>
