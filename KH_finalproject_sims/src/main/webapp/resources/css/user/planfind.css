@@ -1,0 +1,25 @@
+@charset "UTF-8";
+
+.row-div {
+	width: 400px;
+}
+
+label {
+	display: block;
+	background-color: #f8f8f8;
+	border: 1px solid #cfcfcf;
+	border-radius: 20px;
+	padding: 10px;
+}
+
+h4 {
+	font-weight: bold;	
+}
+
+input[type="radio"] {
+	float: right;
+	width:18px;
+	height:18px;
+	margin:4px 0 0 0;
+	vertical-align:middle;
+}

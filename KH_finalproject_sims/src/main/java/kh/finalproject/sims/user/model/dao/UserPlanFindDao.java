@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import kh.finalproject.sims.biz.model.vo.BizInfoMngtVo;
+import kh.finalproject.sims.user.model.vo.CustomQueVo;
 import kh.finalproject.sims.user.model.vo.PlanVo;
 
 @Repository
@@ -34,6 +35,15 @@ public class UserPlanFindDao {
 
 	public List<BizInfoMngtVo> selectBizNameList() {
 		return sqlSession.selectList("plan.bizNameList");
+	}
+
+	public List<CustomQueVo> selectCustonQueList(String userId) {
+		return sqlSession.selectList("plan.customQueList", userId);
+	}
+
+	// 매퍼 추가 해야함
+	public int insertQueVal(Map<String, Object> val) {
+		return sqlSession.insert("plan.insertQueVal", val);
 	}
 	
 }

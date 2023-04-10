@@ -1,5 +1,6 @@
 package kh.finalproject.sims.user.controller;
 
+import java.security.Principal;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -7,11 +8,16 @@ import java.util.Map;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
+
+import com.google.gson.Gson;
 
 import kh.finalproject.sims.biz.model.vo.BizInfoMngtVo;
 import kh.finalproject.sims.user.model.service.UserPlanFindService;
+import kh.finalproject.sims.user.model.vo.CustomQueVo;
 import kh.finalproject.sims.user.model.vo.PlanVo;
 
 @Controller
@@ -21,7 +27,7 @@ public class UserPlanFindController {
 	private UserPlanFindService service;
 	
 	@GetMapping("/plans")
-	public ModelAndView plan(ModelAndView mv
+	public ModelAndView selectPlanList(ModelAndView mv
 			, PlanVo pvo
 			, String searchText
 			) {
@@ -56,6 +62,31 @@ public class UserPlanFindController {
 		mv.setViewName("user/plan/plans");
 		
 		return mv;
+	}
+	
+	@GetMapping("/planfind")
+	public ModelAndView selectCustomFind(ModelAndView mv, Principal prin, String queType) {
+		if(queType.equals("voice")) {
+			String userId = prin.getName();
+			List<CustomQueVo> queList = service.selectCustomQueList(userId);
+			mv.addObject("queList", queList);
+		}
+		
+		mv.setViewName("user/plan/planfind");
+		
+		return mv;
+	}
+	
+	@ResponseBody
+	@PostMapping("/planfind")
+	public String insertQueVal(ModelAndView mv, Principal prin, String type, int value) {
+		
+		Map<String, Object> val = new HashMap<>();
+		val.put("type", type);
+		val.put("value", value);
+		int result = service.insertQueVal(val);
+		
+		return new Gson().toJson(result);
 	}
 
 }

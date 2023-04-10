@@ -4,6 +4,7 @@ import java.util.List;
 import java.util.Map;
 
 import kh.finalproject.sims.biz.model.vo.BizInfoMngtVo;
+import kh.finalproject.sims.user.model.vo.CustomQueVo;
 import kh.finalproject.sims.user.model.vo.PlanVo;
 
 public interface UserPlanFindService {
@@ -17,5 +18,9 @@ public interface UserPlanFindService {
 	public int cntPlanList(Map searchMap);
 
 	public List<BizInfoMngtVo> selectBizNameList();
+
+	public List<CustomQueVo> selectCustomQueList(String userId);
+
+	public int insertQueVal(Map<String, Object> val);
 
 }

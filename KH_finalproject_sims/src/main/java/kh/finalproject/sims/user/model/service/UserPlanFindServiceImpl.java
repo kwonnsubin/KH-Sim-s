@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 
 import kh.finalproject.sims.biz.model.vo.BizInfoMngtVo;
 import kh.finalproject.sims.user.model.dao.UserPlanFindDao;
+import kh.finalproject.sims.user.model.vo.CustomQueVo;
 import kh.finalproject.sims.user.model.vo.PlanVo;
 
 @Service
@@ -44,6 +45,18 @@ public class UserPlanFindServiceImpl implements UserPlanFindService {
 	@Override
 	public List<BizInfoMngtVo> selectBizNameList() {
 		return dao.selectBizNameList();
+	}
+
+	// 질문 답 리스트
+	@Override
+	public List<CustomQueVo> selectCustomQueList(String userId) {
+		return dao.selectCustonQueList(userId);
+	}
+
+	// 질문 답 넣기
+	@Override
+	public int insertQueVal(Map<String, Object> val) {
+		return dao.insertQueVal(val);
 	}
 
 }

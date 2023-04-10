@@ -117,4 +117,8 @@
 		select biz_name from biz
 	</select>
 	
+	<select id="customQueList" parameterType="string" resultType="qVo">
+		select * from custom_q where user_id = #{userId}
+	</select>
+	
 </mapper>
