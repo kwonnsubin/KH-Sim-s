@@ -43,7 +43,7 @@ public class BizApplyMngtDao {
 	}
 
 	public int getSearchApplyListCount(Map<String, String> mapCnt) {
-		return sqlSession.selectOne("apply.getSearchApplyListCount");
+		return sqlSession.selectOne("apply.getSearchApplyListCount",mapCnt);
 	}
 
 	public List<BizApplyVo> searchApplyList(Map<String, Object> map) {
