@@ -31,15 +31,6 @@
     <link rel="stylesheet" href="<%= request.getContextPath() %>/resources/chain/assets/css/owl.css">
     <link rel="stylesheet" href="<%= request.getContextPath() %>/resources/css/user/qna.css">
     	
-    <!-- Scripts -->
-	<script src="<%= request.getContextPath() %>/resources/chain/vendor/jquery/jquery.min.js"></script>
-	<script src="<%= request.getContextPath() %>/resources/chain/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
-	<script src="<%= request.getContextPath() %>/resources/chain/assets/js/owl-carousel.js"></script>
-	<script src="<%= request.getContextPath() %>/resources/chain/assets/js/animation.js"></script>
-	<script src="<%= request.getContextPath() %>/resources/chain/assets/js/imagesloaded.js"></script>
-	<script src="<%= request.getContextPath() %>/resources/chain/assets/js/popup.js"></script>
-	<script src="<%= request.getContextPath() %>/resources/chain/assets/js/custom.js"></script>
-	
 </head>
 <body>
 
@@ -226,6 +217,15 @@
 	</section>
 	
 	<jsp:include page="/WEB-INF/views/footer.jsp"/>
+	
+	<!-- Scripts -->
+	<script src="<%= request.getContextPath() %>/resources/chain/vendor/jquery/jquery.min.js"></script>
+	<script src="<%= request.getContextPath() %>/resources/chain/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+	<script src="<%= request.getContextPath() %>/resources/chain/assets/js/owl-carousel.js"></script>
+	<script src="<%= request.getContextPath() %>/resources/chain/assets/js/animation.js"></script>
+	<script src="<%= request.getContextPath() %>/resources/chain/assets/js/imagesloaded.js"></script>
+	<script src="<%= request.getContextPath() %>/resources/chain/assets/js/popup.js"></script>
+	<script src="<%= request.getContextPath() %>/resources/chain/assets/js/custom.js"></script>
 	
 </body>
 <script>

@@ -22,6 +22,7 @@
     <link rel="stylesheet" href="<%= request.getContextPath() %>/resources/chain/assets/css/templatemo-chain-app-dev.css">
     <link rel="stylesheet" href="<%= request.getContextPath() %>/resources/chain/assets/css/animated.css">
     <link rel="stylesheet" href="<%= request.getContextPath() %>/resources/chain/assets/css/owl.css">
+    <link rel="stylesheet" href="<%= request.getContextPath() %>/resources/css/user/qna.css">
 
 </head>
 <body>
@@ -30,21 +31,16 @@
 	
 	<section>
 		
-		<div class="container">
+		<div class="container-sm div-m">
 			<div class="row">
-				<div class="col-lg-10 p-2" style="float: none; margin-top: 100px;">
-					<!-- 자주묻는질문 상세글 -->
-					<c:forEach var="faqlist" items="${faqcontents }">
-						<div>
-							<h3>${faqlist.faqTitle }</h3>
-						</div>
-						<div class="mb-44">
-							<div class="row  w-auto " style="width: 1000px; height: 300px;">
-								<p class="col">${faqlist.faqContent }</p>
-							</div>
-						</div>
-					</c:forEach>
-				</div>
+				<c:forEach var="faqlist" items="${faqcontents }">
+					<div class="col-sm-12 p-3 float-sm-none mt-5">
+						<h4>${faqlist.faqTitle }</h4>
+					</div>
+					<div class="col-sm-12 my-4 p-3 lh-xl">
+						${faqlist.faqContent }
+					</div>
+				</c:forEach>
 			</div>
 		</div>
 		
