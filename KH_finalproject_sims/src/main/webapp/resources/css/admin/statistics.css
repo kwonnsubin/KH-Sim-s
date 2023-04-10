@@ -1,0 +1,24 @@
+@charset "UTF-8";
+@import url(https://fonts.googleapis.com/css?family=Roboto);
+
+body {
+  font-family: Roboto, sans-serif;
+}
+
+#chart {
+  max-width: 650px;
+  margin: 35px auto;
+}
+
+<!-- 일별 성별 가입자 수 변화 -->
+#genderPlanOrderCount_chart_div {
+  max-width: 1000px;
+  margin: 35px auto;
+}
+
+<!-- 일별 총 가입자 수 변화 -->
+#dailyTotalUserWriteCount_chart_div {
+  max-width: 1000px;
+  margin: 35px auto;
+}
+
