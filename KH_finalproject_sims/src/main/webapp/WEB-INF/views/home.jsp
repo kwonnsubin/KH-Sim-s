@@ -18,18 +18,46 @@
 	 <!-- Bootstrap core CSS -->
     <link href="<%= request.getContextPath() %>/resources/chain/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
     
+    <!-- 아이콘 -->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
+    
     <!-- Additional CSS Files -->
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
     <link rel="stylesheet" href="<%= request.getContextPath() %>/resources/chain/assets/css/templatemo-chain-app-dev.css">
     <link rel="stylesheet" href="<%= request.getContextPath() %>/resources/chain/assets/css/animated.css">
     <link rel="stylesheet" href="<%= request.getContextPath() %>/resources/chain/assets/css/owl.css">
+    <link rel="stylesheet" href="<%= request.getContextPath() %>/resources/css/main/home.css"/>
     
 </head>
 <body>
 
 	<jsp:include page="./header.jsp"/>
 	
-	
+	<section>
+		<div class="container-fluid d-flex justify-content-center mt-5 choose-plan">
+			<a class="aTag" href="<%=request.getContextPath()%>/planfind?queType=telecom">
+	       	<div class="row choose-row">
+	       		<div class="col-4 text-center align-self-center">
+	       			<span class="material-symbols-outlined align-middle">manage_search</span>
+	       		</div>
+	       		<div class="col-8 align-self-center span-div">
+	       			<sec:authorize access="isAuthenticated()">
+		       			<span>
+		       			<sec:authentication property="name"/>님께 적합한<br>
+		       			맞춤 요금제를 찾아보세요
+		       			</span>
+		       		</sec:authorize>
+	       			<sec:authorize access="isAnonymous()">
+		       			<span>
+		       			회원님께 적합한<br>
+		       			맞춤 요금제를 찾아보세요
+		       			</span>
+	       			</sec:authorize>
+	       		</div>
+	       	</div>
+	       	</a>
+	    </div>
+	</section>
 	
 	<jsp:include page="./footer.jsp"/>
 	
