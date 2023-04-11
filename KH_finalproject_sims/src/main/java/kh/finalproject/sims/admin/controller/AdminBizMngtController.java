@@ -153,14 +153,4 @@ public class AdminBizMngtController {
 		  mv.addObject("cmd", "read"); 
 		  return mv; 
 	 }
-	 
-		/*
-		 * @GetMapping("/bizPlanApplyDetail/{userId}") public ModelAndView
-		 * selectBizPlanApplyDetail(ModelAndView mv, @PathVariable String userId) throws
-		 * Exception { AdminBizMngtVo bizPlanApplyDetail =
-		 * service.selectWithdrawalDetail(userId); mv.addObject("bizPlanApplyDetail",
-		 * bizPlanApplyDetail); mv.setViewName("admin/biz/planApplyDetail");
-		 * mv.addObject("cmd", "read"); return mv; }
-		 */
-
 }

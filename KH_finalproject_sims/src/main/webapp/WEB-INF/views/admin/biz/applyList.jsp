@@ -87,7 +87,7 @@
 																<th>업체명</th>
 																<th>대표자</th>
 																<th>신청상태</th>
-																<th>신청일</th>
+																<th>가입 신청일</th>
 															</tr>
 														</thead>
 														<tbody>

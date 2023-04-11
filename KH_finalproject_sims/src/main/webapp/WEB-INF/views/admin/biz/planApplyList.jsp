@@ -79,9 +79,9 @@
 													<table class="table table-hover">
 														<thead>
 															<tr>
-																<th>번호</th>
-																<th>요금제명</th>
+																<th>주문번호</th>
 																<th>신청자</th>
+																<th>요금제명</th>
 																<th>신청상태</th>
 																<th>신청일</th>
 															</tr>
@@ -90,8 +90,8 @@
 															<c:forEach var="list" items="${bizPlanApplyList}" varStatus="status">
 																<tr>
 																	<td><a href="<%=request.getContextPath()%>/admin/bizPlanApplyDetail/${list.orderNo}?divCheck=${divCheck}">${list.orderNo}</a></td>
+																	<td><a href="<%=request.getContextPath()%>/admin/bizPlanApplyDetail/${list.orderNo}?divCheck=${divCheck}">${list.userId}</a></td>
 																	<td>${list.planName}</td>
-																	<td><a href="<%=request.getContextPath()%>/admin/bizPlanApplyDetail/${list.userId}?divCheck=${divCheck}">${list.userId}</a></td>
 																	<td>
 																		<c:choose>
 																			<c:when test="${list.orderStatus eq '1'.charAt(0)}"> 신청 완료 </c:when>
