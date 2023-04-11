@@ -66,11 +66,16 @@ public class UserPlanFindController {
 	
 	@GetMapping("/planfind")
 	public ModelAndView selectCustomFind(ModelAndView mv, Principal prin, String queType) {
-		if(queType.equals("voice")) {
-			String userId = prin.getName();
-			List<CustomQueVo> queList = service.selectCustomQueList(userId);
-			mv.addObject("queList", queList);
+		String userId = prin.getName();
+		
+		if(queType.equals("telecom")) {
+			if(service.selectUser(userId) == 0) {
+				service.insertUser(userId);
+			}
 		}
+		
+		CustomQueVo queVo = service.selectCustomQueList(userId);
+		mv.addObject("queVo", queVo);
 		
 		mv.setViewName("user/plan/planfind");
 		
@@ -80,11 +85,14 @@ public class UserPlanFindController {
 	@ResponseBody
 	@PostMapping("/planfind")
 	public String insertQueVal(ModelAndView mv, Principal prin, String type, int value) {
+		String userId = prin.getName();
 		
 		Map<String, Object> val = new HashMap<>();
 		val.put("type", type);
 		val.put("value", value);
-		int result = service.insertQueVal(val);
+		
+		service.insertQueVal(val);
+		CustomQueVo result = service.selectCustomQueList(userId);
 		
 		return new Gson().toJson(result);
 	}

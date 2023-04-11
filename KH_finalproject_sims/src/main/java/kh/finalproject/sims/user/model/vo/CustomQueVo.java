@@ -1,7 +1,5 @@
 package kh.finalproject.sims.user.model.vo;
 
-import java.sql.Date;
-
 import org.springframework.stereotype.Component;
 
 import lombok.AllArgsConstructor;
@@ -22,5 +20,4 @@ public class CustomQueVo {
 	private int cqData;
 	private int cqSpeed;
 	private int cqVoice;
-
 }

@@ -37,13 +37,20 @@ public class UserPlanFindDao {
 		return sqlSession.selectList("plan.bizNameList");
 	}
 
-	public List<CustomQueVo> selectCustonQueList(String userId) {
-		return sqlSession.selectList("plan.customQueList", userId);
+	public CustomQueVo  selectCustomQueList(String userId) {
+		return sqlSession.selectOne("plan.customQue", userId);
 	}
 
-	// 매퍼 추가 해야함
 	public int insertQueVal(Map<String, Object> val) {
-		return sqlSession.insert("plan.insertQueVal", val);
+		return sqlSession.update("plan.insertQueVal", val);
+	}
+
+	public int selectUser(String userId) {
+		return sqlSession.selectOne("plan.selectUser", userId);
+	}
+
+	public void insertUser(String userId) {
+		sqlSession.insert("plan.insertUser", userId);
 	}
 	
 }

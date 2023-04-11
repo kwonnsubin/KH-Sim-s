@@ -49,14 +49,25 @@ public class UserPlanFindServiceImpl implements UserPlanFindService {
 
 	// 질문 답 리스트
 	@Override
-	public List<CustomQueVo> selectCustomQueList(String userId) {
-		return dao.selectCustonQueList(userId);
+	public CustomQueVo selectCustomQueList(String userId) {
+		return dao.selectCustomQueList(userId);
 	}
 
 	// 질문 답 넣기
 	@Override
 	public int insertQueVal(Map<String, Object> val) {
 		return dao.insertQueVal(val);
+	}
+
+	// 접근한 유저 데이터가 있는지 없는지 확인
+	@Override
+	public int selectUser(String userId) {
+		return dao.selectUser(userId);
+	}
+
+	@Override
+	public void insertUser(String userId) {
+		dao.insertUser(userId);
 	}
 
 }

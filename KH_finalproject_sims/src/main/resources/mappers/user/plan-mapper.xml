@@ -51,11 +51,11 @@
 			<if test="planPrice == 5000"><![CDATA[and (plan_price < 10000 and plan_price >= 5000) ]]> </if>
 			<if test="planPrice == 1000"><![CDATA[and plan_price <= 5000 ]]> </if>
 			
-			<if test="netNo != null"><![CDATA[ and net_no = #{netNo} ]]> </if>
+			<if test="netNo != null or netNo != 0"><![CDATA[ and net_no = #{netNo} ]]> </if>
 			
 			<if test="genNo == 1"><![CDATA[ and gen_no = #{genNo}]]> </if>
-			<if test="genNo == 2"><![CDATA[ and (gen_no = #{genNo} or gen_no = 4)]]> </if>
-			<if test="genNo == 3"><![CDATA[ and (gen_no = #{genNo} or gen_no = 4)]]> </if>
+			<if test="genNo == 2"><![CDATA[ and (gen_no = #{genNo} or gen_no = 3)]]> </if>
+			<if test="genNo == 4"><![CDATA[ and (gen_no = #{genNo} or gen_no = 3)]]> </if>
 			
 			<if test="bizName != null"><![CDATA[and biz_name = #{bizName} ]]> </if>
 			
@@ -99,11 +99,11 @@
 			<if test="planPrice == 5000"><![CDATA[and (plan_price < 10000 and plan_price >= 5000) ]]> </if>
 			<if test="planPrice == 1000"><![CDATA[and plan_price <= 5000 ]]> </if>
 			
-			<if test="netNo != null"><![CDATA[ and net_no = #{netNo} ]]> </if>
+			<if test="netNo != null or netNo != 0"><![CDATA[ and net_no = #{netNo} ]]> </if>
 			
 			<if test="genNo == 1"><![CDATA[ and gen_no = #{genNo}]]> </if>
-			<if test="genNo == 2"><![CDATA[ and (gen_no = #{genNo} or gen_no = 4)]]> </if>
-			<if test="genNo == 3"><![CDATA[ and (gen_no = #{genNo} or gen_no = 4)]]> </if>
+			<if test="genNo == 2"><![CDATA[ and (gen_no = #{genNo} or gen_no = 3)]]> </if>
+			<if test="genNo == 4"><![CDATA[ and (gen_no = #{genNo} or gen_no = 3)]]> </if>
 			
 			<if test="bizName != null"><![CDATA[and biz_name = #{bizName} ]]> </if>
 			
@@ -117,8 +117,20 @@
 		select biz_name from biz
 	</select>
 	
-	<select id="customQueList" parameterType="string" resultType="qVo">
-		select * from custom_q where user_id = #{userId}
+	<select id="selectUser" parameterType="string" resultType="int">
+		select count(*) from custom_q where user_id=#{userId}
 	</select>
+	
+	<insert id="insertUser" parameterType="string">
+		insert into custom_q values(#{userId}, null, null, null, null)
+	</insert>
+	
+	<select id="customQue" parameterType="string" resultType="qVo">
+		select * from custom_q where user_id=#{userId}
+	</select>
+	
+	<update id="insertQueVal" parameterType="map">
+		update custom_q set cq_${type}=#{value}
+	</update>
 	
 </mapper>

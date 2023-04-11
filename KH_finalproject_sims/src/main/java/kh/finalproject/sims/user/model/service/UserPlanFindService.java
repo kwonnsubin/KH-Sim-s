@@ -19,8 +19,12 @@ public interface UserPlanFindService {
 
 	public List<BizInfoMngtVo> selectBizNameList();
 
-	public List<CustomQueVo> selectCustomQueList(String userId);
+	public CustomQueVo selectCustomQueList(String userId);
 
 	public int insertQueVal(Map<String, Object> val);
+
+	public int selectUser(String userId);
+
+	public void insertUser(String userId);
 
 }

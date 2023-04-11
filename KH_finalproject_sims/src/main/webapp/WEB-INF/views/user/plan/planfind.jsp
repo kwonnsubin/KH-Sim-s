@@ -49,12 +49,12 @@
 							<fieldset>
 								<label class="my-3 rdo-label">
 							    	<input type="radio" name="telecom" value="1"/>
-							    	<span class="px-2">SKT</span>
+							    	<span class="px-2">KT</span>
 								</label>
 							
 							  	<label class="my-3 rdo-label">
 							    	<input type="radio" name="telecom" value="2" />
-							    	<span class="px-2">KT</span>
+							    	<span class="px-2">SKT</span>
 							  	</label>
 							
 							 	<label class="my-3 rdo-label">
@@ -123,7 +123,7 @@
 							  	</label>
 							  	
 							  	<label class="my-3 rdo-label">
-							    	<input type="radio" name="speed" value="3" />
+							    	<input type="radio" name="speed" value="4" />
 							    	<span class="px-2">3G</span>
 							  	</label>
 							</fieldset>
@@ -132,8 +132,7 @@
 					
 					<div class="voice" style="display: none;">
 						<div class="my-5">
-							<h4>선호하는</h4>
-							<h4>데이터 속도를 선택해주세요</h4>
+							<h4>일일 통화량을 선택해주세요</h4>
 						</div>
 						<div class="rdo-button">
 							<fieldset>
@@ -162,6 +161,10 @@
 				</div>
 			</div>
 		</div>
+		<input class="hiddenTel" type="hidden" value="${queVo.cqTelecom}">
+		<input class="hiddenData" type="hidden" value="${queVo.cqData}">
+		<input class="hiddenSpeed" type="hidden" value="${queVo.cqSpeed}">
+		<input class="hiddenVoice" type="hidden" value="${queVo.cqVoice}">
 	</section>
 
 	<jsp:include page="../../footer.jsp"/>

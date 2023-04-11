@@ -462,7 +462,7 @@
 															  	</label>
 															  	
 															  	<label class="mx-1">
-															    	<input type="radio" name="genNo" value="3" />
+															    	<input type="radio" name="genNo" value="4" />
 															    	<span class="px-2">3G</span>
 															  	</label>
 															</fieldset>
