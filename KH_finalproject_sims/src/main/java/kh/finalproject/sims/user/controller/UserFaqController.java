@@ -34,7 +34,7 @@ public class UserFaqController {
 	UserFaqService service;
 	
 	// 질문 목록
-	@RequestMapping(value = "/faqlist", method = {RequestMethod.GET, RequestMethod.POST})
+	@RequestMapping(value = "/", method = {RequestMethod.GET, RequestMethod.POST})
 	public ModelAndView selectFaqList(
 			ModelAndView mv
 			, UserQnaVo vo
@@ -149,7 +149,7 @@ public class UserFaqController {
 			, Authentication authentication
 			) {
 		service.insertQna(vo);
-		return "redirect:/faq/faqlist";
+		return "redirect:/faq/";
 	}
 	
 	// 내 질문답변

@@ -40,7 +40,7 @@
 				<div class="col-lg-12 p-2">
 					<h5 class="py-3 fw-bolder">알뜰폰 궁금한 점 무엇이든 물어보세요</h5>
 					<div class="row">
-						<form action="<%=request.getContextPath()%>/faq/faqlist" method="post">
+						<form action="<%=request.getContextPath()%>/faq/" method="post">
 							<div class="input-group my-3">
 								<select name="searchOption" class="btn dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
 									<option value="">선택</option>

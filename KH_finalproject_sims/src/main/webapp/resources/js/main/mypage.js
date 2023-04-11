@@ -13,5 +13,5 @@ $(".myinfo-div").on("click", function() {
 });
 
 $(".faqDiv").on("click", function() {
-	location.href= contextPath + "/faq/faqlist"
+	location.href= contextPath + "/faq/"
 });

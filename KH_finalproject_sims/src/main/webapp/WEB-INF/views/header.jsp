@@ -27,7 +27,7 @@
 					<ul class="nav header-li">
 						<li><a href="<%=request.getContextPath()%>/">홈</a></li>
 						<li><a href="<%=request.getContextPath()%>/plans">요금제 찾기</a></li>
-						<li><a href="<%=request.getContextPath()%>/faq/faqlist">자주 묻는 질문</a></li>
+						<li><a href="<%=request.getContextPath()%>/faq/">자주 묻는 질문</a></li>
 						<sec:authorize access="isAnonymous()">
 						<li><a href="<%=request.getContextPath()%>/login">로그인 </a></li>
 						</sec:authorize>
