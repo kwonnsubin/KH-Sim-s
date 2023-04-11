@@ -44,7 +44,7 @@
 									</div>
 								</div>
 							</div>
-							<form action="<%=request.getContextPath()%>/admin/updateWithdrawalBizStatus" method="post">
+							<form action="<%=request.getContextPath()%>/admin/updateWithdrawalBizStatus" method="post" onsubmit="return confirm('탈퇴를 실행하시겠습니까?');">
 								<div class="col-md-12">
 									<div class="simsBtn m-b-15">
 										<input class="btn btn-primary right m-l-10" type="button" onclick="location.href='<%=request.getContextPath()%>/admin/applyList'" value="목록">
