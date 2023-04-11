@@ -275,7 +275,7 @@
 														</label>
 													
 													  	<label class="mx-1">
-													    	<input type="radio" name="voice" value="0" />
+													    	<input type="radio" name="voice" value="1" />
 													    	<span class="px-2">기본제공</span>
 													  	</label>
 													  	
@@ -351,7 +351,7 @@
 														</label>
 													
 													  	<label class="mx-1">
-													    	<input type="radio" name="message" value="0" />
+													    	<input type="radio" name="message" value="1" />
 													    	<span class="px-2">기본제공</span>
 													  	</label>
 													  	

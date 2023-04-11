@@ -33,13 +33,13 @@
 			<if test="planData == 5000"><![CDATA[ (plan_data < 10000 and plan_data >= 5000)]]> </if>
 			<if test="planData == 1000"><![CDATA[ plan_data <= 5000]]> </if>
 			
-			<if test="planVoice == 0"><![CDATA[and plan_voice = 0 ]]> </if>
+			<if test="planVoice == 1"><![CDATA[and plan_voice = 0 ]]> </if>
 			<if test="planVoice == 300"><![CDATA[and plan_voice >= 300 ]]> </if>
 			<if test="planVoice == 180"><![CDATA[and (plan_voice < 300 and plan_voice >= 180) ]]> </if>
 			<if test="planVoice == 60"><![CDATA[and (plan_voice < 180 and plan_voice >= 60) ]]> </if>
 			<if test="planVoice == 30"><![CDATA[and plan_voice <= 60 ]]> </if>
 			
-			<if test="planMessage == 0"><![CDATA[and plan_message = 0 ]]> </if>
+			<if test="planMessage == 1"><![CDATA[and plan_message = 0 ]]> </if>
 			<if test="planMessage == 300"><![CDATA[and plan_message >= 300 ]]> </if>
 			<if test="planMessage == 100"><![CDATA[and (plan_message < 300 and plan_message >= 100) ]]> </if>
 			<if test="planMessage == 50"><![CDATA[and (plan_message < 100 and plan_message >= 50) ]]> </if>
@@ -51,7 +51,7 @@
 			<if test="planPrice == 5000"><![CDATA[and (plan_price < 10000 and plan_price >= 5000) ]]> </if>
 			<if test="planPrice == 1000"><![CDATA[and plan_price <= 5000 ]]> </if>
 			
-			<if test="netNo != null or netNo != 0"><![CDATA[ and net_no = #{netNo} ]]> </if>
+			<if test="netNo != null and netNo != 0"><![CDATA[ and net_no = #{netNo} ]]> </if>
 			
 			<if test="genNo == 1"><![CDATA[ and gen_no = #{genNo}]]> </if>
 			<if test="genNo == 2"><![CDATA[ and (gen_no = #{genNo} or gen_no = 3)]]> </if>
@@ -99,7 +99,7 @@
 			<if test="planPrice == 5000"><![CDATA[and (plan_price < 10000 and plan_price >= 5000) ]]> </if>
 			<if test="planPrice == 1000"><![CDATA[and plan_price <= 5000 ]]> </if>
 			
-			<if test="netNo != null or netNo != 0"><![CDATA[ and net_no = #{netNo} ]]> </if>
+			<if test="netNo != null and netNo != 0"><![CDATA[ and net_no = #{netNo} ]]> </if>
 			
 			<if test="genNo == 1"><![CDATA[ and gen_no = #{genNo}]]> </if>
 			<if test="genNo == 2"><![CDATA[ and (gen_no = #{genNo} or gen_no = 3)]]> </if>
