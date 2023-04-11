@@ -91,7 +91,8 @@
 						                            <div class="row"   style="padding-bottom: 0px;">
 						                                <div class="col">	
 							                                <!-- 답글 들어가는 부분 -->
-							                                <c:forEach var="ans" items="${qnaAnsList }" >
+							                                <div class="qnaAns"></div>
+ 							                                <c:forEach var="ans" items="${qnaAnsList }" >
 							                                	<div class="qnaAns">
 																		<h6 class="m-b-15">
  																			<c:choose>
@@ -102,7 +103,8 @@
 																		</h6>					                                						                                    				                                
 									                               		<p class="m-t-15 m-b-15 text-muted" id="aaNo${ans.aaNo}">${ans.aaContent}</p>
 									                               		<button onclick="qnaAnsUpdateFormFunction(aaNo${ans.aaNo})">수정</button>
-									                               		<button onclick="qnaAnsDeleteFunction('${ans.aaNo}')">삭제</button> 
+									                               		 <!-- 삭제 테스트!!!!!!!  -->
+									                               		<button onclick="qnaAnsDeleteFunction('${ans.aaNo}')">삭제</button>
 																	<a href="#!" class="badge badge-primary m-t-5 m-b-20" data-toggle="collapse" data-target="#collapseExample" aria-expanded="true" aria-controls="collapseExample">댓글</a>
 																	<div class="collapse show alert alert-secondary" id="collapseExample">
 																		<div class="card-body m-b-15 m-t-20">
@@ -148,6 +150,10 @@
 </body>
 <script>
 
+$(document).ready(function(){
+	getAnsList();
+});
+
 // 문의내역 등록하기 ajax
 $('#ans-btn').on("click", function() {
 			var adminId = "${username}"
@@ -174,12 +180,11 @@ $('#ans-btn').on("click", function() {
 function getAnsList(){
 	var aqNo = "${aqNo}"
     $.ajax({
-        type:'GET',
+        type:'POST',
         url : '<%=request.getContextPath()%>/admin/qna/ansList',
         data: {aqNo: aqNo},
 		success : function(result) {
 				alert("조회 성공")
-				//$("#rCount").text("댓글 (" + rList.length + ")"); //댓글 갯수 조회하는 코드
 				if (result != null) {
 					console.log(result); 	
 					displayAns(result);
@@ -192,7 +197,6 @@ function getAnsList(){
     });
 }	
 
-//
 function displayAns(result){
 	$(".qnaAns").html(''); 
 	var html = ''; 
@@ -235,10 +239,10 @@ html += '		</div>';
 html += '	</div>';
 html += '</div>';
 	}	
-	$(".qnaAns").append(html);
+	$(".qnaAns").html(html);
 }
 
-
+// 답변 삭제 ajax
 function qnaAnsDeleteFunction(aaNo) {
 	if(confirm("삭제하시겠습니까?")) {
 			$.ajax({
@@ -247,7 +251,7 @@ function qnaAnsDeleteFunction(aaNo) {
 				type : "post",
 				success : function(result) {
 					if (result == "success") {
-						getAnsList();
+						getAnsList(); // 문의내역 불러오기 호출 getAnsList()
 					}
 				},
 				error : function() {

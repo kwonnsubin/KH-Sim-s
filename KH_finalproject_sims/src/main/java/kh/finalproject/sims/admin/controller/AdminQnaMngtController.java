@@ -176,7 +176,7 @@ public class AdminQnaMngtController {
 	
 	// 문의내역 불러오기 test!!!!!!!
 	@ResponseBody
-	@GetMapping(value="/qna/ansList", produces = "application/json;charset=utf-8")
+	@PostMapping(value="/qna/ansList", produces = "application/json;charset=utf-8")
 	public String ansList(
 			@RequestParam("aqNo") int aqNo)
 			{
