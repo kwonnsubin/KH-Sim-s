@@ -18,3 +18,7 @@
 	align-items: center;
 	border-style: none;
 }
+.reportBtn {
+  background-color: #ae8fef;
+  color: white;
+}

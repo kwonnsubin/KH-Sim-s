@@ -93,4 +93,41 @@ public class BizApplyMngtServiceImpl implements BizApplyMngtService {
 		System.out.println("**********mapCnt : "+mapCnt);
 		return dao.getSearchApplyListCount(mapCnt);
 	}
+
+	// 분류에 따른 목록
+	@Override
+	public Search getDevisionPage(String bizid, int pNum, int cnt, String searchType, String keyword, int orderStatus) {
+		Map<String, Object> map = new HashMap<String, Object>();
+		map.put("start", (pNum - 1) * cnt + 1);
+		map.put("end", pNum * cnt);	
+		map.put("bizid",bizid);
+		map.put("searchType",searchType);
+		map.put("keyword",keyword);
+		map.put("orderStatus",orderStatus);
+		
+		Map<String, Object> mapCnt = new HashMap<String, Object>();
+		mapCnt.put("bizid", bizid);
+		mapCnt.put("searchType", searchType);
+		mapCnt.put("keyword", keyword);
+		mapCnt.put("orderStatus",orderStatus);
+		
+		int totalRowCount = dao.getDevisionApplyListCount(mapCnt);
+		int mod = totalRowCount % cnt == 0 ? 0 : 1;
+		int pageCount = (totalRowCount / cnt) + mod;
+		
+		List<BizApplyVo>data = dao.getDevisionPage(map);
+		Search search = new Search(data, pNum, pageCount, cnt, 5, searchType, keyword );
+		return search;
+	}
+
+	@Override
+	public int getDevisionApplyListCount(String bizid, String searchType, String keyword, int orderStatus) {
+		Map<String, Object> mapCnt = new HashMap<String, Object>();
+		mapCnt.put("bizid", bizid);
+		mapCnt.put("searchType", searchType);
+		mapCnt.put("keyword", keyword);
+		mapCnt.put("orderStatus",orderStatus);
+		System.out.println("**********mapCnt : "+mapCnt);
+		return dao.getDevisionApplyListCount(mapCnt);
+	}
 }

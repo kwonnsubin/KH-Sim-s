@@ -206,8 +206,80 @@ WHERE rn between #{start} and #{end}
           
 )
  )
-		
-		
 	</select>
+	
+	<!-- 분류에 따른 리스트 -->
+	<!-- row 수 구하기 -->
+		<select id="getDevisionApplyListCount" parameterType="map" resultType="_int">
+		select count(*) searchCnt
+			 from (
+			         SELECT *
+			    		FROM (
+					        SELECT rownum rn,
+					           TO_CHAR(order_date, 'YYYYMMDD') || '-' || LPAD(order_no, 6, '0') AS serial_no,
+					           plan_name,
+					           user_id,
+					           order_status,
+					           order_date,
+					           order_no
+					     FROM plan_order
+					     JOIN plan_table USING (plan_no)
+			            WHERE plan_no IN (
+			                    SELECT plan_no 
+			                     FROM plan_table 
+			                     WHERE biz_name LIKE (
+			                                    SELECT biz_name 
+			                                    FROM biz 
+			                                    WHERE biz_id = #{bizid}
+			                                 )
+			                    )
+			                   and order_status = #{orderStatus}
+			                    
+			<if test="searchType=='planName' and keyword != null and keyword != '' ">
+            AND plan_name like ('%' || #{keyword} || '%')
+            </if>
+            
+            <if test="searchType=='userId' and keyword != null and keyword != '' ">
+            AND user_id like ('%' || #{keyword} || '%')
+            </if>
+          
+)
+ )
+	</select>
+	
+	<select id="getDevisionPage" parameterType="map" resultType="kh.finalproject.sims.biz.model.vo.BizApplyVo">
+		SELECT *
+    FROM (
+        SELECT rownum rn,
+           TO_CHAR(order_date, 'YYYYMMDD') || '-' || LPAD(order_no, 6, '0') AS serial_no,
+           plan_name,
+           user_id,
+           order_status,
+           order_date,
+           order_no
+     FROM plan_order
+     JOIN plan_table USING (plan_no)
+            WHERE plan_no IN (
+                    SELECT plan_no 
+                     FROM plan_table 
+                     WHERE biz_name LIKE (
+                                    SELECT biz_name 
+                                    FROM biz 
+                                    WHERE biz_id = #{bizid}
+                    )
+                   )
+                    and order_status = #{orderStatus}
+                   
+			<if test="searchType=='planName' and keyword != null and keyword != '' ">
+            AND plan_name like ('%' || #{keyword} || '%')
+            </if>
+            
+            <if test="searchType=='userId' and keyword != null and keyword != '' ">
+            AND user_id like ('%' || #{keyword} || '%')
+            </if>
+)
+WHERE rn between #{start} and #{end}
+			
+	</select >
 	
 </mapper>

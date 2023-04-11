@@ -61,6 +61,33 @@
 	<% } %>
 
 
+	<!-- 분류 {s} -->
+	<div class="form-check-inline">
+	  <input class="form-check-input" type="radio" name="division" id="exampleRadios1" value="option1" checked>
+	  <label class="form-check-label" for="exampleRadios1">
+	    전체
+	  </label>
+	</div>
+	<div class="form-check-inline">
+	  <input class="form-check-input" type="radio" name="division" id="exampleRadios2" value="1">
+	  <label class="form-check-label" for="exampleRadios2">
+	    신청완료
+	  </label>
+	</div>
+	<div class="form-check-inline">
+	  <input class="form-check-input" type="radio" name="division" id="exampleRadios3" value="2">
+	  <label class="form-check-label" for="exampleRadios3">
+	    승인완료
+	  </label>
+	</div>
+	<div class="form-check-inline">
+	  <input class="form-check-input" type="radio" name="division" id="exampleRadios4" value="3">
+	  <label class="form-check-label" for="exampleRadios4">
+	    승인보류
+	  </label>
+	</div>
+	<!-- {e} -->
+
  <table class="table">
             <thead>
                 <tr>
@@ -150,6 +177,34 @@
 		
 	});
 </script>
+
+<script>
+//분류
+	  $(document).ready(function() {
+	  // 라디오 버튼의 변경 이벤트 감지
+	  $("input[name='division']").change(function() {
+	    // 선택된 값 가져오기
+	    var orderStatus = $("input[name='division']:checked").val();
+	    console.log("라디오 버튼 클릭하고 그 값: " + orderStatus);
+	    
+	    $.ajax({
+	    	 url : "<%=request.getContextPath()%>/biz/divisionList"
+	    	,type :"post"
+	    	,data : {orderStatus : orderStatus}
+	    	,success : function(result){
+	    		 location.reload(); 
+	    	}
+	    	,error : function(){
+	    		alet("오류가 발생했습니다.");
+	    	}
+	    }); 
+	  });
+	});
+
+
+
+</script>
+
 
 	<jsp:include page="/WEB-INF/views/footer.jsp"/>
 	

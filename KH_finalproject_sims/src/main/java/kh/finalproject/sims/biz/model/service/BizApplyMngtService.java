@@ -18,4 +18,9 @@ public interface BizApplyMngtService {
 	//search 목록
 	public Search getPage(String bizid, int pNum, int cnt, String searchType, String keyword);
 	public int getSearchApplyListCount(String bizid, String searchType, String keyword);
+	
+	//분류에 따른 목록
+	public Search getDevisionPage(String bizid, int pNum, int cnt, String searchType, String keyword,
+			int orderStatus);
+	public int getDevisionApplyListCount(String bizid, String searchType, String keyword, int orderStatus);
 }

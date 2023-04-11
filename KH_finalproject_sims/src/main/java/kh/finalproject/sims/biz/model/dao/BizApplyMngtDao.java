@@ -49,4 +49,13 @@ public class BizApplyMngtDao {
 	public List<BizApplyVo> searchApplyList(Map<String, Object> map) {
 		return sqlSession.selectList("apply.searchApplyList", map);
 	}
+
+	//분류에 따른 리스트
+	public int getDevisionApplyListCount(Map<String, Object> mapCnt) {
+		return sqlSession.selectOne("apply.getDevisionApplyListCount", mapCnt);
+	}
+
+	public List<BizApplyVo> getDevisionPage(Map<String, Object> map) {
+		return sqlSession.selectList("apply.getDevisionPage", map);
+	}
 }

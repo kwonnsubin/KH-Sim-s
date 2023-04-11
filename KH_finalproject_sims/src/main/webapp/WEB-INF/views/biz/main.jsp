@@ -30,49 +30,81 @@
     <link rel="stylesheet" href="<%= request.getContextPath() %>/resources/css/user/myinfo.css"/>
     
     
-    <!-- Load the Google Charts library -->
-	<script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
-	<script type="text/javascript">
-		// Define the function to draw the chart
-		function drawChart() {
-			// Define the data table
-			var data = new google.visualization.DataTable();
-			data.addColumn('date', 'Date');
-			data.addColumn('number', 'Kepler-22b mission');
-			data.addColumn('string', 'Kepler title');
-			data.addColumn('string', 'Kepler text');
-			data.addColumn('number', 'Gliese 163 mission');
-			data.addColumn('string', 'Gliese title');
-			data.addColumn('string', 'Gliese text');
-			data.addRows([
-				[new Date(2314, 2, 15), 12400, undefined, undefined,
-					10645, undefined, undefined],
-				[new Date(2314, 2, 16), 24045, 'Lalibertines', 'First encounter',
-					12374, undefined, undefined],
-				[new Date(2314, 2, 17), 35022, 'Lalibertines', 'They are very tall',
-					15766, 'Gallantors', 'First Encounter'],
-				[new Date(2314, 2, 18), 12284, 'Lalibertines', 'Attack on our crew!',
-					34334, 'Gallantors', 'Statement of shared principles'],
-				[new Date(2314, 2, 19), 8476, 'Lalibertines', 'Heavy casualties',
-					66467, 'Gallantors', 'Mysteries revealed'],
-				[new Date(2314, 2, 20), 0, 'Lalibertines', 'All crew lost',
-					79463, 'Gallantors', 'Omniscience achieved']
-			]);
+   <script type="text/javascript" 
+    src="https://www.gstatic.com/charts/loader.js"></script>
 
-			// Define the chart options
-			var options = {
-				displayAnnotations: true
-			};
 
-			// Instantiate and draw the chart, passing in the data and options
-			var chart = new google.visualization.AnnotationChart(document.getElementById('chart_div'));
-			chart.draw(data, options);
-		}
+    <script type="text/javascript">
+      //google에서 기본 차트 관련된 package(모듈)명
+      //chart 종류에 따라서 google 개발 문서 참조 필수
+      google.charts.load('current', {'packages':['corechart']});
+      google.charts.setOnLoadCallback(drawChart);
 
-		// Load the Google Charts library and run the drawChart function when it's ready
-		google.charts.load('current', {'packages':['corechart']});
-		google.charts.setOnLoadCallback(drawChart);
-	</script>
+      function drawChart() {
+        //2차원 배열로 데이터 처리
+        var data = google.visualization.arrayToDataTable([
+          ['Task', 'Hours per Day'],
+          ['작업',     11], //원하는대로 데이터 내용 바꾸어 사용
+          ['Eat',      2],
+          ['Commute',  2],
+          ['Watch TV', 2],
+          ['Sleep',    7]
+        ]);
+
+        /* options 변수명은 다른 변수명으로 선언 및 사용 가능
+           title 속성 : 구글 차트에서 title로 사용되는 정보이기 때문에 속성명 수정 불가, 구글 차트가 제공하는 이름
+        */
+        var options = {
+          title: '나의 하루 일과'
+        };
+
+        //어떤 위치에 chart를 표현할 것인지에 대한 html tag 정보 반영
+        //<div id="piechart" style="width: 900px; height: 500px;"></div>
+        var chart = new google.visualization.PieChart(document.getElementById('piechart'));
+		
+      	//data와 option값을 적용하여 chart 그리기
+        chart.draw(data, options);
+      }
+    </script>
+    
+    <script type="text/javascript">
+    google.charts.load("current", {packages:["corechart"]});
+    google.charts.setOnLoadCallback(drawChart);
+    function drawChart() {
+    	/* 
+      var data = google.visualization.arrayToDataTable([
+        ["Element", "Density", { role: "style" } ],
+        ["Copper", 8.94, "#b87333"],
+        ["Silver", 10.49, "silver"],
+        ["Gold", 19.30, "gold"],
+        ["Platinum", 21.45, "color: #e5e4e2"]
+      ]);
+ 		*/
+ 		
+ 		
+ 		  var data = google.visualization.arrayToDataTable([
+ 		        ["Element", "Density" ],
+ 		        ["Copper", 8.94],
+ 		        ["Silver", 10.49],
+ 		        ["Gold", 19.30],
+ 		        ["Platinum", 21.45]
+ 		      ]);
+ 		
+ 		
+      var view = new google.visualization.DataView(data);
+      view.setColumns([0, 1]);
+
+      var options = {
+        title: "Density of Precious Metals, in g/cm^3",
+        width: 600,
+        height: 400,
+        bar: {groupWidth: "95%"},
+        legend: { position: "none" },
+      };
+      var chart = new google.visualization.BarChart(document.getElementById("barchart_values"));
+      chart.draw(view, options);
+  }
+  </script>
 
 </head>
 <body>
@@ -80,10 +112,11 @@
 <jsp:include page="/WEB-INF/views/biz/nav.jsp"/>
 	
 	차트야 나와라 왜 안나오니..
+	<div id="piechart" style="width: 900px; height: 500px;"></div> <!-- pieChart가 적용되는 위치-->
+	  
+	  
 	
-	<!-- Identify where the chart should be drawn. -->
- 	<div id="chart_div" style="width: 900px; height: 500px;"></div>
-
+	<div id="barchart_values" style="width: 900px; height: 300px;"></div>
 	  
 	<jsp:include page="/WEB-INF/views/footer.jsp"/>
 	
