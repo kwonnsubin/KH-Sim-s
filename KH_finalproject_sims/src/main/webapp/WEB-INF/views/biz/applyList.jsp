@@ -28,6 +28,10 @@
     <link rel="stylesheet" href="<%= request.getContextPath() %>/resources/chain/assets/css/animated.css">
     <link rel="stylesheet" href="<%= request.getContextPath() %>/resources/chain/assets/css/owl.css">
     <link rel="stylesheet" href="<%= request.getContextPath() %>/resources/css/user/myinfo.css"/>
+    
+    
+
+    
 </head>
 <body>
 <jsp:include page="/WEB-INF/views/header.jsp"/>
@@ -44,6 +48,8 @@
 	</div>
 
 
+
+
 <!-- search{s} -->
 	<div>
 		<select name="searchType" id="searchType">
@@ -51,19 +57,10 @@
 			<option value="userId">신청자</option>
 		</select>
 		<input type="text" name="keyword" id="keyword">
-		<button name="btnSearch" id="btnSearch">검색</button>
-	</div>
-
-	<span>총 ${applyListCnt}개의 결과가 있습니다.</span>
-
- 	<% if (request.getParameter("keyword") != null && !request.getParameter("keyword").isEmpty()) { %>
-    <span>"<%=request.getParameter("keyword")%>"의 검색 결과입니다.</span>
-	<% } %>
-
-
-	<!-- 분류 {s} -->
+		
+<!-- 분류 {s} -->
 	<div class="form-check-inline">
-	  <input class="form-check-input" type="radio" name="division" id="exampleRadios1" value="option1" checked>
+	  <input class="form-check-input" type="radio" name="division" id="exampleRadios1" value="0" cheked>
 	  <label class="form-check-label" for="exampleRadios1">
 	    전체
 	  </label>
@@ -86,7 +83,19 @@
 	    승인보류
 	  </label>
 	</div>
-	<!-- {e} -->
+	<!-- 분류 {e} -->
+		
+		<button name="btnSearch" id="btnSearch">검색</button>
+	</div>
+
+	<span>총 ${applyListCnt}개의 결과가 있습니다.</span>
+
+ 	<% if (request.getParameter("keyword") != null && !request.getParameter("keyword").isEmpty()) { %>
+    <span>"<%=request.getParameter("keyword")%>"의 검색 결과입니다.</span>
+	<% } %>
+
+
+	
 
  <table class="table">
             <thead>
@@ -145,12 +154,12 @@
 				</c:when>
 				<c:otherwise>
 					<li class="page-item"><a class="page-link" 
-					href="${path}/biz/applyList?p=${requestScope.paging.prevPage }&searchType=${searchType }&keyword=${keyword }">prev</a></li>
+					href="${path}/biz/applyList?p=${requestScope.paging.prevPage }&searchType=${searchType }&keyword=${keyword }&orderStatus=${orderStatus}">prev</a></li>
 				</c:otherwise>
 			</c:choose>
 			<c:forEach var="pNum" items="${requestScope.paging.pageList }">
 				<li class="page-item ${pNum eq pageNumber ? 'active' : '' }"><a class="page-link"
-				 href="${path}/biz/applyList?p=${pNum }&searchType=${searchType }&keyword=${keyword }">${pNum }</a></li>
+				 href="${path}/biz/applyList?p=${pNum }&searchType=${searchType }&keyword=${keyword }&orderStatus=${orderStatus}">${pNum }</a></li>
 			</c:forEach>
 			<c:choose>
 				<c:when test="${requestScope.paging.nextPage eq -1 }">
@@ -158,11 +167,17 @@
 				</c:when>
 				<c:otherwise>
 					<li class="page-item"><a class="page-link" 
-					href="${path}/biz/applyList?p=${requestScope.paging.nextPage }&searchType=${searchType }&keyword=${keyword }">next</a></li>
+					href="${path}/biz/applyList?p=${requestScope.paging.nextPage }&searchType=${searchType }&keyword=${keyword }&orderStatus=${orderStatus}">next</a></li>
 				</c:otherwise>
 			</c:choose>
 		</ul>
 	  </c:if>
+
+<script>
+	window.onload = function() {
+		  document.getElementById("exampleRadios1").checked = true;
+		};
+</script>
 
 
 <script>
@@ -172,37 +187,29 @@
 		var url="${pageContext.request.contextPath}/biz/applyList";
 		url = url + "?searchType="+$('#searchType').val();
 		url = url + "&keyword="+$('#keyword').val();
+		url = url + "&orderStatus="+$("input[name='division']:checked").val();
 		location.href=url;
 		console.log(url);
-		
+		//쿠키에 라디오 버튼 상태를 저장
+		document.cookie = "orderStatus=" + $("input[name='division']:checked").val();
+
 	});
 </script>
-
 <script>
-//분류
-	  $(document).ready(function() {
-	  // 라디오 버튼의 변경 이벤트 감지
-	  $("input[name='division']").change(function() {
-	    // 선택된 값 가져오기
-	    var orderStatus = $("input[name='division']:checked").val();
-	    console.log("라디오 버튼 클릭하고 그 값: " + orderStatus);
-	    
-	    $.ajax({
-	    	 url : "<%=request.getContextPath()%>/biz/divisionList"
-	    	,type :"post"
-	    	,data : {orderStatus : orderStatus}
-	    	,success : function(result){
-	    		 location.reload(); 
-	    	}
-	    	,error : function(){
-	    		alet("오류가 발생했습니다.");
-	    	}
-	    }); 
-	  });
+//쿠키에 의해 라디오버튼 체크 상태 유지
+	$(document).ready(function(){
+		 var orderStatus = getCookie("orderStatus");
+		  if (orderStatus != "") {
+		    $("input[name='division'][value='" + orderStatus + "']").prop('checked', true);
+		  }
 	});
 
-
-
+	function getCookie(name) {
+	  var value = "; " + document.cookie;
+	  var parts = value.split("; " + name + "=");
+	  if (parts.length == 2) return parts.pop().split(";").shift();
+	  return "";
+	}
 </script>
 
 
