@@ -1,6 +1,9 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-<%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -13,7 +16,7 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@100;300;400;500;700;900&display=swap" rel="stylesheet">
 
-	<title>Home</title>
+	<title>요금제</title>
 	
 	 <!-- Bootstrap core CSS -->
     <link href="<%= request.getContextPath() %>/resources/chain/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
@@ -26,44 +29,50 @@
     <link rel="stylesheet" href="<%= request.getContextPath() %>/resources/chain/assets/css/templatemo-chain-app-dev.css">
     <link rel="stylesheet" href="<%= request.getContextPath() %>/resources/chain/assets/css/animated.css">
     <link rel="stylesheet" href="<%= request.getContextPath() %>/resources/chain/assets/css/owl.css">
-    <link rel="stylesheet" href="<%= request.getContextPath() %>/resources/css/main/home.css"/>
-    
+    <link rel="stylesheet" href="<%= request.getContextPath() %>/resources/css/user/notice.css"/>
+
 </head>
 <body>
 
-	<jsp:include page="./header.jsp"/>
+	<jsp:include page="../../header.jsp"/>
 	
 	<section>
-	
-		<!-- 맞춤 요금제 div 시작 -->
-		<div class="container-fluid d-flex justify-content-center mt-5 choose-plan">
-			<a class="aTag" href="<%=request.getContextPath()%>/planfind?queType=telecom">
-	       	<div class="row choose-row">
-	       		<div class="col-4 text-center align-self-center">
-	       			<span class="material-symbols-outlined align-middle">manage_search</span>
-	       		</div>
-	       		<div class="col-8 align-self-center span-div">
-	       			<sec:authorize access="isAuthenticated()">
-		       			<span>
-		       			<sec:authentication property="name"/>님께 적합한<br>
-		       			맞춤 요금제를 찾아보세요
-		       			</span>
-		       		</sec:authorize>
-	       			<sec:authorize access="isAnonymous()">
-		       			<span>
-		       			회원님께 적합한<br>
-		       			맞춤 요금제를 찾아보세요
-		       			</span>
-	       			</sec:authorize>
+		<div class="container-fluid d-flex justify-content-center mt-5 notice-div">
+	       	<div class="row notice-row">
+	       		<div class="col-12">
+	       			<div class="mb-5">
+	       				<h4>공지사항</h4>
+	       			</div>
+	       			<div>
+	       				<c:forEach items="${ntcList}" var="ntc">
+		       				<div class="row notice-list">
+		       					<div class="col-2 text-center align-self-center">
+			       					<span class="material-symbols-outlined">campaign</span>
+		       					</div>
+
+		       					<div class="col-8 align-self-center">
+			       					<p class="ntc-title">${ntc.ntcTitle}</p>
+			       					<c:if test="${empty ntc.ntcRedate}">
+										<fmt:formatDate value="${dateObj}" pattern="yyyy-MM-dd hh:mm:ss" />
+			       						<p class="ntc-date">${ntcDate}</p>
+			       					</c:if>
+			       					<c:if test="${not empty ntc.ntcRedate}">
+										<fmt:formatDate value="${dateObj}" pattern="yyyy-MM-dd hh:mm:ss" />
+			       						<p class="ntc-date">${ntcRedate}</p>
+			       					</c:if>
+		       					</div>
+		       					<div class="col-2 text-center align-self-center">
+			       					<span class="material-symbols-outlined">chevron_right</span>
+		       					</div>
+		       				</div>
+	       				</c:forEach>
+	       			</div>
 	       		</div>
 	       	</div>
-	       	</a>
 	    </div>
-	    <!-- 맞춤 요금제 div 끝 -->
-	    
 	</section>
-	
-	<jsp:include page="./footer.jsp"/>
+
+	<jsp:include page="../../footer.jsp"/>
 	
 	<!-- Scripts -->
 	<script src="<%= request.getContextPath() %>/resources/chain/vendor/jquery/jquery.min.js"></script>
@@ -73,6 +82,7 @@
 	<script src="<%= request.getContextPath() %>/resources/chain/assets/js/imagesloaded.js"></script>
 	<script src="<%= request.getContextPath() %>/resources/chain/assets/js/popup.js"></script>
 	<script src="<%= request.getContextPath() %>/resources/chain/assets/js/custom.js"></script>
+	<script src="<%= request.getContextPath() %>/resources/js/user/notice.js"></script>
   
 </body>
 </html>

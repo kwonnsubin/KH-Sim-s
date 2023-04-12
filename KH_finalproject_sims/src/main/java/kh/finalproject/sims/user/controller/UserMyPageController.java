@@ -1,6 +1,7 @@
 package kh.finalproject.sims.user.controller;
 
 import java.util.HashMap;
+import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
@@ -15,12 +16,12 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.google.gson.Gson;
 
+import kh.finalproject.sims.admin.model.vo.AdminNoticeMngtVo;
 import kh.finalproject.sims.user.model.service.UserMyPageService;
 import kh.finalproject.sims.user.model.vo.MemberVo;
 import kh.finalproject.sims.user.model.vo.UserMemberVo;
 
 @Controller
-@RequestMapping("/mypage")
 public class UserMyPageController {
 	
 	@Autowired
@@ -29,7 +30,7 @@ public class UserMyPageController {
 	@Autowired
 	private BCryptPasswordEncoder pwEncoder;
 	
-	@GetMapping("")
+	@GetMapping("/mypage")
 	public ModelAndView myPage(ModelAndView mv) {
 		
 		mv.setViewName("main/mypage");
@@ -39,7 +40,7 @@ public class UserMyPageController {
 	
 	// 계정 탈퇴
 	@ResponseBody
-	@PostMapping("/disable")
+	@PostMapping("/mypage/disable")
 	public String updateDisable(ModelAndView mv, @RequestParam String id) {
 
 		HashMap<String, Object> result = new HashMap<String, Object>();
@@ -49,7 +50,7 @@ public class UserMyPageController {
 	}
 	
 	// 내 정보 페이지
-	@GetMapping("/myinfo/{id}")
+	@GetMapping("/mypage/myinfo/{id}")
 	public ModelAndView selectMyPageInfo(ModelAndView mv, @PathVariable String id) {
 		
 		UserMemberVo userVo = service.selectMyPageInfo(id);
@@ -61,7 +62,7 @@ public class UserMyPageController {
 	}
 	
 	// 내 정보 페이지 수정
-	@PostMapping("/myinfo")
+	@PostMapping("/mypage/myinfo")
 	public ModelAndView updateMyPageModify(ModelAndView mv, MemberVo memVo, UserMemberVo userVo) {
 		
 		userVo.setUserId(memVo.getId());
@@ -70,6 +71,17 @@ public class UserMyPageController {
 		service.updateMyPageModify(memVo, userVo);
 		
 		mv.setViewName("redirect:/logout");
+		
+		return mv;
+	}
+	
+	@GetMapping("/notice")
+	public ModelAndView selectNoticeList(ModelAndView mv) {
+		
+		List<AdminNoticeMngtVo> ntcList = service.selectNoticeList();
+		mv.addObject("ntcList", ntcList);
+		
+		mv.setViewName("user/myinfo/notice");
 		
 		return mv;
 	}

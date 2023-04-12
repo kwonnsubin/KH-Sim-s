@@ -68,4 +68,8 @@
 		DELETE FROM NOTICE
 		WHERE NTC_NO = #{ntcNo}
 	</delete>
+	
+	<select id="selectMypageNoticeList" resultType="adNtcvo">
+		select * from notice
+	</select>
 </mapper>
