@@ -1,0 +1,17 @@
+@charset "UTF-8";
+
+.div-m {
+	max-width: 960px
+}
+
+#footer {
+	display: block;
+	position: fixed;
+	bottom: 0;
+	background-color: white;
+	height: 100px
+}
+
+.vr{
+	
+}

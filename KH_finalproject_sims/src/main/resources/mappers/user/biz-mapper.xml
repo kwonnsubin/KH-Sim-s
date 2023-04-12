@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="usbiz">
+
+	<select id="getBizByName" resultType="bizVo">
+		select * from biz where biz_name = #{bizName}
+	</select>
+	
+	<select id="getNetByBizId" resultType="string">
+		SELECT n.NET_NAME
+		FROM NETWORK_TABLE n
+		    INNER JOIN BIZ_NETWORK b
+		    ON (n.net_no = b.net_no)
+		WHERE b.BIZ_ID = #{bizId} and b.BIZ_NET_SERVICE is not null
+	</select>
+</mapper>

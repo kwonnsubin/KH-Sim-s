@@ -133,4 +133,15 @@
 		update custom_q set cq_${type}=#{value}
 	</update>
 	
+	<select id="getPlanByNo" resultType="planVo">
+		select * from plan_table where plan_no = #{planNo}
+	</select>
+	
+	<select id="getNetNameByNetNo" resultType="string">
+		select net_name from network_table where net_no = #{netNo}
+	</select>
+	
+	<select id="getGenNameByGenNo" resultType="string">
+		select gen_name from tel_gen_table where gen_no = #{genNo}
+	</select>
 </mapper>

@@ -225,17 +225,6 @@ public class UserFaqController {
 		return mv;
 	}
 	
-	// 내 답변 수정 페이지
-	@GetMapping("/ansupdate/{aaNo}")
-	public ModelAndView updateAnsForm(
-			ModelAndView mv
-			, @PathVariable int aaNo
-			) {
-		mv.addObject("myans", service.getAnsByNo(aaNo));
-		mv.setViewName("user/faq/updateAns");
-		return mv;
-	}
-	
 	// 내 답변 수정하기
 	@PostMapping("/ansupdate/{aaNo}")
 	public ModelAndView updateAns(
@@ -286,5 +275,16 @@ public class UserFaqController {
 //		} else {
 //			return "fail";
 //		}
+//	}
+	
+//	// 내 답변 수정 페이지
+//	@GetMapping("/ansupdate/{aaNo}")
+//	public ModelAndView updateAnsForm(
+//			ModelAndView mv
+//			, @PathVariable int aaNo
+//			) {
+//		mv.addObject("myans", service.getAnsByNo(aaNo));
+//		mv.setViewName("user/faq/updateAns");
+//		return mv;
 //	}
 }
