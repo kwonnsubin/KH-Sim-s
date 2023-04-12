@@ -35,7 +35,7 @@ public class AdminBizMngtController {
 
 	// 통신사 신청정보 상세 페이지로 이동
 	@GetMapping("/applyDetail/{bizId}")
-	public ModelAndView selectApplyDetfail(ModelAndView mv, @PathVariable String bizId, HttpServletRequest request,
+	public ModelAndView selectApplyDetail(ModelAndView mv, @PathVariable String bizId, HttpServletRequest request,
 			AdminBizMngtVo vo) throws Exception {
 		String divCheck = request.getParameter("divCheck");
 		switch (divCheck) {
