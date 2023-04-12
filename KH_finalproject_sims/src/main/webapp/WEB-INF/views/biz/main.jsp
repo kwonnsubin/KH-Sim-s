@@ -112,7 +112,7 @@
 <jsp:include page="/WEB-INF/views/biz/nav.jsp"/>
 	
 	차트야 나와라 왜 안나오니..
-	<div id="piechart" style="width: 900px; height: 500px;"></div> <!-- pieChart가 적용되는 위치-->
+	<div id="piechart" style="width: 900px; height: 500px; padding-left: 500px"></div> <!-- pieChart가 적용되는 위치-->
 	  
 	  
 	

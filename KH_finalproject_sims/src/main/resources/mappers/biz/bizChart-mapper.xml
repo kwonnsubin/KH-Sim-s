@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="bizChart">
+
+	<!-- 오늘 날짜로부터 일주일간 해당 통신사 요금제 가입 수 -->
+ 	<select id="selectJoinPlanByDate">
+ 	 <![CDATA[ WITH date_range AS (
+	  SELECT TRUNC(SYSDATE) - LEVEL + 1 AS order_date
+	  FROM DUAL
+	  CONNECT BY LEVEL <= 7
+	  )]]>
+	SELECT date_range.order_date, NVL(order_cnt, 0) AS order_cnt
+	 FROM date_range
+	 LEFT JOIN (
+		  SELECT TRUNC(order_date) AS order_date, COUNT(*) AS order_cnt
+		  FROM plan_order
+		  JOIN plan_table USING (plan_no)
+		  WHERE plan_no IN (
+		    SELECT plan_no 
+		    FROM plan_table 
+		    WHERE biz_name LIKE (
+		      SELECT biz_name FROM biz WHERE biz_id = #{bizid}
+		    )
+		  )
+		  AND TRUNC(order_date) >= TRUNC(SYSDATE - 7)
+		  GROUP BY TRUNC(order_date)
+		) plan_order_count
+		ON date_range.order_date = plan_order_count.order_date
+		ORDER BY date_range.order_date
+ 	</select>
+</mapper>
