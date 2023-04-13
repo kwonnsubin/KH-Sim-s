@@ -51,6 +51,9 @@
 	       					<p>작성한 리뷰</p>
 	       				</div>
 	       			</div>
+	       			<div>
+	       				
+	       			</div>
 	       		</div>
 	       	</div>
 	    </div>
