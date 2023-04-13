@@ -36,9 +36,8 @@ public class BizInfoMngtController {
 	//내 정보관리 상세
 	@GetMapping("/infodetail")
 	public ModelAndView selectBizInfoDetail(ModelAndView mv
-			, HttpServletRequest request
+			, Principal principal
 			) {
-		Principal principal = request.getUserPrincipal();
 		String bizid = principal.getName();
 		System.out.println("통신사아이디 : "+bizid);
 		
@@ -62,9 +61,8 @@ public class BizInfoMngtController {
 	//내 정보 수정하기 - 기본값 출력용
 	@GetMapping("/modifyInfo")
 	public ModelAndView modifyBizInfo(ModelAndView mv
-			, HttpServletRequest request
+			, Principal principal
 			) {
-		Principal principal = request.getUserPrincipal();
 		String bizid = principal.getName();
 		System.out.println("통신사아이디 : "+bizid);
 		
@@ -100,6 +98,7 @@ public class BizInfoMngtController {
 	//TODO 요금제 테이블의 bizName도 같이 바꿔야 함. 
 	@PostMapping("/modifyInfo")
 	public String modifyBizInfo(HttpServletRequest request
+			, Principal principal
 			, BizInfoMngtVo vo
 			, bizInfoMngServiceVo svo
 			, @RequestParam(name ="bizName" , required = false) String bizName
@@ -134,8 +133,6 @@ public class BizInfoMngtController {
 			//파일 첨부
 			, @RequestParam(name="logo", required = false) MultipartFile multi
 			) {
-		
-		Principal principal = request.getUserPrincipal();
 		String bizid = principal.getName();
 		System.out.println("통신사아이디 : " + bizid);
 		

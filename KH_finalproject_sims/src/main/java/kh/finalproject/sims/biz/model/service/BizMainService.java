@@ -10,4 +10,6 @@ public interface BizMainService {
 	public List<BizChartVo>selectJoinPlanByDate(String bizid);
 	
 	public List<BizMainVo>selectTotalApplyByPlan(String bizid);
+	
+	public List<BizMainVo>selectTopPlanAgeRatio(String bizid);
 }

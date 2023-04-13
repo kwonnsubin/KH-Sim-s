@@ -37,4 +37,42 @@
 		GROUP BY p.plan_no, p.plan_name
 		ORDER BY p.plan_no ASC
  	</select>
+ 	
+ 	<!-- 가장 인기있는 요금제의 연령대 비율 -->
+ 	<select id="selectTopPlanAgeRatio" resultType="kh.finalproject.sims.biz.model.vo.BizMainVo">
+ 	select AGE_GROUP, count(*) AS age_cnt
+	from
+		(SELECT user_id,
+		     CASE 
+		        WHEN TRUNC(MONTHS_BETWEEN(SYSDATE, TO_DATE(SUBSTR(USER_SSN, 1, 6), 'RRMMDD'))/12) BETWEEN 10 AND 19 THEN '10대'
+		        WHEN TRUNC(MONTHS_BETWEEN(SYSDATE, TO_DATE(SUBSTR(USER_SSN, 1, 6), 'RRMMDD'))/12) BETWEEN 20 AND 29 THEN '20대'
+		        WHEN TRUNC(MONTHS_BETWEEN(SYSDATE, TO_DATE(SUBSTR(USER_SSN, 1, 6), 'RRMMDD'))/12) BETWEEN 30 AND 39 THEN '30대'
+		        WHEN TRUNC(MONTHS_BETWEEN(SYSDATE, TO_DATE(SUBSTR(USER_SSN, 1, 6), 'RRMMDD'))/12) BETWEEN 40 AND 49 THEN '40대'
+		        WHEN TRUNC(MONTHS_BETWEEN(SYSDATE, TO_DATE(SUBSTR(USER_SSN, 1, 6), 'RRMMDD'))/12) BETWEEN 50 AND 59 THEN '50대'
+		        ELSE '60대이상' 
+		    END AS AGE_GROUP
+			FROM (
+			    SELECT user_id,user_ssn
+			    FROM user_table
+			    WHERE user_id IN (
+			        SELECT user_id
+			        FROM plan_order
+			        WHERE plan_no = (
+			            SELECT plan_no
+				            FROM (
+				                SELECT p.plan_no, COUNT(po.plan_no) AS num_plans
+				                FROM plan_table p
+				                LEFT JOIN plan_order po ON p.plan_no = po.plan_no
+				                WHERE p.biz_name LIKE (SELECT biz_name FROM biz WHERE biz_id = #{bizid})
+				                GROUP BY p.plan_no
+				                ORDER BY num_plans DESC
+			           			 )
+			         <![CDATA[ WHERE ROWNUM <= 1 ]]>
+		        )
+		    )
+		)
+		)
+	GROUP BY AGE_GROUP
+ 	
+ 	</select>
 </mapper>

@@ -33,7 +33,7 @@
    <script type="text/javascript" 
     src="https://www.gstatic.com/charts/loader.js"></script>
 
-<!-- 
+
     <script type="text/javascript">
       //google에서 기본 차트 관련된 package(모듈)명
       //chart 종류에 따라서 google 개발 문서 참조 필수
@@ -41,32 +41,41 @@
       google.charts.setOnLoadCallback(drawChart);
 
       function drawChart() {
-        //2차원 배열로 데이터 처리
-        var data = google.visualization.arrayToDataTable([
-          ['Task', 'Hours per Day'],
-          ['작업',     11], //원하는대로 데이터 내용 바꾸어 사용
-          ['Eat',      2],
-          ['Commute',  2],
-          ['Watch TV', 2],
-          ['Sleep',    7]
-        ]);
-
-        /* options 변수명은 다른 변수명으로 선언 및 사용 가능
-           title 속성 : 구글 차트에서 title로 사용되는 정보이기 때문에 속성명 수정 불가, 구글 차트가 제공하는 이름
-        */
-        var options = {
-          title: '나의 하루 일과'
-        };
-
-        //어떤 위치에 chart를 표현할 것인지에 대한 html tag 정보 반영
-        //<div id="piechart" style="width: 900px; height: 500px;"></div>
-        var chart = new google.visualization.PieChart(document.getElementById('piechart'));
+    	  
+    	  $.ajax({
+  	        url: "${pageContext.request.contextPath}/biz/test",
+  	        type: "post",
+  	        dataType:"json",
+  	        success: function(json) {
+  	            // JSON 데이터를 받아 처리
+  	            //var data = JSON.parse(json); //dataType:"json"라고 명시하면 이렇게 안써도 됨. 
+  	            console.log(json);
+  	          	var chartData = [['요금제명', '가입수']];
+	  	        for (var i = 0; i < json.length; i++) {
+	                chartData.push([json[i].planName, json[i].planApplyCnt]);
+	            }  
+	            console.log("차트 데이타 : "+chartData);
+				
+	            var options = {
+		                title: '데이터 그래프',
+		                width: 600,
+		                height: 400,              
+		                legend: { position: 'none' }
+		            };
 		
-      	//data와 option값을 적용하여 chart 그리기
-        chart.draw(data, options);
-      }
+		            var chart = new google.visualization.ColumnChart(document.getElementById('chart_div2')); // Column Chart를 생성합니다.
+		            chart.draw(google.visualization.arrayToDataTable(chartData), options); // 차트를 그립니다.
+		        },
+		        error : function(request,status,error) {
+		        	console.log("code:"+request.status+"\n"+"message:"+request.responseText+"\n"+"error:"+
+		        	error);
+  	        }     
+  	    });
+  	}
+
+      
     </script>
-    
+<!--     
     <script type="text/javascript">
     google.charts.load("current", {packages:["corechart"]});
     google.charts.setOnLoadCallback(drawChart);
@@ -138,20 +147,64 @@
 
   </script>
 
+<!-- 원형차트 -->
+<script type="text/javascript">
+      google.charts.load('current', {'packages':['corechart']});
+      google.charts.setOnLoadCallback(drawChart);
+
+      function drawChart() {
+
+    	  $.ajax({
+    		   url : "${pageContext.request.contextPath}/biz/piechart" //경로 항상 유의
+    		  ,type : "post"
+    		  ,dataType : "json" //아 date 오타...아오
+    		  ,success : function(json){
+    			  console.log(json);
+    			  console.log("data : "+data);
+    			  
+    			  //원형차트는 Array 대신 DataTable 또는 DataView와 함께 호출하라고 에러
+    			  //json 데이터를 DataTable 객체로 변환한 다음, 이를 draw() 메소드의 인자로 전달
+    			  var data = new google.visualization.DataTable();
+    	            data.addColumn('string', '연령대');
+    	            data.addColumn('number', '가입수');
+    	            for (var i = 0; i < json.length; i++) {
+    	                data.addRow([json[i].ageGroup, json[i].ageCnt]);
+    	            }
+    			  console.log("data : "+data)
+    			  
+		          var options = {
+		               title: 'My Daily Activities'
+		               };
+		
+		          var chart = new google.visualization.PieChart(document.getElementById('piechart'));
+		
+		          chart.draw(data, options);
+    		  }
+    		  ,error : function(request,status,error) {
+  	        	console.log("code:"+request.status+"\n"+"message:"+request.responseText+"\n"+"error:"+
+  	  	        	error);
+  	  	        }     
+    	  });
+      }
+    </script>
+
+
+
+
+
 </head>
 <body>
 <jsp:include page="/WEB-INF/views/header.jsp"/>
 <jsp:include page="/WEB-INF/views/biz/nav.jsp"/>
 	
-<!-- 	차트야 나와라 왜 안나오니..
-	<div id="piechart" style="width: 900px; height: 500px; padding-left: 500px"></div> pieChart가 적용되는 위치
-	  
-	  
+
+	<div id="chart_div2" style="width: 900px; height: 500px; padding-left: 500px"></div> pieChart가 적용되는 위치
+	   
 	
-	<div id="barchart_values" style="width: 900px; height: 300px;"></div>
-	   -->
 	<div id="chart_div" style="width: 900px; height: 300px;  padding-left: 500px;"></div>
 	  
+	<!-- 원형차트 -->
+    <div id="piechart" style="width: 900px; height: 500px;"></div>
 	  
 	<jsp:include page="/WEB-INF/views/footer.jsp"/>
 	

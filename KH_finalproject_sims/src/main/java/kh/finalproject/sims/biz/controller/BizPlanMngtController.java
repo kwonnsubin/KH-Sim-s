@@ -33,11 +33,11 @@ public class BizPlanMngtController {
 	//search 요금제 목록
 	@GetMapping("/planList")
 	public ModelAndView searchBizPlanList(ModelAndView mv
+			, Principal principal
 			,@RequestParam(required = false) String keyword
 			, HttpServletRequest request
 			, HttpServletResponse response
 			) {
-		Principal principal = request.getUserPrincipal();
 		String bizid = principal.getName();
 		System.out.println("통신사아이디 : " + bizid);
 		
@@ -112,9 +112,10 @@ public class BizPlanMngtController {
 
 	// 통신사 요금제 등록
 	@GetMapping("/registerPlan")
-	public ModelAndView registerBizPlan(ModelAndView mv, HttpServletRequest request) {
+	public ModelAndView registerBizPlan(ModelAndView mv
+			, Principal principal
+			) {
 
-		Principal principal = request.getUserPrincipal();
 		String bizid = principal.getName();
 		System.out.println("통신사아이디 : " + bizid);
 
@@ -127,7 +128,9 @@ public class BizPlanMngtController {
 	}
 
 	@PostMapping("/registerPlan")
-	public String registerBizPlan(ModelAndView mv, @ModelAttribute BizPlanMngtVo vo) {
+	public String registerBizPlan(ModelAndView mv
+			, @ModelAttribute BizPlanMngtVo vo
+			) {
 		service.registerBizPlan(vo);
 
 		return "redirect:/biz/planList";

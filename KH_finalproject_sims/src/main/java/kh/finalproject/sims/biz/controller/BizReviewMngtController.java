@@ -29,10 +29,10 @@ public class BizReviewMngtController {
 	//자사 리뷰 리스트
 	@GetMapping("reviewList")
 	public ModelAndView selectBizReviewList(ModelAndView mv
+			, Principal principal
 			, HttpServletRequest request
 			, HttpServletResponse response
 			) {
-		Principal principal =request.getUserPrincipal();
 		String bizid = principal.getName();
 		System.out.println("통신사 아이디 :"+bizid);
 		

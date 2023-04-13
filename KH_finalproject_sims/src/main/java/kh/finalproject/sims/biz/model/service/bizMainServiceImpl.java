@@ -1,3 +1,4 @@
+
 package kh.finalproject.sims.biz.model.service;
 
 import java.util.List;
@@ -23,6 +24,11 @@ public class bizMainServiceImpl implements BizMainService{
 	@Override
 	public List<BizMainVo> selectTotalApplyByPlan(String bizid) {
 		return dao.selectTotalApplyByPlan(bizid);
+	}
+
+	@Override
+	public List<BizMainVo> selectTopPlanAgeRatio(String bizid) {
+		return dao.selectTopPlanAgeRatio(bizid);
 	}
 
 }

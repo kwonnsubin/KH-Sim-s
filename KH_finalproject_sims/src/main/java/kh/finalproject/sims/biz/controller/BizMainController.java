@@ -12,6 +12,8 @@ import java.util.List;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.json.JSONArray;
+import org.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -21,6 +23,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import com.google.gson.Gson;
 import com.google.gson.JsonArray;
 import com.google.gson.JsonIOException;
@@ -96,19 +100,55 @@ public class BizMainController {
 		return json;	
 	}
 	
-	/*
-	 * //자사 요금제별 총 가입자 수
-	 * 
-	 * @PostMapping("/main")
-	 * 
-	 * @ResponseBody public String chart2(Model model , Principal principal ,
-	 * HttpServletResponse response ) {
-	 * 
-	 * String bizid = principal.getName(); System.out.println("통신사아이디 : "+bizid);
-	 * 
-	 * List<BizMainVo> totalList = service.selectTotalApplyByPlan(bizid);
-	 * System.out.println("totalList :"+totalList);
-	 * 
-	 * return null; }
-	 */
+	
+	//자사 요금제별 총 가입자 수
+	 @PostMapping("/test")
+	 @ResponseBody 
+	 public String chart2(Principal principal 
+			) throws JsonProcessingException {
+	 
+	 String bizid = principal.getName(); 
+	 System.out.println("통신사아이디 : "+bizid);
+	  
+	 List<BizMainVo> totalList = service.selectTotalApplyByPlan(bizid);
+	 System.out.println("totalList :"+totalList);
+	 
+//	 ObjectMapper objectMapper = new ObjectMapper();
+//	 String json = objectMapper.writeValueAsString(totalList);
+	 
+	 JSONArray jsonArray = new JSONArray();
+	 
+	 for(BizMainVo vo : totalList) {
+		 JSONObject jsonObject = new JSONObject();
+		 jsonObject.put("planName", vo.getPlanName());
+		 jsonObject.put("planApplyCnt", vo.getPlanApplyCnt());
+		 jsonArray.put(jsonObject);
+	 }
+	 
+	 System.out.println("jsonArray : "+jsonArray);
+	  return jsonArray.toString(); 
+
+	 }
+
+	 //가장 인기있는 요금제의 연령대 비율
+	 @PostMapping("/piechart")
+	 @ResponseBody
+	 public String piechart(Principal principal) {
+		 String bizid = principal.getName(); 
+
+		 List<BizMainVo> ageGroupList = service.selectTopPlanAgeRatio(bizid);
+		 System.out.println("ageGroupList : "+ageGroupList);
+		 
+		 JSONArray jsonArray = new JSONArray();
+		 for(BizMainVo vo : ageGroupList) {
+			 JSONObject jsonObject = new JSONObject();
+			 jsonObject.put("ageGroup", vo.getAgeGroup());
+			 jsonObject.put("ageCnt", vo.getAgeCnt());
+			 jsonArray.put(jsonObject);
+		 }
+		 System.out.println("jsonArray : "+jsonArray);
+		 
+		 return jsonArray.toString();
+	 }
+	 
 }
