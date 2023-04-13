@@ -2,13 +2,12 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="bizChart">
 
-	<!-- 오늘 날짜로부터 일주일간 해당 통신사 요금제 가입 수 -->
- 	<select id="selectJoinPlanByDate">
- 	 <![CDATA[ WITH date_range AS (
+	<!-- 최근 일주일간 해당 통신사 요금제 가입 수 -->
+ 	<select id="selectJoinPlanByDate" resultType="kh.finalproject.sims.biz.model.vo.BizChartVo">
+ 	  WITH date_range AS (
 	  SELECT TRUNC(SYSDATE) - LEVEL + 1 AS order_date
 	  FROM DUAL
-	  CONNECT BY LEVEL <= 7
-	  )]]>
+	  CONNECT BY LEVEL<![CDATA[  <= 7  )]]>
 	SELECT date_range.order_date, NVL(order_cnt, 0) AS order_cnt
 	 FROM date_range
 	 LEFT JOIN (
@@ -27,5 +26,15 @@
 		) plan_order_count
 		ON date_range.order_date = plan_order_count.order_date
 		ORDER BY date_range.order_date
+ 	</select>
+ 	
+ 	<!-- 자사 요금제별 총 가입자 수(0 가입자도 출력)  -->
+ 	<select id="selectTotalApplyByPlan" resultType="kh.finalproject.sims.biz.model.vo.BizMainVo">
+ 	SELECT p.plan_name, p.plan_no, COUNT(po.plan_no) AS planApply_cnt
+		FROM plan_table p
+		LEFT JOIN plan_order po ON p.plan_no = po.plan_no
+		WHERE p.biz_name LIKE (SELECT biz_name FROM biz WHERE biz_id = #{bizid})
+		GROUP BY p.plan_no, p.plan_name
+		ORDER BY p.plan_no ASC
  	</select>
 </mapper>

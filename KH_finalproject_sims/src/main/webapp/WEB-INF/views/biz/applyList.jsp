@@ -82,7 +82,7 @@
 	  <label class="form-check-label" for="exampleRadios4">
 	    승인보류
 	  </label>
-	</div>
+	</div>     
 	<!-- 분류 {e} -->
 		
 		<button name="btnSearch" id="btnSearch">검색</button>

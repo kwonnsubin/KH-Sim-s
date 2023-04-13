@@ -33,7 +33,7 @@
    <script type="text/javascript" 
     src="https://www.gstatic.com/charts/loader.js"></script>
 
-
+<!-- 
     <script type="text/javascript">
       //google에서 기본 차트 관련된 package(모듈)명
       //chart 종류에 따라서 google 개발 문서 참조 필수
@@ -71,16 +71,8 @@
     google.charts.load("current", {packages:["corechart"]});
     google.charts.setOnLoadCallback(drawChart);
     function drawChart() {
-    	/* 
-      var data = google.visualization.arrayToDataTable([
-        ["Element", "Density", { role: "style" } ],
-        ["Copper", 8.94, "#b87333"],
-        ["Silver", 10.49, "silver"],
-        ["Gold", 19.30, "gold"],
-        ["Platinum", 21.45, "color: #e5e4e2"]
-      ]);
- 		*/
- 		
+		
+    	
  		
  		  var data = google.visualization.arrayToDataTable([
  		        ["Element", "Density" ],
@@ -105,18 +97,61 @@
       chart.draw(view, options);
   }
   </script>
+ -->
+
+<!-- 최근 일주일간 해당 통신사 요금제 가입자 열 그래프 -->
+<script type="text/javascript">
+	  google.charts.load('current', {packages: ['corechart']}); // 로드할 패키지를 선택합니다.
+	  google.charts.setOnLoadCallback(drawChart);
+	
+	function drawChart() {
+	    $.ajax({
+	        url: "${pageContext.request.contextPath}/biz/main",
+	        type: "post",
+	        dataType:"json",
+	        success: function(json) {
+	            // JSON 데이터를 받아 처리
+	            //var data = JSON.parse(json); //dataType:"json"라고 명시하면 이렇게 안써도 됨. 
+	            console.log(json);
+	            var chartData = [['일자', '가입수']];
+	            for (var i = 0; i < json.length; i++) {
+	                chartData.push([json[i].date, json[i].orderCnt]);
+	            }  
+	            console.log("차트 데이타 : "+chartData);
+	
+	            var options = {
+	                title: '데이터 그래프',
+	                width: 600,
+	                height: 400,              
+	                legend: { position: 'none' }
+	            };
+	
+	            var chart = new google.visualization.ColumnChart(document.getElementById('chart_div')); // Column Chart를 생성합니다.
+	            chart.draw(google.visualization.arrayToDataTable(chartData), options); // 차트를 그립니다.
+	        },
+	        error : function(request,status,error) {
+	        	console.log("code:"+request.status+"\n"+"message:"+request.responseText+"\n"+"error:"+
+	        	error);
+	        }     
+	    });
+	}
+
+  </script>
 
 </head>
 <body>
 <jsp:include page="/WEB-INF/views/header.jsp"/>
 <jsp:include page="/WEB-INF/views/biz/nav.jsp"/>
 	
-	차트야 나와라 왜 안나오니..
-	<div id="piechart" style="width: 900px; height: 500px; padding-left: 500px"></div> <!-- pieChart가 적용되는 위치-->
+<!-- 	차트야 나와라 왜 안나오니..
+	<div id="piechart" style="width: 900px; height: 500px; padding-left: 500px"></div> pieChart가 적용되는 위치
 	  
 	  
 	
 	<div id="barchart_values" style="width: 900px; height: 300px;"></div>
+	   -->
+	<div id="chart_div" style="width: 900px; height: 300px;  padding-left: 500px;"></div>
+	  
 	  
 	<jsp:include page="/WEB-INF/views/footer.jsp"/>
 	
