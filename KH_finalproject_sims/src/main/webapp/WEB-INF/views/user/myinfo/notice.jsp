@@ -40,29 +40,27 @@
 		<div class="container-fluid d-flex justify-content-center mt-5 notice-div">
 	       	<div class="row notice-row">
 	       		<div class="col-12">
-	       			<div class="mb-5">
+	       			<div class="mb-3">
 	       				<h4>공지사항</h4>
 	       			</div>
 	       			<div>
 	       				<c:forEach items="${ntcList}" var="ntc">
 		       				<div class="row notice-list">
 		       					<div class="col-2 text-center align-self-center">
-			       					<span class="material-symbols-outlined">campaign</span>
+			       					<span class="material-symbols-outlined pt-2">campaign</span>
 		       					</div>
 
-		       					<div class="col-8 align-self-center">
+		       					<div class="col-8 align-self-center pt-2">
 			       					<p class="ntc-title">${ntc.ntcTitle}</p>
 			       					<c:if test="${empty ntc.ntcRedate}">
-										<fmt:formatDate value="${dateObj}" pattern="yyyy-MM-dd hh:mm:ss" />
-			       						<p class="ntc-date">${ntcDate}</p>
+			       						<p class="ntc-date"><fmt:formatDate value="${ntc.ntcDate}" pattern="yyyy.MM.dd hh:mm:ss"/></p>
 			       					</c:if>
 			       					<c:if test="${not empty ntc.ntcRedate}">
-										<fmt:formatDate value="${dateObj}" pattern="yyyy-MM-dd hh:mm:ss" />
-			       						<p class="ntc-date">${ntcRedate}</p>
+			       						<p class="ntc-date"><fmt:formatDate value="${ntc.ntcDate}" pattern="yyyy.MM.dd hh:mm:ss"/></p>
 			       					</c:if>
 		       					</div>
 		       					<div class="col-2 text-center align-self-center">
-			       					<span class="material-symbols-outlined">chevron_right</span>
+			       					<span class="material-symbols-outlined pt-2">chevron_right</span>
 		       					</div>
 		       				</div>
 	       				</c:forEach>
