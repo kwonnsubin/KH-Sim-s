@@ -10,6 +10,17 @@
 		</layout>
 	</appender>
 	
+	<!-- 로그파일 저장 -->
+	<appender name="download" class="org.apache.log4j.DailyRollingFileAppender">
+		<param name="file" value="./logs/file/logfile.log"/>
+		<param name="Append" value="true"/>
+        <param name="dataPattern" value=".yyyy-MM-dd"/>
+        <layout class="org.apache.log4j.PatternLayout">
+            <param name="ConversionPattern" value="[%d{yyyy-MM-dd HH:mm:ss}] %-5p: %F:%L - %m%n" />
+        </layout>
+	</appender>
+	
+	
 	<!-- Application Loggers -->
 	<logger name="kh.finalproject.sims">
 		<level value="info" />
@@ -61,6 +72,8 @@
 	<root>
 		<priority value="info" />
 		<appender-ref ref="console" />
+		<!-- 파일 로그 추가 -->
+        <appender-ref ref="download"/>
 	</root>
 	
 </log4j:configuration>
