@@ -6,8 +6,8 @@ import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
-import kh.finalproject.sims.biz.model.vo.BizInfoMngtVo;
 import kh.finalproject.sims.user.model.vo.BizVo;
+import kh.finalproject.sims.user.model.vo.UserReviewVo;
 
 @Repository
 public class UserBizDao {
@@ -19,8 +19,16 @@ public class UserBizDao {
 		return session.selectOne("usbiz.getBizByName", bizName);
 	}
 
-	public List<String> getNetByBizId(String bizId) {
-		return session.selectList("usbiz.getNetByBizId", bizId);
+	public List<String> getNetListByBizId(String bizId) {
+		return session.selectList("usbiz.getNetListByBizId", bizId);
+	}
+
+	public int getCountReviewByBizId(String bizId) {
+		return session.selectOne("usbiz.getCountReviewByBizId", bizId);
+	}
+
+	public List<UserReviewVo> getReviewListById(String bizId) {
+		return session.selectList("usbiz.getReviewListById", bizId);
 	}
 	
 }

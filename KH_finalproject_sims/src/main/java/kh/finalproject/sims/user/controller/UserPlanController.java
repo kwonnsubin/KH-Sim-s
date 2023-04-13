@@ -30,15 +30,15 @@ public class UserPlanController {
 			, @PathVariable int planNo
 			) {
 		PlanVo pvo = planService.getPlanByNo(planNo);
-		mv.addObject("plan", pvo);
-		
 		BizVo bvo = bizService.getBizByName(pvo.getBizName());
+		List<UserReviewVo> reviewList = bizService.getReviewListById(bvo.getBizId());
+		
+		mv.addObject("bizNets", bizService.getNetListByBizId(bvo.getBizId()));
+		mv.addObject("cntReview", bizService.getCountReviewByBizId(bvo.getBizId()));
+		
+		mv.addObject("plan", pvo);
 		mv.addObject("biz", bvo);
-		
-		List<String> bizNets = bizService.getNetByBizId(bvo.getBizId());
-		mv.addObject("bizNets", bizNets);
-		
-		mv.addObject("reviewList", bvo.getReviewList());
+		mv.addObject("reviewList", reviewList);
 		
 		mv.setViewName("user/plan/detail");
 		return mv;

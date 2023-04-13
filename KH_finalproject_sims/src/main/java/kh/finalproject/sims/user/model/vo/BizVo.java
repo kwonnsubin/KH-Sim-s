@@ -35,12 +35,12 @@ public class BizVo {
 	private String bizBeginTime;
 	private String bizEndTime;
 	private String bizClosedDay;
-	private int bizReviewStar;
+	private float bizReviewStar;
 	private String phoneOpTime;
 	private String phoneOpTimeUsim;
 	private String network;
 	private Date writeDate;
 	private Date updateDate;
 	private String logoRenameFilename;
-	private List<UserReviewVo> reviewList;
+//	private List<UserReviewVo> reviewList;
 }

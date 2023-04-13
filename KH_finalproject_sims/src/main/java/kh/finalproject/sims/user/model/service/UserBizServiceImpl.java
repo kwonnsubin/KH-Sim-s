@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 
 import kh.finalproject.sims.user.model.dao.UserBizDao;
 import kh.finalproject.sims.user.model.vo.BizVo;
+import kh.finalproject.sims.user.model.vo.UserReviewVo;
 
 @Service
 public class UserBizServiceImpl implements UserBizService {
@@ -20,8 +21,18 @@ public class UserBizServiceImpl implements UserBizService {
 	}
 
 	@Override
-	public List<String> getNetByBizId(String bizId) {
-		return dao.getNetByBizId(bizId);
+	public List<String> getNetListByBizId(String bizId) {
+		return dao.getNetListByBizId(bizId);
+	}
+
+	@Override
+	public int getCountReviewByBizId(String bizId) {
+		return dao.getCountReviewByBizId(bizId);
+	}
+
+	@Override
+	public List<UserReviewVo> getReviewListById(String bizId) {
+		return dao.getReviewListById(bizId);
 	}
 
 }

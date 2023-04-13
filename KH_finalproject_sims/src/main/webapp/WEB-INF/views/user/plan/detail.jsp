@@ -114,20 +114,20 @@
 			
 			<!-- 통신사 간략 -->
 			<div class="mt-5 card">
-				<div class="row card-body">
-					<div class="col-1">
-						<a href="#" class="logo"> <!-- 통신사 페이지 만들어서 연결 -->
-							<img src="${cpath}/resources/img/${biz.logoRenameFilename}" alt="${plan.bizName}" style="max-width: 70px;">
-						</a>
-					</div>
-					<div class="col-6">
-						<a href="#" class="logo"> <!-- 통신사 페이지 만들어서 연결 -->
-							${plan.bizName}>
-						</a>
-					</div>
-				</div>
 				<div class="card-body">
-					<table>
+					<div class="row">
+						<div class="col-2">
+							<a href="#" class="logo"> <!-- 통신사 페이지 만들어서 연결 -->
+								<img src="${cpath}/resources/img/${biz.logoRenameFilename}" alt="${plan.bizName}" style="max-height: 50px;">
+							</a>
+						</div>
+						<div class="col-6">
+							<a href="#"> <!-- 통신사 페이지 만들어서 연결 -->
+								${plan.bizName}>
+							</a>
+						</div>
+					</div>
+					<table class="mt-2">
 						<tr>
 							<td width="250px">개통 소요 시간</td>
 							<td>평균 ${biz.phoneOpTime}일</td>
@@ -152,11 +152,25 @@
 			<hr>
 			
 			<!-- 통신사 리뷰 -->
-			<div class="">
+			<div class="row">
 				<h5>통신사 리뷰</h5>
-				<p>${reviewList }</p>
+				<div class="col-1">
+					<img alt="star" src="">
+				</div>
+				<div class="col-auto">
+					<h4>${biz.bizReviewStar}</h4>
+				</div>
+				<div class="col-auto">
+					<a href="#">${cntReview}개></a>
+				</div>
 			</div>
-			
+			<div class="card-group">
+				<c:forEach items="${reviewList}" var="review">
+					<div class="card">
+						${review }
+					</div>
+				</c:forEach>
+			</div>
 			
 		</div>
 		
