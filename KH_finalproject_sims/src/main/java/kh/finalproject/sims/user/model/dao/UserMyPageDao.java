@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import kh.finalproject.sims.admin.model.vo.AdminNoticeMngtVo;
+import kh.finalproject.sims.biz.model.vo.BizApplyVo;
 import kh.finalproject.sims.user.model.vo.MemberVo;
 import kh.finalproject.sims.user.model.vo.UserMemberVo;
 
@@ -38,6 +39,10 @@ public class UserMyPageDao {
 
 	public AdminNoticeMngtVo selectNoticeDetail(int number) {
 		return sqlSession.selectOne("adminNotice.selectMypageNoticeDetail", number);
+	}
+
+	public List<BizApplyVo> selectReviewList(String userId) {
+		return sqlSession.selectList("apply.selectReviewList", userId);
 	}
 
 }

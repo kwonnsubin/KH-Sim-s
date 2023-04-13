@@ -32,6 +32,9 @@
 }
 
 textarea {
+	width: 100%;
+	height: auto;
+	overflow: hidden;
 	resize: none;
 	border: none;
 	cursor: default;

@@ -282,4 +282,11 @@ WHERE rn between #{start} and #{end}
 			
 	</select >
 	
+	<!-- 사용자 리뷰 페이지에서 사용 -->
+	
+	<!-- 가입된 리스트 -->
+	<select id="selectReviewList" parameterType="string" resultType="poVo">
+		select * from plan_order where user_id=#{userId} and order_status=2
+	</select>
+	
 </mapper>

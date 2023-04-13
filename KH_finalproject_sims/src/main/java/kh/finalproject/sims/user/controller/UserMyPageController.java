@@ -1,5 +1,6 @@
 package kh.finalproject.sims.user.controller;
 
+import java.security.Principal;
 import java.util.HashMap;
 import java.util.List;
 
@@ -17,6 +18,7 @@ import org.springframework.web.servlet.ModelAndView;
 import com.google.gson.Gson;
 
 import kh.finalproject.sims.admin.model.vo.AdminNoticeMngtVo;
+import kh.finalproject.sims.biz.model.vo.BizApplyVo;
 import kh.finalproject.sims.user.model.service.UserMyPageService;
 import kh.finalproject.sims.user.model.vo.MemberVo;
 import kh.finalproject.sims.user.model.vo.UserMemberVo;
@@ -75,6 +77,7 @@ public class UserMyPageController {
 		return mv;
 	}
 	
+	// 공지사항
 	@GetMapping("/noticelist")
 	public ModelAndView selectNoticeList(ModelAndView mv) {
 		
@@ -86,12 +89,25 @@ public class UserMyPageController {
 		return mv;
 	}
 	
+	// 공지사항 글
 	@GetMapping("/notice/{number}")
 	public ModelAndView selectNoticeDetail(ModelAndView mv, @PathVariable int number) {
 		
 		AdminNoticeMngtVo ntc = service.selectNoticeDetail(number);
 		mv.addObject("ntc", ntc);
 		mv.setViewName("user/myinfo/notice");
+		
+		return mv;
+	}
+	
+	// 가입한 요금제 리뷰
+	@GetMapping("/mypage/order")
+	public ModelAndView selectReviewList(ModelAndView mv, Principal prin) {
+		String userId = prin.getName();
+		List<BizApplyVo> poList = service.selectReviewList(userId);
+		
+		mv.addObject("poList", poList);
+		mv.setViewName("user/myinfo/order");
 		
 		return mv;
 	}

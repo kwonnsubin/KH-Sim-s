@@ -29,7 +29,7 @@
     <link rel="stylesheet" href="<%= request.getContextPath() %>/resources/chain/assets/css/templatemo-chain-app-dev.css">
     <link rel="stylesheet" href="<%= request.getContextPath() %>/resources/chain/assets/css/animated.css">
     <link rel="stylesheet" href="<%= request.getContextPath() %>/resources/chain/assets/css/owl.css">
-    <link rel="stylesheet" href="<%= request.getContextPath() %>/resources/css/user/notice.css"/>
+    <link rel="stylesheet" href="<%= request.getContextPath() %>/resources/css/user/order.css"/>
 
 </head>
 <body>
@@ -37,24 +37,19 @@
 	<jsp:include page="../../header.jsp"/>
 	
 	<section>
-		<div class="container-fluid d-flex justify-content-center mt-5 notice-div">
-	       	<div class="row notice-row">
-	       		<div class="col-12 text-start">
-	       			<div class="mb-4">
-	       				<p class="ntc-title">${ntc.ntcTitle}</p>
-	       			</div>
-	       			<div class="notice-content p-3">
-		       			<div class="mb-3">
-	       					<c:if test="${empty ntc.ntcRedate}">
-	       						<p class="ntc-date"><fmt:formatDate value="${ntc.ntcDate}" pattern="yyyy.MM.dd hh:mm:ss"/></p>
-	       					</c:if>
-	       					<c:if test="${not empty ntc.ntcRedate}">
-	       						<p class="ntc-date"><fmt:formatDate value="${ntc.ntcDate}" pattern="yyyy.MM.dd hh:mm:ss"/></p>
-	       					</c:if>
-	   					</div>
-	   					<div>
-	  						<textarea readonly>${ntc.ntcContent}</textarea>
-	  					</div>
+		<div class="container-fluid d-flex justify-content-center mt-5 review-div">
+	       	<div class="row review-row">
+	       		<div class="col-12">
+	       			<div class="row text-div">
+	       				<div class="col-3 text-center">
+		       				<p>리뷰 작성</p>
+	       				</div>
+	       				<div class="col-1" style="display: flex; justify-content : center;">
+		       				<div class="vr" style="background-color:black; height:28px;"></div>
+	       				</div>
+	       				<div class="col-3 text-center">
+	       					<p>작성한 리뷰</p>
+	       				</div>
 	       			</div>
 	       		</div>
 	       	</div>
@@ -71,13 +66,7 @@
 	<script src="<%= request.getContextPath() %>/resources/chain/assets/js/imagesloaded.js"></script>
 	<script src="<%= request.getContextPath() %>/resources/chain/assets/js/popup.js"></script>
 	<script src="<%= request.getContextPath() %>/resources/chain/assets/js/custom.js"></script>
-	<script src="<%= request.getContextPath() %>/resources/js/user/notice.js"></script>
-	
-	<script>
-		$(document).ready(function() {
-			$("textarea").height(1).height( $("textarea").prop('scrollHeight')+12 );
-		});
-	</script>
+	<script src="<%= request.getContextPath() %>/resources/js/user/order.js"></script>
   
 </body>
 </html>

@@ -10,7 +10,7 @@
 			</div>
 			<div class="col-lg-2">
 				<div class="footer-widget">
-					<p><a href="#">공지사항</a></p>
+					<p><a href="<%=request.getContextPath()%>/noticelist">공지사항</a></p>
 				</div>
 			</div>
 			<div class="col-lg-5">
