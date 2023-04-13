@@ -54,6 +54,8 @@ public class AdminBizMngtController {
 		AdminBizMngtVo applyDetail = service.selectApplyDetail(bizId);
 		mv.addObject("applyDetail", applyDetail);
 		mv.addObject("cmd", "read");
+		String imagePath ="/resources/img/"+vo.getLogoRenameFileName();
+		mv.addObject("imagePath",imagePath);
 		return mv;
 	}
 
@@ -94,18 +96,6 @@ public class AdminBizMngtController {
 		mv.addObject("cmd", "read");
 		mv.setViewName("admin/biz/bizDetail");
 		return mv;
-	}
-
-	// 통신사 탈퇴 리스트로 이동
-	@RequestMapping(value = "/withdrawalList", method = { RequestMethod.GET, RequestMethod.POST })
-	public ModelAndView selectWithdrawalList(ModelAndView mv, AdminBizMngtVo vo) throws Exception {
-		mv.addObject("withdrawalList", service.selectWithdrawalList(vo));
-		mv.addObject("searchOption", vo.getSearchOption());
-		mv.addObject("searchBox", vo.getSearchBox());
-		mv.setViewName("admin/biz/withdrawalList");
-		mv.addObject("cmd", "read");
-		return mv;
-
 	}
 
 	// 통신사 탈퇴 상세 정보로 이동

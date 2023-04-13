@@ -26,7 +26,8 @@
 												</div>
 												<ul class="breadcrumb">
 													<li class="breadcrumb-item"><a href="<%=request.getContextPath()%>/admin/dashboard"><i class="feather icon-home"></i></a></li>
-													<li class="breadcrumb-item"><a href=""><i class="<%=request.getContextPath()%>/admin/bizPlanApplyList"></i>통신사 관리</a></li>
+													<li class="breadcrumb-item"><a href=""><i class="<%=request.getContextPath()%>/admin/applyList"></i>통신사 관리</a></li>
+													<li class="breadcrumb-item"><a href=""><i class="<%=request.getContextPath()%>/admin/bizPlanApplyList"></i>통신사 요금제 개통 신청 정보</a></li>
 												</ul>
 											</div>
 										</div>

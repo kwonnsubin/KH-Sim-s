@@ -159,6 +159,8 @@
 		    , (SELECT user_address FROM user_table WHERE user_id = A.user_id) as userAddress
 		    , (SELECT user_email FROM user_table WHERE user_id = A.user_id) as userEmail
 		    , (SELECT plan_name FROM plan_table WHERE plan_no = A.plan_no) as planName
+		    , (SELECT net_name FROM network_table WHERE net_no = A.net_no) as net_name
+		    , (SELECT gen_name FROM tel_gen_table WHERE gen_no = A.gen_no) as genName
 		   
 		 FROM
 		    plan_order A

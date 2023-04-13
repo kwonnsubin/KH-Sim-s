@@ -33,9 +33,9 @@
 											<ul class="breadcrumb">
 												<li class="breadcrumb-item"><a href="<%=request.getContextPath()%>/admin/dashboard"><i class="feather icon-home"></i></a></li>
 												<li class="breadcrumb-item"><a href="<%=request.getContextPath()%>/admin/applyList"><i class="breadcrumb-item"></i>통신사 관리</a></li>
-												<li class="breadcrumb-item"><a href=""><i class="breadcrumb-item"></i>통신사 관리 
+												<li class="breadcrumb-item"><a href=""><i class="breadcrumb-item"></i>통신사 
 													<c:choose>
-														<c:when test="${cmd eq 'read' }"> 상세</c:when>
+														<c:when test="${cmd eq 'read' }"> 개통신청 상세 정보</c:when>
 														<c:otherwise> 수정</c:otherwise>
 													</c:choose>
 												</a></li>
@@ -181,6 +181,34 @@
 		                                        <label for="bankNumber" class="col-sm-1 col-form-label text-center">계좌번호</label>
 		                                        <div class="col-sm-3">
 		                                            <input type="text" class="form-control"  name="bankNumber" <c:if test="${cmd eq 'read' }">readonly</c:if> value="${bizPlanApplyDetail.bankNumber}">
+		                                        </div>
+		                                    </div>
+		                                    <div class="form-group row">
+		                                        <label for="netName" class="col-sm-1 col-form-label text-center">통신망</label>
+		                                        <div class="col-sm-3">
+		                                            <input type="text" class="form-control"  name="netName" <c:if test="${cmd eq 'read' }">readonly</c:if> value="${bizPlanApplyDetail.netName}">
+		                                        </div>
+		                                        <label for="genName" class="col-sm-1 col-form-label text-center">이동통신세대</label>
+		                                        <div class="col-sm-3">
+		                                            <input type="text" class="form-control"  name="genName" <c:if test="${cmd eq 'read' }">readonly</c:if> value="${bizPlanApplyDetail.genName}">
+		                                        </div>
+		                                        <label for="orderPrice" class="col-sm-1 col-form-label text-center">가입 기본료</label>
+		                                        <div class="col-sm-3">
+		                                            <input type="text" class="form-control"  name="orderPrice" <c:if test="${cmd eq 'read' }">readonly</c:if> value="${bizPlanApplyDetail.orderPrice}">
+		                                        </div>
+		                                    </div>
+		                                    <div class="form-group row">
+		                                        <label for="orderData" class="col-sm-1 col-form-label text-center">가입 데이터</label>
+		                                        <div class="col-sm-3">
+		                                            <input type="text" class="form-control"  name="orderData" <c:if test="${cmd eq 'read' }">readonly</c:if> value="${bizPlanApplyDetail.orderData}">
+		                                        </div>
+		                                        <label for="orderVoice" class="col-sm-1 col-form-label text-center">가입 음성</label>
+		                                        <div class="col-sm-3">
+		                                            <input type="text" class="form-control"  name="orderVoice" <c:if test="${cmd eq 'read' }">readonly</c:if> value="${bizPlanApplyDetail.orderVoice}">
+		                                        </div>
+		                                        <label for="orderMessage" class="col-sm-1 col-form-label text-center">가입 문자</label>
+		                                        <div class="col-sm-3">
+		                                            <input type="text" class="form-control"  name="orderMessage" <c:if test="${cmd eq 'read' }">readonly</c:if> value="${bizPlanApplyDetail.orderMessage}">
 		                                        </div>
 		                                    </div>
 	                            		</div>	

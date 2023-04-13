@@ -2,7 +2,7 @@
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>    	
-    
+<c:set var="path" value="${pageContext.request.contextPath}"/>    
 <!DOCTYPE html>
 <html>
 <head>
@@ -33,9 +33,9 @@
 											<ul class="breadcrumb">
 												<li class="breadcrumb-item"><a href="<%=request.getContextPath()%>/admin/dashboard"><i class="feather icon-home"></i></a></li>
 												<li class="breadcrumb-item"><a href="<%=request.getContextPath()%>/admin/applyList"><i class="breadcrumb-item"></i>통신사 관리</a></li>
-												<li class="breadcrumb-item"><a href=""><i class="breadcrumb-item"></i>통신사 관리 
+												<li class="breadcrumb-item"><a href=""><i class="breadcrumb-item"></i>통신사 
 													<c:choose>
-														<c:when test="${cmd eq 'read' }"> 상세</c:when>
+														<c:when test="${cmd eq 'read' }"> 정보</c:when>
 														<c:otherwise> 수정</c:otherwise>
 													</c:choose>
 												</a></li>
@@ -67,6 +67,9 @@
 	                    				</div>
 	                    				<div class="card-body">
 	                    					<!-- 로고있어야하넹 로고자리입니다-->
+	                    					<img src="${path}${imagePath}"/>
+		                                    <div class="form-group row">
+		                                    </div>
 		                                    <div class="form-group row">
 		                                        <label for="bizName" class="col-sm-1 col-form-label text-center">법인명</label>
 		                                        <div class="col-sm-5">
@@ -106,20 +109,28 @@
 		                                        <label for="bizHp" class="col-sm-1 col-form-label text-center">홈페이지</label>
 		                                        <div class="col-sm-5">
 		                                            <input type="text" class="form-control"  name="bizHp" <c:if test="${cmd eq 'read' }">readonly</c:if> value="${applyDetail.bizHp}">
+		                                            <a href="${applyDetail.bizHp }"></a>
 		                                        </div>
 		                                    </div>
 		                           			 <div class="form-group row">
 		                                        <label for="phoneOpTime" class="col-sm-1 col-form-label text-center">개통 소요시간</label>
 		                                        <div class="col-sm-5" >
-		                                            <input type="text" class="form-control"  name="phoneOpTime" <c:if test="${cmd eq 'read' }">readonly</c:if> value="${applyDetail.phoneOpTime}">
+		                                            <input type="text" class="form-control"  name="phoneOpTime" <c:if test="${cmd eq 'read' }">readonly</c:if> value="평균 ${applyDetail.phoneOpTime}일">
 		                                        </div>
-		                                         <label for="bizTime" class="col-sm-1 col-form-label text-center">영업시간</label>
+		                                         <label for="phoneOpTimeUsim" class="col-sm-1 col-form-label text-center">개통소요시간(유심보유시)</label>
 		                                        <div class="col-sm-5">
-		                                            <input type="hidden" class="form-control"  name="bizBeginTime" value="${applyDetail.bizBeginTime}">
-		                                            <input type="hidden" class="form-control"  name="bizEndTime" value="${applyDetail.bizEndTime}">
-		                                            <input type="text" class="form-control"  name="bizTime" <c:if test="${cmd eq 'read' }">readonly</c:if> value="${applyDetail.bizBeginTime} ~ ${applyDetail.bizEndTime}">
+		                                            <input type="text" class="form-control"  name="phoneOpTimeUsim" <c:if test="${cmd eq 'read' }">readonly</c:if> value="평균 ${applyDetail.phoneOpTimeUsim}일">
 		                                        </div>
-		                                        
+		                                    </div>
+		                           			 <div class="form-group row">
+		                                        <label for="bizCardPayDate" class="col-sm-1 col-form-label text-center">카드 결제일</label>
+		                                        <div class="col-sm-5" >
+		                                            <input type="text" class="form-control"  name="bizCardPayDate" <c:if test="${cmd eq 'read' }">readonly</c:if> value="${applyDetail.bizCardPayDate}일">
+		                                        </div>
+		                                         <label for="bizAccPayDate" class="col-sm-1 col-form-label text-center">계좌이체 결제일</label>
+		                                        <div class="col-sm-5">
+		                                           <input type="text" class="form-control"  name="bizAccPayDate" <c:if test="${cmd eq 'read' }">readonly</c:if> value="${applyDetail.bizAccPayDate}일">
+		                                        </div>
 		                                    </div>
 		                                    <div class="form-group row">
 		                                        <label for="bizClosedDay" class="col-sm-1 col-form-label text-center">휴무일</label>
@@ -152,12 +163,15 @@
 		                                        </div>
 		                                    </div>
 		                                    <div class="form-group row">
+		                                        <label for="bizZipCode" class="col-sm-1 col-form-label text-center">우편번호</label>
+		                                        <div class="col-sm-5">
+		                                            <input type="text" class="form-control"  name="bizZipCode" <c:if test="${cmd eq 'read' }">readonly</c:if> value="${applyDetail.bizZipCode}">
+		                                        </div>
 		                                        <label for="bizLocation" class="col-sm-1 col-form-label text-center">주소</label>
-		                                        <div class="col-sm-11">
+		                                        <div class="col-sm-5">
 		                                            <input type="text" class="form-control"  name="bizLocation" <c:if test="${cmd eq 'read' }">readonly</c:if> value="${applyDetail.bizLocation}">
 		                                        </div>
 		                                    </div>
-		                                    
 		                                    <div class="card">
 											<div class="card-body table-border-style">
 												<div class="table-responsive">
