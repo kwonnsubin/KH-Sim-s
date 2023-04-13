@@ -1,6 +1,7 @@
 package kh.finalproject.sims.user.model.vo;
 
 import java.sql.Date;
+import java.util.List;
 
 import org.springframework.stereotype.Component;
 
@@ -20,7 +21,7 @@ public class BizVo {
 
 	private String bizId;
 	private String bizName;
-	private String bizSSn;
+	private String bizSsn;
 	private String bizCrn;
 	private String bizEmail;
 	private String bizPhone;
@@ -41,4 +42,5 @@ public class BizVo {
 	private Date writeDate;
 	private Date updateDate;
 	private String logoRenameFilename;
+	private List<UserReviewVo> reviewList;
 }

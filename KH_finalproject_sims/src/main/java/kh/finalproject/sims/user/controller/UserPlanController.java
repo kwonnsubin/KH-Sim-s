@@ -13,6 +13,7 @@ import kh.finalproject.sims.user.model.service.UserBizService;
 import kh.finalproject.sims.user.model.service.UserPlanService;
 import kh.finalproject.sims.user.model.vo.BizVo;
 import kh.finalproject.sims.user.model.vo.PlanVo;
+import kh.finalproject.sims.user.model.vo.UserReviewVo;
 
 @Controller
 @RequestMapping("/plan")
@@ -36,6 +37,8 @@ public class UserPlanController {
 		
 		List<String> bizNets = bizService.getNetByBizId(bvo.getBizId());
 		mv.addObject("bizNets", bizNets);
+		
+		mv.addObject("reviewList", bvo.getReviewList());
 		
 		mv.setViewName("user/plan/detail");
 		return mv;
