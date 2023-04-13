@@ -1,0 +1,14 @@
+@charset "UTF-8";
+
+.review-div {
+	width: 80%;
+}
+
+.review-row {
+	width: 60%;
+}
+
+.text-div p {
+	font-size: 16px;
+	color: black;
+}

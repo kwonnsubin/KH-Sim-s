@@ -44,7 +44,7 @@
 	        				<span class="material-symbols-outlined mb-2">comment</span>
 	        				<p>문의게시판</p>
 	        			</div>
-	        			<div class="col pointer">
+	        			<div class="col notice-div pointer">
 	        				<span class="material-symbols-outlined mb-2">campaign</span>
 	        				<p>공지사항</p>
 	        			</div>

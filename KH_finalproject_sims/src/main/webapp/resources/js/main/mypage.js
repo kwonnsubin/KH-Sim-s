@@ -15,3 +15,8 @@ $(".myinfo-div").on("click", function() {
 $(".faqDiv").on("click", function() {
 	location.href= contextPath + "/faq/"
 });
+
+$(".notice-div").on("click", function() {
+	location.href= contextPath + "/noticelist"
+});
+
