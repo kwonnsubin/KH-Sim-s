@@ -29,7 +29,7 @@
     <link rel="stylesheet" href="<%= request.getContextPath() %>/resources/chain/assets/css/templatemo-chain-app-dev.css">
     <link rel="stylesheet" href="<%= request.getContextPath() %>/resources/chain/assets/css/animated.css">
     <link rel="stylesheet" href="<%= request.getContextPath() %>/resources/chain/assets/css/owl.css">
-    <link rel="stylesheet" href="<%= request.getContextPath() %>/resources/css/user/notice.css"/>
+    <link rel="stylesheet" href="<%= request.getContextPath() %>/resources/css/user/noticelist.css"/>
 
 </head>
 <body>
@@ -39,22 +39,32 @@
 	<section>
 		<div class="container-fluid d-flex justify-content-center mt-5 notice-div">
 	       	<div class="row notice-row">
-	       		<div class="col-12 text-start">
+	       		<div class="col-12">
 	       			<div class="mb-4">
-	       				<p class="ntc-title">${ntc.ntcTitle}</p>
+	       				<h4>공지사항</h4>
 	       			</div>
-	       			<div class="notice-content p-3">
-		       			<div class="mb-3">
-	       					<c:if test="${empty ntc.ntcRedate}">
-	       						<p class="ntc-date"><fmt:formatDate value="${ntc.ntcDate}" pattern="yyyy.MM.dd hh:mm:ss"/></p>
-	       					</c:if>
-	       					<c:if test="${not empty ntc.ntcRedate}">
-	       						<p class="ntc-date"><fmt:formatDate value="${ntc.ntcDate}" pattern="yyyy.MM.dd hh:mm:ss"/></p>
-	       					</c:if>
-	   					</div>
-	   					<div>
-	  						<textarea readonly>${ntc.ntcContent}</textarea>
-	  					</div>
+	       			<div class="notice-list-div">
+	       				<c:forEach items="${ntcList}" var="ntc">
+		       				<div class="row notice-list">
+		       					<div class="col-2 text-center align-self-center">
+			       					<span class="material-symbols-outlined pt-2">campaign</span>
+		       					</div>
+
+		       					<div class="col-8 align-self-center pt-2">
+		       						<input type="hidden" value="${ntc.ntcNo}">
+			       					<p class="ntc-title">${ntc.ntcTitle}</p>
+			       					<c:if test="${empty ntc.ntcRedate}">
+			       						<p class="ntc-date"><fmt:formatDate value="${ntc.ntcDate}" pattern="yyyy.MM.dd hh:mm:ss"/></p>
+			       					</c:if>
+			       					<c:if test="${not empty ntc.ntcRedate}">
+			       						<p class="ntc-date"><fmt:formatDate value="${ntc.ntcDate}" pattern="yyyy.MM.dd hh:mm:ss"/></p>
+			       					</c:if>
+		       					</div>
+		       					<div class="col-2 text-center align-self-center">
+			       					<span class="material-symbols-outlined pt-2">chevron_right</span>
+		       					</div>
+		       				</div>
+	       				</c:forEach>
 	       			</div>
 	       		</div>
 	       	</div>
@@ -71,7 +81,7 @@
 	<script src="<%= request.getContextPath() %>/resources/chain/assets/js/imagesloaded.js"></script>
 	<script src="<%= request.getContextPath() %>/resources/chain/assets/js/popup.js"></script>
 	<script src="<%= request.getContextPath() %>/resources/chain/assets/js/custom.js"></script>
-	<script src="<%= request.getContextPath() %>/resources/js/user/notice.js"></script>
+	<script src="<%= request.getContextPath() %>/resources/js/user/noticelist.js"></script>
   
 </body>
 </html>

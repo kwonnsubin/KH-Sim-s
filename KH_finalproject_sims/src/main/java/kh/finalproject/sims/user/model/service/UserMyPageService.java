@@ -19,5 +19,8 @@ public interface UserMyPageService {
 
 	// 공지사항 리스트
 	public List<AdminNoticeMngtVo> selectNoticeList();
+
+	// 공지사항 내용
+	public AdminNoticeMngtVo selectNoticeDetail(int number);
 	
 }

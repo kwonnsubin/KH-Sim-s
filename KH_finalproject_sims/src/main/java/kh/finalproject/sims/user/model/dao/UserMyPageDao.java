@@ -36,4 +36,8 @@ public class UserMyPageDao {
 		return sqlSession.selectList("adminNotice.selectMypageNoticeList");
 	}
 
+	public AdminNoticeMngtVo selectNoticeDetail(int number) {
+		return sqlSession.selectOne("adminNotice.selectMypageNoticeDetail", number);
+	}
+
 }

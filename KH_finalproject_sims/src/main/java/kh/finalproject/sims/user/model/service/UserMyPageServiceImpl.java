@@ -44,5 +44,11 @@ public class UserMyPageServiceImpl implements UserMyPageService {
 	public List<AdminNoticeMngtVo> selectNoticeList() {
 		return dao.selectNoticeList();
 	}
+
+	// 공지사항 내용
+	@Override
+	public AdminNoticeMngtVo selectNoticeDetail(int number) {
+		return dao.selectNoticeDetail(number);
+	}
 	
 }

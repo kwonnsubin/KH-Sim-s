@@ -75,12 +75,22 @@ public class UserMyPageController {
 		return mv;
 	}
 	
-	@GetMapping("/notice")
+	@GetMapping("/noticelist")
 	public ModelAndView selectNoticeList(ModelAndView mv) {
 		
 		List<AdminNoticeMngtVo> ntcList = service.selectNoticeList();
 		mv.addObject("ntcList", ntcList);
 		
+		mv.setViewName("user/myinfo/noticelist");
+		
+		return mv;
+	}
+	
+	@GetMapping("/notice/{number}")
+	public ModelAndView selectNoticeDetail(ModelAndView mv, @PathVariable int number) {
+		
+		AdminNoticeMngtVo ntc = service.selectNoticeDetail(number);
+		mv.addObject("ntc", ntc);
 		mv.setViewName("user/myinfo/notice");
 		
 		return mv;
