@@ -56,6 +56,7 @@
 				</div>
 			</div>
 			<hr>
+			
 			<!-- 통화량, 문자량, 통신망, 통신기술 -->
 			<div class="m-4 py-3 text-sm-center">
 				<div class="row">
@@ -73,11 +74,12 @@
 						<c:if test="${plan.planMessage eq 0}">무제한</c:if>
 						<c:if test="${plan.planMessage ne 0}">${plan.planMessage}건</c:if>
 					</h4>
-					<h4 class="col-3 fw-semibold">${netName}망</h4>
-					<h4 class="col-3 fw-semibold">${genName}</h4>
+					<h4 class="col-3 fw-semibold">${plan.netName}망</h4>
+					<h4 class="col-3 fw-semibold">${plan.genName}</h4>
 				</div>
 			</div>
 			<hr>
+			
 			<!-- 데이터량, 가격 -->
 			<div class="m-4 py-3 row">
 				<div class="col-8">
@@ -148,6 +150,7 @@
 				</div>
 			</div>
 			<hr>
+			
 			<!-- 통신사 리뷰 -->
 			<div class="">
 				<h5>통신사 리뷰</h5>

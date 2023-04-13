@@ -31,5 +31,7 @@ public class PlanVo {
 	private int planMessageOver;
 	private double planDataOver;
 	private Date planDate;
+	private String netName;
+	private String genName;
 	
 }

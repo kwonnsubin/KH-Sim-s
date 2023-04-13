@@ -17,14 +17,4 @@ public class UserPlanServiceImpl implements UserPlanService {
 		return dao.getPlanByNo(planNo);
 	}
 
-	@Override
-	public String getNetNameByNetNo(int netNo) {
-		return dao.getNetNameByNetNo(netNo);
-	}
-
-	@Override
-	public String getGenNameByGenNo(int genNo) {
-		return dao.getGenNameByGenNo(genNo);
-	}
-
 }

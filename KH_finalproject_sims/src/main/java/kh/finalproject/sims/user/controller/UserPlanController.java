@@ -34,12 +34,6 @@ public class UserPlanController {
 		BizVo bvo = bizService.getBizByName(pvo.getBizName());
 		mv.addObject("biz", bvo);
 		
-		String netName = planService.getNetNameByNetNo(pvo.getNetNo());
-		mv.addObject("netName", netName);
-		
-		String genName = planService.getGenNameByGenNo(pvo.getGenNo());
-		mv.addObject("genName", genName);
-		
 		List<String> bizNets = bizService.getNetByBizId(bvo.getBizId());
 		mv.addObject("bizNets", bizNets);
 		

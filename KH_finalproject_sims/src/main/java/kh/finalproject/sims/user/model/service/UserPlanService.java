@@ -6,9 +6,4 @@ public interface UserPlanService {
 
 	public PlanVo getPlanByNo(int planNo);
 
-	public String getNetNameByNetNo(int netNo);
-
-	public String getGenNameByGenNo(int genNo);
-
-
 }

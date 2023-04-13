@@ -16,12 +16,4 @@ public class UserPlanDao {
 		return session.selectOne("plan.getPlanByNo", planNo);
 	}
 
-	public String getNetNameByNetNo(int netNo) {
-		return session.selectOne("plan.getNetNameByNetNo", netNo);
-	}
-
-	public String getGenNameByGenNo(int genNo) {
-		return session.selectOne("plan.getGenNameByGenNo", genNo);
-	}
-
 }

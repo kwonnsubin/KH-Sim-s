@@ -134,14 +134,25 @@
 	</update>
 	
 	<select id="getPlanByNo" resultType="planVo">
-		select * from plan_table where plan_no = #{planNo}
+		select p.plan_no
+		    , p.plan_name
+		    , p.biz_name
+		    , p.plan_price
+		    , p.plan_voice
+		    , p.plan_message
+		    , p.plan_data
+		    , p.plan_voice_over
+		    , p.plan_message_over
+		    , p.plan_data_over
+		    , p.plan_date
+		    , n.net_name
+		    , g.gen_name
+		from plan_table p
+		    inner join network_table n
+		    on (n.net_no = p.net_no)
+		    inner join tel_gen_table g
+		    on (g.gen_no = p.gen_no)
+		where plan_no = #{planNo}
 	</select>
-	
-	<select id="getNetNameByNetNo" resultType="string">
-		select net_name from network_table where net_no = #{netNo}
-	</select>
-	
-	<select id="getGenNameByGenNo" resultType="string">
-		select gen_name from tel_gen_table where gen_no = #{genNo}
-	</select>
+
 </mapper>
