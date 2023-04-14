@@ -9,6 +9,18 @@ hr {
 	opacity: .25
 }
 
+a {
+	color: black;
+	text-decoration: none;
+	outline: none;
+}
+
+a:hover,
+a:active {
+	text-decoration: none;
+	color: black;
+}
+
 .lh-xl {
 	line-height: 3 !important
 }
@@ -46,3 +58,4 @@ textarea {
 	background-color: gray-dark;
 	border-style: none
 }
+
