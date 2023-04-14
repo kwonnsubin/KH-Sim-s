@@ -34,7 +34,7 @@
 </head>
 <body>
 
-	<jsp:include page="../../header.jsp"/>
+	<jsp:include page="/WEB-INF/views/header.jsp"/>
 	<section>
 		<div class="container-fluid d-flex justify-content-center filter-div">
 	       	<div class="row align-self-center border-0 rounded-3">
@@ -598,7 +598,7 @@
 	</section>
 
 	
-	<jsp:include page="../../footer.jsp"/>
+	<jsp:include page="/WEB-INF/views/footer.jsp"/>
 	
   <!-- Scripts -->
   <script src="<%= request.getContextPath() %>/resources/chain/vendor/jquery/jquery.min.js"></script>

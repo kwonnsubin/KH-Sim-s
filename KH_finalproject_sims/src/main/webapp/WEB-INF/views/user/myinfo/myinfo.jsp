@@ -47,7 +47,7 @@
 </head>
 <body>
 
-	<jsp:include page="../../header.jsp"/>
+	<jsp:include page="/WEB-INF/views/header.jsp"/>
 	
 	<section>
 	  <div class="container">
@@ -141,7 +141,7 @@
 	</section>
 	
 	
-	<jsp:include page="../../footer.jsp"/>
+	<jsp:include page="/WEB-INF/views/footer.jsp"/>
 	
   <!-- Scripts -->
   <script src="<%= request.getContextPath() %>/resources/chain/vendor/jquery/jquery.min.js"></script>
