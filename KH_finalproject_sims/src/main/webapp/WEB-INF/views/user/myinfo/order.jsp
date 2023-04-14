@@ -40,7 +40,7 @@
 		<div class="container-fluid d-flex justify-content-center mt-5 review-div">
 	       	<div class="row review-row">
 	       		<div class="col-12">
-	       			<div class="row text-div">
+	       			<div class="row text-div mb-5">
 	       				<div class="col-3 text-center">
 		       				<p>리뷰 작성</p>
 	       				</div>
@@ -51,8 +51,55 @@
 	       					<p>작성한 리뷰</p>
 	       				</div>
 	       			</div>
-	       			<div>
-	       				
+	       			<div class="review-list">
+	       				<c:forEach items="${poList}" var="po">
+	       					<div>
+			       				<div class="row my-3 list-row">
+			       					<div class="col-2 text-center align-self-center">
+			       						<img src="<%=request.getContextPath()%>/resources/img/${po.bizId}.png" style="max-width: 60px; height: 26px;">
+			       					</div>
+			       					<div class="col-7 align-self-center">
+			       						<p class="plan-name-text">
+			       							${po.planName} + 
+			       							<c:if test="${po.planData lt 1000}">
+					    					${po.planData}MB 
+					    					</c:if>
+					    					<c:if test="${po.planData gt 1000}">
+					    					<fmt:formatNumber var="data" type="number" maxFractionDigits="1" value="${po.planData / 1000}" />
+					    					${data}G
+					    					</c:if>
+			       						</p>
+			       						<p>
+			       							<c:if test="${po.netNo eq 1}">KT 망</c:if>
+			       							<c:if test="${po.netNo eq 2}">SKT 망</c:if>
+			       							<c:if test="${po.netNo eq 3}">LGU+ 망</c:if>
+			       							 | 
+			       							<c:if test="${po.genNo eq 1}">5G</c:if>
+			       							<c:if test="${po.genNo eq 2}">LTE</c:if>
+			       							<c:if test="${po.genNo eq 4}">3G</c:if>
+			       						</p>
+			       					</div>
+			       					<div class="col-3 text-center align-self-center button-container">
+			       						<button class="button">
+									        	리뷰 작성
+									        <i class="fa fa-check"></i>
+									    </button>
+			       					</div>
+			       				</div>
+		       					<div class="row">
+		       						<div class="col-10">
+				  						<textarea>${ntc.ntcContent}</textarea>
+		       						</div>
+		       						<div class="col-2">
+		       							<span class="star">
+											★★★★★
+											<span>★★★★★</span>
+											<input type="range" oninput="drawStar(this)" value="1" step="1" min="0" max="10">
+										</span>
+		       						</div>
+			  					</div>
+		       				</div>
+	       				</c:forEach>
 	       			</div>
 	       		</div>
 	       	</div>
