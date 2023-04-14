@@ -29,7 +29,7 @@
     <link rel="stylesheet" href="<%= request.getContextPath() %>/resources/chain/assets/css/templatemo-chain-app-dev.css">
     <link rel="stylesheet" href="<%= request.getContextPath() %>/resources/chain/assets/css/animated.css">
     <link rel="stylesheet" href="<%= request.getContextPath() %>/resources/chain/assets/css/owl.css">
-    <link rel="stylesheet" href="<%= request.getContextPath() %>/resources/css/user/order.css"/>
+    <link rel="stylesheet" href="<%= request.getContextPath() %>/resources/css/user/review.css"/>
 
 </head>
 <body>
@@ -41,25 +41,31 @@
 	       	<div class="row review-row">
 	       		<div class="col-12">
 	       			<div class="row text-div mb-5">
-	       				<div class="col-3 text-center">
-		       				<p>리뷰 작성</p>
+	       				<div class="col-3 text-center write-review">
+		       				<p style="font-weight: bold;">리뷰 작성</p>
 	       				</div>
 	       				<div class="col-1" style="display: flex; justify-content : center;">
 		       				<div class="vr" style="background-color:black; height:28px;"></div>
 	       				</div>
-	       				<div class="col-3 text-center">
+	       				<div class="col-3 text-center written-review">
 	       					<p>작성한 리뷰</p>
 	       				</div>
 	       			</div>
-	       			<div class="review-list">
+	       			<div class="write-review-list">
 	       				<c:forEach items="${poList}" var="po">
 	       					<div>
 			       				<div class="row my-3 list-row">
 			       					<div class="col-2 text-center align-self-center">
+			       						<c:if test="${po.bizId eq 'idowell'}">
+			       							<img src="<%=request.getContextPath()%>/resources/img/${po.bizId}.jpg" style="max-width: 60px; height: 26px;">
+			       						</c:if>
+			       						<c:if test="${po.bizId ne 'idowell'}">
 			       						<img src="<%=request.getContextPath()%>/resources/img/${po.bizId}.png" style="max-width: 60px; height: 26px;">
+			       						</c:if>
 			       					</div>
 			       					<div class="col-7 align-self-center">
 			       						<p class="plan-name-text">
+			       							<input class="bizId" type="hidden" value="${po.bizId}">
 			       							${po.planName} + 
 			       							<c:if test="${po.planData lt 1000}">
 					    					${po.planData}MB 
@@ -80,25 +86,69 @@
 			       						</p>
 			       					</div>
 			       					<div class="col-3 text-center align-self-center button-container">
-			       						<button class="button">
+			       						<button class="review-btn">
 									        	리뷰 작성
 									        <i class="fa fa-check"></i>
 									    </button>
 			       					</div>
 			       				</div>
-		       					<div class="row">
-		       						<div class="col-10">
+		       					<div class="row write-div" style="display: none;">
+		       						<div class="col-9">
 				  						<textarea>${ntc.ntcContent}</textarea>
 		       						</div>
-		       						<div class="col-2">
-		       							<span class="star">
-											★★★★★
-											<span>★★★★★</span>
-											<input type="range" oninput="drawStar(this)" value="1" step="1" min="0" max="10">
-										</span>
+		       						<div class="col-3 text-center">
+		       							<div class="mb-2">
+			       							<span class="star">
+												★★★★★
+												<span>★★★★★</span>
+												<input type="range" oninput="drawStar(this)" value="1" step="1" min="0" max="10">
+											</span>
+		       							</div>
+			       						<div class="mt-1">
+			       							<button class="insert-btn">작성</button>
+			       						</div>
 		       						</div>
 			  					</div>
 		       				</div>
+	       				</c:forEach>
+	       			</div>
+	       			<div class="written-review-list" style="display: none;">
+	       				<c:forEach items="${reviewList}" var="review">
+	       					<div class="row my-3 list-row">
+	       						<div class="col-9 m-2">
+			       					<div class="row written-row">
+				       					<div class="col-3">
+				       						<input type="hidden" value="${review.reviewNo}">
+				       						<p class="biz-name">${review.bizName}</p>
+				       					</div>
+				       					<div class="col-7">
+				       						<span class="star" style="top: -6px;">
+												★★★★★
+												<span>★★★★★</span>
+												<input class="starInput" type="hidden" value="${review.reviewStar}">
+											</span>
+				       					</div>
+				       					<div class="col-2">
+				       						<c:if test="${empty review.reviewRedate}">
+				       							<p class="review-date"><fmt:formatDate value="${review.reviewDate}" pattern="yyyy.MM.dd"/></p>
+					       					</c:if>
+					       					<c:if test="${not empty review.reviewRedate}">
+					       						<p class="review-date"><fmt:formatDate value="${review.reviewReDate}" pattern="yyyy.MM.dd"/></p>
+					       					</c:if>
+				       					</div>
+			       					</div>
+			       					<div>
+			       						<div class="written-content">
+					  						<textarea readonly>${review.reviewContent}</textarea>
+					  					</div>
+			       					</div>
+		       					</div>
+		       					<div class="col-2 align-self-center text-center">
+		       						<div class="my-2"><button class="ad-btn">수정</button></div>
+		       						<div class="my-2" style="display:none;"><button class="update-btn">수정</button></div>
+		       						<div class="my-2"><button class="del-btn">삭제</button></div>
+		       					</div>
+	       					</div>
 	       				</c:forEach>
 	       			</div>
 	       		</div>
@@ -116,7 +166,7 @@
 	<script src="<%= request.getContextPath() %>/resources/chain/assets/js/imagesloaded.js"></script>
 	<script src="<%= request.getContextPath() %>/resources/chain/assets/js/popup.js"></script>
 	<script src="<%= request.getContextPath() %>/resources/chain/assets/js/custom.js"></script>
-	<script src="<%= request.getContextPath() %>/resources/js/user/order.js"></script>
+	<script src="<%= request.getContextPath() %>/resources/js/user/review.js"></script>
   
 </body>
 </html>

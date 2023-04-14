@@ -57,7 +57,7 @@
 			       						<p class="ntc-date"><fmt:formatDate value="${ntc.ntcDate}" pattern="yyyy.MM.dd hh:mm:ss"/></p>
 			       					</c:if>
 			       					<c:if test="${not empty ntc.ntcRedate}">
-			       						<p class="ntc-date"><fmt:formatDate value="${ntc.ntcDate}" pattern="yyyy.MM.dd hh:mm:ss"/></p>
+			       						<p class="ntc-date"><fmt:formatDate value="${ntc.ntcRedate}" pattern="yyyy.MM.dd hh:mm:ss"/></p>
 			       					</c:if>
 		       					</div>
 		       					<div class="col-2 text-center align-self-center">

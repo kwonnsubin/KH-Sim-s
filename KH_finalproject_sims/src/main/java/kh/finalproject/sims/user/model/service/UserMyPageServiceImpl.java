@@ -8,6 +8,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import kh.finalproject.sims.admin.model.vo.AdminNoticeMngtVo;
 import kh.finalproject.sims.biz.model.vo.BizApplyVo;
+import kh.finalproject.sims.biz.model.vo.BizReviewMngtVo;
 import kh.finalproject.sims.user.model.dao.UserMyPageDao;
 import kh.finalproject.sims.user.model.vo.MemberVo;
 import kh.finalproject.sims.user.model.vo.UserMemberVo;
@@ -54,7 +55,13 @@ public class UserMyPageServiceImpl implements UserMyPageService {
 
 	// 리뷰 작성할 가입한 요금제 리스트
 	@Override
-	public List<BizApplyVo> selectReviewList(String userId) {
+	public List<BizApplyVo> selectOrderList(String userId) {
+		return dao.selectOrderList(userId);
+	}
+
+	// 작성한 리뷰 리스트
+	@Override
+	public List<BizReviewMngtVo> selectReviewList(String userId) {
 		return dao.selectReviewList(userId);
 	}
 	

@@ -40,6 +40,8 @@ public class BizReviewMngtVo {
 	private int rn;
 	private int listCnt;
 	
+	// 사용자 리뷰 리스트
+	private String bizName;
 	
 //	------------- -------- ------------ 
 //  desc review_report

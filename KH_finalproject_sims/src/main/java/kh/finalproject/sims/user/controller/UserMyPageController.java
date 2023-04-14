@@ -19,6 +19,7 @@ import com.google.gson.Gson;
 
 import kh.finalproject.sims.admin.model.vo.AdminNoticeMngtVo;
 import kh.finalproject.sims.biz.model.vo.BizApplyVo;
+import kh.finalproject.sims.biz.model.vo.BizReviewMngtVo;
 import kh.finalproject.sims.user.model.service.UserMyPageService;
 import kh.finalproject.sims.user.model.vo.MemberVo;
 import kh.finalproject.sims.user.model.vo.UserMemberVo;
@@ -101,13 +102,15 @@ public class UserMyPageController {
 	}
 	
 	// 가입한 요금제 리뷰
-	@GetMapping("/mypage/order")
+	@GetMapping("/mypage/review")
 	public ModelAndView selectReviewList(ModelAndView mv, Principal prin) {
 		String userId = prin.getName();
-		List<BizApplyVo> poList = service.selectReviewList(userId);
+		List<BizApplyVo> poList = service.selectOrderList(userId);
+		List<BizReviewMngtVo> reviewList = service.selectReviewList(userId);
 		
 		mv.addObject("poList", poList);
-		mv.setViewName("user/myinfo/order");
+		mv.addObject("reviewList", reviewList);
+		mv.setViewName("user/myinfo/review");
 		
 		return mv;
 	}

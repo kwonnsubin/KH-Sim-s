@@ -4,6 +4,7 @@ import java.util.List;
 
 import kh.finalproject.sims.admin.model.vo.AdminNoticeMngtVo;
 import kh.finalproject.sims.biz.model.vo.BizApplyVo;
+import kh.finalproject.sims.biz.model.vo.BizReviewMngtVo;
 import kh.finalproject.sims.user.model.vo.MemberVo;
 import kh.finalproject.sims.user.model.vo.UserMemberVo;
 
@@ -25,6 +26,9 @@ public interface UserMyPageService {
 	public AdminNoticeMngtVo selectNoticeDetail(int number);
 
 	// 리뷰에 나올 가입한 요금제 리스트
-	public List<BizApplyVo> selectReviewList(String userId);
+	public List<BizApplyVo> selectOrderList(String userId);
+
+	// 작성한 리뷰 리스트
+	public List<BizReviewMngtVo> selectReviewList(String userId);
 	
 }
