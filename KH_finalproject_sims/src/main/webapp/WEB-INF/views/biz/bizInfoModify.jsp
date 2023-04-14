@@ -34,47 +34,7 @@
 <body>
 
 <jsp:include page="/WEB-INF/views/header.jsp"/>
-
-<!-- 사이드바 -->
-<div id="wrap">
-	    <nav id="header">
-	        <p class="tit">마이페이지</p>
-	        <ul class="list">
-	            <li>
-	                <a href="${path}/biz/infodetail">
-	                   	     내 정보 보기
-	                       <span class="material-symbols-outlined">
-	                        arrow_forward_ios
-	                       </span>
-	                </a>
-	            </li>
-	            <li>
-	                <a href="${path}/biz/planList">
-	                    	요금제 현황
-	                        <span class="material-symbols-outlined">
-	                        arrow_forward_ios
-	                        </span>
-	                </a>
-	            </li>
-	            <li>
-	                <a href="${path}/biz/applyList">
-	                    	가입신청 현황 
-	                        <span class="material-symbols-outlined">
-	                        arrow_forward_ios
-	                        </span>
-	                </a>
-	            </li>
-	            <li>
-	                <a href="#">
-	                    	리뷰 현황
-	                        <span class="material-symbols-outlined">
-	                        arrow_forward_ios
-	                        </span>
-	                </a>
-	            </li>
-	        </ul>
-	    </nav>
-</div>
+<jsp:include page="/WEB-INF/views/biz/nav.jsp"/>
 
 통신사 정보 수정
 <form action="modifyInfo" method="post" enctype="multipart/form-data" id="modifyForm">

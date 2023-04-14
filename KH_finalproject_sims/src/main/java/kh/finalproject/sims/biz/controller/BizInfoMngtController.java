@@ -11,6 +11,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -99,34 +100,34 @@ public class BizInfoMngtController {
 	@PostMapping("/modifyInfo")
 	public String modifyBizInfo(HttpServletRequest request
 			, Principal principal
-			, BizInfoMngtVo vo
+			, @ModelAttribute BizInfoMngtVo vo
 			, bizInfoMngServiceVo svo
 			, @RequestParam(name ="bizName" , required = false) String bizName
-			, @RequestParam(name ="bizOwnerName" , required = false) String bizOwnerName
-			, @RequestParam(name ="bizCrn" , required = false) String bizCrn
-			, @RequestParam(name ="bizSsn" , required = false) String bizSsn
-			//주소
-			, @RequestParam(name ="bizZipCode", required = false) int bizZipCode
-			, @RequestParam(name ="roadAddress", required = false) String roadAddress
-			, @RequestParam(name ="detailAddress", required = false) String detailAddress
-			, @RequestParam(name ="bizLocation", required = false) String bizLocation
-			// 
-			, @RequestParam(name ="bizPhone", required = false) String bizPhone
-			, @RequestParam(name ="bizFax", required = false) String bizFax
-			, @RequestParam(name ="bizEmail", required = false) String bizEmail
-			, @RequestParam(name ="bizHp", required = false) String bizHp
-			
-			, @RequestParam(name ="phoneOpTime", required = false) String phoneOpTime
-			, @RequestParam(name ="phoneOpTimeUsim", required = false) String phoneOpTimeUsim
-			, @RequestParam(name ="bizCardPayDate", required = false) String bizCardPayDate
-			, @RequestParam(name ="bizAccPayDate", required = false) String bizAccPayDate
-			, @RequestParam(name ="bizBeginTime", required = false) String bizBeginTime
-			, @RequestParam(name ="bizEndTime", required = false) String bizEndTime
+//			, @RequestParam(name ="bizOwnerName" , required = false) String bizOwnerName
+//			, @RequestParam(name ="bizCrn" , required = false) String bizCrn
+//			, @RequestParam(name ="bizSsn" , required = false) String bizSsn
+//			//주소
+//			, @RequestParam(name ="bizZipCode", required = false) int bizZipCode
+//			, @RequestParam(name ="roadAddress", required = false) String roadAddress
+//			, @RequestParam(name ="detailAddress", required = false) String detailAddress
+//			, @RequestParam(name ="bizLocation", required = false) String bizLocation
+//			// 
+//			, @RequestParam(name ="bizPhone", required = false) String bizPhone
+//			, @RequestParam(name ="bizFax", required = false) String bizFax
+//			, @RequestParam(name ="bizEmail", required = false) String bizEmail
+//			, @RequestParam(name ="bizHp", required = false) String bizHp
+//			
+//			, @RequestParam(name ="phoneOpTime", required = false) String phoneOpTime
+//			, @RequestParam(name ="phoneOpTimeUsim", required = false) String phoneOpTimeUsim
+//			, @RequestParam(name ="bizCardPayDate", required = false) String bizCardPayDate
+//			, @RequestParam(name ="bizAccPayDate", required = false) String bizAccPayDate
+//			, @RequestParam(name ="bizBeginTime", required = false) String bizBeginTime
+//			, @RequestParam(name ="bizEndTime", required = false) String bizEndTime
 			//고객센터번호
 			, @RequestParam(name ="KtService", required = false) String KtService
 			, @RequestParam(name ="SktService", required = false) String SktService
 			, @RequestParam(name ="LguService", required = false) String LguService
-			
+//			
 			, @RequestParam(name = "weekday", required = false) String[] selectedWeekdays
 			, @RequestParam(name="net", required = false) String[] selectedNetworks
 			
@@ -214,25 +215,25 @@ public class BizInfoMngtController {
 		String network = selectedNetworksString.toString();
 		System.out.println(network);
 
-		// 한 번에 담아오게 수정할 것.. 그럼 문자열 쪼개는 것을 jsp 에서..?
+		// 한 번에 담아오게 수정할 것.. 그럼 문자열 쪼개는 것을 jsp 에서..?하지말자..
 		//vo에 담기
 		vo.setBizName(bizName);
-		vo.setBizSsn(bizSsn);
-		vo.setBizCrn(bizCrn);
-		vo.setBizEmail(bizEmail);
-		vo.setBizPhone(bizPhone);
-		vo.setBizFax(bizFax);
-		vo.setBizOwnerName(bizOwnerName);
-		vo.setBizHp(bizHp);
-		vo.setBizZipCode(bizZipCode);
-		vo.setBizLocation(bizLocation);
-		vo.setBizCardPayDate(bizCardPayDate);
-		vo.setBizAccPayDate(bizAccPayDate);
-		vo.setBizBeginTime(bizBeginTime);
-		vo.setBizEndTime(bizEndTime);
-		vo.setBizClosedDay(bizClosedDay);
-		vo.setPhoneOpTime(phoneOpTime);
-		vo.setPhoneOpTimeUsim(phoneOpTimeUsim);
+//		vo.setBizSsn(bizSsn);
+//		vo.setBizCrn(bizCrn);
+//		vo.setBizEmail(bizEmail);
+//		vo.setBizPhone(bizPhone);
+//		vo.setBizFax(bizFax);
+//		vo.setBizOwnerName(bizOwnerName);
+//		vo.setBizHp(bizHp);
+//		vo.setBizZipCode(bizZipCode);
+//		vo.setBizLocation(bizLocation);
+//		vo.setBizCardPayDate(bizCardPayDate);
+//		vo.setBizAccPayDate(bizAccPayDate);
+//		vo.setBizBeginTime(bizBeginTime);
+//		vo.setBizEndTime(bizEndTime);
+//		vo.setBizClosedDay(bizClosedDay);
+//		vo.setPhoneOpTime(phoneOpTime);
+//		vo.setPhoneOpTimeUsim(phoneOpTimeUsim);
 		vo.setNetwork(network);
 		vo.setBizId(bizid);
 		

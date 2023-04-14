@@ -63,12 +63,14 @@
   	update plan_order 
       set order_status = 2
  	where order_no = #{orderNo} 
+ 	  and biz_id = #{bizid}
   </update>
   
   <update id="updateHoldStatus"> 	
   	update plan_order 
       set order_status = 3
- 	where order_no = #{orderNo} 
+ 	where order_no = #{orderNo}
+ 	  and biz_id = #{bizid}
   </update>
   
   <!-- 요금제 가입 신청 목록 -->

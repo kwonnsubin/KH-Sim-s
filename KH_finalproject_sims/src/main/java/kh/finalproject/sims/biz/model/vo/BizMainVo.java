@@ -88,4 +88,7 @@ public class BizMainVo {
 	private int ageCnt;
 
 	private String userSsn;
+	
+	private String gender;
+	private int genderCnt;
 }

@@ -25,4 +25,21 @@ public class BizMainDao {
 	public List<BizMainVo> selectTopPlanAgeRatio(String bizid){
 		return sqlSession.selectList("bizChart.selectTopPlanAgeRatio", bizid);
 	}
+	
+	public List<BizMainVo> selectTopPlanGenderRatio(String bizid){
+		return sqlSession.selectList("bizChart.selectTopPlanGenderRatio", bizid);
+	}
+	
+	public List<BizMainVo> selectBizAgeRatio(String bizid){
+		return sqlSession.selectList("bizChart.selectBizAgeRatio", bizid);
+	}
+	
+	public List<BizMainVo> selectBizGenderRatio(String bizid){
+		return sqlSession.selectList("bizChart.selectBizGenderRatio", bizid);
+	}
+	
+	public String selectTopPlanName(String bizid) {
+		return sqlSession.selectOne("bizChart.selectTopPlanName",bizid);
+	}
+	
 }

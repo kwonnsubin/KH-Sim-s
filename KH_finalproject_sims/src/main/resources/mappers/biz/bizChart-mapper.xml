@@ -2,6 +2,28 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="bizChart">
 
+
+
+	<!-- 현재 가장 인기있는 요금제명 -->
+	<select id="selectTopPlanName" resultType="String">
+	select plan_name
+	from plan_table
+	where plan_no = (
+	    SELECT plan_no
+	    FROM (
+	        SELECT p.plan_no, COUNT(po.plan_no) AS num_plans
+	        FROM plan_table p
+	        LEFT JOIN plan_order po ON p.plan_no = po.plan_no
+	        WHERE biz_id = #{bizid}
+	        GROUP BY p.plan_no
+	        ORDER BY num_plans DESC
+	    )
+	    WHERE ROWNUM = 1
+	   )
+	
+	</select>
+
+
 	<!-- 최근 일주일간 해당 통신사 요금제 가입 수 -->
  	<select id="selectJoinPlanByDate" resultType="kh.finalproject.sims.biz.model.vo.BizChartVo">
  	  WITH date_range AS (
@@ -63,7 +85,7 @@
 				                SELECT p.plan_no, COUNT(po.plan_no) AS num_plans
 				                FROM plan_table p
 				                LEFT JOIN plan_order po ON p.plan_no = po.plan_no
-				                WHERE p.biz_name LIKE (SELECT biz_name FROM biz WHERE biz_id = #{bizid})
+				                WHERE biz_id = #{bizid}
 				                GROUP BY p.plan_no
 				                ORDER BY num_plans DESC
 			           			 )
@@ -72,7 +94,73 @@
 		    )
 		)
 		)
-	GROUP BY AGE_GROUP
+	GROUP BY AGE_GROUP	
+ 	</select>
+ 	
+ 	
+ 	<!-- 통신사 전체 이용 연령대 카운트 -->
+ 	<select id="selectBizAgeRatio" resultType="kh.finalproject.sims.biz.model.vo.BizMainVo">
+ 		select AGE_GROUP, count(*) AS age_cnt
+			from
+		    (SELECT user_id,
+		     CASE 
+		        WHEN TRUNC(MONTHS_BETWEEN(SYSDATE, TO_DATE(SUBSTR(USER_SSN, 1, 6), 'RRMMDD'))/12) BETWEEN 10 AND 19 THEN '10대'
+		        WHEN TRUNC(MONTHS_BETWEEN(SYSDATE, TO_DATE(SUBSTR(USER_SSN, 1, 6), 'RRMMDD'))/12) BETWEEN 20 AND 29 THEN '20대'
+		        WHEN TRUNC(MONTHS_BETWEEN(SYSDATE, TO_DATE(SUBSTR(USER_SSN, 1, 6), 'RRMMDD'))/12) BETWEEN 30 AND 39 THEN '30대'
+		        WHEN TRUNC(MONTHS_BETWEEN(SYSDATE, TO_DATE(SUBSTR(USER_SSN, 1, 6), 'RRMMDD'))/12) BETWEEN 40 AND 49 THEN '40대'
+		        WHEN TRUNC(MONTHS_BETWEEN(SYSDATE, TO_DATE(SUBSTR(USER_SSN, 1, 6), 'RRMMDD'))/12) BETWEEN 50 AND 59 THEN '50대'
+		        ELSE '60대이상' 
+		    END AS AGE_GROUP
+		FROM (
+		    SELECT user_id,user_ssn
+		    FROM user_table
+		    WHERE user_id IN (
+		       select user_id 
+		         from plan_order
+		         where biz_id = #{bizid}
+		    )
+		)
+		)GROUP BY AGE_GROUP
  	
  	</select>
+ 	
+ 	
+ 	
+ 	<!-- 가장 인기있는 요금제의 이용자 성별 count -->
+ 	<select id="selectTopPlanGenderRatio" resultType="kh.finalproject.sims.biz.model.vo.BizMainVo">
+ 	SELECT DECODE(SUBSTR(user_ssn, 8, 1), '1', '남', '2', '여', '3', '남', '4', '여') gender, COUNT(*) gender_cnt
+		FROM user_table 
+		 WHERE user_id IN (
+		        SELECT user_id
+		         FROM plan_order
+		            WHERE plan_no = (
+		                     SELECT plan_no
+		                        FROM (
+		                            SELECT p.plan_no, COUNT(po.plan_no) AS num_plans
+		                            FROM plan_table p
+		                            LEFT JOIN plan_order po ON p.plan_no = po.plan_no
+		                            WHERE biz_id = #{bizid}
+		                            GROUP BY p.plan_no
+		                            ORDER BY num_plans DESC
+		                        )
+		                        WHERE ROWNUM  <![CDATA[ <= 1 ]]>
+		                        )
+		    )
+		GROUP BY DECODE(SUBSTR(user_ssn, 8, 1), '1', '남', '2', '여', '3', '남', '4', '여')
+ 	</select>
+ 	
+ 	
+ 	
+ 	<!-- 통신사 전체 요금제 이용 성별 count -->
+ 	<select id="selectBizGenderRatio" resultType="kh.finalproject.sims.biz.model.vo.BizMainVo">
+	 	SELECT DECODE(SUBSTR(user_ssn, 8, 1), '1', '남', '2', '여', '3', '남', '4', '여') as gender, COUNT(*) gender_cnt
+			FROM user_table 
+			where user_id in (
+			        select user_id 
+			         from plan_order
+			         where biz_id = #{bizid}
+			         )
+			GROUP BY DECODE(SUBSTR(user_ssn, 8, 1), '1', '남', '2', '여', '3', '남', '4', '여')
+ 	</select>
+ 
 </mapper>

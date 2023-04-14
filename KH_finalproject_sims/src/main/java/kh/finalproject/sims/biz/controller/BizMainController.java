@@ -54,6 +54,11 @@ public class BizMainController {
 		
 		System.out.println("!@!@!@!@!@!selectJoinPlanByDate : "+service.selectJoinPlanByDate(bizid));
 
+		//가장 인기 있는 요금제명
+		String selectTopPlanName = service.selectTopPlanName(bizid);
+		System.out.println("현재 가장 인기있는 요금제명 :"+selectTopPlanName);
+		
+		mv.addObject("selectTopPlanName",selectTopPlanName);
 		
 		mv.setViewName("/biz/main");
 		return mv;
@@ -102,7 +107,7 @@ public class BizMainController {
 	
 	
 	//자사 요금제별 총 가입자 수
-	 @PostMapping("/test")
+	 @PostMapping("/planAcc.Aj")
 	 @ResponseBody 
 	 public String chart2(Principal principal 
 			) throws JsonProcessingException {
@@ -136,11 +141,11 @@ public class BizMainController {
 	 public String piechart(Principal principal) {
 		 String bizid = principal.getName(); 
 
-		 List<BizMainVo> ageGroupList = service.selectTopPlanAgeRatio(bizid);
-		 System.out.println("ageGroupList : "+ageGroupList);
+		 List<BizMainVo> topPlanAgeGroupList = service.selectTopPlanAgeRatio(bizid);
+		 System.out.println("topPlanAgeGroupList : "+topPlanAgeGroupList);
 		 
 		 JSONArray jsonArray = new JSONArray();
-		 for(BizMainVo vo : ageGroupList) {
+		 for(BizMainVo vo : topPlanAgeGroupList) {
 			 JSONObject jsonObject = new JSONObject();
 			 jsonObject.put("ageGroup", vo.getAgeGroup());
 			 jsonObject.put("ageCnt", vo.getAgeCnt());
@@ -151,4 +156,66 @@ public class BizMainController {
 		 return jsonArray.toString();
 	 }
 	 
+	 //가장 인기있는 요금제의 성별 비율
+	 @PostMapping("/piechart2.Aj")
+	 @ResponseBody
+	 public String piechart2(Principal pricipal) {
+		 String bizid = pricipal.getName();
+		 
+		 List<BizMainVo> topPlanGgenderList = service.selectTopPlanGenderRatio(bizid);
+		 System.out.println("topPlanGgenderList : "+ topPlanGgenderList);
+		 
+		 JSONArray jsonArray = new JSONArray();
+		 for(BizMainVo vo : topPlanGgenderList) {
+			 JSONObject jsonObject = new JSONObject();
+			 jsonObject.put("gender", vo.getGender());
+			 jsonObject.put("genderCnt", vo.getGenderCnt());
+			 jsonArray.put(jsonObject);
+		 }
+		 System.out.println("jsonArray : "+jsonArray);
+		 
+		 return jsonArray.toString();
+	 }
+	 
+	 //통신사 전체 이용 연령대 비율
+	 @PostMapping("/bizAgeRatio.Aj")
+	 @ResponseBody
+	 public String bizAgeRatio(Principal pricipal) {
+		 String bizid = pricipal.getName();
+		 
+		 List<BizMainVo> bizAgeList = service.selectBizAgeRatio(bizid);
+		 System.out.println("bizAgeList : "+ bizAgeList);
+		 
+		 JSONArray jsonArray = new JSONArray();
+		 for(BizMainVo vo : bizAgeList) {
+			 JSONObject jsonObject = new JSONObject();
+			 jsonObject.put("ageGroup", vo.getAgeGroup());
+			 jsonObject.put("ageCnt", vo.getAgeCnt());
+			 jsonArray.put(jsonObject);
+		 }
+		 System.out.println("jsonArray : "+jsonArray);
+		 
+		 return jsonArray.toString();
+	 }
+	 
+	 //통신사 전체 이용 성별 비율
+	 @PostMapping("/bizGenderRatio.Aj")
+	 @ResponseBody
+	 public String bizGenderRatio(Principal pricipal) {
+		 String bizid = pricipal.getName();
+		 
+		 List<BizMainVo> bizGenderList = service.selectBizGenderRatio(bizid);
+		 System.out.println("bizGenderList : "+ bizGenderList);
+		 
+		 JSONArray jsonArray = new JSONArray();
+		 for(BizMainVo vo : bizGenderList) {
+			 JSONObject jsonObject = new JSONObject();
+			 jsonObject.put("gender", vo.getGender());
+			 jsonObject.put("genderCnt", vo.getGenderCnt());
+			 jsonArray.put(jsonObject);
+		 }
+		 System.out.println("@@@@@@@@@@@@전체 이용 성별 비율 jsonArray : "+jsonArray);
+		 
+		 return jsonArray.toString();
+	 }
 }

@@ -9,8 +9,8 @@ import kh.finalproject.sims.common.page.Search;
 public interface BizApplyMngtService {
 	public BizApplyVo selectApplyDetailUser(int orderNo);
 	public BizApplyVo selectApplyDetailPlan(int orderNo);
-	public int updateApproveStatus(int orderNo);
-	public int updateHoldStatus(int orderNo);
+	public int updateApproveStatus(int orderNo, String bizid);
+	public int updateHoldStatus(int orderNo, String bizid);
 	
 	public List<BizApplyVo> selectBizPlanApplyList(String bizid);
 	public Paging getPage(String bizid, int pNum, int parseInt);

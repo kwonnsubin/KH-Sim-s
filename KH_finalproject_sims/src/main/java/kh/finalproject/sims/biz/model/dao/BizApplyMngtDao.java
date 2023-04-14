@@ -22,12 +22,12 @@ public class BizApplyMngtDao {
 		return sqlSession.selectOne("apply.selectApplyDetailPlan",orderNo);
 	}
 
-	public int updateApproveStatus( int orderNo) {
-		return sqlSession.update("apply.updateApproveStatus", orderNo);
+	public int updateApproveStatus(Map<String, Object> map) {
+		return sqlSession.update("apply.updateApproveStatus", map);
 	}
 
-	public int updateHoldStatus(int orderNo) {
-		return sqlSession.update("apply.updateHoldStatus",orderNo);
+	public int updateHoldStatus(Map<String, Object> map) {
+		return sqlSession.update("apply.updateHoldStatus",map);
 	}
 
 	public List<BizApplyVo> selectBizPlanApplyList(String bizid) {

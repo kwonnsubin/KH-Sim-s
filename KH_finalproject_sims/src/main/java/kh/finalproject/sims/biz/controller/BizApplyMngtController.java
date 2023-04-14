@@ -150,15 +150,25 @@ public class BizApplyMngtController {
 	//가입신청상태 변경
 	@PostMapping("/approveStatus")
 	@ResponseBody
-	public String approveStatus(int orderNo) {
-		service.updateApproveStatus(orderNo);
+	public String approveStatus(int orderNo
+			, Principal principal) {
+		
+		String bizid = principal.getName();
+		System.out.println("통신사아이디 : "+bizid);
+		
+		service.updateApproveStatus(orderNo,bizid);
 		return "success";
 	} 
 
 	@PostMapping("/holdStatus")
 	@ResponseBody
-	public String holdStatus(int orderNo) {
-		service.updateHoldStatus(orderNo);
+	public String holdStatus(int orderNo
+			,Principal principal) {
+		
+		String bizid = principal.getName();
+		System.out.println("통신사아이디 : "+bizid);
+		
+		service.updateHoldStatus(orderNo,bizid);
 		return "success";
 	}
 	

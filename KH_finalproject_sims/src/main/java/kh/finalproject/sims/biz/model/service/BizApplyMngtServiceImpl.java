@@ -29,13 +29,21 @@ public class BizApplyMngtServiceImpl implements BizApplyMngtService {
 	}
 
 	@Override
-	public int updateApproveStatus(int orderNo) {
-		return dao.updateApproveStatus(orderNo);
+	public int updateApproveStatus(int orderNo, String bizid) {
+		Map<String, Object> map = new HashMap<String, Object>();
+		map.put("orderNo", orderNo);
+		map.put("bizid", bizid);
+
+		return dao.updateApproveStatus(map);
 	}
 
 	@Override
-	public int updateHoldStatus(int orderNo) {
-		return dao.updateHoldStatus(orderNo);
+	public int updateHoldStatus(int orderNo, String bizid) {
+		Map<String, Object> map = new HashMap<String, Object>();
+		map.put("orderNo", orderNo);
+		map.put("bizid", bizid);
+		
+		return dao.updateHoldStatus(map);
 	}
 
 	@Override

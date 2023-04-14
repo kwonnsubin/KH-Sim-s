@@ -31,4 +31,22 @@ public class bizMainServiceImpl implements BizMainService{
 		return dao.selectTopPlanAgeRatio(bizid);
 	}
 
+	@Override
+	public List<BizMainVo> selectTopPlanGenderRatio(String bizid) {
+		return dao.selectTopPlanGenderRatio(bizid);
+	}
+
+	@Override
+	public String selectTopPlanName(String bizid) {
+		return dao.selectTopPlanName(bizid);
+	}
+
+	@Override
+	public List<BizMainVo> selectBizAgeRatio(String bizid) {
+		return dao.selectBizAgeRatio(bizid);	}
+
+	@Override
+	public List<BizMainVo> selectBizGenderRatio(String bizid) {
+		return dao.selectBizGenderRatio(bizid);	}
+
 }
