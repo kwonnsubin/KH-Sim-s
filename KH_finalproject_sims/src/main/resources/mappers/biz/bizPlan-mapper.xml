@@ -31,7 +31,7 @@
 	
 	<!-- search 리스트 -->
 	<select id="searchBizPlanList" parameterType="map" resultType="kh.finalproject.sims.biz.model.vo.BizPlanMngtVo">
-	SELECT rownum, plan_name, plan_date, biz_name, plan_no
+	SELECT *
 		FROM (
 		    SELECT rownum rn, plan_name, plan_date, biz_name, plan_no
 		    FROM plan_table
@@ -45,7 +45,7 @@
 	<!-- search 리스트 출력 개수 -->
 	<select id="getSearchPlanListCount" resultType="_int">
 	select count(*) searchCnt
-	 from (SELECT rownum, plan_name, plan_date, biz_name, plan_no
+	 from (SELECT *
 			FROM (
 				    SELECT rownum rn, plan_name, plan_date, biz_name, plan_no
 				    FROM plan_table

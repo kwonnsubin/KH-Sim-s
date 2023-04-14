@@ -79,7 +79,7 @@
             	<c:if test="${not empty requestScope.paging.page}">
 	                <c:forEach var="plan" items="${requestScope.paging.page}">
 	                <tr>
-	                    <td>${plan.rownum }</td>
+	                    <td>${plan.rn }</td>
 	                    <td><a href="<%=request.getContextPath()%>/biz/planDetail?planNo=${plan.planNo }">${plan.planName }</a></td>
 	                    <td>${plan.planDate } </td>
 	                    <td>
