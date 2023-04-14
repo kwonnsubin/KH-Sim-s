@@ -42,13 +42,10 @@ public interface AdminQnaMngtService {
 	// 문의 내역 답변 리스트
 	public List<AdminQnaAnsVo> selectQnaAnsList(int aqNo);
 	
-	// 문의 내역 댓글 리스트
-//	public List<AdminQnaMngtVo> selectQnaReplyList(int aaNo);
-	
-	// 문의 내역 답변 작성
+	// 문의 답변 작성
 	public int insertQnaAnsWrite(AdminQnaAnsVo vo);
 	
-	// 문의 내역 댓글 작성
+	// 문의 댓글 작성
 	public int insertQnaReplyWrite(AdminQnaReplyVo vo);
 	
 	// 문의 내역 댓글 삭제
@@ -56,4 +53,25 @@ public interface AdminQnaMngtService {
 	
 	// 문의 내역 답변 수정
 	public int updateQnaAns(AdminQnaAnsVo vo);
+	
+	// 문의 내역 답글 리스트
+	public List<AdminQnaReplyVo> selectQnaReplyList(int aaNo);
+	
+	// 문의 내역 답글 등록 ajax
+	public int insertReply(AdminQnaReplyVo vo);
+	
+	// 문의 내역 답글 수정 ajax
+	public int updateQnaReply(AdminQnaReplyVo vo);
+	
+	// 문의 내역 답글 삭제 ajax
+	public int deleteQnaReply(int rplNo);
+	
+	// 답변수 조회 ajax
+	public int selectAnswerCount(int aqNo);
+	
+	// 조회수 증가
+	public int viewUp(int aqNo);
+	
+	// 조회수 조회 ajax
+	public int selectViewCount(int aqNo);
 }

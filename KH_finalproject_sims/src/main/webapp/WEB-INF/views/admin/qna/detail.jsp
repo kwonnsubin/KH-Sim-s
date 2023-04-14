@@ -2,6 +2,7 @@
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
+<c:set var="path" value="${pageContext.request.contextPath}"/>
 <!-- 붙여야 <form method="post"> 작동함 -->
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 <!DOCTYPE html>
@@ -9,6 +10,7 @@
 <head>
 <meta charset="UTF-8">
 <title>문의내역 상세페이지</title>
+<link rel="stylesheet" href="${path}/resources/css/admin/qnaDetail.css"/>
 <script src="https://code.jquery.com/jquery-latest.min.js"></script>
 </head>
 <body>
@@ -62,7 +64,7 @@
 					                                        </div>
 				                                       		<label for="adminId" class="col-sm-2 col-form-label left">조회수</label>
 					                                        <div class="col-sm-2">
-					                                            <input type="text" readonly class="form-control-plaintext" name="aqViews" value="${qnaDetail.aqViews }">
+					                                            <input type="text" readonly class="form-control-plaintext" id="aqViews" value="${qnaDetail.aqViews }">
 					                                        </div>
 					                                    </div>
 				                                </div>
@@ -74,71 +76,27 @@
 										</div>
 									</div>
 								</div>
-							<!-- 답변  -->
 								<div class="card table-card review-card">
 				                    <div class="card-header borderless">
-				                        <div class="review-block">
-					                        <h5>답글달기</h5>
-					                    	<div class="form-group">
-					                    <!-- 답변 작성  -->
-									            <textarea class="form-control m-b-20" id="aaContent" rows="3" placeholder="댓글을 입력해보세요."></textarea>
-									            <button type="submit" id="ans-btn">댓글 등록</button>
-			                                </div>
+				                        <div>
+					                        <span id="answersCount">${qnaDetail.aqAnswers }</span>
+					                        <span>개의 답변</span>				                        
+						                    <div class="text-right">
+										          <textarea class="form-control m-t-15 m-b-15" id="aaContent" rows="3" placeholder="댓글을 입력해보세요."></textarea>
+										          <button type="button" class="btn btn-sm btn-primary" id="ans-btn">등록</button>			                                					                    
+						                    </div>
 					                    </div>
- 
 										<div class="card-body pb-0">
 					                        <div class="review-block">
 						                            <div class="row"   style="padding-bottom: 0px;">
 						                                <div class="col">	
-							                                <!-- 답글 들어가는 부분 -->
-							                                <div class="qnaAns"></div>
- 							                                <c:forEach var="ans" items="${qnaAnsList }" >
-							                                	<div class="qnaAns">
-																		<h6 class="m-b-15">
- 																			<c:choose>
-																				<c:when test="${not empty ans.adminId}">${ans.adminId}</c:when>
-																				<c:when test="${not empty ans.userId}">${ans.userId}</c:when>
-																			</c:choose>
-																			<span class="float-right f-13 text-muted">${ans.aaDate }</span>
-																		</h6>					                                						                                    				                                
-									                               		<p class="m-t-15 m-b-15 text-muted" id="aaNo${ans.aaNo}">${ans.aaContent}</p>
-									                               		<button onclick="qnaAnsUpdateFormFunction(aaNo${ans.aaNo})">수정</button>
-									                               		 <!-- 삭제 테스트!!!!!!!  -->
-									                               		<button onclick="qnaAnsDeleteFunction('${ans.aaNo}')">삭제</button>
-																	<a href="#!" class="badge badge-primary m-t-5 m-b-20" data-toggle="collapse" data-target="#collapseExample" aria-expanded="true" aria-controls="collapseExample">댓글</a>
-																	<div class="collapse show alert alert-secondary" id="collapseExample">
-																		<div class="card-body m-b-15 m-t-20">
-																		<form:form action="../insertReply" method="post">
-																			<div class="form-group">
-																				 <input type="hidden" name="aaNo" value="${ans.aaNo}">
-																				 <input type="hidden" name="adminId" value="${username }" >
-									                                       		 <textarea class="form-control m-b-20" id="exampleFormControlTextarea1" rows="3" placeholder="댓글을 입력해보세요." name="rplContent"></textarea>
-									                                       		 <button type="submit">댓글 등록</button>
-									                               			</div>
-																		</form:form>
-									                               			<div class="m-t-40">
-										                               			<c:forEach var="reply" items="${ans.replyList }" >
-										                               				<h6 class="m-b-15">
-													                               		<c:choose>
-																							<c:when test="${not empty reply.adminId}">${ans.adminId}</c:when>
-																							<c:when test="${not empty reply.userId}">${ans.userId}</c:when>
-																						</c:choose>
-																						<span class="float-right f-13 text-muted">${reply.rplDate }</span>
-																					</h6>
-													                               		 <p class="m-t-15 m-b-15 text-muted">${reply.rplContent }</p>								                               			
-										                               			</c:forEach>
-									                               			</div>
-																		</div>
-																	</div>
-																 </div>
-						                                	</c:forEach>
+							                                <div id="qnaAnsList"></div>
 						                                </div>
 						                           </div>
 					                        </div>
 					                    </div>
 				                    </div> 
 				                </div>
-				              <!-- 답변 끝 -->
 						</div>
 				    </div>
 				</div>
@@ -146,131 +104,158 @@
 		</div>
 	</div>
 </div>
+
 <jsp:include page="/WEB-INF/views/admin/include/footer.jsp" />
 </body>
 <script>
 
-$(document).ready(function(){
-	getAnsList();
-});
+// 답변 리스트 ajax
+ function getAnsList(){
+ 	var aqNo = "${aqNo}"
+     $.ajax({
+         type:'POST',
+         url : '<%=request.getContextPath()%>/admin/qna/ansList',
+         data: {aqNo: aqNo},
+ 		success : function(result) {
+ 				if (result != null) {
+ 					console.log(result);
+ 					displayAns(result);
+ 				}
+ 			},
+ 		error : function() {
+ 			alert("서버 요청 실패!")
+ 		}
+         
+     });
+ }
+ function displayAns(result){
+ 	var html = ''; 
+ 	for ( var i in result) {
+ 		
+ 		html += '<div class="qnaAns" id="no'+result[i].aaNo+'">';
+ 		html += '	<div class="border-bottom m-b-20 p-b-10">';
+ 		html += '		<h6 class="m-b-15">';
+ 		if(result[i].adminId) {
+ 			html += result[i].adminId;
+	 		html += '  		<a class="m-l-5 text-info" onclick="qnaAnsUpdate(' +result[i].aaNo+ ',\''  +result[i].adminId+ '\',\'' +result[i].aaContent+'\',\'' +result[i].aaDate+ '\')">수정</a>'; // 답변 수정 폼 추가
+	 		html += '  		<a class="m-l-5 text-info" onclick="qnaAnsDelete('+result[i].aaNo+')">삭제</a>';
+ 		} else if(result[i].userId) {
+ 			html += result[i].userId;
+ 		}
+ 		html += '		<span class="float-right f-13 text-muted">'+result[i].aaDate+'</span>';
+ 		html += '		</h6>';	                                    				                                
+ 		html += '		<p class="m-t-15 m-b-15 text-muted">'+result[i].aaContent+'</p> ';
+ 		html += '		<label class="badge badge-light-primary" onclick="qnaReplyList('+result[i].aaNo+')">답글</label>';
+ 		html += '	</div>';
+ 		html += '	<div class="qnaReplyList"></div>'; 
+ 		html += '</div>';
+ 	}
+ 	$("#qnaAnsList").html(html);
+ }
 
-// 문의내역 등록하기 ajax
+// 답변 작성 ajax
 $('#ans-btn').on("click", function() {
-			var adminId = "${username}"
-			var aqNo = "${aqNo}"
-			var aaContent = $("#aaContent").val();
-			$.ajax({
-				url: '<%=request.getContextPath()%>/admin/qna/insertAns',
-				data : {adminId: adminId, aqNo: aqNo, aaContent: aaContent},
-				type : "post",
-				success : function(result) {
-					if (result == "success") {
-					$('#aaContent').val('') 
-					getAnsList(); 
-					}
-				},
-				error : function() {
-					alert("등록 실패")
-				}
-			})
-		})
-		
-		
-// 문의내역 불러오기 ajax
-function getAnsList(){
-	var aqNo = "${aqNo}"
-    $.ajax({
-        type:'POST',
-        url : '<%=request.getContextPath()%>/admin/qna/ansList',
-        data: {aqNo: aqNo},
+	var adminId = "${username}";
+	var aqNo = "${aqNo}";
+	var aaContent = $("#aaContent").val();
+	$.ajax({
+		url: '<%=request.getContextPath()%>/admin/qna/insertAns',
+		data : {adminId: adminId, aqNo: aqNo, aaContent: aaContent},
+		type : "post",
 		success : function(result) {
-				alert("조회 성공")
+			if (result == "success") {
+			$('#aaContent').val('') 
+			getAnsList(); 
+			answerCount(aqNo);
+			}
+		},
+		error : function() {
+			alert("등록 실패")
+		}
+	})
+})
+		
+// 답변 삭제 ajax
+function qnaAnsDelete(aaNo) {
+	var aqNo = "${aqNo}";
+	if(confirm("삭제하시겠습니까?")) {
+		$.ajax({
+			url: '<%=request.getContextPath()%>/admin/qna/deleteAns',
+			data : {aaNo: aaNo},
+			type : "post",
+			success : function(result) {
+				if (result == "success") {
+					getAnsList();
+					answerCount(aqNo);
+				}
+			},
+			error : function() {
+				alert("삭제 실패")
+			}
+		})
+	}
+}
+
+// 답글 등록 ajax
+function insertReply(aaNo) {
+	var adminId = "${username}"
+	var rplContent = $("#no" + aaNo + " [name='rplContent']").val();
+	var aaNo = aaNo;
+	
+	$.ajax({
+        url : '<%=request.getContextPath()%>/admin/qna/insertReply',
+        data: {adminId: adminId, rplContent: rplContent, aaNo: aaNo},
+		type : "post",
+		success : function(result) {
 				if (result != null) {
-					console.log(result); 	
-					displayAns(result);
+					console.log(result);
+					qnaReplyList(aaNo);
 				}
 			},
 		error : function() {
 			alert("서버 요청 실패!")
 		}
-        
-    });
-}	
-
-function displayAns(result){
-	$(".qnaAns").html(''); 
-	var html = ''; 
-	//$.each(result, function(){ });
-	for ( var i in result) {
-html += '<div class="qnaAns">';
-html += '	<h6 class="m-b-15">';
-if(result[i].adminId) {
-	html += result[i].adminId;
-}else if(result[i].userId) {
-	html += result[i].userId;
-}
-html += '		<span class="float-right f-13 text-muted">'+result[i].aaDate+'</span>';
-html += '	</h6>';	                                    				                                
-html += '	<p class="m-t-15 m-b-15 text-muted">'+result[i].aaContent+'</p> ';
-html += '	<a href="#!" class="badge badge-primary m-t-5 m-b-20" data-toggle="collapse" data-target="#collapseExample" aria-expanded="true" aria-controls="collapseExample">댓글</a>';
-html += '	<div class="collapse show alert alert-secondary" id="collapseExample">';
-html += '		<div class="card-body m-b-15 m-t-20">';
-html += '		<form:form action="../insertReply" method="post">';
-html += '			<div class="form-group">';
-html += '				 <input type="hidden" name="aaNo" value="'+result[i].aaNo+'">';
-html += '				 <input type="hidden" name="adminId" value="'+result[i].username+'">';
-html += '	       		 <textarea class="form-control m-b-20" id="exampleFormControlTextarea1" rows="3" placeholder="댓글을 입력해보세요." name="rplContent"></textarea>';
-html += '	       		 <button type="submit">댓글 등록</button>';
-html += '				</div>';
-html += '		</form:form>';
-html += '				<div class="m-t-40">';
-for(var j in result[i].replyList){
-html += 		'<h6 class="m-b-15">';
-if(result[i].replyList[j].adminId) {
-	html += result[i].replyList[j].adminId;
-}else if(result[i].replyList[j].userId){
-	html += result[i].replyList[j].userId;
-}
-html += '					 <span class="float-right f-13 text-muted">'+result[i].replyList[j].rplDate+'</span>';
-html += '	           		 <p class="m-t-15 m-b-15 text-muted">'+result[i].replyList[j].rplContent+'</p>';
-}
-html += '				</div>';
-html += '		</div>';
-html += '	</div>';
-html += '</div>';
-	}	
-	$(".qnaAns").html(html);
+	});	
 }
 
-// 답변 삭제 ajax
-function qnaAnsDeleteFunction(aaNo) {
-	if(confirm("삭제하시겠습니까?")) {
-			$.ajax({
-				url: '<%=request.getContextPath()%>/admin/qna/deleteAns',
-				data : {aaNo: aaNo},
-				type : "post",
-				success : function(result) {
-					if (result == "success") {
-						getAnsList(); // 문의내역 불러오기 호출 getAnsList()
-					}
-				},
-				error : function() {
-					alert("삭제 실패")
-				}
-			})
-	}
-}
-
-
-// 답변 수정 폼 추가
-function qnaAnsUpdateFormFunction(aaNo) {
+// 답글 삭제 ajax
+function qnaReplyDelete(aaNo, rplNo) {
 	var aaNo = aaNo;
-	var html='';
-	html += '	       		 <textarea class="form-control m-b-20" id="exampleFormControlTextarea1" rows="3" placeholder="댓글을 입력해보세요." name="rplContent"></textarea>';
-	$("#aaNo").replaceWith(html);
+	var rplNo = rplNo;
+	
+	$.ajax({
+        url : '<%=request.getContextPath()%>/admin/qna/deleteReply',
+        data: {rplNo: rplNo, aaNo: aaNo},
+		type : "post",
+		success : function(result) {
+				if (result != null) {
+					console.log(result);			
+					qnaReplyList(aaNo);
+				}
+			},
+		error : function() {
+			alert("서버 요청 실패!")
+		}
+	});	
 }
 
+// 답변수 조회 ajax
+function answerCount(aqNo) {
+    var aqNo = aqNo;
+    var html = '';
 
-
+    $.ajax({
+        url: '<%=request.getContextPath()%>/admin/qna/selectAnswerCount',
+        data: {aqNo: aqNo},
+        type: "POST",
+        success: function(result) {
+            html += result;
+            $('#answersCount').text(html);
+        },
+        error: function() {
+            alert("답변수 요청 실패!");
+        }
+    });	
+}
 </script>
 </html>

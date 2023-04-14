@@ -67,7 +67,7 @@ public class AdminQnaMngtDao {
 //		return sqlSession.selectList("admin.selectQnaListDetail", aqNo);
 //	}
 	
-	// 문의 내역 답변 리스트
+	// 문의 내역 답변 리스트 ajax
 	public List<AdminQnaAnsVo> selectQnaAnsList(int aqNo) {
 		return sqlSession.selectList("admin.selectQnaAnsList", aqNo);
 	}
@@ -97,5 +97,49 @@ public class AdminQnaMngtDao {
 		return sqlSession.update("admin.updateQnaAns", vo);
 	}
 	
+	// 문의 내역 답글 리스트
+	public List<AdminQnaReplyVo> selectQnaReplyList(int aaNo) {
+		return sqlSession.selectList("admin.selectQnaReplyList", aaNo);
+	}
+	
+	// 문의 내역 답글 등록 ajax
+	public int insertReply(AdminQnaReplyVo vo) {
+		return sqlSession.insert("admin.insertReply", vo);
+	}
+	
+	// 문의 내역 답글 수정 ajax
+	public int updateQnaReply(AdminQnaReplyVo vo) {
+		return sqlSession.update("admin.updateQnaReply", vo);
+	}
+	
+	// 문의 내역 답글 삭제 ajax
+	public int deleteQnaReply(int rplNo) {
+		return sqlSession.delete("admin.deleteQnaReply", rplNo);
+	}
+	
+	// 답변수 +1
+	public int upAnswerCount(int aaNo) {
+		return sqlSession.update("admin.upAnswerCount", aaNo);
+	}
+	
+	// 답변수 -1
+	public int downAnswerCount(int aaNo) {
+		return sqlSession.update("admin.downAnswerCount", aaNo);
+	}
+	
+	// 답변수 조회 ajax
+	public int selectAnswerCount(int aqNo) {
+		return sqlSession.selectOne("admin.selectAnswerCount", aqNo);
+	}
+	
+	// 조회수 증가
+	public int viewUp(int aqNo) {
+		return sqlSession.update("admin.viewUp", aqNo);
+	}
+	
+	// 조회수 조회 ajax
+	public int selectViewCount(int aqNo) {
+		return sqlSession.selectOne("admin.selectViewCount", aqNo);
+	}
 	
 }

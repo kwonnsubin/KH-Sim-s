@@ -1,0 +1,23 @@
+@charset "UTF-8";
+
+#answersCount {
+    font-weight: 700;
+}
+
+.card-header span {
+  font-size: 18px; /* 적절한 폰트 크기로 변경해주세요 */
+}
+
+.badge:hover {
+  cursor: pointer;
+}
+
+.qnaAns a:hover {
+  cursor: pointer;
+  color: blue;
+}
+
+
+
+
+

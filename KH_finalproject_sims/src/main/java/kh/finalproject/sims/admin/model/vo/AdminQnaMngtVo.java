@@ -20,7 +20,7 @@ import lombok.ToString;
 public class AdminQnaMngtVo {
 
 
-	// 문의 게시판 
+	// 문의 게시판
 	private int aqNo; // 문의번호
 	private String userId; // 사용자아이디
 	private String aqTitle; // 문의제목

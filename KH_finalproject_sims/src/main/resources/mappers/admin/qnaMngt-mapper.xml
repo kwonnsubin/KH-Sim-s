@@ -109,6 +109,7 @@
 		</choose>
 		ORDER BY R.REPORT_DATE DESC
 	</select>
+	
 	<!-- 신고 리뷰 상세내용 -->
 	<select id="selectReviewReportDetail" resultType="kh.finalproject.sims.admin.model.vo.AdminReviewMngtVo" parameterType="_int">
 		SELECT R.REVIEW_NO, R.REPORT_DATE, 
@@ -124,10 +125,12 @@
 	WHERE R.REVIEW_NO = #{reviewNo}
 	ORDER BY R.REPORT_DATE DESC
 	</select>
+	
 	<!-- 신고 리뷰 반려/삭제 처리-->
 	<update id="updateReviewReportStatus" parameterType="kh.finalproject.sims.admin.model.vo.AdminReviewMngtVo">
 		UPDATE REVIEW_REPORT SET REPORT_STATUS = #{reportStatus} WHERE REVIEW_NO = #{reviewNo}
 	</update>
+	
 	<!-- 리뷰 숨김처리(1:숨김)-->
 	<update id="updateReviewHidden" parameterType="kh.finalproject.sims.admin.model.vo.AdminReviewMngtVo">
 		UPDATE BIZ_REVIEW SET REVIEW_HIDDEN = #{reviewHidden} WHERE REVIEW_NO = #{reviewNo}
@@ -211,7 +214,7 @@
 	</select>
 	
 	
- 	<!-- 문의 내역 상세 내용 -->
+ 	<!-- 문의 상세 내용 -->
 	<select id="selectQnaListDetail" resultType="kh.finalproject.sims.admin.model.vo.AdminQnaMngtVo">
 		SELECT 
 		AQ_NO
@@ -225,28 +228,18 @@
 		FROM QNA
 		WHERE AQ_NO = #{aqNo}
 	</select> 	
-	 
-	<!-- 문의 내역 상세 내용 JOIN -->
-	<!-- 실패
-	<select id="selectQnaListDetail" resultType="kh.finalproject.sims.admin.model.vo.AdminQnaMngtVo">
-		SELECT *
-		FROM QNA
-		LEFT JOIN QNA_ANS ON QNA.AQ_NO = QNA_ANS.AQ_NO
-		LEFT JOIN QNA_RPL ON QNA_ANS.AA_NO = QNA_RPL.AA_NO
-		WHERE QNA.AQ_NO = #{aqNo}
-	</select>
-	  -->
 	
-	<!-- 문의 내역 답변/대댓글 조회 -->
+	<!-- 문의 답변/답글 조회 -->
 	<!-- <select id="selectQnaAnsList" resultType="kh.finalproject.sims.admin.model.vo.AdminQnaAnsVo"> AdminQnaAnsVo안에  List<replyVo>가 들어있는데 이건 왜 안되는걸까요?? -->
 	<select id="selectQnaAnsList" resultMap="adminQnaAnsCollectionMap">
         SELECT AQ_NO, AA_NO, QNA_RPL.RPL_NO, QNA_ANS.ADMIN_ID AS ANS_ADMIN_ID, QNA_ANS.USER_ID AS ANS_USER_ID, AA_CONTENT, AA_DATE, AA_REDATE, QNA_RPL.RPL_CONTENT, QNA_RPL.ADMIN_ID AS RPL_ADMIN_ID, QNA_RPL.USER_ID AS RPL_USER_ID, QNA_RPL.RPL_DATE, QNA_RPL.RPL_REDATE
 		FROM QNA_ANS LEFT OUTER JOIN QNA_RPL USING (AA_NO)
 		WHERE AQ_NO = #{aqNo}
+		ORDER BY AA_DATE ASC
 	</select>
 	
 	
-	<!-- 문의 내역 답변 작성 -->
+	<!-- 문의 답변 작성 -->
 	<insert id="insertQnaAnsWrite" parameterType="kh.finalproject.sims.admin.model.vo.AdminQnaAnsVo">
 		INSERT INTO 
 		QNA_ANS (AA_NO, AQ_NO, ADMIN_ID, AA_CONTENT, AA_DATE) 
@@ -254,20 +247,83 @@
 	</insert>
 
 	
-	<!-- 문의 내역  댓글 작성 -->
+	<!-- 문의 댓글 작성 -->
 	<insert id="insertQnaReplyWrite" parameterType="kh.finalproject.sims.admin.model.vo.AdminQnaReplyVo">
 		INSERT INTO QNA_RPL 
 		(RPL_NO, AA_NO, RPL_DATE, RPL_CONTENT,ADMIN_ID) 
 		values (QNA_RPL_SEQ.NEXTVAL, #{aaNo}, DEFAULT, #{rplContent}, #{adminId})
 	</insert>
 	
-	<!-- 문의 내역 답변 삭제 -->
+	<!-- 문의 답변 삭제 -->
 	<delete id="deleteQnaAns" parameterType="_int">
 		DELETE FROM QNA_ANS where AA_NO=#{aaNo}
 	</delete>
 	
-	<!-- 문의 내역 답변 수정 -->
+	<!-- 문의 답변 수정 -->
 	<update id="updateQnaAns" parameterType="kh.finalproject.sims.admin.model.vo.AdminQnaAnsVo">
 		UPDATE QNA_ANS SET AA_CONTENT = #{aaContent}, AA_REDATE=SYSTIMESTAMP WHERE AA_NO=#{aaNo}
 	</update>
+	
+	<!-- 문의 리스트 ajax-->
+	<select id="selectQnaReplyList" parameterType="_int" resultType="kh.finalproject.sims.admin.model.vo.AdminQnaReplyVo">
+		select rpl_no, aa_no, rpl_date, rpl_redate, rpl_content, user_id, admin_id
+		from qna_rpl 
+		where aa_no = #{aaNo}
+		order by RPL_DATE asc
+	</select>
+	
+	<!-- 문의 답글 등록 ajax -->
+	<insert id="insertReply" parameterType="kh.finalproject.sims.admin.model.vo.AdminQnaReplyVo">
+		insert into QNA_RPL values (
+		    QNA_RPL_SEQ.nextval
+		    , #{aaNo}
+		    , default
+		    , null
+		    , #{rplContent}
+		    , null
+		    , #{adminId}
+		)
+	</insert>
+	
+	<!-- 문의 답글 수정 ajax -->
+	<update id="updateQnaReply" parameterType="kh.finalproject.sims.admin.model.vo.AdminQnaReplyVo">
+		UPDATE qna_rpl set rpl_content =#{rplContent}, RPL_REDATE = sysdate where RPL_NO = #{rplNo}
+	</update>
+	
+	<!-- 문의 답글 삭제 ajax -->
+	<delete id="deleteQnaReply" parameterType="_int">
+		delete from QNA_RPL where rpl_no = #{rplNo}
+	</delete>
+	
+	<!-- 답변수 +1 -->
+	<update id="upAnswerCount" parameterType="_int">
+		update QNA
+		set aq_answers = aq_answers + 1
+		where aq_no = #{aqNo}
+	</update>
+	
+	<!-- 답변수 -1 -->
+	<update id="downAnswerCount" parameterType="_int">
+		update QNA
+		set aq_answers = aq_answers - 1
+		where aq_no = #{aqNo}
+	</update>
+	
+	<!-- 답변수 조회 ajax -->
+	<select id="selectAnswerCount" parameterType="_int" resultType="_int">
+		select AQ_ANSWERS from QNA where AQ_NO = #{aqNo}
+	</select>
+	
+	<!-- 조회수 증가 -->
+	<update id="viewUp" parameterType="_int">
+		update QNA
+		set AQ_VIEWS = AQ_VIEWS + 1
+		where AQ_NO = #{aqNo}
+	</update>
+	
+	<!-- 조회수 ajax -->
+	<select id="selectViewCount" parameterType="_int">
+		select AQ_VIEWS from qna WHERE AQ_NO = #{aqNo}	
+	</select>
+	
 </mapper>

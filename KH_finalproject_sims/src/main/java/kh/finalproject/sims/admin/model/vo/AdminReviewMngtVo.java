@@ -17,19 +17,6 @@ import lombok.ToString;
 @NoArgsConstructor
 @ToString
 public class AdminReviewMngtVo {
-//	REVIEW_NO     NOT NULL NUMBER    
-//	USER_ID                VARCHAR2(30) 
-//	BIZ_ID                 VARCHAR2(30) 
-//	REPORT_DATE            DATE         
-//	REPORT_STATUS          NUMBER 
-	
-//	  REVIEW_NO
-//	  , REVIEW_CONTENT
-//	  , REVIEW_DATE
-//	  , REVIEW_STAR
-//	  , USER_ID
-//	  , BIZ_ID
-//	  , REVIEW_HIDDEN
 	
 	private int reviewNo; // 리뷰번호
 	private String userId; // 사용자아이디
