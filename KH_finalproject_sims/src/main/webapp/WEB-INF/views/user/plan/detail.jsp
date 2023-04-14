@@ -37,8 +37,8 @@
 			<!-- 통신사 로고, 요금제명, 찜, 공유 -->
 			<div class="row">
 				<div class="col-sm-2 float-sm-none mt-5">
-					<a href="#" class="logo"> <!-- 통신사 페이지 만들어서 연결 -->
-						<img src="${cpath}/resources/img/${biz.logoRenameFilename}" alt="${plan.bizName }">
+					<a href="#"> <!-- 통신사 페이지 만들어서 연결 -->
+						<img class="logo-m" src="${cpath}/resources/img/${biz.logoRenameFilename}" alt="${plan.bizName}">
 					</a>
 				</div>
 				<div class="col-sm-6 float-sm-none mt-5">
@@ -117,8 +117,8 @@
 				<div class="card-body">
 					<div class="row">
 						<div class="col-2">
-							<a href="#" class="logo"> <!-- 통신사 페이지 만들어서 연결 -->
-								<img src="${cpath}/resources/img/${biz.logoRenameFilename}" alt="${plan.bizName}" style="max-height: 50px;">
+							<a href="#"> <!-- 통신사 페이지 만들어서 연결 -->
+								<img class="logo-s" src="${cpath}/resources/img/${biz.logoRenameFilename}" alt="${plan.bizName}">
 							</a>
 						</div>
 						<div class="col-6">
@@ -149,27 +149,35 @@
 					</table>
 				</div>
 			</div>
-			<hr>
 			
 			<!-- 통신사 리뷰 -->
-			<div class="row">
-				<h5>통신사 리뷰</h5>
-				<div class="col-1">
-					<img alt="star" src="">
-				</div>
-				<div class="col-auto">
-					<h4>${biz.bizReviewStar}</h4>
-				</div>
-				<div class="col-auto">
-					<a href="#">${cntReview}개></a>
-				</div>
-			</div>
-			<div class="card-group">
-				<c:forEach items="${reviewList}" var="review">
-					<div class="card">
-						${review }
+			<div class="m-3">
+				<div class="row">
+					<h5>통신사 리뷰</h5>
+					<div class="col-1">
+						<img alt="star" src="">
 					</div>
-				</c:forEach>
+					<div class="col-auto">
+						<h4>${biz.bizReviewStar}</h4>
+					</div>
+					<div class="col-auto">
+						<a href="#">${cntReview}개></a> <!-- 통신사 리뷰 모달 띄우기 / 통신사 리뷰 페이지 이동-->
+					</div>
+				</div>
+				<div class="card-group">
+					<c:forEach items="${reviewList}" var="review" begin="0" end="2">
+						<div class="card"> <!-- 클릭하면 통신사 리뷰 모달 / 통신사 리뷰 페이지 이동-->
+							<div class="card-body">
+								<p class="card-subtitle">
+									${review.userId }
+									${review.reviewStar }
+									${review.reviewDate}
+								</p>
+								<h6 class="card-text">${review.reviewContent}</h6>
+							</div>
+						</div>
+					</c:forEach>
+				</div>
 			</div>
 			
 		</div>

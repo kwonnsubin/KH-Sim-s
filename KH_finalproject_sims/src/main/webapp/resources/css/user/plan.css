@@ -12,6 +12,12 @@
 	height: 100px
 }
 
-.vr{
-	
+.logo-m {
+	max-height: 60px;
+	object-fit: contain
+}
+
+.logo-s {
+	max-height: 40px;
+	object-fit: contain
 }
