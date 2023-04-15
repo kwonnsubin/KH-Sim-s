@@ -34,8 +34,11 @@ public class UserMyPageController {
 	private BCryptPasswordEncoder pwEncoder;
 	
 	@GetMapping("/mypage")
-	public ModelAndView myPage(ModelAndView mv) {
+	public ModelAndView myPage(ModelAndView mv, Principal prin) {
+		String userId = prin.getName();
+		int reviewCnt = service.selectOrderListCount(userId);
 		
+		mv.addObject("reviewCnt", reviewCnt);
 		mv.setViewName("main/mypage");
 		
 		return mv;
@@ -113,6 +116,45 @@ public class UserMyPageController {
 		mv.setViewName("user/myinfo/review");
 		
 		return mv;
+	}
+	
+	// 가입한 요금제 리뷰 작성
+	@ResponseBody
+	@PostMapping("/mypage/review/write")
+	public String insertReview(Principal prin, BizReviewMngtVo brVo) {
+		String userId = prin.getName();
+		brVo.setUserId(userId);
+		
+		int num = service.insertReview(brVo);
+		
+		HashMap<String, Object> result = new HashMap<String, Object>();
+		result.put("num", num);
+		
+		return new Gson().toJson(result);
+	}
+	
+	// 가입한 요금제 리뷰 수정
+	@ResponseBody
+	@PostMapping("/mypage/review/update")
+	public String updateReview(BizReviewMngtVo brVo) {
+		int num = service.updateReview(brVo);
+		
+		HashMap<String, Object> result = new HashMap<String, Object>();
+		result.put("num", num);
+		
+		return new Gson().toJson(result);
+	}
+	
+	// 가입한 요금제 리뷰 삭제
+	@ResponseBody
+	@PostMapping("/mypage/review/delete")
+	public String deleteReview(BizReviewMngtVo brVo) {
+		int num = service.deleteReview(brVo);
+		
+		HashMap<String, Object> result = new HashMap<String, Object>();
+		result.put("num", num);
+		
+		return new Gson().toJson(result);
 	}
 	
 }

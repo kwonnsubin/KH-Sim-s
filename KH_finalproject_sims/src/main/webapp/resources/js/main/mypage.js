@@ -20,3 +20,6 @@ $(".notice-div").on("click", function() {
 	location.href= contextPath + "/noticelist"
 });
 
+$(".reviewDiv").on("click", function() {
+	location.href= contextPath + "/mypage/review"
+});

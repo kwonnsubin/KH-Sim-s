@@ -52,8 +52,9 @@
 	       				</div>
 	       			</div>
 	       			<div class="write-review-list">
+	       				<c:if test="${not empty poList}">
 	       				<c:forEach items="${poList}" var="po">
-	       					<div>
+	       					<div class="insert-div">
 			       				<div class="row my-3 list-row">
 			       					<div class="col-2 text-center align-self-center">
 			       						<c:if test="${po.bizId eq 'idowell'}">
@@ -94,14 +95,14 @@
 			       				</div>
 		       					<div class="row write-div" style="display: none;">
 		       						<div class="col-9">
-				  						<textarea>${ntc.ntcContent}</textarea>
+				  						<textarea class="insert-textarea">${ntc.ntcContent}</textarea>
 		       						</div>
 		       						<div class="col-3 text-center">
 		       							<div class="mb-2">
 			       							<span class="star">
 												★★★★★
 												<span>★★★★★</span>
-												<input type="range" oninput="drawStar(this)" value="1" step="1" min="0" max="10">
+												<input class="insert-star" type="range" oninput="drawStar(this)" value="1" step="1" min="0" max="10">
 											</span>
 		       							</div>
 			       						<div class="mt-1">
@@ -111,21 +112,30 @@
 			  					</div>
 		       				</div>
 	       				</c:forEach>
+	       				</c:if>
+	       				<c:if test="${empty poList}">
+	       					<div class="row none-div">
+	       						<div class="text-center align-self-center" style="font-size: 14px; color: black;">
+		       						작성 할 리뷰가 없습니다.
+	       						</div>
+	       					</div>
+	       				</c:if>
 	       			</div>
 	       			<div class="written-review-list" style="display: none;">
+	       				<c:if test="${not empty reviewList}">
 	       				<c:forEach items="${reviewList}" var="review">
 	       					<div class="row my-3 list-row">
 	       						<div class="col-9 m-2">
 			       					<div class="row written-row">
 				       					<div class="col-3">
-				       						<input type="hidden" value="${review.reviewNo}">
+				       						<input class="reviewNo" type="hidden" value="${review.reviewNo}">
 				       						<p class="biz-name">${review.bizName}</p>
 				       					</div>
 				       					<div class="col-7">
 				       						<span class="star" style="top: -6px;">
 												★★★★★
 												<span>★★★★★</span>
-												<input class="starInput" type="hidden" value="${review.reviewStar}">
+												<input class="starInput" type="hidden" oninput="drawStar(this)" value="${review.reviewStar}" step="1" min="0" max="10">
 											</span>
 				       					</div>
 				       					<div class="col-2">
@@ -139,7 +149,7 @@
 			       					</div>
 			       					<div>
 			       						<div class="written-content">
-					  						<textarea readonly>${review.reviewContent}</textarea>
+					  						<textarea class="updateTextarea" readonly>${review.reviewContent}</textarea>
 					  					</div>
 			       					</div>
 		       					</div>
@@ -150,6 +160,14 @@
 		       					</div>
 	       					</div>
 	       				</c:forEach>
+	       				</c:if>
+	       				<c:if test="${empty reviewList}">
+	       					<div class="row none-div">
+	       						<div class="text-center align-self-center" style="font-size: 14px; color: black;">
+		       						작성 한 리뷰가 없습니다.
+	       						</div>
+	       					</div>
+	       				</c:if>
 	       			</div>
 	       		</div>
 	       	</div>

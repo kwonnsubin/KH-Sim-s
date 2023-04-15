@@ -45,9 +45,25 @@ public class UserMyPageDao {
 	public List<BizApplyVo> selectOrderList(String userId) {
 		return sqlSession.selectList("apply.selectOrderList", userId);
 	}
+	
+	public int selectOrderListCount(String userId) {
+		return sqlSession.selectOne("apply.selectOrderListCount", userId);
+	}
 
 	public List<BizReviewMngtVo> selectReviewList(String userId) {
 		return sqlSession.selectList("bizReview.selectReviewList", userId);
+	}
+
+	public int insertReview(BizReviewMngtVo brVo) {
+		return sqlSession.insert("bizReview.insertReview", brVo);
+	}
+
+	public int updateReview(BizReviewMngtVo brVo) {
+		return sqlSession.update("bizReview.updateReview", brVo);
+	}
+
+	public int deleteReview(BizReviewMngtVo brVo) {
+		return sqlSession.delete("bizReview.deleteReview", brVo);
 	}
 
 }

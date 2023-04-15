@@ -1,5 +1,5 @@
 const drawStar = (target) => {
-	$(`.write-div .star span`).css({ width: `${target.value * 10}%` });
+	$(target).prev().css({ width: `${target.value * 10}%` });
 }
 
 $(document).ready(function() {
@@ -26,6 +26,8 @@ $('.write-review').on('click', function() {
 	
 	$('.written-content textarea').prop('readonly', true);
 	$('.written-content textarea').css('border', 'none');
+	$('.written-content textarea').css('cursor', 'default');
+	
 	$('.ad-btn').parent().css('display', '');
 	$('.update-btn').parent().css('display', 'none');
 });
@@ -51,7 +53,80 @@ $('.ad-btn').on('click', function(e) {
 	textarea.prop('readonly', false);
 	textarea.css('border', '2px solid #e3e3e3');
 	textarea.css('border-color', '#6f6f6f');
+	textarea.css('cursor', 'text');
 	
 	$(e.target).parent().css('display', 'none');
 	$(e.target).parent().next().css('display', '');
+	
+	$(e.target).parent().parent().prev().find('.starInput').attr('type', 'range');
+});
+
+function getContextPath() {
+	var hostIndex = location.href.indexOf(location.host) + location.host.length;
+	return location.href.substring(hostIndex, location.href.indexOf('/', hostIndex + 1));
+}
+
+var cPath = getContextPath();
+
+// 리뷰 작성
+$('.insert-btn').on('click', function(e) {
+	if($('.insert-textarea').val() != '') {
+		$.ajax({
+			url : cPath + "/mypage/review/write",
+			type : "post",
+			async : false,
+			data : {
+				reviewContent : $(e.target).parents('.insert-div').find(".insert-textarea").val(),
+				reviewStar : $(e.target).parents('.insert-div').find(".insert-star").val(),
+				bizId : $(e.target).parents('.insert-div').find(".bizId").val()
+			},
+			dataType : "json",
+			success : function(data){
+				if(data.num != 1) {
+					alert("리뷰가 작성되지 않았습니다.");
+				}
+				location.reload();
+			}
+		 });
+	}
+});
+
+// 리뷰 수정
+$('.update-btn').on('click', function(e) {
+	$.ajax({
+		url : cPath + "/mypage/review/update",
+		type : "post",
+		async : false,
+		data : {
+			reviewNo : $(e.target).parent().parent().prev().find('.reviewNo').val(),
+			reviewStar : $(e.target).parent().parent().prev().find('.starInput').val(),
+			reviewContent : $(e.target).parent().parent().prev().find('.updateTextarea').val()
+		},
+		dataType : "json",
+		success : function(data){
+			if(data.num != 1) {
+				alert("리뷰가 수정되지 않았습니다.");
+			}
+			location.reload();
+		}
+	 });
+});
+
+// 리뷰 삭제
+$('.del-btn').on('click', function(e) {
+	$.ajax({
+		url : cPath + "/mypage/review/delete",
+		type : "post",
+		async : false,
+		data : {
+			reviewNo : $(e.target).parent().parent().prev().find('.reviewNo').val()
+		},
+		dataType : "json",
+		success : function(data){
+			if(data.num != 1) {
+				alert("리뷰가 삭제되지 않았습니다.");
+			}
+			location.reload();
+		}
+	 });
 });

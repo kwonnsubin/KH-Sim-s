@@ -59,7 +59,7 @@
 		        				리뷰 작성/관리
 	        				</div>
 	        				<div class="col text-end">
-		        				0개 >
+		        				${reviewCnt}개 >
 	        				</div>
 	        			</div>
 	        			<div class="row mb-4 myPlanDiv pointer">

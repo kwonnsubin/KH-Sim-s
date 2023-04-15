@@ -64,5 +64,29 @@ public class UserMyPageServiceImpl implements UserMyPageService {
 	public List<BizReviewMngtVo> selectReviewList(String userId) {
 		return dao.selectReviewList(userId);
 	}
+
+	// 리뷰 작성
+	@Override
+	public int insertReview(BizReviewMngtVo brVo) {
+		return dao.insertReview(brVo);
+	}
+
+	// 리뷰 수정
+	@Override
+	public int updateReview(BizReviewMngtVo brVo) {
+		return dao.updateReview(brVo);
+	}
+
+	// 리뷰 삭제
+	@Override
+	public int deleteReview(BizReviewMngtVo brVo) {
+		return dao.deleteReview(brVo);
+	}
+
+	// 리뷰에 나올 가입한 요금제 리스트 갯수
+	@Override
+	public int selectOrderListCount(String userId) {
+		return dao.selectOrderListCount(userId);
+	}
 	
 }
