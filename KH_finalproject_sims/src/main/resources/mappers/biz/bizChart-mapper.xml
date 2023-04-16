@@ -50,15 +50,25 @@
 		ORDER BY date_range.order_date
  	</select>
  	
- 	<!-- 자사 요금제별 총 가입자 수(0 가입자도 출력)  -->
+ 	<!-- 자사 요금제별 총 가입자 수(0 가입자도 출력)  // outer join으로 변경-->
  	<select id="selectTotalApplyByPlan" resultType="kh.finalproject.sims.biz.model.vo.BizMainVo">
  	SELECT p.plan_name, p.plan_no, COUNT(po.plan_no) AS planApply_cnt
 		FROM plan_table p
-		LEFT JOIN plan_order po ON p.plan_no = po.plan_no
+		LEFT OUTER JOIN plan_order po ON p.plan_no = po.plan_no
 		WHERE p.biz_name LIKE (SELECT biz_name FROM biz WHERE biz_id = #{bizid})
 		GROUP BY p.plan_no, p.plan_name
 		ORDER BY p.plan_no ASC
  	</select>
+ 	
+ 	<!-- 요금제별 오늘 하루 가입자 수 -->
+ 	<select id="selectTodayApplyByPlan" resultType="kh.finalproject.sims.biz.model.vo.BizMainVo">
+ 	SELECT p.plan_no, COALESCE(COUNT(po.plan_no), 0) AS todayPlanApply_cnt
+	FROM plan_table p
+	LEFT OUTER JOIN plan_order po ON p.plan_no = po.plan_no AND TRUNC(po.ORDER_DATE) = TRUNC(SYSTIMESTAMP)
+	WHERE p.biz_name LIKE (SELECT biz_name FROM biz WHERE biz_id = #{bizid})
+	GROUP BY p.plan_no
+	ORDER BY p.plan_no ASC
+	</select>
  	
  	<!-- 가장 인기있는 요금제의 연령대 비율 -->
  	<select id="selectTopPlanAgeRatio" resultType="kh.finalproject.sims.biz.model.vo.BizMainVo">

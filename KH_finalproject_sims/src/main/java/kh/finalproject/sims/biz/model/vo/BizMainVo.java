@@ -84,6 +84,8 @@ public class BizMainVo {
 	private int orderCnt;
 	private int planApplyCnt;
 	
+	private int todayPlanApplyCnt; 
+	
 	private String ageGroup;
 	private int ageCnt;
 

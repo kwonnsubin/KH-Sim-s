@@ -6,8 +6,10 @@ import java.sql.Date;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
+import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -106,7 +108,7 @@ public class BizMainController {
 	}
 	
 	
-	//자사 요금제별 총 가입자 수
+	//자사 요금제별 총 누적 가입자 수+오늘자 가입자 수
 	 @PostMapping("/planAcc.Aj")
 	 @ResponseBody 
 	 public String chart2(Principal principal 
@@ -118,21 +120,32 @@ public class BizMainController {
 	 List<BizMainVo> totalList = service.selectTotalApplyByPlan(bizid);
 	 System.out.println("totalList :"+totalList);
 	 
-//	 ObjectMapper objectMapper = new ObjectMapper();
-//	 String json = objectMapper.writeValueAsString(totalList);
+	 List<BizMainVo> todayList = service.selectTodayApplyByPlan(bizid);
+	 System.out.println("todayList :"+todayList);
 	 
-	 JSONArray jsonArray = new JSONArray();
-	 
-	 for(BizMainVo vo : totalList) {
-		 JSONObject jsonObject = new JSONObject();
-		 jsonObject.put("planName", vo.getPlanName());
-		 jsonObject.put("planApplyCnt", vo.getPlanApplyCnt());
-		 jsonArray.put(jsonObject);
-	 }
-	 
-	 System.out.println("jsonArray : "+jsonArray);
-	  return jsonArray.toString(); 
+	// 결과를 저장할 리스트 생성
+	 List<Map<String, Object>> dataList = new ArrayList<>();
 
+	 // totalList와 todayList를 합쳐서 dataList에 저장
+	 for (BizMainVo vo : totalList) {
+	     Map<String, Object> data = new HashMap<>();
+	     data.put("planName", vo.getPlanName());
+	     data.put("planApplyCnt", vo.getPlanApplyCnt());
+
+	     int todayApplyCnt = 0;
+	     for (BizMainVo todayVo : todayList) {
+	    	 if (vo.getPlanNo() == todayVo.getPlanNo()) {
+	             todayApplyCnt = todayVo.getTodayPlanApplyCnt();
+	             break;
+	         }
+	     }
+	     data.put("todayApplyCnt", todayApplyCnt);
+
+	     dataList.add(data);
+	 }
+
+	 // dataList를 JSON으로 변환하여 반환
+	 return new Gson().toJson(dataList);
 	 }
 
 	 //가장 인기있는 요금제의 연령대 비율
