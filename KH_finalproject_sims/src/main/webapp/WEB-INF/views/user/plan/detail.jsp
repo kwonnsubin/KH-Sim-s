@@ -90,7 +90,17 @@
 						<h3 class="fw-bolder text-sm-center">
 							<c:if test="${plan.planData eq 0}">무제한</c:if>
 							<c:if test="${plan.planData ne 0 && plan.planData < 1024}">${plan.planData}MB</c:if>
-							<c:if test="${plan.planData ne 0 && plan.planData >= 1024}">${plan.planData/1024}GB</c:if>
+							<c:if test="${plan.planData >= 1024}">
+								<c:set var="dataInGB" value="${plan.planData/1024.0}" />
+								<c:choose>
+									<c:when test="${dataInGB % 1 == 0}">
+							            ${dataInGB}GB
+							        </c:when>
+									<c:otherwise>
+							            ${String.format("%.1f", dataInGB)}GB
+							        </c:otherwise>
+								</c:choose>
+							</c:if>
 						</h3>
 					</div>
 				</div>
