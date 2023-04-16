@@ -52,8 +52,8 @@
 					</a>
 				</div>
 				<div class="col-1 float-sm-none vertical-center">
-					<a class="share" href="#"> <!-- 공유 기능 구현 -->
-						<img class="logo-s float-end" src="${cpath}/resources/img/share.png" alt="like">
+					<a id="kakaotalk-sharing-btn" href="javascript:shareMessage()">
+						<img src="${cpath}/resources/img/share.png" alt="카카오톡 공유 보내기 버튼" />
 					</a>
 				</div>
 			</div>
@@ -219,9 +219,30 @@
 	<script src="<%= request.getContextPath() %>/resources/chain/assets/js/imagesloaded.js"></script>
 	<script src="<%= request.getContextPath() %>/resources/chain/assets/js/popup.js"></script>
 	<script src="<%= request.getContextPath() %>/resources/chain/assets/js/custom.js"></script>
-	
+
+	<!-- 카카오톡 공유하기 -->
+	<script src="https://t1.kakaocdn.net/kakao_js_sdk/2.1.0/kakao.min.js"
+		integrity="sha384-dpu02ieKC6NUeKFoGMOKz6102CLEWi9+5RQjWSV0ikYSFFd8M3Wp2reIcquJOemx"
+		crossorigin="anonymous"></script>
 	<script>
-		
+		Kakao.init('61dec1e850d6a4addfc3a6accea9966a'); 
 	</script>
+
+	<script>
+		function shareMessage() {
+			var no = '${plan.planNo}';
+			var title = '[${plan.bizName}] ${plan.planName} | ${plan.planPrice}원';
+			var msg = '통화 ${plan.planVoice}분 | 문자 ${plan.planMessage}건 | 데이터 ${plan.planData}MB';
+			Kakao.Share.sendCustom({
+				templateId: 92691,
+				templateArgs: {
+					planno: no,
+					plantitle: title,
+					planmsg: msg,
+				}
+			});
+		}
+	</script>
+
 </body>
 </html>
