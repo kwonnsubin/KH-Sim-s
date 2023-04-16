@@ -47,6 +47,8 @@ public class BizPlanMngtVo {
 	private double planDataOver;
 	private Date planDate;
 	
+	private Date planUpdateDate;
+	
 	private String bizId;
 	//private String bizName;
 	private String bizSsn;

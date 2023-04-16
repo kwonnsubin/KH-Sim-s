@@ -45,28 +45,35 @@
 					<span>요금제명</span>
 				</th>
 				<td>${applyDetailPlan.planName }</td>
-                <th scope="row">
-                    <span>아이디</span>
-                </th>
-                <td>${applyDetail.userId }</td>
-                <th scope="row">
-                    <span>이름</span>
-                </th>
-                <td>${applyDetail.userName }</td>
+                
                 <th scope="row">
                     <span>신청일자</span>
                 </th>
                 <td>${applyDetailPlan.orderDate }</td>
 			</tr>
+			
+			<tr>
+	            <th scope="row">
+	                <span>아이디</span>
+	            </th>
+	            <td>${applyDetail.userId }</td>
+	            <th scope="row">
+	                <span>이름</span>
+	            </th>
+	            <td>${applyDetail.userName }</td>
+			
+			
+			</tr>
+			
 			<tr>
 				<th scope="row">
 					<span>주민등록번호</span>
 				</th>
-				<td>${applyDetail.userSsn }</td>
+				<td colspan="2">${applyDetail.userSsn }</td>
 				<th scope="row">
 					<span>휴대폰번호</span>
 				</th>
-				<td>${applyDetail.userPhone }</td>
+				<td colspan="2">${applyDetail.userPhone }</td>
 			</tr>
 			<tr>
 				<th scope="row">
@@ -78,10 +85,173 @@
                 </th>
                 <td colspan="4">${applyDetail.userEmail }</td>
 			</tr>
+			<!-- 분리 -->
+			<tr>
+				<th scope="row">
+					<span>가입유형</span>
+				</th>
+				<td colspan="2">
+				<c:choose>
+					<c:when test= "${applyDetailPlan.joinCategory eq 1}">
+						번호이동
+					</c:when>
+					<c:otherwise>
+						신규가입
+					</c:otherwise>
+				</c:choose>
+				</td>
+				<th scope="row">
+					<span>심종류</span>
+				</th>
+				<td colspan="2">
+				<c:choose>
+					<c:when test ="${applyDetailPlan.simType eq 1 }">
+						일반유심
+					</c:when>
+					<c:otherwise>
+						NFC 유심
+					</c:otherwise>
+				</c:choose>
+				</td>
+			</tr>
+            <tr>
+				<th scope="row">
+					<span>유심신청여부</span>
+				</th>
+				<td colspan="2">
+				<c:choose>
+					<c:when test ="${applyDetailPlan.simYn eq 1}">
+						N
+					</c:when>
+					<c:otherwise>
+						Y
+					</c:otherwise>
+				</c:choose>
+				</td>
+				<th scope="row">
+					<span>현재사용통신사</span>
+				</th>
+				<td colspan="2">
+				<c:choose>
+					<c:when test="${applyDetailPlan.currentTelecom eq 1}">
+						SKT
+					</c:when>
+					<c:when test="${applyDetailPlan.currentTelecom eq 2}">
+						KT
+					</c:when>
+					<c:when test="${applyDetailPlan.currentTelecom eq 3}">
+						LGU+
+					</c:when>
+					<c:when test="${applyDetailPlan.currentTelecom eq 4}">
+						SKT 알뜰폰
+					</c:when>
+					<c:when test="${applyDetailPlan.currentTelecom eq 5}">
+						KT 알뜰폰	
+					</c:when>
+					<c:otherwise>
+						LGU+ 알뜰폰
+					</c:otherwise>				
+				</c:choose>
+				</td>
+			</tr>
+			<tr>
+				<th scope="row">
+					<span>청구서유형</span>
+				</th>
+				<td colspan="2">
+				<c:choose>
+					<c:when test="${applyDetailPlan.planBill eq 1}">
+						문자
+					</c:when>
+					<c:otherwise>
+						이메일
+					</c:otherwise>
+				</c:choose>	
+				</td>
+				<th scope="row">
+					<span>납부방법</span>
+				</th>
+				<td colspan="2">
+				<c:choose>
+					<c:when test="${applyDetailPlan.planPay eq 1}">
+						카드
+					</c:when>
+					<c:otherwise>
+						계좌이체
+					</c:otherwise>
+				</c:choose>
+				</td>
+			</tr>
+			<!-- 분리 -->
+			<c:choose>
+        <c:when test="${applyDetailPlan.planPay eq 1}">
+            <tr>
+                <th scope="row">
+                    <span>카드번호</span>
+                </th>
+                <td colspan="2">${applyDetailPlan.cardNumber }</td>
+                <th scope="row">
+                    <span>카드유효기간</span>
+                </th>
+                <td colspan="2"> ${applyDetailPlan.cardExpiration }</td>
+            </tr>
+        </c:when>
+        <c:otherwise>
+            <tr>
+                <th scope="row">
+                    <span>은행</span>
+                </th>
+                <td colspan="2">${applyDetailPlan.bank }</td>
+                <th scope="row">
+                    <span>계좌번호</span>
+                </th>
+                <td colspan="2">${applyDetailPlan.bankNumber }</td>
+            </tr>
+        </c:otherwise>
+        </c:choose>
+
+    	<tr>
+	        <th scope="row">
+	            <span>기본료(원)</span>
+	        </th>
+	        <td>${applyDetailPlan.planPrice }</td>
+	        <th scope="row">
+	            <span>기본데이터(MB)</span>
+	        </th>
+	        <td>${applyDetailPlan.planData }</td>
+	        <th scope="row">
+	            <span>기본음성(분)</span>
+	        </th>
+	        <td>${applyDetailPlan.planVoice }</td>
+	        <th scope="row">
+	            <span>기본문자(건)</span>
+	        </th>
+	        <td>${applyDetailPlan.planMessage }</td>
+        </tr>
+        <!-- 분리 -->
+        <tr>
+			<th scope="row">
+				<span>가입 신청 상태</span>
+			</th>
+			<td>
+			<c:choose>
+				<c:when test="${applyDetailPlan.orderStatus eq 1}">
+					신청완료
+				</c:when>
+				<c:when test="${applyDetailPlan.orderStatus eq 2}">
+					승인완료
+				</c:when>
+				<c:otherwise>
+					승인보류
+				</c:otherwise>
+			</c:choose>
+			</td>
+		</tr>
+        
         </tbody>
 	</table>
 
-    <table class="table">
+ <%--    <table class="table">
         <tbody>
 			<tr>
 				<th scope="row">
@@ -254,7 +424,7 @@
 				</c:choose>
 				</td>
 			</tr>
-		</table>
+		</table> --%>
 		<button type="button" class="btn approve">승인</button>
 		<button type="button" class="btn hold">보류</button>
 	</div>

@@ -83,8 +83,10 @@
 	                    <td><a href="<%=request.getContextPath()%>/biz/planDetail?planNo=${plan.planNo }">${plan.planName }</a></td>
 	                    <td>${plan.planDate } </td>
 	                    <td>
-	                    <button>수정</button><!-- 요금제 수정이 필요한가??? -->
-	                    <button type="button" class="deleteBtn" data-bs-toggle="modal" data-bs-target="#deleteleModal" data-planno="${plan.planNo}">삭제</button>       
+	                    <button type="button" onclick="location.href=
+	                    '${pageContext.request.contextPath}/biz/modifyPlan?planNo=${plan.planNo }'">수정</button>
+	                    <button type="button" class="deleteBtn" data-bs-toggle="modal" 
+	                    data-bs-target="#deleteleModal" data-planno="${plan.planNo}">삭제</button>       
 	                    </td>
 	                </tr>
 	                </c:forEach>   

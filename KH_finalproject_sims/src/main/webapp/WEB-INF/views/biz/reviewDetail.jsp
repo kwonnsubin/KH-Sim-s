@@ -22,6 +22,7 @@
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
 
 
+
 	<!-- Bootstrap core CSS -->
     <link href="<%= request.getContextPath() %>/resources/chain/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
     
@@ -40,6 +41,35 @@
 <jsp:include page="/WEB-INF/views/biz/nav.jsp"/>
 리뷰 상세보기
 
+	
+	 <div class="container  reviewbox" style="margin-left: 300px;">
+      <div class="row row-cols-3" >
+		<div class="col bottonline">${reviewDetail.userId }</div>
+        <%-- <div class="col bottonline">${reviewDetail.reviewStar }</div> --%>
+        <div class="col bottonline form-control-plaintext">
+		  <c:forEach var="i" begin="1" end="5">
+		    <i class="fa${reviewDetail.reviewStar >= i ? '-solid' : (reviewDetail.reviewStar >= (i - 0.5) ? '-half-stroke' : '-regular')} fa-star" style="color: #ffdd00;"></i>
+		  </c:forEach>
+		</div>
+		
+        <div class="col bottonline">${reviewDetail.reviewDate }</div>
+        <div class="col-12" style="height:400px">${reviewDetail.reviewContent }</div>
+        
+        
+      </div>
+    </div>
+    
+   <button type="button" onclick="location.href='<%=request.getContextPath()%>/biz/reviewList'">목록으로</button>
+
+	<table border="solid">
+	  <tr>
+	    <td>첫번째 행, 첫번째 열</td>
+	    <td>첫번째 행, 두번째 열</td>
+	  </tr>
+	  <tr style="height: 4em;">
+	    <td colspan="2">두번째 행, 병합된 셀</td>
+	  </tr>
+	</table>
 
 
 	<jsp:include page="/WEB-INF/views/footer.jsp"/>

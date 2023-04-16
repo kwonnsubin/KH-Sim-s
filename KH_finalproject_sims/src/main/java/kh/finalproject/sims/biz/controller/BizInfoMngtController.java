@@ -211,6 +211,7 @@ public class BizInfoMngtController {
 		} else {
 		    selectedNetworksString.append("No network selected");
 		}
+		
 
 		String network = selectedNetworksString.toString();
 		System.out.println(network);

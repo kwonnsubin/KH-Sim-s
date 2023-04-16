@@ -38,6 +38,7 @@
   delete from review_report where REVIEW_NO = ${reviewNo}
   </delete>
   
+<<<<<<< Updated upstream
 	<!-- 사용자 페이지 -->
 	
 	<!-- 작성한 리뷰 리스트 -->
@@ -63,4 +64,12 @@
 		delete from biz_review where review_no=#{reviewNo}
 	</delete>
   
+=======
+  <!-- 리뷰 상세 보기 -->
+  <select id="selectReviewDetail" resultType="kh.finalproject.sims.biz.model.vo.BizReviewMngtVo">
+  	select * 
+	 from biz_review 
+	 where review_no = #{reviewNo}
+  </select>
+>>>>>>> Stashed changes
 </mapper>

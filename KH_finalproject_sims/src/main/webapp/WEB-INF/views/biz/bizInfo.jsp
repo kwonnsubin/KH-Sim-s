@@ -125,12 +125,7 @@
 				<td >${bizinfo.bizAccPayDate }일</td>
 			</tr>
 	
-			<tr>
-				<th scope="row">
-					<span>지원통신망</span>
-				</th>
-				<td colspan="2">${bizinfo.network }</td>
-			</tr>
+			
 			<tr>
 				<th scope="row">
 					<span>영업시간</span>
@@ -142,6 +137,13 @@
 				<td >${bizinfo.bizClosedDay }</td>
 			</tr>
 	
+			<tr>
+				<th scope="row">
+					<span>지원통신망</span>
+				</th>
+				<td colspan="2">${bizinfo.network }</td>
+			</tr>
+			
 			<c:forEach var="service" items="${serviceList }">
 				<tr>
 					<th scope="row">

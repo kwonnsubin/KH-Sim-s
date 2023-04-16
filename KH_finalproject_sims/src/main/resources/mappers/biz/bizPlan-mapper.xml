@@ -79,4 +79,16 @@
 		delete from plan_table where plan_no=#{planNo}
 	</delete>
 	
+	<!-- 요금제 수정 -->
+	<update id="modifyPlan" parameterType="kh.finalproject.sims.biz.model.vo.BizPlanMngtVo">
+	update plan_table
+	  set plan_name = #{planName}, net_no = #{netNo}, gen_no = #{genNo},
+	  		plan_price = #{planPrice}, plan_voice = #{planVoice},
+	  		plan_message = #{planMessage}, plan_data = #{planData},
+	  		plan_voice_over = #{planVoiceOver}, plan_message_over = #{planMessageOver},
+	  		plan_data_over = #{planDataOver},
+	  		plan_update_date = sysdate
+	 where plan_no = #{planNo} 
+	</update>
+	
 </mapper>

@@ -1,1 +1,12 @@
 @charset "UTF-8";
+.reviewbox{
+  padding: 10px;
+  border-radius: 5px;
+  box-shadow:  2px 2px 5px rgba(0, 3, 0, 0.3);
+  border: none;
+  outline: none;
+  margin-top:50px;
+}
+.bottonline{
+	border-bottom: 2px solid black;
+}

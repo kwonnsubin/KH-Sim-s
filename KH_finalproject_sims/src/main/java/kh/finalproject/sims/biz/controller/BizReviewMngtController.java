@@ -79,6 +79,10 @@ public class BizReviewMngtController {
 		System.out.println("paging.getPage() : "+paging.getPage());
 		System.out.println("getPageList : "+paging.getPageList());
 		
+		int reviewCnt = service.getReviewListCount(bizid);
+		System.out.println("해당 통신사 리뷰 총 개수 : "+reviewCnt);
+		
+		mv.addObject("reviewCnt",reviewCnt);
 		mv.setViewName("biz/reviewList");
 		return mv;
 	}
@@ -117,6 +121,11 @@ public class BizReviewMngtController {
 	public ModelAndView reviewDetail(ModelAndView mv
 			,@RequestParam("reviewNo") int reviewNo
 			) {
+		
+		BizReviewMngtVo vo = service.selectReviewDetail(reviewNo);
+		System.out.println("리뷰 상세보기"+vo);
+		
+		mv.addObject("reviewDetail",vo);
 		
 		mv.setViewName("biz/reviewDetail");
 		return mv;

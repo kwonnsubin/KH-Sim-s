@@ -146,6 +146,34 @@ public class BizPlanMngtController {
 		return "success";
 	}
 	
+	//요금제 수정(기본값 출력용)
+	@GetMapping("/modifyPlan")
+	public ModelAndView modifyPlan(ModelAndView mv
+			, int planNo
+			) {
+		System.out.println("요금제 수정을 위한 기본값 출력 planNo:"+ planNo);
+		BizPlanMngtVo vo = service.selectBizPlanDetail(planNo);
+		System.out.println("요금제 수정을 위한 기본값 출력 vo :"+ vo);
+
+		mv.addObject("planDetail", vo);
+		mv.setViewName("/biz/planDetail");
+		
+		mv.setViewName("/biz/planModify");
+		return mv;
+	}
+	
+	
+	//요금제 수정
+	@PostMapping("/modifyPlan")
+	public String modifyPlan(@ModelAttribute BizPlanMngtVo vo
+			) {
+		System.out.println("post로 넘어온planNo :"+vo.getPlanNo());
+		System.out.println("수정 정보 vo :" +vo);
+		
+		service.modifyPlan(vo);
+		
+		return "redirect:/biz/planDetail?planNo="+vo.getPlanNo();
+	}
 }
 	
 

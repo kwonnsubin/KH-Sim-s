@@ -52,6 +52,10 @@ public class BizPlanMngtDao {
 	public int getSearchPlanListCount(Map<String, String> mapCnt) {
 		return sqlSession.selectOne("bizPlan.getSearchPlanListCount", mapCnt);
 	}
+
+	public int modifyPlan(BizPlanMngtVo vo) {
+		return sqlSession.update("bizPlan.modifyPlan",vo);
+	}
 	
 	
 	

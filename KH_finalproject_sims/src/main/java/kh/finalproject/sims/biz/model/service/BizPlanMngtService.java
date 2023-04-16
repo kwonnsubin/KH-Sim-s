@@ -22,6 +22,7 @@ public interface BizPlanMngtService {
 
 	public int deleteBizPlan(int planNo);
 
+	public int modifyPlan(BizPlanMngtVo vo);
 	
 	//search 목록
 	public Search getPage(String bizid, int pNum, int cnt, String keyword); 

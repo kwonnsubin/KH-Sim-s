@@ -99,4 +99,9 @@ public class BizPlanMngtServiceImpl implements BizPlanMngtService{
 		return dao.getSearchPlanListCount(mapCnt);
 	}
 
+	@Override
+	public int modifyPlan(BizPlanMngtVo vo) {
+		return dao.modifyPlan(vo);
+	}
+
 }

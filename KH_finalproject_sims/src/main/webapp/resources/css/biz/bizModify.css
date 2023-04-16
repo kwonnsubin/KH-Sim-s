@@ -6,10 +6,6 @@
 	box-sizing: border-box;
 	font-family: 'poppins', sans-serif;
 }
-.applyStatus{
-	display: flex;
-	align-items: center; /*행을 수직으로 중앙정렬*/
-}
  table {
     display:block;
     width: 100%;
@@ -22,7 +18,3 @@
 	align-items: center;
 	border-style: none;
 }
-.table th {
-  background-color: #f2f2f2 !important;
-}
-

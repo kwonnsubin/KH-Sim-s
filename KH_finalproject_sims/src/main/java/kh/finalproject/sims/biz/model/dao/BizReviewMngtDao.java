@@ -30,4 +30,8 @@ public class BizReviewMngtDao {
 		return sqlSession.delete("bizReview.cancleReport",reviewNo );
 	}
 	
+	public BizReviewMngtVo selectReviewDetail(int reviewNo) {
+		return sqlSession.selectOne("bizReview.selectReviewDetail", reviewNo);
+	}
+	
 }

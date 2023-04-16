@@ -22,3 +22,40 @@
   background-color: #ae8fef;
   color: white;
 }
+/*수정중*/
+.review-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 10px;
+  border-bottom: 1px solid #ddd;
+}
+
+.review-header-item {
+  display: inline-block;
+  margin-right: 10px;
+}
+/*리뷰박스 내에 있는 모든 헤더 아이템들이 일정한 위치에서 정렬되어 표시*/
+.review-header-item:nth-child(2),
+.review-header-item:nth-child(3) {
+  flex-basis: 150px;
+  text-align: center;
+}
+
+.review-header-item:nth-child(4) {
+  flex-basis: 100px;
+  text-align: center;
+}
+.review-box {
+  margin-bottom: 40px;
+  padding: 10px;
+  box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.1);
+  background-color: #fff;
+  width: 70%;
+  margin-left: 270px;
+  border-bottom: 1px solid #ddd;
+}
+.review-container {
+  width: 800px; /* 최대 너비 설정 */
+  margin: 0 auto; /* 가운데 정렬 */
+}

@@ -30,14 +30,11 @@
     <link rel="stylesheet" href="<%= request.getContextPath() %>/resources/css/user/myinfo.css"/>
     
     
-   <script type="text/javascript" 
-    src="https://www.gstatic.com/charts/loader.js"></script>
+   <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
 
 
-	<!-- 요금제별 누적 가입자 수 -->
+	<!-- 요금제별 누적 가입자 수 , 하루 가입자 수 -->
     <script type="text/javascript">
-      //google에서 기본 차트 관련된 package(모듈)명
-      //chart 종류에 따라서 google 개발 문서 참조 필수
       google.charts.load('current', {'packages':['corechart']});
       google.charts.setOnLoadCallback(drawChart);
 
@@ -51,31 +48,30 @@
   	            // JSON 데이터를 받아 처리
   	            //var data = JSON.parse(json); //dataType:"json"라고 명시하면 이렇게 안써도 됨. 
   	            console.log(json);
-  	          	var chartData = [['요금제명', '가입수', { role: 'style' }]];
-	  	        for (var i = 0; i < json.length; i++) {
-	  	        	
-	  	        	var randomColor = getRandomColor(); // 랜덤 색상을 생성하는 함수
-	                chartData.push([json[i].planName, json[i].planApplyCnt, randomColor]);
-	            }  
+  	          var chartData = [['요금제명', '누적 가입수', { role: 'style' }, '하루 가입수', { role: 'style' }]];
+  	        	for (var i = 0; i < json.length; i++) {
+	  	            var randomColor1 = getRandomColor(); // 랜덤 색상을 생성하는 함수
+	  	            var randomColor2 = getRandomColor(); 
+	  	            chartData.push([json[i].planName, json[i].planApplyCnt, randomColor1, json[i].todayApplyCnt ,randomColor2]);
+  	        }
 	            console.log("차트 데이타 : "+chartData);
 	            
 	 
 	            var options = {
-		                title: '요금제별 누적 가입자 수',
-		                width: 600,
-		                height: 400,              
+		                title: '요금제별  가입자 수(누적 / 하루)',
+		                width: '100%',
+		                height: '400',              
 		                legend: { position: 'none' },
 		                vAxis:{format: '#'} //y축 값을 소수점 없이 정수로 표현하기 위한 포맷 설정
 		                //여기서 color를 정해도 되지만, 그 경우에 요금제가 새로 등록되었을 경우 열의 개수와
 		                // 맞지 않아서 오류가능성 있기 때문에 랜덤으로 색상 부여함. 
-		                , chartArea:{
-		                    left:10,
-		                    right:10, // !!! works !!!
-		                    bottom:20,  // !!! works !!!
-		                    top:20,
-		                    width:"100%",
-		                    height:"100%"
-		                  }
+		               /*  , chartArea:{
+		                	left:5,
+		                    top: 20,
+		                    width:'100%',
+		                    height:'350'
+		                  } */
+		               
 		            };
 		
 		            var chart = new google.visualization.ColumnChart(document.getElementById('chart_div2')); // Column Chart를 생성합니다.
@@ -98,8 +94,6 @@
   	        }     
   	    });
   	}
-
-      
     </script>
 
 <!-- 최근 일주일간 해당 통신사 요금제 가입자 열 그래프 -->
@@ -114,7 +108,6 @@
 	        dataType:"json",
 	        success: function(json) {
 	            // JSON 데이터를 받아 처리
-	            //var data = JSON.parse(json); //dataType:"json"라고 명시하면 이렇게 안써도 됨. 
 	            console.log(json);
 	            var chartData = [['일자', '가입수']];
 	            for (var i = 0; i < json.length; i++) {
@@ -124,13 +117,27 @@
 	
 	            var options = {
 	                title: '최근 일주일간 요금제 가입자 수',
-	                width: 600,
-	                height: 400,              
-	                legend: { position: 'none' }
+	                width: '100%',
+	                height: '400',              
+	                legend: { position: 'none' },
+	               /*   chartArea:{
+	                    width:'100%',
+	                    height:'350'
+	                  } */
+	                 colors: ['#BFCCB5', '#7C96AB', '#B7B7B7', '#EDC6B1', '#65647C', '#8B7E74', '#C7BCA1']
+	               , series: {
+					        0: {color: '#BFCCB5'},
+					        1: {color: '#7C96AB'},
+					        2: {color: '#B7B7B7'},
+					        3: {color: '#EDC6B1'},
+					        4: {color: '#65647C'},
+					        5: {color: '#8B7E74'},
+					        6: {color: '#C7BCA1'}
+					    } /*인덱스와 데이터 시리즈의 인덱스가 일치하지 않아 색상적용 불가.. */
 	            };
 	
-	            var chart = new google.visualization.ColumnChart(document.getElementById('chart_div')); // Column Chart를 생성합니다.
-	            chart.draw(google.visualization.arrayToDataTable(chartData), options); // 차트를 그립니다.
+	            var chart = new google.visualization.BarChart(document.getElementById('chart_div')); 
+	            chart.draw(google.visualization.arrayToDataTable(chartData), options); 
 	        },
 	        error : function(request,status,error) {
 	        	console.log("code:"+request.status+"\n"+"message:"+request.responseText+"\n"+"error:"+
@@ -190,7 +197,7 @@
       function drawChart() {
 
     	  $.ajax({
-    		   url : "${pageContext.request.contextPath}/biz/piechart2.Aj" //경로 항상 유의
+    		   url : "${pageContext.request.contextPath}/biz/piechart2.Aj"
     		  ,type : "post"
     		  ,dataType : "json" 
     		  ,success : function(json){
@@ -230,7 +237,7 @@
       function drawChart() {
     	  
     	  $.ajax({
-   		   url : "${pageContext.request.contextPath}/biz/bizAgeRatio.Aj" //경로 항상 유의
+   		   url : "${pageContext.request.contextPath}/biz/bizAgeRatio.Aj" 
    		  ,type : "post"
    		  ,dataType : "json" 
    		  ,success : function(json){
@@ -271,7 +278,7 @@
       function drawChart() {
     	  
     	  $.ajax({
-   		   url : "${pageContext.request.contextPath}/biz/bizGenderRatio.Aj" //경로 항상 유의
+   		   url : "${pageContext.request.contextPath}/biz/bizGenderRatio.Aj" 
    		  ,type : "post"
    		  ,dataType : "json" 
    		  ,success : function(json){
@@ -310,20 +317,24 @@
 <jsp:include page="/WEB-INF/views/biz/nav.jsp"/>
 	
 	<div class="container">
-
-		<div id="chart_div2" style="width:50%; height: 500px; padding-left: 200px"></div>   
-		<div id="chart_div" style="width:50%; height: 300px;  padding-bottom: 200px"></div>
-	
+		<div class="row">
+			<div class="chart-container col-8 chartbox" id="chart_div2"></div>   
+			<div class="chart-container col-4 chartbox" id="chart_div" ></div>
+		</div>
 	</div>
 	  
-	<!-- 원형차트 / 가장 인기 있는 요금제 기준-->
-    <div id="piechart" style="width: 900px; height: 500px; padding-top: 200px;" ></div>
-    
-    <div id="piechart2" style="width: 900px; height: 500px;"></div>
-    
-    <!-- 도넛 차트 / 통신사 전체 기준-->
-	<div id="donutchart" style="width: 900px; height: 500px;"></div>
-	<div id="donutchart2" style="width: 900px; height: 500px; padding-left: 500px;"></div>
+	
+	<div class="container">
+		<div class="row">
+			<!-- 원형차트 / 가장 인기 있는 요금제 기준-->
+		    <div class="col chartbox" id="piechart" style="width: 900px; height: 500px;" ></div> 
+		    <div class="col chartbox" id="piechart2" style="width: 900px; height: 500px;"></div>
+		      <!-- 도넛 차트 / 통신사 전체 기준-->
+		    <div class="col chartbox" id="donutchart" style="width: 900px; height: 500px;"></div>
+			<div class="col chartbox" id="donutchart2" style="width: 900px; height: 500px;"></div>
+	    </div>
+    </div>
+
 	  
 	<jsp:include page="/WEB-INF/views/footer.jsp"/>
 	

@@ -22,6 +22,10 @@ public class BizMainDao {
 		return sqlSession.selectList("bizChart.selectTotalApplyByPlan", bizid);
 	}
 	
+	public List<BizMainVo> selectTodayApplyByPlan(String bizid){
+		return sqlSession.selectList("bizChart.selectTodayApplyByPlan", bizid);
+	}
+	
 	public List<BizMainVo> selectTopPlanAgeRatio(String bizid){
 		return sqlSession.selectList("bizChart.selectTopPlanAgeRatio", bizid);
 	}

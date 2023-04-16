@@ -26,6 +26,12 @@ public class bizMainServiceImpl implements BizMainService{
 		return dao.selectTotalApplyByPlan(bizid);
 	}
 
+
+	@Override
+	public List<BizMainVo>selectTodayApplyByPlan(String bizid) {
+		return dao.selectTodayApplyByPlan(bizid);
+	}
+	
 	@Override
 	public List<BizMainVo> selectTopPlanAgeRatio(String bizid) {
 		return dao.selectTopPlanAgeRatio(bizid);
@@ -48,5 +54,6 @@ public class bizMainServiceImpl implements BizMainService{
 	@Override
 	public List<BizMainVo> selectBizGenderRatio(String bizid) {
 		return dao.selectBizGenderRatio(bizid);	}
+
 
 }

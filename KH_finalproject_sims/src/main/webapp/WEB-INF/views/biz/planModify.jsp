@@ -6,18 +6,18 @@
 <html>
 <head>
 <meta charset="UTF-8">
-	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta name="description" content="">
     <meta name="author" content="">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@100;300;400;500;700;900&display=swap" rel="stylesheet">
-
+    
 <title>Insert title here</title>
-<link rel="stylesheet" href="${path}/resources/css/biz/planDetail.css"/>
+<link rel="stylesheet" href="${path}/resources/css/biz/bizModify.css"/>
 <script src="https://code.jquery.com/jquery-3.6.3.js"></script>
 <link type="text/css" rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css">
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
+<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
 
 	<!-- Bootstrap core CSS -->
     <link href="<%= request.getContextPath() %>/resources/chain/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
@@ -28,19 +28,23 @@
     <link rel="stylesheet" href="<%= request.getContextPath() %>/resources/chain/assets/css/animated.css">
     <link rel="stylesheet" href="<%= request.getContextPath() %>/resources/chain/assets/css/owl.css">
     <link rel="stylesheet" href="<%= request.getContextPath() %>/resources/css/user/myinfo.css"/>
+   
 </head>
 <body>
 <jsp:include page="/WEB-INF/views/header.jsp"/>
 <jsp:include page="/WEB-INF/views/biz/nav.jsp"/>
 
-요금제 정보
-<!-- 요금제 번호 추가할까 말까 -->
-	<table class="table">
+
+요금제 수정하기
+
+<form action="modifyPlan" method="post">
+<input type="hidden" name="planNo" value="${planDetail.planNo }">
+<table class="table">
 		<tr>
 			<th>
 				<span>요금제명</span>
 			</th>
-			<td>${planDetail.planName} </td>
+			<td><input type="text" name="planName" value="${planDetail.planName }"></td>
 			<th>
 				<span>통신사명</span>
 			</th>
@@ -51,92 +55,74 @@
 				<span>통신망</span>
 			</th>
 			<td>
-			<c:choose>
-				<c:when test="${planDetail.netNo eq 1}">
-					KT
-				</c:when>
-				<c:when test="${planDetail.netNo eq 2}">
-					SKT
-				</c:when>
-				<c:otherwise>
-					LGU+
-				</c:otherwise>
-			</c:choose>
+				<select name="netNo">
+				  <option value="1" ${planDetail.netNo eq 1 ? 'selected' : ''}>KT</option>
+				  <option value="2" ${planDetail.netNo eq 2 ? 'selected' : ''}>SKT</option>
+				  <option value="3" ${planDetail.netNo eq 3 ? 'selected' : ''}>LGU+</option>
+				</select>
 			</td>
+			
 			<th>
 				<span>통신세대</span>
 			</th>
 			<td>
-			<c:choose>
-				<c:when test="${planDetail.genNo eq 1}">
-					5G
-				</c:when>
-				<c:when test="${planDetail.genNo eq 2}">
-					LTE
-				</c:when>
-				<c:when test="${planDetail.genNo eq 3}">
-					3G
-				</c:when>
-				<c:otherwise>
-					LTE/3G
-				</c:otherwise>
-			</c:choose>
+				<select name="genNo">
+				  <option value="1" ${planDetail.genNo eq 1 ? 'selected' : ''}>5G</option>
+				  <option value="2" ${planDetail.genNo eq 2 ? 'selected' : ''}>LTE</option>
+				  <option value="3" ${planDetail.genNo eq 3 ? 'selected' : ''}>3G</option>
+				  <option value="4" ${planDetail.genNo eq 4 ? 'selected' : ''}>LTE/3G</option>
+				</select>
 			</td>
 		</tr>
 		<tr>
 			<th>
 				<span>기본료(원)</span>
 			</th>
-			<td>${planDetail.planPrice}</td>
+			<td><input type="text" name="planPrice" value="${planDetail.planPrice }"></td>
 			<th>
 				<span>기본음성(분)</span>
 			</th>
-			<td>${planDetail.planVoice}</td>
+			<td><input type="text" name="planVoice" value="${planDetail.planVoice }"></td>
 		</tr>
 		<tr>
 			<th>
 				<span>기본문자(건)</span>
 			</th>
-			<td>${planDetail.planMessage}</td>
+			<td><input type="text" name="planMessage" value="${planDetail.planMessage }"></td>
 			<th>
 				<span>기본데이터(mb)</span>
 			</th>
-			<td>${planDetail.planData}</td>
+			<td><input type="text" name="planData" value="${planDetail.planData }"></td>
 		</tr>
 		<tr>
 			<th>
 				<span>초과음성단가(초)</span>
 			</th>
-			<td>${planDetail.planVoiceOver}</td>
+			<td><input type="text" name="planVoiceOver" value="${planDetail.planVoiceOver }"></td>
 			<th>
 				<span>초과문자단가(건)</span>
 			</th>
-			<td>${planDetail.planMessageOver}</td>
+			<td><input type="text" name="planMessageOver" value="${planDetail.planMessageOver }"></td>
 			<th>
 				<span>초과데이터단가(mb)</span>
 			</th>
-			<td>${planDetail.planDataOver}</td>
+			<td><input type="text" name="planDataOver" value="${planDetail.planDataOver }"></td>
 		</tr>
-		<!-- 수정된 적이 없으면 애초에 수정일자가 보이지 않게..  -->
-		<c:if test="${not empty planDetail.planUpdateDate}">
-		  <tr>
-		    <th><span>수정일자</span></th>
-		    <td>${planDetail.planUpdateDate}</td>
-		  </tr>
-		</c:if>
-
 	</table>
 	
-	<button onclick="location.href='${pageContext.request.contextPath}/biz/planList'">목록</button>
-	<button onclick="location.href='${pageContext.request.contextPath}/biz/modifyPlan?planNo=${planDetail.planNo }'">수정</button>
-
+		<button onclick="goBack()">뒤로 가기</button>
+	    <button type="submit">수정완료</button>
+	</form>
+	
+    
+    
 <script>
 	function goBack() {
 	  window.history.back();
 	}
-</script>
+</script>    
 
-	<jsp:include page="/WEB-INF/views/footer.jsp"/>
+<jsp:include page="/WEB-INF/views/footer.jsp"/>
 	
 	<!-- Scripts -->
 	<script src="<%= request.getContextPath() %>/resources/chain/vendor/jquery/jquery.min.js"></script>
@@ -147,8 +133,6 @@
 	<script src="<%= request.getContextPath() %>/resources/chain/assets/js/popup.js"></script>
 	<script src="<%= request.getContextPath() %>/resources/chain/assets/js/custom.js"></script>
 	<script src="<%= request.getContextPath() %>/resources/js/user/myinfo.js"></script>
-  	
-	
-
+  
 </body>
 </html>

@@ -39,7 +39,7 @@
 요금제 가입 신청 목록
 	<div>
 		<form action="${path}/biz/applyList">
-			<select name="cnt" onchange="submit();">
+			<select class="form-select" name="cnt" onchange="submit();">
 				<c:forEach var="num" begin="5" end="30" step="5">
 					<option value="${num }" ${requestScope.paging.pageLimit eq num ? "selected" : "" }>${num } 개</option>
 				</c:forEach>
@@ -173,11 +173,11 @@
 		</ul>
 	  </c:if>
 
-<script>
+<!-- <script>
 	window.onload = function() {
 		  document.getElementById("exampleRadios1").checked = true;
 		};
-</script>
+</script> -->
 
 
 <script>
@@ -201,6 +201,9 @@
 		 var orderStatus = getCookie("orderStatus");
 		  if (orderStatus != "") {
 		    $("input[name='division'][value='" + orderStatus + "']").prop('checked', true);
+		  } else {
+			//쿠키가 없을 경우 첫 번째 라디오 버튼을 선택
+			$("input[name='division']:first").prop('checked', true);
 		  }
 	});
 

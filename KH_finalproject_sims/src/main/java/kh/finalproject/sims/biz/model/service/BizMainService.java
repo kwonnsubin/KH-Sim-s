@@ -11,6 +11,8 @@ public interface BizMainService {
 	
 	public List<BizMainVo>selectTotalApplyByPlan(String bizid);
 	
+	public List<BizMainVo>selectTodayApplyByPlan(String bizid);
+	
 	public List<BizMainVo>selectTopPlanAgeRatio(String bizid);
 	
 	public List<BizMainVo>selectTopPlanGenderRatio(String bizid);
