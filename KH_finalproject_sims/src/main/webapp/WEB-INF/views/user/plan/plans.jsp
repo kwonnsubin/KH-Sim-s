@@ -566,7 +566,7 @@
 	    				</div>
 	    				<div class="col-4 text-end">
 	    					<p>${list.planPrice}원</p>
-	    					<button type="button" class="btn btn-primary btn-sm">자세히 보기</button>
+	    					<button type="button" class="btn btn-primary btn-sm" onclick="location.href='<%=request.getContextPath()%>/plan/${list.planNo}'">자세히 보기</button>
 	    				</div>
 	    			</div>
 	    			</c:forEach>
