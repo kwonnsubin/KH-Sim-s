@@ -36,6 +36,7 @@
 									<div class="simsBtn m-b-15">
 										<input class="btn btn-primary right" type="button" onclick="location.href='<%=request.getContextPath()%>/admin/faq/write'" value="작성">
 									</div>
+									<!-- 검색 {s} -->
 									<div class="card">
 										<div class="card-body">
 											<form action="<%=request.getContextPath()%>/admin/faq/list" method="post">
@@ -43,7 +44,7 @@
 													<div class="col-sm-12">
 														<div class="input-group">
 															<label class="floating-label"></label>
-															<select class="" name="searchOption">
+															<select name="searchOption">
 																<option value="">선택</option>
 																<option value="title" <c:if test="${searchOption eq 'title' }">selected</c:if>>제목</option>
 																<option value="writer" <c:if test="${searchOption eq 'writer' }">selected</c:if>>작성자</option>
@@ -59,6 +60,7 @@
 											</form>
 										</div>
 									</div>
+									<!-- 검색 {e} -->
 									<div class="card">
 										<div class="card-body table-border-style">
 											<div class="table-responsive">

@@ -9,24 +9,30 @@ import kh.finalproject.sims.admin.model.vo.AdminQnaReplyVo;
 
 public interface AdminQnaMngtService {
 	
-	// 자주묻는질문 목록보기
+	// 자주묻는질문 
+	// 목록보기
 	public List<AdminFaqVo> selectFaqList();
 	
-	// 자주묻는질문 상세보기
+	// 상세보기
 	public AdminFaqVo selectFaqDetail(int faqNo);
 	
-	// 자주묻는질문 작성하기
+	// 작성하기
 	public int insertFaqWrite(AdminFaqVo vo);
 	
-	// 자주묻는질문 수정하기
+	// 수정하기
 	public int selectFaqModify(AdminFaqVo vo);
 	
-	// 자주묻는질문 삭제하기
+	// 삭제하기
 	public int deleteFaq(int faqNo);
 	
-	// 자주묻는질문 검색
+	// 검색
 	public List<AdminFaqVo> selectSearchFaqList(AdminFaqVo vo);
 	
+//	// search 목록
+//	public Search getPage();
+//	public int getSearchApplyListCount();
+	
+	// 문의 내역
 	// 문의 내역 리스트
 	public List<AdminQnaMngtVo> selectQnaList();
 	

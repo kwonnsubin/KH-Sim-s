@@ -40,7 +40,12 @@ public class AdminQnaMngtController {
 	
 	// 자주묻는질문화면 리스트
 	@RequestMapping(value="/faq/list", method = {RequestMethod.GET, RequestMethod.POST})
-	public ModelAndView selectFaqList(ModelAndView mv, AdminFaqVo vo) {
+	public ModelAndView selectFaqList(
+			ModelAndView mv
+			, AdminFaqVo vo
+			, HttpServletRequest request
+			, HttpServletResponse response
+			) {
 	    if(vo.getSearchOption() == null) {
 	        mv.addObject("faqlist", service.selectFaqList()); // 검색이 없는경우
 	    } else {
@@ -48,8 +53,50 @@ public class AdminQnaMngtController {
 	        mv.addObject("searchOption", vo.getSearchOption());
 	        mv.addObject("searchBox", vo.getSearchBox());
 	    }
+	    
+	  //페이징
+	  		String pageNumber = request.getParameter("p");
+	  		int pNum;
+	  		if (pageNumber == null || pageNumber.isEmpty()) {
+	  			pNum = 1;
+	  		} else {
+	  			pNum = Integer.parseInt(pageNumber);
+	  		}
+	  	
+	  		Cookie cookie = null;
+	  		Cookie[] cookies = request.getCookies();
+	  		for (Cookie c : cookies) {
+	  			if (c.getName().equals("cnt")) {
+	  				cookie = c;
+	  			}
+	  		}
+	  	
+	  		String cnt = request.getParameter("cnt");
+	  		if (cnt != null) {
+	  			if (cnt.isEmpty()) {
+	  				if (cookie != null) {
+	  					cnt = cookie.getValue();
+	  				} else {
+	  					cnt = "10"; // 초기값
+	  				}
+	  			}
+	  		} else {
+	  			if (cookie != null) {
+	  				cnt = cookie.getValue();
+	  			} else {
+	  				cnt = "10";
+	  			}
+	  		}
+	  			  	
+	  		cookie = new Cookie("cnt", cnt);
+	  		cookie.setMaxAge(60 * 60 * 24 * 5);
+	  		response.addCookie(cookie);
+	  		
+//	  		int searchApplyListCount = service.getSearchApplyListCount(); // 목록의 총 row를 알기 위한 getSearchApplyListCount();
+//	  		Search search = service.getPage();
+	    
 	    mv.setViewName("admin/faq/list");
-	    return mv;    
+	    return mv;
 	}
 	
 	// 자주묻는질문화면 상세내용 보기

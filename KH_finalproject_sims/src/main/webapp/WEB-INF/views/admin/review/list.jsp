@@ -74,19 +74,17 @@
 															<tr>
 																<td class="text-center">${review.reviewNo}</td>
 																<td>
-																<c:choose>
-														          <c:when test="${fn:length(review.reviewContent) > 40}">
-														            <a href="<%=request.getContextPath()%>/admin/review/detail/${review.reviewNo }" class="">${fn:substring(review.reviewContent, 0, 40)}...&nbsp;</a>
-														          </c:when>
-														          <c:otherwise>
-														            <a href="<%=request.getContextPath()%>/admin/review/detail/${review.reviewNo }" class="">${review.reviewContent}&nbsp;</a>
-														          </c:otherwise>
-														        </c:choose>  
-													                <i class="fa${review.reviewStar < 1 ? '-regular' : '-solid'} fa-star" style="color: #ffdd00;"></i>
-													                <i class="fa${review.reviewStar < 1.5 ? '-regular' : (review.reviewStar < 2 ? '-half-stroke' : '-solid')} fa-star" style="color: #ffdd00;"></i>
-													                <i class="fa${review.reviewStar < 2.5 ? '-regular' : (review.reviewStar < 3 ? '-half-stroke' : '-solid')} fa-star" style="color: #ffdd00;"></i>
-													                <i class="fa${review.reviewStar < 3.5 ? '-regular' : (review.reviewStar < 4 ? '-half-stroke' : '-solid')} fa-star" style="color: #ffdd00;"></i>
-													                <i class="fa${review.reviewStar < 4.5 ? '-regular' : '-solid'} fa-star" style="color: #ffdd00;"></i>
+																	<c:choose>
+															          <c:when test="${fn:length(review.reviewContent) > 40}">
+															            <a href="<%=request.getContextPath()%>/admin/review/detail/${review.reviewNo }" class="">${fn:substring(review.reviewContent, 0, 40)}...&nbsp;</a>
+															          </c:when>
+															          <c:otherwise>
+															            <a href="<%=request.getContextPath()%>/admin/review/detail/${review.reviewNo }" class="">${review.reviewContent}&nbsp;</a>
+															          </c:otherwise>
+															        </c:choose>  
+												                       <c:forEach var="i" begin="1" end="5">
+												                           <i class="fa${(review.reviewStar)/2 >= i ? '-solid fa-star' : ((review.reviewStar)/2 >= (i - 0.5) ? '-star-half-stroke fa-regular' : '-regular fa-star')}" style="color: #ffdd00;"></i>
+												                       </c:forEach>
 																</td>
 																<td class="text-center">${review.userId}</td>
 																<td class="text-center"><fmt:formatDate value="${review.reviewDate}" pattern="yyyy.MM.dd"/> </td>

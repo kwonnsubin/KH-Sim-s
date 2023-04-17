@@ -226,6 +226,25 @@
 			${planOrderChartList} --%>
 			</div>
 		</div>
+		
+		
+		<!-- api 테스트 -->
+		 <form:form method="post" id="smsForm">
+		    <ul>
+		      <li>보낼사람 : <input type="text" name="from"/></li>
+		      <li>내용 : <textarea name="text"></textarea></li>
+		      <li><input type="button" onclick="sendSMS()" value="전송하기" /></li>
+		    </ul>
+		  </form:form>
+  
+		   <script>
+		    function sendSMS(pageName){
+		
+		    	console.log("문자를 전송합니다.");
+		    	$("#smsForm").attr("action", "${pageContext.request.contextPath}/send-one");
+		    	$("#smsForm").submit();
+		    }
+		  </script>
 </div>
 <jsp:include page="/WEB-INF/views/admin/include/footer.jsp" />
 </body>
