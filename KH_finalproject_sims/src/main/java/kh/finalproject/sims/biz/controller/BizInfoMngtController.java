@@ -140,12 +140,14 @@ public class BizInfoMngtController {
 			
 			//파일 첨부
 			, @RequestParam(name="logo", required = false) MultipartFile multi
+			, @RequestParam(name="originalFilename", required = false) String originalFilename
+			, @RequestParam(name="logoRenameFilename", required = false) String logoRenameFilename
 			) {
 		String bizid = principal.getName();
 		System.out.println("통신사아이디 : " + bizid);
 		
 		
-		
+		System.out.println("파일첨부하지 않고 히든으로 숨겨놓은 originalFilename :"+originalFilename);
 		
 		//요금제 테이블의 bizName도 변경 bizid, bizName
 		String beforeBizName = service.getBeforeBizName(bizid);
@@ -163,12 +165,26 @@ public class BizInfoMngtController {
 		
 		Map<String, String> filePath;
 		
+		System.out.println("vo.getLogoRenameFilename() :"+vo.getLogoRenameFilename());
+		
+		/*
+		 * try { filePath = fileUtil.saveFile(multi, request, null);
+		 * vo.setLogoRenameFilename(filePath.get("rename")); } catch (Exception e) {
+		 * e.printStackTrace(); }
+		 */
 		try {
-			filePath = fileUtil.saveFile(multi, request, null);
-			vo.setLogoRenameFilename(filePath.get("rename"));
+		    filePath = fileUtil.saveFile(multi, request, null);
+		    String logoRenameFilename2 = filePath.get("rename"); //새로 들어오는 이미지파일
+		    if (multi.getOriginalFilename() == null || multi.getOriginalFilename().isEmpty()) { // 이미지 파일이 선택되지 않은 경우
+		        logoRenameFilename2 = vo.getLogoRenameFilename(); // 이전에 저장된 파일 이름 사용
+		    }
+		    vo.setLogoRenameFilename(logoRenameFilename2);
 		} catch (Exception e) {
-			e.printStackTrace();
+		    e.printStackTrace();
 		}
+
+
+		
 		System.out.println("vo.getLogoRenameFilename()"+vo.getLogoRenameFilename());
 		
 		//고객센터번호

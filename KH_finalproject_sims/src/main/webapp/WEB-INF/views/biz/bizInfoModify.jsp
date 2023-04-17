@@ -497,7 +497,8 @@
 		<div>
 			<label>로고이미지 첨부</label> <!-- 파일첨부 -->
 			<input type="file" name="logo" placeholder="첨부파일" multiple="multiple">
-
+			<input type="hidden" name="originalFilename" value="${bizinfo.originalFilename }">
+			<input type="hidden" name="logoRenameFilename" value="${bizinfo.logoRenameFilename }">
 		</div>
         
         <button onclick="goBack()">뒤로 가기</button>
