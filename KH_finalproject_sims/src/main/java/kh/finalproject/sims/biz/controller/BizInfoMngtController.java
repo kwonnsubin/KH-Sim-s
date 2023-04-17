@@ -53,7 +53,14 @@ public class BizInfoMngtController {
 		mv.addObject("bizinfo", vo);
 		mv.addObject("serviceList",serviceList);
 		
-		String imagePath ="/resources/img/"+vo.getLogoRenameFilename();
+		String imagePath;
+		if (vo.getLogoRenameFilename() == null) {
+		  imagePath = "/resources/img/" + vo.getOriginalFilename();
+		} else {
+		  imagePath = "/resources/img/" + vo.getLogoRenameFilename();
+		}
+		
+		//String imagePath ="/resources/img/"+vo.getOriginalFilename();
 		mv.addObject("imagePath",imagePath);
 		mv.setViewName("biz/bizInfo");
 		return mv;
@@ -138,6 +145,8 @@ public class BizInfoMngtController {
 		System.out.println("통신사아이디 : " + bizid);
 		
 		
+		
+		
 		//요금제 테이블의 bizName도 변경 bizid, bizName
 		String beforeBizName = service.getBeforeBizName(bizid);
 		System.out.println("수정전 법인명 : "+beforeBizName);
@@ -148,6 +157,10 @@ public class BizInfoMngtController {
 		
 		
 		//파일첨부
+		
+		System.out.println("&&&&&&&&&&&&&&&& multi : "+multi);
+		System.out.println("%%%%%%% multi.getOriginalFilename() : "+multi.getOriginalFilename());
+		
 		Map<String, String> filePath;
 		
 		try {
@@ -156,7 +169,7 @@ public class BizInfoMngtController {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		System.out.println(vo.getLogoRenameFilename());
+		System.out.println("vo.getLogoRenameFilename()"+vo.getLogoRenameFilename());
 		
 		//고객센터번호
 		List<bizInfoMngServiceVo> netServiceList = new ArrayList<>();

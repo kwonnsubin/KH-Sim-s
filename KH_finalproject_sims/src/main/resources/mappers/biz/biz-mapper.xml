@@ -41,6 +41,7 @@
 		<result column="WRITE_DATE" property="writeDate"/>
 		<result column="UPDATE_DATE" property="updateDate"/>
 		<result column="LOGO_RENAME_FILENAME" property="logoRenameFilename"/>
+		<result column="ORIGINAL_FILENAME" property="originalFilename"/>
 
 		<collection column="BIZ_ID" property="serviceList" ofType="kh.finalproject.sims.biz.model.vo.bizInfoMngServiceVo">
 			<result column="NET_NO" property="netNo"/>

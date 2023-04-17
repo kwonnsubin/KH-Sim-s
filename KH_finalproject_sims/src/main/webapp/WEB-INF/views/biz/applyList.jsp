@@ -59,8 +59,37 @@
 		<input type="text" name="keyword" id="keyword">
 		
 <!-- 분류 {s} -->
-	<div class="form-check-inline">
-	  <input class="form-check-input" type="radio" name="division" id="exampleRadios1" value="0" cheked>
+<%
+    String orderStatus = request.getParameter("orderStatus");
+%>
+
+<div class="form-check-inline">
+    <input class="form-check-input" type="radio" name="division" id="exampleRadios1" value="0" <% if (orderStatus == null || orderStatus.equals("0") || orderStatus.equals("")) { %>checked<% } %>>
+    <label class="form-check-label" for="exampleRadios1">
+        전체
+    </label>
+</div>
+<div class="form-check-inline">
+    <input class="form-check-input" type="radio" name="division" id="exampleRadios2" value="1" <% if (orderStatus != null && orderStatus.equals("1")) { %>checked<% } %>>
+    <label class="form-check-label" for="exampleRadios2">
+        신청완료
+    </label>
+</div>
+<div class="form-check-inline">
+    <input class="form-check-input" type="radio" name="division" id="exampleRadios3" value="2" <% if (orderStatus != null && orderStatus.equals("2")) { %>checked<% } %>>
+    <label class="form-check-label" for="exampleRadios3">
+        승인완료
+    </label>
+</div>
+<div class="form-check-inline">
+    <input class="form-check-input" type="radio" name="division" id="exampleRadios4" value="3" <% if (orderStatus != null && orderStatus.equals("3")) { %>checked<% } %>>
+    <label class="form-check-label" for="exampleRadios4">
+        승인보류
+    </label>
+</div>
+
+	<!-- <div class="form-check-inline">
+	  <input class="form-check-input" type="radio" name="division" id="exampleRadios1" value="0" checked>
 	  <label class="form-check-label" for="exampleRadios1">
 	    전체
 	  </label>
@@ -82,7 +111,7 @@
 	  <label class="form-check-label" for="exampleRadios4">
 	    승인보류
 	  </label>
-	</div>     
+	</div>      -->
 	<!-- 분류 {e} -->
 		
 		<button name="btnSearch" id="btnSearch">검색</button>
@@ -177,8 +206,8 @@
 	window.onload = function() {
 		  document.getElementById("exampleRadios1").checked = true;
 		};
-</script> -->
-
+</script>
+ -->
 
 <script>
 //검색
@@ -190,12 +219,15 @@
 		url = url + "&orderStatus="+$("input[name='division']:checked").val();
 		location.href=url;
 		console.log(url);
-		//쿠키에 라디오 버튼 상태를 저장
+/* 		//쿠키에 라디오 버튼 상태를 저장
 		document.cookie = "orderStatus=" + $("input[name='division']:checked").val();
-
+ */
 	});
 </script>
-<script>
+
+
+
+<!-- <script>
 //쿠키에 의해 라디오버튼 체크 상태 유지
 	$(document).ready(function(){
 		 var orderStatus = getCookie("orderStatus");
@@ -213,7 +245,7 @@
 	  if (parts.length == 2) return parts.pop().split(";").shift();
 	  return "";
 	}
-</script>
+</script> -->
 
 
 	<jsp:include page="/WEB-INF/views/footer.jsp"/>

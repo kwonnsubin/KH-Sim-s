@@ -145,7 +145,7 @@
 	            <div class="review-footer-item">
 	                <div class="form-control-plaintext">
 	                    <c:forEach var="i" begin="1" end="5">
-	                        <i class="fa${reviewList.reviewStar >= i ? '-solid' : (reviewdetail.reviewStar >= (i - 0.5) ? '-half-stroke' : '-regular')} fa-star" style="color: #ffdd00;"></i>
+	                        <i class="fa${(reviewList.reviewStar)/2 >= i ? '-solid fa-star' : ((reviewList.reviewStar)/2 >= (i - 0.5) ? '-star-half-stroke fa-regular' : '-regular fa-star')}" style="color: #ffdd00;"></i>
 	                    </c:forEach>
 	                </div>
 	            </div>

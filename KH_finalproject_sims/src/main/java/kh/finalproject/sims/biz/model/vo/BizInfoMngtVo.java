@@ -42,6 +42,7 @@ public class BizInfoMngtVo {
 //	WRITE_DATE           NOT NULL DATE          
 //	UPDATE_DATE                   DATE          
 //	LOGO_RENAME_FILENAME          VARCHAR2(100) 
+//  ORIGINAL_FILENAME
 
 	private String bizId;
 	private String bizName;
@@ -66,7 +67,7 @@ public class BizInfoMngtVo {
 	private Date writeDate;
 	private Date updateDate;
 	private String logoRenameFilename;
-
+	private String originalFilename;
 	
 	private List<bizInfoMngServiceVo> serviceList;
 
