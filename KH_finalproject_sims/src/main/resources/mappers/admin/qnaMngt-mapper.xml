@@ -74,6 +74,42 @@
 		</choose>
 		ORDER BY FAQ_DATE DESC
 	</select>
+	<!-- 페이징 search 글 목록-->
+	<select id="searchFaqPageList" parameterType="map" resultType="kh.finalproject.sims.admin.model.vo.AdminFaqVo">
+		SELECT
+			FAQ_NO,
+			FAQ_TITLE,
+			FAQ_CONTENT,
+			ADMIN_ID,
+			FAQ_REWRITER,
+			FAQ_DATE,
+			FAQ_REDATE
+		FROM(
+		SELECT
+			ROWNUM AS N,
+			FAQ_NO,
+			FAQ_TITLE,
+			FAQ_CONTENT,
+			ADMIN_ID,
+			FAQ_REWRITER,
+			FAQ_DATE,
+			FAQ_REDATE
+			FROM FAQ
+			ORDER BY FAQ_REDATE DESC
+		)
+ 		WHERE N BETWEEN #{start} AND #{end}
+	</select>
+	<!-- 페이징 search 글 목록 갯수 -->
+	<select id="getSearchFaqListCnt" resultType="_int">
+		SELECT COUNT(*) FROM FAQ
+	</select>
+	
+	
+	
+	
+	
+	
+	
 	
 	<!-- 신고 리뷰 -->
 	<!-- 신고 리뷰 목록 -->

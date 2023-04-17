@@ -2,6 +2,7 @@
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
+<c:set var="path" value="${pageContext.request.contextPath}"/>
 <!DOCTYPE html>
 <html>
 <head>
@@ -85,15 +86,35 @@
 													</tbody>
 												</table>
 											</div>
+											<!-- 페이지 번호 {s} -->
 											<nav aria-label="Page navigation example">
-												<ul class="pagination justify-content-center">
-													<li class="page-item"><a class="page-link" href="" aria-label="Previous"><span aria-hidden="true">«</span><span class="sr-only">Previous</span></a></li>
-													<li class="page-item"><a class="page-link" href="" aria-label="Previous">1</a></li>
-													<li class="page-item"><a class="page-link" href="" aria-label="Previous">2</a></li>
-													<li class="page-item"><a class="page-link" href="" aria-label="Previous">3</a></li>
-													<li class="page-item"><a class="page-link" href="" aria-label="Previous"><span aria-hidden="true">»</span><span class="sr-only">Next</span></a></li>
+												<ul class="pagination">
+													<c:set var="pageNumber" value="${empty param.p ? 1 : param.p }" />
+													<c:choose>
+														<c:when test="${requestScope.paging.prevPage eq -1 }">
+															<li class="page-item disabled"><a class="page-link">prev</a></li>
+														</c:when>
+														<c:otherwise>
+															<li class="page-item"><a class="page-link"
+															 href="${path}/admin/faq/list?p=${requestScope.paging.prevPage }&searchBox=${keyword }">prev</a></li>
+														</c:otherwise>
+													</c:choose>
+													<c:forEach var="pNum" items="${requestScope.paging.pageList }">
+														<li class="page-item ${pNum eq pageNumber ? 'active' : '' }"><a class="page-link" 
+														href="${path}/admin/faq/list?p=${pNum }&searchBox=${keyword }">${pNum }</a></li>
+													</c:forEach>
+													<c:choose>
+														<c:when test="${requestScope.paging.nextPage eq -1 }">
+															<li class="page-item disabled"><a class="page-link">next</a></li>
+														</c:when>
+														<c:otherwise>
+															<li class="page-item"><a class="page-link"
+															 href="${path}/admin/faq/list?p=${requestScope.paging.nextPage }&searchBox=${keyword }">next</a></li>
+														</c:otherwise>
+													</c:choose>
 												</ul>
 											</nav>
+											<!-- 페이지 번호 {e} -->
 										</div>
 									</div>
 								</div>

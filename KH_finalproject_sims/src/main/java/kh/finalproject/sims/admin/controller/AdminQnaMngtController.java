@@ -27,6 +27,7 @@ import kh.finalproject.sims.admin.model.vo.AdminFaqVo;
 import kh.finalproject.sims.admin.model.vo.AdminQnaAnsVo;
 import kh.finalproject.sims.admin.model.vo.AdminQnaMngtVo;
 import kh.finalproject.sims.admin.model.vo.AdminQnaReplyVo;
+import kh.finalproject.sims.common.page.Search;
 import kh.finalproject.sims.user.model.service.UserFaqService;
 
 @RequestMapping("/admin")
@@ -43,6 +44,7 @@ public class AdminQnaMngtController {
 	public ModelAndView selectFaqList(
 			ModelAndView mv
 			, AdminFaqVo vo
+			,@RequestParam(required = false) String searchBox
 			, HttpServletRequest request
 			, HttpServletResponse response
 			) {
@@ -92,8 +94,8 @@ public class AdminQnaMngtController {
 	  		cookie.setMaxAge(60 * 60 * 24 * 5);
 	  		response.addCookie(cookie);
 	  		
-//	  		int searchApplyListCount = service.getSearchApplyListCount(); // 목록의 총 row를 알기 위한 getSearchApplyListCount();
-//	  		Search search = service.getPage();
+			Search search = service.getPage(pNum, Integer.parseInt(cnt), searchBox); // 한 페이지에 보여줄 자주묻는질문 목록
+			request.setAttribute("paging", search);
 	    
 	    mv.setViewName("admin/faq/list");
 	    return mv;

@@ -6,31 +6,25 @@ import kh.finalproject.sims.admin.model.vo.AdminFaqVo;
 import kh.finalproject.sims.admin.model.vo.AdminQnaAnsVo;
 import kh.finalproject.sims.admin.model.vo.AdminQnaMngtVo;
 import kh.finalproject.sims.admin.model.vo.AdminQnaReplyVo;
+import kh.finalproject.sims.common.page.Search;
 
 public interface AdminQnaMngtService {
 	
 	// 자주묻는질문 
 	// 목록보기
 	public List<AdminFaqVo> selectFaqList();
-	
 	// 상세보기
-	public AdminFaqVo selectFaqDetail(int faqNo);
-	
+	public AdminFaqVo selectFaqDetail(int faqNo);	
 	// 작성하기
 	public int insertFaqWrite(AdminFaqVo vo);
-	
 	// 수정하기
 	public int selectFaqModify(AdminFaqVo vo);
-	
 	// 삭제하기
 	public int deleteFaq(int faqNo);
-	
 	// 검색
 	public List<AdminFaqVo> selectSearchFaqList(AdminFaqVo vo);
-	
-//	// search 목록
-//	public Search getPage();
-//	public int getSearchApplyListCount();
+	// 자주묻는질문 Paging search
+	public Search getPage(int pNum, int cnt, String searchBox);
 	
 	// 문의 내역
 	// 문의 내역 리스트

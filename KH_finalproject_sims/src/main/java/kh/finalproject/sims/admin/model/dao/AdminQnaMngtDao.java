@@ -1,6 +1,7 @@
 package kh.finalproject.sims.admin.model.dao;
 
 import java.util.List;
+import java.util.Map;
 
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -10,6 +11,7 @@ import kh.finalproject.sims.admin.model.vo.AdminFaqVo;
 import kh.finalproject.sims.admin.model.vo.AdminQnaAnsVo;
 import kh.finalproject.sims.admin.model.vo.AdminQnaMngtVo;
 import kh.finalproject.sims.admin.model.vo.AdminQnaReplyVo;
+import kh.finalproject.sims.biz.model.vo.BizPlanMngtVo;
 
 @Repository
 public class AdminQnaMngtDao {
@@ -46,6 +48,28 @@ public class AdminQnaMngtDao {
 	public List<AdminFaqVo> selectSearchFaqList(AdminFaqVo vo) {
 		return sqlSession.selectList("admin.selectSearchFaqList", vo);
 	}
+	
+	
+	
+	
+	// 자주묻는질문 Paging search
+	public List<AdminFaqVo> searchFaqPageList(Map<String, Object> map) {
+		return sqlSession.selectList("admin.searchFaqPageList", map); // 한 페이지의 글 목록
+	}
+	// 자주묻는질문 글목록 총 갯수 search
+	public int searchFaqPageList() {
+		return sqlSession.selectOne("admin.getSearchFaqListCnt");
+	}
+	
+	
+//	public List<BizPlanMngtVo> searchBizPlanList(Map<String, Object> map) {
+//		return sqlSession.selectList("bizPlan.searchBizPlanList", map);
+//	}
+//	public int getSearchPlanListCount(Map<String, String> mapCnt) {
+//		return sqlSession.selectOne("bizPlan.getSearchPlanListCount", mapCnt);
+//	}
+	
+	
 	
 	// 문의 내역 리스트
 	public List<AdminQnaMngtVo> selectQnaList() {

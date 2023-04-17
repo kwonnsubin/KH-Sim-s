@@ -107,7 +107,10 @@
 
 <jsp:include page="/WEB-INF/views/admin/include/footer.jsp" />
 </body>
-<script>
+<script>// 페이지 로드가 되면
+$(document).ready(function(){
+	getAnsList();
+}); 
 
 // 답변 리스트 ajax
  function getAnsList(){
@@ -196,6 +199,92 @@ function qnaAnsDelete(aaNo) {
 	}
 }
 
+// 답변 수정 폼 ajax
+function qnaAnsUpdate(aaNo, adminId, aaContent, aaDate) {
+	var aaNo = aaNo;
+	var adminId = adminId;
+	var aaContent = aaContent;
+	var aaDate = aaDate;
+	var html='';
+	
+	html += '<div class="qnaAns m-t-15 m-b-30" id="no'+aaNo+'">';
+	html +='	<h6 class="m-b-15">'+adminId;
+	html +='		<a class="m-l-5 text-info" onclick="qnaUpdateAns('+aaNo+')">저장</a>';
+	html +='		<a class="m-l-5 text-info" onclick="">취소</a>';
+	html +='		<span class="float-right f-13 text-muted">'+aaDate+'</span>';
+	html +='	</h6>';					                                						                                    				                                
+	html +='<textarea class="form-control m-b-20" id="exampleFormControlTextarea1" rows="3" name="aaContent">'+aaContent+'</textarea>';
+	
+	$('#no' + aaNo).replaceWith(html);
+}
+
+// 답변 수정 내용 저장 ajax
+function qnaUpdateAns(aaNo) {
+	var aaContent = $('textarea[name=aaContent]').val();
+	var aaNo = aaNo;
+	$.ajax({
+		url: '<%=request.getContextPath()%>/admin/qna/updateAns',
+		data : {aaNo: aaNo, aaContent: aaContent},
+		type : "post",
+		success : function(result) {
+			if (result == "success") {
+				getAnsList();
+			}
+		},
+		error : function() {
+			alert("수정 실패")
+		}
+	})
+}
+
+// 답글 리스트 ajax
+function qnaReplyList(aaNo){
+ 	var aqNo = "${aqNo}"
+ 	var aaNo = aaNo;
+     $.ajax({
+         type:'POST',
+         url : '<%=request.getContextPath()%>/admin/qna/qnaReplyList',
+         data: {aqNo: aqNo, aaNo: aaNo},
+ 		success : function(result) {
+ 				if (result != null) {
+ 					console.log(result);
+ 					displayReply(result, aaNo);
+ 				}
+ 			},
+ 		error : function() {
+ 			alert("서버 요청 실패!")
+ 		}
+         
+     });
+ }	
+function displayReply(result, aaNo){
+ 	var html = ''; 
+ 	var aaNo = aaNo;
+ 	console.log(aaNo);
+ 	
+ 	for ( var i in result) {
+ 		
+	html +='   		<div class="border-bottom m-t-15 m-b-20 p-l-20" id="rplNo'+result[i].rplNo+'">';
+	html +='			<h6 class="m-b-15">';
+	if(result[i].adminId) {
+			html += result[i].adminId;
+			html += '   			<a class="m-l-5 text-info" onclick="qnaReplyUpdateForm('+ aaNo + ',' + result[i].rplNo+ ',\''  +result[i].adminId+ '\',\'' +result[i].rplContent+'\',\'' +result[i].rplDate+ '\')">수정</a>';
+			html += '   			<a class="m-l-5 text-info" class="m-t-5 m-b-20" onclick="qnaReplyDelete('+ aaNo + ',' + result[i].rplNo+')">삭제</a>';
+		} else if(result[i].userId) {
+			html += result[i].userId;
+		}
+	html +='				<span class="float-right f-13 text-muted">'+result[i].rplDate+'</span>';
+	html +='			</h6>';				    
+	html +=' 			<p class="m-t-15 m-b-15 text-muted">'+result[i].rplContent+'</p>';	
+	html +='   		</div>';
+ 	}
+	html +='   		<div class="text-right m-b-20">';
+	html +='            <textarea class="form-control m-b-20" name="rplContent" rows="3" placeholder="댓글을 입력해보세요."></textarea>';
+	html +='            <button type="button" class="btn btn-sm btn-primary" onclick="insertReply('+aaNo+')" >등록</button>';
+	html +='        </div>';	
+ 	$('#no' + aaNo).children().last().html(html);
+}
+
 // 답글 등록 ajax
 function insertReply(aaNo) {
 	var adminId = "${username}"
@@ -218,11 +307,54 @@ function insertReply(aaNo) {
 	});	
 }
 
+// 답글 수정 폼 ajax
+function qnaReplyUpdateForm(aaNo, rplNo, adminId, rplContent, rplDate) {
+	var html = '';
+	var aaNo = aaNo;
+	var rplNo = rplNo;
+	var adminId = adminId;
+	var rplContent = rplContent;
+	var rplDate = rplDate;
+
+	html +='   		<div class="m-t-15 m-b-20 p-l-20" id="rplNo'+rplNo+'">';
+	html +='			<h6>'+adminId;	
+	html +='				<a class="m-l-5 text-info" onclick="qnaUpdateReply('+rplNo+')">저장</button>';
+	html +='				<a class="m-l-5 text-info" onclick="">취소</button>';
+	html +='				<span class="float-right f-13 text-muted">'+rplDate+'</span>';
+	html +='			</h6>';				    
+	html +='			<textarea class="form-control m-b-20" name="rplContent" rows="3" placeholder="댓글을 입력해보세요.">'+rplContent+'</textarea>';
+	html += '           <input type="hidden" name="aaNo" value="'+aaNo+'">';
+	html +='   		</div>';
+	$('#rplNo' + rplNo).replaceWith(html);
+ 	}
+	
+ 	
+// 답글 수정 내용 저장 ajax
+function qnaUpdateReply(rplNo) {
+	var rplNo = rplNo;
+	var rplContent = $("#rplNo" + rplNo + " [name='rplContent']").val(); 
+	var aaNo = $("#rplNo" + rplNo + " [name='aaNo']").val();
+	$.ajax({
+        url : '<%=request.getContextPath()%>/admin/qna/updateReply',
+        data: {rplNo: rplNo, rplContent: rplContent, aaNo: aaNo},
+		type : "post",
+		success : function(result) {
+				if (result != null) {
+					console.log(result);			
+					qnaReplyList(aaNo);
+				}
+			},
+		error : function() {
+			alert("서버 요청 실패!")
+		}
+	});		
+}
+
 // 답글 삭제 ajax
 function qnaReplyDelete(aaNo, rplNo) {
 	var aaNo = aaNo;
 	var rplNo = rplNo;
-	
+	if(confirm("삭제하시겠습니까?")) {
 	$.ajax({
         url : '<%=request.getContextPath()%>/admin/qna/deleteReply',
         data: {rplNo: rplNo, aaNo: aaNo},
@@ -236,7 +368,8 @@ function qnaReplyDelete(aaNo, rplNo) {
 		error : function() {
 			alert("서버 요청 실패!")
 		}
-	});	
+	});			
+	}
 }
 
 // 답변수 조회 ajax
