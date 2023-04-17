@@ -308,4 +308,16 @@ WHERE rn between #{start} and #{end}
 	    and biz_id not in (select biz_id from biz_review where user_id=#{userId})
 	</select>
 	
+	<!-- 가입한 요금제 리스트-->
+	<select id="selectMyPlanList" parameterType="string" resultType="poVo">
+		select biz_id, user_id, p.plan_no, p.order_no
+             , (select pt.plan_name from plan_table Pt where pt.plan_no = p.plan_no) as plan_name
+             , (select pt.plan_data from plan_table Pt where pt.plan_no = p.plan_no) as plan_data
+             , (select pt.net_no from plan_table Pt where pt.plan_no = p.plan_no) as net_no
+             , (select pt.gen_no from plan_table Pt where pt.plan_no = p.plan_no) as gen_no
+	    from plan_order P 
+	    where P.user_id=#{userId}
+	    and P.order_status=2
+	</select>
+	
 </mapper>

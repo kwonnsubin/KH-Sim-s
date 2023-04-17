@@ -1,0 +1,42 @@
+@charset "UTF-8";
+
+.myplan-div {
+	width: 80%;
+}
+
+.myplan-row {
+	width: 80%;
+}
+
+.list-row,
+.none-div {
+	min-height: 100px;
+	border: 1px solid #e3e3e3;
+	border-radius: 10px;
+}
+
+.text-div p {
+	font-size: 18px;
+	color: black;
+}
+
+.plan-name-text,
+.biz-name{
+	color: black;
+}
+
+button{
+	background: inherit;
+	background-color: white;
+	color: black;
+	border: 1px solid black;
+	border-radius: 5px;
+	box-shadow: none;
+	padding: 10px;
+	overflow:visible;
+	cursor:pointer;
+}
+
+button:hover {
+	background-color: #eeeeee;
+}

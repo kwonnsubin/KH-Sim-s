@@ -15,6 +15,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@100;300;400;500;700;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
 
 	<title>Sims</title>
 	
@@ -100,9 +101,16 @@
 		       						<div class="col-3 text-center">
 		       							<div class="mb-2">
 			       							<span class="star">
+			       								<i class="fa-regular fa-star-half-stroke" style="color: #ffdd00;"></i>
+			       								<i class="fa-regular fa-star" style="color: #ffdd00;"></i>
+			       								<i class="fa-regular fa-star" style="color: #ffdd00;"></i>
+			       								<i class="fa-regular fa-star" style="color: #ffdd00;"></i>
+			       								<i class="fa-regular fa-star" style="color: #ffdd00;"></i>
+			       								<!--
 												★★★★★
 												<span>★★★★★</span>
-												<input class="insert-star" type="range" oninput="drawStar(this)" value="1" step="1" min="0" max="10">
+												-->
+												<input class="insert-star" type="range" value="1" step="1" min="1" max="10">
 											</span>
 		       							</div>
 			       						<div class="mt-1">
@@ -133,9 +141,81 @@
 				       					</div>
 				       					<div class="col-7">
 				       						<span class="star" style="top: -6px;">
+				       							<c:if test="${review.reviewStar eq 1}">
+													<i class="fa-regular fa-star-half-stroke" style="color: #ffdd00;"></i>
+				       								<i class="fa-regular fa-star" style="color: #ffdd00;"></i>
+				       								<i class="fa-regular fa-star" style="color: #ffdd00;"></i>
+				       								<i class="fa-regular fa-star" style="color: #ffdd00;"></i>
+				       								<i class="fa-regular fa-star" style="color: #ffdd00;"></i>
+				       							</c:if>
+				       							<c:if test="${review.reviewStar eq 2}">
+													<i class="fa-solid fa-star" style="color: #ffdd00;"></i>
+				       								<i class="fa-regular fa-star" style="color: #ffdd00;"></i>
+				       								<i class="fa-regular fa-star" style="color: #ffdd00;"></i>
+				       								<i class="fa-regular fa-star" style="color: #ffdd00;"></i>
+				       								<i class="fa-regular fa-star" style="color: #ffdd00;"></i>
+				       							</c:if>
+				       							<c:if test="${review.reviewStar eq 3}">
+													<i class="fa-solid fa-star" style="color: #ffdd00;"></i>
+				       								<i class="fa-regular fa-star-half-stroke" style="color: #ffdd00;"></i>
+				       								<i class="fa-regular fa-star" style="color: #ffdd00;"></i>
+				       								<i class="fa-regular fa-star" style="color: #ffdd00;"></i>
+				       								<i class="fa-regular fa-star" style="color: #ffdd00;"></i>
+				       							</c:if>
+				       							<c:if test="${review.reviewStar eq 4}">
+													<i class="fa-solid fa-star" style="color: #ffdd00;"></i>
+				       								<i class="fa-solid fa-star" style="color: #ffdd00;"></i>
+				       								<i class="fa-regular fa-star" style="color: #ffdd00;"></i>
+				       								<i class="fa-regular fa-star" style="color: #ffdd00;"></i>
+				       								<i class="fa-regular fa-star" style="color: #ffdd00;"></i>
+				       							</c:if>
+				       							<c:if test="${review.reviewStar eq 5}">
+													<i class="fa-solid fa-star" style="color: #ffdd00;"></i>
+				       								<i class="fa-solid fa-star" style="color: #ffdd00;"></i>
+				       								<i class="fa-regular fa-star-half-stroke" style="color: #ffdd00;"></i>
+				       								<i class="fa-regular fa-star" style="color: #ffdd00;"></i>
+				       								<i class="fa-regular fa-star" style="color: #ffdd00;"></i>
+				       							</c:if>
+				       							<c:if test="${review.reviewStar eq 6}">
+													<i class="fa-solid fa-star" style="color: #ffdd00;"></i>
+				       								<i class="fa-solid fa-star" style="color: #ffdd00;"></i>
+				       								<i class="fa-solid fa-star" style="color: #ffdd00;"></i>
+				       								<i class="fa-regular fa-star" style="color: #ffdd00;"></i>
+				       								<i class="fa-regular fa-star" style="color: #ffdd00;"></i>
+				       							</c:if>
+				       							<c:if test="${review.reviewStar eq 7}">
+													<i class="fa-solid fa-star" style="color: #ffdd00;"></i>
+				       								<i class="fa-solid fa-star" style="color: #ffdd00;"></i>
+				       								<i class="fa-solid fa-star" style="color: #ffdd00;"></i>
+				       								<i class="fa-regular fa-star-half-stroke" style="color: #ffdd00;"></i>
+				       								<i class="fa-regular fa-star" style="color: #ffdd00;"></i>
+				       							</c:if>
+				       							<c:if test="${review.reviewStar eq 8}">
+													<i class="fa-solid fa-star" style="color: #ffdd00;"></i>
+				       								<i class="fa-solid fa-star" style="color: #ffdd00;"></i>
+				       								<i class="fa-solid fa-star" style="color: #ffdd00;"></i>
+				       								<i class="fa-solid fa-star" style="color: #ffdd00;"></i>
+				       								<i class="fa-regular fa-star" style="color: #ffdd00;"></i>
+				       							</c:if>
+				       							<c:if test="${review.reviewStar eq 9}">
+													<i class="fa-solid fa-star" style="color: #ffdd00;"></i>
+				       								<i class="fa-solid fa-star" style="color: #ffdd00;"></i>
+				       								<i class="fa-solid fa-star" style="color: #ffdd00;"></i>
+				       								<i class="fa-solid fa-star" style="color: #ffdd00;"></i>
+				       								<i class="fa-regular fa-star-half-stroke" style="color: #ffdd00;"></i>
+				       							</c:if>
+				       							<c:if test="${review.reviewStar eq 10}">
+													<i class="fa-solid fa-star" style="color: #ffdd00;"></i>
+				       								<i class="fa-solid fa-star" style="color: #ffdd00;"></i>
+				       								<i class="fa-solid fa-star" style="color: #ffdd00;"></i>
+				       								<i class="fa-solid fa-star" style="color: #ffdd00;"></i>
+				       								<i class="fa-solid fa-star" style="color: #ffdd00;"></i>
+				       							</c:if>
+			       								<!--
 												★★★★★
 												<span>★★★★★</span>
-												<input class="starInput" type="hidden" oninput="drawStar(this)" value="${review.reviewStar}" step="1" min="0" max="10">
+												-->
+												<input class="starInput insert-star" type="hidden" value="${review.reviewStar}" step="1" min="1" max="10">
 											</span>
 				       					</div>
 				       					<div class="col-2">

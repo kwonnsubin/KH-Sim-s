@@ -88,5 +88,11 @@ public class UserMyPageServiceImpl implements UserMyPageService {
 	public int selectOrderListCount(String userId) {
 		return dao.selectOrderListCount(userId);
 	}
+
+	// 가입한 요금제 리스트
+	@Override
+	public List<BizApplyVo> selectMyPlanList(String userId) {
+		return dao.selectMyPlanList(userId);
+	}
 	
 }

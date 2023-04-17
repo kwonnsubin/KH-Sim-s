@@ -157,4 +157,16 @@ public class UserMyPageController {
 		return new Gson().toJson(result);
 	}
 	
+	// 가입한 요금제 리뷰
+	@GetMapping("/mypage/myplan")
+	public ModelAndView selectMyPlanList(ModelAndView mv, Principal prin) {
+		String userId = prin.getName();
+		List<BizApplyVo> poList = service.selectMyPlanList(userId);
+		
+		mv.addObject("poList", poList);
+		mv.setViewName("user/myinfo/myplan");
+		
+		return mv;
+	}
+		
 }

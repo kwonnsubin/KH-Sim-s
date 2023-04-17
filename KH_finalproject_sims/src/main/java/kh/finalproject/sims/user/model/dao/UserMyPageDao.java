@@ -66,4 +66,8 @@ public class UserMyPageDao {
 		return sqlSession.delete("bizReview.deleteReview", brVo);
 	}
 
+	public List<BizApplyVo> selectMyPlanList(String userId) {
+		return sqlSession.selectList("apply.selectMyPlanList", userId);
+	}
+
 }
