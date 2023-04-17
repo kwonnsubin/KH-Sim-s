@@ -560,7 +560,7 @@
 	    					</c:if>
 	    					<c:if test="${list.planData gt 1000}">
 	    					<fmt:formatNumber var="data" type="number" maxFractionDigits="1" value="${list.planData / 1000}" />
-	    					${data}G
+	    					${data}GB
 	    					</c:if>
 	    					+ ${list.planVoice}분 + ${list.planMessage}건</p>
 	    				</div>

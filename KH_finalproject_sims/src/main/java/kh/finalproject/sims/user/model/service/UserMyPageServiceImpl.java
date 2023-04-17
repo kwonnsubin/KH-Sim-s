@@ -1,5 +1,6 @@
 package kh.finalproject.sims.user.model.service;
 
+import java.util.HashMap;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -93,6 +94,12 @@ public class UserMyPageServiceImpl implements UserMyPageService {
 	@Override
 	public List<BizApplyVo> selectMyPlanList(String userId) {
 		return dao.selectMyPlanList(userId);
+	}
+
+	// 가입한 요금제 상세
+	@Override
+	public BizApplyVo selectMyPlanDetail(HashMap<String, Object> searchOrder) {
+		return dao.selectMyPlanDetail(searchOrder);
 	}
 	
 }

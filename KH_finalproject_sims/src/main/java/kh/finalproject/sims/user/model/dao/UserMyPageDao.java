@@ -1,5 +1,6 @@
 package kh.finalproject.sims.user.model.dao;
 
+import java.util.HashMap;
 import java.util.List;
 
 import org.apache.ibatis.session.SqlSession;
@@ -68,6 +69,10 @@ public class UserMyPageDao {
 
 	public List<BizApplyVo> selectMyPlanList(String userId) {
 		return sqlSession.selectList("apply.selectMyPlanList", userId);
+	}
+
+	public BizApplyVo selectMyPlanDetail(HashMap<String, Object> searchOrder) {
+		return sqlSession.selectOne("apply.selectMyPlanDetail", searchOrder);
 	}
 
 }

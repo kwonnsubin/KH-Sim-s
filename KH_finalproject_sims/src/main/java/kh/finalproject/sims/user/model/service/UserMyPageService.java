@@ -1,5 +1,6 @@
 package kh.finalproject.sims.user.model.service;
 
+import java.util.HashMap;
 import java.util.List;
 
 import kh.finalproject.sims.admin.model.vo.AdminNoticeMngtVo;
@@ -45,5 +46,8 @@ public interface UserMyPageService {
 
 	// 가입한 요금제 리스트
 	public List<BizApplyVo> selectMyPlanList(String userId);
+
+	// 가입한 요금제 상세
+	public BizApplyVo selectMyPlanDetail(HashMap<String, Object> searchOrder);
 	
 }

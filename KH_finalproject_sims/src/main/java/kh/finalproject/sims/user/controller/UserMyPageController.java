@@ -157,7 +157,7 @@ public class UserMyPageController {
 		return new Gson().toJson(result);
 	}
 	
-	// 가입한 요금제 리뷰
+	// 가입한 요금제
 	@GetMapping("/mypage/myplan")
 	public ModelAndView selectMyPlanList(ModelAndView mv, Principal prin) {
 		String userId = prin.getName();
@@ -165,6 +165,21 @@ public class UserMyPageController {
 		
 		mv.addObject("poList", poList);
 		mv.setViewName("user/myinfo/myplan");
+		
+		return mv;
+	}
+	
+	// 가입한 요금제 상세
+	@GetMapping("/mypage/myplan/{orderNo}")
+	public ModelAndView selectMyPlanDetail(ModelAndView mv, Principal prin, @PathVariable int orderNo) {
+		HashMap<String, Object> searchOrder = new HashMap<>();
+		searchOrder.put("userId", prin.getName());
+		searchOrder.put("orderNo", orderNo);
+		
+		BizApplyVo poVo = service.selectMyPlanDetail(searchOrder);
+		
+		mv.addObject("poVo", poVo);
+		mv.setViewName("user/myinfo/myplandetail");
 		
 		return mv;
 	}

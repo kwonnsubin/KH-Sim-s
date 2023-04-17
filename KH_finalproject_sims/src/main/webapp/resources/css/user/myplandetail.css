@@ -1,0 +1,32 @@
+@charset "UTF-8";
+
+.plan-detail-div {
+	width: 80%;
+}
+
+.plan-detail-row {
+	width: 80%;
+}
+
+.plan-detail-p {
+	font-size: 24px;
+	color: black;
+}
+
+.plan-info-text {
+	font-size: 18px;
+	font-weight: bold;
+	color: black;
+}
+
+.plan-detail .mb-2 {
+	font-size: 16px;
+	color: black;
+	white-space: pre-wrap;
+}
+
+.plan-info {
+	padding: 20px;
+	border: 2px solid #e3e3e3;
+	border-radius: 10px;
+}

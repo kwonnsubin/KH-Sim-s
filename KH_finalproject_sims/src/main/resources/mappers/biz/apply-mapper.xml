@@ -308,7 +308,7 @@ WHERE rn between #{start} and #{end}
 	    and biz_id not in (select biz_id from biz_review where user_id=#{userId})
 	</select>
 	
-	<!-- 가입한 요금제 리스트-->
+	<!-- 가입한 요금제 리스트 -->
 	<select id="selectMyPlanList" parameterType="string" resultType="poVo">
 		select biz_id, user_id, p.plan_no, p.order_no
              , (select pt.plan_name from plan_table Pt where pt.plan_no = p.plan_no) as plan_name
@@ -318,6 +318,22 @@ WHERE rn between #{start} and #{end}
 	    from plan_order P 
 	    where P.user_id=#{userId}
 	    and P.order_status=2
+	</select>
+	
+	<!-- 가입한 요금제 상세 -->
+	<select id="selectMyPlanDetail" parameterType="hashmap" resultType="poVo">
+		select p.order_no, p.biz_id, p.plan_no, p.join_category, p.sim_type, p.sim_yn, p.current_telecom, p.plan_bill, p.plan_pay
+			, p.card_number, p.card_expiration, p.bank, p.bank_number, p.order_date, p.order_status, p.net_no, p.gen_no, p.order_price
+			, (select pt.plan_data from plan_table Pt where pt.plan_no = p.plan_no) as plan_data
+			, (select pt.plan_voice from plan_table Pt where pt.plan_no = p.plan_no) as plan_voice
+			, (select pt.plan_message from plan_table Pt where pt.plan_no = p.plan_no) as plan_message
+            , (select pt.plan_name from plan_table Pt where pt.plan_no = p.plan_no) as plan_name
+            , (select pt.plan_data_over from plan_table Pt where pt.plan_no = p.plan_no) as plan_data_over
+			, (select pt.plan_voice_over from plan_table Pt where pt.plan_no = p.plan_no) as plan_voice_over
+            , (select pt.plan_message_over from plan_table Pt where pt.plan_no = p.plan_no) as plan_message_over
+	    from plan_order P 
+	    where P.user_id=#{userId}
+	    and P.order_no=#{orderNo}
 	</select>
 	
 </mapper>
