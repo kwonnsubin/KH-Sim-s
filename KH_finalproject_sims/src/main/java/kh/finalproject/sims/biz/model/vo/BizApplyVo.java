@@ -108,9 +108,9 @@ public class BizApplyVo {
 	private int planVoice;
 	private int planMessage;
 	private int planData;
-	private int planVoiceOver;
-	private int planMessageOver;
-	private int planDataOver;
+	private double planVoiceOver;
+	private double planMessageOver;
+	private double planDataOver;
 	private int planDate;
 	
 	//TODO biz 테이블도 추가

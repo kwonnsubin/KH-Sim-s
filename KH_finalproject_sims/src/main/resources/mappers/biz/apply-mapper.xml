@@ -323,13 +323,20 @@ WHERE rn between #{start} and #{end}
              , (select pt.gen_no from plan_table Pt where pt.plan_no = p.plan_no) as gen_no
 	    from plan_order P 
 	    where P.user_id=#{userId}
-	    and P.order_status=2
+	</select>
+	
+	<!-- 가입한 요금제 리스트 갯수 -->
+	<select id="selectMyPlanListCount" parameterType="string" resultType="int">
+		select count(*)
+	    from plan_order P 
+	    where P.user_id=#{userId}
 	</select>
 	
 	<!-- 가입한 요금제 상세 -->
 	<select id="selectMyPlanDetail" parameterType="hashmap" resultType="poVo">
 		select p.order_no, p.biz_id, p.plan_no, p.join_category, p.sim_type, p.sim_yn, p.current_telecom, p.plan_bill, p.plan_pay
-			, p.card_number, p.card_expiration, p.bank, p.bank_number, p.order_date, p.order_status, p.net_no, p.gen_no, p.order_price
+			, p.card_number, p.card_expiration, p.bank, p.bank_number, p.order_date, p.order_status, p.net_no, p.gen_no
+			, (select pt.plan_price from plan_table Pt where pt.plan_no = p.plan_no) as plan_price 
 			, (select pt.plan_data from plan_table Pt where pt.plan_no = p.plan_no) as plan_data
 			, (select pt.plan_voice from plan_table Pt where pt.plan_no = p.plan_no) as plan_voice
 			, (select pt.plan_message from plan_table Pt where pt.plan_no = p.plan_no) as plan_message

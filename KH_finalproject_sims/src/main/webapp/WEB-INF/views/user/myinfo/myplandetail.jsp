@@ -41,12 +41,25 @@
 		<div class="container-fluid d-flex justify-content-center mt-5 plan-detail-div">
 	       	<div class="row plan-detail-row">
 	       		<div class="col">
-       				<div class="mb-5">
+       				<div class="mb-3">
 	       				<p class="plan-detail-p" style="font-weight: bold;">신청한 요금제</p>
+	       				<div class="text-end" style="width:90%">
+		       				<button type="button" onclick="location.href='<%=request.getContextPath()%>/mypage/myplan'">신청 목록</button>
+	       				</div>
        				</div>
        				<div class="row plan-detail">
-       					<div class="col-6 plan-info me-2">
+       					<div class="col-6 plan-info">
        						<p class="mb-3 plan-info-text">요금제 정보</p>
+       						
+       						<div class="mb-3">
+       							<c:if test="${poVo.bizId eq 'idowell'}">
+	       							<img src="<%=request.getContextPath()%>/resources/img/${poVo.bizId}.jpg" style="max-width: 100px; height: 40px;">
+	       						</c:if>
+	       						<c:if test="${poVo.bizId ne 'idowell'}">
+	       							<img src="<%=request.getContextPath()%>/resources/img/${poVo.bizId}.png" style="max-width: 100px; height: 40px;">
+	       						</c:if>
+       						</div>
+       						
        						<p class="mb-2">요금제명	|	${poVo.planName}</p>
        						
        						<c:if test="${poVo.netNo eq 1}">
@@ -78,8 +91,19 @@
 	    						<p class="mb-2">데이터량	|	${data} GB</p>
 	    					</c:if>
 	    					
-       						<p class="mb-2">음성량		|	${poVo.planVoice} 분</p>
-       						<p class="mb-2">문자량		|	${poVo.planMessage} 건</p>
+	    					<c:if test="${poVo.planVoice eq 0}">
+	       						<p class="mb-2">음성량		|	기본제공</p>
+	    					</c:if>
+	    					<c:if test="${poVo.planVoice ne 0}">
+	       						<p class="mb-2">음성량		|	${poVo.planVoice} 분</p>
+	    					</c:if>
+	    					
+	    					<c:if test="${poVo.planMessage eq 0}">
+	       						<p class="mb-2">문자량		|	기본제공</p>
+	    					</c:if>
+	    					<c:if test="${poVo.planMessage ne 0}">
+	       						<p class="mb-2">문자량		|	${poVo.planMessage} 건</p>
+	    					</c:if>
        						
 							<c:if test="${poVo.joinCategory eq 1}">
 	       						<p class="mb-2">가입유형	|	번호이동</p>
@@ -102,23 +126,48 @@
 	       						<p class="mb-2">유심유형	|	NFC유심</p>
        						</c:if>
        					</div>
-       					<div class="col-5 ms-2">
-       						<div class="plan-info">
+       					<div class="col-5">
+       						<div class="plan-info mb-3">
        							<p class="mb-2">신청일자	|	${poVo.orderDate}</p>
-       							<p class="mb-2">진행상태	|	${poVo.orderStatus}</p>
+       							
+       							<c:if test="${poVo.orderStatus eq 1}">
+	       							<p class="mb-2">진행상태	|	신청 완료</p>
+       							</c:if>
+       							<c:if test="${poVo.orderStatus eq 2}">
+	       							<p class="mb-2">진행상태	|	승인 완료</p>
+       							</c:if>
+       							<c:if test="${poVo.orderStatus eq 3}">
+	       							<p class="mb-2">진행상태	|	승인 보류</p>
+       							</c:if>
        						</div>
        						<div class="plan-info">
        							<p class="mb-3 plan-info-text">납부 정보</p>
-       							<p class="mb-2">월 납부 총액	|</p>
-       							<p class="mb-2">월 납부 총액	|</p>
-       							<p class="mb-2">월 납부 총액	|</p>
-       							<p class="mb-2">월 납부 총액	|</p>
-       							<p class="mb-2">월 납부 통신 요금	|</p>
-       							<p class="mb-2">추가 납부 금액	|</p>
-       							<p class="mb-2">납부방법	|</p>
-       							<p class="mb-2">카드번호	|</p>
-       							<p class="mb-2">계좌번호	|</p>
-       							<p class="mb-2">청구서	|</p>
+       							
+       							<p class="mb-2">월 납부 금액		|	${poVo.planPrice} 원</p>
+       							<p class="mb-2">초과데이터단가	|	MB당 ${poVo.planDataOver} 원</p>
+       							<p class="mb-2">초과음성단가	|	초당 ${poVo.planVoiceOver} 원</p>
+       							<p class="mb-2">초과문자단가	|	건당 ${poVo.planMessageOver} 원</p>
+       							
+       							<c:if test="${poVo.planPay eq 1}">
+	       							<p class="mb-2">납부방법		|	카드</p>
+       							</c:if>
+       							<c:if test="${poVo.planPay eq 2}">
+	       							<p class="mb-2">납부방법		|	계좌이체</p>
+       							</c:if>
+       							
+       							<c:if test="${poVo.planPay eq 1}">
+	       							<p class="mb-2">카드번호		|	${poVo.cardNumber}</p>
+       							</c:if>
+       							<c:if test="${poVo.planPay eq 2}">
+	       							<p class="mb-2">계좌번호		|	${poVo.bankNumber}</p>
+       							</c:if>
+       							
+       							<c:if test="${poVo.planBill eq 1}">
+	       							<p class="mb-2">청구서			|	문자</p>
+       							</c:if>
+       							<c:if test="${poVo.planBill eq 2}">
+	       							<p class="mb-2">청구서			|	이메일</p>
+       							</c:if>
        						</div>
        					</div>
        				</div>

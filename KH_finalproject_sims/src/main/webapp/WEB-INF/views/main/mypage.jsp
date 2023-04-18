@@ -59,7 +59,7 @@
 		        				리뷰 작성/관리
 	        				</div>
 	        				<div class="col text-end">
-		        				${reviewCnt}개 >
+		        				${cnt.reviewCnt} 개 >
 	        				</div>
 	        			</div>
 	        			<div class="row mb-4 myPlanDiv pointer">
@@ -67,7 +67,7 @@
 		        				신청한 요금제
 	        				</div>
 	        				<div class="col text-end">
-		        				0개 >
+		        				${cnt.myPlanCnt} 개 >
 	        				</div>
 	        			</div>
 	        			<div class="row mb-4 likeDiv pointer">
@@ -75,7 +75,7 @@
 		        				찜한 요금제
 	        				</div>
 	        				<div class="col text-end">
-		        				0개 >
+		        				0 개 >
 	        				</div>
 	        			</div>
 	        			<div class="row mb-4 recentPlanDiv pointer">
@@ -83,7 +83,7 @@
 		        				최근 본 요금제
 	        				</div>
 	        				<div class="col text-end">
-		        				0개 >
+		        				0 개 >
 	        				</div>
 	        			</div>
 	        		</div>

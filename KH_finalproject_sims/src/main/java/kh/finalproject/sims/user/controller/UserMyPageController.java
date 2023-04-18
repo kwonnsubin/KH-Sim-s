@@ -37,8 +37,13 @@ public class UserMyPageController {
 	public ModelAndView myPage(ModelAndView mv, Principal prin) {
 		String userId = prin.getName();
 		int reviewCnt = service.selectOrderListCount(userId);
+		int myPlanCnt = service.selectMyPlanListCount(userId);
 		
-		mv.addObject("reviewCnt", reviewCnt);
+		HashMap<String, Object> cnt = new HashMap<>();
+		cnt.put("reviewCnt", reviewCnt);
+		cnt.put("myPlanCnt", myPlanCnt);
+		
+		mv.addObject("cnt", cnt);
 		mv.setViewName("main/mypage");
 		
 		return mv;

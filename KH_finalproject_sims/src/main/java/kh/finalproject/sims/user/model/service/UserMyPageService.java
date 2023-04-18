@@ -49,5 +49,8 @@ public interface UserMyPageService {
 
 	// 가입한 요금제 상세
 	public BizApplyVo selectMyPlanDetail(HashMap<String, Object> searchOrder);
+
+	// 가입한 요금제 리스트 갯수
+	public int selectMyPlanListCount(String userId);
 	
 }

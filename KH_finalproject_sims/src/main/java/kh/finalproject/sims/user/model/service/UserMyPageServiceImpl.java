@@ -101,5 +101,11 @@ public class UserMyPageServiceImpl implements UserMyPageService {
 	public BizApplyVo selectMyPlanDetail(HashMap<String, Object> searchOrder) {
 		return dao.selectMyPlanDetail(searchOrder);
 	}
+
+	// 가입한 요금제 리스트 갯수
+	@Override
+	public int selectMyPlanListCount(String userId) {
+		return dao.selectMyPlanListCount(userId);
+	}
 	
 }

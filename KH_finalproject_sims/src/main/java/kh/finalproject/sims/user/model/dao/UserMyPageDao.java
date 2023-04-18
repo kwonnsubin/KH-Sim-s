@@ -75,4 +75,8 @@ public class UserMyPageDao {
 		return sqlSession.selectOne("apply.selectMyPlanDetail", searchOrder);
 	}
 
+	public int selectMyPlanListCount(String userId) {
+		return sqlSession.selectOne("apply.selectMyPlanListCount", userId);
+	}
+
 }

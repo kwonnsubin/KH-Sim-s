@@ -23,3 +23,7 @@ $(".notice-div").on("click", function() {
 $(".reviewDiv").on("click", function() {
 	location.href= contextPath + "/mypage/review"
 });
+
+$(".myPlanDiv").on("click", function() {
+	location.href= contextPath + "/mypage/myplan"
+});
