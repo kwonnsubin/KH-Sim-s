@@ -64,7 +64,7 @@
 		DELETE FROM FAQ WHERE FAQ_NO=#{faqNo}
 	</delete>
 	
-	<!-- 자주묻는질문 검색 -->
+	<!-- 자주묻는질문 검색 이제 사용안함!!!!!!!!!!!!-->
 	<select id="selectSearchFaqList" resultType="kh.finalproject.sims.admin.model.vo.AdminFaqVo">
 		SELECT * FROM FAQ 
 		<choose>
@@ -74,6 +74,7 @@
 		</choose>
 		ORDER BY FAQ_DATE DESC
 	</select>
+	
 	<!-- 페이징 search 글 목록-->
 	<select id="searchFaqPageList" parameterType="map" resultType="kh.finalproject.sims.admin.model.vo.AdminFaqVo">
 	  SELECT
@@ -103,8 +104,9 @@
 	    ORDER BY FAQ_REDATE DESC
 	  )
 	  WHERE N BETWEEN #{start} AND #{end}
-	  ORDER BY FAQ_REDATE DESC
+	  ORDER BY FAQ_REDATE ASC
 	</select>
+
 
 	
 	<!-- 페이징 search 글 목록 갯수 -->
@@ -224,6 +226,19 @@
 	FROM BIZ_REVIEW WHERE REVIEW_NO=#{reviewNo}
 	</select>
 	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	<!-- 문의내역  -->
 	<!-- 문의 내역 리스트 -->
 	<select id="selectQnaList" resultType="kh.finalproject.sims.admin.model.vo.AdminQnaMngtVo">
 		SELECT 
@@ -239,8 +254,8 @@
 		ORDER BY AQ_DATE DESC
 	</select>
 	
-	<!-- 문의 내역 검색 -->
-	<select id="selectSearchQnaList" resultType="kh.finalproject.sims.admin.model.vo.AdminQnaMngtVo">
+	<!-- 페이징 search 글 목록-->
+	<select id="selectSearchQnaList" parameterType="map" resultType="kh.finalproject.sims.admin.model.vo.AdminQnaMngtVo">
 		SELECT 
 		AQ_NO
 		, USER_ID
@@ -250,15 +265,37 @@
 		, AQ_REDATE
 		, AQ_VIEWS
 		, AQ_ANSWERS
-		FROM QNA
+		FROM (
+        SELECT
+            ROWNUM AS N
+            , AQ_NO
+            , USER_ID
+            , AQ_TITLE
+            , AQ_CONTENT
+            , AQ_DATE
+            , AQ_REDATE
+            , AQ_VIEWS
+            , AQ_ANSWERS
+            FROM QNA
 		<choose>
-			<when test="searchOption != null and searchOption == 'title'"> WHERE AQ_TITLE LIKE '%'|| #{searchBox} ||'%'</when>
-			<when test="searchOption != null and searchOption == 'writer'"> WHERE USER_ID LIKE '%'|| #{searchBox} ||'%'</when>
-			<when test="searchOption != null and searchOption == 'content'"> WHERE AQ_CONTENT LIKE '%'|| #{searchBox} ||'%'</when>
+			<when test="searchType != null and searchType == 'title'"> WHERE AQ_TITLE LIKE '%'|| #{keyword} ||'%'</when>
+			<when test="searchType != null and searchType == 'writer'"> WHERE USER_ID LIKE '%'|| #{keyword} ||'%'</when>
+			<when test="searchType != null and searchType == 'content'"> WHERE AQ_CONTENT LIKE '%'|| #{keyword} ||'%'</when>
 		</choose>
+		)
+		WHERE N BETWEEN #{start} AND #{end}
 		ORDER BY AQ_DATE DESC
 	</select>
 	
+	<!-- 페이징 search 글 목록 갯수 -->
+	<select id="getSearchQnaListCnt" resultType="_int">
+		SELECT COUNT(*) FROM QNA
+		<choose>
+			<when test="searchType != null and searchType == 'title'"> WHERE FAQ_TITLE LIKE '%'|| #{keyword} ||'%'</when>
+			<when test="searchType != null and searchType == 'writer'"> WHERE ADMIN_ID LIKE '%'|| #{keyword} ||'%'</when>
+			<when test="searchType != null and searchType == 'content'"> WHERE FAQ_CONTENT LIKE '%'|| #{keyword} ||'%'</when>
+		</choose>
+	</select>
 	
  	<!-- 문의 상세 내용 -->
 	<select id="selectQnaListDetail" resultType="kh.finalproject.sims.admin.model.vo.AdminQnaMngtVo">
@@ -284,7 +321,6 @@
 		ORDER BY AA_DATE ASC
 	</select>
 	
-	
 	<!-- 문의 답변 작성 -->
 	<insert id="insertQnaAnsWrite" parameterType="kh.finalproject.sims.admin.model.vo.AdminQnaAnsVo">
 		INSERT INTO 
@@ -292,7 +328,6 @@
 		values (QNA_ANS_SEQ.NEXTVAL, #{aqNo}, #{adminId}, #{aaContent}, DEFAULT)
 	</insert>
 
-	
 	<!-- 문의 댓글 작성 -->
 	<insert id="insertQnaReplyWrite" parameterType="kh.finalproject.sims.admin.model.vo.AdminQnaReplyVo">
 		INSERT INTO QNA_RPL 
