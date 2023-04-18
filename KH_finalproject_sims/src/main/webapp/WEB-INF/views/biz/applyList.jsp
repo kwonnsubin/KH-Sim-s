@@ -37,9 +37,13 @@
 <jsp:include page="/WEB-INF/views/header.jsp"/>
 <jsp:include page="/WEB-INF/views/biz/nav.jsp"/>
 요금제 가입 신청 목록
+
+
+
+
 	<div>
 		<form action="${path}/biz/applyList">
-			<select class="form-select" name="cnt" onchange="submit();">
+			<select class="form-select" style="width: 100px" name="cnt" onchange="submit();">
 				<c:forEach var="num" begin="5" end="30" step="5">
 					<option value="${num }" ${requestScope.paging.pageLimit eq num ? "selected" : "" }>${num } 개</option>
 				</c:forEach>
@@ -48,17 +52,25 @@
 	</div>
 
 
-
+<div class="input-group">
 
 <!-- search{s} -->
 	<div>
-		<select name="searchType" id="searchType">
+		<select class="form-select" style="display: inline-block;" name="searchType" id="searchType">
 			<option value="planName">요금제명</option>
 			<option value="userId">신청자</option>
 		</select>
-		<input type="text" name="keyword" id="keyword">
+		<input class="form-control" style="display: inline-block;" type="text" name="keyword" id="keyword">
 		
 <!-- 분류 {s} -->
+
+
+	</div>
+
+</div>
+	
+	
+
 <%
     String orderStatus = request.getParameter("orderStatus");
 %>
@@ -114,8 +126,8 @@
 	</div>      -->
 	<!-- 분류 {e} -->
 		
-		<button name="btnSearch" id="btnSearch">검색</button>
-	</div>
+		<button name="btnSearch" id="btnSearch" class="btn btn-outline-secondary">검색</button>
+	
 
 	<span>총 ${applyListCnt}개의 결과가 있습니다.</span>
 

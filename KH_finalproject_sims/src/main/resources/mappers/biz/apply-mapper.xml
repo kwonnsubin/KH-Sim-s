@@ -143,7 +143,30 @@
 	<!-- 분류 전체조회일 때 수행 -->
 	<!-- search 리스트-->
 	<select id="searchApplyList" parameterType="map" resultType="kh.finalproject.sims.biz.model.vo.BizApplyVo">
-		SELECT *
+	
+	SELECT tbr.* 
+   				 , (select plan_name from plan_table where plan_no=tbr.plan_no) plan_name
+    FROM ( SELECT rownum rn, TO_CHAR(order_date, 'YYYYMMDD') || '-' || LPAD(order_no, 6, '0') AS serial_no
+            , user_id, order_status, order_date, order_no, plan_no 
+            FROM plan_order 
+            JOIN plan_table USING(plan_no)
+            WHERE plan_no IN (SELECT plan_no 
+                                FROM view_plan_biz
+                                WHERE biz_id = #{bizid} ) 
+			
+			<if test="searchType=='planName' and keyword != null and keyword != '' ">
+            AND plan_name like ('%' || #{keyword} || '%')
+            </if>
+            
+            <if test="searchType=='userId' and keyword != null and keyword != '' ">
+            AND user_id like ('%' || #{keyword} || '%')
+            </if>
+			
+	    	 ORDER BY order_no desc 
+   			 ) tbr
+    WHERE rn between #{start} and #{end}
+	
+<!-- 		SELECT *
 	    FROM (
 	        SELECT rownum rn,
 	           TO_CHAR(order_date, 'YYYYMMDD') || '-' || LPAD(order_no, 6, '0') AS serial_no,
@@ -177,7 +200,7 @@
             
 )
 WHERE rn between #{start} and #{end}
-
+ -->
 			
 	</select >
 	
@@ -259,7 +282,39 @@ WHERE rn between #{start} and #{end}
 	</select>
 	
 	<select id="getDevisionPage" parameterType="map" resultType="kh.finalproject.sims.biz.model.vo.BizApplyVo">
-		SELECT *
+	
+	SELECT tbr.* , (select plan_name from plan_table where plan_no=tbr.plan_no) plan_name
+    FROM (
+        SELECT rownum rn,
+           TO_CHAR(order_date, 'YYYYMMDD') || '-' || LPAD(order_no, 6, '0') AS serial_no,
+           plan_name,
+           user_id,
+           order_status,
+           order_date,
+           order_no,
+           plan_no
+     FROM plan_order
+     JOIN plan_table USING (plan_no)
+            WHERE plan_no IN ( SELECT plan_no 
+                                FROM view_plan_biz
+                                WHERE biz_id = #{bizid} ) 
+                   
+            and order_status = #{orderStatus}
+            
+			<if test="searchType=='planName' and keyword != null and keyword != '' ">
+            AND plan_name like ('%' || #{keyword} || '%')
+           </if>
+            
+            <if test="searchType=='userId' and keyword != null and keyword != '' ">
+           AND user_id like ('%' || #{keyword} || '%')
+           </if>                  
+
+            ORDER BY order_no desc
+) tbr
+WHERE rn between #{start} and #{end}
+	
+	
+	<!-- 	SELECT *
     FROM (
         SELECT rownum rn,
            TO_CHAR(order_date, 'YYYYMMDD') || '-' || LPAD(order_no, 6, '0') AS serial_no,
@@ -289,7 +344,7 @@ WHERE rn between #{start} and #{end}
             AND user_id like ('%' || #{keyword} || '%')
             </if>
 )
-WHERE rn between #{start} and #{end}
+WHERE rn between #{start} and #{end} -->
 			
 	</select >
 	
