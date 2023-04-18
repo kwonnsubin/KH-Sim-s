@@ -132,10 +132,9 @@ public class UserFaqController {
 	@GetMapping("/qna/write")
 	public ModelAndView writeQnaForm(
 			ModelAndView mv
-			, HttpServletRequest request
+			, Principal principal
 			) {
 		mv.setViewName("user/faq/writeQna");
-		Principal principal = request.getUserPrincipal();
 		String username = principal.getName();
 		
 		mv.addObject("username", username);
@@ -156,9 +155,8 @@ public class UserFaqController {
 	@GetMapping("/myqna")
 	public ModelAndView selectMyQnaList(
 			ModelAndView mv
-			, HttpServletRequest request
+			, Principal principal
 			) {
-		Principal principal = request.getUserPrincipal();
 		String username = principal.getName();
 		
 		mv.addObject("myqnalist", service.selectMyQnaList(username));
