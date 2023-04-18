@@ -52,7 +52,7 @@
 					<sec:authorize access="hasRole('ROLE_USER')">
 						<sec:authentication property="principal.username" var="username"/>
 						<c:if test="${username eq question.userId}">
-							<button onclick="location.href='<%=request.getContextPath()%>/faq/qnaupdate/${question.aqNo}'">수정</button>
+							<button onclick="location.href='${pageContext.request.contextPath}/faq/qnaupdate/${question.aqNo}'">수정</button>
 						</c:if>	
 					</sec:authorize>
 					</span>
@@ -110,7 +110,7 @@
 												<button data-bs-target="#ans${answer.aaNo}" class="btn btn-gray" type="button"
 													data-bs-toggle="collapse" aria-expanded="false" aria-controls="collapseExample">수정</button>
 												<button type="button" class="btn btn-gray"
-												onclick="location.href='<%=request.getContextPath()%>/faq/ansdelete/${answer.aqNo}/${answer.aaNo}'">
+												onclick="location.href='${pageContext.request.contextPath}/faq/ansdelete/${answer.aqNo}/${answer.aaNo}'">
 													삭제</button>
 											</div>
 										</c:if>
@@ -157,7 +157,7 @@
 																type="button" data-bs-toggle="collapse" aria-expanded="false"
 																	aria-controls="collapseExample">수정</button>
 																<button type="button" class="btn btn-gray" 
-															  	onclick="location.href='<%=request.getContextPath()%>/faq/rpldelete/${answer.aqNo}/${rpl.aaNo}/${rpl.rplNo}'">
+															  	onclick="location.href='${pageContext.request.contextPath}/faq/rpldelete/${answer.aqNo}/${rpl.aaNo}/${rpl.rplNo}'">
 															  	삭제</button>
 															</div>
 														</c:if>	
