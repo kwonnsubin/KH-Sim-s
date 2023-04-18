@@ -15,6 +15,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@100;300;400;500;700;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
 
 	<title>Sims</title>
 	
@@ -552,20 +553,57 @@
 	    			<c:forEach var="list" items="${planList}">
 	    			<div class="row mt-3 list-div">
 	    				<div class="col-8">
-	    					<p>${list.bizName}</p>
-	    					<p>${list.planName}</p>
-	    					<p>
-	    					<c:if test="${list.planData lt 1000}">
-	    					${list.planData}MB 
-	    					</c:if>
-	    					<c:if test="${list.planData gt 1000}">
-	    					<fmt:formatNumber var="data" type="number" maxFractionDigits="1" value="${list.planData / 1000}" />
-	    					${data}GB
-	    					</c:if>
-	    					+ ${list.planVoice}분 + ${list.planMessage}건</p>
+	    					<div class="row">
+	    						<div class="col-4">
+			    					<c:if test="${list.bizId eq 'idowell'}">
+		       							<img src="<%=request.getContextPath()%>/resources/img/${list.bizId}.jpg" style="max-width: 100px; height: 40px;">
+		       						</c:if>
+		       						<c:if test="${list.bizId ne 'idowell'}">
+		       							<img src="<%=request.getContextPath()%>/resources/img/${list.bizId}.png" style="max-width: 100px; height: 40px;">
+		       						</c:if>
+	    						</div>
+	       						<div class="col-6">
+			    					<p class="planName">${list.planName}</p>
+			    					<div class="planInfo">
+				    					<c:if test="${list.netNo eq 1}"><p>KT | </p></c:if>
+				    					<c:if test="${list.netNo eq 2}"><p>SKT | </p></c:if>
+				    					<c:if test="${list.netNo eq 3}"><p>LGU+ | </p></c:if>
+				    					<c:if test="${list.genNo eq 1}"><p>5G | </p></c:if>
+				    					<c:if test="${list.genNo eq 2}"><p>LTE | </p></c:if>
+				    					<c:if test="${list.genNo eq 4}"><p>3G | </p></c:if>
+				    					<p>${list.bizName}</p>
+			    					</div>
+	       						</div>
+       						</div>
+       						
+       						<div class="ms-2">
+		    					<p class="planData">
+		    					<c:if test="${list.planData lt 1000}">
+		    					${list.planData} MB 
+		    					</c:if>
+		    					<c:if test="${list.planData gt 1000}">
+		    					<fmt:formatNumber var="data" type="number" maxFractionDigits="1" value="${list.planData / 1000}" />
+		    					${data} GB
+		    					</c:if>
+		    					</p>
+       						</div>
+	    					
+	    					<div class="ms-2">
+		    					<c:if test="${list.planVoice eq 0 and list.planMessage eq 0}">
+		       						<p class="voiMes"><i class="fa-solid fa-phone"></i>&nbsp;&nbsp;기본제공&nbsp;&nbsp;&nbsp;&nbsp;<i class="fa-solid fa-envelope"></i>&nbsp;&nbsp;기본제공</p>
+		    					</c:if>
+		    					<c:if test="${list.planVoice ne 0 or list.planMessage ne 0}">
+		       						<p class="voiMes"><i class="fa-solid fa-phone"></i>&nbsp;&nbsp;${list.planVoice}분&nbsp;&nbsp;&nbsp;&nbsp;<i class="fa-solid fa-envelope"></i>&nbsp;&nbsp;${list.planMessage}건</p>
+		    					</c:if>
+	    					</div>
+	    					
+	    					<div class="planPrice ms-2 mt-3">
+		    					<p>월&nbsp;<p>
+		    					<p class="priceText">${list.planPrice}</p>
+		    					<p>&nbsp;원</p>
+	    					</div>
 	    				</div>
-	    				<div class="col-4 text-end">
-	    					<p>${list.planPrice}원</p>
+	    				<div class="col-4 text-end align-self-end mb-2">
 	    					<button type="button" class="btn btn-primary btn-sm" onclick="location.href='${pageContext.request.contextPath}/plan/${list.planNo}'">자세히 보기</button>
 	    				</div>
 	    			</div>

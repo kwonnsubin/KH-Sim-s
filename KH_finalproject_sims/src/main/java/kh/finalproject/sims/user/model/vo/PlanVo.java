@@ -34,4 +34,6 @@ public class PlanVo {
 	private String netName;
 	private String genName;
 	
+	// bizId
+	private String bizId;
 }

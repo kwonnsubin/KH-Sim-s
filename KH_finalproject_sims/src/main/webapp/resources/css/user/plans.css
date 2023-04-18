@@ -56,7 +56,7 @@ p {
 }
 
 .list-div {
-	max-width: 550px;
+	width: 90%;
 
 	padding: 20px;
 	
@@ -193,8 +193,34 @@ fieldset label:hover {
 	cursor: pointer;
 }
 
+.planInfo p {
+	font-size: 12px;
+	font-color: #afafaf;
+	display: inline;
+}
 
+.planName {
+	font-size: 14px;
+	font-color: black;
+}
 
+.planData {
+	font-size: 16px;
+	font-weight: bold;
+}
+
+.voiMes {
+	font-size: 14px;
+}
+
+.planPrice p {
+	font-size: 16px;
+	display: inline;
+}
+
+.priceText {
+	font-size: 18px;
+}
 
 
 

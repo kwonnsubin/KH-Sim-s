@@ -18,14 +18,20 @@
 	</insert>
 	
 	<select id="selectPlanList" parameterType="string" resultType="planVo">
-		select * from plan_table
+		select plan_no, plan_name, biz_name, net_no, gen_no, plan_price, plan_voice, plan_message
+		    , plan_data, plan_voice_over, plan_message_over, plan_data_over, plan_date, plan_update_date
+		    , (select b.biz_id from biz b where p.biz_name = b.biz_name) as biz_id
+		from plan_table p
 		<if test="searchText != null">
 			where plan_name like '%${searchText}%' or biz_name like '%${searchText}%'
 		</if>
 	</select>
 	
 	<select id="selectSearchPlanList" parameterType="map" resultType="planVo">
-		select * from plan_table 
+		select plan_no, plan_name, biz_name, net_no, gen_no, plan_price, plan_voice, plan_message
+		    , plan_data, plan_voice_over, plan_message_over, plan_data_over, plan_date, plan_update_date
+		    , (select b.biz_id from biz b where p.biz_name = b.biz_name) as biz_id
+		from plan_table p
 		<trim prefix="where" prefixOverrides="and|or">
 			<if test="planData == 100000">plan_data >= 100000</if>
 			<if test="planData == 50000"><![CDATA[ (plan_data < 100000 and plan_data >= 50000)]]> </if>
