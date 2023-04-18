@@ -57,20 +57,11 @@ public class AdminQnaMngtDao {
 		return sqlSession.selectList("admin.searchFaqPageList", map); // 한 페이지의 글 목록
 	}
 	// 자주묻는질문 글목록 총 갯수 search
-	public int searchFaqPageList() {
+	public int getSearchFaqListCnt() {
 		return sqlSession.selectOne("admin.getSearchFaqListCnt");
 	}
 	
-	
-//	public List<BizPlanMngtVo> searchBizPlanList(Map<String, Object> map) {
-//		return sqlSession.selectList("bizPlan.searchBizPlanList", map);
-//	}
-//	public int getSearchPlanListCount(Map<String, String> mapCnt) {
-//		return sqlSession.selectOne("bizPlan.getSearchPlanListCount", mapCnt);
-//	}
-	
-	
-	
+		
 	// 문의 내역 리스트
 	public List<AdminQnaMngtVo> selectQnaList() {
 		return sqlSession.selectList("admin.selectQnaList");

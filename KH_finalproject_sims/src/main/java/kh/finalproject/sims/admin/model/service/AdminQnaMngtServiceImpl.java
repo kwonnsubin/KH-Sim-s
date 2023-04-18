@@ -51,46 +51,23 @@ public class AdminQnaMngtServiceImpl implements AdminQnaMngtService{
 	
 	// 페이징 search
 	@Override
-	public Search getPage(int pNum, int cnt, String searchBox) {
+	public Search getPage(int pNum, int cnt, String keyword, String searchType) {
 		Map<String, Object> map = new HashMap<String, Object>();
 		map.put("start", (pNum - 1) * cnt + 1);
 		map.put("end", pNum * cnt);
-		map.put("searchBox", searchBox);
+		map.put("keyword", keyword);
+		map.put("searchType", searchType);
 		
 		List<AdminFaqVo> dataList = dao.searchFaqPageList(map); // 한 페이지의 글 목록
 		
-		int totalRowCount = dao.searchFaqPageList(); // 글목록 총 개수를 알아야한다.
+		int totalRowCount = dao.getSearchFaqListCnt(); // 글목록 총 개수를 알아야한다.
 		int mod = totalRowCount % cnt == 0 ? 0 : 1;
 		int pageCount = (totalRowCount / cnt) + mod; // 그래야지만 총 페이지수를 구할수있으니깐!
 		
-		Search search = new Search(dataList, pNum, pageCount, cnt, 5, searchBox); // 페이징 처리해달라고함.
+		Search search = new Search(dataList, pNum, pageCount, cnt, 5, keyword, searchType); // 페이징 처리해달라고함.
 		
 		return search; // 반환받은 결과 리턴
 	}
-	
-//	@Override
-//	public Search getPage(int pNum, int cnt, String searchBox) {
-//		Map<String, Object> map = new HashMap<String, Object>();
-//		map.put("start", (pNum - 1) * cnt + 1);
-//		map.put("end", pNum * cnt);	
-//		map.put("searchBox", searchBox);
-//		
-//		Map<String, String> mapCnt = new HashMap<String, String>();
-//		mapCnt.put("bizid", bizid);
-//		mapCnt.put("keyword", keyword);
-//		
-//		// 총 페이지 수 구하기
-//		int totalRowCount = dao.getSearchPlanListCount(mapCnt); // 게시판 글의 총 갯수를 알아야한다.
-//		int mod = totalRowCount % cnt == 0 ? 0 : 1;
-//		int pageCount = (totalRowCount / cnt) + mod; // 총 페이지수
-//		
-//		// 페이지의 글목록 조회
-//		List<BizPlanMngtVo>data = dao.searchBizPlanList(map);
-//		Search search = new Search(data, pNum, pageCount, cnt, 5, searchBox); // 한 페이지의 글목록, 현재페이지, 총 페이지수, 옵션값, 5, 검색단어  
-//		
-//		return search;
-//	}
-
 	
 	// 자주묻는질문 조회
 	@Override

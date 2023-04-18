@@ -76,36 +76,46 @@
 	</select>
 	<!-- 페이징 search 글 목록-->
 	<select id="searchFaqPageList" parameterType="map" resultType="kh.finalproject.sims.admin.model.vo.AdminFaqVo">
-		SELECT
-			FAQ_NO,
-			FAQ_TITLE,
-			FAQ_CONTENT,
-			ADMIN_ID,
-			FAQ_REWRITER,
-			FAQ_DATE,
-			FAQ_REDATE
-		FROM(
-		SELECT
-			ROWNUM AS N,
-			FAQ_NO,
-			FAQ_TITLE,
-			FAQ_CONTENT,
-			ADMIN_ID,
-			FAQ_REWRITER,
-			FAQ_DATE,
-			FAQ_REDATE
-			FROM FAQ
-			ORDER BY FAQ_REDATE DESC
-		)
- 		WHERE N BETWEEN #{start} AND #{end}
+	  SELECT
+	    FAQ_NO,
+	    FAQ_TITLE,
+	    FAQ_CONTENT,
+	    ADMIN_ID,
+	    FAQ_REWRITER,
+	    FAQ_DATE,
+	    FAQ_REDATE
+	  FROM(
+	    SELECT
+	      ROWNUM AS N,
+	      FAQ_NO,
+	      FAQ_TITLE,
+	      FAQ_CONTENT,
+	      ADMIN_ID,
+	      FAQ_REWRITER,
+	      FAQ_DATE,
+	      FAQ_REDATE
+	    FROM FAQ
+	    <choose>
+	      <when test="searchType != null and searchType == 'title'"> WHERE FAQ_TITLE LIKE '%'|| #{keyword} ||'%'</when>
+	      <when test="searchType != null and searchType == 'writer'"> WHERE ADMIN_ID LIKE '%'|| #{keyword} ||'%'</when>
+	      <when test="searchType != null and searchType == 'content'"> WHERE FAQ_CONTENT LIKE '%'|| #{keyword} ||'%'</when>
+	    </choose>
+	    ORDER BY FAQ_REDATE DESC
+	  )
+	  WHERE N BETWEEN #{start} AND #{end}
+	  ORDER BY FAQ_REDATE DESC
 	</select>
+
+	
 	<!-- 페이징 search 글 목록 갯수 -->
 	<select id="getSearchFaqListCnt" resultType="_int">
 		SELECT COUNT(*) FROM FAQ
+		<choose>
+			<when test="searchType != null and searchType == 'title'"> WHERE FAQ_TITLE LIKE '%'|| #{keyword} ||'%'</when>
+			<when test="searchType != null and searchType == 'writer'"> WHERE ADMIN_ID LIKE '%'|| #{keyword} ||'%'</when>
+			<when test="searchType != null and searchType == 'content'"> WHERE FAQ_CONTENT LIKE '%'|| #{keyword} ||'%'</when>
+		</choose>
 	</select>
-	
-	
-	
 	
 	
 	

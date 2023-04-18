@@ -45,13 +45,13 @@
 													<div class="col-sm-12">
 														<div class="input-group">
 															<label class="floating-label"></label>
-															<select name="searchOption">
+															<select name="searchType">
 																<option value="">선택</option>
-																<option value="title" <c:if test="${searchOption eq 'title' }">selected</c:if>>제목</option>
-																<option value="writer" <c:if test="${searchOption eq 'writer' }">selected</c:if>>작성자</option>
-																<option value="content" <c:if test="${searchOption eq 'content' }">selected</c:if>>내용</option>
+																<option value="title" <c:if test="${searchType eq 'title' }">selected</c:if>>제목</option>
+																<option value="writer" <c:if test="${searchType eq 'writer' }">selected</c:if>>작성자</option>
+																<option value="content" <c:if test="${searchType eq 'content' }">selected</c:if>>내용</option>
 															</select>
-															<input class="form-control" type="text" name="searchBox" value="${searchBox}">
+															<input class="form-control" type="text" name="keyword" value="${keyword}">
 															<div class="input-group-append">
 																<button class="btn  btn-primary" type="submit">검색</button>
 															</div>
@@ -64,6 +64,7 @@
 									<!-- 검색 {e} -->
 									<div class="card">
 										<div class="card-body table-border-style">
+											<!-- 글 목록 {s} -->
 											<div class="table-responsive">
 												<table class="table table-hover">
 													<thead>
@@ -75,7 +76,15 @@
 														</tr>
 													</thead>
 													<tbody>
-														<c:forEach items="${faqlist}" var="faq">
+<%-- 													<c:forEach items="${faqlist}" var="faq">
+															<tr>
+																<td class="text-center">${faq.faqNo}</td>
+																<td><a href="<%=request.getContextPath()%>/admin/faq/detail/${faq.faqNo}">${faq.faqTitle}</a></td>
+																<td class="text-center">${faq.adminId}</td>
+																<td class="text-center"><fmt:formatDate value="${faq.faqDate}" pattern="yyyy.MM.dd"/></td>
+															</tr>
+														</c:forEach> --%>
+													<c:forEach var="faq" items="${requestScope.paging.page}">
 															<tr>
 																<td class="text-center">${faq.faqNo}</td>
 																<td><a href="<%=request.getContextPath()%>/admin/faq/detail/${faq.faqNo}">${faq.faqTitle}</a></td>
@@ -86,6 +95,7 @@
 													</tbody>
 												</table>
 											</div>
+											<!-- 글 목록 {e} -->
 											<!-- 페이지 번호 {s} -->
 											<nav aria-label="Page navigation example">
 												<ul class="pagination">
@@ -96,12 +106,12 @@
 														</c:when>
 														<c:otherwise>
 															<li class="page-item"><a class="page-link"
-															 href="${path}/admin/faq/list?p=${requestScope.paging.prevPage }&searchBox=${keyword }">prev</a></li>
+															 href="${path}/admin/faq/list?p=${requestScope.paging.prevPage }">prev</a></li>
 														</c:otherwise>
 													</c:choose>
 													<c:forEach var="pNum" items="${requestScope.paging.pageList }">
 														<li class="page-item ${pNum eq pageNumber ? 'active' : '' }"><a class="page-link" 
-														href="${path}/admin/faq/list?p=${pNum }&searchBox=${keyword }">${pNum }</a></li>
+														href="${path}/admin/faq/list?p=${pNum }">${pNum }</a></li>
 													</c:forEach>
 													<c:choose>
 														<c:when test="${requestScope.paging.nextPage eq -1 }">
@@ -109,7 +119,7 @@
 														</c:when>
 														<c:otherwise>
 															<li class="page-item"><a class="page-link"
-															 href="${path}/admin/faq/list?p=${requestScope.paging.nextPage }&searchBox=${keyword }">next</a></li>
+															 href="${path}/admin/faq/list?p=${requestScope.paging.nextPage }">next</a></li>
 														</c:otherwise>
 													</c:choose>
 												</ul>
@@ -125,31 +135,6 @@
 			</div>
 		</div>
 	</div>
-	<div class="row">
-			
-			
-			<%-- 
-			<div id="container">
-				<div class="contain-area">
-					<div class="content">
-						<h1>공지사항관리</h1>
-						
-						<div class="contents">
-							<div class="searchBox">
-								<label for="searchbox">검색</label>
-								<select class="search">
-									<option>제목</option>
-									<option>작성자</option>
-									<option>내용</option>
-								</select> 
-								<input class="search" type="text" id="searchbox"> <input class="sims_btn" type="button" value="검색">
-							</div>
-						</div>
-					</div>
-				</div>
-			</div>
-			 --%>
-</div>
 <jsp:include page="/WEB-INF/views/admin/include/footer.jsp" />
 </body>
 </html>

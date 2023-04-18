@@ -24,7 +24,7 @@ public interface AdminQnaMngtService {
 	// 검색
 	public List<AdminFaqVo> selectSearchFaqList(AdminFaqVo vo);
 	// 자주묻는질문 Paging search
-	public Search getPage(int pNum, int cnt, String searchBox);
+	public Search getPage(int pNum, int cnt, String keyword, String searchType);
 	
 	// 문의 내역
 	// 문의 내역 리스트

@@ -28,7 +28,7 @@ public class AdminFaqVo {
 	private Date faqRedate; // 수정일
 	
 	// 조회용 변수
-	private String searchOption;	// 조회 조건 
-	private String searchBox;		// 조회 문구
+	//private String searchOption;	// 조회 조건 
+	//private String searchBox;		// 조회 문구
 	
 }

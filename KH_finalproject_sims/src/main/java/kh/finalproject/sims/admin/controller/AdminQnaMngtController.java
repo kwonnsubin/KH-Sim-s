@@ -44,20 +44,15 @@ public class AdminQnaMngtController {
 	public ModelAndView selectFaqList(
 			ModelAndView mv
 			, AdminFaqVo vo
-			,@RequestParam(required = false) String searchBox
-			, HttpServletRequest request
-			, HttpServletResponse response
+			,@RequestParam(required = false) String keyword
+			,@RequestParam(required = false) String searchType
+			,@RequestParam(value = "p", required = false) String pageNumber
+			, HttpServletRequest request // 첫번째 순서
+			, HttpServletResponse response // 첫번째 순서
 			) {
-	    if(vo.getSearchOption() == null) {
-	        mv.addObject("faqlist", service.selectFaqList()); // 검색이 없는경우
-	    } else {
-	        mv.addObject("faqlist", service.selectSearchFaqList(vo)); // 검색이 있을경우    
-	        mv.addObject("searchOption", vo.getSearchOption());
-	        mv.addObject("searchBox", vo.getSearchBox());
-	    }
-	    
+	    	
 	  //페이징
-	  		String pageNumber = request.getParameter("p");
+	  		//String pageNumber = request.getParameter("p"); 굳이 이렇게 안가져오고 @RequestParam으로 받아도됨.
 	  		int pNum;
 	  		if (pageNumber == null || pageNumber.isEmpty()) {
 	  			pNum = 1;
@@ -92,9 +87,9 @@ public class AdminQnaMngtController {
 	  			  	
 	  		cookie = new Cookie("cnt", cnt);
 	  		cookie.setMaxAge(60 * 60 * 24 * 5);
-	  		response.addCookie(cookie);
+	  		response.addCookie(cookie);	 
 	  		
-			Search search = service.getPage(pNum, Integer.parseInt(cnt), searchBox); // 한 페이지에 보여줄 자주묻는질문 목록
+			Search search = service.getPage(pNum, Integer.parseInt(cnt), keyword, searchType); // 한 페이지에 보여줄 자주묻는질문 목록
 			request.setAttribute("paging", search);
 	    
 	    mv.setViewName("admin/faq/list");
