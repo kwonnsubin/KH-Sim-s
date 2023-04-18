@@ -41,22 +41,16 @@
 
 
 
-	<div>
-		<form action="${path}/biz/applyList">
-			<select class="form-select" style="width: 100px" name="cnt" onchange="submit();">
-				<c:forEach var="num" begin="5" end="30" step="5">
-					<option value="${num }" ${requestScope.paging.pageLimit eq num ? "selected" : "" }>${num } 개</option>
-				</c:forEach>
-			</select>
-		</form>
-	</div>
 
 
-<div class="input-group">
+<div class="input-group" style="width: 70%">
 
 <!-- search{s} -->
+	<div style="display: flex;">
 	<div>
-		<select class="form-select" style="display: inline-block;" name="searchType" id="searchType">
+		
+	</div>
+		<select class="form-select" style="display: inline-block; width: 120px" name="searchType" id="searchType">
 			<option value="planName">요금제명</option>
 			<option value="userId">신청자</option>
 		</select>
@@ -136,9 +130,15 @@
 	<% } %>
 
 
-	
+<form action="${path}/biz/applyList">
+			<select class="form-select" style="width: 100px" name="cnt" onchange="submit();">
+				<c:forEach var="num" begin="5" end="30" step="5">
+					<option value="${num }" ${requestScope.paging.pageLimit eq num ? "selected" : "" }>${num } 개</option>
+				</c:forEach>
+			</select>
+</form>	
 
- <table class="table">
+ <table class="table" style="width: 80%">
             <thead>
                 <tr>
                     <th>번호</th>

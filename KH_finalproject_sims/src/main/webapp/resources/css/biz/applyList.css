@@ -5,12 +5,12 @@
 	padding:0;
 	box-sizing: border-box;
 	font-family: 'poppins', sans-serif;
+	-webkit-box-sizing: border-box;
 }
  table {
-    display:block;
-    width: 100%;
+    /* display:block; */
     margin: 0;
-    /* border: 0; */
+
     table-layout: fixed;
     border-collapse: collapse;
     empty-cells: show;
@@ -18,6 +18,10 @@
 	align-items: center;
 	border-style: none;
 }
-/* .form-select{
-	 width: 80px !important; 
-} */
+#contents{
+    float: left;
+    display: block;
+}
+.pagination {
+	padding-left: 450px !important;
+}
