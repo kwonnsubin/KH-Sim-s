@@ -231,4 +231,12 @@ public class BizMainController {
 		 
 		 return jsonArray.toString();
 	 }
+	 
+	 
+	 //템플릿 테스트
+	 @GetMapping("/temp")
+	 public ModelAndView temp(ModelAndView mv) {
+		 mv.setViewName("/biz/temp");
+		 return mv;
+	 }
 }
