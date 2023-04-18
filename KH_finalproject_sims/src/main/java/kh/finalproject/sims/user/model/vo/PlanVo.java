@@ -36,4 +36,5 @@ public class PlanVo {
 	
 	// bizId
 	private String bizId;
+	
 }

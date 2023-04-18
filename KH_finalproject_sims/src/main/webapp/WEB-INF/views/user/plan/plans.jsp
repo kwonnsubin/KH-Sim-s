@@ -576,8 +576,9 @@
 	       						</div>
        						</div>
        						
-       						<div class="ms-2">
-		    					<p class="planData">
+       						<div class="planData ms-2">
+       							<p>월&nbsp;<p>
+		    					<p>
 		    					<c:if test="${list.planData lt 1000}">
 		    					${list.planData} MB 
 		    					</c:if>

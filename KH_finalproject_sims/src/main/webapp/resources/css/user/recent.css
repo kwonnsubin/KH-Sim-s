@@ -1,0 +1,68 @@
+@charset "UTF-8";
+
+p {
+	color: black;
+}
+
+.recent-plan-div {
+	width: 80%;
+}
+
+.recent-plan-row {
+	width: 60%;
+}
+
+.recent-plan-p {
+	font-size: 24px;
+	color: black;
+}
+
+.list-div {
+	width: 90%;
+
+	padding: 20px;
+	
+	background: #fff;
+	-webkit-border-radius: 10px;
+	-moz-border-radius: 10px;
+	border-radius: 10px;
+	-webkit-box-shadow: 0 8px 20px 0 rgba(0, 0, 0, 0.15);
+	-moz-box-shadow: 0 8px 20px 0 rgba(0, 0, 0, 0.15);
+	box-shadow: 0 8px 20px 0 rgba(0, 0, 0, 0.15)
+}
+
+.planInfo p {
+	font-size: 12px;
+	font-color: #afafaf;
+	display: inline;
+}
+
+.planName {
+	font-size: 14px;
+	font-color: black;
+}
+
+.planData p {
+	display: inline;
+	font-size: 16px;
+	font-weight: bold;
+}
+
+.voiMes {
+	font-size: 14px;
+}
+
+.planPrice p {
+	font-size: 16px;
+	display: inline;
+}
+
+.priceText {
+	font-size: 18px;
+}
+
+.none-div {
+	min-height: 100px;
+	border: 1px solid #e3e3e3;
+	border-radius: 10px;
+}

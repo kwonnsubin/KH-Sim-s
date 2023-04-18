@@ -52,5 +52,8 @@ public interface UserMyPageService {
 
 	// 가입한 요금제 리스트 갯수
 	public int selectMyPlanListCount(String userId);
+
+	// 최근 본 요금제
+	public List<BizApplyVo> selectRecentList(String userId);
 	
 }

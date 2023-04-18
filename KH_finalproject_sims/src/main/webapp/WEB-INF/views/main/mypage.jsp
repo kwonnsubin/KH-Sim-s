@@ -78,7 +78,7 @@
 		        				0 개 >
 	        				</div>
 	        			</div>
-	        			<div class="row mb-4 recentPlanDiv pointer">
+	        			<div class="row mb-4 recentDiv pointer">
 	        				<div class="col">
 		        				최근 본 요금제
 	        				</div>

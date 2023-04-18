@@ -27,3 +27,7 @@ $(".reviewDiv").on("click", function() {
 $(".myPlanDiv").on("click", function() {
 	location.href= contextPath + "/mypage/myplan"
 });
+
+$(".recentDiv").on("click", function() {
+	location.href= contextPath + "/mypage/recent"
+});

@@ -161,4 +161,15 @@
 		where plan_no = #{planNo}
 	</select>
 
+	<!-- 최근 본 요금제 -->
+	<select id="selectRecentList" parameterType="string" resultType="planVo">
+		select v.plan_no, plan_name, biz_name, net_no, gen_no, plan_price, plan_voice, plan_message
+		    , plan_data, plan_voice_over, plan_message_over, plan_data_over, plan_date, plan_update_date
+		    , (select b.biz_id from biz b where p.biz_name = b.biz_name) as biz_id
+		from view_table v, plan_table p
+		where v.plan_no = p.plan_no and user_id=#{userId} and
+		(view_date >= SYSTIMESTAMP - interval '24' hour)
+		order by view_date desc
+	</select>
+
 </mapper>

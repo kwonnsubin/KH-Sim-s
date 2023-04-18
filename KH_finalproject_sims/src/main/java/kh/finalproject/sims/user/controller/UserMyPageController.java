@@ -188,5 +188,17 @@ public class UserMyPageController {
 		
 		return mv;
 	}
+	
+	// 최근 본 요금제
+	@GetMapping("/mypage/recent")
+	public ModelAndView selectRecentList(ModelAndView mv, Principal prin) {
+		String userId = prin.getName();
+		List<BizApplyVo> recentList = service.selectRecentList(userId);
+		
+		mv.addObject("recentList", recentList);
+		mv.setViewName("user/myinfo/recent");
+		
+		return mv;
+	}
 		
 }

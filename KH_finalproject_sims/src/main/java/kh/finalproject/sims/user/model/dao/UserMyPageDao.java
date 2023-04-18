@@ -79,4 +79,8 @@ public class UserMyPageDao {
 		return sqlSession.selectOne("apply.selectMyPlanListCount", userId);
 	}
 
+	public List<BizApplyVo> selectRecentList(String userId) {
+		return sqlSession.selectList("plan.selectRecentList", userId);
+	}
+
 }
