@@ -160,6 +160,19 @@
 		    on (g.gen_no = p.gen_no)
 		where plan_no = #{planNo}
 	</select>
+	
+	<insert id="insertLike" parameterType="likeVo">
+		insert into LIKE_TABLE(PLAN_NO, USER_ID, LIKE_DATE)
+			values (#{planNo}, #{userId}, sysdate)
+	</insert>
+	
+	<delete id="deleteLike">
+		DELETE FROM LIKE_TABLE WHERE PLAN_NO = #{planNo} AND USER_ID = #{userId}
+	</delete>
+	
+	<select id="getLikeByPlanWithUser" resultType="likeVo">
+		select * from like_table where plan_no = #{planNo} and user_id = #{userId}
+	</select>
 
 	<!-- 최근 본 요금제 -->
 	<select id="selectRecentList" parameterType="string" resultType="planVo">

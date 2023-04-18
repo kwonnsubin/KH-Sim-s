@@ -41,6 +41,7 @@ public class BizVo {
 	private String network;
 	private Date writeDate;
 	private Date updateDate;
+	private String originalFilename;
 	private String logoRenameFilename;
 //	private List<UserReviewVo> reviewList;
 }
