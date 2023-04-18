@@ -18,88 +18,36 @@ import kh.finalproject.sims.common.page.Paging;
 import kh.finalproject.sims.common.page.Search;
 
 @Service
+// 문의내역
 public class AdminQnaMngtServiceImpl implements AdminQnaMngtService{
 	@Autowired
 	AdminQnaMngtDao dao;
 	
-	// 자주묻는질문 목록
-	@Override
-	public List<AdminFaqVo> selectFaqList() {
-		return dao.selectFaqList();
-	}
-
-	// 자주묻는질문 상세보기
-	@Override
-	public AdminFaqVo selectFaqDetail(int faqNo) {
-		return dao.selectFaqDetail(faqNo);
-	}
-
-	@Override
-	public int insertFaqWrite(AdminFaqVo vo) {
-		return dao.insertFaqWrite(vo);
-	}
-
-	@Override
-	public int selectFaqModify(AdminFaqVo vo) {
-		return dao.selectFaqModify(vo);
-	}
-
-	@Override
-	public int deleteFaq(int faqNo) {
-		return dao.deleteFaq(faqNo);
-	}
-	
-	// 페이징 search
-	@Override
-	public Search getPage(int pNum, int cnt, String keyword, String searchType) {
-		Map<String, Object> map = new HashMap<String, Object>();
-		map.put("start", (pNum - 1) * cnt + 1);
-		map.put("end", pNum * cnt);
-		map.put("keyword", keyword);
-		map.put("searchType", searchType);
-		
-		List<AdminFaqVo> dataList = dao.searchFaqPageList(map); // 한 페이지의 글 목록
-		
-		int totalRowCount = dao.getSearchFaqListCnt(); // 글목록 총 개수를 알아야한다.
-		int mod = totalRowCount % cnt == 0 ? 0 : 1;
-		int pageCount = (totalRowCount / cnt) + mod; // 그래야지만 총 페이지수를 구할수있으니깐!
-		
-		Search search = new Search(dataList, pNum, pageCount, cnt, 5, keyword, searchType); // 페이징 처리해달라고함.
-		
-		return search; // 반환받은 결과 리턴
-	}
-	
-	// 자주묻는질문 조회
-	@Override
-	public List<AdminFaqVo> selectSearchFaqList(AdminFaqVo vo) {
-		return dao.selectSearchFaqList(vo);
-	}
-
-	// 문의 내역 리스트
+	// 리스트
 	@Override
 	public List<AdminQnaMngtVo> selectQnaList() {
 		return dao.selectQnaList();
 	}
 	
-	// 문의 내역 검색
+	// 검색
 	@Override
 	public List<AdminQnaMngtVo> selectSearchQnaList(AdminQnaMngtVo vo) {
 		return dao.selectSearchQnaList(vo);
 	}
 
-	// 문의 내역 상세보기
+	// 상세보기
 	@Override
 	public AdminQnaMngtVo selectQnaListDetail(int aqNo) {
 		return dao.selectQnaListDetail(aqNo);
 	}
 
-	// 문의 내역 답변 리스트 ajax
+	// 답변 리스트 ajax
 	@Override
 	public List<AdminQnaAnsVo> selectQnaAnsList(int aqNo) {
 		return dao.selectQnaAnsList(aqNo);
 	}
 	
-	// 문의 답변 작성 ajax
+	// 답변 작성 ajax
 	@Override
 	@Transactional
 	public int insertQnaAnsWrite(AdminQnaAnsVo vo) {
@@ -107,13 +55,13 @@ public class AdminQnaMngtServiceImpl implements AdminQnaMngtService{
 		return dao.insertQnaAnsWrite(vo);
 	}
 	
-	// 문의 답글 작성 ajax
+	// 답글 작성 ajax
 	@Override
 	public int insertQnaReplyWrite(AdminQnaReplyVo vo) {
 		return dao.insertQnaReplyWrite(vo);
 	}
 
-	// 문의 답변 삭제 ajax
+	// 답변 삭제 ajax
 	@Override
 	@Transactional
 	public int deleteQnaAns(int aaNo) {
@@ -121,31 +69,31 @@ public class AdminQnaMngtServiceImpl implements AdminQnaMngtService{
 		return dao.deleteQnaAns(aaNo);
 	}
 
-	// 문의 댓글 수정
+	// 답변 수정
 	@Override
 	public int updateQnaAns(AdminQnaAnsVo vo) {
 		return dao.updateQnaAns(vo);
 	}
 
-	// 문의 답글 리스트 ajax
+	// 답글 리스트 ajax
 	@Override
 	public List<AdminQnaReplyVo> selectQnaReplyList(int aaNo) {
 		return dao.selectQnaReplyList(aaNo);
 	}
 	
-	// 문의 답글 등록 ajax
+	// 답글 등록 ajax
 	@Override
 	public int insertReply(AdminQnaReplyVo vo) {
 		return dao.insertReply(vo);
 	}
 	
-	// 문의 답글 수정 ajax
+	// 답글 수정 ajax
 	@Override
 	public int updateQnaReply(AdminQnaReplyVo vo) {
 		return dao.updateQnaReply(vo);
 	}
 	
-	// 문의 답글 삭제 ajax
+	// 답글 삭제 ajax
 	@Override
 	public int deleteQnaReply(int rplNo) {
 		return dao.deleteQnaReply(rplNo);
@@ -168,7 +116,25 @@ public class AdminQnaMngtServiceImpl implements AdminQnaMngtService{
 	public int selectViewCount(int aqNo) {
 		return dao.selectViewCount(aqNo);
 	}
-
-
+	
+	// 페이징 search
+	@Override
+	public Search getPage(int pNum, int cnt, String keyword, String searchType) {
+		Map<String, Object> map = new HashMap<String, Object>();
+		map.put("start", (pNum - 1) * cnt + 1);
+		map.put("end", pNum * cnt);
+		map.put("keyword", keyword);
+		map.put("searchType", searchType);
+		
+		List<AdminFaqVo> dataList = dao.searchQnaPageList(map); // 한 페이지의 글 목록
+		
+		int totalRowCount = dao.getSearchQnaListCnt(); // 글목록 총 개수를 알아야한다.
+		int mod = totalRowCount % cnt == 0 ? 0 : 1;
+		int pageCount = (totalRowCount / cnt) + mod; // 그래야지만 총 페이지수를 구할수있으니깐!
+		
+		Search search = new Search(dataList, pNum, pageCount, cnt, 5, keyword, searchType); // 페이징 처리해달라고함.
+		
+		return search; // 반환받은 결과 리턴
+	}
 
 }

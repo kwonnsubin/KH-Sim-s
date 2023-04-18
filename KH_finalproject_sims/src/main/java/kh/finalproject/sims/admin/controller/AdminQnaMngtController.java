@@ -32,148 +32,25 @@ import kh.finalproject.sims.user.model.service.UserFaqService;
 
 @RequestMapping("/admin")
 @Controller
+// 문의내역
 public class AdminQnaMngtController {
 
 	@Autowired
 	AdminQnaMngtService service;
+	
 	@Autowired
 	UserFaqService userService;
-	
-	// 자주묻는질문화면 리스트
-	@RequestMapping(value="/faq/list", method = {RequestMethod.GET, RequestMethod.POST})
-	public ModelAndView selectFaqList(
-			ModelAndView mv
-			, AdminFaqVo vo
-			,@RequestParam(required = false) String keyword
-			,@RequestParam(required = false) String searchType
-			,@RequestParam(value = "p", required = false) String pageNumber
-			, HttpServletRequest request // 첫번째 순서
-			, HttpServletResponse response // 첫번째 순서
-			) {
-	    	
-	  //페이징
-	  		//String pageNumber = request.getParameter("p"); 굳이 이렇게 안가져오고 @RequestParam으로 받아도됨.
-	  		int pNum;
-	  		if (pageNumber == null || pageNumber.isEmpty()) {
-	  			pNum = 1;
-	  		} else {
-	  			pNum = Integer.parseInt(pageNumber);
-	  		}
-	  	
-	  		Cookie cookie = null;
-	  		Cookie[] cookies = request.getCookies();
-	  		for (Cookie c : cookies) {
-	  			if (c.getName().equals("cnt")) {
-	  				cookie = c;
-	  			}
-	  		}
-	  	
-	  		String cnt = request.getParameter("cnt");
-	  		if (cnt != null) {
-	  			if (cnt.isEmpty()) {
-	  				if (cookie != null) {
-	  					cnt = cookie.getValue();
-	  				} else {
-	  					cnt = "10"; // 초기값
-	  				}
-	  			}
-	  		} else {
-	  			if (cookie != null) {
-	  				cnt = cookie.getValue();
-	  			} else {
-	  				cnt = "10";
-	  			}
-	  		}
-	  			  	
-	  		cookie = new Cookie("cnt", cnt);
-	  		cookie.setMaxAge(60 * 60 * 24 * 5);
-	  		response.addCookie(cookie);	 
-	  		
-			Search search = service.getPage(pNum, Integer.parseInt(cnt), keyword, searchType); // 한 페이지에 보여줄 자주묻는질문 목록
-			request.setAttribute("paging", search);
-	    
-	    mv.setViewName("admin/faq/list");
-	    return mv;
-	}
-	
-	// 자주묻는질문화면 상세내용 보기
-	@GetMapping("/faq/detail/{faqNo}")
-	public ModelAndView selectFaqDetail(
-			  ModelAndView mv
-			, @PathVariable int faqNo
-			) {
-		AdminFaqVo result = service.selectFaqDetail(faqNo);
-		mv.addObject("faqlist", result);
-		mv.setViewName("admin/faq/detail");
-		return mv;
-	}
-	
-	// 자주묻는질문화면 작성 페이지
-	@GetMapping("/faq/write")
-	public ModelAndView viewInsertFaq(
-			  ModelAndView mv
-			, HttpServletRequest request // 사용자(관리자)정보 가져오기
-			) {
-		mv.setViewName("admin/faq/write");
-		Principal principal = request.getUserPrincipal(); // 사용자(관리자)정보 가져오기
-	    String username = principal.getName(); // 사용자(관리자)정보 가져오기
-	    
-	    mv.addObject("username", username);
-		return mv;
-	}
-	
-	// 자주묻는질문 작성
-	@PostMapping("/faq/write")
-	public ModelAndView faqwrite(
-			ModelAndView mv
-		  , AdminFaqVo vo
-			) {
-		service.insertFaqWrite(vo);
-		mv.setViewName("redirect:/admin/faq/list");
-		return mv;
-	}
-	
-	
-	// 자주묻는질문 수정 페이지로 이동
-	@GetMapping("/faq/update/{faqNo}")
-	public ModelAndView viewUpdateFaq(
-			ModelAndView mv
-		  , @PathVariable int faqNo
-			) {
-		AdminFaqVo result = service.selectFaqDetail(faqNo);
-		mv.addObject("faqlist", result); // 기존 내용 띄우기
-		mv.setViewName("admin/faq/update");
-		return mv;
-	}
-	
-	
-	// 자주묻는질문 수정하기
-	@PostMapping("/faq/update/{faqNo}") // 왜 url이 두개나오는거지??(faqupdate.jsp) 해결중!!!!!!!!!
-	public ModelAndView selectFaqModify(
-		     ModelAndView mv
-		   , @PathVariable int faqNo
-		   , AdminFaqVo vo) {
-		service.selectFaqModify(vo);
-		mv.setViewName("redirect:/admin/faq/detail/"+vo.getFaqNo());
-		return mv;
-	}
-	
-	// 자주묻는질문 삭제하기
-	@GetMapping("/faq/delete/{faqNo}")
-	public ModelAndView deleteFaq(
-			  ModelAndView mv
-			, @PathVariable int faqNo
-			) {
-		service.deleteFaq(faqNo);
-		mv.setViewName("redirect:/admin/faq/list");
-		return mv;
-	}
-	
-	// 문의내역 리스트
+
+	// 리스트
 	@RequestMapping(value = "qna/list", method = {RequestMethod.GET, RequestMethod.POST})
 	public ModelAndView selectQnaList(
 			ModelAndView mv
 			, AdminQnaMngtVo vo
+			, HttpServletRequest request
+			, HttpServletResponse response
+			,@RequestParam(required = false) String keyword
+			,@RequestParam(required = false) String searchType
+			,@RequestParam(value = "p", required = false) String pageNumber
 			) {
 	    if(vo.getSearchOption() == null) {
 	        mv.addObject("qnalist", service.selectQnaList()); // 검색이 없는경우
@@ -182,11 +59,54 @@ public class AdminQnaMngtController {
 	        mv.addObject("searchOption", vo.getSearchOption());
 	        mv.addObject("searchBox", vo.getSearchBox());
 	    }
+	    
+	    //페이징
+  		//String pageNumber = request.getParameter("p"); 굳이 이렇게 안가져오고 @RequestParam으로 받아도됨.
+  		int pNum;
+  		if (pageNumber == null || pageNumber.isEmpty()) {
+  			pNum = 1;
+  		} else {
+  			pNum = Integer.parseInt(pageNumber);
+  		}
+  	
+  		Cookie cookie = null;
+  		Cookie[] cookies = request.getCookies();
+  		for (Cookie c : cookies) {
+  			if (c.getName().equals("cnt")) {
+  				cookie = c;
+  			}
+  		}
+  	
+  		String cnt = request.getParameter("cnt");
+  		if (cnt != null) {
+  			if (cnt.isEmpty()) {
+  				if (cookie != null) {
+  					cnt = cookie.getValue();
+  				} else {
+  					cnt = "10"; // 초기값
+  				}
+  			}
+  		} else {
+  			if (cookie != null) {
+  				cnt = cookie.getValue();
+  			} else {
+  				cnt = "10";
+  			}
+  		}
+  			  	
+  		cookie = new Cookie("cnt", cnt);
+  		cookie.setMaxAge(60 * 60 * 24 * 5);
+  		response.addCookie(cookie);	 
+  		
+		Search search = service.getPage(pNum, Integer.parseInt(cnt), keyword, searchType); // 한 페이지에 보여줄 자주묻는질문 목록
+		request.setAttribute("paging", search);
+		
+		
 		mv.setViewName("admin/qna/list");
 		return mv;
 	}
 	
-	// 문의내역 상세보기
+	// 상세보기
 	@GetMapping("/qna/detail/{aqNo}")
 	public ModelAndView selectQnaListDetail(
 			ModelAndView mv
@@ -256,7 +176,7 @@ public class AdminQnaMngtController {
 	return mv;
     }
 	
-	// 문의 답변 작성 ajax
+	// 답변 작성 ajax
 	@ResponseBody
 	@PostMapping("/qna/insertAns")
 	public String insertQnaAnsWrite(
@@ -271,7 +191,7 @@ public class AdminQnaMngtController {
 		}
 	}
 	
-	// 문의내역 답변 불러오기 ajax
+	// 답변 불러오기 ajax
 	@ResponseBody
 	@PostMapping(value="/qna/ansList", produces = "application/json;charset=utf-8")
 	public String ansList(
@@ -286,7 +206,7 @@ public class AdminQnaMngtController {
 			return null;
 	}
 	
-	// 문의 답변 삭제 ajax
+	// 답변 삭제 ajax
 	@ResponseBody
 	@PostMapping("/qna/deleteAns")
 	public String deleteQnaAns(
@@ -301,7 +221,7 @@ public class AdminQnaMngtController {
 		}
 	}
 	
-	// 문의 답변 수정
+	// 답변 수정
 	@ResponseBody
 	@PostMapping("/qna/updateAns")
 	public String updateQnaAns(
@@ -329,7 +249,7 @@ public class AdminQnaMngtController {
 		return null;
 	}
 	
-	// 문의 내역 답글 등록 ajax
+	// 답글 등록 ajax
 	@ResponseBody
 	@PostMapping("/qna/insertReply")
 	public String insertReply(
@@ -343,7 +263,7 @@ public class AdminQnaMngtController {
 		}
 	}
 	
-	// 문의 내역 답글 수정 ajax
+	// 답글 수정 ajax
 	@ResponseBody
 	@PostMapping("/qna/updateReply")
 	public String updateQnaReply(
@@ -357,7 +277,7 @@ public class AdminQnaMngtController {
 		}
 	}
 	
-	// 문의 답글 삭제 ajax
+	// 답글 삭제 ajax
 	@ResponseBody
 	@PostMapping("/qna/deleteReply")
 	public String deleteQnaReply(
