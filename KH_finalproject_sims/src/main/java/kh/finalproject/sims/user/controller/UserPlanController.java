@@ -1,5 +1,7 @@
 package kh.finalproject.sims.user.controller;
 
+import java.security.Principal;
+import java.util.HashMap;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -27,8 +29,19 @@ public class UserPlanController {
 	@GetMapping("/{planNo}")
 	public ModelAndView viewPlanDetail(
 			ModelAndView mv
+			, Principal prin
 			, @PathVariable int planNo
 			) {
+		
+		// 최근 본 요금제 추가
+		if(prin.getName() != null && !prin.getName().isEmpty()) {
+			HashMap<String, Object> recentInfo = new HashMap<>();
+			recentInfo.put("userId", prin.getName());
+			recentInfo.put("planNo", planNo);
+			planService.insertRecentInfo(recentInfo);
+		}
+		//
+		
 		PlanVo pvo = planService.getPlanByNo(planNo);
 		BizVo bvo = bizService.getBizByName(pvo.getBizName());
 		List<UserReviewVo> reviewList = bizService.getReviewListById(bvo.getBizId());

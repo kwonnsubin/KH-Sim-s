@@ -38,5 +38,19 @@ public class UserPlanDao {
 		return session.selectOne("plan.getLikeByPlanWithUser", map);
 	}
 
+	// 최근 본 요금제 카운트
+	public int getRecentInfo(HashMap<String, Object> recentInfo) {
+		return session.selectOne("plan.getRecentInfo", recentInfo);
+	}
 
+	// 최근 본 요금제 업데이트
+	public void updateRecentInfo(HashMap<String, Object> recentInfo) {
+		session.update("plan.updateRecentInfo", recentInfo);
+	}
+
+	// 최근 본 요금제 저장
+	public void insertRecentInfo(HashMap<String, Object> recentInfo) {
+		session.insert("plan.insertRecentInfo", recentInfo);
+	}
+	
 }

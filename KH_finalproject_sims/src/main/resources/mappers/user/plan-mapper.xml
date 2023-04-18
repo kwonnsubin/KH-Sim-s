@@ -184,5 +184,16 @@
 		(view_date >= SYSTIMESTAMP - interval '24' hour)
 		order by view_date desc
 	</select>
+	
+	<select id="getRecentInfo" parameterType="hashmap" resultType="int">
+		select count(*) from view_table where user_id=#{userId} and plan_no=#{planNo} 
+	</select>
+	
+	<update id="updateRecentInfo" parameterType="hashmap">
+		update view_table set view_date=systimestamp where user_id=#{userId} and plan_no=#{planNo}
+	</update>
 
+	<insert id="insertRecentInfo" parameterType="hashmap">
+		insert into view_table values(#{userId}, #{planNo}, systimestamp)
+	</insert>
 </mapper>

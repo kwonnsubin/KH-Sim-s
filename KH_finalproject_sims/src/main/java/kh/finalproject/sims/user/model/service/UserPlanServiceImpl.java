@@ -1,7 +1,10 @@
 package kh.finalproject.sims.user.model.service;
 
+import java.util.HashMap;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import kh.finalproject.sims.user.model.dao.UserPlanDao;
 import kh.finalproject.sims.user.model.vo.LikeVo;
@@ -34,5 +37,16 @@ public class UserPlanServiceImpl implements UserPlanService {
 		return like != null;
 	}
 
+	// 최근 본 요금제 저장
+	@Override
+	@Transactional
+	public void insertRecentInfo(HashMap<String, Object> recentInfo) {
+		if(dao.getRecentInfo(recentInfo) == 1) {
+			dao.updateRecentInfo(recentInfo);
+		} else {
+			dao.insertRecentInfo(recentInfo);
+		}
+		
+	}
 
 }
