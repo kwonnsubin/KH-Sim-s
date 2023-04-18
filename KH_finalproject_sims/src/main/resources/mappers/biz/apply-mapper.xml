@@ -139,6 +139,8 @@
 			WHERE rn between #{start} and #{end}
 	</select>
 	
+	
+	<!-- 분류 전체조회일 때 수행 -->
 	<!-- search 리스트-->
 	<select id="searchApplyList" parameterType="map" resultType="kh.finalproject.sims.biz.model.vo.BizApplyVo">
 		SELECT *
@@ -216,6 +218,7 @@ WHERE rn between #{start} and #{end}
  )
 	</select>
 	
+	<!-- 분류가 있을 때 수행 -->
 	<!-- 분류에 따른 리스트 -->
 	<!-- row 수 구하기 -->
 		<select id="getDevisionApplyListCount" parameterType="map" resultType="_int">
