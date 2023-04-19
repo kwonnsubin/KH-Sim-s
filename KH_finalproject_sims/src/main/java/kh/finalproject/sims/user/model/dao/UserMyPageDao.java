@@ -92,4 +92,8 @@ public class UserMyPageDao {
 		return sqlSession.selectList("plan.selectLikeList", userId);
 	}
 
+	public int selectLikeListCount(String userId) {
+		return sqlSession.selectOne("plan.selectLikeListCount", userId);
+	}
+
 }

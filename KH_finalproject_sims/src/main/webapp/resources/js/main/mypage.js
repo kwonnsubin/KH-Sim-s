@@ -31,3 +31,7 @@ $(".myPlanDiv").on("click", function() {
 $(".recentDiv").on("click", function() {
 	location.href= contextPath + "/mypage/recent"
 });
+
+$(".likeDiv").on("click", function() {
+	location.href= contextPath + "/mypage/like"
+});

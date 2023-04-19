@@ -32,7 +32,7 @@
     .input-form {
       max-width: 680px;
 
-      margin-top: 150px;
+      margin-top: 60px;
       padding: 32px;
 
       background: #fff;

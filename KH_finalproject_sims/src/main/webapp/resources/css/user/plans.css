@@ -20,33 +20,6 @@ p {
 	font-weight: 400;
 }
 
-.select {
-	-webkit-appearance: none;
-    -moz-appearance: none;
-    appearance: none;
-    
-	width: 80px;
-	height: 41.5px;
-	color: black;
-	background-color: white;
-	border-radius: 30px;
-	font-size: small;
-	padding: 10px 20px 10px 20px;
-	cursor: pointer;
-}
-
-.select:hover {
-	background-color: E4E4E2;
-}
-
-.modalBtn {
-	color: black;
-	background-color: white;
-	border-width: 1px; 
-	border-radius: 30px;
-	font-size: small;
-}
-
 .choose-div {
 	width: 70%;
 }
@@ -58,8 +31,7 @@ p {
 .list-div {
 	width: 90%;
 
-	padding: 20px;
-	margin-right: 0px;
+	padding: 20px 10px 20px 10px;
 	margin-left: 0px;
 	
 	background: #fff;
@@ -76,7 +48,6 @@ p {
 	min-height : 80px;
 
 	padding: 10px;
-	margin-right: 0px;
 	margin-left: 0px;
 	
 	background: #fff;
@@ -227,13 +198,13 @@ fieldset label:hover {
 
 .planInfo p {
 	font-size: 12px;
-	font-color: #afafaf;
+	color: #afafaf;
 	display: inline;
 }
 
 .planName {
 	font-size: 14px;
-	font-color: black;
+	color: #afafaf;
 }
 
 .planData p {
@@ -253,6 +224,89 @@ fieldset label:hover {
 
 .priceText {
 	font-size: 18px;
+}
+
+.viewCount {
+	font-size: 12px;
+	color: #afafaf;
+}
+
+.modalBtn {
+	width: 100px;
+	color: black;
+	background-color: white;
+	border-width: 1px; 
+	border-radius: 10px;
+	border-color: #C4C4C4;
+	font-family: 'Roboto';
+	font-style: normal;
+	font-weight: 400;
+	font-size: 14px;
+}
+
+/* 커스텀 셀렉트 */
+/* reset */
+ul,li{
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+/* design */
+
+.selectbox{
+    margin: 150px auto;
+}
+
+.pl{
+	width: 100px;
+	border: 1px solid #C4C4C4;
+	box-sizing: border-box;
+	border-radius: 10px;
+	padding: 12px 13px;
+	font-family: 'Roboto';
+	font-style: normal;
+	font-weight: 400;
+	font-size: 14px;
+	line-height: 16px;
+	background: url(./img/Polygon_up.png) 93% no-repeat; /*화살표 이미지 삽입*/
+	appearance: none;
+}
+
+.pl:hover {
+	background-color: #E4E4E2;
+	color: white;
+	transition: all 0.3s ease-out;
+}
+
+.pl:focus{
+    box-sizing: border-box;
+    border-radius: 10px;
+    outline: 2px solid #C4C4C4;
+}
+
+.listbox{
+    width: 100px;
+    list-style: none;
+    background: #FFFFFF;
+    border: 1px solid #C4C4C4;
+    box-sizing: border-box;
+    box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.15);
+    border-radius: 10px;
+    margin-top: 9px;
+}
+
+.list{
+    border: none;
+    background-color: #FFFFFF;
+    font-family: 'Roboto';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 16px;
+    padding: 7px 10px;
+    margin: 5px 7px;
+    box-sizing: border-box;
 }
 
 

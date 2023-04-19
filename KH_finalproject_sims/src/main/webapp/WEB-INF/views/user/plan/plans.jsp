@@ -112,16 +112,20 @@
        	</div>
  		<div class="container-fluid d-flex justify-content-center">
 			<div class="row my-3 mt-4 choose-div">
-				<div class="col-2 text-center">
-	        		<div class="select-div">
-					  <select class="select text-start" id="floatingSelect" aria-label="select">
-					    <option value="선택순" selected>선택순</option>
-					    <option value="별점순">별점순</option>
-					    <option value="추천순">추천순</option>
-					  </select>
-					</div>
+				<div class="col-2">
+					<c:if test="${empty param.select}">
+						<button class="pl on choose-btn">분류</button>
+					</c:if>
+					<c:if test="${not empty param.select}">
+						<button class="pl on choose-btn">${param.select}</button>
+					</c:if>
+				    <ul class="listbox" id="listbox" is-on="0" style="display: none;">
+				        <li><button class="list">선택순</button></li>
+				        <li><button class="list">별점순</button></li>
+				        <li><button class="list">추천순</button></li>
+				    </ul>
 				</div>
-				<div class="col-2 text-center">
+				<div class="col-2">
 					<button type="button" class="btn btn-light btn-outline-secondary modalBtn" data-bs-toggle="modal" data-bs-target="#filter-modal">
 						필터
 					</button>
@@ -605,8 +609,14 @@
 		    					<p>&nbsp;원</p>
 	    					</div>
 	    				</div>
-	    				<div class="col-4 text-end align-self-end mb-2">
-	    					<button type="button" class="btn btn-primary btn-sm" onclick="location.href='${pageContext.request.contextPath}/plan/${list.planNo}'">자세히 보기</button>
+	    				<div class="col-4 row mb-2">
+	    					<div class="text-end">
+	    						<i class="fa-solid fa-star me-2" style="color: #ffdd00;"></i><span>${list.bizReviewStar}</span>
+	    						<p class="viewCount">${list.orderCount}명 선택</p>
+	    					</div>
+	    					<div class="text-end align-self-end">
+		    					<button type="button" class="btn btn-primary btn-sm" onclick="location.href='${pageContext.request.contextPath}/plan/${list.planNo}'">자세히 보기</button>
+	    					</div>
 	    				</div>
 	    			</div>
 	    			</c:forEach>
@@ -619,11 +629,11 @@
    					</div>
 	    			</c:if>
 	    		</div>
-	    		<div class="col-4 d-flex justify-content-center">
+	    		<div class="col-4">
 	    			<div class="float-div">
 		    			<div class="input-div">
 		    				<input type="text" class="form-control searchText" placeholder="요금제이름 또는 통신사">
-		    				<span class="material-symbols-outlined search-icon">search</span>
+		    				<span class="material-symbols-outlined search-icon">search</span>	
 		    			</div>
 		    			<div class="row my-3">
 	        				<div class="col">

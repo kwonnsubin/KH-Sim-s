@@ -126,4 +126,9 @@ public class UserMyPageServiceImpl implements UserMyPageService {
 		return dao.selectLikeList(userId);
 	}
 	
+	// 찜한 요금제 갯수
+	public int selectLikeListCount(String userId) {
+		return dao.selectLikeListCount(userId);
+	}
+	
 }
