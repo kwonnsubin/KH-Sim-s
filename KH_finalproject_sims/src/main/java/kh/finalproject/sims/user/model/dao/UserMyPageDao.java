@@ -11,6 +11,7 @@ import kh.finalproject.sims.admin.model.vo.AdminNoticeMngtVo;
 import kh.finalproject.sims.biz.model.vo.BizApplyVo;
 import kh.finalproject.sims.biz.model.vo.BizReviewMngtVo;
 import kh.finalproject.sims.user.model.vo.MemberVo;
+import kh.finalproject.sims.user.model.vo.PlanVo;
 import kh.finalproject.sims.user.model.vo.UserMemberVo;
 
 @Repository
@@ -79,12 +80,16 @@ public class UserMyPageDao {
 		return sqlSession.selectOne("apply.selectMyPlanListCount", userId);
 	}
 
-	public List<BizApplyVo> selectRecentList(String userId) {
+	public List<PlanVo> selectRecentList(String userId) {
 		return sqlSession.selectList("plan.selectRecentList", userId);
 	}
 
 	public int selectRecentListCount(String userId) {
 		return sqlSession.selectOne("plan.selectRecentListCount", userId);
+	}
+
+	public List<PlanVo> selectLikeList(String userId) {
+		return sqlSession.selectList("plan.selectLikeList", userId);
 	}
 
 }

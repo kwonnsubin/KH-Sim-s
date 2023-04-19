@@ -22,6 +22,7 @@ import kh.finalproject.sims.biz.model.vo.BizApplyVo;
 import kh.finalproject.sims.biz.model.vo.BizReviewMngtVo;
 import kh.finalproject.sims.user.model.service.UserMyPageService;
 import kh.finalproject.sims.user.model.vo.MemberVo;
+import kh.finalproject.sims.user.model.vo.PlanVo;
 import kh.finalproject.sims.user.model.vo.UserMemberVo;
 
 @Controller
@@ -195,10 +196,22 @@ public class UserMyPageController {
 	@GetMapping("/mypage/recent")
 	public ModelAndView selectRecentList(ModelAndView mv, Principal prin) {
 		String userId = prin.getName();
-		List<BizApplyVo> recentList = service.selectRecentList(userId);
+		List<PlanVo> recentList = service.selectRecentList(userId);
 		
 		mv.addObject("recentList", recentList);
 		mv.setViewName("user/myinfo/recent");
+		
+		return mv;
+	}
+	
+	// 찜한 요금제
+	@GetMapping("/mypage/like")
+	public ModelAndView selectLikeList(ModelAndView mv, Principal prin) {
+		String userId = prin.getName();
+		List<PlanVo> likeList = service.selectLikeList(userId);
+		
+		mv.addObject("likeList", likeList);
+		mv.setViewName("user/myinfo/like");
 		
 		return mv;
 	}

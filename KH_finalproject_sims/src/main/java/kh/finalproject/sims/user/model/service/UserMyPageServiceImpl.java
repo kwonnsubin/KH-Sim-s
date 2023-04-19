@@ -12,6 +12,7 @@ import kh.finalproject.sims.biz.model.vo.BizApplyVo;
 import kh.finalproject.sims.biz.model.vo.BizReviewMngtVo;
 import kh.finalproject.sims.user.model.dao.UserMyPageDao;
 import kh.finalproject.sims.user.model.vo.MemberVo;
+import kh.finalproject.sims.user.model.vo.PlanVo;
 import kh.finalproject.sims.user.model.vo.UserMemberVo;
 
 @Service
@@ -110,7 +111,7 @@ public class UserMyPageServiceImpl implements UserMyPageService {
 
 	// 최근 본 요금제
 	@Override
-	public List<BizApplyVo> selectRecentList(String userId) {
+	public List<PlanVo> selectRecentList(String userId) {
 		return dao.selectRecentList(userId);
 	}
 
@@ -118,6 +119,11 @@ public class UserMyPageServiceImpl implements UserMyPageService {
 	@Override
 	public int selectRecentListCount(String userId) {
 		return dao.selectRecentListCount(userId);
+	}
+	
+	// 찜한 요금제
+	public List<PlanVo> selectLikeList(String userId) {
+		return dao.selectLikeList(userId);
 	}
 	
 }

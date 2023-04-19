@@ -66,7 +66,7 @@ public class UserPlanFindController {
 		if(req.getUserPrincipal() != null) {
 			Principal prin = req.getUserPrincipal();
 			String userId = prin.getName();
-			List<BizApplyVo> recentList = myPageService.selectRecentList(userId);
+			List<PlanVo> recentList = myPageService.selectRecentList(userId);
 			mv.addObject("recentList", recentList);
 		}
 		

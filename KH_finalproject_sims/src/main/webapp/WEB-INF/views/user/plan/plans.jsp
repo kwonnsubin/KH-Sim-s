@@ -550,6 +550,7 @@
 	    					<p class="ms-3">총 ${cnt}개</p>
 	    				</c:if>
 	    			</div>
+	    			<c:if test="${not empty planList}">
 	    			<c:forEach var="list" items="${planList}">
 	    			<div class="row mt-3 list-div">
 	    				<div class="col-8">
@@ -609,6 +610,14 @@
 	    				</div>
 	    			</div>
 	    			</c:forEach>
+	    			</c:if>
+	    			<c:if test="${empty planList}">
+	    			<div class="row ms-4 mt-3 none-planList">
+   						<div class="text-center align-self-center" style="font-size: 14px; color: black;">
+    						검색된 요금제가 없습니다.
+   						</div>
+   					</div>
+	    			</c:if>
 	    		</div>
 	    		<div class="col-4 d-flex justify-content-center">
 	    			<div class="float-div">

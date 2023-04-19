@@ -208,4 +208,14 @@
 	<insert id="insertRecentInfo" parameterType="hashmap">
 		insert into view_table values(#{userId}, #{planNo}, systimestamp)
 	</insert>
+	
+	<!-- 찜한 요금제 -->
+	<select id="selectLikeList" parameterType="string" resultType="planVo">
+		select l.plan_no, plan_name, biz_name, net_no, gen_no, plan_price, plan_voice, plan_message
+		    , plan_data, plan_voice_over, plan_message_over, plan_data_over, plan_date, plan_update_date
+		    , (select b.biz_id from biz b where p.biz_name = b.biz_name) as biz_id
+		from like_table l, plan_table p
+		where l.plan_no = p.plan_no and user_id=#{userId}
+		order by like_date desc
+	</select>
 </mapper>

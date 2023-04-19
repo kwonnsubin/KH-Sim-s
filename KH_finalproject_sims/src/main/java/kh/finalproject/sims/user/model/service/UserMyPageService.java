@@ -7,6 +7,7 @@ import kh.finalproject.sims.admin.model.vo.AdminNoticeMngtVo;
 import kh.finalproject.sims.biz.model.vo.BizApplyVo;
 import kh.finalproject.sims.biz.model.vo.BizReviewMngtVo;
 import kh.finalproject.sims.user.model.vo.MemberVo;
+import kh.finalproject.sims.user.model.vo.PlanVo;
 import kh.finalproject.sims.user.model.vo.UserMemberVo;
 
 public interface UserMyPageService {
@@ -54,9 +55,12 @@ public interface UserMyPageService {
 	public int selectMyPlanListCount(String userId);
 
 	// 최근 본 요금제
-	public List<BizApplyVo> selectRecentList(String userId);
+	public List<PlanVo> selectRecentList(String userId);
 
 	// 최근 본 요금제 갯수
 	public int selectRecentListCount(String userId);
+
+	// 찜한 요금제
+	public List<PlanVo> selectLikeList(String userId);
 	
 }
