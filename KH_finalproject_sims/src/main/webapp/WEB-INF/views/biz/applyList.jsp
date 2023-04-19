@@ -56,9 +56,7 @@
 	
 	<!-- search{s} -->
 		<div style="display: flex;">
-		<div>
-			
-		</div>
+
 			<select class="form-select" style="display: inline-block; width: 120px" name="searchType" id="searchType">
 				<option value="planName">요금제명</option>
 				<option value="userId">신청자</option>
@@ -103,31 +101,6 @@
 		    </label>
 		</div>
 	</div>
-		<!-- <div class="form-check-inline">
-		  <input class="form-check-input" type="radio" name="division" id="exampleRadios1" value="0" checked>
-		  <label class="form-check-label" for="exampleRadios1">
-		    전체
-		  </label>
-		</div>
-		<div class="form-check-inline">
-		  <input class="form-check-input" type="radio" name="division" id="exampleRadios2" value="1">
-		  <label class="form-check-label" for="exampleRadios2">
-		    신청완료
-		  </label>
-		</div>
-		<div class="form-check-inline">
-		  <input class="form-check-input" type="radio" name="division" id="exampleRadios3" value="2">
-		  <label class="form-check-label" for="exampleRadios3">
-		    승인완료
-		  </label>
-		</div>
-		<div class="form-check-inline">
-		  <input class="form-check-input" type="radio" name="division" id="exampleRadios4" value="3">
-		  <label class="form-check-label" for="exampleRadios4">
-		    승인보류
-		  </label>
-		</div>      -->
-		<!-- 분류 {e} -->
 			
 			<button name="btnSearch" id="search-button" class="btn btn-outline-secondary">
 			<span class="material-symbols-outlined">
