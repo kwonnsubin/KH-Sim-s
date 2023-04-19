@@ -47,12 +47,14 @@
 					<h3>${plan.planName}</h3>
 				</div>
 				<div class="col-2 float-sm-none vertical-center">
-					<a class="like" href="#"> <!-- 찜 기능 구현 -->
+					<c:set var="cpath" value="${pageContext.request.contextPath }" />
+					<a class="like" onclick="toggleLike(${plan.planNo})"> 
 						<img class="logo-s float-end" src="${cpath}/resources/img/like.png" alt="like">
 					</a>
 				</div>
+
 				<div class="col-1 float-sm-none vertical-center">
-					<a id="kakaotalk-sharing-btn" href="javascript:shareMessage()">
+					<a class="share" onclick="shareMessage()">
 						<img src="${cpath}/resources/img/share.png" alt="카카오톡 공유 보내기 버튼" />
 					</a>
 				</div>
@@ -226,9 +228,7 @@
 		crossorigin="anonymous"></script>
 	<script>
 		Kakao.init('61dec1e850d6a4addfc3a6accea9966a'); 
-	</script>
 
-	<script>
 		function shareMessage() {
 			var no = '${plan.planNo}';
 			var title = '[${plan.bizName}] ${plan.planName} | ${plan.planPrice}원';
@@ -242,6 +242,30 @@
 				}
 			});
 		}
+		
+	    function toggleLike(planNo) {
+	        $.ajax({
+	            url: '${cpath}/plan/${plan.planNo}/like',
+	            type: 'POST',
+	            dataType: 'json',
+	            data: {
+	                planNo: planNo
+	            },
+	            success: function(result) {
+	            	console.log(result);
+	                if (result  == 1) {
+	                    alert("찜목록에 추가되었습니다.");
+	                } else if(result == 0){
+	                    alert("찜목록에서 제거되었습니다.");
+	                } 
+	            },
+	            error: function(xhr, status, error) {
+	                console.log(xhr.responseText);
+	                alert("로그인이 필요합니다.");
+	            }
+	        });
+	    }
+
 	</script>
 
 </body>
