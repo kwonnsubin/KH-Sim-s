@@ -1,5 +1,6 @@
 package kh.finalproject.sims.user.controller;
 
+import java.io.Console;
 import java.security.Principal;
 import java.util.HashMap;
 import java.util.List;
@@ -16,10 +17,12 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import kh.finalproject.sims.user.model.service.UserBizService;
+import kh.finalproject.sims.user.model.service.UserMyPageService;
 import kh.finalproject.sims.user.model.service.UserPlanService;
 import kh.finalproject.sims.user.model.vo.BizVo;
 import kh.finalproject.sims.user.model.vo.LikeVo;
 import kh.finalproject.sims.user.model.vo.PlanVo;
+import kh.finalproject.sims.user.model.vo.UserMemberVo;
 import kh.finalproject.sims.user.model.vo.UserReviewVo;
 
 @Controller
@@ -30,6 +33,8 @@ public class UserPlanController {
 	private UserPlanService planService;
 	@Autowired
 	private UserBizService bizService;
+	@Autowired
+	private UserMyPageService myService;
 	
 	@GetMapping("/{planNo}")
 	public ModelAndView viewPlanDetail(
@@ -63,6 +68,37 @@ public class UserPlanController {
 		return mv;
 	}
 	
+	// 약관 페이지
+	@GetMapping("/{planNo}/order/terms")
+	public ModelAndView viewTerms(
+			ModelAndView mv
+			, @PathVariable int planNo
+			) {
+		PlanVo pvo = planService.getPlanByNo(planNo);
+		mv.addObject("plan", pvo);
+		mv.setViewName("user/plan/terms");
+		return mv;
+	}
+	
+	// 신청 페이지
+	@GetMapping("/{planNo}/order")
+	public ModelAndView viewPlanOrder(
+			ModelAndView mv
+			, Principal principal
+			, @PathVariable int planNo
+			) {
+		String userId = principal.getName();
+		PlanVo pvo = planService.getPlanByNo(planNo);
+		UserMemberVo user = myService.selectMyPageInfo(userId);
+		
+		mv.addObject("plan", pvo);
+		mv.addObject("user", user);
+		
+		mv.setViewName("user/plan/order");
+		return mv;
+	}
+	
+	// 찜하기
 	@PostMapping("/{planNo}/like")
 	@ResponseBody
 	public int likePlan(

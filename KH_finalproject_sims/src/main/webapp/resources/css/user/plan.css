@@ -65,3 +65,11 @@ a:active {
 	border-width: 1px;
 	border-color: gray;
 }
+
+.btn-toggle{
+    padding: 3px 15px;
+    background: white;
+    color: black;
+    border-color: black;
+    transition: all .3s;
+}

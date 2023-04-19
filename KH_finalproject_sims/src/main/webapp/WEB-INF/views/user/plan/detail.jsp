@@ -122,7 +122,7 @@
 				</div>
 				<div class="card text-center bg-primary">
 					<div class="card-body">
-						<h5><a class="text-white" href="#">간편 신청</a></h5>
+						<h5><a class="text-white" href="${cpath}/plan/${plan.planNo}/order/terms">신청하기</a></h5>
 					</div>
 				</div>
 			</div>
