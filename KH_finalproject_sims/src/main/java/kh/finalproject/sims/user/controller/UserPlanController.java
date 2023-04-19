@@ -4,6 +4,8 @@ import java.security.Principal;
 import java.util.HashMap;
 import java.util.List;
 
+import javax.servlet.http.HttpServletRequest;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -11,6 +13,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
+import kh.finalproject.sims.biz.model.vo.BizApplyVo;
 import kh.finalproject.sims.user.model.service.UserBizService;
 import kh.finalproject.sims.user.model.service.UserPlanService;
 import kh.finalproject.sims.user.model.vo.BizVo;
@@ -29,12 +32,13 @@ public class UserPlanController {
 	@GetMapping("/{planNo}")
 	public ModelAndView viewPlanDetail(
 			ModelAndView mv
-			, Principal prin
+			, HttpServletRequest req
 			, @PathVariable int planNo
 			) {
 		
 		// 최근 본 요금제 추가
-		if(prin.getName() != null && !prin.getName().isEmpty()) {
+		if(req.getUserPrincipal() != null) {
+			Principal prin = req.getUserPrincipal();
 			HashMap<String, Object> recentInfo = new HashMap<>();
 			recentInfo.put("userId", prin.getName());
 			recentInfo.put("planNo", planNo);
