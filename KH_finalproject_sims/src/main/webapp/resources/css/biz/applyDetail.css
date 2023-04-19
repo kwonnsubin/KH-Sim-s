@@ -25,4 +25,15 @@
 .table th {
   background-color: #f2f2f2 !important;
 }
-
+#applyDetail{
+	margin: 30px auto;
+	width: 50%;
+	border: solid 1px;
+	border-radius: 10px;
+}
+.infoContent{
+	border-bottom: 1px solid black;
+}
+.container{
+	border-style: solid;
+}

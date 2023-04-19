@@ -44,24 +44,36 @@
 </sec:authorize>
 
 <h2>${bizName.bizName}의 요금제 목록</h2>
+
+
+	<div class="searchTop">
+				
+	    <!-- search{s} -->
+	    <div>
+	    	<input type="text" name="keyword" id="keyword">
+	    	<button name="searchBtn" id="searchBtn">검색</button>
+	    </div>
+	    <!-- search{e} -->
+	
+	    
+	    <div>
+			<form action="${path}/biz/planList">
+				<select name="cnt" onchange="submit();">
+					<c:forEach var="num" begin="5" end="30" step="5">
+						<option value="${num }" ${requestScope.paging.pageLimit eq num ? "selected" : "" }>${num } 개</option>
+					</c:forEach>
+				</select>
+			</form>
+		</div>
+    
+    </div>
+    
 	<div>
         <span class="count float-1">총 ${vo} 건</span>
     </div>
     
     
-    
-    <div>
-		<form action="${path}/biz/planList">
-			<select name="cnt" onchange="submit();">
-				<c:forEach var="num" begin="5" end="30" step="5">
-					<option value="${num }" ${requestScope.paging.pageLimit eq num ? "selected" : "" }>${num } 개</option>
-				</c:forEach>
-			</select>
-		</form>
-	</div>
-    
-    <div>
-        <table class="table">
+        <table class="table" id="planTb" style="width: 73%;  position: relative;">
             <thead>
                 <tr>
                     <th>번호</th>
@@ -93,7 +105,7 @@
                 </c:if>             
             </tbody>
         </table>
-    </div>
+ 
     
      <!-- Modal -->
 	<div class="modal fade" id="deleteleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -114,13 +126,7 @@
 	    </div>
 	  </div>
 	</div>
-						
-    <!-- search{s} -->
-    <div>
-    	<input type="text" name="keyword" id="keyword">
-    	<button name="searchBtn" id="searchBtn">검색</button>
-    </div>
-    <!-- search{e} -->
+	
     
     <span>총 ${vo}개의 결과가 있습니다.</span>
     <% if (request.getParameter("keyword") != null && !request.getParameter("keyword").isEmpty()) { %>

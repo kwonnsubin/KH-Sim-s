@@ -7,7 +7,7 @@
 	font-family: 'poppins', sans-serif;
 	-webkit-box-sizing: border-box;
 }
- table {
+ #applyTb {
     /* display:block; */
     margin: 0;
 
@@ -23,5 +23,50 @@
     display: block;
 }
 .pagination {
-	padding-left: 450px !important;
+	padding-top: 40px;
+    left: 50%;
+    transform: translateX(-50%);
+}
+.searchTop{
+	display : flex;
+	float: left;
+	width: 73%;
+    margin-top: 60px;
+    padding: 10px 10px 10px 10px;
+    border: solid 0.4px #999ba5;
+    align-items: center;
+    border-radius: 10px;
+}
+
+.rdGroup {
+    padding-left: 20px;
+    width: -webkit-fill-available;
+    align-items: center;
+}
+.input-group{
+    height: 20%;
+}
+#btnSearch{
+	width:170px;
+}
+.listSelect{
+	padding-right: 30%;
+}
+.totalMent{
+	position: relative;
+    display: inline-block;
+    width: 80%;
+    padding-top: 50px;
+}
+/* 버튼 요소 스타일링 */
+#search-button {
+
+  border: none; /* 버튼 테두리 제거 */
+  border-radius: 5px; /* 버튼 모서리 둥글게 처리 */
+}
+
+/* 아이콘 스타일링 */
+.material-icons {
+  font-size: 24px; /* 아이콘 크기 */
+  vertical-align: middle; /* 아이콘 수직 중앙 정렬 */
 }

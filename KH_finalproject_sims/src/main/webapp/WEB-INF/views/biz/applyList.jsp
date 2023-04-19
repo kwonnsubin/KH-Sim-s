@@ -30,117 +30,125 @@
     <link rel="stylesheet" href="<%= request.getContextPath() %>/resources/css/user/myinfo.css"/>
     
     
-
+	<!-- Material Icons 라이브러리 추가 -->
+  	<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     
 </head>
 <body>
 <jsp:include page="/WEB-INF/views/header.jsp"/>
 <jsp:include page="/WEB-INF/views/biz/nav.jsp"/>
-요금제 가입 신청 목록
 
 
 
 
+<div class="searchTop">
+
+	<form action="${path}/biz/applyList" class="listSelect">
+			<select class="form-select" style="width: 100px" name="cnt" onchange="submit();">
+				<c:forEach var="num" begin="5" end="30" step="5">
+					<option value="${num }" ${requestScope.paging.pageLimit eq num ? "selected" : "" }>${num } 개</option>
+				</c:forEach>
+			</select>
+	</form>	
 
 
-<div class="input-group" style="width: 70%">
-
-<!-- search{s} -->
-	<div style="display: flex;">
-	<div>
-		
-	</div>
-		<select class="form-select" style="display: inline-block; width: 120px" name="searchType" id="searchType">
-			<option value="planName">요금제명</option>
-			<option value="userId">신청자</option>
-		</select>
-		<input class="form-control" style="display: inline-block;" type="text" name="keyword" id="keyword">
-		
-<!-- 분류 {s} -->
-
-
-	</div>
-
-</div>
+	<div class="input-group" style="width: auto; padding-right: 60px;">
+	
+	<!-- search{s} -->
+		<div style="display: flex;">
+		<div>
+			
+		</div>
+			<select class="form-select" style="display: inline-block; width: 120px" name="searchType" id="searchType">
+				<option value="planName">요금제명</option>
+				<option value="userId">신청자</option>
+			</select>
+			<input class="form-control" style="display: inline-block; width: 300px;" type="text" name="keyword" id="keyword">
+			
+	<!-- 분류 {s} -->
 	
 	
-
-<%
-    String orderStatus = request.getParameter("orderStatus");
-%>
-
-<div class="form-check-inline">
-    <input class="form-check-input" type="radio" name="division" id="exampleRadios1" value="0" <% if (orderStatus == null || orderStatus.equals("0") || orderStatus.equals("")) { %>checked<% } %>>
-    <label class="form-check-label" for="exampleRadios1">
-        전체
-    </label>
-</div>
-<div class="form-check-inline">
-    <input class="form-check-input" type="radio" name="division" id="exampleRadios2" value="1" <% if (orderStatus != null && orderStatus.equals("1")) { %>checked<% } %>>
-    <label class="form-check-label" for="exampleRadios2">
-        신청완료
-    </label>
-</div>
-<div class="form-check-inline">
-    <input class="form-check-input" type="radio" name="division" id="exampleRadios3" value="2" <% if (orderStatus != null && orderStatus.equals("2")) { %>checked<% } %>>
-    <label class="form-check-label" for="exampleRadios3">
-        승인완료
-    </label>
-</div>
-<div class="form-check-inline">
-    <input class="form-check-input" type="radio" name="division" id="exampleRadios4" value="3" <% if (orderStatus != null && orderStatus.equals("3")) { %>checked<% } %>>
-    <label class="form-check-label" for="exampleRadios4">
-        승인보류
-    </label>
-</div>
-
-	<!-- <div class="form-check-inline">
-	  <input class="form-check-input" type="radio" name="division" id="exampleRadios1" value="0" checked>
-	  <label class="form-check-label" for="exampleRadios1">
-	    전체
-	  </label>
-	</div>
-	<div class="form-check-inline">
-	  <input class="form-check-input" type="radio" name="division" id="exampleRadios2" value="1">
-	  <label class="form-check-label" for="exampleRadios2">
-	    신청완료
-	  </label>
-	</div>
-	<div class="form-check-inline">
-	  <input class="form-check-input" type="radio" name="division" id="exampleRadios3" value="2">
-	  <label class="form-check-label" for="exampleRadios3">
-	    승인완료
-	  </label>
-	</div>
-	<div class="form-check-inline">
-	  <input class="form-check-input" type="radio" name="division" id="exampleRadios4" value="3">
-	  <label class="form-check-label" for="exampleRadios4">
-	    승인보류
-	  </label>
-	</div>      -->
-	<!-- 분류 {e} -->
-		
-		<button name="btnSearch" id="btnSearch" class="btn btn-outline-secondary">검색</button>
+		</div>
 	
+	</div>
+		
+		
+	
+	<%
+	    String orderStatus = request.getParameter("orderStatus");
+	%>
+	<div class="rdGroup" style="width: -webkit-fill-available; align-items: center">
+		<div class="form-check-inline">
+		    <input class="form-check-input" type="radio" name="division" id="exampleRadios1" value="0" <% if (orderStatus == null || orderStatus.equals("0") || orderStatus.equals("")) { %>checked<% } %>>
+		    <label class="form-check-label" for="exampleRadios1">
+		        전체
+		    </label>
+		</div>
+		<div class="form-check-inline">
+		    <input class="form-check-input" type="radio" name="division" id="exampleRadios2" value="1" <% if (orderStatus != null && orderStatus.equals("1")) { %>checked<% } %>>
+		    <label class="form-check-label" for="exampleRadios2">
+		        신청완료
+		    </label>
+		</div>
+		<div class="form-check-inline">
+		    <input class="form-check-input" type="radio" name="division" id="exampleRadios3" value="2" <% if (orderStatus != null && orderStatus.equals("2")) { %>checked<% } %>>
+		    <label class="form-check-label" for="exampleRadios3">
+		        승인완료
+		    </label>
+		</div>
+		<div class="form-check-inline">
+		    <input class="form-check-input" type="radio" name="division" id="exampleRadios4" value="3" <% if (orderStatus != null && orderStatus.equals("3")) { %>checked<% } %>>
+		    <label class="form-check-label" for="exampleRadios4">
+		        승인보류
+		    </label>
+		</div>
+	</div>
+		<!-- <div class="form-check-inline">
+		  <input class="form-check-input" type="radio" name="division" id="exampleRadios1" value="0" checked>
+		  <label class="form-check-label" for="exampleRadios1">
+		    전체
+		  </label>
+		</div>
+		<div class="form-check-inline">
+		  <input class="form-check-input" type="radio" name="division" id="exampleRadios2" value="1">
+		  <label class="form-check-label" for="exampleRadios2">
+		    신청완료
+		  </label>
+		</div>
+		<div class="form-check-inline">
+		  <input class="form-check-input" type="radio" name="division" id="exampleRadios3" value="2">
+		  <label class="form-check-label" for="exampleRadios3">
+		    승인완료
+		  </label>
+		</div>
+		<div class="form-check-inline">
+		  <input class="form-check-input" type="radio" name="division" id="exampleRadios4" value="3">
+		  <label class="form-check-label" for="exampleRadios4">
+		    승인보류
+		  </label>
+		</div>      -->
+		<!-- 분류 {e} -->
+			
+			<button name="btnSearch" id="search-button" class="btn btn-outline-secondary">
+			<span class="material-symbols-outlined">
+			search
+			</span>
+			</button>
+</div>		
 
-	<span>총 ${applyListCnt}개의 결과가 있습니다.</span>
+
+	<div class="totalMent">총 ${applyListCnt}개의 결과가 있습니다.</div>
 
  	<% if (request.getParameter("keyword") != null && !request.getParameter("keyword").isEmpty()) { %>
     <span>"<%=request.getParameter("keyword")%>"의 검색 결과입니다.</span>
 	<% } %>
 
 
-<form action="${path}/biz/applyList">
-			<select class="form-select" style="width: 100px" name="cnt" onchange="submit();">
-				<c:forEach var="num" begin="5" end="30" step="5">
-					<option value="${num }" ${requestScope.paging.pageLimit eq num ? "selected" : "" }>${num } 개</option>
-				</c:forEach>
-			</select>
-</form>	
 
- <table class="table" style="width: 80%">
+
+ <table class="table" id="applyTb" style="width: 73%;  position: relative;">
             <thead>
-                <tr>
+                <tr class="text-center mx-auto" style="background-color: #f7f7f7;">
                     <th>번호</th>
                     <th>요금제명</th>
                     <th>신청번호<br>신청자</th>
@@ -158,7 +166,7 @@
             
             	<c:if test="${not empty requestScope.paging.page}">
 	                <c:forEach var="applyList" items="${requestScope.paging.page}">
-	                <tr>
+	                <tr class="text-center mx-auto">
 	                    <td>${applyList.rn }</td>
 	                    <td>${applyList.planName }</td>
 	                    <td>${applyList.serialNo }<br>${applyList.userId }</td>
@@ -187,7 +195,7 @@
         
      <!-- 페이지 번호 -->
      <c:if test="${not empty requestScope.paging.page}"> <!-- 신청서가 하나도 없으면 페이징X -->
-		<ul class="pagination">
+		<ul class="pagination" style="position: absolute;">
 			<c:set var="pageNumber" value="${empty param.p ? 1 : param.p }" />
 			<c:choose>
 				<c:when test="${requestScope.paging.prevPage eq -1 }">

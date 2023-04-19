@@ -7,10 +7,29 @@
 	font-family: 'poppins', sans-serif;
 }
  table {
-    display:block;
-    width: 100%;
-    margin: 0;
+     margin: 0;
     /* border: 0; */
+    table-layout: fixed;
+    border-collapse: collapse;
+    empty-cells: show;
+    justify-content: center;
+	align-items: center;
+	border-style: none;
+}
+.searchTop{
+	display : flex;
+	float: left;
+	width: 73%;
+    margin-top: 60px;
+    padding: 10px 10px 10px 10px;
+    border: solid 0.4px #999ba5;
+    align-items: center;
+    border-radius: 10px;
+}
+ #planTb {
+    /* display:block; */
+    margin: 0;
+
     table-layout: fixed;
     border-collapse: collapse;
     empty-cells: show;
