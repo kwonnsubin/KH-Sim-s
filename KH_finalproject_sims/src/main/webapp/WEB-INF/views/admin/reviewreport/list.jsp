@@ -34,7 +34,8 @@
 									</div>
 								</div>
 								<div class="col-md-12">
-									<div class="card">
+									<!-- 검색 {s} -->
+									<div class="card" style="margin: 0;">
 										<div class="card-body">
 											<form action="<%=request.getContextPath()%>/admin/reviewreport/list" method="post">
 												<div class="row">
@@ -57,6 +58,14 @@
 											</form>
 										</div>
 									</div>
+									<!-- 검색 {e} -->
+									<!-- 처리 상태별로 보기 버튼 {s} -->
+									<div class="btn-group mb-2" role="group" aria-label="Basic example">
+										<button type="button" class="btn  btn-secondary" id="not-confirmed">미확인</button>
+										<button type="button" class="btn  btn-secondary" id="rejected">반려</button>
+										<button type="button" class="btn  btn-secondary" id="deleted">삭제</button>
+									</div>
+                                    <!-- 처리 상태별로 보기 버튼 {e} -->
 									<div class="card">
 										<div class="card-body table-border-style">
 											<div class="table-responsive">
@@ -71,15 +80,6 @@
 														</tr>
 													</thead>
 													<tbody>
-<%-- 													<c:forEach items="${reviewReportList}" var="reviewlist">
-															<tr>
-																<td class="text-center">${reviewlist.reviewNo}</td>
-																<td><a href="<%=request.getContextPath()%>/admin/reviewreport/detail/${reviewlist.reviewNo}">${reviewlist.reportReason}</a></td>															
-																<td class="text-center">${reviewlist.bizId}</td>
-																<td class="text-center"><fmt:formatDate value="${reviewlist.reportDate}" pattern="yyyy.MM.dd"/> </td>
-																<td class="text-center">${reviewlist.reportStatus}</td>
-															</tr>
-														</c:forEach> --%>
 														<c:forEach var="reviewreport" items="${requestScope.paging.page}">
 															<tr>
 																<td class="text-center">${reviewreport.reviewNo}</td>
@@ -124,6 +124,7 @@
 										</div>
 									</div>
 								</div>
+								
 							</div>
 						</div>
 					</div>
@@ -131,31 +132,46 @@
 			</div>
 		</div>
 	</div>
-	<div class="row">
-			
-			
-			<%-- 
-			<div id="container">
-				<div class="contain-area">
-					<div class="content">
-						<h1>공지사항관리</h1>
-						
-						<div class="contents">
-							<div class="searchBox">
-								<label for="searchbox">검색</label>
-								<select class="search">
-									<option>제목</option>
-									<option>작성자</option>
-									<option>내용</option>
-								</select> 
-								<input class="search" type="text" id="searchbox"> <input class="sims_btn" type="button" value="검색">
-							</div>
-						</div>
-					</div>
-				</div>
-			</div>
-			 --%>
-</div>
 <jsp:include page="/WEB-INF/views/admin/include/footer.jsp" />
 </body>
+<script type="text/javascript">
+
+  $(document).ready(function() {
+    $('#not-confirmed').on("click", function() {
+      // 서버에 선택된 처리상태 값을 전송
+      var reportStatus = 1;
+      sendReportStatus(reportStatus);
+    });
+  
+    $('#deleted').on("click", function() {
+      // 서버에 선택된 처리상태 값을 전송
+      var reportStatus = 2;
+      sendReportStatus(reportStatus);
+    });
+
+    $('#rejected').on("click", function() {
+      // 서버에 선택된 처리상태 값을 전송
+      var reportStatus = 3;
+      sendReportStatus(reportStatus);
+    });
+
+    function sendReportStatus(reportStatus) {
+      $.ajax({
+        url: '<%=request.getContextPath()%>/admin/reviewreport/list',
+        type: 'GET',
+        data: {
+        	reportStatus: reportStatus
+        },
+        success: function(data) {
+			console.log(data);
+        },
+        error: function() {
+        	alert("오류가 발생했습니다.");
+        }
+      });
+    }
+  });
+  
+</script>
+
 </html>
