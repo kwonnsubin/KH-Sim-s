@@ -83,4 +83,8 @@ public class UserMyPageDao {
 		return sqlSession.selectList("plan.selectRecentList", userId);
 	}
 
+	public int selectRecentListCount(String userId) {
+		return sqlSession.selectOne("plan.selectRecentListCount", userId);
+	}
+
 }

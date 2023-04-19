@@ -48,7 +48,7 @@
 	       				</div>
        				</div>
        				<div class="row plan-detail">
-       					<div class="col-6 plan-info">
+       					<div class="col-5 plan-info">
        						<p class="mb-3 plan-info-text">요금제 정보</p>
        						
        						<div class="mb-3">
@@ -126,7 +126,7 @@
 	       						<p class="mb-2">유심유형	|	NFC유심</p>
        						</c:if>
        					</div>
-       					<div class="col-5">
+       					<div class="col-6">
        						<div class="plan-info mb-3">
        							<p class="mb-2">신청일자	|	${poVo.orderDate}</p>
        							

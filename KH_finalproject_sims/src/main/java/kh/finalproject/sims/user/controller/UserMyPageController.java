@@ -38,10 +38,12 @@ public class UserMyPageController {
 		String userId = prin.getName();
 		int reviewCnt = service.selectOrderListCount(userId);
 		int myPlanCnt = service.selectMyPlanListCount(userId);
+		int recentCnt = service.selectRecentListCount(userId);
 		
 		HashMap<String, Object> cnt = new HashMap<>();
 		cnt.put("reviewCnt", reviewCnt);
 		cnt.put("myPlanCnt", myPlanCnt);
+		cnt.put("recentCnt", recentCnt);
 		
 		mv.addObject("cnt", cnt);
 		mv.setViewName("main/mypage");

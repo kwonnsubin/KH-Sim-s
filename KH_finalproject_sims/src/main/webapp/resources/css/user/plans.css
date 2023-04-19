@@ -59,6 +59,8 @@ p {
 	width: 90%;
 
 	padding: 20px;
+	margin-right: 0px;
+	margin-left: 0px;
 	
 	background: #fff;
 	-webkit-border-radius: 10px;
@@ -70,9 +72,12 @@ p {
 }
 
 .recent-list {
-	max-width: 100%;
+	width: 100%;
+	min-height : 80px;
 
 	padding: 10px;
+	margin-right: 0px;
+	margin-left: 0px;
 	
 	background: #fff;
 	-webkit-border-radius: 10px;
@@ -80,7 +85,26 @@ p {
 	border-radius: 10px;
 	-webkit-box-shadow: 0 8px 20px 0 rgba(0, 0, 0, 0.15);
 	-moz-box-shadow: 0 8px 20px 0 rgba(0, 0, 0, 0.15);
-	box-shadow: 0 8px 20px 0 rgba(0, 0, 0, 0.15)
+	box-shadow: 0 8px 20px 0 rgba(0, 0, 0, 0.15);
+	
+	cursor: pointer;
+}
+
+.none-div {
+	width: 100%;
+	min-height : 80px;
+
+	padding: 10px;
+	margin-right: 0px;
+	margin-left: 0px;
+	
+	background: #fff;
+	-webkit-border-radius: 10px;
+	-moz-border-radius: 10px;
+	border-radius: 10px;
+	-webkit-box-shadow: 0 8px 20px 0 rgba(0, 0, 0, 0.15);
+	-moz-box-shadow: 0 8px 20px 0 rgba(0, 0, 0, 0.15);
+	box-shadow: 0 8px 20px 0 rgba(0, 0, 0, 0.15);
 }
 
 .range-div {
@@ -181,6 +205,7 @@ fieldset label:hover {
 }
 
 .float-div {
+	width: 100%;
 	position: sticky;
 	top: 130px;
 }

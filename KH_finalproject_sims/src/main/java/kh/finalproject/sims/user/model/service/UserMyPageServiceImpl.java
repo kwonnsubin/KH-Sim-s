@@ -113,5 +113,11 @@ public class UserMyPageServiceImpl implements UserMyPageService {
 	public List<BizApplyVo> selectRecentList(String userId) {
 		return dao.selectRecentList(userId);
 	}
+
+	// 최근 본 요금제 갯수
+	@Override
+	public int selectRecentListCount(String userId) {
+		return dao.selectRecentListCount(userId);
+	}
 	
 }

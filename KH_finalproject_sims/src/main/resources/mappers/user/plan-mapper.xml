@@ -185,14 +185,26 @@
 		order by view_date desc
 	</select>
 	
+	<!-- 최근 본 요금제 갯수 -->
+	<select id="selectRecentListCount" parameterType="string" resultType="int">
+		select count(*)
+		from view_table v, plan_table p
+		where v.plan_no = p.plan_no and user_id=#{userId} and
+		(view_date >= SYSTIMESTAMP - interval '24' hour)
+		order by view_date desc
+	</select>
+	
+	<!-- 최근 본 요금제 유무 -->
 	<select id="getRecentInfo" parameterType="hashmap" resultType="int">
 		select count(*) from view_table where user_id=#{userId} and plan_no=#{planNo} 
 	</select>
 	
+	<!-- 최근 본 요금제 수정 -->
 	<update id="updateRecentInfo" parameterType="hashmap">
 		update view_table set view_date=systimestamp where user_id=#{userId} and plan_no=#{planNo}
 	</update>
 
+	<!-- 최근 본 요금제 저장 -->
 	<insert id="insertRecentInfo" parameterType="hashmap">
 		insert into view_table values(#{userId}, #{planNo}, systimestamp)
 	</insert>

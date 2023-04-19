@@ -83,7 +83,7 @@
 		        				최근 본 요금제
 	        				</div>
 	        				<div class="col text-end">
-		        				0 개 >
+		        				${cnt.recentCnt} 개 >
 	        				</div>
 	        			</div>
 	        		</div>

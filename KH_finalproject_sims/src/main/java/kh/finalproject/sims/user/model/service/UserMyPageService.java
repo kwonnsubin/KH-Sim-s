@@ -55,5 +55,8 @@ public interface UserMyPageService {
 
 	// 최근 본 요금제
 	public List<BizApplyVo> selectRecentList(String userId);
+
+	// 최근 본 요금제 갯수
+	public int selectRecentListCount(String userId);
 	
 }

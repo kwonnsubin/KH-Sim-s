@@ -32,7 +32,7 @@ public class FeeApiController {
 	@RequestMapping("/feeapitest")
 	public ModelAndView feeApi(ModelAndView mv) {
     	String apiurl = "http://openapi.epost.go.kr/postal/retrieveAlddlChargeService/retrieveAlddlChargeService/getAlddlChargeList";
-    	String servicekey = "";
+    	String servicekey = feeData;
     	
     	try {
 	        StringBuilder urlBuilder = new StringBuilder(apiurl); /*URL*/

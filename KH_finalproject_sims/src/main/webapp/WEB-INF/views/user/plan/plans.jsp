@@ -610,7 +610,7 @@
 	    			</div>
 	    			</c:forEach>
 	    		</div>
-	    		<div class="col-4">
+	    		<div class="col-4 d-flex justify-content-center">
 	    			<div class="float-div">
 		    			<div class="input-div">
 		    				<input type="text" class="form-control searchText" placeholder="요금제이름 또는 통신사">
@@ -624,11 +624,39 @@
 		        				<p class="plus-p">더보기</p>
 	        				</div>
 	        			</div>
-	        			<div class="mt-3 recent-list">
-		    				<div>
-		    					<p>요금제 이름</p>
-		    					<p>요금제 가격</p>
-		    				</div>
+	        			<div class="mt-3">
+	        				<c:if test="${not empty recentList}">
+	    					<c:forEach var="list" items="${recentList}">
+			    			<div class="row mt-3 recent-list">
+	    						<div class="col-4 align-self-center">
+	    							<input type="hidden" value="${list.planNo}">
+			    					<c:if test="${list.bizId eq 'idowell'}">
+		       							<img src="<%=request.getContextPath()%>/resources/img/${list.bizId}.jpg" style="max-width: 100px; height: 40px;">
+		       						</c:if>
+		       						<c:if test="${list.bizId ne 'idowell'}">
+		       							<img src="<%=request.getContextPath()%>/resources/img/${list.bizId}.png" style="max-width: 100px; height: 40px;">
+		       						</c:if>
+	    						</div>
+	       						<div class="col-8">
+	       							<div>
+				    					<p class="planName">${list.planName}</p>
+	       							</div>
+			    					<div class="planPrice mt-1">
+				    					<p>월&nbsp;<p>
+				    					<p class="priceText">${list.planPrice}</p>
+				    					<p>&nbsp;원</p>
+			    					</div>
+			    				</div>
+			    			</div>
+		    				</c:forEach>
+		    				</c:if>
+	        				<c:if test="${empty recentList}">
+	       					<div class="row none-div">
+	       						<div class="text-center align-self-center" style="font-size: 14px; color: black;">
+		       						최근 본 요금제가 없습니다.
+	       						</div>
+	       					</div>
+	       					</c:if>
 		    			</div>
 	    			</div>
 	    		</div>

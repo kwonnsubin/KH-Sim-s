@@ -608,3 +608,13 @@ function searchText() {
 		location.href = url + "?&searchText=" + searchText;
 	}
 }
+
+$(".plus-p").on("click", function() {
+	location.href= cPath + "/mypage/recent"
+});
+
+// 최근 본 요금제 클릭 시 해당 요금제 페이지로 이동
+$(".recent-list").on("click", function(e) {
+	const planNo = $(e.target).find("input").val();
+	location.href= cPath + "/plan/" + planNo;
+});
