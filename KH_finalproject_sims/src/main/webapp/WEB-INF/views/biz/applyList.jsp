@@ -102,7 +102,7 @@
 		</div>
 	</div>
 			
-			<button name="btnSearch" id="search-button" class="btn btn-outline-secondary">
+			<button name="btnSearch" id="btnSearch" class="btn btn-outline-secondary">
 			<span class="material-symbols-outlined">
 			search
 			</span>
