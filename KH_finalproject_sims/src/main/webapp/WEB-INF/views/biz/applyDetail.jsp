@@ -37,49 +37,49 @@
     <table class="table" id="applyDetail">
 		<tbody>
 			<tr>
-				<th scope="row" class="col-2">
+				<th scope="row" class="col-md-2">
 					<span>신청번호</span>
 				</th>
-				<td class="col-4">${applyDetailPlan.orderNo }</td>
-				<th scope="row"  class="col-2">
+				<td class="col-md-2">${applyDetailPlan.orderNo }</td>
+				<th scope="row" class="col-md-2">
 					<span>요금제명</span>
 				</th>
-				<td class="col-4">${applyDetailPlan.planName }</td>
+				<td class="col-md-2" colspan="2" >${applyDetailPlan.planName }</td>
                 
-                <th scope="row"  class="col-2">
+                <th scope="row" class="col-md-2">
                     <span>신청일자</span>
                 </th>
-                <td class="col-6">${applyDetailPlan.orderDate }</td>
+                <td class="col-md-2" colspan="2">${applyDetailPlan.orderDate }</td>
 			</tr>
 			
 			<tr>
-	            <th scope="row"  class="col-2">
+	            <th scope="row" >
 	                <span>아이디</span>
 	            </th>
-	            <td class="col-4">${applyDetail.userId }</td>
-	            <th scope="row"  class="col-2">
+	            <td colspan="2">${applyDetail.userId }</td>
+	            <th scope="row">
 	                <span>이름</span>
 	            </th>
-	            <td class="col-4">${applyDetail.userName }</td>
+	            <td colspan="4">${applyDetail.userName }</td>
 			
 			
 			</tr>
 			
 			<tr>
-				<th scope="row">
+				<th scope="row" >
 					<span>주민등록번호</span>
 				</th>
 				<td colspan="2">${applyDetail.userSsn }</td>
-				<th scope="row">
+				<th scope="row" >
 					<span>휴대폰번호</span>
 				</th>
-				<td colspan="2">${applyDetail.userPhone }</td>
+				<td colspan="4">${applyDetail.userPhone }</td>
 			</tr>
 			<tr>
 				<th scope="row">
 					<span>주소</span>
 				</th>
-				<td colspan="4">${applyDetail.userAddress }</td>
+				<td colspan="2">${applyDetail.userAddress }</td>
                 <th scope="row">
                     <span>이메일</span>
                 </th>
@@ -103,7 +103,7 @@
 				<th scope="row">
 					<span>심종류</span>
 				</th>
-				<td colspan="2">
+				<td colspan="4">
 				<c:choose>
 					<c:when test ="${applyDetailPlan.simType eq 1 }">
 						일반유심
@@ -118,7 +118,7 @@
 				<th scope="row">
 					<span>유심신청여부</span>
 				</th>
-				<td colspan="2">
+				<td >
 				<c:choose>
 					<c:when test ="${applyDetailPlan.simYn eq 1}">
 						N
@@ -131,7 +131,7 @@
 				<th scope="row">
 					<span>현재사용통신사</span>
 				</th>
-				<td colspan="2">
+				<td>
 				<c:choose>
 					<c:when test="${applyDetailPlan.currentTelecom eq 1}">
 						SKT
@@ -158,7 +158,7 @@
 				<th scope="row">
 					<span>청구서유형</span>
 				</th>
-				<td colspan="2">
+				<td >
 				<c:choose>
 					<c:when test="${applyDetailPlan.planBill eq 1}">
 						문자
@@ -171,7 +171,7 @@
 				<th scope="row">
 					<span>납부방법</span>
 				</th>
-				<td colspan="2">
+				<td >
 				<c:choose>
 					<c:when test="${applyDetailPlan.planPay eq 1}">
 						카드
@@ -189,11 +189,11 @@
                 <th scope="row">
                     <span>카드번호</span>
                 </th>
-                <td colspan="2">${applyDetailPlan.cardNumber }</td>
+                <td >${applyDetailPlan.cardNumber }</td>
                 <th scope="row">
                     <span>카드유효기간</span>
                 </th>
-                <td colspan="2"> ${applyDetailPlan.cardExpiration }</td>
+                <td > ${applyDetailPlan.cardExpiration }</td>
             </tr>
         </c:when>
         <c:otherwise>
@@ -201,11 +201,11 @@
                 <th scope="row">
                     <span>은행</span>
                 </th>
-                <td colspan="2">${applyDetailPlan.bank }</td>
+                <td >${applyDetailPlan.bank }</td>
                 <th scope="row">
                     <span>계좌번호</span>
                 </th>
-                <td colspan="2">${applyDetailPlan.bankNumber }</td>
+                <td >${applyDetailPlan.bankNumber }</td>
             </tr>
         </c:otherwise>
         </c:choose>
