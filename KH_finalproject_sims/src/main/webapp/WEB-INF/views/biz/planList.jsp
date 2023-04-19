@@ -33,6 +33,8 @@
     <link rel="stylesheet" href="<%= request.getContextPath() %>/resources/chain/assets/css/owl.css">
     <link rel="stylesheet" href="<%= request.getContextPath() %>/resources/css/user/myinfo.css"/>
     
+	<!-- Material Icons 라이브러리 추가 -->
+  	<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 
 </head>
 <body>
@@ -47,35 +49,55 @@
 
 
 	<div class="searchTop">
-				
-	    <!-- search{s} -->
-	    <div>
-	    	<input type="text" name="keyword" id="keyword">
-	    	<button name="searchBtn" id="searchBtn">검색</button>
-	    </div>
-	    <!-- search{e} -->
 	
-	    
-	    <div>
-			<form action="${path}/biz/planList">
-				<select name="cnt" onchange="submit();">
+	
+		
+			<form action="${path}/biz/planList" class="listSelect">
+				<select class="form-select" style="width: 100px" name="cnt" onchange="submit();">
 					<c:forEach var="num" begin="5" end="30" step="5">
 						<option value="${num }" ${requestScope.paging.pageLimit eq num ? "selected" : "" }>${num } 개</option>
 					</c:forEach>
 				</select>
 			</form>
-		</div>
+		
+		
+		
+				
+	    <!-- search{s} -->
+	    <div class="input-group" style="width: auto; height: 20%; padding-right: 60px;">
+	    
+		    <div style="display: flex;">
+		    	<input class="form-control" style="display: inline-block; width: 300px;" type="text" name="keyword" id="keyword">
+		    	<button name="searchBtn" class="btn btn-outline-primary" id="searchBtn">
+		    	<span class="material-symbols-outlined">
+				search
+				</span>
+				</button>
+				
+			</div>	
+	    </div>
+	    <!-- search{e} -->
+	
+	    
+	   
     
     </div>
     
 	<div>
-        <span class="count float-1">총 ${vo} 건</span>
+        <span class="count float-1 totalMent" >총 ${vo} 건의 결과가 있습니다.</span>
     </div>
     
+     <div class="regBtn">
+    	<button type="button"  onclick="registerBtn(this);">요금제 등록하기</button>
+    </div>
+    
+    <% if (request.getParameter("keyword") != null && !request.getParameter("keyword").isEmpty()) { %>
+    <span>"<%=request.getParameter("keyword")%>"의 검색 결과입니다.</span>
+	<% } %>
     
         <table class="table" id="planTb" style="width: 73%;  position: relative;">
             <thead>
-                <tr>
+                <tr class="text-center mx-auto" style="background-color: #f7f7f7;">
                     <th>번호</th>
                     <th>요금제명</th>
                     <th>등록일</th>
@@ -90,7 +112,7 @@
             	</c:if>
             	<c:if test="${not empty requestScope.paging.page}">
 	                <c:forEach var="plan" items="${requestScope.paging.page}">
-	                <tr>
+	                <tr class="text-center mx-auto">
 	                    <td>${plan.rn }</td>
 	                    <td><a href="<%=request.getContextPath()%>/biz/planDetail?planNo=${plan.planNo }">${plan.planName }</a></td>
 	                    <td>${plan.planDate } </td>
@@ -128,15 +150,12 @@
 	</div>
 	
     
-    <span>총 ${vo}개의 결과가 있습니다.</span>
-    <% if (request.getParameter("keyword") != null && !request.getParameter("keyword").isEmpty()) { %>
-    <span>"<%=request.getParameter("keyword")%>"의 검색 결과입니다.</span>
-	<% } %>
+
 
     
     <!-- 페이지 번호 -->
     	<c:if test="${not empty requestScope.paging.page}"> <!-- 요금제가 하나도 없으면 페이징X -->
-			<ul class="pagination">
+			<ul class="pagination" style="position: absolute;">
 				<c:set var="pageNumber" value="${empty param.p ? 1 : param.p }" />
 				<c:choose>
 					<c:when test="${requestScope.paging.prevPage eq -1 }">
@@ -163,9 +182,7 @@
 			</ul>
     	</c:if>
     
-    <div>
-    	<button type="button"  onclick="registerBtn(this);">요금제 등록하기</button>
-    </div>
+  
     
     
 <script>
