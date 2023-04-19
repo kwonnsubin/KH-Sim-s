@@ -36,6 +36,7 @@ public class UserPlanFindController {
 	public ModelAndView selectPlanList(ModelAndView mv
 			, PlanVo pvo
 			, String searchText
+			, String select
 			, HttpServletRequest req
 			) {
 		
@@ -56,6 +57,7 @@ public class UserPlanFindController {
 			searchMap.put("genNo", pvo.getGenNo());
 			searchMap.put("bizName", pvo.getBizName());
 			searchMap.put("searchText", searchText);
+			searchMap.put("select", select);
 			
 			planList = planFindService.selectPlanList(searchMap);
 			cnt = planFindService.cntPlanList(searchMap);

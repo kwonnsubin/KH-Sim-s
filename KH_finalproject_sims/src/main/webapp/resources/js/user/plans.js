@@ -618,3 +618,24 @@ $(".recent-list").on("click", function(e) {
 	const planNo = $(e.target).find("input").val();
 	location.href= cPath + "/plan/" + planNo;
 });
+
+// 분류 버튼
+$(".choose-btn").on("click", function() {
+	if($("ul").attr("is-on") == "0") {
+		$("ul").css("display", "");
+		$("ul").attr("is-on", "1");
+	} else {
+		$("ul").css("display", "none");
+		$("ul").attr("is-on", "0");
+	}
+});
+
+$(".list").on("click", function(e) {
+	var url = window.location.href;
+	var select = $(e.target).text();
+	if(url.includes("?")) {
+		location.href = url + "&select=" + select;
+	} else {
+		location.href = url + "?&select=" + select;
+	}
+});

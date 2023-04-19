@@ -75,7 +75,7 @@
 		        				찜한 요금제
 	        				</div>
 	        				<div class="col text-end">
-		        				0 개 >
+		        				${cnt.likeCnt} 개 >
 	        				</div>
 	        			</div>
 	        			<div class="row mb-4 recentDiv pointer">

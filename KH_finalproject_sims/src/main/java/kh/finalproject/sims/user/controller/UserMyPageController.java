@@ -40,11 +40,13 @@ public class UserMyPageController {
 		int reviewCnt = service.selectOrderListCount(userId);
 		int myPlanCnt = service.selectMyPlanListCount(userId);
 		int recentCnt = service.selectRecentListCount(userId);
+		int likeCnt = service.selectLikeListCount(userId);
 		
 		HashMap<String, Object> cnt = new HashMap<>();
 		cnt.put("reviewCnt", reviewCnt);
 		cnt.put("myPlanCnt", myPlanCnt);
 		cnt.put("recentCnt", recentCnt);
+		cnt.put("likeCnt", likeCnt);
 		
 		mv.addObject("cnt", cnt);
 		mv.setViewName("main/mypage");
