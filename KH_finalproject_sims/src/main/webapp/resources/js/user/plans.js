@@ -629,3 +629,13 @@ $(".choose-btn").on("click", function() {
 		$("ul").attr("is-on", "0");
 	}
 });
+
+$(".list").on("click", function(e) {
+	var url = window.location.href;
+	var select = $(e.target).text();
+	if(url.includes("?")) {
+		location.href = url + "&select=" + select;
+	} else {
+		location.href = url + "?&select=" + select;
+	}
+});
