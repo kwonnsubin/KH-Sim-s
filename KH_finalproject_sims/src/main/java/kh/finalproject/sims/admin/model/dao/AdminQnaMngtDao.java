@@ -109,9 +109,10 @@ public class AdminQnaMngtDao {
 	public List<AdminFaqVo> searchQnaPageList(Map<String, Object> map) {
 		return sqlSession.selectList("admin.searchQnaPageList", map); // 한 페이지의 글 목록
 	}
+	
 	// 글목록 총 갯수 search
 	public int getSearchQnaListCnt() {
-		return sqlSession.selectOne("admin.getSearchQnaListCnt");
+		return sqlSession.selectOne("admin.getSearchQnaPageCnt");
 	}
 	
 }

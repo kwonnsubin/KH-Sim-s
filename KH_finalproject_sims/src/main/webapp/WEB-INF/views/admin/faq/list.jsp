@@ -84,7 +84,7 @@
 																<td class="text-center"><fmt:formatDate value="${faq.faqDate}" pattern="yyyy.MM.dd"/></td>
 															</tr>
 														</c:forEach> --%>
-													<c:forEach var="faq" items="${requestScope.paging.page}">
+														<c:forEach var="faq" items="${requestScope.paging.page}">
 															<tr>
 																<td class="text-center">${faq.faqNo}</td>
 																<td><a href="<%=request.getContextPath()%>/admin/faq/detail/${faq.faqNo}">${faq.faqTitle}</a></td>

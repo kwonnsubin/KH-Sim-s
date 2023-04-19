@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="admin">
+	<!-- 신고 리뷰 목록 이제 안씀-->
+	<select id="selectReviewReportList" resultType="kh.finalproject.sims.admin.model.vo.AdminReviewMngtVo">
+		SELECT R.REVIEW_NO, R.REPORT_DATE, 
+		    CASE R.REPORT_STATUS
+		        WHEN 1 THEN '미확인'
+		        WHEN 2 THEN '삭제'
+		        WHEN 3 THEN '반려'
+		        ELSE '알 수 없음'
+		    END AS REPORT_STATUS, 
+		    B.REVIEW_CONTENT, B.USER_ID, B.BIZ_ID, R.REPORT_REASON
+		FROM REVIEW_REPORT R
+		JOIN BIZ_REVIEW B ON R.REVIEW_NO = B.REVIEW_NO
+		ORDER BY R.REPORT_DATE DESC
+	</select>
+	<!-- 신고 리뷰 검색 이제 안씀 -->
+	<select id="selectSearchReviewReportList" resultType="kh.finalproject.sims.admin.model.vo.AdminReviewMngtVo">
+		SELECT R.REVIEW_NO, R.REPORT_DATE, 
+		    CASE R.REPORT_STATUS
+		        WHEN 1 THEN '미확인'
+		        WHEN 2 THEN '삭제'
+		        WHEN 3 THEN '반려'
+		        ELSE '알 수 없음'
+		    END AS REPORT_STATUS, 
+		    B.REVIEW_CONTENT, B.USER_ID, B.BIZ_ID, R.REPORT_REASON
+		FROM REVIEW_REPORT R
+		JOIN BIZ_REVIEW B ON R.REVIEW_NO = B.REVIEW_NO
+		<choose>
+			<when test="searchOption != null and searchOption == 'title'">  WHERE REPORT_REASON LIKE '%'|| #{searchBox} ||'%'</when>
+			<when test="searchOption != null and searchOption == 'writer'"> WHERE BIZ_ID LIKE '%'|| #{searchBox} ||'%'</when>
+			<when test="searchOption != null and searchOption == 'content'"> WHERE REVIEW_CONTENT LIKE '%'|| #{searchBox} ||'%'</when>
+		</choose>
+		ORDER BY R.REPORT_DATE DESC
+	</select>
+	
+	<!-- 신고 리뷰 상세내용 -->
+	<select id="selectReviewReportDetail" resultType="kh.finalproject.sims.admin.model.vo.AdminReviewMngtVo" parameterType="_int">
+		SELECT R.REVIEW_NO, R.REPORT_DATE, 
+	    CASE R.REPORT_STATUS
+	        WHEN 1 THEN '미확인'
+	        WHEN 2 THEN '삭제'
+	        WHEN 3 THEN '반려'
+	        ELSE '알 수 없음'
+	    END AS REPORT_STATUS, 
+	    B.REVIEW_CONTENT, B.USER_ID, B.BIZ_ID, R.REPORT_REASON
+	FROM REVIEW_REPORT R
+	JOIN BIZ_REVIEW B ON R.REVIEW_NO = B.REVIEW_NO
+	WHERE R.REVIEW_NO = #{reviewNo}
+	ORDER BY R.REPORT_DATE DESC
+	</select>
+	
+	<!-- 신고 리뷰 반려/삭제 처리-->
+	<update id="updateReviewReportStatus" parameterType="kh.finalproject.sims.admin.model.vo.AdminReviewMngtVo">
+		UPDATE REVIEW_REPORT SET REPORT_STATUS = #{reportStatus} WHERE REVIEW_NO = #{reviewNo}
+	</update>
+	
+	<!-- 리뷰 숨김처리(1:숨김)-->
+	<update id="updateReviewHidden" parameterType="kh.finalproject.sims.admin.model.vo.AdminReviewMngtVo">
+		UPDATE BIZ_REVIEW SET REVIEW_HIDDEN = #{reviewHidden} WHERE REVIEW_NO = #{reviewNo}
+	</update>
+	
+	<!-- 페이징 search 글 목록-->
+	<select id="searchReviewReportPageList" parameterType="map" resultType="kh.finalproject.sims.admin.model.vo.AdminReviewMngtVo">
+            SELECT * 
+            FROM
+        		(SELECT 
+                ROWNUM AS N
+               , R.REVIEW_NO
+               , R.REPORT_DATE
+               , CASE R.REPORT_STATUS
+                     WHEN 1 THEN '미확인'
+                     WHEN 2 THEN '삭제'
+                     WHEN 3 THEN '반려'
+                     ELSE '알 수 없음'
+                 END AS REPORT_STATUS, 
+		    B.REVIEW_CONTENT, B.USER_ID, B.BIZ_ID, R.REPORT_REASON
+		FROM REVIEW_REPORT R
+		JOIN BIZ_REVIEW B ON R.REVIEW_NO = B.REVIEW_NO
+        <choose>
+			<when test="searchType != null and searchType == 'title'">  WHERE REPORT_REASON LIKE '%'|| #{keyword} ||'%'</when>
+			<when test="searchType != null and searchType == 'writer'"> WHERE BIZ_ID LIKE '%'|| #{keyword} ||'%'</when>
+			<when test="searchType != null and searchType == 'content'"> WHERE REVIEW_CONTENT LIKE '%'|| #{keyword} ||'%'</when>
+		</choose>
+		)
+        WHERE N BETWEEN #{start} AND #{end}
+        ORDER BY REPORT_DATE DESC
+	</select>
+	
+	<!-- 페이징 search 글 목록 갯수 -->
+	<select id="getSearchReviewReportPageCnt" resultType="_int">
+		SELECT COUNT(*) FROM REVIEW_REPORT
+		<choose>
+			<when test="searchType != null and searchType == 'title'">  WHERE REPORT_REASON LIKE '%'|| #{keyword} ||'%'</when>
+			<when test="searchType != null and searchType == 'writer'"> WHERE BIZ_ID LIKE '%'|| #{keyword} ||'%'</when>
+			<when test="searchType != null and searchType == 'content'"> WHERE REVIEW_CONTENT LIKE '%'|| #{keyword} ||'%'</when>
+		</choose>
+	</select>
+</mapper>

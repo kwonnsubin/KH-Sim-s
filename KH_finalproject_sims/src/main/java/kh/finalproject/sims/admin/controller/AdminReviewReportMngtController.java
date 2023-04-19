@@ -15,31 +15,32 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import kh.finalproject.sims.admin.model.service.AdminReviewMngtService;
+import kh.finalproject.sims.admin.model.service.AdminReviewReportMngtService;
 import kh.finalproject.sims.admin.model.vo.AdminReviewMngtVo;
 import kh.finalproject.sims.common.page.Search;
 
 @RequestMapping("/admin")
 @Controller
-// 리뷰 목록
-public class AdminReviewMngtController {
+// 신고 리뷰
+public class AdminReviewReportMngtController {
 	@Autowired
-	AdminReviewMngtService service;
+	AdminReviewReportMngtService service;
 	
 	// 목록
-	@RequestMapping(value = "review/list", method = {RequestMethod.GET,RequestMethod.POST })
-	public ModelAndView selectReviewList(
+	@RequestMapping(value = "/reviewreport/list", method = {RequestMethod.GET, RequestMethod.POST})
+	public ModelAndView selectReviewReportList(
 			ModelAndView mv
 			, AdminReviewMngtVo vo
 			,@RequestParam(required = false) String keyword
 			,@RequestParam(required = false) String searchType
 			,@RequestParam(value = "p", required = false) String pageNumber
 			, HttpServletRequest request
-			, HttpServletResponse response
+			, HttpServletResponse response	
 			) {
 //		if(vo.getSearchOption() == null) {
-//			mv.addObject("reviewlist", service.selectReviewList()); // 검색이 없는경우			
+//			mv.addObject("reviewReportList", service.selectReviewReportList());		
 //		} else {
-//			mv.addObject("reviewlist", service.selectSearchReviewList(vo)); // 검색이 있을경우
+//			mv.addObject("reviewReportList", service.selectSearchReviewReportList(vo)); // 검색이 있을경우
 //	        mv.addObject("searchOption", vo.getSearchOption());
 //	        mv.addObject("searchBox", vo.getSearchBox());
 //		}
@@ -85,31 +86,31 @@ public class AdminReviewMngtController {
 		Search search = service.getPage(pNum, Integer.parseInt(cnt), keyword, searchType); // 한 페이지에 보여줄 자주묻는질문 목록
 		request.setAttribute("paging", search);
 		
-		
-		mv.setViewName("admin/review/list");
+		mv.setViewName("admin/reviewreport/list");
 		return mv;
 	}
 	
-	
-	// 상세내용
-	@GetMapping("review/detail/{reviewNo}")
-	public ModelAndView selectReviewDetail(
+	// 상세
+	@GetMapping("/reviewreport/detail/{reviewNo}")
+	public ModelAndView selectReviewReportDetail(
 			ModelAndView mv
 			, @PathVariable int reviewNo
 			) {
-		AdminReviewMngtVo result = service.selectReviewDetail(reviewNo);
-		mv.addObject("reviewdetail", result);
-		mv.setViewName("admin/review/detail");
+		AdminReviewMngtVo result = service.selectReviewReportDetail(reviewNo);
+		mv.addObject("detail", result);
+		mv.setViewName("admin/reviewreport/detail");
 		return mv;
 	}
 	
-	// 삭제
-	@PostMapping("review/delete") 
-	public String deleteReview(
+	// 처리(반려/삭제)
+	@PostMapping("/reviewreport/status")
+	public String updateReviewReportStatus(
 			@RequestParam("reviewNo") int reviewNo
+			, @RequestParam("reviewHidden") int reviewHidden
+			, @RequestParam("reportStatus") int reportStatus
+			, AdminReviewMngtVo vo
 			) {
-		service.deleteReview(reviewNo);
-		return "redirect:/admin/review/detail/"+reviewNo;
+		service.updateReviewReportStatus(vo);
+		return "redirect:/admin/reviewreport/detail/"+reviewNo;
 	}
-	
 }

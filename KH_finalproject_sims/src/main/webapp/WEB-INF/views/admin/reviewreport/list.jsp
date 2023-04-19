@@ -2,11 +2,12 @@
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
+<c:set var="path" value="${pageContext.request.contextPath}"/>
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
-<title>관리자 공지사항 리스트</title>
+<title>관리자 신고관리 리스트</title>
 </head>
 <body>
 	<jsp:include page="/WEB-INF/views/admin/include/header.jsp" />
@@ -22,11 +23,11 @@
 										<div class="row align-items-center">
 											<div class="col-md-12">
 												<div class="page-header-title">
-													<h5 class="m-b-10">공지사항관리</h5>
+													<h5 class="m-b-10">신고관리</h5>
 												</div>
 												<ul class="breadcrumb">
 													<li class="breadcrumb-item"><a href=""><i class="feather icon-home"></i></a></li>
-													<li class="breadcrumb-item"><a href=""><i class="breadcrumb-item"></i>공지사항 관리</a></li>
+													<li class="breadcrumb-item"><a href=""><i class="breadcrumb-item"></i>신고 관리</a></li>
 												</ul>
 											</div>
 										</div>
@@ -40,13 +41,13 @@
 													<div class="col-sm-12">
 														<div class="input-group">
 															<label class="floating-label"></label>
-															<select class="" name="searchOption">
+															<select class="" name="searchType">
 																<option value="">선택</option>
-																<option value="title" <c:if test="${searchOption eq 'title' }">selected</c:if>>신고사유</option>
-																<option value="writer" <c:if test="${searchOption eq 'writer' }">selected</c:if>>통신사</option>
-																<option value="content" <c:if test="${searchOption eq 'content' }">selected</c:if>>내용</option>
+																<option value="title" <c:if test="${searchType eq 'title' }">selected</c:if>>신고사유</option>
+																<option value="writer" <c:if test="${searchType eq 'writer' }">selected</c:if>>통신사</option>
+																<option value="content" <c:if test="${searchType eq 'content' }">selected</c:if>>내용</option>
 															</select>
-															<input class="form-control" type="text" name="searchBox" value="${searchBox}">
+															<input class="form-control" type="text" name="keyword" value="${keyword}">
 															<div class="input-group-append">
 																<button class="btn  btn-primary" type="submit">검색</button>
 															</div>
@@ -70,7 +71,7 @@
 														</tr>
 													</thead>
 													<tbody>
-														<c:forEach items="${reviewReportList}" var="reviewlist">
+<%-- 													<c:forEach items="${reviewReportList}" var="reviewlist">
 															<tr>
 																<td class="text-center">${reviewlist.reviewNo}</td>
 																<td><a href="<%=request.getContextPath()%>/admin/reviewreport/detail/${reviewlist.reviewNo}">${reviewlist.reportReason}</a></td>															
@@ -78,19 +79,48 @@
 																<td class="text-center"><fmt:formatDate value="${reviewlist.reportDate}" pattern="yyyy.MM.dd"/> </td>
 																<td class="text-center">${reviewlist.reportStatus}</td>
 															</tr>
+														</c:forEach> --%>
+														<c:forEach var="reviewreport" items="${requestScope.paging.page}">
+															<tr>
+																<td class="text-center">${reviewreport.reviewNo}</td>
+																<td><a href="<%=request.getContextPath()%>/admin/reviewreport/detail/${reviewreport.reviewNo}">${reviewreport.reportReason}</a></td>															
+																<td class="text-center">${reviewreport.bizId}</td>
+																<td class="text-center"><fmt:formatDate value="${reviewreport.reportDate}" pattern="yyyy.MM.dd"/> </td>
+																<td class="text-center">${reviewreport.reportStatus}</td>
+															</tr>
 														</c:forEach>
 													</tbody>
 												</table>
 											</div>
+											<!-- 페이지 번호 {s} -->
 											<nav aria-label="Page navigation example">
-												<ul class="pagination justify-content-center">
-													<li class="page-item"><a class="page-link" href="" aria-label="Previous"><span aria-hidden="true">«</span><span class="sr-only">Previous</span></a></li>
-													<li class="page-item"><a class="page-link" href="" aria-label="Previous">1</a></li>
-													<li class="page-item"><a class="page-link" href="" aria-label="Previous">2</a></li>
-													<li class="page-item"><a class="page-link" href="" aria-label="Previous">3</a></li>
-													<li class="page-item"><a class="page-link" href="" aria-label="Previous"><span aria-hidden="true">»</span><span class="sr-only">Next</span></a></li>
+												<ul class="pagination">
+													<c:set var="pageNumber" value="${empty param.p ? 1 : param.p }" />
+													<c:choose>
+														<c:when test="${requestScope.paging.prevPage eq -1 }">
+															<li class="page-item disabled"><a class="page-link">prev</a></li>
+														</c:when>
+														<c:otherwise>
+															<li class="page-item"><a class="page-link"
+															 href="${path}/admin/reviewreport/list?p=${requestScope.paging.prevPage }">prev</a></li>
+														</c:otherwise>
+													</c:choose>
+													<c:forEach var="pNum" items="${requestScope.paging.pageList }">
+														<li class="page-item ${pNum eq pageNumber ? 'active' : '' }"><a class="page-link" 
+														href="${path}/admin/reviewreport/list?p=${pNum }">${pNum }</a></li>
+													</c:forEach>
+													<c:choose>
+														<c:when test="${requestScope.paging.nextPage eq -1 }">
+															<li class="page-item disabled"><a class="page-link">next</a></li>
+														</c:when>
+														<c:otherwise>
+															<li class="page-item"><a class="page-link"
+															 href="${path}/admin/reviewreport/list?p=${requestScope.paging.nextPage }">next</a></li>
+														</c:otherwise>
+													</c:choose>
 												</ul>
 											</nav>
+											<!-- 페이지 번호 {e} -->
 										</div>
 									</div>
 								</div>

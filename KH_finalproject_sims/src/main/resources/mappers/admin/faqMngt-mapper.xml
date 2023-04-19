@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="admin">
+
+	<!-- 자주묻는질문 -->
+	<!-- 자주묻는질문 목록 -->
+	<select id="selectFaqList" resultType="kh.finalproject.sims.admin.model.vo.AdminFaqVo">
+		SELECT FAQ_NO,
+			FAQ_TITLE,
+			FAQ_CONTENT,
+			ADMIN_ID,
+			FAQ_REWRITER,
+			FAQ_DATE,
+			FAQ_REDATE
+			FROM FAQ
+			ORDER BY FAQ_REDATE DESC
+	</select>
+	<!-- 자주묻는질문 상세내용 -->
+	<select id="selectFaqDetail" resultType="kh.finalproject.sims.admin.model.vo.AdminFaqVo">
+		SELECT *
+			FROM FAQ
+	    	WHERE FAQ_NO = #{faqNo}
+	</select>
+	<!-- 자주묻는질문 작성 -->
+  	<insert id="insertFaqWrite" parameterType="kh.finalproject.sims.admin.model.vo.AdminFaqVo">
+		INSERT INTO FAQ (FAQ_NO, FAQ_TITLE, FAQ_CONTENT, ADMIN_ID) VALUES(
+		    FAQ_NO_SEQ.NEXTVAL,
+			#{faqTitle},
+			#{faqContent},
+			#{adminId}
+		)
+	</insert>
+	<!-- 자주묻는질문 수정  -->
+	<update id="selectFaqModify" parameterType="kh.finalproject.sims.admin.model.vo.AdminFaqVo">
+		UPDATE FAQ
+		SET 
+		 FAQ_TITLE = #{faqTitle}
+		,FAQ_CONTENT=#{faqContent}
+		,FAQ_REWRITER=#{faqRewriter} 
+		WHERE FAQ_NO=#{faqNo}
+	</update>
+	<!-- 자주묻는질문 삭제 -->
+	<delete id="deleteFaq" parameterType="_int">
+		DELETE FROM FAQ WHERE FAQ_NO=#{faqNo}
+	</delete>
+	
+	<!-- 자주묻는질문 검색 이제 사용안함!!!!!!!!!!!!-->
+	<select id="selectSearchFaqList" resultType="kh.finalproject.sims.admin.model.vo.AdminFaqVo">
+		SELECT * FROM FAQ 
+		<choose>
+			<when test="searchOption != null and searchOption == 'title'"> WHERE FAQ_TITLE LIKE '%'|| #{searchBox} ||'%'</when>
+			<when test="searchOption != null and searchOption == 'writer'"> WHERE ADMIN_ID LIKE '%'|| #{searchBox} ||'%'</when>
+			<when test="searchOption != null and searchOption == 'content'"> WHERE FAQ_CONTENT LIKE '%'|| #{searchBox} ||'%'</when>
+		</choose>
+		ORDER BY FAQ_DATE DESC
+	</select>
+	
+	<!-- 페이징 search 글 목록-->
+	<select id="searchFaqPageList" parameterType="map" resultType="kh.finalproject.sims.admin.model.vo.AdminFaqVo">
+	  SELECT
+	    FAQ_NO,
+	    FAQ_TITLE,
+	    FAQ_CONTENT,
+	    ADMIN_ID,
+	    FAQ_REWRITER,
+	    FAQ_DATE,
+	    FAQ_REDATE
+	  FROM(
+	    SELECT
+	      ROWNUM AS N,
+	      FAQ_NO,
+	      FAQ_TITLE,
+	      FAQ_CONTENT,
+	      ADMIN_ID,
+	      FAQ_REWRITER,
+	      FAQ_DATE,
+	      FAQ_REDATE
+	    FROM FAQ
+	    <choose>
+	      <when test="searchType != null and searchType == 'title'"> WHERE FAQ_TITLE LIKE '%'|| #{keyword} ||'%'</when>
+	      <when test="searchType != null and searchType == 'writer'"> WHERE ADMIN_ID LIKE '%'|| #{keyword} ||'%'</when>
+	      <when test="searchType != null and searchType == 'content'"> WHERE FAQ_CONTENT LIKE '%'|| #{keyword} ||'%'</when>
+	    </choose>
+	    ORDER BY FAQ_REDATE DESC
+	  )
+	  WHERE N BETWEEN #{start} AND #{end}
+	  ORDER BY FAQ_REDATE ASC
+	</select>
+
+	<!-- 페이징 search 글 목록 갯수 -->
+	<select id="getSearchFaqListCnt" resultType="_int">
+		SELECT COUNT(*) FROM FAQ
+		<choose>
+			<when test="searchType != null and searchType == 'title'"> WHERE FAQ_TITLE LIKE '%'|| #{keyword} ||'%'</when>
+			<when test="searchType != null and searchType == 'writer'"> WHERE ADMIN_ID LIKE '%'|| #{keyword} ||'%'</when>
+			<when test="searchType != null and searchType == 'content'"> WHERE FAQ_CONTENT LIKE '%'|| #{keyword} ||'%'</when>
+		</choose>
+	</select>
+
+
+</mapper>

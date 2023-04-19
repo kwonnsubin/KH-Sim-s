@@ -52,13 +52,13 @@ public class AdminQnaMngtController {
 			,@RequestParam(required = false) String searchType
 			,@RequestParam(value = "p", required = false) String pageNumber
 			) {
-	    if(vo.getSearchOption() == null) {
-	        mv.addObject("qnalist", service.selectQnaList()); // 검색이 없는경우
-	    } else {
-	        mv.addObject("qnalist", service.selectSearchQnaList(vo)); // 검색이 있을경우    
-	        mv.addObject("searchOption", vo.getSearchOption());
-	        mv.addObject("searchBox", vo.getSearchBox());
-	    }
+//	    if(vo.getSearchOption() == null) {
+//	        mv.addObject("qnalist", service.selectQnaList()); // 검색이 없는경우
+//	    } else {
+//	        mv.addObject("qnalist", service.selectSearchQnaList(vo)); // 검색이 있을경우    
+//	        mv.addObject("searchOption", vo.getSearchOption());
+//	        mv.addObject("searchBox", vo.getSearchBox());
+//	    }
 	    
 	    //페이징
   		//String pageNumber = request.getParameter("p"); 굳이 이렇게 안가져오고 @RequestParam으로 받아도됨.

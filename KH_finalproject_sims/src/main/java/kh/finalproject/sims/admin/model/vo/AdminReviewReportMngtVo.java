@@ -16,7 +16,7 @@ import lombok.ToString;
 @AllArgsConstructor
 @NoArgsConstructor
 @ToString
-public class AdminReviewMngtVo {
+public class AdminReviewReportMngtVo {
 	
 	private int reviewNo; // 리뷰번호
 	private String userId; // 사용자아이디
@@ -28,5 +28,4 @@ public class AdminReviewMngtVo {
 	private int reviewHidden; // 숨김처리
 	private Date reviewDate; // 리뷰등록일
 	private int reviewStar; // 별점
-	
 }

@@ -2,6 +2,7 @@
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
+<c:set var="path" value="${pageContext.request.contextPath}"/>
 <!DOCTYPE html>
 <html>
 <head>
@@ -71,7 +72,7 @@
 														</tr>
 													</thead>
 													<tbody>
-														<c:forEach items="${qnalist}" var="list">
+<%-- 													<c:forEach items="${qnalist}" var="list">
 															<tr>
 																<td class="text-center">${list.aqNo}&nbsp;&nbsp;</td>
 																<td><a href="<%=request.getContextPath()%>/admin/qna/detail/${list.aqNo}">${list.aqTitle}</a></td>
@@ -79,6 +80,16 @@
 																<td class="text-center"><fmt:formatDate value="${list.aqDate}" pattern="yyyy.MM.dd"/></td>
 																<td class="text-center">${list.aqViews}</td>
 																<td class="text-center">${list.aqAnswers}</td>
+															</tr>
+														</c:forEach> --%>
+														<c:forEach var="qna" items="${requestScope.paging.page}">
+															<tr>
+																<td class="text-center">${qna.aqNo}&nbsp;&nbsp;</td>
+																<td><a href="<%=request.getContextPath()%>/admin/qna/detail/${qna.aqNo}">${qna.aqTitle}</a></td>
+																<td class="text-center">${qna.userId}</td>
+																<td class="text-center"><fmt:formatDate value="${qna.aqDate}" pattern="yyyy.MM.dd"/></td>
+																<td class="text-center">${qna.aqViews}</td>
+																<td class="text-center">${qna.aqAnswers}</td>
 															</tr>
 														</c:forEach>
 													</tbody>
@@ -94,12 +105,12 @@
 														</c:when>
 														<c:otherwise>
 															<li class="page-item"><a class="page-link"
-															 href="${path}/admin/faq/list?p=${requestScope.paging.prevPage }">prev</a></li>
+															 href="${path}/admin/qna/list?p=${requestScope.paging.prevPage }">prev</a></li>
 														</c:otherwise>
 													</c:choose>
 													<c:forEach var="pNum" items="${requestScope.paging.pageList }">
 														<li class="page-item ${pNum eq pageNumber ? 'active' : '' }"><a class="page-link" 
-														href="${path}/admin/faq/list?p=${pNum }">${pNum }</a></li>
+														href="${path}/admin/qna/list?p=${pNum }">${pNum }</a></li>
 													</c:forEach>
 													<c:choose>
 														<c:when test="${requestScope.paging.nextPage eq -1 }">
@@ -107,7 +118,7 @@
 														</c:when>
 														<c:otherwise>
 															<li class="page-item"><a class="page-link"
-															 href="${path}/admin/faq/list?p=${requestScope.paging.nextPage }">next</a></li>
+															 href="${path}/admin/qna/list?p=${requestScope.paging.nextPage }">next</a></li>
 														</c:otherwise>
 													</c:choose>
 												</ul>

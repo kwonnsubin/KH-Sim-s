@@ -7,38 +7,43 @@ import java.util.Map;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import kh.finalproject.sims.admin.model.dao.AdminReviewMngtDao;
+import kh.finalproject.sims.admin.model.dao.AdminReviewReportMngtDao;
 import kh.finalproject.sims.admin.model.vo.AdminReviewMngtVo;
+import kh.finalproject.sims.admin.model.vo.AdminReviewReportMngtVo;
 import kh.finalproject.sims.common.page.Search;
 
 @Service
-// 리뷰
-public class AdminReviewMngtServiceImpl implements AdminReviewMngtService{
-	@Autowired
-	AdminReviewMngtDao dao;
+// 신고리뷰
+public class AdminReviewReportMngtServiceImpl implements AdminReviewReportMngtService{
+	@Autowired 
+	AdminReviewReportMngtDao dao;
 	
 	// 목록
 	@Override
-	public List<AdminReviewMngtVo> selectReviewList() {
-		return dao.selectReviewList();
+	public List<AdminReviewMngtVo> selectReviewReportList() {
+		return dao.selectReviewReportList();
 	}
 	
 	// 검색
 	@Override
-	public List<AdminReviewMngtVo> selectSearchReviewList(AdminReviewMngtVo vo) {
-		return dao.selectSearchReviewList(vo);
+	public List<AdminReviewMngtVo> selectSearchReviewReportList(AdminReviewMngtVo vo) {
+		return dao.selectSearchReviewReportList(vo);
 	}
-	
-	// 삭제
+
+	// 상세
 	@Override
-	public int deleteReview(int reviewNo) {
-		return dao.deleteReview(reviewNo);
+	public AdminReviewMngtVo selectReviewReportDetail(int reviewNo) {
+		return dao.selectReviewReportDetail(reviewNo);
 	}
-	
-	// 상세내용
+
+	// 처리(반려/삭제)
 	@Override
-	public AdminReviewMngtVo selectReviewDetail(int reviewNo) {
-		return dao.selectReviewDetail(reviewNo);
+	public int updateReviewReportStatus(AdminReviewMngtVo vo) {
+		
+		// 숨김
+		dao.updateReviewHidden(vo);
+		
+		return dao.updateReviewReportStatus(vo);
 	}
 	
 	// 페이징 search
@@ -50,9 +55,9 @@ public class AdminReviewMngtServiceImpl implements AdminReviewMngtService{
 		map.put("keyword", keyword);
 		map.put("searchType", searchType);
 		
-		List<AdminReviewMngtVo> dataList = dao.searchReviewPageList(map); // 한 페이지의 글 목록
+		List<AdminReviewReportMngtVo> dataList = dao.searchReviewReportPageList(map); // 한 페이지의 글 목록
 		
-		int totalRowCount = dao.getSearchReviewListCnt(); // 글목록 총 개수를 알아야한다.
+		int totalRowCount = dao.getSearchReviewReportListCnt(); // 글목록 총 개수를 알아야한다.
 		int mod = totalRowCount % cnt == 0 ? 0 : 1;
 		int pageCount = (totalRowCount / cnt) + mod; // 그래야지만 총 페이지수를 구할수있으니깐!
 		
@@ -60,7 +65,5 @@ public class AdminReviewMngtServiceImpl implements AdminReviewMngtService{
 		
 		return search; // 반환받은 결과 리턴
 	}
-
-
-
+	
 }
