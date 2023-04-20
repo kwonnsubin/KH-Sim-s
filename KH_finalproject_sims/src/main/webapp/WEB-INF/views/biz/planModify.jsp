@@ -37,10 +37,11 @@
 
 요금제 수정하기
 
-<form action="modifyPlan" method="post">
-<input type="hidden" name="planNo" value="${planDetail.planNo }">
-<table class="table">
-		<tr>
+<div class="container">
+	<form action="modifyPlan" method="post">
+	<input type="hidden" name="planNo" value="${planDetail.planNo }">
+	<table class="table" style="width: 65%">
+			<tr>
 			<th>
 				<span>요금제명</span>
 			</th>
@@ -113,7 +114,7 @@
 		<button onclick="goBack()">뒤로 가기</button>
 	    <button type="submit">수정완료</button>
 	</form>
-	
+</div>	
     
     
 <script>
