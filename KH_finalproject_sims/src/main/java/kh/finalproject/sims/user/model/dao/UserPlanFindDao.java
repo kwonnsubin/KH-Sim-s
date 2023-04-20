@@ -17,20 +17,20 @@ public class UserPlanFindDao {
 	@Autowired
 	private SqlSession sqlSession;
 	
-	public List<PlanVo> selectPlanList(String searchText) {
-		return sqlSession.selectList("plan.selectPlanList", searchText);
+	public List<PlanVo> selectPlanList(Map<String, Object> searchMap) {
+		return sqlSession.selectList("plan.selectPlanList", searchMap);
 	}
 
-	public int cntPlanList(String searchText) {
-		return sqlSession.selectOne("plan.cntPlanList", searchText);
+	public int cntPlanList(Map<String, Object> searchMap) {
+		return sqlSession.selectOne("plan.cntPlanList", searchMap);
 	}
 	
-	public List<PlanVo> selectPlanList(Map searchMap) {
-		return sqlSession.selectList("plan.selectSearchPlanList", searchMap);
+	public List<PlanVo> selectPlanFilterList(Map<String, Object> searchMap) {
+		return sqlSession.selectList("plan.selectPlanFilterList", searchMap);
 	}
 	
-	public int cntPlanList(Map searchMap) {
-		return sqlSession.selectOne("plan.cntSearchPlanList", searchMap);
+	public int cntPlanFilterList(Map<String, Object> searchMap) {
+		return sqlSession.selectOne("plan.cntSearchPlanFilterList", searchMap);
 	}
 
 	public List<BizInfoMngtVo> selectBizNameList() {
@@ -51,6 +51,18 @@ public class UserPlanFindDao {
 
 	public void insertUser(String userId) {
 		sqlSession.insert("plan.insertUser", userId);
+	}
+
+	public List<PlanVo> selectViewRankList() {
+		return sqlSession.selectList("plan.selectViewRankList");
+	}
+
+	public List<PlanVo> selectLikeRankList() {
+		return sqlSession.selectList("plan.selectLikeRankList");
+	}
+
+	public List<PlanVo> selectOrderRankList() {
+		return sqlSession.selectList("plan.selectOrderRankList");
 	}
 	
 }

@@ -1,7 +1,7 @@
 @charset "UTF-8";
 
-.material-symbols-outlined {
-	font-size: 96px;
+p {
+	color: black;
 }
 
 .choose-plan {
@@ -12,7 +12,7 @@
 	width: 600px;
 	border: 1px solid #cfcfcf;
 	border-radius: 20px;
-	padding: 10px;
+	padding: 30px 10px 30px 10px;
 	cursor: pointer;
 }
 
@@ -22,6 +22,80 @@
 
 .span-div span {
 	font-size: 24px;
+}
+
+/* 랭크 */
+.rank-div {
+	width: 90%;
+}
+
+.rank-main-text span {
+	font-size: 28px;
+	font-weight: bold;
+}
+
+.select-text {
+	font-size: 18px;
+	padding: 10px 30px 10px 30px;
+	cursor: pointer;
+}
+
+.viewRankDiv, .likeRankDiv, .orderRankDiv {
+	width: 50%
+}
+
+/* 리스트 */
+.list-div {
+	width: 90%;
+
+	padding: 20px 10px 20px 10px;
+	margin-left: 0px;
+	border: 2px solid #566fee;
+	margin: 0 auto;
+	cursor: pointer;
+	
+	background: #fff;
+	-webkit-border-radius: 10px;
+	-moz-border-radius: 10px;
+	border-radius: 10px;
+	-webkit-box-shadow: 0 3px 10px 0 rgba(0, 0, 0, 0.15);
+	-moz-box-shadow: 0 3px 10px 0 rgba(0, 0, 0, 0.15);
+	box-shadow: 0 3px 10px 0 rgba(0, 0, 0, 0.15);
+}
+
+.planInfo p {
+	font-size: 12px;
+	color: #afafaf;
+	display: inline;
+}
+
+.planName {
+	font-size: 14px;
+	color: #afafaf;
+}
+
+.planData p {
+	display: inline;
+	font-size: 16px;
+	font-weight: bold;
+}
+
+.voiMes {
+	font-size: 14px;
+}
+
+.planPrice p {
+	font-size: 16px;
+	display: inline;
+}
+
+.priceText {
+	font-size: 18px;
+}
+
+.viewCount {
+	font-size: 12px;
+	color: #afafaf;
 }
 
 /* a 태그 초기화 */

@@ -33,13 +33,13 @@ p {
 
 .planInfo p {
 	font-size: 12px;
-	font-color: #afafaf;
+	color: #afafaf;
 	display: inline;
 }
 
 .planName {
 	font-size: 14px;
-	font-color: black;
+	color: #afafaf;
 }
 
 .planData p {
@@ -59,6 +59,11 @@ p {
 
 .priceText {
 	font-size: 18px;
+}
+
+.viewCount {
+	font-size: 12px;
+	color: #afafaf;
 }
 
 .none-div {

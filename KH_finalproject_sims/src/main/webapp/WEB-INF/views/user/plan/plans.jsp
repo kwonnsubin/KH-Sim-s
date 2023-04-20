@@ -116,14 +116,22 @@
 					<c:if test="${empty param.select}">
 						<button class="pl on choose-btn">분류</button>
 					</c:if>
-					<c:if test="${not empty param.select}">
-						<button class="pl on choose-btn">${param.select}</button>
+					<c:if test="${param.select eq 'choose'}">
+						<button class="pl on choose-btn">선택순</button>
 					</c:if>
-				    <ul class="listbox" id="listbox" is-on="0" style="display: none;">
-				        <li><button class="list">선택순</button></li>
-				        <li><button class="list">별점순</button></li>
-				        <li><button class="list">추천순</button></li>
-				    </ul>
+					<c:if test="${param.select eq 'star'}">
+						<button class="pl on choose-btn">별점순</button>
+					</c:if>
+					<c:if test="${param.select eq 'data'}">
+						<button class="pl on choose-btn">데이터 순</button>
+					</c:if>
+					<div style="position:absolute;">
+					    <ul class="listbox" id="listbox" style="display: none; position:relative;">
+					        <li><button class="list" value="choose">선택순</button></li>
+					        <li><button class="list" value="star">별점순</button></li>
+					        <li><button class="list" value="data">데이터 순</button></li>
+					    </ul>
+					</div>
 				</div>
 				<div class="col-2">
 					<button type="button" class="btn btn-light btn-outline-secondary modalBtn" data-bs-toggle="modal" data-bs-target="#filter-modal">
@@ -567,7 +575,7 @@
 		       							<img src="<%=request.getContextPath()%>/resources/img/${list.bizId}.png" style="max-width: 100px; height: 40px;">
 		       						</c:if>
 	    						</div>
-	       						<div class="col-6">
+	       						<div class="col-8">
 			    					<p class="planName">${list.planName}</p>
 			    					<div class="planInfo">
 				    					<c:if test="${list.netNo eq 1}"><p>KT | </p></c:if>

@@ -9,13 +9,13 @@ import kh.finalproject.sims.user.model.vo.PlanVo;
 
 public interface UserPlanFindService {
 	
-	public List<PlanVo> selectPlanList(String searchText);
+	public List<PlanVo> selectPlanList(Map<String, Object> searchMap);
 
-	public int cntPlanList(String searchText);
+	public int cntPlanList(Map<String, Object> searchMap);
 
-	public List<PlanVo> selectPlanList(Map searchMap);
+	public List<PlanVo> selectPlanFilterList(Map<String, Object> searchMap);
 	
-	public int cntPlanList(Map searchMap);
+	public int cntPlanFilterList(Map<String, Object> searchMap);
 
 	public List<BizInfoMngtVo> selectBizNameList();
 
@@ -26,5 +26,11 @@ public interface UserPlanFindService {
 	public int selectUser(String userId);
 
 	public void insertUser(String userId);
+
+	public List<PlanVo> selectViewRankList();
+
+	public List<PlanVo> selectLikeRankList();
+
+	public List<PlanVo> selectOrderRankList();
 
 }

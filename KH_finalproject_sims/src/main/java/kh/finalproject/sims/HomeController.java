@@ -5,12 +5,14 @@ import java.text.DateFormat;
 import java.util.Collection;
 import java.util.Date;
 import java.util.Iterator;
+import java.util.List;
 import java.util.Locale;
 
 import javax.servlet.http.HttpServletRequest;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.context.SecurityContext;
@@ -23,6 +25,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
+import kh.finalproject.sims.user.model.service.UserPlanFindService;
+import kh.finalproject.sims.user.model.service.UserPlanService;
+import kh.finalproject.sims.user.model.vo.PlanVo;
+
 /**
  * Handles requests for the application home page.
  */
@@ -31,18 +37,30 @@ public class HomeController {
 	
 	private static final Logger logger = LoggerFactory.getLogger(HomeController.class);
 	
+	@Autowired
+	private UserPlanFindService userPlanFindService;
+	
 	/**
 	 * Simply selects the home view to render by returning its name.
 	 */
 	@RequestMapping(value = "/", method = RequestMethod.GET)
-	public String home(Locale locale, Model model, Principal principal) {
+	public ModelAndView home(ModelAndView mv, Principal principal) {
 		
 		if(principal != null) {
 			String username = principal.getName();
-			model.addAttribute("username", username);
+			mv.addObject("username", username);
 		}
 		
-		return "home";
+		List<PlanVo> viewRankList = userPlanFindService.selectViewRankList();
+		List<PlanVo> likeRankList = userPlanFindService.selectLikeRankList();
+		List<PlanVo> orderRankList = userPlanFindService.selectOrderRankList();
+		
+		mv.addObject("viewRankList", viewRankList);
+		mv.addObject("likeRankList", likeRankList);
+		mv.addObject("orderRankList", orderRankList);
+		mv.setViewName("home");
+		
+		return mv;
 	}
 	
 	@GetMapping("/authdiv")

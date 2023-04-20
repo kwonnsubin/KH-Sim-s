@@ -39,15 +39,19 @@ public class UserPlanFindController {
 			, String select
 			, HttpServletRequest req
 			) {
-		
+		Map<String, Object> searchMap;
 		List<PlanVo> planList = null;
 		int cnt = 0;
 		
 		if(pvo.getPlanData() == 0) {
-			planList = planFindService.selectPlanList(searchText);
-			cnt = planFindService.cntPlanList(searchText);
+			searchMap = new HashMap<String, Object>();
+			searchMap.put("searchText", searchText);
+			searchMap.put("select", select);
+			
+			planList = planFindService.selectPlanList(searchMap);
+			cnt = planFindService.cntPlanList(searchMap);
 		} else {
-			Map<String, Object> searchMap = new HashMap<String, Object>();
+			searchMap = new HashMap<String, Object>();
 			
 			searchMap.put("planData", pvo.getPlanData());
 			searchMap.put("planVoice", pvo.getPlanVoice());
@@ -59,8 +63,8 @@ public class UserPlanFindController {
 			searchMap.put("searchText", searchText);
 			searchMap.put("select", select);
 			
-			planList = planFindService.selectPlanList(searchMap);
-			cnt = planFindService.cntPlanList(searchMap);
+			planList = planFindService.selectPlanFilterList(searchMap);
+			cnt = planFindService.cntPlanFilterList(searchMap);
 		}
 		
 		List<BizInfoMngtVo> bizList = planFindService.selectBizNameList();

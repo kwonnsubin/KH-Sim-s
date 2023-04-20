@@ -58,7 +58,7 @@
 			       							<img src="<%=request.getContextPath()%>/resources/img/${list.bizId}.png" style="max-width: 100px; height: 40px;">
 			       						</c:if>
 		    						</div>
-		       						<div class="col-6">
+		       						<div class="col-8">
 				    					<p class="planName">${list.planName}</p>
 				    					<div class="planInfo">
 					    					<c:if test="${list.netNo eq 1}"><p>KT | </p></c:if>

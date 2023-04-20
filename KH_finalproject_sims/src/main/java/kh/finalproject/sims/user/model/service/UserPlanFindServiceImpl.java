@@ -1,5 +1,6 @@
 package kh.finalproject.sims.user.model.service;
 
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -19,25 +20,25 @@ public class UserPlanFindServiceImpl implements UserPlanFindService {
 	
 	// 요금제 리스트
 	@Override
-	public List<PlanVo> selectPlanList(String searchText) {
-		return dao.selectPlanList(searchText);
+	public List<PlanVo> selectPlanList(Map<String, Object> searchMap) {
+		return dao.selectPlanList(searchMap);
 	}
 	
 	// 검색 요금제 리스트
 	@Override
-	public List<PlanVo> selectPlanList(Map searchMap) {
+	public List<PlanVo> selectPlanFilterList(Map<String, Object> searchMap) {
 		return dao.selectPlanList(searchMap);
 	}
 
 	// 요금제 총 갯수
 	@Override
-	public int cntPlanList(String searchText) {
-		return dao.cntPlanList(searchText);
+	public int cntPlanList(Map<String, Object> searchMap) {
+		return dao.cntPlanList(searchMap);
 	}
 	
 	// 검색된 요금제 갯수
 	@Override
-	public int cntPlanList(Map searchMap) {
+	public int cntPlanFilterList(Map<String, Object> searchMap) {
 		return dao.cntPlanList(searchMap);
 	}
 
@@ -68,6 +69,24 @@ public class UserPlanFindServiceImpl implements UserPlanFindService {
 	@Override
 	public void insertUser(String userId) {
 		dao.insertUser(userId);
+	}
+
+	// 조회수 랭킹
+	@Override
+	public List<PlanVo> selectViewRankList() {
+		return dao.selectViewRankList();
+	}
+
+	// 찜 랭킹
+	@Override
+	public List<PlanVo> selectLikeRankList() {
+		return dao.selectLikeRankList();
+	}
+
+	// 가입자 수 랭킹
+	@Override
+	public List<PlanVo> selectOrderRankList() {
+		return dao.selectOrderRankList();
 	}
 
 }

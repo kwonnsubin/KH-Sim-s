@@ -42,4 +42,7 @@ public class PlanVo {
 	// order_plan
 	private int orderCount;
 	
+	// rank
+	private int viewRank;
+	private int likeRank;
 }

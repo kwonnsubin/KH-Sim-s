@@ -17,7 +17,7 @@
 	    	, #{overVoiceAmtUnit}, #{overMessageAmtUnit}, #{overDataAmtUnit}, sysdate)
 	</insert>
 	
-	<select id="selectPlanList" parameterType="string" resultType="planVo">
+	<select id="selectPlanList" parameterType="map" resultType="planVo">
 		select plan_no, plan_name, biz_name, net_no, gen_no, plan_price, plan_voice, plan_message
 		    , plan_data, plan_voice_over, plan_message_over, plan_data_over, plan_date, plan_update_date
 		    , (select b.biz_id from biz b where p.biz_name = b.biz_name) as biz_id
@@ -33,12 +33,12 @@
 		<if test="select == 'star'.toString()">
 			order by biz_review_star desc nulls last
 		</if>
-		<if test="select == 'recom'.toString()">
+		<if test="select == 'data'.toString()">
 			order by plan_data desc
 		</if>
 	</select>
 	
-	<select id="selectSearchPlanList" parameterType="map" resultType="planVo">
+	<select id="selecPlanFilterList" parameterType="map" resultType="planVo">
 		select plan_no, plan_name, biz_name, net_no, gen_no, plan_price, plan_voice, plan_message
 		    , plan_data, plan_voice_over, plan_message_over, plan_data_over, plan_date, plan_update_date
 		    , (select b.biz_id from biz b where p.biz_name = b.biz_name) as biz_id
@@ -88,30 +88,20 @@
 			<if test="select == 'star'.toString()">
 				order by biz_review_star desc nulls last
 			</if>
-			<if test="select == 'recom'.toString()">
+			<if test="select == 'data'.toString()">
 				order by plan_data desc
 			</if>
 		</trim>
 	</select>
 	
-	<select id="cntPlanList" parameterType="string" resultType="int">
+	<select id="cntPlanList" parameterType="map" resultType="int">
 		select count(*) from plan_table
 		<if test="searchText != null">
 			where plan_name like '%${searchText}%' or biz_name like '%${searchText}%'
 		</if>
-		
-		<if test="select == 'choose'.toString()">
-			order by order_count desc
-		</if>
-		<if test="select == 'star'.toString()">
-			order by biz_review_star desc nulls last
-		</if>
-		<if test="select == 'recom'.toString()">
-			order by plan_data desc
-		</if>
 	</select>
 	
-	<select id="cntSearchPlanList" parameterType="map" resultType="int">
+	<select id="cntPlanFilterList" parameterType="map" resultType="int">
 		select count(*) from plan_table 
 		<trim prefix="where" prefixOverrides="and|or">
 			<if test="planData == 100000">plan_data >= 100000</if>
@@ -148,16 +138,6 @@
 			
 			<if test="searchText != null">
 				and (plan_name like '%${searchText}%' or biz_name like '%${searchText}%')
-			</if>
-			
-			<if test="select == 'choose'.toString()">
-			order by order_count desc
-			</if>
-			<if test="select == 'star'.toString()">
-				order by biz_review_star desc nulls last
-			</if>
-			<if test="select == 'recom'.toString()">
-				order by plan_data desc
 			</if>
 		</trim>
 	</select>
@@ -268,6 +248,47 @@
 		from like_table l, plan_table p
 		where l.plan_no = p.plan_no and user_id=#{userId}
 		order by like_date desc
+	</select>
+	
+	<!-- 조회수 랭킹 -->
+	<select id="selectViewRankList" resultType="planVo">
+		select * from (
+		    select plan_no, plan_name, biz_name, net_no, gen_no, plan_price, plan_voice, plan_message
+		        , plan_data, plan_voice_over, plan_message_over, plan_data_over, plan_date, plan_update_date
+		        , (select b.biz_id from biz b where p.biz_name = b.biz_name) as biz_id
+		        , (select b.biz_review_star from biz b where p.biz_name = b.biz_name) as biz_review_star
+		        , (select count(*) from plan_order po where p.plan_no = po.plan_no and po.order_status=2) as order_count
+		        , (select count(*) from view_table vt where p.plan_no = vt.plan_no) as view_rank
+		    from plan_table p
+		    order by view_rank desc)
+		where rownum <![CDATA[ <= ]]> 10
+	</select>
+	
+	<!-- 찜 랭킹 -->
+	<select id="selectLikeRankList" resultType="planVo">
+		select * from (
+			select plan_no, plan_name, biz_name, net_no, gen_no, plan_price, plan_voice, plan_message
+			    , plan_data, plan_voice_over, plan_message_over, plan_data_over, plan_date, plan_update_date
+			    , (select b.biz_id from biz b where p.biz_name = b.biz_name) as biz_id
+			    , (select b.biz_review_star from biz b where p.biz_name = b.biz_name) as biz_review_star
+			    , (select count(*) from plan_order po where p.plan_no = po.plan_no and po.order_status=2) as order_count
+			    , (select count(*) from like_table lt where p.plan_no = lt.plan_no) as like_rank
+			from plan_table p
+			order by like_rank desc)
+		where rownum <![CDATA[ <= ]]> 10
+	</select>
+	
+	<!-- 가입자 수 랭킹 -->
+	<select id="selectOrderRankList" resultType="planVo">
+		select * from (
+		    select plan_no, plan_name, biz_name, net_no, gen_no, plan_price, plan_voice, plan_message
+		        , plan_data, plan_voice_over, plan_message_over, plan_data_over, plan_date, plan_update_date
+		        , (select b.biz_id from biz b where p.biz_name = b.biz_name) as biz_id
+		        , (select b.biz_review_star from biz b where p.biz_name = b.biz_name) as biz_review_star
+		        , (select count(*) from plan_order po where p.plan_no = po.plan_no and po.order_status=2) as order_count
+		    from plan_table p
+		    order by order_count desc)
+		where rownum <![CDATA[ <= ]]> 10
 	</select>
 	
 </mapper>

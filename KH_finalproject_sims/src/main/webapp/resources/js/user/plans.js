@@ -595,17 +595,25 @@ function searchList() {
 }
 
 $(document).ready(function() {
-	$(".searchText").on("change", searchText);
-	$(".searchText").on("blur", searchText);
+	$(".searchText").on("change", searchTextFunc);
+	$(".searchText").on("blur", searchTextFunc);
 });
 
-function searchText() {
-	var url = window.location.href;
+function searchTextFunc() {
+	const urlParams = new URL(location.href).searchParams;
 	var searchText = $('.searchText').val();
-	if(url.includes("?")) {
-		location.href = url + "&searchText=" + searchText;
+	if(urlParams.get('searchText') == null) {
+		var url = window.location.href;
+		if(url.includes("?")) {
+			location.href = url + "&searchText=" + searchText;
+		} else {
+			location.href = url + "?&searchText=" + searchText;
+		}
 	} else {
-		location.href = url + "?&searchText=" + searchText;
+		const URLSearch = new URLSearchParams(location.search);
+		URLSearch.set('searchText', String(searchText));
+		const newParam = URLSearch.toString();
+		window.open(location.pathname + '?' + newParam, '_self');
 	}
 }
 
@@ -621,21 +629,27 @@ $(".recent-list").on("click", function(e) {
 
 // 분류 버튼
 $(".choose-btn").on("click", function() {
-	if($("ul").attr("is-on") == "0") {
-		$("ul").css("display", "");
-		$("ul").attr("is-on", "1");
+	if($(".listbox").css("display") == "block") {
+		$(".listbox").css("display", "none");
 	} else {
-		$("ul").css("display", "none");
-		$("ul").attr("is-on", "0");
+		$(".listbox").css("display", "block");
 	}
 });
 
 $(".list").on("click", function(e) {
-	var url = window.location.href;
-	var select = $(e.target).text();
-	if(url.includes("?")) {
-		location.href = url + "&select=" + select;
+	const urlParams = new URL(location.href).searchParams;
+	var select = $(e.target).val();
+	if(urlParams.get('select') == null) {
+		var url = window.location.href;
+		if(url.includes("?")) {
+			location.href = url + "&select=" + select;
+		} else {
+			location.href = url + "?&select=" + select;
+		}
 	} else {
-		location.href = url + "?&select=" + select;
+		const URLSearch = new URLSearchParams(location.search);
+		URLSearch.set('select', String(select));
+		const newParam = URLSearch.toString();
+		window.open(location.pathname + '?' + newParam, '_self');
 	}
 });
