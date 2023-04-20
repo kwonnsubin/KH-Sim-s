@@ -231,6 +231,7 @@ CREATE TABLE USER_TABLE(
     , CONSTRAINT PK_USER_ID PRIMARY KEY (USER_ID)
     , CONSTRAINT FK_USER_ID FOREIGN KEY (USER_ID) REFERENCES MEMBER(ID)
 );
+alter table user_table drop column user_address;
 
 --관리자
 DROP TABLE ADMIN CASCADE CONSTRAINTS;
@@ -321,6 +322,7 @@ ADD CONSTRAINT PLAN_ORDER_SIM_YN_CHECK CHECK(SIM_YN IN (1,2));
 ALTER TABLE plan_order ADD biz_id varchar2(30);
 ALTER TABLE plan_order ADD CONSTRAINT fk_biz_id2 FOREIGN KEY (biz_id)
 REFERENCES biz(biz_id);
+alter table plan_order add order_address varchar2(500);
 
 --- 자주묻는질문 테이블
 DROP TABLE FAQ;
