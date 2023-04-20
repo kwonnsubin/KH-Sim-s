@@ -66,6 +66,6 @@
 }
 .regBtn{
 	  position: absolute; /* 절대적으로 배치됨 */
-	  top: 0;
-	  right: 0;
+	  right: 15%;
+   	  top: 44%;
 }

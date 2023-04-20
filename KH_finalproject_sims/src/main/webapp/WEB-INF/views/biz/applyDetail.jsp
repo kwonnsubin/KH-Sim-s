@@ -29,24 +29,37 @@
     <link rel="stylesheet" href="<%= request.getContextPath() %>/resources/chain/assets/css/animated.css">
     <link rel="stylesheet" href="<%= request.getContextPath() %>/resources/chain/assets/css/owl.css">
     <link rel="stylesheet" href="<%= request.getContextPath() %>/resources/css/user/myinfo.css"/>
+    
+    <!-- google icon -->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
 </head>
 <body>
 <jsp:include page="/WEB-INF/views/header.jsp"/>
 <jsp:include page="/WEB-INF/views/biz/nav.jsp"/>
-    요금제 신청서 상세정보
-    <table class="table" id="applyDetail">
-		<tbody>
+
+
+    <div class="titleMent">
+    	<span class="material-symbols-outlined" style="float: left;">
+		more_vert
+		</span>
+		<span>요금제 신청서 상세정보</span>
+    </div>
+    
+    
+    <div class="container-fluid">
+    <table class="table" id="applyDetail" style="width: 61%; margin-top: 120px;">
+		<tbody style="height: 485px;">
 			<tr>
-				<th scope="row" class="col-md-2">
+				<th scope="row" class="col-md-1">
 					<span>신청번호</span>
 				</th>
 				<td class="col-md-2">${applyDetailPlan.orderNo }</td>
-				<th scope="row" class="col-md-2">
+				<th scope="row" class="col-md-1">
 					<span>요금제명</span>
 				</th>
 				<td class="col-md-2" colspan="2" >${applyDetailPlan.planName }</td>
                 
-                <th scope="row" class="col-md-2">
+                <th scope="row" class="col-md-1">
                     <span>신청일자</span>
                 </th>
                 <td class="col-md-2" colspan="2">${applyDetailPlan.orderDate }</td>
@@ -118,7 +131,7 @@
 				<th scope="row">
 					<span>유심신청여부</span>
 				</th>
-				<td >
+				<td  colspan="2">
 				<c:choose>
 					<c:when test ="${applyDetailPlan.simYn eq 1}">
 						N
@@ -128,10 +141,10 @@
 					</c:otherwise>
 				</c:choose>
 				</td>
-				<th scope="row">
+				<th scope="row" style="width: 510px;">
 					<span>현재사용통신사</span>
 				</th>
-				<td>
+				<td  colspan="4">
 				<c:choose>
 					<c:when test="${applyDetailPlan.currentTelecom eq 1}">
 						SKT
@@ -158,7 +171,7 @@
 				<th scope="row">
 					<span>청구서유형</span>
 				</th>
-				<td >
+				<td  colspan="2">
 				<c:choose>
 					<c:when test="${applyDetailPlan.planBill eq 1}">
 						문자
@@ -171,7 +184,7 @@
 				<th scope="row">
 					<span>납부방법</span>
 				</th>
-				<td >
+				<td  colspan="4">
 				<c:choose>
 					<c:when test="${applyDetailPlan.planPay eq 1}">
 						카드
@@ -189,11 +202,11 @@
                 <th scope="row">
                     <span>카드번호</span>
                 </th>
-                <td >${applyDetailPlan.cardNumber }</td>
+                <td  colspan="2">${applyDetailPlan.cardNumber }</td>
                 <th scope="row">
                     <span>카드유효기간</span>
                 </th>
-                <td > ${applyDetailPlan.cardExpiration }</td>
+                <td  colspan="4"> ${applyDetailPlan.cardExpiration }</td>
             </tr>
         </c:when>
         <c:otherwise>
@@ -201,11 +214,11 @@
                 <th scope="row">
                     <span>은행</span>
                 </th>
-                <td >${applyDetailPlan.bank }</td>
+                <td colspan="2" >${applyDetailPlan.bank }</td>
                 <th scope="row">
                     <span>계좌번호</span>
                 </th>
-                <td >${applyDetailPlan.bankNumber }</td>
+                <td colspan="4">${applyDetailPlan.bankNumber }</td>
             </tr>
         </c:otherwise>
         </c:choose>
@@ -219,17 +232,17 @@
 	            <span>기본데이터(MB)</span>
 	        </th>
 	        <td>${applyDetailPlan.planData }</td>
-	        <th scope="row">
+	        <th scope="row" style="width: 600px;">
 	            <span>기본음성(분)</span>
 	        </th>
 	        <td>${applyDetailPlan.planVoice }</td>
-	        <th scope="row">
+	        <th scope="row" style="width: 7%;">
 	            <span>기본문자(건)</span>
 	        </th>
 	        <td>${applyDetailPlan.planMessage }</td>
         </tr>
         <!-- 분리 -->
-        <tr>
+        <tr style="border-bottom: white;">
 			<th scope="row">
 				<span>가입 신청 상태</span>
 			</th>
@@ -250,7 +263,16 @@
         
         </tbody>
 	</table>
+	
+	<div class="statusBtnGroup">
+		<button type="button" class="btn approve" style="margin-right : 10px;">승인</button>
+		<button type="button" class="btn hold">보류</button>
+	</div>
 
+	<button type="button" class="btn goList" onclick="location.href='<%=request.getContextPath()%>/biz/applyList'">목록으로</button>
+
+
+	</div>
  <%--    <table class="table">
         <tbody>
 			<tr>
@@ -425,13 +447,9 @@
 				</td>
 			</tr>
 		</table> --%>
-		<button type="button" class="btn approve">승인</button>
-		<button type="button" class="btn hold">보류</button>
-	</div>
-	
-	<button type="button" onclick="location.href='<%=request.getContextPath()%>/biz/applyList'">목록으로</button>
+		
 
-
+<%-- 
 <!-- Example Code -->
 <div class="container">
     <div class="row">
@@ -674,7 +692,7 @@
     </c:otherwise>
     </c:choose>
  
-</div>
+</div> --%>
 
     
 

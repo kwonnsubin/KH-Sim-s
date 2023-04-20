@@ -30,16 +30,28 @@ table th{
     justify-content: center;
 	align-items: center;
 	border-style: none;
+	border-radius: 5px;
+    box-shadow: 2px 2px 5px rgba(0, 3, 0, 0.3);
+    outline: none; 
 }
-table tr, 
+/* table tr, 
 table th,
 table td{
     border-color: inherit;
     border-style: dotted;
     border-width: thin;
- }
+ } */
 img{
 	width : 100px !important ; /*템플릿 css가 100% 적용이라 우선순위 부여*/
 	height: auto;
 	
+}
+table{
+	display: inline-table;
+	margin-top: 5%;
+}
+.modyBtn{
+	position: absolute;
+	left: 48%;
+    margin-top: 2%;
 }

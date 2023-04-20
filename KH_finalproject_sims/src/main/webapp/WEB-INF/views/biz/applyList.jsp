@@ -40,6 +40,7 @@
 
 
 
+<div class="container"  style="overflow-x: auto;">
 
 <div class="searchTop">
 
@@ -113,15 +114,15 @@
 	<div class="totalMent">총 ${applyListCnt}개의 결과가 있습니다.</div>
 
  	<% if (request.getParameter("keyword") != null && !request.getParameter("keyword").isEmpty()) { %>
-    <span>"<%=request.getParameter("keyword")%>"의 검색 결과입니다.</span>
+    <span class="resultMent">"<%=request.getParameter("keyword")%>"의 검색 결과입니다.</span>
 	<% } %>
 
 
 
 
- <table class="table" id="applyTb" style="width: 73%;  position: relative;">
+ <table class="table table-hover" id="applyTb" style="width: 73%;  position: relative;">
             <thead>
-                <tr class="text-center mx-auto" style="background-color: #f7f7f7;">
+                <tr class="text-center mx-auto" style="background-color: #ecf7fd;">
                     <th>번호</th>
                     <th>요금제명</th>
                     <th>신청번호<br>신청자</th>
@@ -194,6 +195,8 @@
 			</c:choose>
 		</ul>
 	  </c:if>
+
+</div>
 
 <!-- <script>
 	window.onload = function() {

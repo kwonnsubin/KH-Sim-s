@@ -95,7 +95,7 @@
     <span>"<%=request.getParameter("keyword")%>"의 검색 결과입니다.</span>
 	<% } %>
     
-        <table class="table" id="planTb" style="width: 73%;  position: relative;">
+        <table class="table table-hover" id="planTb" style="width: 73%;  position: relative;">
             <thead>
                 <tr class="text-center mx-auto" style="background-color: #f7f7f7;">
                     <th>번호</th>
