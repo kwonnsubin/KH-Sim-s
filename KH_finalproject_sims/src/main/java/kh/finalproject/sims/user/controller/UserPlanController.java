@@ -80,30 +80,42 @@ public class UserPlanController {
 		return mv;
 	}
 	
-	// 신청 페이지
+	// 신청 옵션 페이지
+	@GetMapping("/{planNo}/option")
+	public ModelAndView viewPlanOption(
+			ModelAndView mv
+			, @PathVariable int planNo
+			) {
+		PlanVo pvo = planService.getPlanByNo(planNo);
+		mv.addObject("plan", pvo);
+		mv.setViewName("user/plan/option");
+		return mv;
+	}
+	
+	// 신청서 작성 페이지
 	@GetMapping("/{planNo}/order")
 	public ModelAndView viewPlanOrder(
 			ModelAndView mv
-			, Principal principal
 			, @PathVariable int planNo
+			, Principal principal
 			) {
 		String userId = principal.getName();
+		UserMemberVo mvo = myService.selectMyPageInfo(userId);
 		PlanVo pvo = planService.getPlanByNo(planNo);
-		UserMemberVo user = myService.selectMyPageInfo(userId);
-		
 		mv.addObject("plan", pvo);
-		mv.addObject("user", user);
+		mv.addObject("user", mvo);
 		
 		mv.setViewName("user/plan/order");
 		return mv;
 	}
-	
+
 	// 찜하기
 	@PostMapping("/{planNo}/like")
 	@ResponseBody
 	public int likePlan(
-	        HttpServletRequest req,
-	        @PathVariable int planNo) {
+	        HttpServletRequest req
+	        , @PathVariable int planNo
+	        ) {
 	    Principal prin = req.getUserPrincipal();
 	    String userId = prin.getName();
 	    boolean isLiked = planService.getLikeByPlanWithUser(planNo, userId);

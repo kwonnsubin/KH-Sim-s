@@ -40,7 +40,7 @@
 			<div class="row m-3 py-4">
 				<div class="col-sm-2 float-sm-none">
 					<a href="#"> <!-- 통신사 페이지 만들어서 연결 -->
-						<img class="logo-m" src="${cpath}/resources/img/${biz.logoRenameFilename}" alt="${plan.bizName}">
+						<img class="logo-m" src="${cpath}/resources/img/${biz.bizId}.jpg" alt="${plan.bizName}">
 					</a>
 				</div>
 				<div class="col-sm-7 float-sm-none vertical-center px-4">

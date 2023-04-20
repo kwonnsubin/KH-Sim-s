@@ -269,7 +269,7 @@
     		if($('.all-check').is(':checked') == true) {
     			$(".alert-div").html("");
 				$(".alert-div").css("display", "none");
-	    		location.href = contextPath + "/plan/${plan.planNo}/order";
+	    		location.href = contextPath + "/plan/${plan.planNo}/option";
     		} else {
     			$(".alert-div").html("<p style='color: red;'>회원가입약관의 내용에 동의하셔야 신청하실 수 있습니다.</p>");
 				$(".alert-div").css("display", "block");
