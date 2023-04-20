@@ -7,11 +7,11 @@
 	</select>
 	
 	<insert id="signUpMember" parameterType="memVo">
-		insert into member values(#{id}, #{pw}, #{role}, #{enable})
+		insert into member values(#{id}, #{pw}, #{role}, #{enable}, null)
 	</insert>
 	
 	<insert id="signUpUser" parameterType="userVo">
-		insert into user_table values(#{userId}, #{userName}, #{userSsn}, sysdate, null, #{userGender}, #{userPhone}, #{userEmail}, null)
+		insert into user_table values(#{userId}, #{userName}, #{userSsn}, sysdate, null, #{userGender}, #{userPhone}, #{userEmail})
 	</insert>
 	
 	<insert id="signUpBiz" parameterType="bVo">

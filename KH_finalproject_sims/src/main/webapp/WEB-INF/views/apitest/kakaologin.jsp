@@ -61,7 +61,7 @@
    padding-right: 60px;
 }
 
-a {
+.title a {
    text-decoration: none;
 }
 

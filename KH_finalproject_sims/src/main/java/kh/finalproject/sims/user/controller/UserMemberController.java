@@ -36,6 +36,7 @@ public class UserMemberController {
 	// 로그인 페이지
 	@GetMapping("login")
 	public ModelAndView LoginDo(ModelAndView mv) {
+		
 		mv.setViewName("main/login");
 		
 		return mv;

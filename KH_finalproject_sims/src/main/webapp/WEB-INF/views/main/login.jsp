@@ -24,13 +24,14 @@
     <link rel="stylesheet" href="<%= request.getContextPath() %>/resources/chain/assets/css/templatemo-chain-app-dev.css">
     <link rel="stylesheet" href="<%= request.getContextPath() %>/resources/chain/assets/css/animated.css">
     <link rel="stylesheet" href="<%= request.getContextPath() %>/resources/chain/assets/css/owl.css">
+    <link rel="stylesheet" href="<%= request.getContextPath() %>/resources/css/main/login.css"/>
     
 </head>
 <body>
 	<jsp:include page="/WEB-INF/views/header.jsp"/>
 	
 	<section>
-		<div class="container-fluid d-flex justify-content-center" style="width: 80%; margin-top: 100px;">
+		<div class="container-fluid d-flex justify-content-center" style="width: 800px; margin-top: 100px;">
 			<div class="col-md-6">
 				<h2>로그인</h2>
 				<c:url value="/login" var="loginUrl" />
@@ -57,7 +58,7 @@
 		</div>
 		
 		<div class="container px-2 text-center" style="width:60%;">
-			<div class="row gx-2">
+			<div class="row row row-cols-auto justify-content-md-center">
 				<div class="col">
 					<div class="p-3">
 						<a href="<%=request.getContextPath()%>/findid">아이디 찾기</a> / 
@@ -68,12 +69,7 @@
 					<div class="p-3">
 						<a href="<%=request.getContextPath()%>/contract">회원가입</a>
 					</div>
-				</div>
-				<div class="col">
-					<div class="p-3">
-						<a href="#">카카오로그인</a>
-					</div>
-				</div>
+				</div>	
 			</div>
 		</div>
 	</section>

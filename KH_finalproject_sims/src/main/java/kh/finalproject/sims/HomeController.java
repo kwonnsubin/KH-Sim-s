@@ -27,6 +27,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import kh.finalproject.sims.user.model.service.UserPlanFindService;
 import kh.finalproject.sims.user.model.service.UserPlanService;
+import kh.finalproject.sims.user.model.vo.MemberVo;
 import kh.finalproject.sims.user.model.vo.PlanVo;
 
 /**
