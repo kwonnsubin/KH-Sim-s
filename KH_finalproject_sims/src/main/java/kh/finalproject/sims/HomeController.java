@@ -21,10 +21,15 @@ import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
+import kh.finalproject.sims.biz.model.service.BizInfoMngtService;
+import kh.finalproject.sims.biz.model.vo.BizApplyVo;
+import kh.finalproject.sims.biz.model.vo.BizInfoMngtVo;
+import kh.finalproject.sims.biz.model.vo.bizInfoMngServiceVo;
 import kh.finalproject.sims.user.model.service.UserPlanFindService;
 import kh.finalproject.sims.user.model.service.UserPlanService;
 import kh.finalproject.sims.user.model.vo.MemberVo;
@@ -40,6 +45,9 @@ public class HomeController {
 	
 	@Autowired
 	private UserPlanFindService userPlanFindService;
+	
+	@Autowired
+	private BizInfoMngtService bizInfoService;
 	
 	/**
 	 * Simply selects the home view to render by returning its name.
@@ -61,6 +69,21 @@ public class HomeController {
 		mv.addObject("orderRankList", orderRankList);
 		mv.setViewName("home");
 		
+		return mv;
+	}
+	
+	@GetMapping("/{bizId}")
+	public ModelAndView authdiv(ModelAndView mv, @PathVariable String bizId) {
+		
+		BizInfoMngtVo bizInfo = bizInfoService.selectMainBizInfo(bizId);
+		List<bizInfoMngServiceVo> bizService = bizInfoService.selectListService(bizId);
+		List<PlanVo> bizPlanList = userPlanFindService.selectBizPlanList(bizId);
+		
+		mv.addObject("bizInfo", bizInfo);
+		mv.addObject("bizService", bizService);
+		mv.addObject("planList", bizPlanList);
+		
+		mv.setViewName("/main/telinfo");
 		return mv;
 	}
 	

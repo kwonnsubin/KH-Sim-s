@@ -60,7 +60,7 @@ public class BizInfoMngtVo {
 	private String bizBeginTime;
 	private String bizEndTime;
 	private String bizClosedDay;
-	private int bizReviewStar;
+	private double bizReviewStar;
 	private String phoneOpTime;
 	private String phoneOpTimeUsim;
 	private String network;
@@ -71,5 +71,7 @@ public class BizInfoMngtVo {
 	
 	private List<bizInfoMngServiceVo> serviceList;
 
+	// 통신사 리뷰 갯수
+	private int bizReviewCnt;
 	
 }

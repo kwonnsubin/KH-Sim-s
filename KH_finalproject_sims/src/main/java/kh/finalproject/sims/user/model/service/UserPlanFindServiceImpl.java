@@ -89,4 +89,10 @@ public class UserPlanFindServiceImpl implements UserPlanFindService {
 		return dao.selectOrderRankList();
 	}
 
+	// 통신사 별 요금제
+	@Override
+	public List<PlanVo> selectBizPlanList(String bizId) {
+		return dao.selectBizPlanList(bizId);
+	}
+
 }

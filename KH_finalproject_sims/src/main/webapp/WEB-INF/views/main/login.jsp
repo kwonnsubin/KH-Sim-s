@@ -51,25 +51,27 @@
 				
 				  <!-- Submit button -->
 				  <div class="d-flex justify-content-center">
-				  	<button type="submit" class="btn btn-primary btn-block mb-4">로그인</button>
+				  	<button type="submit" class="btn btn-primary btn-block mb-2">로그인</button>
 				  </div>
 				</form:form>
 			</div>
 		</div>
 		
 		<div class="container px-2 text-center" style="width:60%;">
-			<div class="row row row-cols-auto justify-content-md-center">
+			<div class="row row-cols-auto justify-content-md-center">
 				<div class="col">
 					<div class="p-3">
-						<a href="<%=request.getContextPath()%>/findid">아이디 찾기</a> / 
+						<!-- 
+						<button class="kakao btn btn-primary btn-block mb-4" type="button" onclick="location.href='https://kauth.kakao.com/oauth/authorize?client_id=${kakaoKey}&redirect_uri=http://localhost:8080/sims/kakaoLogin&response_type=code'">카카오 로그인</button>
+						 -->
+					
+						<a href="<%=request.getContextPath()%>/findid">아이디 찾기</a>
+						<div class="vr" style="width:1px; height: 20px; background-color: black; margin-bottom: -4px;"></div>
 				    	<a href="<%=request.getContextPath()%>/findpw">비밀번호 찾기</a>
+				    	<div class="vr" style="width:1px; height: 20px; background-color: black; margin-bottom: -4px;"></div>
+				    	<a href="<%=request.getContextPath()%>/contract">회원가입</a>
 					</div>
 				</div>
-				<div class="col">
-					<div class="p-3">
-						<a href="<%=request.getContextPath()%>/contract">회원가입</a>
-					</div>
-				</div>	
 			</div>
 		</div>
 	</section>

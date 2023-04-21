@@ -109,4 +109,13 @@
 	<update id="updatePlanTable" parameterType="map">
 		update plan_table set biz_name = #{bizName} where biz_name =#{beforeBizName}
 	</update>
+	
+	<select id="selectMainBizInfo" parameterType="string" resultType="bvo">
+		select biz_id, biz_name, biz_ssn, biz_crn, biz_email, biz_phone, biz_fax, biz_owner_name
+		    , biz_hp, biz_zip_code, biz_location, biz_card_pay_date, biz_acc_pay_date, biz_begin_time
+		    , biz_end_time, biz_closed_day, biz_review_star, phone_op_time, phone_op_time_usim, network
+		    , (select count(*) from biz_review br where b.biz_id=br.biz_id) as biz_review_cnt
+		from biz b where biz_id=#{bizId}
+	</select>
+	
 </mapper>

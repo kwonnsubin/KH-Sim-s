@@ -3,6 +3,7 @@ package kh.finalproject.sims.user.controller;
 import java.util.HashMap;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -32,10 +33,14 @@ public class UserMemberController {
 	
 	@Autowired
 	private BCryptPasswordEncoder pwEncoder;
+	
+	@Value("#{apikey['apikey.kakao']}")
+	private String kakaoKey;
 
 	// 로그인 페이지
 	@GetMapping("login")
 	public ModelAndView LoginDo(ModelAndView mv) {
+		mv.addObject("kakaoKey", kakaoKey);
 		
 		mv.setViewName("main/login");
 		

@@ -33,4 +33,6 @@ public interface UserPlanFindService {
 
 	public List<PlanVo> selectOrderRankList();
 
+	public List<PlanVo> selectBizPlanList(String bizId);
+
 }

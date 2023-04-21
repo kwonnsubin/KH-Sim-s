@@ -7,6 +7,7 @@ import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import kh.finalproject.sims.biz.model.vo.BizApplyVo;
 import kh.finalproject.sims.biz.model.vo.BizInfoMngtVo;
 import kh.finalproject.sims.biz.model.vo.bizInfoMngServiceVo;
 
@@ -45,5 +46,9 @@ public class BizInfoMngtDao {
 
 	public int updatePlanTable(Map<String, String> map) {
 		return sqlSession.update("biz.updatePlanTable", map);
+	}
+
+	public BizInfoMngtVo selectMainBizInfo(String bizId) {
+		return sqlSession.selectOne("biz.selectMainBizInfo", bizId);
 	}
 }
