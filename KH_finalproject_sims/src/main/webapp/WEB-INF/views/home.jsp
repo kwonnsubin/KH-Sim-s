@@ -41,6 +41,32 @@
 	<jsp:include page="/WEB-INF/views/header.jsp"/>
 	
 	<section>
+	
+		<!-- 맞춤 요금제 div 시작 -->
+		<div class="container-fluid d-flex justify-content-center mt-5 choose-plan">
+			<a class="aTag" href="<%=request.getContextPath()%>/planfind?queType=telecom">
+	       	<div class="row choose-row">
+	       		<div class="col-4 text-center align-self-center">
+					<i class="fa-solid fa-magnifying-glass-arrow-right fa-5x"></i>
+				</div>
+	       		<div class="col-8 align-self-center span-div">
+	       			<sec:authorize access="isAuthenticated()">
+		       			<span>
+		       			<sec:authentication property="name"/>님께 적합한<br>
+		       			맞춤 요금제를 찾아보세요
+		       			</span>
+		       		</sec:authorize>
+	       			<sec:authorize access="isAnonymous()">
+		       			<span>
+		       			회원님께 적합한<br>
+		       			맞춤 요금제를 찾아보세요
+		       			</span>
+	       			</sec:authorize>
+	       		</div>
+	       	</div>
+	       	</a>
+	    </div>
+	    <!-- 맞춤 요금제 div 끝 -->
 	    
 	    <!-- 랭킹 div 시작 -->
 		<div class="container-fluid d-flex justify-content-center mt-5 rank-div">
@@ -100,10 +126,10 @@
        						</div>
 	    					
 	    					<div class="ms-2">
-		    					<c:if test="${viewList.planVoice eq 0 and list.planMessage eq 0}">
+		    					<c:if test="${viewList.planVoice eq 0 and viewList.planMessage eq 0}">
 		       						<p class="voiMes"><i class="fa-solid fa-phone"></i>&nbsp;&nbsp;기본제공&nbsp;&nbsp;&nbsp;&nbsp;<i class="fa-solid fa-envelope"></i>&nbsp;&nbsp;기본제공</p>
 		    					</c:if>
-		    					<c:if test="${viewList.planVoice ne 0 or list.planMessage ne 0}">
+		    					<c:if test="${viewList.planVoice ne 0 or viewList.planMessage ne 0}">
 		       						<p class="voiMes"><i class="fa-solid fa-phone"></i>&nbsp;&nbsp;${viewList.planVoice}분&nbsp;&nbsp;&nbsp;&nbsp;<i class="fa-solid fa-envelope"></i>&nbsp;&nbsp;${viewList.planMessage}건</p>
 		    					</c:if>
 	    					</div>
@@ -268,32 +294,6 @@
 	       	</div>
 	    </div>
 	    <!-- 랭킹 div 끝 -->
-	    
-	    <!-- 맞춤 요금제 div 시작 -->
-		<div class="container-fluid d-flex justify-content-center mt-5 choose-plan">
-			<a class="aTag" href="<%=request.getContextPath()%>/planfind?queType=telecom">
-	       	<div class="row choose-row">
-	       		<div class="col-4 text-center align-self-center">
-					<i class="fa-solid fa-magnifying-glass-arrow-right fa-5x"></i>
-				</div>
-	       		<div class="col-8 align-self-center span-div">
-	       			<sec:authorize access="isAuthenticated()">
-		       			<span>
-		       			<sec:authentication property="name"/>님께 적합한<br>
-		       			맞춤 요금제를 찾아보세요
-		       			</span>
-		       		</sec:authorize>
-	       			<sec:authorize access="isAnonymous()">
-		       			<span>
-		       			회원님께 적합한<br>
-		       			맞춤 요금제를 찾아보세요
-		       			</span>
-	       			</sec:authorize>
-	       		</div>
-	       	</div>
-	       	</a>
-	    </div>
-	    <!-- 맞춤 요금제 div 끝 -->
 	    
 	</section>
 	
