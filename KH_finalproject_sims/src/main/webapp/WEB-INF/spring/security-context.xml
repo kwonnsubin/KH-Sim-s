@@ -14,7 +14,7 @@
 		<s:intercept-url pattern="/logout" access="hasRole('ROLE_ADMIN, ROLE_USER, ROLE_BIZ')"/>
 		<s:intercept-url pattern="/mypage/**" access="hasRole('ROLE_USER')"/>
 		<s:intercept-url pattern="/planfind" access="hasRole('ROLE_USER')"/>
-		<s:intercept-url pattern="/plan/order" access="hasRole('ROLE_USER')"/>
+		<s:intercept-url pattern="/plan/**/order/**" access="hasRole('ROLE_USER')"/>
 		<s:intercept-url pattern="/biz/**" access="hasRole('ROLE_BIZ')"/>
 		<s:intercept-url pattern="/admin/**" access="hasRole('ROLE_ADMIN')"/>
 		

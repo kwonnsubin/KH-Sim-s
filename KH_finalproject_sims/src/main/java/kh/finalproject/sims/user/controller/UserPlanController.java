@@ -21,6 +21,7 @@ import kh.finalproject.sims.user.model.service.UserMyPageService;
 import kh.finalproject.sims.user.model.service.UserPlanService;
 import kh.finalproject.sims.user.model.vo.BizVo;
 import kh.finalproject.sims.user.model.vo.LikeVo;
+import kh.finalproject.sims.user.model.vo.PlanOrderVo;
 import kh.finalproject.sims.user.model.vo.PlanVo;
 import kh.finalproject.sims.user.model.vo.UserMemberVo;
 import kh.finalproject.sims.user.model.vo.UserReviewVo;
@@ -81,7 +82,7 @@ public class UserPlanController {
 	}
 	
 	// 신청 옵션 페이지
-	@GetMapping("/{planNo}/option")
+	@GetMapping("/{planNo}/order/option")
 	public ModelAndView viewPlanOption(
 			ModelAndView mv
 			, @PathVariable int planNo
@@ -108,7 +109,7 @@ public class UserPlanController {
 		mv.setViewName("user/plan/order");
 		return mv;
 	}
-
+	
 	// 찜하기
 	@PostMapping("/{planNo}/like")
 	@ResponseBody

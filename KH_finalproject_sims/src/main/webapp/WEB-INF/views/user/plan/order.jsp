@@ -96,29 +96,166 @@
 				</form>
 				
 				<h4>납부 정보</h4>
-				<form name="payInfo" action="#">
-					<table class="table w-100">
+				<div class="col input-group mb-3">
+					<div class="input-group-text">
+						<input class="form-check-input mt-0" type="radio"
+							value="1" name="payType" checked="checked">
+					</div>
+					<input type="text" class="form-control" value="카드납부" readonly>
+				</div>
+				<div class="col input-group mb-3">
+					<div class="input-group-text">
+						<input class="form-check-input mt-0" type="radio"
+							value="2" name="payType">
+					</div>
+					<input type="text" class="form-control" value="은행납부" readonly>
+				</div>
+				<form name="payInfo" action="#" method="post">
+					<input type="hidden" name="payType" value="1">
+					<table class="table w-100 payInfoTable">
 						<tr>
-							<td class="w-25">명세서 수령방법</td>
+							<td class="w-25">카드 소유자명</td>
+							<td>
+								<input type="text" id="cardHolder" placeholder="카드 소유자를 입력해주세요">
+								<input class="form-check-input" type="checkbox" id="userEqCard">
+								<label class="form-check-label" for="userEqCard">고객정보와 동일</label>
+							</td>
+						</tr>
+						<tr>
+							<td>소유자 주민등록번호</td>
+							<td>
+								<input id="cardSsn1" type="text"> -
+								<input id="cardSsn2" type="password">
+							</td>
+						</tr>
+						<tr>
+							<td>카드번호</td>
+							<td>
+								<input name="card1" type=""> -
+								<input name="card2" type="password"> -
+								<input name="card3" type="password"> -
+								<input name="card4" type="text">
+							</td>
+						</tr>
+						<tr>
+							<td>유효기간</td>
+							<td>
+								<div class="input-group">
+									<select name="cardMonth" class="form-select">
+										<option selected>월</option>
+										<option value="01">01</option>
+										<option value="02">02</option>
+										<option value="03">03</option>
+										<option value="04">04</option>
+										<option value="05">05</option>
+										<option value="06">06</option>
+										<option value="07">07</option>
+										<option value="08">08</option>
+										<option value="09">09</option>
+										<option value="10">10</option>
+										<option value="11">11</option>
+										<option value="12">12</option>
+									</select>
+									<select name="cardYear" class="form-select">
+										<option selected>년도</option>
+										<option value="2023">2023</option>
+										<option value="2024">2024</option>
+										<option value="2025">2025</option>
+										<option value="2026">2026</option>
+										<option value="2027">2027</option>
+										<option value="2028">2028</option>
+										<option value="2029">2029</option>
+										<option value="2030">2030</option>
+										<option value="2031">2031</option>
+										<option value="2032">10</option>
+									</select>
+								</div>
+							</td>
+						</tr>
+						<tr>
+							<td>가입자와의 관계</td>
+							<td>
+								<select name="cardRelationship" class="form-select">
+									<option selected>가입자와의 관계</option>
+									<option value="1">본인</option>
+									<option value="2">부모</option>
+									<option value="3">자녀</option>
+									<option value="4">배우자</option>
+								</select>
+							</td>
+						</tr>
+						<tr>
+							<td>요금청구서 수령방법</td>
 							<td>
 								<div class="form-check form-check-inline">
-									<input class="form-check-input" type="radio" name="howtopay" id="card" value="1">
-									<label class="form-check-label" for="card">카드납부</label>
+									<input class="form-check-input" type="radio" name="planBill" id="mobile" value="1"> 
+									<label class="form-check-label" for="mobile">모바일</label>
 								</div>
 								<div class="form-check form-check-inline">
-									<input class="form-check-input" type="radio" name="howtopay" id="bank" value="2">
-									<label class="form-check-label" for="bank">은행납부</label>
+									<input class="form-check-input" type="radio" name="planBill" id="email" value="2"> 
+									<label class="form-check-label" for="email">이메일</label>
 								</div>
 							</td>
 						</tr>
 					</table>
+				
+				</form>
+				<form name="payInfo" action="#" method="post">
+					<input type="hidden" name="payType" value="2">
 					<table class="table w-100 payInfoTable">
 						<tr>
-							<td>예금주</td>
+							<td class="w-25">예금주</td>
 							<td>
 								<input type="text" id="accountHolder" placeholder="예금주를 입력해주세요">
 								<input class="form-check-input" type="checkbox" id="userEqAccount">
 								<label class="form-check-label" for="userEqAccount">고객정보와 동일</label>
+							</td>
+						</tr>
+						<tr>
+							<td>예금주 주민등록번호</td>
+							<td>
+								<input id="accountSsn1" type="text"> -
+								<input id="accountSsn2" type="password">
+							</td>
+						</tr>
+						<tr>
+							<td>은행</td>
+							<td>
+								<select name="accBank" class="form-select">
+									<option selected>은행 선택</option>
+								</select>
+							</td>
+						</tr>
+						<tr>
+							<td>계좌번호</td>
+							<td>
+								<input type="text" placeholder="숫자만 입력해 주세요">
+								<!-- 계좌실명조회 해볼까... -->
+							</td>
+						</tr>
+						<tr>
+							<td>가입자와의 관계</td>
+							<td>
+								<select name="accRelationship" class="form-select">
+									<option selected>가입자와의 관계</option>
+									<option value="1">본인</option>
+									<option value="2">부모</option>
+									<option value="3">자녀</option>
+									<option value="4">배우자</option>
+								</select>
+							</td>
+						</tr>
+						<tr>
+							<td>요금청구서 수령방법</td>
+							<td>
+								<div class="form-check form-check-inline">
+									<input class="form-check-input" type="radio" name="planBill" id="mobile" value="1"> 
+									<label class="form-check-label" for="mobile">모바일</label>
+								</div>
+								<div class="form-check form-check-inline">
+									<input class="form-check-input" type="radio" name="planBill" id="email" value="2"> 
+									<label class="form-check-label" for="email">이메일</label>
+								</div>
 							</td>
 						</tr>
 					</table>
@@ -167,8 +304,9 @@
         });
 		
 		const email = '${user.userEmail}';
-		let [a,b] = email.split('@');
-		$('#emailId').val(a);
+		let [email1,email2] = email.split('@');
+		$('#emailId').val(email1);
+		$('#emailDomain').val(email2);
 		
 		
 		// 우편번호
@@ -220,6 +358,23 @@
 			}).open();
 		}
 		
+		// 카드정보
+		const userEqCard = document.getElementById('userEqCard');
+		const cardHolder = document.getElementById('cardHolder');
+		const cardSsn1 = document.getElementById('cardSsn1');
+		
+		userEqCard.addEventListener('change', () => {
+			if (userEqCard.checked) {
+				cardHolder.value = '${user.userName}';
+				$('#cardSsn1').val(ssn1);
+				$('#cardSsn2').val(ssn2);
+			} else {
+				cardHolder.value = '';
+				$('#cardSsn1').val('');
+				$('#cardSsn2').val('');
+			}
+		});
+		
 		// 예금정보
 		const userEqAccount = document.getElementById('userEqAccount');
 		const accountHolder = document.getElementById('accountHolder');
@@ -227,8 +382,12 @@
 		userEqAccount.addEventListener('change', () => {
 			if (userEqAccount.checked) {
 				accountHolder.value = '${user.userName}';
+				$('#accountSsn1').val(ssn1);
+				$('#accountSsn2').val(ssn2);
 			} else {
 				accountHolder.value = '';
+				$('#accountSsn1').val('');
+				$('#accountSsn2').val('');
 			}
 		});
 

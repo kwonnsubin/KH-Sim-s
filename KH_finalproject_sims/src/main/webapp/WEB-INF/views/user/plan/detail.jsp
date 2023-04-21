@@ -40,7 +40,7 @@
 			<div class="row m-3 py-4">
 				<div class="col-sm-2 float-sm-none">
 					<a href="#"> <!-- 통신사 페이지 만들어서 연결 -->
-						<img class="logo-m" src="${cpath}/resources/img/${biz.bizId}.jpg" alt="${plan.bizName}">
+						<img class="logo-m" src="${cpath}/resources/img/${biz.bizId}.png" alt="${plan.bizName}">
 					</a>
 				</div>
 				<div class="col-sm-7 float-sm-none vertical-center px-4">
@@ -133,7 +133,7 @@
 					<div class="row">
 						<div class="col-2">
 							<a href="#"> <!-- 통신사 페이지 만들어서 연결 -->
-								<img class="logo-s" src="${cpath}/resources/img/${biz.logoRenameFilename}" alt="${plan.bizName}">
+								<img class="logo-s" src="${cpath}/resources/img/${biz.bizId}.png" alt="${plan.bizName}">
 							</a>
 						</div>
 						<div class="col-6 vertical-center">
@@ -260,8 +260,10 @@
 	                } 
 	            },
 	            error: function(xhr, status, error) {
-	                console.log(xhr.responseText);
-	                alert("로그인이 필요합니다.");
+	                console.log("xhr.status: " + xhr.status);
+	                console.log("xhr.statusText: " + xhr.statusText);
+	                console.log("xhr.responseText: " + xhr.responseText);
+	                console.log("xhr.readyState: " + xhr.readyState);
 	            }
 	        });
 	    }

@@ -27,6 +27,7 @@
 		<typeAlias type="kh.finalproject.sims.user.model.vo.CustomQueVo" alias="qVo"/>
 		<typeAlias type="kh.finalproject.sims.user.model.vo.UserReviewVo" alias="usRvo"/>
 		<typeAlias type="kh.finalproject.sims.user.model.vo.LikeVo" alias="likeVo"/>
+		<typeAlias type="kh.finalproject.sims.user.model.vo.PlanOrderVo" alias="orderVo"/>
 		<typeAlias type="kh.finalproject.sims.admin.model.vo.AdminBizMngtVo" alias="adBizVo"/>
 	</typeAliases>
 	 
