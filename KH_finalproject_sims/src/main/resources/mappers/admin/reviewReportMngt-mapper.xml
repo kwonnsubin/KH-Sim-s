@@ -89,12 +89,15 @@
 	</select> -->
 	
 	<!-- 페이징 search 글 목록 갯수 -->
-	<select id="getSearchReviewReportPageCnt" resultType="_int">
+	<select id="getSearchReviewReportPageCnt" parameterType="map" resultType="_int">
 		SELECT COUNT(*) FROM REVIEW_REPORT
 		<choose>
 			<when test="searchType != null and searchType == 'title'">  WHERE REPORT_REASON LIKE '%'|| #{keyword} ||'%'</when>
 			<when test="searchType != null and searchType == 'writer'"> WHERE BIZ_ID LIKE '%'|| #{keyword} ||'%'</when>
 			<when test="searchType != null and searchType == 'content'"> WHERE REVIEW_CONTENT LIKE '%'|| #{keyword} ||'%'</when>
+			<when test="reportStatus != null and reportStatus == 1"> WHERE REPORT_STATUS = 1</when>
+			<when test="reportStatus != null and reportStatus == 2"> WHERE REPORT_STATUS = 2</when>
+			<when test="reportStatus != null and reportStatus == 3"> WHERE REPORT_STATUS = 3</when>
 		</choose>
 	</select>
 	
@@ -119,9 +122,9 @@
 			<when test="searchType != null and searchType == 'title'">  WHERE REPORT_REASON LIKE '%'|| #{keyword} ||'%'</when>
 			<when test="searchType != null and searchType == 'writer'"> WHERE BIZ_ID LIKE '%'|| #{keyword} ||'%'</when>
 			<when test="searchType != null and searchType == 'content'"> WHERE REVIEW_CONTENT LIKE '%'|| #{keyword} ||'%'</when>
-			<when test="reportStatus != null and reportStatus == '1'"> WHERE REPORT_STATUS = 1</when>
-			<when test="reportStatus != null and reportStatus == '2'"> WHERE REPORT_STATUS = 2</when>
-			<when test="reportStatus != null and reportStatus == '3'"> WHERE REPORT_STATUS = 3</when>
+			<when test="reportStatus != null and reportStatus == 1"> WHERE REPORT_STATUS = 1</when>
+			<when test="reportStatus != null and reportStatus == 2"> WHERE REPORT_STATUS = 2</when>
+			<when test="reportStatus != null and reportStatus == 3"> WHERE REPORT_STATUS = 3</when>
 		</choose>
 		)
         WHERE N BETWEEN #{start} AND #{end}

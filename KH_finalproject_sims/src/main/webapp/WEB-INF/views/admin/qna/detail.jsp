@@ -107,7 +107,8 @@
 
 <jsp:include page="/WEB-INF/views/admin/include/footer.jsp" />
 </body>
-<script>// 페이지 로드가 되면
+<script>
+
 $(document).ready(function(){
 	getAnsList();
 }); 

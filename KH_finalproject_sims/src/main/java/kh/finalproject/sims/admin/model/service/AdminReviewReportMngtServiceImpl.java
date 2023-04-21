@@ -48,16 +48,17 @@ public class AdminReviewReportMngtServiceImpl implements AdminReviewReportMngtSe
 	
 	// 페이징 search
 	@Override
-	public Search getPage(int pNum, int cnt, String keyword, String searchType) {
+	public Search getPage(int pNum, int cnt, String keyword, String searchType, String reportStatus) {
 		Map<String, Object> map = new HashMap<String, Object>();
 		map.put("start", (pNum - 1) * cnt + 1);
 		map.put("end", pNum * cnt);
 		map.put("keyword", keyword);
 		map.put("searchType", searchType);
+		map.put("reportStatus", reportStatus);
 		
 		List<AdminReviewReportMngtVo> dataList = dao.searchReviewReportPageList(map); // 한 페이지의 글 목록
 		
-		int totalRowCount = dao.getSearchReviewReportListCnt(); // 글목록 총 개수를 알아야한다.
+		int totalRowCount = dao.getSearchReviewReportListCnt(map); // 글목록 총 개수를 알아야한다.
 		int mod = totalRowCount % cnt == 0 ? 0 : 1;
 		int pageCount = (totalRowCount / cnt) + mod; // 그래야지만 총 페이지수를 구할수있으니깐!
 		

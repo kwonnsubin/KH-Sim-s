@@ -60,14 +60,18 @@
 									</div>
 									<!-- 검색 {e} -->
 									<!-- 처리 상태별로 보기 버튼 {s} -->
-									<div class="btn-group mb-2" role="group" aria-label="Basic example">
-										<button type="button" class="btn  btn-secondary" id="not-confirmed">미확인</button>
-										<button type="button" class="btn  btn-secondary" id="rejected">반려</button>
-										<button type="button" class="btn  btn-secondary" id="deleted">삭제</button>
-									</div>
+									<form id="reportStatusForm" action="<%=request.getContextPath()%>/admin/reviewreport/list" method="post">
+									  <div class="btn-group mt-3 mb-3" role="group" aria-label="Basic example">
+									    <button type="button" class="btn  btn-primary" id="not-confirmed">미확인</button>
+									    <button type="button" class="btn  btn-primary" id="rejected">반려</button>
+									    <button type="button" class="btn  btn-primary" id="deleted">삭제</button>
+									  </div>
+									  <input type="hidden" id="reportStatus" name="reportStatus" value="">
+									</form>
                                     <!-- 처리 상태별로 보기 버튼 {e} -->
-									<div class="card">
+									<div class="card" id="reviewRepostList">
 										<div class="card-body table-border-style">
+											<!-- 리스트 {s} -->
 											<div class="table-responsive">
 												<table class="table table-hover">
 													<thead>
@@ -92,8 +96,9 @@
 													</tbody>
 												</table>
 											</div>
+											<!-- 리스트 {e} -->
 											<!-- 페이지 번호 {s} -->
-											<nav aria-label="Page navigation example">
+											<nav aria-label="Page navigation example" id="pageNumber">
 												<ul class="pagination">
 													<c:set var="pageNumber" value="${empty param.p ? 1 : param.p }" />
 													<c:choose>
@@ -106,8 +111,7 @@
 														</c:otherwise>
 													</c:choose>
 													<c:forEach var="pNum" items="${requestScope.paging.pageList }">
-														<li class="page-item ${pNum eq pageNumber ? 'active' : '' }"><a class="page-link" 
-														href="${path}/admin/reviewreport/list?p=${pNum }">${pNum }</a></li>
+														<li class="page-item ${pNum eq pageNumber ? 'active' : '' }"><a class="page-link" href="${path}/admin/reviewreport/list?p=${pNum }&reportStatus=${reportStatus}">${pNum }</a></li>
 													</c:forEach>
 													<c:choose>
 														<c:when test="${requestScope.paging.nextPage eq -1 }">
@@ -136,40 +140,24 @@
 </body>
 <script type="text/javascript">
 
-  $(document).ready(function() {
-    $('#not-confirmed').on("click", function() {
-      // 서버에 선택된 처리상태 값을 전송
-      var reportStatus = 1;
-      sendReportStatus(reportStatus);
-    });
-  
-    $('#deleted').on("click", function() {
-      // 서버에 선택된 처리상태 값을 전송
-      var reportStatus = 2;
-      sendReportStatus(reportStatus);
-    });
-
-    $('#rejected').on("click", function() {
-      // 서버에 선택된 처리상태 값을 전송
-      var reportStatus = 3;
-      sendReportStatus(reportStatus);
-    });
-
-    function sendReportStatus(reportStatus) {
-      $.ajax({
-        url: '<%=request.getContextPath()%>/admin/reviewreport/list',
-        type: 'GET',
-        data: {
-        	reportStatus: reportStatus
-        },
-        success: function(data) {
-			console.log(data);
-        },
-        error: function() {
-        	alert("오류가 발생했습니다.");
-        }
-      });
-    }
+	$(document).ready(function() {
+	    $('#not-confirmed').on("click", function() {
+	      // reportStatus 값을 form의 hidden input에 설정하고 form 제출
+	      $('#reportStatus').val(1);
+	      $('#reportStatusForm').submit();
+	    });
+	  
+	    $('#deleted').on("click", function() {
+	      // reportStatus 값을 form의 hidden input에 설정하고 form 제출
+	      $('#reportStatus').val(2);
+	      $('#reportStatusForm').submit();
+	    });
+	
+	    $('#rejected').on("click", function() {
+	      // reportStatus 값을 form의 hidden input에 설정하고 form 제출
+	      $('#reportStatus').val(3);
+	      $('#reportStatusForm').submit();
+	    });
   });
   
 </script>

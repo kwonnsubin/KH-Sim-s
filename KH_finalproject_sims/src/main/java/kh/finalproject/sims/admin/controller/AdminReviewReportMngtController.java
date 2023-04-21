@@ -9,10 +9,15 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
+
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
 
 import kh.finalproject.sims.admin.model.service.AdminReviewMngtService;
 import kh.finalproject.sims.admin.model.service.AdminReviewReportMngtService;
@@ -37,13 +42,6 @@ public class AdminReviewReportMngtController {
 			, HttpServletRequest request
 			, HttpServletResponse response	
 			) {
-//		if(vo.getSearchOption() == null) {
-//			mv.addObject("reviewReportList", service.selectReviewReportList());		
-//		} else {
-//			mv.addObject("reviewReportList", service.selectSearchReviewReportList(vo)); // 검색이 있을경우
-//	        mv.addObject("searchOption", vo.getSearchOption());
-//	        mv.addObject("searchBox", vo.getSearchBox());
-//		}
 		
 		//페이징
   		//String pageNumber = request.getParameter("p"); 굳이 이렇게 안가져오고 @RequestParam으로 받아도됨.
@@ -83,9 +81,9 @@ public class AdminReviewReportMngtController {
   		cookie.setMaxAge(60 * 60 * 24 * 5);
   		response.addCookie(cookie);	 
   		
-		Search search = service.getPage(pNum, Integer.parseInt(cnt), keyword, searchType); // 한 페이지에 보여줄 자주묻는질문 목록
+		Search search = service.getPage(pNum, Integer.parseInt(cnt), keyword, searchType, vo.getReportStatus()); // 한 페이지에 보여줄 자주묻는질문 목록
 		request.setAttribute("paging", search);
-		
+		mv.addObject("reportStatus", vo.getReportStatus());
 		mv.setViewName("admin/reviewreport/list");
 		return mv;
 	}

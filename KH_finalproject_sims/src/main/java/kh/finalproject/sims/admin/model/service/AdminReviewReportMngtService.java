@@ -21,5 +21,5 @@ public interface AdminReviewReportMngtService {
 	public int updateReviewReportStatus(AdminReviewMngtVo vo);
 	
 	// 페이징 search
-	public Search getPage(int pNum, int cnt, String keyword, String searchType);
+	public Search getPage(int pNum, int cnt, String keyword, String searchType, String reportStatus);
 }

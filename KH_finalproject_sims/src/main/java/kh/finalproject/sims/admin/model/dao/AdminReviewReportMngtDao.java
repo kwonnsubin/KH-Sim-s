@@ -47,7 +47,7 @@ public class AdminReviewReportMngtDao {
 	}
 	
 	// 글목록 총 갯수 search
-	public int getSearchReviewReportListCnt() {
-		return sqlSession.selectOne("admin.getSearchReviewReportPageCnt");
+	public int getSearchReviewReportListCnt(Map<String, Object> map) {
+		return sqlSession.selectOne("admin.getSearchReviewReportPageCnt", map);
 	}
 }
