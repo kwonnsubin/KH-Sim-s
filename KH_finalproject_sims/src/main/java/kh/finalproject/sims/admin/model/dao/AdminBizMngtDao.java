@@ -1,13 +1,13 @@
 package kh.finalproject.sims.admin.model.dao;
 
 import java.util.List;
+import java.util.Map;
 
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import kh.finalproject.sims.admin.model.vo.AdminBizMngtVo;
-import kh.finalproject.sims.admin.model.vo.AdminNoticeMngtVo;
 
 @Repository
 public class AdminBizMngtDao {
@@ -17,8 +17,13 @@ public class AdminBizMngtDao {
 	
 	
 	//통신사 관리 리스트 
-	public List<AdminBizMngtVo> selectApplyList(AdminBizMngtVo vo) {
-		return sqlSession.selectList("adminBiz.selectApplyList", vo);
+	public List<AdminBizMngtVo> selectApplyList(Map<String, Object> map) {
+		return sqlSession.selectList("adminBiz.selectApplyList", map);
+	}
+	
+	//통신사 관리 리스트 전체 갯수
+	public int selectApplyListCnt(Map<String, Object> map) {
+		return sqlSession.selectOne("adminBiz.selectApplyListCnt", map);
 	}
 
 	//통신사 관리 신청정보 상세 페이지 호출
@@ -64,6 +69,11 @@ public class AdminBizMngtDao {
 	public int updateWithdrawalBizStatus(AdminBizMngtVo vo) {
 		return sqlSession.update("adminBiz.updateWithdrawalBizStatus", vo);
 	}
+
+	public AdminBizMngtVo selectPlanAjax(int planNo) {
+		return sqlSession.selectOne("adminBiz.selectBizPlanDetailAjax", planNo);
+	}
+
 
 
 

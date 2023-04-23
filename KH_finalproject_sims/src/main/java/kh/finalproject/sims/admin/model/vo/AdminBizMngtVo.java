@@ -1,6 +1,5 @@
 package kh.finalproject.sims.admin.model.vo;
 
-import java.sql.Timestamp;
 import java.util.Date;
 
 import org.springframework.stereotype.Component;
@@ -67,6 +66,7 @@ public class AdminBizMngtVo {
 	private Date writeDate;
 	private Date updateDate;
 	private String logoRenameFileName;
+	private String originalFileName;
 
 	
 	
@@ -171,6 +171,14 @@ public class AdminBizMngtVo {
 	private String searchOption; // 조회 조건
 	private String searchBox; // 조회 문구
 	private String searchRadioVal;	// 조회 라디오버튼 값
+	
+	// 페이징 처리용
+	private int totalRowCount;	// 전체 갯수
+	private int currentPage;
+	private int lastPage;
+	private int pageLimit;
+	private int listLimit;
+	
 	
 	//사용자
 	// USER_NAME	NOT NULL		VARCHAR2(20)

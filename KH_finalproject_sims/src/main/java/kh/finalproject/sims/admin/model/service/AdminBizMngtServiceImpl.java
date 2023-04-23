@@ -1,6 +1,8 @@
 package kh.finalproject.sims.admin.model.service;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import javax.mail.MessagingException;
 import javax.mail.internet.MimeMessage;
@@ -12,6 +14,7 @@ import org.springframework.stereotype.Service;
 
 import kh.finalproject.sims.admin.model.dao.AdminBizMngtDao;
 import kh.finalproject.sims.admin.model.vo.AdminBizMngtVo;
+import kh.finalproject.sims.common.page.Search;
 
 @Service
 public class AdminBizMngtServiceImpl implements AdminBizMngtService{
@@ -24,8 +27,19 @@ public class AdminBizMngtServiceImpl implements AdminBizMngtService{
 
 	//통신사 정보 리스트
 	@Override
-	public List<AdminBizMngtVo> selectApplyList(AdminBizMngtVo vo) {
-		return dao.selectApplyList(vo);
+	public Search selectApplyList(int pNum, int cnt, String searchOption, String searchRadioVal, String searchBox) {
+		Map<String, Object> map = new HashMap<String, Object>();
+		map.put("start", (pNum - 1) * cnt + 1);
+		map.put("end", pNum * cnt);
+		map.put("searchOption", searchOption);
+		map.put("searchRadioVal", searchRadioVal);
+		map.put("searchBox", searchBox);
+		List<AdminBizMngtVo> dataList = dao.selectApplyList(map);
+		int totalRowCount = dao.selectApplyListCnt(map);
+		int mod = totalRowCount % cnt == 0 ? 0 : 1;
+		int pageCount = (totalRowCount / cnt) + mod;
+		Search search = new Search(dataList, pNum, pageCount, cnt, 5, totalRowCount, searchOption, searchRadioVal, searchBox);
+		return search;
 	}
 
 	//통신사의 신청정보 상세
@@ -105,7 +119,12 @@ public class AdminBizMngtServiceImpl implements AdminBizMngtService{
 	public AdminBizMngtVo selectBizPlanApplyDetail(int orderNo ) {
 		return dao.selectBizPlanApplyDetail(orderNo);
 	}
-
+	
+	//통신사 요금제 정보 ajax
+	@Override
+	public AdminBizMngtVo selectPlanAjax(int planNo) {
+		return dao.selectPlanAjax(planNo);
+	}
 	
 	
 

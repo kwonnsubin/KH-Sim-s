@@ -10,6 +10,40 @@
 <title></title>
 </head>
 <body>
+<script type="text/javascript">
+	/* 요금제 정보 호출 ajax */
+	function fn_selectPlanAjax(planNo){
+		$.ajax({
+			url: "${pageContext.request.contextPath}/admin/selectPlanAjax",
+			type: "post",
+			data: {planNo : planNo},
+			dataType: "json",
+			success: function(json){
+				$("#planName").text(json.planName);
+				$("#netName").text(json.netName);
+				$("#genName").text(json.genName);
+				$("#planPrice").text(json.planPrice);
+				$("#planVoice").text(json.planVoice);
+				$("#planMessage").text(json.planMessage);
+				$("#planData").text(json.planData);
+				$("#planVoiceOver").text(json.planVoiceOver);
+				$("#planMessageOver").text(json.planMessageOver);
+				$("#planDataOver").text(json.planDataOver);
+			},
+			error: function(jqXHR, textStatus, errorThrown){
+				console.log(jqXHR);  //응답 메시지
+				console.log(textStatus); //"error"로 고정인듯함
+				console.log(errorThrown);
+			}
+		});
+	}
+	
+	/* 홈페이지 인풋박스 클릭 시, 해당 홈페이지로 이동 (수정 페이지에서는 동작 X)  */
+	function fn_goToHompage(){
+		var bizHp = $("input[name=bizHp]").val();
+		window.open(bizHp, '_blank');
+	}
+</script>
 <jsp:include page="../include/header.jsp" />
 <div class="pcoded-main-container">
 	<div class="pcoded-wrapper container">
@@ -67,7 +101,7 @@
 	                    				</div>
 	                    				<div class="card-body">
 	                    					<!-- 로고있어야하넹 로고자리입니다-->
-	                    					<img src="${path}${imagePath}"/>
+	                    					<img src="${path}${imagePath}" style="width:200px;height:60px;"/>
 		                                    <div class="form-group row">
 		                                    </div>
 		                                    <div class="form-group row">
@@ -108,8 +142,8 @@
 		                                        </div>
 		                                        <label for="bizHp" class="col-sm-1 col-form-label text-center">홈페이지</label>
 		                                        <div class="col-sm-5">
-		                                            <input type="text" class="form-control"  name="bizHp" <c:if test="${cmd eq 'read' }">readonly</c:if> value="${applyDetail.bizHp}">
-		                                            <a href="${applyDetail.bizHp }"></a>
+		                                            <input type="text" class="form-control"  name="bizHp" <c:if test="${cmd eq 'read' }">readonly onclick="javascript:fn_goToHompage();"</c:if> value="${applyDetail.bizHp}">
+		                                            <%-- <a href="${applyDetail.bizHp }">${applyDetail.bizHp }</a> --%>
 		                                        </div>
 		                                    </div>
 		                           			 <div class="form-group row">
@@ -180,14 +214,14 @@
 															<tr>
 																<th>번호</th>
 																<th>요금제명</th>
-																
 															</tr>
 														</thead>
 														<tbody>
 															<c:forEach var="list" items="${bizPlanList}" varStatus="status">
 																<tr>
-																	<td>${status.count}</td>
-																	<td>${list.planName}</td>
+																	<%-- <td>${status.count}</td> --%>
+																	<td>${list.planNo}</td>
+																	<td><a href="#" onclick="fn_selectPlanAjax('${list.planNo}');" data-toggle="modal" data-target="#gridSystemModal">${list.planName}</a></td>
 																</tr>
 															</c:forEach>
 														</tbody>
@@ -213,6 +247,73 @@
 				</div>
 			</div>
 		</div>
+	</div>
+</div>
+
+<div class="col-xl-4 col-md-6">
+	<!-- <div class="card">
+		<div class="card-header">
+			<h5>Using the Grid</h5>
+		</div> -->
+		<div class="card-body">
+			<div id="gridSystemModal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="gridModalLabel" aria-hidden="true">
+				<div class="modal-dialog" role="document">
+					<div class="modal-content">
+						<div class="modal-header">
+							<h5 class="modal-title" id="gridModalLabel"><span id="planName"></span></h5>
+							<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+						</div>
+						<div class="modal-body">
+							<div class="container-fluid bd-example-row">
+								<div class="row">
+									<div class="col-md-5">통신망</div>
+									<div class="col-md-7"><span id="netName"></span></div>
+									<!-- <div class="col-md-4">.col-md-4</div>
+									<div class="col-md-4 ml-auto">.col-md-4 .ml-auto</div> -->
+								</div>
+								<div class="row">
+									<div class="col-md-5">통신세대</div>
+									<div class="col-md-7"><span id="genName"></span></div>
+								</div>
+								<div class="row">
+									<div class="col-md-5">기본료(원)</div>
+									<div class="col-md-7"><span id="planPrice"></span></div>
+								</div>
+								<div class="row">
+									<div class="col-md-5">기본음성(분)</div>
+									<div class="col-md-7"><span id="planVoice"></span></div>
+								</div>
+								<div class="row">
+									<div class="col-md-5">기본문자(건)</div>
+									<div class="col-md-7"><span id="planMessage"></span></div>
+								</div>
+								<div class="row">
+									<div class="col-md-5">기본데이터(mb)</div>
+									<div class="col-md-7"><span id="planData"></span></div>
+								</div>
+								<div class="row">
+									<div class="col-md-5">초과음성단가(초)</div>
+									<div class="col-md-7"><span id="planVoiceOver"></span></div>
+								</div>
+								<div class="row">
+									<div class="col-md-5">초과문자단가(건)</div>
+									<div class="col-md-7"><span id="planMessageOver"></span></div>
+								</div>
+								<div class="row">
+									<div class="col-md-5">초과데이터단가(mb)</div>
+									<div class="col-md-7"><span id="planDataOver"></span></div>
+								</div>
+							</div>
+						</div>
+						<div class="modal-footer">
+							<button type="button" class="btn  btn-secondary" data-dismiss="modal">닫기</button>
+							<!-- <button type="button" class="btn  btn-primary">Save changes</button> -->
+						</div>
+					</div>
+				</div>
+			</div>
+			<!-- <button type="button" class="btn  btn-primary" data-toggle="modal" data-target="#gridSystemModal">Launch demo modal</button>
+		</div> -->
 	</div>
 </div>
 		

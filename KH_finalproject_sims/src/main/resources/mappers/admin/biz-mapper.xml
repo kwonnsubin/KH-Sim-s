@@ -6,7 +6,13 @@
 	<select id="selectApplyList" resultType="adBizVo">
 	/** 통신사 신청정보 리스트(selectApplyList)**/
 		SELECT
-			*
+			C.*
+		FROM
+		(
+		SELECT
+			A.*
+			, B.*
+			, ROWNUM AS RO
 		FROM 
 			BIZ A
 		INNER JOIN MEMBER B ON A.BIZ_ID = B.ID
@@ -28,7 +34,42 @@
 				</when>
 			</choose>
 		</if>
+		) C
+		WHERE 1=1
+			AND RO BETWEEN #{start} AND #{end}
 	</select>
+	
+	<!-- 통신사 신청정보 리스트 -->
+	<select id="selectApplyListCnt" resultType="_int">
+	/** 통신사 신청정보 리스트 전체 갯수(selectApplyListCnt)**/
+		SELECT
+			COUNT(*) AS TOTAL_ROW_COUNT
+		FROM 
+			BIZ A
+		INNER JOIN MEMBER B ON A.BIZ_ID = B.ID
+		WHERE 1=1
+		<if test="searchRadioVal != null">
+			<choose>
+				<when test="searchRadioVal != 'total'">
+					AND B.ENABLE = #{searchRadioVal}
+				</when>
+			</choose>
+		</if>
+		<if test="searchOption != null">
+			<choose>
+				<when test="searchOption == 'bizName'">
+					AND UPPER(A.BIZ_NAME) LIKE UPPER('%'||#{searchBox}||'%')
+				</when>
+				<when test="searchOption == 'bizOwnerName'">
+					AND UPPER(A.BIZ_OWNER_NAME) LIKE UPPER('%'||#{searchBox}||'%')
+				</when>
+			</choose>
+		</if>
+		<if test="searchOption == null and searchBox != null">
+			AND (UPPER(A.BIZ_NAME) LIKE UPPER('%'||#{searchBox}||'%') OR AND UPPER(A.BIZ_OWNER_NAME) LIKE UPPER('%'||#{searchBox}||'%')) 
+		</if>
+	</select>
+	
 	<!-- 통신사 신청정보 상세 -->
 	<select id="selectApplyDetail" resultType="adBizVo">
 	/** 관리자의 통신사 신청정보 상세 (selectApplyDetail)**/	
@@ -166,21 +207,19 @@
 		    plan_order A
 		 WHERE 
 			A.order_no = #{orderNo}
-		
-	
-	
-		<!-- SELECT
-				*
-			from
-			 plan_order
-			where
-			 order_no =#{orderNo}  -->
-	  
-	   
-	  
-		 
 	</select>
 	
+	<!-- 통신사 요금제 상세 정보 Ajax -->
+	<select id="selectBizPlanDetailAjax" resultType="adBizVo">
+	/** 통신사 요금제 상세 정보 Ajax (selectBizPlanDetailAjax)**/
+		SELECT 
+			A.* 
+			, DECODE(A.NET_NO, '1', 'KT', '2', 'SKT', 'LGU+') AS NET_NAME
+			, DECODE(A.GEN_NO, '1', '5G', '2', 'LTE', '3', '3G', 'LTE/3G') AS GEN_NAME
+		FROM PLAN_TABLE A 
+		WHERE 1=1
+			AND PLAN_NO = #{plan_no}
+	</select>
 	
 
 

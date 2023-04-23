@@ -1,6 +1,11 @@
 package kh.finalproject.sims.admin.controller;
 
+import java.util.HashMap;
+import java.util.Map;
+
+import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -9,10 +14,15 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
+
+import com.google.gson.Gson;
 
 import kh.finalproject.sims.admin.model.service.AdminBizMngtService;
 import kh.finalproject.sims.admin.model.vo.AdminBizMngtVo;
+import kh.finalproject.sims.common.page.Search;
 
 @RequestMapping("/admin")
 @Controller
@@ -21,14 +31,68 @@ public class AdminBizMngtController {
 	@Autowired
 	private AdminBizMngtService service;
 
+	public Map<String, String> paginationInfo(String pageNumber, HttpServletRequest request, HttpServletResponse response) {
+		Map<String, String> map = new HashMap<String, String>();
+		
+		int pNum;
+		if(pageNumber == null || pageNumber.isEmpty()) {
+			pNum = 1;
+		} else {
+			pNum = Integer.parseInt(pageNumber);
+		}
+		
+		Cookie cookie = null;
+		Cookie[] cookies = request.getCookies();
+		for(Cookie c : cookies) {
+			if(c.getName().equals("cnt")) {
+				cookie = c;
+			}
+		}
+		
+		String cnt = request.getParameter("cnt");
+		if(cnt != null) {
+			if(cnt.isEmpty()) {
+				if(cookie != null) {
+					cnt = cookie.getValue();
+				} else {
+					cnt = "10";
+				}
+			}
+		} else {
+			if(cookie != null) {
+				cnt = cookie.getValue();
+			} else {
+				cnt = "10";
+			}
+		}
+		
+		cookie = new Cookie("cnt", cnt);
+		cookie.setMaxAge(60 * 60 * 24 * 5);
+		response.addCookie(cookie);
+		
+		map.put("pNum", String.valueOf(pNum));
+		map.put("cnt", cnt);
+		
+		return map;
+		
+	}
+	
 	// 통신사 리스트로 이동
 	@RequestMapping(value = "/applyList", method = { RequestMethod.GET, RequestMethod.POST })
-	public ModelAndView selectApplyList(ModelAndView mv, AdminBizMngtVo vo) throws Exception {
+	public ModelAndView selectApplyList(ModelAndView mv, AdminBizMngtVo vo, @RequestParam(value="p", required = false) String pageNumber, HttpServletRequest request, HttpServletResponse response) throws Exception {
 
-		mv.addObject("applyList", service.selectApplyList(vo));
-		mv.addObject("searchOption", vo.getSearchOption());
-		mv.addObject("searchBox", vo.getSearchBox());
-		mv.addObject("searchRadioVal", vo.getSearchRadioVal());
+		Map<String, String> paginationInfo = paginationInfo(pageNumber, request, response);
+		int pNum = Integer.parseInt(paginationInfo.get("pNum"));
+		int cnt = Integer.parseInt(paginationInfo.get("cnt"));
+		String searchOption = vo.getSearchOption();
+		String searchRadioVal = vo.getSearchRadioVal();
+		String searchBox = vo.getSearchBox();
+		Search search = service.selectApplyList(pNum, cnt, searchOption, searchRadioVal, searchBox);
+		/* mv.addObject("applyList", search); */
+		request.setAttribute("paging", search);
+		mv.addObject("searchOption", searchOption);
+		mv.addObject("searchBox", searchBox);
+		mv.addObject("searchRadioVal", searchRadioVal);
 		mv.setViewName("admin/biz/applyList");
 		return mv;
 	}
@@ -54,7 +118,13 @@ public class AdminBizMngtController {
 		AdminBizMngtVo applyDetail = service.selectApplyDetail(bizId);
 		mv.addObject("applyDetail", applyDetail);
 		mv.addObject("cmd", "read");
-		String imagePath ="/resources/img/"+vo.getLogoRenameFileName();
+		String imagePath;
+		if(applyDetail.getLogoRenameFileName() == null) {
+			imagePath ="/resources/img/"+applyDetail.getOriginalFileName();
+		} else {
+			imagePath ="/resources/img/"+applyDetail.getLogoRenameFileName();
+		}
+		
 		mv.addObject("imagePath",imagePath);
 		return mv;
 	}
@@ -80,6 +150,16 @@ public class AdminBizMngtController {
 		AdminBizMngtVo applyDetail = service.selectApplyDetail(bizId);
 		mv.addObject("applyDetail", applyDetail);
 		mv.addObject("cmd", "update");
+		
+		String imagePath;
+		if(applyDetail.getLogoRenameFileName() == null) {
+			imagePath ="/resources/img/"+applyDetail.getOriginalFileName();
+		} else {
+			imagePath ="/resources/img/"+applyDetail.getLogoRenameFileName();
+		}
+		
+		mv.addObject("imagePath",imagePath);
+		
 		mv.setViewName("/admin/biz/bizDetail");
 		return mv;
 	}
@@ -134,13 +214,23 @@ public class AdminBizMngtController {
 	}
 
 	// 통신사 요금제 개통 신청 상세 페이지로 이동
+	@GetMapping("/bizPlanApplyDetail/{orderNo}") 
+	public ModelAndView selectBizPlanApplyDetail(ModelAndView mv, @PathVariable int orderNo) throws Exception {
+		AdminBizMngtVo bizPlanApplyDetail =service.selectBizPlanApplyDetail(orderNo);
+		mv.addObject("bizPlanApplyDetail",bizPlanApplyDetail);
+		mv.setViewName("admin/biz/planApplyDetail");
+		mv.addObject("cmd", "read"); 
+		return mv; 
+	}
 	
-	  @GetMapping("/bizPlanApplyDetail/{orderNo}") 
-	  public ModelAndView selectBizPlanApplyDetail(ModelAndView mv, @PathVariable int orderNo) throws Exception {
-		  AdminBizMngtVo bizPlanApplyDetail =service.selectBizPlanApplyDetail(orderNo);
-		  mv.addObject("bizPlanApplyDetail",bizPlanApplyDetail);
-		  mv.setViewName("admin/biz/planApplyDetail");
-		  mv.addObject("cmd", "read"); 
-		  return mv; 
-	 }
+	// 요금제 상세 정보 호출 ajax
+	@PostMapping("/selectPlanAjax")
+	@ResponseBody
+	public String selectPlanAjax(HttpServletRequest request) throws Exception {
+		int planNo = Integer.parseInt(request.getParameter("planNo"));
+		AdminBizMngtVo selectPlanAjax = service.selectPlanAjax(planNo);
+		Gson gson = new Gson();
+		String json = gson.toJson(selectPlanAjax);
+		return json;
+	}
 }
