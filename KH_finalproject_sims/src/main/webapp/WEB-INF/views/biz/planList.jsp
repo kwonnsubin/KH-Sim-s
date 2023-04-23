@@ -64,7 +64,7 @@
 		
 				
 	    <!-- search{s} -->
-	    <div class="input-group" style="width: auto; height: 20%; padding-right: 60px;">
+	    <div class="input-group" style="width: auto; height: 20%; padding-right: 60px; margin-left: -10%;">
 	    
 		    <div style="display: flex;">
 		    	<input class="form-control" style="display: inline-block; width: 300px;" type="text" name="keyword" id="keyword">
@@ -95,7 +95,7 @@
     <span>"<%=request.getParameter("keyword")%>"의 검색 결과입니다.</span>
 	<% } %>
     
-        <table class="table table-hover" id="planTb" style="width: 73%;  position: relative;">
+        <table class="table table-hover" id="planTb" style="width: 80%;  position: relative;">
             <thead>
                 <tr class="text-center mx-auto" style="background-color: #f7f7f7;">
                     <th>번호</th>

@@ -40,75 +40,76 @@
 
 
 
-<div class="container"  style="overflow-x: auto;">
+<div>
 
-<div class="searchTop">
-
-	<form action="${path}/biz/applyList" class="listSelect">
-			<select class="form-select" style="width: 100px" name="cnt" onchange="submit();">
-				<c:forEach var="num" begin="5" end="30" step="5">
-					<option value="${num }" ${requestScope.paging.pageLimit eq num ? "selected" : "" }>${num } 개</option>
-				</c:forEach>
-			</select>
-	</form>	
-
-
-	<div class="input-group" style="width: auto; padding-right: 60px;">
+	<div class="searchTop d-flex">
 	
-	<!-- search{s} -->
-		<div style="display: flex;">
-
-			<select class="form-select" style="display: inline-block; width: 120px" name="searchType" id="searchType">
-				<option value="planName">요금제명</option>
-				<option value="userId">신청자</option>
-			</select>
-			<input class="form-control" style="display: inline-block; width: 300px;" type="text" name="keyword" id="keyword">
-			
-	<!-- 분류 {s} -->
-	
-	
+		<div class="col-md-2">
+			<form action="${path}/biz/applyList" class="listSelect">
+					<select class="form-select" style="width: 100px" name="cnt" onchange="submit();">
+						<c:forEach var="num" begin="5" end="30" step="5">
+							<option value="${num }" ${requestScope.paging.pageLimit eq num ? "selected" : "" }>${num } 개</option>
+						</c:forEach>
+					</select>
+			</form>	
 		</div>
 	
-	</div>
+		<div class="input-group col-md-3" style="padding-right: 60px;">
+		
+		<!-- search{s} -->
+			<div style="display: flex;">
+	
+				<select class="form-select" style="display: inline-block; width: 120px" name="searchType" id="searchType">
+					<option value="planName">요금제명</option>
+					<option value="userId">신청자</option>
+				</select>
+				<input class="form-control" style="display: inline-block; width: 300px;" type="text" name="keyword" id="keyword">
+				
+		<!-- 분류 {s} -->
 		
 		
-	
-	<%
-	    String orderStatus = request.getParameter("orderStatus");
-	%>
-	<div class="rdGroup" style="width: -webkit-fill-available; align-items: center">
-		<div class="form-check-inline">
-		    <input class="form-check-input" type="radio" name="division" id="exampleRadios1" value="0" <% if (orderStatus == null || orderStatus.equals("0") || orderStatus.equals("")) { %>checked<% } %>>
-		    <label class="form-check-label" for="exampleRadios1">
-		        전체
-		    </label>
+			</div>
+		
 		</div>
-		<div class="form-check-inline">
-		    <input class="form-check-input" type="radio" name="division" id="exampleRadios2" value="1" <% if (orderStatus != null && orderStatus.equals("1")) { %>checked<% } %>>
-		    <label class="form-check-label" for="exampleRadios2">
-		        신청완료
-		    </label>
-		</div>
-		<div class="form-check-inline">
-		    <input class="form-check-input" type="radio" name="division" id="exampleRadios3" value="2" <% if (orderStatus != null && orderStatus.equals("2")) { %>checked<% } %>>
-		    <label class="form-check-label" for="exampleRadios3">
-		        승인완료
-		    </label>
-		</div>
-		<div class="form-check-inline">
-		    <input class="form-check-input" type="radio" name="division" id="exampleRadios4" value="3" <% if (orderStatus != null && orderStatus.equals("3")) { %>checked<% } %>>
-		    <label class="form-check-label" for="exampleRadios4">
-		        승인보류
-		    </label>
-		</div>
-	</div>
 			
-			<button name="btnSearch" id="btnSearch" class="btn btn-outline-secondary">
-			<span class="material-symbols-outlined">
-			search
-			</span>
-			</button>
-</div>		
+			
+		
+		<%
+		    String orderStatus = request.getParameter("orderStatus");
+		%>
+		<div class="rdGroup col-md-4" >
+			<div class="form-check-inline">
+			    <input class="form-check-input" type="radio" name="division" id="exampleRadios1" value="0" <% if (orderStatus == null || orderStatus.equals("0") || orderStatus.equals("")) { %>checked<% } %>>
+			    <label class="form-check-label" for="exampleRadios1">
+			        전체
+			    </label>
+			</div>
+			<div class="form-check-inline">
+			    <input class="form-check-input" type="radio" name="division" id="exampleRadios2" value="1" <% if (orderStatus != null && orderStatus.equals("1")) { %>checked<% } %>>
+			    <label class="form-check-label" for="exampleRadios2">
+			        신청완료
+			    </label>
+			</div>
+			<div class="form-check-inline">
+			    <input class="form-check-input" type="radio" name="division" id="exampleRadios3" value="2" <% if (orderStatus != null && orderStatus.equals("2")) { %>checked<% } %>>
+			    <label class="form-check-label" for="exampleRadios3">
+			        승인완료
+			    </label>
+			</div>
+			<div class="form-check-inline">
+			    <input class="form-check-input" type="radio" name="division" id="exampleRadios4" value="3" <% if (orderStatus != null && orderStatus.equals("3")) { %>checked<% } %>>
+			    <label class="form-check-label" for="exampleRadios4">
+			        승인보류
+			    </label>
+			</div>
+		</div>
+				
+				<button name="btnSearch" id="btnSearch" class="btn btn-outline-secondary col-md-2">
+				<span class="material-symbols-outlined">
+				search
+				</span>
+				</button>
+	</div>		
 
 
 	<div class="totalMent">총 ${applyListCnt}개의 결과가 있습니다.</div>
@@ -120,7 +121,7 @@
 
 
 
- <table class="table table-hover" id="applyTb" style="width: 73%;  position: relative;">
+ <table class="table table-hover table-responsive" id="applyTb" style="width: 80%;  position: relative;">
             <thead>
                 <tr class="text-center mx-auto" style="background-color: #ecf7fd;">
                     <th>번호</th>

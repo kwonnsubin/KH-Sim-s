@@ -54,72 +54,6 @@
 		총 ${reviewCnt }개의 리뷰가 있습니다.
 	</c:if>
 
-<%-- 	<table class="table">
-	 	<thead>
-	 		<tr>
-				<th>번호</th>
-				<th>리뷰내용</th>
-				<th>별점</th>
-				<th>작성자</th>
-				<th>작성일자</th>	
-				<th>관리</th>
-				<th>상태</th>
-	 		</tr>
-	 	</thead>
-	 	<tbody>
-	 			<c:if test="${empty requestScope.paging.page}">
-            		<tr>
-            			<td colspan="6">사용자 리뷰가 없습니다.</td>
-            		</tr>
-            	</c:if>
-	 	
-	 			<c:if test="${not empty requestScope.paging.page}">
-	 				<c:forEach var="reviewList" items="${requestScope.paging.page}">
-	 					<tr>
-	 						<td>${reviewList.rn} </td>
-	 						<td>${reviewList.reviewContent} </td>
-							<c:choose>
-					          <c:when test="${fn:length(reviewList.reviewContent) > 40}">
-					            <td><a href="${path }/biz/reviewDetail?reviewNo=${reviewList.reviewNo }" class="">${fn:substring(reviewList.reviewContent, 0, 40)}...&nbsp;</a></td>
-					          </c:when>
-					          <c:otherwise>
-					            <td><a href="${path }/biz/reviewDetail?reviewNo=${reviewList.reviewNo }" class="">${reviewList.reviewContent}&nbsp;</a></td>
-					          </c:otherwise>
-					        </c:choose>  
-					        
-	 						<td>
-	 						<div class="form-control-plaintext">
-							  <c:forEach var="i" begin="1" end="5">
-							    <i class="fa${reviewList.reviewStar >= i ? '-solid' : (reviewdetail.reviewStar >= (i - 0.5) ? '-half-stroke' : '-regular')} fa-star" style="color: #ffdd00;"></i>
-							  </c:forEach>
-							</div>
-							</td>
- 
-	 						<td>${reviewList.userId} </td>
-	 						<td>${reviewList.reviewDate} </td>
-	 						
-	 						<c:choose>
-	 						<c:when test="${reviewList.reportStatus == '' }">
-	 						<td><button type="button" class="reportBtn" 
-	 						data-bs-toggle="modal" data-bs-target="#reportModal" 
-	 						data-bs-whatever="${reviewList.userId}"
-	 						data-reviewno="${reviewList.reviewNo}"
-	 						data-reportstatus="${reviewList.reportStatus }">신고하기</button></td>
-	 						</c:when>
-	 						<c:when test="${reviewList.reportStatus == 2 || reviewList.reportStatus == 3  }">
-	 							<td><button disabled>신고하기</button></td>
-	 						</c:when>
-	 						<c:when test="${reviewList.reportStatus == 1 }">
-	 							<td><button type="button" class="cancleBtn"
-	 							data-reviewno="${reviewList.reviewNo}">신고취소</button></td>
-	 						</c:when>
-	 						</c:choose>
-	 						<td>${reviewList.reportStatus == 1 ? '신고처리중' : reviewList.reportStatus == 2 ? '삭제완료' : reviewList.reportStatus == 3 ? '반려' : ''  }</td>
-	 					</tr>
-	 				</c:forEach>
-	 			</c:if>
-	 	</tbody>
-	</table> --%>
 	
 	<c:if test="${empty requestScope.paging.page}">
             		<tr>
@@ -204,7 +138,7 @@
 		
 		 <!-- 페이지 번호 -->
 	     <c:if test="${not empty requestScope.paging.page}"> <!-- 신청서가 하나도 없으면 페이징X -->
-			<ul class="pagination">
+			<ul class="pagination" style="padding-left : 40%;">
 				<c:set var="pageNumber" value="${empty param.p ? 1 : param.p }" />
 				<c:choose>
 					<c:when test="${requestScope.paging.prevPage eq -1 }">

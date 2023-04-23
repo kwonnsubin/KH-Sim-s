@@ -41,7 +41,7 @@
 통신사 정보 수정
 </div>
 
-<div class="container" style="margin-top:2%">
+<div class="container" style="margin-top:2%; width: 70%">
 	<form action="modifyInfo" method="post" enctype="multipart/form-data" id="modifyForm">
 	
 			<div>
