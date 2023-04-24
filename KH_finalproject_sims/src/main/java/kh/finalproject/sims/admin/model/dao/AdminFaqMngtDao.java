@@ -46,12 +46,13 @@ public class AdminFaqMngtDao {
 		return sqlSession.selectList("admin.selectSearchFaqList", vo);
 	}
 	
-	// 페이징 search
+	// search
 	public List<AdminFaqVo> searchFaqPageList(Map<String, Object> map) {
 		return sqlSession.selectList("admin.searchFaqPageList", map); // 한 페이지의 글 목록
 	}
-	// 글목록 총 갯수 search
-	public int getSearchFaqListCnt() {
-		return sqlSession.selectOne("admin.getSearchFaqListCnt");
+	
+	// 글 개수
+	public int getSearchFaqListCnt(Map<String, Object> map) {
+		return sqlSession.selectOne("admin.getSearchFaqListCnt", map);
 	}
 }

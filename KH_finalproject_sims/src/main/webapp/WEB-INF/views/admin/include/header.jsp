@@ -91,6 +91,9 @@
                     <li class="nav-item">
                         <a href="<%=request.getContextPath()%>/admin/noticeList" class="nav-link "><span class="pcoded-micon"><i class="feather icon-file-text"></i></span><span class="pcoded-mtext">공지사항 관리</span></a>
                     </li>
+                   	<li class="nav-item">
+                        <a href="<%=request.getContextPath()%>/admin/faq/list" class="nav-link "><span class="pcoded-micon"><i class="feather icon-file-text"></i></span><span class="pcoded-mtext">자주묻는질문 관리</span></a>
+                    </li>
                     <li class="nav-item">
                         <a href="<%=request.getContextPath()%>/admin/reviewreport/list"><span class="pcoded-micon"><i class="feather icon-file-text"></i></span><span class="pcoded-mtext">신고 관리</span></a>
                     </li>

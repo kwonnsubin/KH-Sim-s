@@ -71,36 +71,16 @@
 														</tr>
 													</thead>
 													<tbody>
-<%-- 													<c:forEach items="${reviewlist}" var="review">
-															<tr>
-																<td class="text-center">${review.reviewNo}</td>
-																<td>
-																	<c:choose>
-															          <c:when test="${fn:length(review.reviewContent) > 40}">
-															            <a href="<%=request.getContextPath()%>/admin/review/detail/${review.reviewNo }" class="">${fn:substring(review.reviewContent, 0, 40)}...&nbsp;</a>
-															          </c:when>
-															          <c:otherwise>
-															            <a href="<%=request.getContextPath()%>/admin/review/detail/${review.reviewNo }" class="">${review.reviewContent}&nbsp;</a>
-															          </c:otherwise>
-															        </c:choose>  
-												                       <c:forEach var="i" begin="1" end="5">
-												                           <i class="fa${(review.reviewStar)/2 >= i ? '-solid fa-star' : ((review.reviewStar)/2 >= (i - 0.5) ? '-star-half-stroke fa-regular' : '-regular fa-star')}" style="color: #ffdd00;"></i>
-												                       </c:forEach>
-																</td>
-																<td class="text-center">${review.userId}</td>
-																<td class="text-center"><fmt:formatDate value="${review.reviewDate}" pattern="yyyy.MM.dd"/> </td>
-															</tr>
-														</c:forEach> --%>
 														<c:forEach var="review" items="${requestScope.paging.page}">
 															<tr>
 																<td class="text-center">${review.reviewNo}</td>
 																<td>
 																	<c:choose>
 															          <c:when test="${fn:length(review.reviewContent) > 40}">
-															            <a href="<%=request.getContextPath()%>/admin/review/detail/${review.reviewNo }" class="">${fn:substring(review.reviewContent, 0, 40)}...&nbsp;</a>
+															            <a href="<%=request.getContextPath()%>/admin/review/detail/${review.reviewNo }" style="font-weight: bold;">${fn:substring(review.reviewContent, 0, 40)}...&nbsp;</a>
 															          </c:when>
 															          <c:otherwise>
-															            <a href="<%=request.getContextPath()%>/admin/review/detail/${review.reviewNo }" class="">${review.reviewContent}&nbsp;</a>
+															            <a href="<%=request.getContextPath()%>/admin/review/detail/${review.reviewNo }" style="font-weight: bold;">${review.reviewContent}&nbsp;</a>
 															          </c:otherwise>
 															        </c:choose>  
 												                       <c:forEach var="i" begin="1" end="5">
@@ -116,7 +96,7 @@
 											</div>
 											<!-- 페이지 번호 {s} -->
 											<nav aria-label="Page navigation example">
-												<ul class="pagination">
+												<ul class="pagination justify-content-center">
 													<c:set var="pageNumber" value="${empty param.p ? 1 : param.p }" />
 													<c:choose>
 														<c:when test="${requestScope.paging.prevPage eq -1 }">

@@ -38,7 +38,7 @@
 		ORDER BY AQ_DATE DESC
 	</select>
 	
-	<!-- 페이징 search 글 목록-->
+	<!-- search -->
 	<select id="searchQnaPageList" parameterType="map" resultType="kh.finalproject.sims.admin.model.vo.AdminQnaMngtVo">
 		SELECT 
 		AQ_NO
@@ -71,13 +71,13 @@
 		ORDER BY AQ_DATE DESC
 	</select>
 	
-	<!-- 페이징 search 글 목록 갯수 -->
-	<select id="getSearchQnaPageCnt" resultType="_int">
+	<!-- 글 개수 -->
+	<select id="getSearchQnaPageCnt" parameterType="map" resultType="_int">
 		SELECT COUNT(*) FROM QNA
 		<choose>
-			<when test="searchType != null and searchType == 'title'"> WHERE FAQ_TITLE LIKE '%'|| #{keyword} ||'%'</when>
-			<when test="searchType != null and searchType == 'writer'"> WHERE ADMIN_ID LIKE '%'|| #{keyword} ||'%'</when>
-			<when test="searchType != null and searchType == 'content'"> WHERE FAQ_CONTENT LIKE '%'|| #{keyword} ||'%'</when>
+			<when test="searchType != null and searchType == 'title'"> WHERE AQ_TITLE LIKE '%'|| #{keyword} ||'%'</when>
+			<when test="searchType != null and searchType == 'writer'"> WHERE USER_ID LIKE '%'|| #{keyword} ||'%'</when>
+			<when test="searchType != null and searchType == 'content'"> WHERE AQ_CONTENT LIKE '%'|| #{keyword} ||'%'</when>
 		</choose>
 	</select>
 	

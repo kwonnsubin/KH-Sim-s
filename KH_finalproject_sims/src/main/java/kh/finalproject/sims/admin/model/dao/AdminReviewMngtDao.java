@@ -36,14 +36,14 @@ public class AdminReviewMngtDao {
 		return sqlSession.selectOne("admin.selectReviewDetail", reviewNo);
 	}	
 	
-	// 페이징 search
+	// search
 	public List<AdminReviewMngtVo> searchReviewPageList(Map<String, Object> map) {
-		return sqlSession.selectList("admin.searchReviewPageList", map); // 한 페이지의 글 목록
+		return sqlSession.selectList("admin.searchReviewPageList", map);
 	}
 	
 	// 글목록 총 갯수 search
-	public int getSearchReviewListCnt() {
-		return sqlSession.selectOne("admin.getSearchReviewPageCnt");
+	public int getSearchReviewListCnt(Map<String, Object> map) {
+		return sqlSession.selectOne("admin.getSearchReviewPageCnt", map);
 	}
 	
 }

@@ -81,7 +81,7 @@ public class AdminReviewReportMngtController {
   		cookie.setMaxAge(60 * 60 * 24 * 5);
   		response.addCookie(cookie);	 
   		
-		Search search = service.getPage(pNum, Integer.parseInt(cnt), keyword, searchType, vo.getReportStatus()); // 한 페이지에 보여줄 자주묻는질문 목록
+		Search search = service.getPage(pNum, Integer.parseInt(cnt), keyword, searchType, vo.getReportStatus()); 
 		request.setAttribute("paging", search);
 		mv.addObject("reportStatus", vo.getReportStatus());
 		mv.setViewName("admin/reviewreport/list");

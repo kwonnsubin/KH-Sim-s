@@ -56,6 +56,6 @@ public interface AdminQnaMngtService {
 	// 조회수 조회 ajax
 	public int selectViewCount(int aqNo);
 	
-	// 페이징 search
+	// search
 	public Search getPage(int pNum, int cnt, String keyword, String searchType);
 }

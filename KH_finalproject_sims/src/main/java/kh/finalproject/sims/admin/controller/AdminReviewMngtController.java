@@ -36,16 +36,8 @@ public class AdminReviewMngtController {
 			, HttpServletRequest request
 			, HttpServletResponse response
 			) {
-//		if(vo.getSearchOption() == null) {
-//			mv.addObject("reviewlist", service.selectReviewList()); // 검색이 없는경우			
-//		} else {
-//			mv.addObject("reviewlist", service.selectSearchReviewList(vo)); // 검색이 있을경우
-//	        mv.addObject("searchOption", vo.getSearchOption());
-//	        mv.addObject("searchBox", vo.getSearchBox());
-//		}
 		
 		//페이징
-  		//String pageNumber = request.getParameter("p"); 굳이 이렇게 안가져오고 @RequestParam으로 받아도됨.
   		int pNum;
   		if (pageNumber == null || pageNumber.isEmpty()) {
   			pNum = 1;
@@ -67,7 +59,7 @@ public class AdminReviewMngtController {
   				if (cookie != null) {
   					cnt = cookie.getValue();
   				} else {
-  					cnt = "10"; // 초기값
+  					cnt = "10";
   				}
   			}
   		} else {
@@ -82,7 +74,7 @@ public class AdminReviewMngtController {
   		cookie.setMaxAge(60 * 60 * 24 * 5);
   		response.addCookie(cookie);	 
   		
-		Search search = service.getPage(pNum, Integer.parseInt(cnt), keyword, searchType); // 한 페이지에 보여줄 자주묻는질문 목록
+		Search search = service.getPage(pNum, Integer.parseInt(cnt), keyword, searchType);
 		request.setAttribute("paging", search);
 		
 		

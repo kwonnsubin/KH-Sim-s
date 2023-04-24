@@ -107,12 +107,12 @@ public class AdminQnaMngtDao {
 	
 	// 페이징 search
 	public List<AdminFaqVo> searchQnaPageList(Map<String, Object> map) {
-		return sqlSession.selectList("admin.searchQnaPageList", map); // 한 페이지의 글 목록
+		return sqlSession.selectList("admin.searchQnaPageList", map);
 	}
 	
 	// 글목록 총 갯수 search
-	public int getSearchQnaListCnt() {
-		return sqlSession.selectOne("admin.getSearchQnaPageCnt");
+	public int getSearchQnaListCnt(Map<String, Object> map) {
+		return sqlSession.selectOne("admin.getSearchQnaPageCnt", map);
 	}
 	
 }

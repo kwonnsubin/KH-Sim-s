@@ -41,7 +41,7 @@ public class AdminReviewMngtServiceImpl implements AdminReviewMngtService{
 		return dao.selectReviewDetail(reviewNo);
 	}
 	
-	// 페이징 search
+	// search
 	@Override
 	public Search getPage(int pNum, int cnt, String keyword, String searchType) {
 		Map<String, Object> map = new HashMap<String, Object>();
@@ -50,15 +50,15 @@ public class AdminReviewMngtServiceImpl implements AdminReviewMngtService{
 		map.put("keyword", keyword);
 		map.put("searchType", searchType);
 		
-		List<AdminReviewMngtVo> dataList = dao.searchReviewPageList(map); // 한 페이지의 글 목록
+		List<AdminReviewMngtVo> dataList = dao.searchReviewPageList(map); 
 		
-		int totalRowCount = dao.getSearchReviewListCnt(); // 글목록 총 개수를 알아야한다.
+		int totalRowCount = dao.getSearchReviewListCnt(map);
 		int mod = totalRowCount % cnt == 0 ? 0 : 1;
-		int pageCount = (totalRowCount / cnt) + mod; // 그래야지만 총 페이지수를 구할수있으니깐!
+		int pageCount = (totalRowCount / cnt) + mod;
 		
-		Search search = new Search(dataList, pNum, pageCount, cnt, 5, keyword, searchType); // 페이징 처리해달라고함.
+		Search search = new Search(dataList, pNum, pageCount, cnt, 5, keyword, searchType);
 		
-		return search; // 반환받은 결과 리턴
+		return search;
 	}
 
 

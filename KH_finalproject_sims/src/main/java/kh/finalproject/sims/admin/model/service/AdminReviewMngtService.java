@@ -23,7 +23,7 @@ public interface AdminReviewMngtService {
 	// 상세내용
 	public AdminReviewMngtVo selectReviewDetail(int reviewNo);
 	
-	// 페이징 search
+	// search
 	public Search getPage(int pNum, int cnt, String keyword, String searchType);
 	
 }

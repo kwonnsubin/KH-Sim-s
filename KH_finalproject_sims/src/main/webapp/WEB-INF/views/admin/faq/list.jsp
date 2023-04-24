@@ -76,18 +76,10 @@
 														</tr>
 													</thead>
 													<tbody>
-<%-- 													<c:forEach items="${faqlist}" var="faq">
-															<tr>
-																<td class="text-center">${faq.faqNo}</td>
-																<td><a href="<%=request.getContextPath()%>/admin/faq/detail/${faq.faqNo}">${faq.faqTitle}</a></td>
-																<td class="text-center">${faq.adminId}</td>
-																<td class="text-center"><fmt:formatDate value="${faq.faqDate}" pattern="yyyy.MM.dd"/></td>
-															</tr>
-														</c:forEach> --%>
 														<c:forEach var="faq" items="${requestScope.paging.page}">
 															<tr>
 																<td class="text-center">${faq.faqNo}</td>
-																<td><a href="<%=request.getContextPath()%>/admin/faq/detail/${faq.faqNo}">${faq.faqTitle}</a></td>
+																<td><a href="<%=request.getContextPath()%>/admin/faq/detail/${faq.faqNo}" style="font-weight: bold;">${faq.faqTitle}</a></td>
 																<td class="text-center">${faq.adminId}</td>
 																<td class="text-center"><fmt:formatDate value="${faq.faqDate}" pattern="yyyy.MM.dd"/></td>
 															</tr>
@@ -98,7 +90,7 @@
 											<!-- 글 목록 {e} -->
 											<!-- 페이지 번호 {s} -->
 											<nav aria-label="Page navigation example">
-												<ul class="pagination">
+												<ul class="pagination justify-content-center">
 													<c:set var="pageNumber" value="${empty param.p ? 1 : param.p }" />
 													<c:choose>
 														<c:when test="${requestScope.paging.prevPage eq -1 }">

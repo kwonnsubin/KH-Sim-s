@@ -2,11 +2,13 @@
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
+<c:set var="path" value="${pageContext.request.contextPath}"/>
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
 <title>공지사항 상세 페이지</title>
+<link rel="stylesheet" href="${path}/resources/css/admin/reviewDetail.css"/>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
 </head>
 <body>
@@ -43,35 +45,29 @@
 								<div class="card text-center">
 									<div class="card-body">
 										<div class="row">
-											<!-- <div class="row"> -->
-												<div class="col-sm-12">
-													<form>
-					                                    <div class="form-group row">
-					                                    	<label for="bizId" class="col-sm-1 col-form-label left">통신사</label>
-					                                        <div class="col-sm-2">
-					                                            <input type="text" readonly class="form-control-plaintext" name="bizId" value="${reviewdetail.bizId }">
-					                                        </div>
-					                                        <label for="adminId" class="col-sm-1 col-form-label left">작성자</label>
-					                                        <div class="col-sm-1">
-					                                            <input type="text" readonly class="form-control-plaintext" name="adminId" value="${reviewdetail.userId }">
-					                                        </div>
-					                                        <div class="col-sm-2">
-					                                        	<div class="form-control-plaintext">
-													                <i class="fa${reviewdetail.reviewStar < 1 ? '-regular' : '-solid'} fa-star" style="color: #ffdd00;"></i>
-													                <i class="fa${reviewdetail.reviewStar < 1.5 ? '-regular' : (reviewdetail.reviewStar < 2 ? '-half-stroke' : '-solid')} fa-star" style="color: #ffdd00;"></i>
-													                <i class="fa${reviewdetail.reviewStar < 2.5 ? '-regular' : (reviewdetail.reviewStar < 3 ? '-half-stroke' : '-solid')} fa-star" style="color: #ffdd00;"></i>
-													                <i class="fa${reviewdetail.reviewStar < 3.5 ? '-regular' : (reviewdetail.reviewStar < 4 ? '-half-stroke' : '-solid')} fa-star" style="color: #ffdd00;"></i>
-													                <i class="fa${reviewdetail.reviewStar < 4.5 ? '-regular' : '-solid'} fa-star" style="color: #ffdd00;"></i>
-					                                        	</div>
-					                                        </div>
-					                                        <label for="staticEmail" class="col-sm-1 col-form-label">작성일</label>
-					                                        <div class="col-sm-2">
-					                                            <input type="text" readonly class="form-control-plaintext" value="<fmt:formatDate value="${reviewdetail.reviewDate }" pattern="yyyy.MM.dd"/>">
-					                                        </div>
-					                                    </div>
-					                                </form>
-				                                </div>
-			                                <!-- </div> -->
+											<div class="col-sm-12">
+												<form>
+				                                    <div class="form-group row d-flex justify-content-between">
+				                                    	<label for="bizId" class="col-sm-1 col-form-label left">통신사</label>
+				                                        <div class="col-sm-2">
+				                                            <input type="text" readonly class="form-control-plaintext" name="bizId" value="${reviewdetail.bizId }">
+				                                        </div>
+				                                        <label for="adminId" class="col-sm-1 col-form-label left">작성자</label>
+				                                        <div class="col-sm-2">
+				                                            <input type="text" readonly class="form-control-plaintext" name="adminId" value="${reviewdetail.userId }">
+				                                        </div>
+				                                        <label for="staticEmail" class="col-sm-1 col-form-label">작성일</label>
+				                                        <div class="col-sm-2">
+				                                            <input type="text" readonly class="form-control-plaintext" value="<fmt:formatDate value="${reviewdetail.reviewDate }" pattern="yyyy.MM.dd"/>">
+				                                        </div>
+						                                <div class="col-sm-2 d-flex align-items-center"">
+							                            	<c:forEach var="i" begin="1" end="5">
+																<i class="fa${(reviewdetail.reviewStar)/2 >= i ? '-solid fa-star' : ((reviewdetail.reviewStar)/2 >= (i - 0.5) ? '-star-half-stroke fa-regular' : '-regular fa-star')}" style="color: #ffdd00; align-items: center;"></i>
+															</c:forEach>
+				                          				</div>
+				                                    </div>
+				                                </form>
+			                                </div>
 											<div class="col-sm-12">
 												<div class="form-group">
 			                                        <textarea class="form-control" name="ntcContent" rows="20" readonly>${reviewdetail.reviewContent }</textarea>
@@ -108,7 +104,6 @@ $(function() {
 	    	}
 	 	 });
 	});
-
 </script>
 </body>
 </html>

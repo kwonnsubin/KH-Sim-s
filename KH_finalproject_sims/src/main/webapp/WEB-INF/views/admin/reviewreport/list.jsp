@@ -60,11 +60,11 @@
 									</div>
 									<!-- 검색 {e} -->
 									<!-- 처리 상태별로 보기 버튼 {s} -->
-									<form id="reportStatusForm" action="<%=request.getContextPath()%>/admin/reviewreport/list" method="post">
+									<form id="reportStatusForm" action="<%=request.getContextPath()%>/admin/reviewreport/list" method="post" style="display: flex; justify-content: flex-end;">
 									  <div class="btn-group mt-3 mb-3" role="group" aria-label="Basic example">
-									    <button type="button" class="btn  btn-primary" id="not-confirmed">미확인</button>
-									    <button type="button" class="btn  btn-primary" id="rejected">반려</button>
-									    <button type="button" class="btn  btn-primary" id="deleted">삭제</button>
+									    <button type="button" class="btn btn-primary" id="not-confirmed">미확인</button>
+									    <button type="button" class="btn btn-primary" id="rejected">반려</button>
+									    <button type="button" class="btn btn-primary" id="deleted">삭제</button>
 									  </div>
 									  <input type="hidden" id="reportStatus" name="reportStatus" value="">
 									</form>
@@ -87,7 +87,7 @@
 														<c:forEach var="reviewreport" items="${requestScope.paging.page}">
 															<tr>
 																<td class="text-center">${reviewreport.reviewNo}</td>
-																<td><a href="<%=request.getContextPath()%>/admin/reviewreport/detail/${reviewreport.reviewNo}">${reviewreport.reportReason}</a></td>															
+																<td><a href="<%=request.getContextPath()%>/admin/reviewreport/detail/${reviewreport.reviewNo}" style="font-weight: bold;">${reviewreport.reportReason}</a></td>															
 																<td class="text-center">${reviewreport.bizId}</td>
 																<td class="text-center"><fmt:formatDate value="${reviewreport.reportDate}" pattern="yyyy.MM.dd"/> </td>
 																<td class="text-center">${reviewreport.reportStatus}</td>
@@ -99,7 +99,7 @@
 											<!-- 리스트 {e} -->
 											<!-- 페이지 번호 {s} -->
 											<nav aria-label="Page navigation example" id="pageNumber">
-												<ul class="pagination">
+												<ul class="pagination justify-content-center">
 													<c:set var="pageNumber" value="${empty param.p ? 1 : param.p }" />
 													<c:choose>
 														<c:when test="${requestScope.paging.prevPage eq -1 }">

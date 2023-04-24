@@ -72,20 +72,10 @@
 														</tr>
 													</thead>
 													<tbody>
-<%-- 													<c:forEach items="${qnalist}" var="list">
-															<tr>
-																<td class="text-center">${list.aqNo}&nbsp;&nbsp;</td>
-																<td><a href="<%=request.getContextPath()%>/admin/qna/detail/${list.aqNo}">${list.aqTitle}</a></td>
-																<td class="text-center">${list.userId}</td>
-																<td class="text-center"><fmt:formatDate value="${list.aqDate}" pattern="yyyy.MM.dd"/></td>
-																<td class="text-center">${list.aqViews}</td>
-																<td class="text-center">${list.aqAnswers}</td>
-															</tr>
-														</c:forEach> --%>
 														<c:forEach var="qna" items="${requestScope.paging.page}">
 															<tr>
 																<td class="text-center">${qna.aqNo}&nbsp;&nbsp;</td>
-																<td><a href="<%=request.getContextPath()%>/admin/qna/detail/${qna.aqNo}">${qna.aqTitle}</a></td>
+																<td><a href="<%=request.getContextPath()%>/admin/qna/detail/${qna.aqNo}" style="font-weight: bold;">${qna.aqTitle}</a></td>
 																<td class="text-center">${qna.userId}</td>
 																<td class="text-center"><fmt:formatDate value="${qna.aqDate}" pattern="yyyy.MM.dd"/></td>
 																<td class="text-center">${qna.aqViews}</td>
@@ -97,7 +87,7 @@
 											</div>
 											<!-- 페이지 번호 {s} -->
 											<nav aria-label="Page navigation example">
-												<ul class="pagination">
+												<ul class="pagination justify-content-center">
 													<c:set var="pageNumber" value="${empty param.p ? 1 : param.p }" />
 													<c:choose>
 														<c:when test="${requestScope.paging.prevPage eq -1 }">

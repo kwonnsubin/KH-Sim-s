@@ -36,12 +36,11 @@ public class AdminFaqMngtController {
 			,@RequestParam(required = false) String keyword
 			,@RequestParam(required = false) String searchType
 			,@RequestParam(value = "p", required = false) String pageNumber
-			, HttpServletRequest request // 첫번째 순서
-			, HttpServletResponse response // 첫번째 순서
+			, HttpServletRequest request 
+			, HttpServletResponse response 
 			) {
 	    	
 	  //페이징
-	  		//String pageNumber = request.getParameter("p"); 굳이 이렇게 안가져오고 @RequestParam으로 받아도됨.
 	  		int pNum;
 	  		if (pageNumber == null || pageNumber.isEmpty()) {
 	  			pNum = 1;
@@ -78,7 +77,7 @@ public class AdminFaqMngtController {
 	  		cookie.setMaxAge(60 * 60 * 24 * 5);
 	  		response.addCookie(cookie);	 
 	  		
-			Search search = service.getPage(pNum, Integer.parseInt(cnt), keyword, searchType); // 한 페이지에 보여줄 자주묻는질문 목록
+			Search search = service.getPage(pNum, Integer.parseInt(cnt), keyword, searchType);
 			request.setAttribute("paging", search);
 	    
 	    mv.setViewName("admin/faq/list");

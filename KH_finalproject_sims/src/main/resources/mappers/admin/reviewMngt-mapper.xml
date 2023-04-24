@@ -1,30 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="admin">
-
-	<!-- 리뷰 목록 이제 필요없음 -->
- 	<select id="selectReviewList" resultType="kh.finalproject.sims.admin.model.vo.AdminReviewMngtVo">
-		SELECT 
-		  REVIEW_NO
-		, REVIEW_CONTENT
-		, REVIEW_DATE
-		, REVIEW_STAR
-		, USER_ID
-		, BIZ_ID
-		, REVIEW_HIDDEN 
-		FROM BIZ_REVIEW
-		ORDER BY REVIEW_DATE DESC
-	</select>
-	
-	<!-- 검색 이제 필요없음 -->
- 	<select id="selectSearchReviewList" resultType="kh.finalproject.sims.admin.model.vo.AdminReviewMngtVo">
-		SELECT * FROM BIZ_REVIEW 
-		<choose>
-			<when test="searchOption != null and searchOption == 'writer'"> WHERE USER_ID LIKE '%'|| #{searchBox} ||'%'</when>
-			<when test="searchOption != null and searchOption == 'content'"> WHERE REVIEW_CONTENT LIKE '%'|| #{searchBox} ||'%'</when>
-		</choose>
-		ORDER BY REVIEW_DATE DESC
-	</select> 
 	
 	<!-- 리뷰 삭제 -->
 	<delete id="deleteReview" parameterType="_int">
@@ -44,7 +20,7 @@
 	FROM BIZ_REVIEW WHERE REVIEW_NO=#{reviewNo}
 	</select>
 	
-	<!-- 페이징 search 글 목록-->
+	<!--  search -->
 	<select id="searchReviewPageList" parameterType="map" resultType="kh.finalproject.sims.admin.model.vo.AdminReviewMngtVo">
 		SELECT *
 		FROM (
@@ -68,8 +44,8 @@
 		ORDER BY REVIEW_DATE DESC
 	</select>
 	
-	<!-- 페이징 search 글 목록 갯수 -->
-	<select id="getSearchReviewPageCnt" resultType="_int">
+	<!-- 글 개수 -->
+	<select id="getSearchReviewPageCnt" parameterType="map" resultType="_int">
 		SELECT COUNT(*) FROM BIZ_REVIEW
 		<choose>
 			<when test="searchType != null and searchType == 'writer'"> WHERE USER_ID LIKE '%'|| #{keyword} ||'%'</when>

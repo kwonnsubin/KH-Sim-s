@@ -48,7 +48,7 @@ public class AdminFaqMngtServiceImpl implements AdminFaqMngtService{
 		return dao.deleteFaq(faqNo);
 	}
 	
-	// 페이징 search 여기서 두개 호출함.
+	// search
 	@Override
 	public Search getPage(int pNum, int cnt, String keyword, String searchType) {
 		Map<String, Object> map = new HashMap<String, Object>();
@@ -57,15 +57,15 @@ public class AdminFaqMngtServiceImpl implements AdminFaqMngtService{
 		map.put("keyword", keyword);
 		map.put("searchType", searchType);
 		
-		List<AdminFaqVo> dataList = dao.searchFaqPageList(map); // 한 페이지의 글 목록
+		List<AdminFaqVo> dataList = dao.searchFaqPageList(map);
 		
-		int totalRowCount = dao.getSearchFaqListCnt(); // 글목록 총 개수를 알아야한다.
+		int totalRowCount = dao.getSearchFaqListCnt(map); 
 		int mod = totalRowCount % cnt == 0 ? 0 : 1;
-		int pageCount = (totalRowCount / cnt) + mod; // 그래야지만 총 페이지수를 구할수있으니깐!
+		int pageCount = (totalRowCount / cnt) + mod; 
 		
-		Search search = new Search(dataList, pNum, pageCount, cnt, 5, keyword, searchType); // 페이징 처리해달라고함.
+		Search search = new Search(dataList, pNum, pageCount, cnt, 5, keyword, searchType); 
 		
-		return search; // 반환받은 결과 리턴
+		return search; 
 	}
 	
 	// 검색
