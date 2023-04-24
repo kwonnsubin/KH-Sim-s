@@ -204,11 +204,21 @@ public class AdminBizMngtController {
 
 	// 통신사 요금제 개통 신청 리스트로 이동
 	@RequestMapping(value = "/bizPlanApplyList", method = { RequestMethod.GET, RequestMethod.POST })
-	public ModelAndView selectBizPlanApplyList(ModelAndView mv, AdminBizMngtVo vo) throws Exception {
-		mv.addObject("bizPlanApplyList", service.selectBizPlanApplyList(vo));
-		mv.addObject("searchOption", vo.getSearchOption());
-		mv.addObject("searchBox", vo.getSearchBox());
-		mv.addObject("searchRadioVal", vo.getSearchRadioVal());
+	public ModelAndView selectBizPlanApplyList(ModelAndView mv, AdminBizMngtVo vo, @RequestParam(value="p", required = false) String pageNumber, HttpServletRequest request, HttpServletResponse response) throws Exception {
+		
+		Map<String, String> paginationInfo = paginationInfo(pageNumber, request, response);
+		int pNum = Integer.parseInt(paginationInfo.get("pNum"));
+		int cnt = Integer.parseInt(paginationInfo.get("cnt"));
+		String searchOption = vo.getSearchOption();
+		String searchRadioVal = vo.getSearchRadioVal();
+		String searchBox = vo.getSearchBox();
+		Search search = service.selectBizPlanApplyList(pNum, cnt, searchOption, searchRadioVal, searchBox);
+		
+		request.setAttribute("paging", search);
+		/* mv.addObject("bizPlanApplyList", service.selectBizPlanApplyList(vo)); */
+		mv.addObject("searchOption", searchOption);
+		mv.addObject("searchBox", searchBox);
+		mv.addObject("searchRadioVal", searchRadioVal);
 		mv.setViewName("admin/biz/planApplyList");
 		return mv;
 	}

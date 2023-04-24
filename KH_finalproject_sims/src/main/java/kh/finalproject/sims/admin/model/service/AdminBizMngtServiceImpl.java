@@ -110,8 +110,19 @@ public class AdminBizMngtServiceImpl implements AdminBizMngtService{
 	
 	//통신사 요금제 개통 신청 리스트
 	@Override
-	public List<AdminBizMngtVo> selectBizPlanApplyList(AdminBizMngtVo vo) {
-		return dao.selectBizPlanApplyList(vo);
+	public Search selectBizPlanApplyList(int pNum, int cnt, String searchOption, String searchRadioVal, String searchBox) {
+		Map<String, Object> map = new HashMap<String, Object>();
+		map.put("start",  (pNum - 1) * cnt + 1);
+		map.put("end", pNum * cnt);
+		map.put("searchOption", searchOption);
+		map.put("searchRadioVal", searchRadioVal);
+		map.put("searchBox", searchBox);
+		List<AdminBizMngtVo> dataList = dao.selectBizPlanApplyList(map);
+		int totalRowCount =dao.selectBizPlanApplyListCnt(map);
+		int mod = totalRowCount % cnt == 0? 0 : 1;
+		int pageCount = (totalRowCount /cnt) + mod;
+		Search search = new Search(dataList, pNum, pageCount, cnt, 5, totalRowCount, searchOption, searchRadioVal, searchBox);
+		return search;
 	}
 
 	//통신사 요금제 개통 상세 페이지로 이동

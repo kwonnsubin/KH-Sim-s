@@ -28,7 +28,7 @@ public interface AdminBizMngtService {
 	public AdminBizMngtVo selectWithdrawalDetail(String bizId) throws Exception;
 	
 	//통신사 요금제 개통 신청 리스트
-	public List<AdminBizMngtVo> selectBizPlanApplyList(AdminBizMngtVo vo) throws Exception;
+	public Search selectBizPlanApplyList(int pNum, int cnt, String searchOption, String searchRadioVal, String searchBox) throws Exception;
 
 	//통신사 요금제 개통 신청 상세 페이지로 이동
 	public AdminBizMngtVo selectBizPlanApplyDetail(int orderNo) throws Exception;
