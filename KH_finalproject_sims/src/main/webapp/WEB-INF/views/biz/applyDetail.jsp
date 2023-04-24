@@ -198,6 +198,38 @@
 			<!-- 분리 -->
 			<c:choose>
         <c:when test="${applyDetailPlan.planPay eq 1}">
+        	<tr>
+                <th scope="row" class="col-md-1">
+                    <span>카드 소유자명</span>
+                </th>
+                <td class="col-md-2" >${applyDetailPlan.cardHolder }</td>
+                <th scope="row" class="col-md-1">
+                    <span>카드 소유자 <br> 주민등록번호</span>
+                </th>
+                <td class="col-md-2" colspan="2"> ${applyDetailPlan.cardSsn }</td>
+                <th scope="row" class="col-md-1">
+                    <span>카드 소유자와의 관계</span>
+                </th>
+                <td class="col-md-2" colspan="2">
+                <c:choose>
+                	<c:when test="${applyDetailPlan.cardRelationship eq 1}">
+                		본인
+                	</c:when>
+                	<c:when test="${applyDetailPlan.cardRelationship eq 2}">
+                		부모
+                	</c:when>
+                	<c:when test="${applyDetailPlan.cardRelationship eq 3}">
+                		자녀
+                	</c:when>
+                	<c:when test="${applyDetailPlan.cardRelationship eq 4}">
+                		배우자
+                	</c:when>
+                	<c:otherwise>
+                		해당없음
+                	</c:otherwise>
+                </c:choose>
+                </td>
+        	</tr>
             <tr>
                 <th scope="row">
                     <span>카드번호</span>
@@ -209,16 +241,50 @@
                 <td  colspan="4"> ${applyDetailPlan.cardExpiration }</td>
             </tr>
         </c:when>
+        
         <c:otherwise>
+        	<tr>
+                <th scope="row" class="col-md-1">
+                    <span>예금주명</span>
+                </th>
+                <td class="col-md-2" >${applyDetailPlan.accHolder }</td>
+                <th scope="row" class="col-md-1">
+                    <span>예금주<br>주민등록번호</span>
+                </th>
+                <td class="col-md-2" colspan="2"> ${applyDetailPlan.accSsn }</td>
+                <th scope="row" class="col-md-1">
+                    <span>예금주와의 관계</span>
+                </th>
+                <td class="col-md-2" colspan="2">
+                <c:choose>
+                	<c:when test="${applyDetailPlan.accRelationship eq 1}">
+                		본인
+                	</c:when>
+                	<c:when test="${applyDetailPlan.accRelationship eq 2}">
+                		부모
+                	</c:when>
+                	<c:when test="${applyDetailPlan.accRelationship eq 3}">
+                		자녀
+                	</c:when>
+                	<c:when test="${applyDetailPlan.accRelationship eq 4}">
+                		배우자
+                	</c:when>
+                	<c:otherwise>
+                		해당없음
+                	</c:otherwise>
+                </c:choose>
+                </td>
+        	</tr>
+        
             <tr>
                 <th scope="row">
                     <span>은행</span>
                 </th>
-                <td colspan="2" >${applyDetailPlan.bank }</td>
+                <td colspan="2" >${applyDetailPlan.accBank }</td>
                 <th scope="row">
                     <span>계좌번호</span>
                 </th>
-                <td colspan="4">${applyDetailPlan.bankNumber }</td>
+                <td colspan="4">${applyDetailPlan.accNumber }</td>
             </tr>
         </c:otherwise>
         </c:choose>
@@ -273,426 +339,7 @@
 
 
 	</div>
- <%--    <table class="table">
-        <tbody>
-			<tr>
-				<th scope="row">
-					<span>가입유형</span>
-				</th>
-				<td>
-				<c:choose>
-					<c:when test= "${applyDetailPlan.joinCategory eq 1}">
-						번호이동
-					</c:when>
-					<c:otherwise>
-						신규가입
-					</c:otherwise>
-				</c:choose>
-				</td>
-				<th scope="row">
-					<span>심종류</span>
-				</th>
-				<td>
-				<c:choose>
-					<c:when test ="${applyDetailPlan.simType eq 1 }">
-						일반유심
-					</c:when>
-					<c:otherwise>
-						NFC 유심
-					</c:otherwise>
-				</c:choose>
-				</td>
-			</tr>
-            <tr>
-				<th scope="row">
-					<span>유심신청여부</span>
-				</th>
-				<td>
-				<c:choose>
-					<c:when test ="${applyDetailPlan.simYn eq 1}">
-						N
-					</c:when>
-					<c:otherwise>
-						Y
-					</c:otherwise>
-				</c:choose>
-				</td>
-				<th scope="row">
-					<span>현재사용통신사</span>
-				</th>
-				<td>
-				<c:choose>
-					<c:when test="${applyDetailPlan.currentTelecom eq 1}">
-						SKT
-					</c:when>
-					<c:when test="${applyDetailPlan.currentTelecom eq 2}">
-						KT
-					</c:when>
-					<c:when test="${applyDetailPlan.currentTelecom eq 3}">
-						LGU+
-					</c:when>
-					<c:when test="${applyDetailPlan.currentTelecom eq 4}">
-						SKT 알뜰폰
-					</c:when>
-					<c:when test="${applyDetailPlan.currentTelecom eq 5}">
-						KT 알뜰폰	
-					</c:when>
-					<c:otherwise>
-						LGU+ 알뜰폰
-					</c:otherwise>				
-				</c:choose>
-				</td>
-			</tr>
-			<tr>
-				<th scope="row">
-					<span>청구서유형</span>
-				</th>
-				<td>
-				<c:choose>
-					<c:when test="${applyDetailPlan.planBill eq 1}">
-						문자
-					</c:when>
-					<c:otherwise>
-						이메일
-					</c:otherwise>
-				</c:choose>	
-				</td>
-				<th scope="row">
-					<span>납부방법</span>
-				</th>
-				<td>
-				<c:choose>
-					<c:when test="${applyDetailPlan.planPay eq 1}">
-						카드
-					</c:when>
-					<c:otherwise>
-						계좌이체
-					</c:otherwise>
-				</c:choose>
-				</td>
-			</tr>
-        </tbody>
-    </table>	
-
-    <!--납부방법에 따라 뜨는거 다르게 할 것. -->
-    <table class="table">
-    <c:choose>
-        <c:when test="${applyDetailPlan.planPay eq 1}">
-            <tr>
-                <th scope="row">
-                    <span>카드번호</span>
-                </th>
-                <td>${applyDetailPlan.cardNumber }</td>
-                <th scope="row">
-                    <span>카드유효기간</span>
-                </th>
-                <td>${applyDetailPlan.cardExpiration }</td>
-            </tr>
-        </c:when>
-        <c:otherwise>
-            <tr>
-                <th scope="row">
-                    <span>은행</span>
-                </th>
-                <td>${applyDetailPlan.bank }</td>
-                <th scope="row">
-                    <span>계좌번호</span>
-                </th>
-                <td>${applyDetailPlan.bankNumber }</td>
-            </tr>
-        </c:otherwise>
-    </c:choose>
-	</table>
-
-
-    <table class="table">
-    	<tr>
-	        <th scope="row">
-	            <span>기본료(원)</span>
-	        </th>
-	        <td>${applyDetailPlan.planPrice }</td>
-	        <th scope="row">
-	            <span>기본데이터(MB)</span>
-	        </th>
-	        <td>${applyDetailPlan.planData }</td>
-	        <th scope="row">
-	            <span>기본음성(분)</span>
-	        </th>
-	        <td>${applyDetailPlan.planVoice }</td>
-	        <th scope="row">
-	            <span>기본문자(건)</span>
-	        </th>
-	        <td>${applyDetailPlan.planMessage }</td>
-        </tr>
-    </table>
-
-	<div class="applyStatus">
-		<table class="table">
-			<tr>
-				<th scope="row">
-					<span>가입 신청 상태</span>
-				</th>
-				<td>
-				<c:choose>
-					<c:when test="${applyDetailPlan.orderStatus eq 1}">
-						신청완료
-					</c:when>
-					<c:when test="${applyDetailPlan.orderStatus eq 2}">
-						승인완료
-					</c:when>
-					<c:otherwise>
-						승인보류
-					</c:otherwise>
-				</c:choose>
-				</td>
-			</tr>
-		</table> --%>
-		
-
-<%-- 
-<!-- Example Code -->
-<div class="container">
-    <div class="row">
-      <div class="col-sm-4">
-        <div class="mb-3">
-          <label for="staticEmail" class="col-sm-2 col-form-label">신청번호</label>
-          <div class="col-sm-10 infoContent">
-            <input type="text" readonly class="form-control-plaintext" value=${applyDetailPlan.orderNo }>
-          </div>
-        </div>
-      </div>
-      <div class="col-sm-4">
-        <div class="mb-3">
-          <label for="staticEmail" class="col-sm-2 col-form-label">요금제명</label>
-          <div class="col-sm-10 infoContent">
-            <input type="text" readonly class="form-control-plaintext" value=${applyDetailPlan.planName }>
-          </div>
-        </div>
-      </div>
-      <div class="col-sm-4">
-        <div class="mb-3">
-          <label for="staticEmail" class="col-sm-2 col-form-label">신청일자</label>
-          <div class="col-sm-10 infoContent">
-            <input type="text" readonly class="form-control-plaintext" value=${applyDetailPlan.orderDate }>
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <div class="row">
-      <div class="col-sm-6">
-        <div class="mb-3">
-          <label for="staticEmail" class="col-sm-2 col-form-label">아이디</label>
-          <div class="col-sm-10 infoContent">
-            <input type="text" readonly class="form-control-plaintext" value=${applyDetail.userId }>
-          </div>
-        </div>
-      </div>
-      <div class="col-sm-6">
-        <div class="mb-3">
-          <label for="staticEmail" class="col-sm-2 col-form-label">이름</label>
-          <div class="col-sm-10 infoContent">
-            <input type="text" readonly class="form-control-plaintext"  value=${applyDetail.userName }>
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <div class="row">
-      <div class="col-sm-6">
-        <div class="mb-3">
-          <label for="staticEmail" class="col-sm-2 col-form-label">주민등록번호</label>
-          <div class="col-sm-10 infoContent" >
-            <input
-              type="text" readonly class="form-control-plaintext" value=${applyDetail.userSsn }>
-          </div>
-        </div>
-      </div>
-      <div class="col-sm-6">
-        <div class="mb-3">
-          <label for="staticEmail" class="col-sm-2 col-form-label">휴대폰번호</label>
-          <div class="col-sm-10 infoContent">
-            <input type="text" readonly class="form-control-plaintext" value=${applyDetail.userPhone }>
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <div class="row">
-      <div class="col-sm-6">
-        <div class="mb-3">
-          <label for="staticEmail" class="col-sm-2 col-form-label">주소</label>
-          <div class="col-sm-10 infoContent">
-            <input type="text"readonly class="form-control-plaintext" value=${applyDetail.userAddress }>
-          </div>
-        </div>
-      </div>
-      <div class="col-sm-6">
-        <div class="mb-3">
-          <label for="staticEmail" class="col-sm-2 col-form-label">이메일</label>
-          <div class="col-sm-10 infoContent">
-            <input type="text" readonly class="form-control-plaintext" id="staticEmail" value=${applyDetail.userEmail } >
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <div class="row">
-      <div class="col-sm-6">
-        <div class="mb-3">
-          <label for="staticEmail" class="col-sm-2 col-form-label">가입유형</label>
-          <div class="col-sm-10 infoContent">
-          	<c:choose>
-			<c:when test= "${applyDetailPlan.joinCategory eq 1}">
-            <input type="text" readonly class="form-control-plaintext" value="번호이동">
-            </c:when>
-			<c:otherwise>
-			<input type="text" readonly class="form-control-plaintext" value="신규가입">
-			</c:otherwise>
-			</c:choose>
-          </div>
-        </div>
-      </div>
-      <div class="col-sm-6">
-        <div class="mb-3">
-          <label for="staticEmail" class="col-sm-2 col-form-label">심종류</label>
-          <div class="col-sm-10 infoContent">
-	          <c:choose>
-			  <c:when test ="${applyDetailPlan.simType eq 1 }">
-	            <input type="text" readonly class="form-control-plaintext" value="일반유심">
-	          </c:when>
-			  <c:otherwise>
-			  	<input type="text" readonly class="form-control-plaintext" value="NFC 유심">
-			  </c:otherwise>
-			  </c:choose>
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <div class="row">
-      <div class="col-sm-6">
-        <div class="mb-3">
-          <label for="staticEmail" class="col-sm-2 col-form-label">유심신청여부</label>
-          <div class="col-sm-10 infoContent">
-	          <c:choose>
-			  <c:when test ="${applyDetailPlan.simYn eq 1}">
-	            <input type="text" readonly class="form-control-plaintext" value="N">
-	          </c:when>
-			  <c:otherwise>  
-	            <input type="text" readonly class="form-control-plaintext" value="Y">
-	  		  </c:otherwise>
-			  </c:choose>
-          </div>
-        </div>
-      </div>
-      <div class="col-sm-6">
-        <div class="mb-3">
-          <label for="staticEmail" class="col-sm-2 col-form-label">현재사용통신사</label>
-          <div class="col-sm-10 infoContent">
-	          <c:choose>
-				  <c:when test="${applyDetailPlan.currentTelecom eq 1}">
-		            <input type="text" readonly class="form-control-plaintext" value="SKT">
-		          </c:when>
-		          <c:when test="${applyDetailPlan.currentTelecom eq 2}">
-		            <input type="text" readonly class="form-control-plaintext" value="KT">
-		          </c:when>
-		          <c:when test="${applyDetailPlan.currentTelecom eq 3}">
-		          	<input type="text" readonly class="form-control-plaintext" value="LGU+">
-		          </c:when>
-		          <c:when test="${applyDetailPlan.currentTelecom eq 4}">
-		          	<input type="text" readonly class="form-control-plaintext" value="SKT 알뜰폰">
-		          </c:when>
-		          <c:when test="${applyDetailPlan.currentTelecom eq 5}">
-		         	 <input type="text" readonly class="form-control-plaintext" value="KT 알뜰폰">
-		          </c:when>
-		          <c:otherwise>
-		          	<input type="text" readonly class="form-control-plaintext" value="LGU+ 알뜰폰">
-	         	 </c:otherwise>
-	          </c:choose>
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <div class="row">
-      <div class="col-sm-6">
-        <div class="mb-3">
-          <label for="staticEmail" class="col-sm-2 col-form-label">청구서 유형 </label>
-          <div class="col-sm-10 infoContent">
-	          <c:choose>
-				<c:when test="${applyDetailPlan.planBill eq 1}">
-					<input type="text" readonly class="form-control-plaintext" value="문자">
-				</c:when>
-				<c:otherwise>
-					<input type="text" readonly class="form-control-plaintext" value="이메일">
-				</c:otherwise>
-			  </c:choose>
-          </div>
-        </div>
-      </div>
-      <div class="col-sm-6">
-        <div class="mb-3">
-          <label for="staticEmail" class="col-sm-2 col-form-label">납부방법</label>
-          <div class="col-sm-10 infoContent">
-          <c:choose>
-			<c:when test="${applyDetailPlan.planPay eq 1}">
-            	<input type="text" readonly class="form-control-plaintext" value="카드">
-            </c:when>
-            <c:otherwise>
-            	<input type="text" readonly class="form-control-plaintext" value="계좌이체">
-            </c:otherwise>
-           </c:choose>
-          </div>
-        </div>
-      </div>
-    </div>
-
-
-	<c:choose>
-    <c:when test="${applyDetailPlan.planPay eq 1}">
-    <div class="row">
-      <div class="col-sm-6">
-        <div class="mb-3">
-          <label for="staticEmail" class="col-sm-2 col-form-label">카드번호 </label>
-          <div class="col-sm-10 infoContent">
-            <input type="text" readonly class="form-control-plaintext" value=${applyDetailPlan.cardNumber }>
-          </div>
-        </div>
-      </div>
-      <div class="col-sm-6">
-        <div class="mb-3">
-          <label for="staticEmail" class="col-sm-2 col-form-label">카드유효기간</label>
-          <div class="col-sm-10 infoContent">
-            <input type="text" readonly class="form-control-plaintext" value=${applyDetailPlan.cardExpiration }>
-          </div>
-        </div>
-      </div>
-    </div>
-    </c:when>
-    <c:otherwise>
-    <div class="row">
-      <div class="col-sm-6">
-        <div class="mb-3">
-          <label for="staticEmail" class="col-sm-2 col-form-label">은행 </label>
-          <div class="col-sm-10 infoContent">
-         	 <input type="text" readonly class="form-control-plaintext" value=${applyDetailPlan.bank }>
-          </div>
-        </div>
-      </div>
-      <div class="col-sm-6">
-        <div class="mb-3">
-          <label for="staticEmail" class="col-sm-2 col-form-label">계좌번호</label>
-          <div class="col-sm-10 infoContent">
-           <input type="text" readonly class="form-control-plaintext" value=${applyDetailPlan.bankNumber }>
-          </div>
-        </div>
-      </div>
-    </div>
-    </c:otherwise>
-    </c:choose>
  
-</div> --%>
 
     
 

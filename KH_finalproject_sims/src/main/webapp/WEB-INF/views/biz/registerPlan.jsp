@@ -14,6 +14,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@100;300;400;500;700;900&display=swap" rel="stylesheet">
 
 <title>Insert title here</title>
+<link rel="stylesheet" href="${path}/resources/css/biz/registerPlan.css"/>
 <script src="https://code.jquery.com/jquery-3.6.3.js"></script>
 <link type="text/css" rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
@@ -27,61 +28,164 @@
     <link rel="stylesheet" href="<%= request.getContextPath() %>/resources/chain/assets/css/animated.css">
     <link rel="stylesheet" href="<%= request.getContextPath() %>/resources/chain/assets/css/owl.css">
     <link rel="stylesheet" href="<%= request.getContextPath() %>/resources/css/user/myinfo.css"/>
+    
+    <!-- google icon -->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
 </head>
 <body>
 <jsp:include page="/WEB-INF/views/header.jsp"/>
 <jsp:include page="/WEB-INF/views/biz/nav.jsp"/>
 
-	<form action="registerPlan" method="post">
-        <div>
-            <label>요금제명</label>
-            <input type="text" name="planName">
-            <label>통신사명</label>
-            <input type="text" name="bizName" value="${vo.bizName}" readonly >
-            <%-- value="${pageContext.request.userPrincipal.name }" 이렇게 하면 통신사 아이디--%>
+
+	<div class="titleMent">
+    	<span class="material-symbols-outlined" style="float: left;">
+		more_vert
+		</span>
+		<span>요금제 등록하기</span>
+    </div>
+
+
+	<form action="registerPlan" method="post" class="needs-validation regiForm" novalidate>
+        <!-- 테이블 적용 s-->
+        <table class="table" style="width: 70%" id="regiPlanTb">
+		<tr>
+			<th>
+				<span>요금제명</span>
+			</th>
+			<td><input type="text" name="planName"  class="form-control" required>
+			<div class="invalid-feedback">
+		      요금제명을 입력해주세요. 
+		    </div>
+		    </td>
+			
+			<th>
+				<span>통신사명</span>
+			</th>
+			<td><input type="hidden" name="bizName"  value="${vo.bizName}" >${vo.bizName}</td> <!-- 통신사명은 변경 불가 -->
+		</tr>
+		<tr>
+			<th>
+				<span>통신망</span>
+			</th>
+			<td>
+				<select name="netNo" class="form-select" required>
+				  <option value="1">SKT</option>
+               	  <option value="2">KT</option>
+                  <option value="3">LGU+</option>
+				</select>
+			</td>
+			
+			<th>
+				<span>통신세대</span>
+			</th>
+			<td>
+				<select name="genNo" class="form-select" required>
+				    <option value="1">5G</option>
+                	<option value="2">LTE</option>
+                    <option value="3">3G</option>
+                    <option value="4">LTE/3G</option>
+				</select>
+			</td>
+		</tr>
+		<tr>
+			<th>
+				<span>기본료(원)</span>
+			</th>
+			<td><input type="text" name="planPrice" class="form-control" required>
+			<div class="invalid-feedback">
+		      값을 입력해주세요. 
+		    </div></td>
+			<th>
+				<span>기본음성(분)</span>
+			</th>
+			<td><input type="text" name="planVoice" class="form-control" required>
+			<div class="invalid-feedback">
+		      값을 입력해주세요. 
+		    </div>
+			</td>
+		</tr>
+		<tr>
+			<th>
+				<span>기본문자(건)</span>
+			</th>
+			<td><input type="text" name="planMessage" class="form-control" required >
+			<div class="invalid-feedback">
+		      값을 입력해주세요. 
+		    </div></td>
+			<th>
+				<span>기본데이터(mb)</span>
+			</th>
+			<td><input type="text" name="planData" class="form-control" required>
+			<div class="invalid-feedback">
+		      값을 입력해주세요. 
+		    </div></td>
+		</tr>
+		<tr>
+			<th>
+				<span>초과음성단가(초)</span>
+			</th>
+			<td><input type="text" name="planVoiceOver" class="form-control" required>
+			<div class="invalid-feedback">
+		      값을 입력해주세요. 
+		    </div></td>
+			<th>
+				<span>초과문자단가(건)</span>
+			</th>
+			<td><input type="text" name="planMessageOver" class="form-control" required>
+			<div class="invalid-feedback">
+		      값을 입력해주세요. 
+		    </div></td>
+			<th>
+				<span>초과데이터단가(mb)</span>
+			</th>
+			<td><input type="text" name="planDataOver" class="form-control" required>
+			<div class="invalid-feedback">
+		      값을 입력해주세요. 
+		    </div></td>
+		</tr>
+	</table>
+        
+        <!-- 테이블 적용 e -->
+        
+        <div class="btnGroup">
+	        <button type="button" onclick="goList()" class="btn">취소</button>
+	        <button type="submit" class="btn">등록</button>
+	        <%-- location.href='${pageContext.request.contextPath}/biz/planList' --%>
         </div>
-        <div>
-            <label>통신망</label>
-            <select name="netNo">
-                <option value="1">SKT</option>
-                <option value="2">KT</option>
-                <option value="3">LGU+</option>
-            </select>
-            <label>통신세대</label>
-            <select name="genNo">
-                <option value="1">5G</option>
-                <option value="2">LTE</option>
-                <option value="3">3G</option>
-                <option value="4">LTE/3G</option>
-            </select>
-        </div>
-        <div>
-            <label>기본료(원)</label>
-            <input type="text" name="planPrice">
-            <label>기본음성(분)</label>
-            <input type="text" name="planVoice">
-        </div>
-         <div>
-            <label>기본문자(건)</label>
-            <input type="text" name="planMessage">
-            <label>기본데이터(mb)</label>
-            <input type="text" name="planData">
-        </div>
-        <div>
-            <label>초과음성단가(초)</label>
-            <input type="text" name="planVoiceOver">
-            <label>초과문자단가(분)</label>
-            <input type="text" name="planMessageOver">
-            <label>초과데이터단가(MB)</label>
-            <input type="text" name="planDataOver">
-        </div>
-        <button type="submit">등록</button>
     </form>
     
     <!-- 등록이 되면 등록이 되었다는 창이 뜨게 하고 요금제 목록 창으로  -->
     
  
 	<jsp:include page="/WEB-INF/views/footer.jsp"/>
+	
+	<script>
+	function goList() {
+	  location.href='${pageContext.request.contextPath}/biz/planList';
+	}
+	</script>    
+	
+	<script>
+	// Example starter JavaScript for disabling form submissions if there are invalid fields
+		(() => {
+		  'use strict'
+		
+		  // Fetch all the forms we want to apply custom Bootstrap validation styles to
+		  const forms = document.querySelectorAll('.needs-validation')
+		
+		  // Loop over them and prevent submission
+		  Array.from(forms).forEach(form => {
+		    form.addEventListener('submit', event => {
+		      if (!form.checkValidity()) {
+		        event.preventDefault()
+		        event.stopPropagation()
+		      }
+		
+		      form.classList.add('was-validated')
+		    }, false)
+		  })
+		})()
+	</script>
 	
 	<!-- Scripts -->
 	<script src="<%= request.getContextPath() %>/resources/chain/vendor/jquery/jquery.min.js"></script>

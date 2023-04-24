@@ -28,113 +28,126 @@
     <link rel="stylesheet" href="<%= request.getContextPath() %>/resources/chain/assets/css/animated.css">
     <link rel="stylesheet" href="<%= request.getContextPath() %>/resources/chain/assets/css/owl.css">
     <link rel="stylesheet" href="<%= request.getContextPath() %>/resources/css/user/myinfo.css"/>
+    
+     <!-- google icon -->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
+   
 </head>
 <body>
 <jsp:include page="/WEB-INF/views/header.jsp"/>
 <jsp:include page="/WEB-INF/views/biz/nav.jsp"/>
 
-요금제 정보
-<!-- 요금제 번호 추가할까 말까 -->
-	<table class="table">
-		<tr>
-			<th>
-				<span>요금제명</span>
-			</th>
-			<td>${planDetail.planName} </td>
-			<th>
-				<span>통신사명</span>
-			</th>
-			<td>${planDetail.bizName}</td>
-		</tr>
-		<tr>
-			<th>
-				<span>통신망</span>
-			</th>
-			<td>
-			<c:choose>
-				<c:when test="${planDetail.netNo eq 1}">
-					KT
-				</c:when>
-				<c:when test="${planDetail.netNo eq 2}">
-					SKT
-				</c:when>
-				<c:otherwise>
-					LGU+
-				</c:otherwise>
-			</c:choose>
-			</td>
-			<th>
-				<span>통신세대</span>
-			</th>
-			<td>
-			<c:choose>
-				<c:when test="${planDetail.genNo eq 1}">
-					5G
-				</c:when>
-				<c:when test="${planDetail.genNo eq 2}">
-					LTE
-				</c:when>
-				<c:when test="${planDetail.genNo eq 3}">
-					3G
-				</c:when>
-				<c:otherwise>
-					LTE/3G
-				</c:otherwise>
-			</c:choose>
-			</td>
-		</tr>
-		<tr>
-			<th>
-				<span>기본료(원)</span>
-			</th>
-			<td>${planDetail.planPrice}</td>
-			<th>
-				<span>기본음성(분)</span>
-			</th>
-			<td>${planDetail.planVoice}</td>
-		</tr>
-		<tr>
-			<th>
-				<span>기본문자(건)</span>
-			</th>
-			<td>${planDetail.planMessage}</td>
-			<th>
-				<span>기본데이터(mb)</span>
-			</th>
-			<td>${planDetail.planData}</td>
-		</tr>
-		<tr>
-			<th>
-				<span>초과음성단가(초)</span>
-			</th>
-			<td>${planDetail.planVoiceOver}</td>
-			<th>
-				<span>초과문자단가(건)</span>
-			</th>
-			<td>${planDetail.planMessageOver}</td>
-			<th>
-				<span>초과데이터단가(mb)</span>
-			</th>
-			<td>${planDetail.planDataOver}</td>
-		</tr>
-		<!-- 수정된 적이 없으면 애초에 수정일자가 보이지 않게..  -->
-		<c:if test="${not empty planDetail.planUpdateDate}">
-		  <tr>
-		    <th><span>수정일자</span></th>
-		    <td>${planDetail.planUpdateDate}</td>
-		  </tr>
-		</c:if>
 
-	</table>
+	<div class="titleMent">
+    	<span class="material-symbols-outlined" style="float: left;">
+		more_vert
+		</span>
+		<span>요금제 정보</span>
+    </div>
+
+	<div class="container">
+		<table class="table" id="planDetail" style="width: 88%">
+			<tr > 
+				<th>
+					<span>요금제명</span>
+				</th>
+				<td colspan="2">${planDetail.planName} </td>
+				<th>
+					<span>통신사명</span>
+				</th>
+				<td colspan="2">${planDetail.bizName}</td>
+			</tr>
+			<tr>
+				<th>
+					<span>통신망</span>
+				</th>
+				<td colspan="2">
+				<c:choose>
+					<c:when test="${planDetail.netNo eq 1}">
+						KT
+					</c:when>
+					<c:when test="${planDetail.netNo eq 2}">
+						SKT
+					</c:when>
+					<c:otherwise>
+						LGU+
+					</c:otherwise>
+				</c:choose>
+				</td>
+				<th>
+					<span>통신세대</span>
+				</th>
+				<td colspan="2">
+				<c:choose>
+					<c:when test="${planDetail.genNo eq 1}">
+						5G
+					</c:when>
+					<c:when test="${planDetail.genNo eq 2}">
+						LTE
+					</c:when>
+					<c:when test="${planDetail.genNo eq 3}">
+						3G
+					</c:when>
+					<c:otherwise>
+						LTE/3G
+					</c:otherwise>
+				</c:choose>
+				</td>
+			</tr>
+			<tr>
+				<th>
+					<span>기본료(원)</span>
+				</th>
+				<td colspan="2">${planDetail.planPrice}</td>
+				<th>
+					<span>기본음성(분)</span>
+				</th>
+				<td colspan="2">${planDetail.planVoice}</td>
+			</tr>
+			<tr>
+				<th>
+					<span>기본문자(건)</span>
+				</th>
+				<td colspan="2">${planDetail.planMessage}</td>
+				<th>
+					<span>기본데이터(mb)</span>
+				</th>
+				<td colspan="2">${planDetail.planData}</td>
+			</tr>
+			<tr>
+				<th>
+					<span>초과음성단가(초)</span>
+				</th>
+				<td>${planDetail.planVoiceOver}</td>
+				<th>
+					<span>초과문자단가(건)</span>
+				</th>
+				<td>${planDetail.planMessageOver}</td>
+				<th>
+					<span>초과데이터단가(mb)</span>
+				</th>
+				<td>${planDetail.planDataOver}</td>
+			</tr>
+			<!-- 수정된 적이 없으면 애초에 수정일자가 보이지 않게..  -->
+			<c:if test="${not empty planDetail.planUpdateDate}">
+			  <tr>
+			    <th><span>수정일자</span></th>
+			    <td>${planDetail.planUpdateDate}</td>
+			  </tr>
+			</c:if>
 	
-	<button onclick="location.href='${pageContext.request.contextPath}/biz/planList'">목록</button>
-	<button onclick="location.href='${pageContext.request.contextPath}/biz/modifyPlan?planNo=${planDetail.planNo }'">수정</button>
-
-<script>
+		</table>
+	</div>
+	
+	<div class="btnGroup">
+		<button class= "btn" onclick="location.href='${pageContext.request.contextPath}/biz/planList'">목록</button>
+		<button class= "btn" onclick="location.href='${pageContext.request.contextPath}/biz/modifyPlan?planNo=${planDetail.planNo }'">수정</button>
+	</div>
+<!-- <script>
 	function goBack() {
 	  window.history.back();
 	}
-</script>
+</script> -->
 
 	<jsp:include page="/WEB-INF/views/footer.jsp"/>
 	

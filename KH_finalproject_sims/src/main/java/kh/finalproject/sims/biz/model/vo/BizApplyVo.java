@@ -50,10 +50,10 @@ public class BizApplyVo {
 	private String currentTelecom;
 	private String planBill;
 	private String planPay;
-	private String cardNumber;
-	private String cardExpiration;
-	private String bank;
-	private String bankNumber;
+//	private String cardNumber;
+//	private String cardExpiration;
+//	private String bank;
+//	private String bankNumber;
 	private Date orderDate;
 	private String orderStatus;
 	private int NetNo;
@@ -62,6 +62,36 @@ public class BizApplyVo {
 	private int orderData;
 	private int orderVoice;
 	private int orderMessage;
+	
+//	payinfo_acc
+//	---------------- -------- ------------ 
+//	ORDER_NO         NOT NULL NUMBER       
+//	ACC_HOLDER                VARCHAR2(20) 
+//	ACC_SSN                   VARCHAR2(20) 
+//	ACC_RELATIONSHIP          NUMBER       
+//	ACC_NUMBER                VARCHAR2(50) 
+//	ACC_BANK                  VARCHAR2(30) 
+	private String accHolder;
+	private String accSsn;
+	private int accRelationship;
+	private String accNumber;
+	private String accBank;
+	
+
+//	payinfo_card
+//	----------------- -------- ------------ 
+//	ORDER_NO          NOT NULL NUMBER       
+//	CARD_HOLDER                VARCHAR2(20) 
+//	CARD_SSN                   VARCHAR2(20) 
+//	CARD_RELATIONSHIP          NUMBER       
+//	CARD_NUMBER                VARCHAR2(30) 
+//	CARD_EXPIRATION            VARCHAR2(10) 
+	private String cardHolder;
+	private String cardSsn;
+	private int cardRelationship;
+	private String cardNumber;
+	private String cardExpiration;
+	
 	
 //	------------ -------- ------------- 
 //	USER_ID      NOT NULL VARCHAR2(30)  

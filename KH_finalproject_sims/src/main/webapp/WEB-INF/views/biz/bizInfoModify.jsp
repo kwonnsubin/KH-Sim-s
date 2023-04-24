@@ -76,7 +76,7 @@
 						</th>
 						<td colspan="3"> 
 						<input type="text" class="form-control" id="postcode" name="bizZipCode" placeholder="우편번호" value="${bizinfo.bizZipCode }">
-						<input type="button"  onclick="execDaumPostcode()" value="우편번호 찾기"><br>
+						<input type="button"  onclick="execDaumPostcode()" value="우편번호 찾기" class="btn"><br>
 						<input type="text" class="form-control" id="roadAddress" name="bizLocation" placeholder="도로명주소"  value="${bizinfo.bizLocation }">
 						</td>
 					</tr>
@@ -98,7 +98,7 @@
 						<th scope="row">
 							<span>홈페이지</span>
 						</th>
-						<td><input type="text" class="form-control" name="bizHp" value="${bizinfo.bizHp }"></td>
+						<td ><input type="text" class="form-control" name="bizHp" value="${bizinfo.bizHp }"></td>
 					</tr>
 				</tbody>
 			</table>
@@ -173,48 +173,48 @@
 					<th scope="row">
 						<span>영업시간</span>
 					</th>
-					<td>
-					<select name="bizBeginTime" class="form-select">
-						<c:forEach var="hour" begin="0" end="23">
-						  <c:forEach var="minute" begin="0" end="30" step="30">
-						    <c:set var="time" value="${hour}:${minute == 0 ? '00' : '30'}" />
-						    <c:set var="beginTime" value="${bizinfo.bizBeginTime }" />
-						    <c:choose>
-						    <c:when test="${beginTime eq time}">
-						    <option value="${time}" selected>${time}</option>
-						    </c:when>
-						    <c:otherwise>
-						    <option value="${time}">${time}</option>
-						    </c:otherwise>
-						    </c:choose>
-						  </c:forEach>
-						</c:forEach>
-					</select>
-					
-					
-					~
-					
-					<select name="bizEndTime" class="form-select">
-						<c:forEach var="hour" begin="0" end="23">
-						  <c:forEach var="minute" begin="0" end="30" step="30">
-						    <c:set var="time" value="${hour}:${minute == 0 ? '00' : '30'}" />
-						    <c:set var="endTime" value="${bizinfo.bizEndTime }" />
-						    <c:choose>
-						    <c:when test="${endTime eq time}">
-						    <option value="${time}" selected>${time}</option>
-						    </c:when>
-						    <c:otherwise>
-						    <option value="${time}">${time}</option>
-						    </c:otherwise>
-						    </c:choose>
-						  </c:forEach>
-						</c:forEach>
-					</select>  
+					<td style="display: flex">
+						<select name="bizBeginTime" class="form-select">
+							<c:forEach var="hour" begin="0" end="23">
+							  <c:forEach var="minute" begin="0" end="30" step="30">
+							    <c:set var="time" value="${hour}:${minute == 0 ? '00' : '30'}" />
+							    <c:set var="beginTime" value="${bizinfo.bizBeginTime }" />
+							    <c:choose>
+							    <c:when test="${beginTime eq time}">
+							    <option value="${time}" selected>${time}</option>
+							    </c:when>
+							    <c:otherwise>
+							    <option value="${time}">${time}</option>
+							    </c:otherwise>
+							    </c:choose>
+							  </c:forEach>
+							</c:forEach>
+						</select>
+						
+						
+						~
+						
+						<select name="bizEndTime" class="form-select">
+							<c:forEach var="hour" begin="0" end="23">
+							  <c:forEach var="minute" begin="0" end="30" step="30">
+							    <c:set var="time" value="${hour}:${minute == 0 ? '00' : '30'}" />
+							    <c:set var="endTime" value="${bizinfo.bizEndTime }" />
+							    <c:choose>
+							    <c:when test="${endTime eq time}">
+							    <option value="${time}" selected>${time}</option>
+							    </c:when>
+							    <c:otherwise>
+							    <option value="${time}">${time}</option>
+							    </c:otherwise>
+							    </c:choose>
+							  </c:forEach>
+							</c:forEach>
+						</select>  
 					</td>
 					<th scope="row">
 						<span>휴무일</span>
 					</th>
-					<td >
+					<td colspan="2" style="display: flex">
 						<div class="form-check">
 							<input class="form-check-input" type="checkbox" name="weekday" value="월">월
 						</div>
@@ -246,7 +246,7 @@
 					<th scope="row">
 						<span>지원통신망</span>
 					</th>
-					<td colspan="2">
+					<td colspan="2" style="display: flex">
 					<div class="form-check">
 						<input class="form-check-input" type="checkbox" name="net" value="KT망" >KT망
 					</div>

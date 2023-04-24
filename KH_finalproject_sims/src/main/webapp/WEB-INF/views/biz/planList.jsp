@@ -41,9 +41,9 @@
 <jsp:include page="/WEB-INF/views/header.jsp"/>
 <jsp:include page="/WEB-INF/views/biz/nav.jsp"/>
 
-<sec:authorize access="isAuthenticated()">
+<%-- <sec:authorize access="isAuthenticated()">
 	<p><sec:authentication property="name"/>의 요금제 목록 </p>
-</sec:authorize>
+</sec:authorize> --%>
 
 <h2>${bizName.bizName}의 요금제 목록</h2>
 
@@ -88,7 +88,7 @@
     </div>
     
      <div class="regBtn">
-    	<button type="button"  onclick="registerBtn(this);">요금제 등록하기</button>
+    	<button type="button" class="btn" onclick="registerBtn(this);">요금제 등록하기</button>
     </div>
     
     <% if (request.getParameter("keyword") != null && !request.getParameter("keyword").isEmpty()) { %>
@@ -97,7 +97,7 @@
     
         <table class="table table-hover" id="planTb" style="width: 80%;  position: relative;">
             <thead>
-                <tr class="text-center mx-auto" style="background-color: #f7f7f7;">
+                <tr class="text-center mx-auto" style="background-color: #ecf7fd;">
                     <th>번호</th>
                     <th>요금제명</th>
                     <th>등록일</th>
@@ -117,9 +117,9 @@
 	                    <td><a href="<%=request.getContextPath()%>/biz/planDetail?planNo=${plan.planNo }">${plan.planName }</a></td>
 	                    <td>${plan.planDate } </td>
 	                    <td>
-	                    <button type="button" onclick="location.href=
+	                    <button type="button" class="btn" onclick="location.href=
 	                    '${pageContext.request.contextPath}/biz/modifyPlan?planNo=${plan.planNo }'">수정</button>
-	                    <button type="button" class="deleteBtn" data-bs-toggle="modal" 
+	                    <button type="button" class="btn deleteBtn" data-bs-toggle="modal" 
 	                    data-bs-target="#deleteleModal" data-planno="${plan.planNo}">삭제</button>       
 	                    </td>
 	                </tr>
