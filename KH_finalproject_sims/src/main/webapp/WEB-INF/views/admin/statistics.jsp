@@ -40,37 +40,56 @@
 	                    <div class="card-body">
 	                    	<div id="dailyTotalUserWriteCount_chart_div"></div>
 	                    	<script>
-	                        var options = {
-	                                series: [{
-	                                  name: "Today",
-	                                  data: [${dailyTotalUserWriteCount[0].cnt}, ${dailyTotalUserWriteCount[1].cnt}, ${dailyTotalUserWriteCount[2].cnt}, ${dailyTotalUserWriteCount[3].cnt}, ${dailyTotalUserWriteCount[4].cnt}, ${dailyTotalUserWriteCount[5].cnt}, ${dailyTotalUserWriteCount[6].cnt}]
-	                              }],
-	                                chart: {
-	                                height: 300,
-	                                type: 'line',
-	                                zoom: {
-	                                  enabled: false
-	                                }
-	                              },
-	                              dataLabels: {
-	                                enabled: false
-	                              },
-	                              stroke: {
-	                                curve: 'straight'
-	                              },
-	                              grid: {
-	                                row: {
-	                                  colors: ['#f3f3f3', 'transparent'], // takes an array which will be repeated on columns
-	                                  opacity: 0.5
-	                                },
-	                              },
-	                              xaxis: {
-	                                categories: ['${dailyTotalUserWriteCount[0].userWrDate}', '${dailyTotalUserWriteCount[1].userWrDate}', '${dailyTotalUserWriteCount[2].userWrDate}', '${dailyTotalUserWriteCount[3].userWrDate}', '${dailyTotalUserWriteCount[4].userWrDate}', '${dailyTotalUserWriteCount[5].userWrDate}', '${dailyTotalUserWriteCount[6].userWrDate}'],
-	                              }
-	                              };
+	                    	$.ajax({
+	                    	    url: "<%=request.getContextPath()%>/admin/dailyTotalUserWriteCount",
+	                    	    type: "POST", // HTTP 요청 방식
+	                    	    dataType: "json", // 받아올 데이터의 타입 (json, xml, html, text 등)
+	                    	    success: function(data) { // 성공적으로 데이터를 받아왔을 때의 처리 함수
+	                    	        
+	                    	        var chartData = [];
 
-	                              var chart = new ApexCharts(document.querySelector("#dailyTotalUserWriteCount_chart_div"), options);
-	                              chart.render();
+	                    	        for (var i = 0; i < data.length; i++) {
+	                    	          chartData.push(data[i].cnt);
+	                    	        }
+
+	    	                        var options = {
+	    	                                series: [{
+	    	                                  name: "Today",
+	    	                               	  data: chartData
+	    	                               		 	
+	    	                                  //data: [${dailyTotalUserWriteCount[0].cnt}, ${dailyTotalUserWriteCount[1].cnt}, ${dailyTotalUserWriteCount[2].cnt}, ${dailyTotalUserWriteCount[3].cnt}, ${dailyTotalUserWriteCount[4].cnt}, ${dailyTotalUserWriteCount[5].cnt}, ${dailyTotalUserWriteCount[6].cnt}]
+	    	                              }],
+	    	                                chart: {
+	    	                                height: 300,
+	    	                                type: 'line',
+	    	                                zoom: {
+	    	                                  enabled: false
+	    	                                }
+	    	                              },
+	    	                              dataLabels: {
+	    	                                enabled: false
+	    	                              },
+	    	                              stroke: {
+	    	                                curve: 'straight'
+	    	                              },
+	    	                              grid: {
+	    	                                row: {
+	    	                                  colors: ['#f3f3f3', 'transparent'], // takes an array which will be repeated on columns
+	    	                                  opacity: 0.5
+	    	                                },
+	    	                              },
+	    	                              xaxis: {
+	    	                                categories: ['${dailyTotalUserWriteCount[0].userWrDate}', '${dailyTotalUserWriteCount[1].userWrDate}', '${dailyTotalUserWriteCount[2].userWrDate}', '${dailyTotalUserWriteCount[3].userWrDate}', '${dailyTotalUserWriteCount[4].userWrDate}', '${dailyTotalUserWriteCount[5].userWrDate}', '${dailyTotalUserWriteCount[6].userWrDate}'],
+	    	                              }
+	    	                              };
+
+	                    	        var chart = new ApexCharts(document.querySelector("#dailyTotalUserWriteCount_chart_div"), options);
+	                    	        chart.render();
+	                    	    },
+	                    	    error: function(xhr, status, error) { // 데이터를 가져오지 못했을 때의 처리 함수
+	                    	        console.error("Error while fetching data:", error);
+	                    	    }
+	                    	});
 	                    	</script>
 						</div>
 					 </div>
