@@ -1,8 +1,6 @@
 package kh.finalproject.sims.user.model.vo;
 
 import java.sql.Date;
-import java.util.List;
-
 import org.springframework.stereotype.Component;
 
 import lombok.AllArgsConstructor;

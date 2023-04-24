@@ -2,6 +2,45 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="plan">
 
+	<!-- 가입 신청 정보 -->
+<!-- 	<parameterMap type="kh.finalproject.sims.user.model.vo.PlanOrderVo" id="orderCollectionMap">
+		<id column="ORDER_NO" property="orderNo"/>
+		<result column="USER_ID" property="userId"/>
+		<result column="PLAN_NO" property="planNo"/>
+		<result column="JOIN_CATEGORY" property="joinCategory"/>
+		<result column="SIM_TYPE" property="simType"/>
+		<result column="SIM_YN" property="simYn"/>
+		<result column="CURRENT_TELECOM" property="currentTelecom"/>
+		<result column="PLAN_BILL" property="planBill"/>
+		<result column="PLAN_PAY" property="planPay"/>
+		<result column="ORDER_DATE" property="orderDate"/>
+		<result column="ORDER_STATUS" property="orderStatus"/>
+		<result column="NET_NO" property="netNo"/>
+		<result column="GEN_NO" property="genNo"/>
+		<result column="ORDER_PRICE" property="orderPrice"/>
+		<result column="ORDER_DATA" property="orderData"/>
+		<result column="ORDER_VOICE" property="orderVoice"/>
+		<result column="ORDER_MESSAGE" property="orderMessage"/>
+		<result column="BIZ_ID" property="bizId"/>
+		<result column="ORDER_ADDRESS" property="orderAddress"/>
+		<collection column="ORDER_NO" property="payInfoCard" ofType="kh.finalproject.sims.user.model.vo.PayCardVo">
+			<id column="ORDER_NO" property="orderNo"/>
+			<result column="CARD_HOLDER" property="cardHolder"/>
+			<result column="CARD_SSN" property="cardSsn"/>
+			<result column="CARD_RELATIONSHIP" property="cardRelationship"/>
+			<result column="CARD_NUMBER" property="cardNumber"/>
+			<result column="CARD_EXPIRATION" property="cardExpiration"/>
+		</collection>
+		<collection column="ORDER_NO" property="payInfoAcc" ofType="kh.finalproject.sims.user.model.vo.PayAccVo">
+			<id column="ORDER_NO" property="orderNo"/>
+			<result column="ACC_HOLDER" property="accHolder"/>
+			<result column="ACC_SSN" property="accSsn"/>
+			<result column="ACC_RELATIONSHIP" property="accRelationship"/>
+			<result column="ACC_NUMBER" property="accNumber"/>
+			<result column="ACC_BANK" property="accBank"/>
+		</collection>
+	</parameterMap> -->
+
 	<!-- api 데이터 -->
 	<insert id="insertPlanData" parameterType="map">
 		insert into plan_table values(plan_seq.nextval, #{chargeName}
@@ -161,11 +200,40 @@
 	<update id="insertQueVal" parameterType="map">
 		update custom_q set cq_${type}=#{value}
 	</update>
-	
+
+	<!-- 신청서 -->
+	<select id="selectOrderNo" resultType="int">
+		SELECT plan_order_seq.NEXTVAL FROM dual
+	</select>
+
+	<insert id="insertPlanOrder" parameterType="orderVo">
+		INSERT INTO plan_order (
+			order_no, user_id, biz_id, plan_no, join_category, sim_type, sim_yn
+			, current_telecom, plan_bill, plan_pay, order_date, order_status, net_no, gen_no
+			, order_price, order_data, order_voice, order_message, order_address
+		) VALUES (
+			#{orderNo}, #{userId}, #{bizId}, #{planNo}, #{joinCategory}, #{simType}, #{simYn}
+			, #{currentTelecom}, #{planBill}, #{planPay}, sysdate, '1', #{netNo}, #{genNo}
+			, #{orderPrice}, #{orderData}, #{orderVoice}, #{orderMessage}, #{orderAddress})
+	</insert>
+
+	<insert id="insertPayinfoCard" parameterType="kh.finalproject.sims.user.model.vo.PayCardVo">
+		INSERT INTO payinfo_card (order_no, card_holder, card_ssn, card_relationship, card_number, card_expiration)
+		VALUES (#{orderNo}, #{cardHolder}, #{cardSsn}, #{cardRelationship}, #{cardNumber}, #{cardExpiration})
+	</insert>
+
+	<insert id="insertPayinfoAcc" parameterType="kh.finalproject.sims.user.model.vo.PayAccVo">
+		INSERT INTO payinfo_acc (order_no, acc_holder, acc_ssn, acc_relationship, acc_number, acc_bank)
+		VALUES (#{orderNo}, #{accHolder}, #{accSsn}, #{accRelationship}, #{accNumber}, #{accBank})
+	</insert>
+
+	<!-- 요금제 정보 -->
 	<select id="getPlanByNo" resultType="planVo">
 		select p.plan_no
 		    , p.plan_name
 		    , p.biz_name
+		    , p.net_no
+		    , p.gen_no
 		    , p.plan_price
 		    , p.plan_voice
 		    , p.plan_message
@@ -176,23 +244,29 @@
 		    , p.plan_date
 		    , n.net_name
 		    , g.gen_name
+		    , b.biz_id
 		from plan_table p
 		    inner join network_table n
 		    on (n.net_no = p.net_no)
 		    inner join tel_gen_table g
 		    on (g.gen_no = p.gen_no)
+		    inner join biz b
+		    on (b.biz_name = p.biz_name)
 		where plan_no = #{planNo}
 	</select>
 	
+	<!-- 찜 추가 -->
 	<insert id="insertLike" parameterType="likeVo">
 		insert into LIKE_TABLE(PLAN_NO, USER_ID, LIKE_DATE)
 			values (#{planNo}, #{userId}, sysdate)
 	</insert>
 	
+	<!-- 찜 삭제 -->
 	<delete id="deleteLike">
 		DELETE FROM LIKE_TABLE WHERE PLAN_NO = #{planNo} AND USER_ID = #{userId}
 	</delete>
 	
+	<!-- 찜 확인 -->
 	<select id="getLikeByPlanWithUser" resultType="likeVo">
 		select * from like_table where plan_no = #{planNo} and user_id = #{userId}
 	</select>

@@ -1,6 +1,5 @@
 package kh.finalproject.sims.user.model.vo;
 
-import java.sql.Date;
 import org.springframework.stereotype.Component;
 
 import lombok.AllArgsConstructor;
@@ -10,14 +9,18 @@ import lombok.Setter;
 import lombok.ToString;
 
 @Component
+@ToString
 @Getter
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
-@ToString
-public class LikeVo {
+public class PayAccVo {
 	
-	private int planNo;
-	private String userId;
-	private Date likeDate;
+	private int orderNo;
+	private String accHolder;
+	private String accSsn;
+	private int accRelationship;
+	private String accNumber;
+	private String accBank;
+
 }

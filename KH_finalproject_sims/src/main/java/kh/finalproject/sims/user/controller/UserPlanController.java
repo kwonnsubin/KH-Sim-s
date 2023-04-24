@@ -1,15 +1,14 @@
 package kh.finalproject.sims.user.controller;
 
-import java.io.Console;
 import java.security.Principal;
 import java.util.HashMap;
 import java.util.List;
-
 import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -21,6 +20,8 @@ import kh.finalproject.sims.user.model.service.UserMyPageService;
 import kh.finalproject.sims.user.model.service.UserPlanService;
 import kh.finalproject.sims.user.model.vo.BizVo;
 import kh.finalproject.sims.user.model.vo.LikeVo;
+import kh.finalproject.sims.user.model.vo.PayAccVo;
+import kh.finalproject.sims.user.model.vo.PayCardVo;
 import kh.finalproject.sims.user.model.vo.PlanOrderVo;
 import kh.finalproject.sims.user.model.vo.PlanVo;
 import kh.finalproject.sims.user.model.vo.UserMemberVo;
@@ -107,6 +108,29 @@ public class UserPlanController {
 		mv.addObject("user", mvo);
 		
 		mv.setViewName("user/plan/order");
+		return mv;
+	}
+	
+	// 신청서 저장
+	@PostMapping("/{planNo}/order")
+	public ModelAndView savePlanOrder(
+			ModelAndView mv
+			, @PathVariable int planNo
+			, @ModelAttribute PlanOrderVo orderVo
+			, @ModelAttribute PayCardVo cardVo
+			, @ModelAttribute PayAccVo accVo
+			) {
+		int orderNo = planService.selectOrderNo();
+		orderVo.setOrderNo(orderNo);
+		planService.insertPlanOrder(orderVo);
+        if (orderVo.getPlanPay().equals("1")) {
+        	cardVo.setOrderNo(orderNo);
+        	planService.insertPayinfoCard(cardVo);
+		} else if (orderVo.getPlanPay().equals("2")) {
+			accVo.setOrderNo(orderNo);
+			planService.insertPayinfoAcc(accVo);
+		}
+		mv.setViewName("redirect:/");
 		return mv;
 	}
 	

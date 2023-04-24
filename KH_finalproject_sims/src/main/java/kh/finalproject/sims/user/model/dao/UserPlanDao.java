@@ -8,6 +8,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import kh.finalproject.sims.user.model.vo.LikeVo;
+import kh.finalproject.sims.user.model.vo.PayAccVo;
+import kh.finalproject.sims.user.model.vo.PayCardVo;
+import kh.finalproject.sims.user.model.vo.PlanOrderVo;
 import kh.finalproject.sims.user.model.vo.PlanVo;
 
 @Repository
@@ -52,5 +55,20 @@ public class UserPlanDao {
 	public void insertRecentInfo(HashMap<String, Object> recentInfo) {
 		session.insert("plan.insertRecentInfo", recentInfo);
 	}
+
+	public int selectOrderNo() {
+		return session.selectOne("plan.selectOrderNo");
+	}
 	
+	public void insertPlanOrder(PlanOrderVo planOrderVO) {
+		session.insert("plan.insertPlanOrder", planOrderVO);
+	}
+	
+	public void insertPayinfoCard(PayCardVo payCardVo) {
+		session.insert("plan.insertPayinfoCard", payCardVo);
+	}
+	
+	public void insertPayinfoAcc(PayAccVo payAccVo) {
+		session.insert("plan.insertPayinfoAcc", payAccVo);
+	}
 }

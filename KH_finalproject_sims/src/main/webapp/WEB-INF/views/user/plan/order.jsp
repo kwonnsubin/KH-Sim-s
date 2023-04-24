@@ -33,26 +33,30 @@
 	<section>
 		<div class="container-sm div-m">
 			<div class="row">
-				${plan }
-				${user }
-				가입유형: <span id="joinCategory"></span>
-				유심보유: <span id="simYn"></span>
-				유심유형: <span id="simType"></span>
-				
 				<h4>가입 고객 정보</h4>
-				<form name="userInfo" action="#">
+					<input type="hidden" name="bizId" value="${plan.bizId}">
+					<input type="hidden" name="userId" value="${user.userId}">
+					<input type="hidden" name="planNo" value="${plan.planNo}">
+					<input type="hidden" name="netNo" value="${plan.netNo}">
+					<input type="hidden" name="genNo" value="${plan.genNo}">
+					<input type="hidden" name="orderPrice" value="${plan.planPrice}">
+					<input type="hidden" name="orderData" value="${plan.planData}">
+					<input type="hidden" name="orderVoice" value="${plan.planVoice}">
+					<input type="hidden" name="orderMessage" value="${plan.planMessage}">
+					
+					
 					<table class="table w-100">
 						<tr>
 							<td class="w-25">이름</td>
 							<td>
-								<input name="userName" type="text" value="${user.userName }">
+								<input type="text" value="${user.userName }">
 							</td>
 						</tr>
 						<tr>
 							<td class="w-25">주민등록번호</td>
 							<td>
-								<input name="ssnFirst" id="ssnFirst" type="text"> -
-								<input name="ssnLast" id="ssnLast" type="password">
+								<input id="ssnFirst" type="text"> -
+								<input id="ssnLast" type="password">
 							</td>
 						</tr>
 						<tr>
@@ -88,30 +92,37 @@
 								<input type="text" id="sample6_extraAddress" placeholder="참고항목">
 							</td>
 						</tr>
-						<tr>
-							<td>기타 요청사항</td>
-							<td><textarea class="w-100" rows="3"></textarea></td>
-						</tr>
+					    <tr>
+					        <td>이용중인 통신사</td>
+					        <td>
+					            <select name="currentTelecom">
+					                <option value="1">SKT</option>
+					                <option value="2">KT</option>
+					                <option value="3">LGU+</option>
+					                <option value="4">SKT 알뜰폰</option>
+					                <option value="5">KT 알뜰폰</option>
+					                <option value="6">LGU+ 알뜰폰</option>
+					            </select>
+					        </td>
+					    </tr>
 					</table>
-				</form>
 				
 				<h4>납부 정보</h4>
 				<div class="col input-group mb-3">
 					<div class="input-group-text">
-						<input class="form-check-input mt-0" type="radio"
-							value="1" name="payType" checked="checked">
+						<input class="form-check-input mt-0" type="radio" value="1" name="planPay">
 					</div>
 					<input type="text" class="form-control" value="카드납부" readonly>
 				</div>
 				<div class="col input-group mb-3">
 					<div class="input-group-text">
-						<input class="form-check-input mt-0" type="radio"
-							value="2" name="payType">
+						<input class="form-check-input mt-0" type="radio" value="2" name="planPay">
 					</div>
 					<input type="text" class="form-control" value="은행납부" readonly>
 				</div>
-				<form name="payInfo" action="#" method="post">
-					<input type="hidden" name="payType" value="1">
+				
+				<!-- 카드 납부 -->
+				<form name="payInfo1" action="#" method="post" style="display: none;">
 					<table class="table w-100 payInfoTable">
 						<tr>
 							<td class="w-25">카드 소유자명</td>
@@ -142,7 +153,7 @@
 							<td>
 								<div class="input-group">
 									<select name="cardMonth" class="form-select">
-										<option selected>월</option>
+										<option value="" selected>월</option>
 										<option value="01">01</option>
 										<option value="02">02</option>
 										<option value="03">03</option>
@@ -157,7 +168,7 @@
 										<option value="12">12</option>
 									</select>
 									<select name="cardYear" class="form-select">
-										<option selected>년도</option>
+										<option value="" selected>년도</option>
 										<option value="2023">2023</option>
 										<option value="2024">2024</option>
 										<option value="2025">2025</option>
@@ -167,7 +178,7 @@
 										<option value="2029">2029</option>
 										<option value="2030">2030</option>
 										<option value="2031">2031</option>
-										<option value="2032">10</option>
+										<option value="2032">2032</option>
 									</select>
 								</div>
 							</td>
@@ -176,7 +187,7 @@
 							<td>가입자와의 관계</td>
 							<td>
 								<select name="cardRelationship" class="form-select">
-									<option selected>가입자와의 관계</option>
+									<option value="" selected>가입자와의 관계</option>
 									<option value="1">본인</option>
 									<option value="2">부모</option>
 									<option value="3">자녀</option>
@@ -198,15 +209,15 @@
 							</td>
 						</tr>
 					</table>
-				
 				</form>
-				<form name="payInfo" action="#" method="post">
-					<input type="hidden" name="payType" value="2">
+				
+				<!-- 계좌 납부 -->
+				<form name="payInfo2" action="#" method="post" style="display: none;">
 					<table class="table w-100 payInfoTable">
 						<tr>
 							<td class="w-25">예금주</td>
 							<td>
-								<input type="text" id="accountHolder" placeholder="예금주를 입력해주세요">
+								<input type="text" id="accHolder" placeholder="예금주를 입력해주세요">
 								<input class="form-check-input" type="checkbox" id="userEqAccount">
 								<label class="form-check-label" for="userEqAccount">고객정보와 동일</label>
 							</td>
@@ -222,22 +233,25 @@
 							<td>은행</td>
 							<td>
 								<select name="accBank" class="form-select">
-									<option selected>은행 선택</option>
+									<option value="" selected>은행 선택</option>
+									<option value="국민">국민</option>
+									<option value="신한">신한</option>
+									<option value="우리">우리</option>
+									<option value="하나">하나</option>
 								</select>
 							</td>
 						</tr>
 						<tr>
 							<td>계좌번호</td>
 							<td>
-								<input type="text" placeholder="숫자만 입력해 주세요">
-								<!-- 계좌실명조회 해볼까... -->
+								<input id="accNumber" type="text" placeholder="숫자만 입력해 주세요">
 							</td>
 						</tr>
 						<tr>
 							<td>가입자와의 관계</td>
 							<td>
 								<select name="accRelationship" class="form-select">
-									<option selected>가입자와의 관계</option>
+									<option value="" selected>가입자와의 관계</option>
 									<option value="1">본인</option>
 									<option value="2">부모</option>
 									<option value="3">자녀</option>
@@ -260,6 +274,7 @@
 						</tr>
 					</table>
 				</form>
+				<button id="submitBtn">신청하기</button>
 			</div>
 		</div>
 	</section>
@@ -277,14 +292,7 @@
 	<script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
 
 	<script>
-		const joinCategory = sessionStorage.getItem('joinCategory');
-		const simYn = sessionStorage.getItem('simYn');
-		const simType = sessionStorage.getItem('simType');
 	
-		$('#joinCategory').text(joinCategory);
-		$('#simYn').text(simYn);
-		$('#simType').text(simType);
-		
 		// 주민등록번호
 		var ssn = '${user.userSsn}';
 		let [ssn1,ssn2] = ssn.split('-');
@@ -361,7 +369,6 @@
 		// 카드정보
 		const userEqCard = document.getElementById('userEqCard');
 		const cardHolder = document.getElementById('cardHolder');
-		const cardSsn1 = document.getElementById('cardSsn1');
 		
 		userEqCard.addEventListener('change', () => {
 			if (userEqCard.checked) {
@@ -377,19 +384,168 @@
 		
 		// 예금정보
 		const userEqAccount = document.getElementById('userEqAccount');
-		const accountHolder = document.getElementById('accountHolder');
+		const accHolder = document.getElementById('accHolder');
 		
 		userEqAccount.addEventListener('change', () => {
 			if (userEqAccount.checked) {
-				accountHolder.value = '${user.userName}';
+				accHolder.value = '${user.userName}';
 				$('#accountSsn1').val(ssn1);
 				$('#accountSsn2').val(ssn2);
 			} else {
-				accountHolder.value = '';
+				accHolder.value = '';
 				$('#accountSsn1').val('');
 				$('#accountSsn2').val('');
 			}
 		});
+
+		// 지불방법 
+		document.querySelectorAll('input[name="planPay"]').forEach((radio) => {
+		  radio.addEventListener('change', () => {
+		    if (radio.value === '1') {
+		      payInfo1.style.display = 'block';
+		      payInfo2.style.display = 'none';
+		    } else if (radio.value === '2') {
+		      payInfo1.style.display = 'none';
+		      payInfo2.style.display = 'block';
+		    }
+		  });
+		});
+		
+		
+	    $(document).ready(function() {
+	        $('#submitBtn').click(function() {
+	        	const planPay = $('input[name="planPay"]').val();
+	            if (planPay == "1") {
+		            const bizId = $('input[name="bizId"]').val();
+		            const userId = $('input[name="userId"]').val();
+		            const planNo = parseInt($('input[name="planNo"]').val());
+		            const joinCategory = sessionStorage.getItem('joinCategory');
+		            const simType = sessionStorage.getItem('simType');
+		            const simYn = sessionStorage.getItem('simYn');
+		            const currentTelecom = $('select[name="currentTelecom"]').val();
+		            const planBill = $('input[name="planBill"]').val();
+		            const planPay = $('input[name="planPay"]').val();
+		            const netNo = parseInt($('input[name="netNo"]').val());
+		            const genNo = parseInt($('input[name="genNo"]').val());
+		            const orderPrice = parseInt($('input[name="orderPrice"]').val());
+		            const orderData = parseInt($('input[name="orderData"]').val());
+		            const orderVoice = parseInt($('input[name="orderVoice"]').val());
+		            const orderMessage = parseInt($('input[name="orderMessage"]').val());
+		            const orderAddress = '[' + $('#sample6_postcode').val() + ']' + $('#sample6_address').val()
+		            	+ $('#sample6_detailAddress').val() + $('#sample6_extraAddress').val();
+		            const cardHolder = $('#cardHolder').val();
+		            const cardSsn = $('#cardSsn1').val() + '-' + $('#cardSsn2').val();
+		            const cardRelationship = $('select[name="cardRelationship"]').val();
+		            const cardNumber = $('input[name="card1"]').val() + '-' + $('input[name="card2"]').val() + '-'
+		            	+ $('input[name="card3"]').val() + '-' + $('input[name="card4"]').val();
+		            const cardExpiration = $('select[name="cardMonth"]').val() + '/' + $('select[name="cardYear"]').val();
+		            $.ajax({
+		                url: '${cpath}/plan/${planNo}/order',
+		                type: 'POST',
+		                data: {
+		                    'bizId': bizId,
+		                    'userId': userId,
+		                    'planNo': planNo,
+		                    'joinCategory': joinCategory,
+		                    'simType': simType,
+		                    'simYn': simYn,
+		                    'currentTelecom': currentTelecom,
+		                    'planBill': planBill,
+		                    'planPay': planPay,
+		                    'netNo': netNo,
+		                    'genNo': genNo,
+		                    'orderPrice': orderPrice,
+		                    'orderData': orderData,
+		                    'orderVoice': orderVoice,
+		                    'orderMessage': orderMessage,
+		                    'orderAddress': orderAddress,
+		                    'cardHolder': cardHolder,
+		                    'cardSsn': cardSsn,
+		                    'cardRelationship': cardRelationship,
+		                    'cardNumber': cardNumber,
+		                    'cardExpiration': cardExpiration,
+		                },
+		                success: function(result) {
+		                	console.log(result);
+		                	alert("요금제 신청 성공");
+		                },
+		                error: function(xhr, status, error) {
+		                	console.log("xhr.status: " + xhr.status);
+			                console.log("xhr.statusText: " + xhr.statusText);
+			                console.log("xhr.responseText: " + xhr.responseText);
+			                console.log("xhr.readyState: " + xhr.readyState);
+			                console.log(status);
+			                console.log(error);
+		                	alert("요금제 신청 실패");
+		                }
+		            });
+	            } else if (planPay == "2") {
+		            const bizId = $('input[name="bizId"]').val();
+		            const userId = $('input[name="userId"]').val();
+		            const planNo = parseInt($('input[name="planNo"]').val());
+		            const joinCategory = sessionStorage.getItem('joinCategory');
+		            const simType = sessionStorage.getItem('simType');
+		            const simYn = sessionStorage.getItem('simYn');
+		            const currentTelecom = $('select[name="currentTelecom"]').val();
+		            const planBill = $('input[name="planBill"]').val();
+		            const planPay = $('input[name="planPay"]').val();
+		            const netNo = parseInt($('input[name="netNo"]').val());
+		            const genNo = parseInt($('input[name="genNo"]').val());
+		            const orderPrice = parseInt($('input[name="orderPrice"]').val());
+		            const orderData = parseInt($('input[name="orderData"]').val());
+		            const orderVoice = parseInt($('input[name="orderVoice"]').val());
+		            const orderMessage = parseInt($('input[name="orderMessage"]').val());
+		            const orderAddress = '[' + $('#sample6_postcode').val() + ']' + $('#sample6_address').val()
+		            	+ $('#sample6_detailAddress').val() + $('#sample6_extraAddress').val();
+			        const accHolder = $('#accHolder').val();
+		            const accSsn = $('#accountSsn1').val() + '-' + $('#accountSsn2').val();
+		            const accRelationship = $('select[name="accRelationship"]').val();
+		            const accNumber = $('#accNumber').val();
+		            const accBank = $('select[name="accBank"]').val();
+		            $.ajax({
+		                url: '${cpath}/plan/${planNo}/order',
+		                type: 'POST',
+		                data: {
+		                    'bizId': bizId,
+		                    'userId': userId,
+		                    'planNo': planNo,
+		                    'joinCategory': joinCategory,
+		                    'simType': simType,
+		                    'simYn': simYn,
+		                    'currentTelecom': currentTelecom,
+		                    'planBill': planBill,
+		                    'planPay': planPay,
+		                    'netNo': netNo,
+		                    'genNo': genNo,
+		                    'orderPrice': orderPrice,
+		                    'orderData': orderData,
+		                    'orderVoice': orderVoice,
+		                    'orderMessage': orderMessage,
+		                    'orderAddress': orderAddress,
+		                    'accHolder': accHolder,
+		                    'accSsn': accSsn,
+		                    'accRelationship': accRelationship,
+		                    'accNumber': accNumber,
+		                    'accBank': accBank
+		                },
+		                success: function(result) {
+		                	console.log(result);
+		                	alert("요금제 신청 성공");
+		                },
+		                error: function(xhr, status, error) {
+		                	console.log("xhr.status: " + xhr.status);
+			                console.log("xhr.statusText: " + xhr.statusText);
+			                console.log("xhr.responseText: " + xhr.responseText);
+			                console.log("xhr.readyState: " + xhr.readyState);
+			                console.log(status);
+			                console.log(error);
+		                	alert("요금제 신청 실패");
+		                }
+		            });
+	            }
+
+	        });
+	    });
 
 	</script>
 </body>

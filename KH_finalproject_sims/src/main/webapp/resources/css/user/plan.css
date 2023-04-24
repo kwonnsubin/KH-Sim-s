@@ -24,15 +24,7 @@ a:active {
 	text-decoration: none;
 	color: black;
 }
-/* 
-#footer {
-	display: block;
-	position: fixed;
-	bottom: 0;
-	background-color: white;
-	height: 100px
-}
- */
+
 .logo-m {
 	max-height: 60px;
 	object-fit: contain

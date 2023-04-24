@@ -1,13 +1,15 @@
 package kh.finalproject.sims.user.model.service;
 
 import java.util.HashMap;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import kh.finalproject.sims.user.model.dao.UserPlanDao;
 import kh.finalproject.sims.user.model.vo.LikeVo;
+import kh.finalproject.sims.user.model.vo.PayAccVo;
+import kh.finalproject.sims.user.model.vo.PayCardVo;
+import kh.finalproject.sims.user.model.vo.PlanOrderVo;
 import kh.finalproject.sims.user.model.vo.PlanVo;
 
 @Service
@@ -47,6 +49,22 @@ public class UserPlanServiceImpl implements UserPlanService {
 			dao.insertRecentInfo(recentInfo);
 		}
 		
+	}
+
+	public int selectOrderNo() {
+		return dao.selectOrderNo();
+	}
+	
+	public void insertPlanOrder(PlanOrderVo planOrderVO) {
+		dao.insertPlanOrder(planOrderVO);
+	}
+	
+	public void insertPayinfoCard(PayCardVo payCardVo) {
+		dao.insertPayinfoCard(payCardVo);
+	}
+	
+	public void insertPayinfoAcc(PayAccVo payAccVo) {
+		dao.insertPayinfoAcc(payAccVo);
 	}
 
 }
