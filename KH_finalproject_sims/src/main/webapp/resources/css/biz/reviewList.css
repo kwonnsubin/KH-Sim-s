@@ -43,7 +43,7 @@
 }
 
 .review-header-item:nth-child(4) {
-  flex-basis: 100px;
+  flex-basis: 140px;
   text-align: center;
 }
 .review-box {
@@ -51,11 +51,17 @@
   padding: 10px;
   box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.1);
   background-color: #fff;
-  width: 70%;
-  margin-left: 270px;
+  width: 80%;
+  margin-left: 138px;
   border-bottom: 1px solid #ddd;
 }
 .review-container {
   width: 800px; /* 최대 너비 설정 */
   margin: 0 auto; /* 가운데 정렬 */
+}
+.selectBox{
+	justify-content: space-between;
+	width: 80%;
+	margin-left: 11%;
+	margin-top: 5%;
 }

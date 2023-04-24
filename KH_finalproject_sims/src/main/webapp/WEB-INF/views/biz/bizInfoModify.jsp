@@ -75,8 +75,10 @@
 							<span>회사주소</span>
 						</th>
 						<td colspan="3"> 
-						<input type="text" class="form-control" id="postcode" name="bizZipCode" placeholder="우편번호" value="${bizinfo.bizZipCode }">
-						<input type="button"  onclick="execDaumPostcode()" value="우편번호 찾기" class="btn"><br>
+						<div class="d-flex" style="margin-bottom: 1%;">
+							<input type="text" class="form-control" style="width: 20%;margin-right: 14%;" id="postcode" name="bizZipCode" placeholder="우편번호" value="${bizinfo.bizZipCode }">
+							<input type="button"  onclick="execDaumPostcode()" value="우편번호 찾기" class="btn"><br>
+						</div>
 						<input type="text" class="form-control" id="roadAddress" name="bizLocation" placeholder="도로명주소"  value="${bizinfo.bizLocation }">
 						</td>
 					</tr>
@@ -103,16 +105,16 @@
 				</tbody>
 			</table>
 		
-			<div>
+			<div style="margin-top:4%;">
 				<span>상세정보</span>
 			</div>
 			
-			<table class="table">
+			<table class="table" style="margin-top:2%;">
 				<tr>
-					<th scope="row">
+					<th scope="row" class="col-md-1">
 						<span>개통 소요시간</span>
 					</th>
-					<td >
+					<td class="col-md-2"> 
 					평균 <select name="phoneOpTime" class="form-select">
 					  <c:forEach var="i" begin="0" end="150" step="1">
 					  	<c:choose>
@@ -126,10 +128,10 @@
 					  </c:forEach>
 					</select>일
 					</td>
-					<th scope="row">
-						<span>개통 소요시간 (유심보유시)</span>
+					<th scope="row" class="col-md-1">
+						<span>개통 소요시간 <br>(유심보유시)</span>
 					</th>
-					<td >
+					<td class="col-md-2">
 					평균 <select name="phoneOpTimeUsim" class="form-select">
 						  <c:forEach var="i" begin="0" end="150" step="1">
 						  	<c:choose>
@@ -169,11 +171,11 @@
 				</tr>
 		
 				
-				<tr>
+				<tr >
 					<th scope="row">
 						<span>영업시간</span>
 					</th>
-					<td style="display: flex">
+					<td >
 						<select name="bizBeginTime" class="form-select">
 							<c:forEach var="hour" begin="0" end="23">
 							  <c:forEach var="minute" begin="0" end="30" step="30">
@@ -214,7 +216,7 @@
 					<th scope="row">
 						<span>휴무일</span>
 					</th>
-					<td colspan="2" style="display: flex">
+					<td colspan="2" style="display: flex; height: 56px;">
 						<div class="form-check">
 							<input class="form-check-input" type="checkbox" name="weekday" value="월">월
 						</div>
@@ -246,7 +248,7 @@
 					<th scope="row">
 						<span>지원통신망</span>
 					</th>
-					<td colspan="2" style="display: flex">
+					<td colspan="2" style="display: flex; height: 52px;">
 					<div class="form-check">
 						<input class="form-check-input" type="checkbox" name="net" value="KT망" >KT망
 					</div>
@@ -261,7 +263,7 @@
 		
 		
 				<c:forEach var="service" items="${serviceList}">
-					<tr>
+					<tr class="col-md-6">
 						<th scope="row">
 							<span>고객센터번호</span>
 						</th>
@@ -305,13 +307,15 @@
 			
 			<div>
 				<label>로고이미지 첨부</label> <!-- 파일첨부 -->
-				<input type="file" name="logo" placeholder="첨부파일" multiple="multiple">
+				<input type="file" name="logo" placeholder="첨부파일" multiple="multiple"  >
 				<input type="hidden" name="originalFilename" value="${bizinfo.originalFilename }">
 				<input type="hidden" name="logoRenameFilename" value="${bizinfo.logoRenameFilename }">
 			</div>
 	       
-	        <button onclick="goBack()">뒤로 가기</button>
-	        <button type="submit">등록</button>
+	       <div class="btnGroup">
+	        <button type="button" onclick="goBack()" class="btn">뒤로 가기</button>
+	        <button type="submit" class="btn">등록</button>
+	       </div>
 	    </form>
     
  </div>

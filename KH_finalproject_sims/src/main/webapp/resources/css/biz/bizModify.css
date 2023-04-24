@@ -17,4 +17,22 @@
     justify-content: center;
 	align-items: center;
 	border-style: none;
+	border-radius: 5px;
+	position: relative;
+}
+.form-select{
+	width: 90px !important;
+    margin: 0;
+    display: -webkit-inline-box !important;
+}
+.form-check{
+	margin:2px;
+}
+.col-md-2 {
+	width: 20% !important;
+}
+.btnGroup{
+	position: absolute;
+    left: 44%;
+    bottom: -46%;
 }

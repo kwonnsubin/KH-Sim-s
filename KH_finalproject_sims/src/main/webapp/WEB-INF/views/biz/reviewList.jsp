@@ -40,20 +40,25 @@
 <jsp:include page="/WEB-INF/views/biz/nav.jsp"/>
 
 통신사 (자사 ) 리뷰 리스트
-	<div>
+
+
+<div class="container">
+	<div class="d-flex selectBox" >
 		<form action="${path}/biz/reviewList">
-			<select name="cnt" onchange="submit();">
+			<select name="cnt" onchange="submit();" class="form-select" style="width:91px;">
 				<c:forEach var="num" begin="5" end="30" step="5">
 					<option value="${num }" ${requestScope.paging.pageLimit eq num ? "selected" : "" }>${num } 개</option>
 				</c:forEach>
 			</select>
 		</form>
-	</div>
 	
-	<c:if test="${not empty requestScope.paging.page}">
-		총 ${reviewCnt }개의 리뷰가 있습니다.
-	</c:if>
+		<div>
+			<c:if test="${not empty requestScope.paging.page}">
+				총 ${reviewCnt }개의 리뷰가 있습니다.
+			</c:if>
+		</div>
 
+	</div>
 	
 	<c:if test="${empty requestScope.paging.page}">
             		<tr>
@@ -68,7 +73,7 @@
 	            <div class="review-header-item">${reviewList.rn}</div>
 	            <div class="review-header-item">${reviewList.userId}</div>
 	            <div class="review-header-item">${reviewList.reviewDate}</div>
-	            <div class="review-header-item">${reviewList.reportStatus == 1 ? '신고처리중' : reviewList.reportStatus == 2 ? '삭제완료' : reviewList.reportStatus == 3 ? '반려' : '' }</div>
+	            <div class="review-header-item">${reviewList.reportStatus == 1 ? '상태 : 신고처리중' : reviewList.reportStatus == 2 ? '상태 : 삭제완료' : reviewList.reportStatus == 3 ? '상태 : 반려' : '' }</div>
 	        </div>
 	        <div class="review-content">
 	            <%-- <a href="${path }/biz/reviewDetail?reviewNo=${reviewList.reviewNo }" class=""> --%>
@@ -86,17 +91,17 @@
 	            <div class="review-footer-item">
 	                <c:choose>
 	                    <c:when test="${reviewList.reportStatus == '' }">
-	                        <button type="button" class="reportBtn" 
+	                        <button type="button" class="reportBtn btn" 
 	                                data-bs-toggle="modal" data-bs-target="#reportModal" 
 	                                data-bs-whatever="${reviewList.userId}"
 	                                data-reviewno="${reviewList.reviewNo}"
 	                                data-reportstatus="${reviewList.reportStatus }">신고하기</button>
 	                    </c:when>
 	                    <c:when test="${reviewList.reportStatus == 2 || reviewList.reportStatus == 3  }">
-	                        <button disabled>신고하기</button>
+	                        <button class="btn" disabled>신고하기</button>
 	                    </c:when>
 	                    <c:when test="${reviewList.reportStatus == 1 }">
-	                        <button type="button" class="cancleBtn"
+	                        <button type="button" class="cancleBtn btn"
 	                                data-reviewno="${reviewList.reviewNo}">신고취소</button>
 	                    </c:when>
 	                </c:choose>
@@ -105,7 +110,7 @@
 	    </div>
 	</c:forEach>
 		
-		
+	
 		
 		<!-- 신고하기 모달 -->
 	<div class="modal fade" id="reportModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -162,7 +167,7 @@
 			</ul>
 		  </c:if>
 	  </c:if>
-
+</div>	
 <script>
 const exampleModal = document.getElementById('reportModal')
 exampleModal.addEventListener('show.bs.modal', event => {
