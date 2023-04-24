@@ -198,9 +198,24 @@
 		                                    </div>
 		                                    <div class="form-group row">
 		                                        <label for="bizZipCode" class="col-sm-1 col-form-label text-center">우편번호</label>
-		                                        <div class="col-sm-5">
+		                                        <c:choose>
+		                                        	<c:when test="${cmd eq 'read' }">
+		                                        		<div class="col-sm-5">
+				                                            <input type="text" class="form-control"  name="bizZipCode" readonly value="${applyDetail.bizZipCode}">
+				                                        </div>
+		                                        	</c:when>
+		                                        	<c:otherwise>
+		                                        		<div class="col-sm-3">
+		                                            		<input type="text" class="form-control"  name="bizZipCode" readonly value="${applyDetail.bizZipCode}">
+		                                        		</div>
+		                                        		<div class="col-sm-2">
+		                                            		<input class="btn btn-primary right" type="button" onclick="location.href='<%=request.getContextPath()%>/admin/selectBizModify/${applyDetail.bizId}'" value="우편번호찾기">
+		                                        		</div>
+		                                        	</c:otherwise>
+		                                        </c:choose>
+		                                        <%-- <div class="col-sm-5">
 		                                            <input type="text" class="form-control"  name="bizZipCode" <c:if test="${cmd eq 'read' }">readonly</c:if> value="${applyDetail.bizZipCode}">
-		                                        </div>
+		                                        </div> --%>
 		                                        <label for="bizLocation" class="col-sm-1 col-form-label text-center">주소</label>
 		                                        <div class="col-sm-5">
 		                                            <input type="text" class="form-control"  name="bizLocation" <c:if test="${cmd eq 'read' }">readonly</c:if> value="${applyDetail.bizLocation}">

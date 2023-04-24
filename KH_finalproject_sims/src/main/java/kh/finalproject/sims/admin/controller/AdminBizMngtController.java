@@ -159,7 +159,7 @@ public class AdminBizMngtController {
 		}
 		
 		mv.addObject("imagePath",imagePath);
-		
+		mv.addObject("bizPlanList", service.selectBizPlanList(bizId));
 		mv.setViewName("/admin/biz/bizDetail");
 		return mv;
 	}
@@ -171,6 +171,7 @@ public class AdminBizMngtController {
 
 		String bizId = vo.getBizId();
 		AdminBizMngtVo applyDetail = service.selectApplyDetail(bizId);
+		
 		mv.addObject("applyDetail", applyDetail);
 		mv.addObject("result", "수정이 완료되었습니다.");
 		mv.addObject("cmd", "read");
