@@ -21,7 +21,7 @@ public class AdminBizMngtDao {
 		return sqlSession.selectList("adminBiz.selectApplyList", map);
 	}
 	
-	//통신사 관리 리스트 전체 갯수
+	//통신사 관리 리스트 전체 개수
 	public int selectApplyListCnt(Map<String, Object> map) {
 		return sqlSession.selectOne("adminBiz.selectApplyListCnt", map);
 	}
@@ -47,8 +47,13 @@ public class AdminBizMngtDao {
 	}
 	
 	//통신사 요금제 개통 신청 리스트
-	public List<AdminBizMngtVo> selectBizPlanApplyList(AdminBizMngtVo vo) {
-		return sqlSession.selectList("adminBiz.selectBizPlanApplyList", vo);
+	public List<AdminBizMngtVo> selectBizPlanApplyList(Map<String, Object> map) {
+		return sqlSession.selectList("adminBiz.selectBizPlanApplyList", map);
+	}
+	
+	//통신사 요금제 개통 신청 리스트 전체 개수
+	public int selectBizPlanApplyListCnt(Map<String, Object> map) {
+		return sqlSession.selectOne("adminBiz.selectBizPlanApplyListCnt", map);
 	}
 
 	//통신사 요금제 게통 상세 페이지로 이동
