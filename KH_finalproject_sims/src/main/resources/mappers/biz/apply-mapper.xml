@@ -461,8 +461,18 @@ WHERE rn between #{start} and #{end} -->
 	
 	<!-- 가입한 요금제 상세 -->
 	<select id="selectMyPlanDetail" parameterType="hashmap" resultType="poVo">
-		select p.order_no, p.biz_id, p.plan_no, p.join_category, p.sim_type, p.sim_yn, p.current_telecom, p.plan_bill, p.plan_pay
-			, p.card_number, p.card_expiration, p.bank, p.bank_number, p.order_date, p.order_status, p.net_no, p.gen_no
+		select p.order_no, p.biz_id, p.plan_no, p.join_category, p.sim_type, p.sim_yn, p.current_telecom, p.plan_bill
+            , p.plan_pay, p.order_date, p.order_status, p.net_no, p.gen_no
+            , (select pc.card_holder from payinfo_card pc where pc.order_no = p.order_no) as card_holder
+            , (select pc.card_ssn from payinfo_card pc where pc.order_no = p.order_no) as card_ssn
+            , (select pc.card_relationship from payinfo_card pc where pc.order_no = p.order_no) as card_relationship
+            , (select pc.card_number from payinfo_card pc where pc.order_no = p.order_no) as card_number
+            , (select pc.card_expiration from payinfo_card pc where pc.order_no = p.order_no) as card_expiration
+            , (select pa.acc_holder from payinfo_acc pa where pa.order_no = p.order_no) as acc_holder
+            , (select pa.acc_ssn from payinfo_acc pa where pa.order_no = p.order_no) as acc_ssn
+            , (select pa.acc_relationship from payinfo_acc pa where pa.order_no = p.order_no) as acc_relationship
+            , (select pa.acc_number from payinfo_acc pa where pa.order_no = p.order_no) as acc_number
+            , (select pa.acc_bank from payinfo_acc pa where pa.order_no = p.order_no) as acc_bank
 			, (select pt.plan_price from plan_table Pt where pt.plan_no = p.plan_no) as plan_price 
 			, (select pt.plan_data from plan_table Pt where pt.plan_no = p.plan_no) as plan_data
 			, (select pt.plan_voice from plan_table Pt where pt.plan_no = p.plan_no) as plan_voice

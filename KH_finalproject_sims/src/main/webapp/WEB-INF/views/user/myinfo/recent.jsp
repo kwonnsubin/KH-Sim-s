@@ -51,12 +51,7 @@
 		    				<div class="col-8">
 		    					<div class="row">
 		    						<div class="col-4">
-				    					<c:if test="${list.bizId eq 'idowell'}">
-			       							<img src="<%=request.getContextPath()%>/resources/img/${list.bizId}.jpg" style="max-width: 100px; height: 40px;">
-			       						</c:if>
-			       						<c:if test="${list.bizId ne 'idowell'}">
-			       							<img src="<%=request.getContextPath()%>/resources/img/${list.bizId}.png" style="max-width: 100px; height: 40px;">
-			       						</c:if>
+		       							<img src="<%=request.getContextPath()%>/resources/img/${list.bizId}.png" style="max-width: 100px; height: 40px;">
 		    						</div>
 		       						<div class="col-8">
 				    					<p class="planName">${list.planName}</p>

@@ -52,12 +52,7 @@
        						<p class="mb-3 plan-info-text">요금제 정보</p>
        						
        						<div class="mb-3">
-       							<c:if test="${poVo.bizId eq 'idowell'}">
-	       							<img src="<%=request.getContextPath()%>/resources/img/${poVo.bizId}.jpg" style="max-width: 100px; height: 40px;">
-	       						</c:if>
-	       						<c:if test="${poVo.bizId ne 'idowell'}">
-	       							<img src="<%=request.getContextPath()%>/resources/img/${poVo.bizId}.png" style="max-width: 100px; height: 40px;">
-	       						</c:if>
+       							<img src="<%=request.getContextPath()%>/resources/img/${poVo.bizId}.png" style="max-width: 100px; height: 40px;">
        						</div>
        						
        						<p class="mb-2">요금제명	|	${poVo.planName}</p>

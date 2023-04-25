@@ -657,12 +657,7 @@
 			    			<div class="row mt-3 recent-list">
 	    						<div class="col-4 align-self-center">
 	    							<input type="hidden" value="${list.planNo}">
-			    					<c:if test="${list.bizId eq 'idowell'}">
-		       							<img src="<%=request.getContextPath()%>/resources/img/${list.bizId}.jpg" style="max-width: 100px; height: 40px;">
-		       						</c:if>
-		       						<c:if test="${list.bizId ne 'idowell'}">
-		       							<img src="<%=request.getContextPath()%>/resources/img/${list.bizId}.png" style="max-width: 100px; height: 40px;">
-		       						</c:if>
+	       							<img src="<%=request.getContextPath()%>/resources/img/${list.bizId}.png" style="max-width: 100px; height: 40px;">
 	    						</div>
 	       						<div class="col-8">
 	       							<div>

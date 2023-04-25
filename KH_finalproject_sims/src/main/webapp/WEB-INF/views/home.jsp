@@ -91,12 +91,7 @@
 	    						<div class="col-4">
 	    							<input class="planNo" type="hidden" value="${viewList.planNo}">
 	    						
-			    					<c:if test="${viewList.bizId eq 'idowell'}">
-		       							<img src="<%=request.getContextPath()%>/resources/img/${viewList.bizId}.jpg" style="max-width: 100px; height: 40px;">
-		       						</c:if>
-		       						<c:if test="${viewList.bizId ne 'idowell'}">
-		       							<img src="<%=request.getContextPath()%>/resources/img/${viewList.bizId}.png" style="max-width: 100px; height: 40px;">
-		       						</c:if>
+	       							<img src="<%=request.getContextPath()%>/resources/img/${viewList.bizId}.png" style="max-width: 100px; height: 40px;">
 	    						</div>
 	       						<div class="col-8">
 			    					<p class="planName">${viewList.planName}</p>
@@ -159,14 +154,9 @@
 	    				<div class="col-8">
 	    					<div class="row">
 	    						<div class="col-4">
-	    							<input class="planNo" type="hidden" value="${viewList.planNo}">
+	    							<input class="planNo" type="hidden" value="${likeList.planNo}">
 	    						
-			    					<c:if test="${likeList.bizId eq 'idowell'}">
-		       							<img src="<%=request.getContextPath()%>/resources/img/${likeList.bizId}.jpg" style="max-width: 100px; height: 40px;">
-		       						</c:if>
-		       						<c:if test="${likeList.bizId ne 'idowell'}">
-		       							<img src="<%=request.getContextPath()%>/resources/img/${likeList.bizId}.png" style="max-width: 100px; height: 40px;">
-		       						</c:if>
+	       							<img src="<%=request.getContextPath()%>/resources/img/${likeList.bizId}.png" style="max-width: 100px; height: 40px;">
 	    						</div>
 	       						<div class="col-8">
 			    					<p class="planName">${likeList.planName}</p>
@@ -229,14 +219,9 @@
 	    				<div class="col-8">
 	    					<div class="row">
 	    						<div class="col-4">
-	    							<input class="planNo" type="hidden" value="${viewList.planNo}">
+	    							<input class="planNo" type="hidden" value="${orderList.planNo}">
 	    						
-			    					<c:if test="${orderList.bizId eq 'idowell'}">
-		       							<img src="<%=request.getContextPath()%>/resources/img/${orderList.bizId}.jpg" style="max-width: 100px; height: 40px;">
-		       						</c:if>
-		       						<c:if test="${orderList.bizId ne 'idowell'}">
-		       							<img src="<%=request.getContextPath()%>/resources/img/${orderList.bizId}.png" style="max-width: 100px; height: 40px;">
-		       						</c:if>
+	       							<img src="<%=request.getContextPath()%>/resources/img/${orderList.bizId}.png" style="max-width: 100px; height: 40px;">
 	    						</div>
 	       						<div class="col-8">
 			    					<p class="planName">${orderList.planName}</p>

@@ -49,12 +49,7 @@
 	       					<div class="insert-div">
 			       				<div class="row my-3 list-row">
 			       					<div class="col-2 text-center align-self-center">
-			       						<c:if test="${po.bizId eq 'idowell'}">
-			       							<img src="<%=request.getContextPath()%>/resources/img/${po.bizId}.jpg" style="max-width: 60px; height: 26px;">
-			       						</c:if>
-			       						<c:if test="${po.bizId ne 'idowell'}">
 			       						<img src="<%=request.getContextPath()%>/resources/img/${po.bizId}.png" style="max-width: 60px; height: 26px;">
-			       						</c:if>
 			       					</div>
 			       					<div class="col-7 align-self-center">
 			       						<p class="plan-name-text">
