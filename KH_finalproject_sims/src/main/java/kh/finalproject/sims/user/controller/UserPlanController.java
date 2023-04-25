@@ -46,7 +46,7 @@ public class UserPlanController {
 			) {
 		
 		// 최근 본 요금제 추가
-		if(req.getUserPrincipal() != null) {
+		if(req.getUserPrincipal() != null && req.isUserInRole("ROLE_USER")) {
 			Principal prin = req.getUserPrincipal();
 			HashMap<String, Object> recentInfo = new HashMap<>();
 			recentInfo.put("userId", prin.getName());
