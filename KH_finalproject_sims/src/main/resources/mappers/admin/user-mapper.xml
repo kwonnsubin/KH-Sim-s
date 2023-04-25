@@ -26,6 +26,8 @@
 				<if test="searchRadioVal == 'enable'">
 					AND B.ENABLE = '2'
 				</if>
+				ORDER BY A.USER_WR_DATE DESC
+				
 				) C
 			WHERE 1=1
 				AND RO BETWEEN #{start} AND #{end}
@@ -93,7 +95,6 @@
 		UPDATE USER_TABLE
 		SET
 			USER_EMAIL = #{userEmail}
-			, USER_ADDRESS = #{userAddress}
 			, USER_PHONE = #{userPhone}
 			, USER_UP_DATE = SYSDATE
 		WHERE USER_ID = #{userId}	

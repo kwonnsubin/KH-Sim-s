@@ -29,6 +29,7 @@
 					</when>
 				</choose>
 			</if>
+			ORDER BY A.NTC_DATE DESC
 			) B
 			WHERE 1=1
 				AND RO BETWEEN #{start} AND #{end}
