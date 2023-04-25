@@ -54,9 +54,10 @@
 
 	<jsp:include page="/WEB-INF/views/biz/nav.jsp"/>
 
-		<h2>${bizName.bizName}의 요금제 목록</h2>
+		
 	
 	<div class="content">
+	<h2>${bizName.bizName}의 요금제 목록</h2>
 		<div class="searchTop">
 
 				<form action="${path}/biz/planList" class="listSelect">
@@ -74,7 +75,7 @@
 		    <div class="input-group" style="width: auto; height: 20%; padding-right: 60px; margin-left: -10%;">
 		    
 			    <div style="display: flex;">
-			    	<input class="form-control" style="display: inline-block; width: 300px;" type="text" name="keyword" id="keyword">
+			    	<input class="form-control" style="display: inline-block; width: 300px;" type="text" name="keyword" id="keyword" placeholder="요금제명을 검색하세요.">
 			    	<button name="searchBtn" class="btn btn-outline-primary" id="searchBtn">
 			    	<span class="material-symbols-outlined">
 					search
@@ -104,7 +105,7 @@
 	    <span>"<%=request.getParameter("keyword")%>"의 검색 결과입니다.</span>
 		<% } %>
     
-        <table class="table table-hover" id="planTb" style="width: 130%; ">
+        <table class="table table-hover" id="planTb" style="width: 140%; ">
             <thead>
                 <tr class="text-center mx-auto" style="background-color: #ecf7fd;">
                     <th>번호</th>

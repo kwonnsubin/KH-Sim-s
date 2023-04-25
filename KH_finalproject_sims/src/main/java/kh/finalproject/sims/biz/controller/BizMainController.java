@@ -239,4 +239,6 @@ public class BizMainController {
 		 mv.setViewName("/biz/temp");
 		 return mv;
 	 }
+	 
+	 
 }

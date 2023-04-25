@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="mypage">
+  
+  <!-- 자사 통신사 오늘 작성된 리뷰 수 -->
+  <select id="getTodayReviewCnt" resultType="_int">
+  	select count(*) todayReviewCnt
+	 from biz_review 
+	 where TRUNC(review_date) = TRUNC(systimestamp) 
+	 and biz_id = #{bizid}
+  </select>
+  
+  <!-- 총 리뷰 수 -->
+  <select id="getTotalReviewCnt" resultType="_int">
+  	select count(*) totalReviewCnt
+	 from biz_review 
+	 where biz_id = #{bizid}
+  </select>
+  
+  <!-- 자사 통신사 오늘 가입자 수  -->
+  <select id="getTodayApplyCnt" resultType="_int">
+  select count(*) todayApplyCnt
+	 from plan_order
+	 where TRUNC(order_date) = TRUNC(systimestamp)
+	 and biz_id = #{bizid}
+  </select>
+  
+  <!-- 자사 통신사 누적 가입자 수 -->
+  <select id="getTotalApplyCnt" resultType="_int">
+  select count(*)
+	 from plan_order totalApplyCnt
+	 where biz_id = #{bizid}
+  </select>
+  
+  <!-- 자사 통신사 등록된 요금제 총 수-->
+  <select id="getTotalPlanCnt" resultType="_int">
+  	select count(*) totalPlanCnt
+	 from plan_table
+	 where biz_name like (select biz_name from biz where biz_id = #{bizid})
+  </select>
+  
+  <select id="getLogo" resultType="kh.finalproject.sims.biz.model.vo.BizMyPageVo">
+ 	 select original_fileName, logo_rename_filename 
+	  from biz 
+	  where biz_id=#{bizid}
+  </select>
+  
+</mapper>
