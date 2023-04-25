@@ -27,14 +27,6 @@ public class UserFaqDao {
 		return session.selectList("faq.selectFaqDetail", faqNo);
 	}
 
-	public List<UserQnaVo> selectQnaList() {
-		return session.selectList("qna.selectQnaList");
-	}
-
-	public List<UserQnaVo> searchQnaList(UserQnaVo vo) {
-		return session.selectList("qna.searchQnaList", vo);
-	}
-
 	public UserQnaVo selectQnaDetail(int aqNo) {
 		return session.selectOne("qna.selectQnaDetail", aqNo);
 	}

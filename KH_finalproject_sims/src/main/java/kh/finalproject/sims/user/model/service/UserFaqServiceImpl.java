@@ -33,17 +33,7 @@ public class UserFaqServiceImpl implements UserFaqService {
 	}
 	
 
-	// 질문 목록/조회/작성/삭제/수정
-	@Override
-	public List<UserQnaVo> selectQnaList() {
-		return dao.selectQnaList();
-	}
-
-	@Override
-	public List<UserQnaVo> searchQnaList(UserQnaVo vo) {
-		return dao.searchQnaList(vo);
-	}
-
+	// 질문 조회/작성/삭제/수정
 	@Override
 	public UserQnaVo selectQnaDetail(int aqNo) {
 		return dao.selectQnaDetail(aqNo);
