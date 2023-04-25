@@ -51,7 +51,7 @@
 						</div>
 					</div>
 					<div>
-						<form action="${pageContext.request.contextPath}/faq">
+						<form action="${pageContext.request.contextPath}/faq/">
 							<select name="cnt" onchange="submit();">
 								<c:forEach var="num" begin="5" end="30" step="5">
 									<option value="${num }" ${requestScope.paging.pageLimit eq num ? "selected" : "" }>${num }개</option>
@@ -132,13 +132,13 @@
 						</c:when>
 						<c:otherwise>
 							<li class="page-item">
-							<a class="page-link" href="${pageContext.request.contextPath}/faq?p=${requestScope.paging.prevPage }&searchType=${searchType }&keyword=${keyword }">prev</a>
+							<a class="page-link" href="${pageContext.request.contextPath}/faq/?p=${requestScope.paging.prevPage }&searchType=${searchType }&keyword=${keyword }">prev</a>
 							</li>
 						</c:otherwise>
 					</c:choose>
 					<c:forEach var="pNum" items="${requestScope.paging.pageList }">
 						<li class="page-item ${pNum eq pageNumber ? 'active' : '' }">
-						<a class="page-link" href="${pageContext.request.contextPath}/faq?p=${pNum }&searchType=${searchType }&keyword=${keyword }">${pNum }</a>
+						<a class="page-link" href="${pageContext.request.contextPath}/faq/?p=${pNum }&searchType=${searchType }&keyword=${keyword }">${pNum }</a>
 						</li>
 					</c:forEach>
 					<c:choose>
@@ -147,7 +147,7 @@
 						</c:when>
 						<c:otherwise>
 							<li class="page-item">
-							<a class="page-link" href="${pageContext.request.contextPath}/faq?p=${requestScope.paging.nextPage }&searchType=${searchType }&keyword=${keyword }">next</a>
+							<a class="page-link" href="${pageContext.request.contextPath}/faq/?p=${requestScope.paging.nextPage }&searchType=${searchType }&keyword=${keyword }">next</a>
 							</li>
 						</c:otherwise>
 					</c:choose>
@@ -176,7 +176,7 @@
 	//검색
 		$(document).on('click', '#btnSearch', function(e){
 			e.preventDefault();
-			var url="${pageContext.request.contextPath}/faq";
+			var url="${pageContext.request.contextPath}/faq/";
 			url = url + "?searchType="+$('#searchType').val();
 			url = url + "&keyword="+$('#keyword').val();
 			location.href=url;

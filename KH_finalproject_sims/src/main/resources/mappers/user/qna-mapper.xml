@@ -32,6 +32,7 @@
 				, aq_date
 				, aq_views
 				, aq_answers
+				, aq_content
 			from qna
 		)
 		where rn between #{start} and #{end}
@@ -56,6 +57,7 @@
 					, aq_date
 					, aq_views
 					, aq_answers
+					, aq_content
 				from qna
 				<if test="searchType == 'title' and keyword != null and keyword != ''">
 					where AQ_TITLE like ('%'|| #{keyword} ||'%')
