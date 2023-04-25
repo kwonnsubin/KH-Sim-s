@@ -39,63 +39,72 @@
 </head>
 <body>
 <jsp:include page="/WEB-INF/views/header.jsp"/>
-<jsp:include page="/WEB-INF/views/biz/nav.jsp"/>
+
 
 <%-- <sec:authorize access="isAuthenticated()">
 	<p><sec:authentication property="name"/>의 요금제 목록 </p>
 </sec:authorize> --%>
 
-<h2>${bizName.bizName}의 요금제 목록</h2>
 
 
-	<div class="searchTop">
+<div class="container" style="display:flex; margin:-103px 0 -200px 0; padding:150px 0 380px 0; height: 900px;">
+
+
+
+
+	<jsp:include page="/WEB-INF/views/biz/nav.jsp"/>
+
+		<h2>${bizName.bizName}의 요금제 목록</h2>
 	
-	
-		
-			<form action="${path}/biz/planList" class="listSelect">
-				<select class="form-select" style="width: 100px" name="cnt" onchange="submit();">
-					<c:forEach var="num" begin="5" end="30" step="5">
-						<option value="${num }" ${requestScope.paging.pageLimit eq num ? "selected" : "" }>${num } 개</option>
-					</c:forEach>
-				</select>
-			</form>
-		
-		
-		
-				
-	    <!-- search{s} -->
-	    <div class="input-group" style="width: auto; height: 20%; padding-right: 60px; margin-left: -10%;">
+	<div class="content">
+		<div class="searchTop">
+
+				<form action="${path}/biz/planList" class="listSelect">
+					<select class="form-select" style="width: 100px" name="cnt" onchange="submit();">
+						<c:forEach var="num" begin="5" end="30" step="5">
+							<option value="${num }" ${requestScope.paging.pageLimit eq num ? "selected" : "" }>${num } 개</option>
+						</c:forEach>
+					</select>
+				</form>
+			
+			
+			
+					
+		    <!-- search{s} -->
+		    <div class="input-group" style="width: auto; height: 20%; padding-right: 60px; margin-left: -10%;">
+		    
+			    <div style="display: flex;">
+			    	<input class="form-control" style="display: inline-block; width: 300px;" type="text" name="keyword" id="keyword">
+			    	<button name="searchBtn" class="btn btn-outline-primary" id="searchBtn">
+			    	<span class="material-symbols-outlined">
+					search
+					</span>
+					</button>
+					
+				</div>	
+		    </div>
+		    <!-- search{e} -->
+ 
 	    
-		    <div style="display: flex;">
-		    	<input class="form-control" style="display: inline-block; width: 300px;" type="text" name="keyword" id="keyword">
-		    	<button name="searchBtn" class="btn btn-outline-primary" id="searchBtn">
-		    	<span class="material-symbols-outlined">
-				search
-				</span>
-				</button>
-				
-			</div>	
 	    </div>
-	    <!-- search{e} -->
-	
+    
+    
+    
+    <div>
+		<div>
+	        <span class="count float-1 totalMent" >총 ${vo} 건의 결과가 있습니다.</span>
+	    </div>
 	    
-	   
+	     <div class="regBtn">
+	    	<button type="button" class="btn" onclick="registerBtn(this);">요금제 등록하기</button>
+	    </div>
+	</div>   
+	
+	    <% if (request.getParameter("keyword") != null && !request.getParameter("keyword").isEmpty()) { %>
+	    <span>"<%=request.getParameter("keyword")%>"의 검색 결과입니다.</span>
+		<% } %>
     
-    </div>
-    
-	<div>
-        <span class="count float-1 totalMent" >총 ${vo} 건의 결과가 있습니다.</span>
-    </div>
-    
-     <div class="regBtn">
-    	<button type="button" class="btn" onclick="registerBtn(this);">요금제 등록하기</button>
-    </div>
-    
-    <% if (request.getParameter("keyword") != null && !request.getParameter("keyword").isEmpty()) { %>
-    <span>"<%=request.getParameter("keyword")%>"의 검색 결과입니다.</span>
-	<% } %>
-    
-        <table class="table table-hover" id="planTb" style="width: 80%;  position: relative;">
+        <table class="table table-hover" id="planTb" style="width: 130%; ">
             <thead>
                 <tr class="text-center mx-auto" style="background-color: #ecf7fd;">
                     <th>번호</th>
@@ -181,9 +190,9 @@
 				</c:choose>
 			</ul>
     	</c:if>
-    
+    </div>
   
-    
+   </div>
     
 <script>
 	function registerBtn(){
