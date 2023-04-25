@@ -4,6 +4,7 @@
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
+<%@ taglib uri="http://www.springframework.org/tags" prefix="spring" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -42,12 +43,7 @@
 	       		<div class="col col-height">
 	       			<div>
 	       				<div class="my-3">
-	       					<c:if test="${bizInfo.bizId eq 'idowell'}">
-       							<img src="<%=request.getContextPath()%>/resources/img/${bizInfo.bizId}.jpg" style="max-width: 100px; height: 40px;">
-       						</c:if>
-       						<c:if test="${bizInfo.bizId ne 'idowell'}">
-       							<img src="<%=request.getContextPath()%>/resources/img/${bizInfo.bizId}.png" style="max-width: 100px; height: 40px;">
-       						</c:if>
+  							<img src="<%=request.getContextPath()%>/resources/img/${bizInfo.bizId}.png" style="max-width: 100px; height: 40px;">
 	       				</div>
 	       				<div class="row row-cols-auto">
 	       					<div class="col align-self-center">
@@ -179,12 +175,7 @@
 				    						<div class="col-4">
 				    							<input class="planNo" type="hidden" value="${list.planNo}">
 				    						
-						    					<c:if test="${list.bizId eq 'idowell'}">
-					       							<img src="<%=request.getContextPath()%>/resources/img/${list.bizId}.jpg" style="max-width: 100px; height: 40px;">
-					       						</c:if>
-					       						<c:if test="${list.bizId ne 'idowell'}">
-					       							<img src="<%=request.getContextPath()%>/resources/img/${list.bizId}.png" style="max-width: 100px; height: 40px;">
-					       						</c:if>
+				       							<img src="<%=request.getContextPath()%>/resources/img/${list.bizId}.png" style="max-width: 100px; height: 40px;">
 				    						</div>
 				       						<div class="col-8">
 						    					<p class="planName">${list.planName}</p>
@@ -416,7 +407,12 @@
 		       					</div>
 		       				</c:forEach>
 		       				</c:if>
+		       				<c:if test="${fn:length(bizReviewList) le 5}">
+		       				<div class="row mt-3 f-review-plus" style="display: none">
+		       				</c:if>
+		       				<c:if test="${fn:length(bizReviewList) gt 5}">
 		       				<div class="row mt-3 f-review-plus">
+		       				</c:if>
 		   						<div class="col align-self-center text-center">
 		   							리뷰 더보기
 			    				</div>
@@ -466,6 +462,7 @@
        		</div>
    		</div>
 	</section>
+	<spring:eval expression="@apikey['apikey.channelIO']" var="channelIO"/>
 	
   <!-- Scripts -->
   <script src="<%= request.getContextPath() %>/resources/chain/vendor/jquery/jquery.min.js"></script>
@@ -491,6 +488,46 @@
 			}
 		}
   	});
+  	
+  	// 채널톡
+  	(function() {
+		var w = window;
+		if (w.ChannelIO) {
+			return w.console.error("ChannelIO script included twice.")
+		}
+		var ch = function() {
+			ch.c(arguments)
+		};
+		ch.q = [];
+		ch.c = function(args) {
+			ch.q.push(args)
+		};
+		w.ChannelIO = ch;
+		function l() {
+			if (w.ChannelIOInitialized) {
+				return
+			}
+			w.ChannelIOInitialized = true;
+			var s = document.createElement("script");
+			s.type = "text/javascript";
+			s.async = true;
+			s.src = "https://cdn.channel.io/plugin/ch-plugin-web.js";
+			var x = document.getElementsByTagName("script")[0];
+			if (x.parentNode) {
+				x.parentNode.insertBefore(s, x)
+			}
+		}
+		if (document.readyState === "complete") {
+			l()
+		} else {
+			w.addEventListener("DOMContentLoaded", l);
+			w.addEventListener("load", l)
+		}
+		})();
+
+		ChannelIO('boot', {
+			"pluginKey" : "<c:out value='${channelIO}' />"
+		});
   </script>
   
   

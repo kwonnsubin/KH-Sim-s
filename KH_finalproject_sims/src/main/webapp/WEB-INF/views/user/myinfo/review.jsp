@@ -41,14 +41,14 @@
 		<div class="container-fluid d-flex justify-content-center mt-5 review-div">
 	       	<div class="row review-row">
 	       		<div class="col-12">
-	       			<div class="row text-div mb-5">
-	       				<div class="col-3 text-center write-review">
+	       			<div class="row row-cols-auto text-div mb-5 ms-5">
+	       				<div class="col text-center write-review">
 		       				<p style="font-weight: bold;">리뷰 작성</p>
 	       				</div>
-	       				<div class="col-1" style="display: flex; justify-content : center;">
+	       				<div class="col" style="display: flex; justify-content : center;">
 		       				<div class="vr" style="background-color:black; height:28px;"></div>
 	       				</div>
-	       				<div class="col-3 text-center written-review">
+	       				<div class="col text-center written-review">
 	       					<p>작성한 리뷰</p>
 	       				</div>
 	       			</div>

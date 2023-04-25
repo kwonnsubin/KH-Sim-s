@@ -4,6 +4,7 @@
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
+<%@ taglib uri="http://www.springframework.org/tags" prefix="spring" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -111,8 +112,8 @@
 	       	</div>
        	</div>
  		<div class="container-fluid d-flex justify-content-center">
-			<div class="row my-3 mt-4 choose-div">
-				<div class="col-2">
+			<div class="row row-cols-auto my-3 mt-4 choose-div">
+				<div class="col">
 					<c:if test="${empty param.select}">
 						<button class="pl on choose-btn">분류</button>
 					</c:if>
@@ -133,7 +134,10 @@
 					    </ul>
 					</div>
 				</div>
-				<div class="col-2">
+				<div class="col" style="display: flex; justify-content : center;">
+      				<div class="vr" style="background-color:black; height:40px;"></div>
+   				</div>
+				<div class="col">
 					<button type="button" class="btn btn-light btn-outline-secondary modalBtn" data-bs-toggle="modal" data-bs-target="#filter-modal">
 						필터
 					</button>
@@ -568,12 +572,9 @@
 	    				<div class="col-8">
 	    					<div class="row">
 	    						<div class="col-4">
-			    					<c:if test="${list.bizId eq 'idowell'}">
-		       							<img src="<%=request.getContextPath()%>/resources/img/${list.bizId}.jpg" style="max-width: 100px; height: 40px;">
-		       						</c:if>
-		       						<c:if test="${list.bizId ne 'idowell'}">
-		       							<img src="<%=request.getContextPath()%>/resources/img/${list.bizId}.png" style="max-width: 100px; height: 40px;">
-		       						</c:if>
+	    							<a href="<%=request.getContextPath()%>/bizinfo/${list.bizId}">
+	       								<img src="<%=request.getContextPath()%>/resources/img/${list.bizId}.png" style="max-width: 100px; height: 40px;">
+       								</a>
 	    						</div>
 	       						<div class="col-8">
 			    					<p class="planName">${list.planName}</p>
@@ -688,7 +689,7 @@
 
 	
 	<jsp:include page="/WEB-INF/views/footer.jsp"/>
-	
+	<spring:eval expression="@apikey['apikey.channelIO']" var="channelIO"/>
   <!-- Scripts -->
   <script src="<%= request.getContextPath() %>/resources/chain/vendor/jquery/jquery.min.js"></script>
   <script src="<%= request.getContextPath() %>/resources/chain/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
@@ -699,6 +700,45 @@
   <script src="<%= request.getContextPath() %>/resources/chain/assets/js/custom.js"></script>
   <script src="<%= request.getContextPath() %>/resources/js/user/plans.js"></script>
   
-  
+  <script>
+	(function() {
+		var w = window;
+		if (w.ChannelIO) {
+			return w.console.error("ChannelIO script included twice.")
+		}
+		var ch = function() {
+			ch.c(arguments)
+		};
+		ch.q = [];
+		ch.c = function(args) {
+			ch.q.push(args)
+		};
+		w.ChannelIO = ch;
+		function l() {
+			if (w.ChannelIOInitialized) {
+				return
+			}
+			w.ChannelIOInitialized = true;
+			var s = document.createElement("script");
+			s.type = "text/javascript";
+			s.async = true;
+			s.src = "https://cdn.channel.io/plugin/ch-plugin-web.js";
+			var x = document.getElementsByTagName("script")[0];
+			if (x.parentNode) {
+				x.parentNode.insertBefore(s, x)
+			}
+		}
+		if (document.readyState === "complete") {
+			l()
+		} else {
+			w.addEventListener("DOMContentLoaded", l);
+			w.addEventListener("load", l)
+		}
+		})();
+
+		ChannelIO('boot', {
+			"pluginKey" : "<c:out value='${channelIO}' />"
+		});
+	</script>
 </body>
 </html>
