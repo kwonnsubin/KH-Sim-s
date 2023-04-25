@@ -1,14 +1,7 @@
 package kh.finalproject.sims.admin.controller;
 
 
-import java.security.Principal;
-import java.sql.Date;
-import java.text.DateFormat;
-import java.text.SimpleDateFormat;
-import java.util.ArrayList;
-import java.util.Iterator;
 import java.util.List;
-import java.util.Map;
 
 import javax.servlet.http.HttpServletResponse;
 
@@ -42,28 +35,42 @@ public class AdminStatisticsController {
 		mv.addObject("orderByRegistration", service.selectOrderByRegistration()); // 가입자 많은 순
 		mv.addObject("ageGroupPlans",service.selectAgeGroupPlans()); // 연령대별 요금제 
 		mv.addObject("starRating", service.selectStarRating()); // 별점순 통신사
-		mv.addObject("monthlyPlanOrderCount", service.selectMonthlyPlanOrderCount()); // 월별 총 가입자 수
+		//mv.addObject("monthlyPlanOrderCount", service.selectMonthlyPlanOrderCount()); // 월별 총 가입자 수
 		mv.addObject("ageGroupPlanOrderCount", service.selectAgeGroupPlanOrderCount()); // 연령대별 총 가입자 수 
-		mv.addObject("dailyTotalUserWriteCount", service.selectDailyTotalUserWriteCount()); // 일별 총 가입자 수 변화
-		mv.addObject("dailyGenderUserWriteCount", service.selectDailyGenderUserWriteCount()); // 일별 성별 가입자 수 변화
+		//mv.addObject("dailyTotalUserWriteCount", service.selectDailyTotalUserWriteCount()); // 일별 총 가입자 수 변화
+		//mv.addObject("dailyGenderUserWriteCount", service.selectDailyGenderUserWriteCount()); // 일별 성별 가입자 수 변화
 		mv.addObject("genderRatioByTotalUserRatio", service.selectGenderRatioByTotalUserRatio()); // 성별 가입자 수 비율
 		mv.addObject("ageGroupByTotalUserRatio", service.selectAgeGroupByTotalUserRatio()); // 연령대 가입자 수 비율
 		mv.setViewName("/admin/statistics");
 		return mv;
 	}
 	
-	// 일별 총 가입자수 변화
+	// 일별 총 가입자 수
 	@ResponseBody
 	@PostMapping("/dailyTotalUserWriteCount")
 	public String selectDailyTotalUserWriteCount(
 			) {
 		List<AdminStatisticsVo> chartList = service.selectDailyTotalUserWriteCount(); // 차트 리스트
-		
-		//List<AdminStatisticsVo> dataList = new ArrayList<>();
 		return new Gson().toJson(chartList);
-		
 	}
-
+	
+	// 월별 총 가입자 수
+	@ResponseBody
+	@PostMapping("/monthlyPlanOrderCount")
+	public String selectMonthlyPlanOrderCount(
+			) {
+		List<AdminStatisticsVo> chartList = service.selectMonthlyPlanOrderCount(); // 차트 리스트
+		return new Gson().toJson(chartList);	
+	}
+	
+	// 일별 성별 가입자 수 
+	@ResponseBody
+	@PostMapping("/dailyGenderUserWriteCount")
+	public String selectDailyGenderUserWriteCount(
+			) {
+		List<AdminStatisticsVo> chartList = service.selectDailyGenderUserWriteCount(); // 차트 리스트
+		return new Gson().toJson(chartList);	
+	}
 }
 
 

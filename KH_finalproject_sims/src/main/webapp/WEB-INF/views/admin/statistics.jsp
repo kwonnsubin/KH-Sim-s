@@ -42,22 +42,25 @@
 	                    	<script>
 	                    	$.ajax({
 	                    	    url: "<%=request.getContextPath()%>/admin/dailyTotalUserWriteCount",
-	                    	    type: "POST", // HTTP 요청 방식
-	                    	    dataType: "json", // 받아올 데이터의 타입 (json, xml, html, text 등)
-	                    	    success: function(data) { // 성공적으로 데이터를 받아왔을 때의 처리 함수
+	                    	    type: "POST",
+	                    	    dataType: "json", 
+	                    	    success: function(data) {
 	                    	        
 	                    	        var chartData = [];
+	                    	        var chartCategories = [];
 
 	                    	        for (var i = 0; i < data.length; i++) {
 	                    	          chartData.push(data[i].cnt);
 	                    	        }
+	                    	        
+	                    	        for (var j = 0; j < data.length; j++) {
+	                    	        	chartCategories.push(data[j].userWrDate);
+		                    	    }
 
 	    	                        var options = {
 	    	                                series: [{
 	    	                                  name: "Today",
 	    	                               	  data: chartData
-	    	                               		 	
-	    	                                  //data: [${dailyTotalUserWriteCount[0].cnt}, ${dailyTotalUserWriteCount[1].cnt}, ${dailyTotalUserWriteCount[2].cnt}, ${dailyTotalUserWriteCount[3].cnt}, ${dailyTotalUserWriteCount[4].cnt}, ${dailyTotalUserWriteCount[5].cnt}, ${dailyTotalUserWriteCount[6].cnt}]
 	    	                              }],
 	    	                                chart: {
 	    	                                height: 300,
@@ -74,20 +77,20 @@
 	    	                              },
 	    	                              grid: {
 	    	                                row: {
-	    	                                  colors: ['#f3f3f3', 'transparent'], // takes an array which will be repeated on columns
+	    	                                  colors: ['#f3f3f3', 'transparent'],
 	    	                                  opacity: 0.5
 	    	                                },
 	    	                              },
 	    	                              xaxis: {
-	    	                                categories: ['${dailyTotalUserWriteCount[0].userWrDate}', '${dailyTotalUserWriteCount[1].userWrDate}', '${dailyTotalUserWriteCount[2].userWrDate}', '${dailyTotalUserWriteCount[3].userWrDate}', '${dailyTotalUserWriteCount[4].userWrDate}', '${dailyTotalUserWriteCount[5].userWrDate}', '${dailyTotalUserWriteCount[6].userWrDate}'],
+	    	                                categories: chartCategories
 	    	                              }
 	    	                              };
 
 	                    	        var chart = new ApexCharts(document.querySelector("#dailyTotalUserWriteCount_chart_div"), options);
 	                    	        chart.render();
 	                    	    },
-	                    	    error: function(xhr, status, error) { // 데이터를 가져오지 못했을 때의 처리 함수
-	                    	        console.error("Error while fetching data:", error);
+	                    	    error: function() {
+	                    	        console.error("error");
 	                    	    }
 	                    	});
 	                    	</script>
@@ -103,37 +106,61 @@
 	                    <div class="card-body">
 	                    	<div id="monthlyPlanOrderCount_chart_div"></div>
 	                    	<script>
-					        var options = {
-					          series: [{
-					            name: "Desktops",
-					            data: [${monthlyPlanOrderCount[0].cnt}, ${monthlyPlanOrderCount[1].cnt} , ${monthlyPlanOrderCount[2].cnt}, ${monthlyPlanOrderCount[3].cnt}, ${monthlyPlanOrderCount[4].cnt}]
-					        }],
-					          chart: {
-					          height: 300,
-					          type: 'line',
-					          zoom: {
-					            enabled: false
-					          }
-					        },
-					        dataLabels: {
-					          enabled: false
-					        },
-					        stroke: {
-					          curve: 'straight'
-					        },
-					        grid: {
-					          row: {
-					            colors: ['#f3f3f3', 'transparent'], // takes an array which will be repeated on columns
-					            opacity: 0.5
-					          },
-					        },
-					        xaxis: {
-					          categories: ['${monthlyPlanOrderCount[0].orderMonth}', '${monthlyPlanOrderCount[1].orderMonth}', '${monthlyPlanOrderCount[2].orderMonth}', '${monthlyPlanOrderCount[3].orderMonth}', '${monthlyPlanOrderCount[4].orderMonth}'],
-					        }
-					        };
-					
-					        var chart = new ApexCharts(document.querySelector("#monthlyPlanOrderCount_chart_div"), options);
-					        chart.render();
+	                    	$.ajax({
+	                    	    url: "<%=request.getContextPath()%>/admin/monthlyPlanOrderCount",
+	                    	    type: "POST",
+	                    	    dataType: "json", 
+	                    	    success: function(data) {
+	                    	        
+	                    	        var chartData = [];
+	                    	        var chartCategories = [];
+
+	                    	        for (var i = 0; i < data.length; i++) {
+	                    	          chartData.push(data[i].cnt);
+	                    	        }
+	                    	        
+	                    	        for (var j = 0; j < data.length; j++) {
+	                    	        	chartCategories.push(data[j].orderMonth);
+		                    	        }
+	                    	        
+	                    	        console.log(chartData);
+
+	    					        var options = {
+	    							          series: [{
+	    							            name: "Desktops",
+	    							            data: chartData
+	    							        }],
+	    							          chart: {
+	    							          height: 300,
+	    							          type: 'line',
+	    							          zoom: {
+	    							            enabled: false
+	    							          }
+	    							        },
+	    							        dataLabels: {
+	    							          enabled: false
+	    							        },
+	    							        stroke: {
+	    							          curve: 'straight'
+	    							        },
+	    							        grid: {
+	    							          row: {
+	    							            colors: ['#f3f3f3', 'transparent'],
+	    							            opacity: 0.5
+	    							          },
+	    							        },
+	    							        xaxis: {
+	    							          categories: chartCategories,
+	    							        }
+	    							        };
+
+	    					        var chart = new ApexCharts(document.querySelector("#monthlyPlanOrderCount_chart_div"), options);
+	    					        chart.render();
+	                    	    },
+	                    	    error: function() {
+	                    	        console.error("error");
+	                    	    }
+	                    	});
 					    </script>
 						</div>
 					 </div>
@@ -147,34 +174,58 @@
 	                    <div class="card-body">
 	                    	<div id="genderPlanOrderCount_chart_div"></div>
 	                    	<script>
-					        var options = {
-						          series: [{
-						          name: '남',
-						          data: [${dailyGenderUserWriteCount[0].maleCnt}, ${dailyGenderUserWriteCount[1].maleCnt}, ${dailyGenderUserWriteCount[2].maleCnt}, ${dailyGenderUserWriteCount[3].maleCnt}, ${dailyGenderUserWriteCount[4].maleCnt}, ${dailyGenderUserWriteCount[5].maleCnt}, ${dailyGenderUserWriteCount[6].maleCnt}]
-						        }, {
-						          name: '여',
-						          data: [${dailyGenderUserWriteCount[0].femaleCnt}, ${dailyGenderUserWriteCount[1].femaleCnt}, ${dailyGenderUserWriteCount[2].femaleCnt}, ${dailyGenderUserWriteCount[3].femaleCnt}, ${dailyGenderUserWriteCount[4].femaleCnt}, ${dailyGenderUserWriteCount[5].femaleCnt}, ${dailyGenderUserWriteCount[6].femaleCnt}]
-						        }],
-						          chart: {
-						              height: 225,
-						              type: 'line',
-						              zoom: {
-						                enabled: false
-						              }
-						            },
-						        dataLabels: {
-						          enabled: false
-						        },
-						        stroke: {
-						          curve: 'straight'
-						        },
-						        xaxis: {
-						          categories: ["${dailyGenderUserWriteCount[0].userWrDate}","${dailyGenderUserWriteCount[1].userWrDate}", "${dailyGenderUserWriteCount[2].userWrDate}", "${dailyGenderUserWriteCount[3].userWrDate}", "${dailyGenderUserWriteCount[4].userWrDate}", "${dailyGenderUserWriteCount[5].userWrDate}", "${dailyGenderUserWriteCount[6].userWrDate}"],
-						        }
-					        };
-					
-					        var chart = new ApexCharts(document.querySelector("#genderPlanOrderCount_chart_div"), options);
-					        chart.render();
+	                    	$.ajax({
+	                    	    url: "<%=request.getContextPath()%>/admin/dailyGenderUserWriteCount",
+	                    	    type: "POST",
+	                    	    dataType: "json", 
+	                    	    success: function(data) {
+	                    	        
+	                    	        var chartData = [];
+	                    	        var chartCategories = [];
+
+	                    	        for (var i = 0; i < data.length; i++) {
+	                    	          chartData.push(data[i].cnt);
+	                    	        }
+	                    	        
+	                    	        for (var j = 0; j < data.length; j++) {
+	                    	        	chartCategories.push(data[j].orderMonth);
+		                    	        }
+	                    	        
+	                    	        console.log(chartData);
+
+	    					        var options = {
+	    							          series: [{
+	    							          name: '남',
+	    							          data: [${dailyGenderUserWriteCount[0].maleCnt}, ${dailyGenderUserWriteCount[1].maleCnt}, ${dailyGenderUserWriteCount[2].maleCnt}, ${dailyGenderUserWriteCount[3].maleCnt}, ${dailyGenderUserWriteCount[4].maleCnt}, ${dailyGenderUserWriteCount[5].maleCnt}, ${dailyGenderUserWriteCount[6].maleCnt}]
+	    							        }, {
+	    							          name: '여',
+	    							          data: [${dailyGenderUserWriteCount[0].femaleCnt}, ${dailyGenderUserWriteCount[1].femaleCnt}, ${dailyGenderUserWriteCount[2].femaleCnt}, ${dailyGenderUserWriteCount[3].femaleCnt}, ${dailyGenderUserWriteCount[4].femaleCnt}, ${dailyGenderUserWriteCount[5].femaleCnt}, ${dailyGenderUserWriteCount[6].femaleCnt}]
+	    							        }],
+	    							          chart: {
+	    							              height: 225,
+	    							              type: 'line',
+	    							              zoom: {
+	    							                enabled: false
+	    							              }
+	    							            },
+	    							        dataLabels: {
+	    							          enabled: false
+	    							        },
+	    							        stroke: {
+	    							          curve: 'straight'
+	    							        },
+	    							        xaxis: {
+	    							          categories: ["${dailyGenderUserWriteCount[0].userWrDate}","${dailyGenderUserWriteCount[1].userWrDate}", "${dailyGenderUserWriteCount[2].userWrDate}", "${dailyGenderUserWriteCount[3].userWrDate}", "${dailyGenderUserWriteCount[4].userWrDate}", "${dailyGenderUserWriteCount[5].userWrDate}", "${dailyGenderUserWriteCount[6].userWrDate}"],
+	    							        }
+	    						        };
+
+	    					        var chart = new ApexCharts(document.querySelector("#genderPlanOrderCount_chart_div"), options);
+	    					        chart.render();
+	                    	    },
+	                    	    error: function() {
+	                    	        console.error("error");
+	                    	    }
+	                    	});
     						</script>
 						</div>
 					 </div>

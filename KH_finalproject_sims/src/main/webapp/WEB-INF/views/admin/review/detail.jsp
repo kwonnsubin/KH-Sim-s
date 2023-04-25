@@ -48,19 +48,19 @@
 											<div class="col-sm-12">
 												<form>
 				                                    <div class="form-group row d-flex justify-content-between">
-				                                    	<label for="bizId" class="col-sm-1 col-form-label left">통신사</label>
+				                                    	<label for="bizId" class="col-sm-1 col-form-label left" style="font-weight: bold;">통신사</label>
 				                                        <div class="col-sm-2">
 				                                            <input type="text" readonly class="form-control-plaintext" name="bizId" value="${reviewdetail.bizId }">
 				                                        </div>
-				                                        <label for="adminId" class="col-sm-1 col-form-label left">작성자</label>
+				                                        <label for="adminId" class="col-sm-1 col-form-label left" style="font-weight: bold;">작성자</label>
 				                                        <div class="col-sm-2">
 				                                            <input type="text" readonly class="form-control-plaintext" name="adminId" value="${reviewdetail.userId }">
 				                                        </div>
-				                                        <label for="staticEmail" class="col-sm-1 col-form-label">작성일</label>
+				                                        <label for="staticEmail" class="col-sm-1 col-form-label" style="font-weight: bold;">작성일</label>
 				                                        <div class="col-sm-2">
 				                                            <input type="text" readonly class="form-control-plaintext" value="<fmt:formatDate value="${reviewdetail.reviewDate }" pattern="yyyy.MM.dd"/>">
 				                                        </div>
-						                                <div class="col-sm-2 d-flex align-items-center"">
+						                                <div class="col-sm-2 d-flex align-items-center">
 							                            	<c:forEach var="i" begin="1" end="5">
 																<i class="fa${(reviewdetail.reviewStar)/2 >= i ? '-solid fa-star' : ((reviewdetail.reviewStar)/2 >= (i - 0.5) ? '-star-half-stroke fa-regular' : '-regular fa-star')}" style="color: #ffdd00; align-items: center;"></i>
 															</c:forEach>
