@@ -16,7 +16,8 @@
   <select id="selectPage" parameterType="map" resultType="kh.finalproject.sims.biz.model.vo.BizReviewMngtVo">
   	SELECT * 
 	FROM (
-	    SELECT rownum rn, REVIEW_CONTENT, REVIEW_STAR, USER_ID, REVIEW_DATE, REVIEW_NO, REPORT_STATUS
+	    SELECT ROW_NUMBER() OVER (ORDER BY REVIEW_NO DESC) rn, 
+	    		REVIEW_CONTENT, REVIEW_STAR, USER_ID, REVIEW_DATE, REVIEW_NO, REPORT_STATUS
 	    FROM biz_review
 	    LEFT JOIN  REVIEW_REPORT
         USING(REVIEW_NO)
