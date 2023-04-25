@@ -33,5 +33,9 @@ public class BizReviewMngtDao {
 	public BizReviewMngtVo selectReviewDetail(int reviewNo) {
 		return sqlSession.selectOne("bizReview.selectReviewDetail", reviewNo);
 	}
+
+	public List<BizReviewMngtVo> selectBizReviewList(String bizId) {
+		return sqlSession.selectList("bizReview.selectBizReviewList", bizId);
+	}
 	
 }

@@ -367,13 +367,15 @@
 	
 	<!-- 통신사 별 요금제 -->
 	<select id="selectBizPlanList" parameterType="string" resultType="planVo">
-		select plan_no, plan_name, biz_name, net_no, gen_no, plan_price, plan_voice, plan_message
-		    , plan_data, plan_voice_over, plan_message_over, plan_data_over, plan_date, plan_update_date
-		    , (select b.biz_id from biz b where p.biz_name = b.biz_name) as biz_id
-		    , (select b.biz_review_star from biz b where p.biz_name = b.biz_name) as biz_review_star
-		    , (select count(*) from plan_order po where p.plan_no = po.plan_no and po.order_status=2) as order_count
-		from plan_table p
-		where (select b.biz_id from biz b where p.biz_name = b.biz_name) = #{bizId}
+		select * from (
+			select plan_no, plan_name, biz_name, net_no, gen_no, plan_price, plan_voice, plan_message
+			    , plan_data, plan_voice_over, plan_message_over, plan_data_over, plan_date, plan_update_date
+			    , (select b.biz_id from biz b where p.biz_name = b.biz_name) as biz_id
+			    , (select b.biz_review_star from biz b where p.biz_name = b.biz_name) as biz_review_star
+			    , (select count(*) from plan_order po where p.plan_no = po.plan_no and po.order_status=2) as order_count
+			from plan_table p
+			where (select b.biz_id from biz b where p.biz_name = b.biz_name) = #{bizId} )
+		where rownum <![CDATA[ <= ]]> 5
 	</select>
 	
 </mapper>

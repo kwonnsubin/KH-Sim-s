@@ -39,7 +39,7 @@
 	<section style="margin-top: 50px;">
 		<div class="container-fluid d-flex justify-content-center info-div">
 	       	<div class="row align-self-center info-row">
-	       		<div class="col">
+	       		<div class="col col-height">
 	       			<div>
 	       				<div class="my-3">
 	       					<c:if test="${bizInfo.bizId eq 'idowell'}">
@@ -56,7 +56,7 @@
 	       					<div class="col align-self-center">
 	       						<i class="fa-solid fa-star me-2" style="color: #ffdd00;"></i>
 	       						<span class="me-2" style="font-weight: bold;">${bizInfo.bizReviewStar}</span>
-	       						<span style="font-weight: bold; color: #aaaaaa">${bizInfo.bizReviewCnt}개 <i class="fa-solid fa-chevron-right" style="color: #aaaaaa;"></i></span>
+	       						<span class="review-cnt" style="font-weight: bold; color: #aaaaaa; cursor:pointer">${bizInfo.bizReviewCnt}개 <i class="fa-solid fa-chevron-right" style="color: #aaaaaa;"></i></span>
 	       					</div>
 	       				</div>
 	       			</div>
@@ -96,14 +96,16 @@
 	       					</div>
 	       				</div>
 	       			</div>
-	       			<div class="mt-5">
-	       				<div class="row row-cols-auto justify-content-md-center menu-div">
+	       			
+	       			<div class="mt-3 pt-3 menu-div">
+	       				<div class="row row-cols-auto justify-content-md-center">
 	       					<div class="col mx-5 menu-text">기본정보</div>
 	       					<div class="col mx-5 menu-text">요금제</div>
 	       					<div class="col mx-5 menu-text">리뷰 <span style="font-weight: bold; color: #aaaaaa">${bizInfo.bizReviewCnt}</span></div>
 	       				</div>
 	       			</div>
-	       			<div class="mt-5">
+	       			
+	       			<div class="mt-5" id="basic-info">
 	       				<div class="ms-3 mb-3">
 	       					<p style="font-size: 20px; font-weight: bold;">영업시간</p>
 	       				</div>
@@ -120,6 +122,7 @@
 	       					</c:if>
 	       				</div>
 	       			</div>
+	       			
 	       			<div class="mt-5">
 	       				<div class="ms-3 mb-3">
 	       					<p style="font-size: 20px; font-weight: bold;">고객센터 번호</p>
@@ -137,6 +140,7 @@
 	       					</c:forEach>
 	       				</div>
 	       			</div>
+	       			
 	       			<div class="mt-5">
 	       				<div class="ms-3 mb-3">
 	       					<p style="font-size: 20px; font-weight: bold;">위치</p>
@@ -146,6 +150,7 @@
 	       					<p style="font-size: 16px; display:inline;">${bizInfo.bizLocation}</p>
 	       				</div>
 	       			</div>
+	       			
 	       			<div class="mt-5">
 	       				<div class="ms-3 mb-3">
 	       					<p style="font-size: 20px; font-weight: bold;">결제 정보</p>
@@ -162,7 +167,7 @@
 	       				</div>
 	       			</div>
 	       			
-	       			<div class="mt-5">
+	       			<div class="mt-5" id="biz-plans">
 	       				<div class="ms-3 mb-3">
 	       					<p style="font-size: 20px; font-weight: bold;">${bizInfo.bizName} 요금제</p>
 	       				</div>
@@ -235,12 +240,232 @@
 			    			</c:forEach>
 	       				</div>
 	       			</div>
+       				<div class="row mt-3 plan-plus">
+   						<div class="col align-self-center text-center">
+   							요금제 더보기
+	    				</div>
+	    			</div>
+	       			
+	       			<div class="mt-5" id="biz-review">
+	       				<div class="ms-3 mb-3">
+	       					<p style="font-size: 20px; font-weight: bold;">리뷰</p>
+	       				</div>
+	       				<div class="ms-3">
+	       					<div class="mb-5">
+	       						<span class="me-2" style="font-weight: bold; font-size: 26px;">${bizInfo.bizReviewStar}</span>
+	       						<c:if test="${bizInfo.bizReviewStar gt 0 and bizInfo.bizReviewStar le 0.5}">
+									<i class="fa-regular fa-star-half-stroke" style="color: #ffdd00;"></i>
+       								<i class="fa-regular fa-star" style="color: #ffdd00;"></i>
+       								<i class="fa-regular fa-star" style="color: #ffdd00;"></i>
+       								<i class="fa-regular fa-star" style="color: #ffdd00;"></i>
+       								<i class="fa-regular fa-star" style="color: #ffdd00;"></i>
+       							</c:if>
+       							<c:if test="${bizInfo.bizReviewStar gt 0.5 and bizInfo.bizReviewStar lt 1}">
+									<i class="fa-solid fa-star" style="color: #ffdd00;"></i>
+       								<i class="fa-regular fa-star" style="color: #ffdd00;"></i>
+       								<i class="fa-regular fa-star" style="color: #ffdd00;"></i>
+       								<i class="fa-regular fa-star" style="color: #ffdd00;"></i>
+       								<i class="fa-regular fa-star" style="color: #ffdd00;"></i>
+       							</c:if>
+       							<c:if test="${bizInfo.bizReviewStar gt 1 and bizInfo.bizReviewStar lt 1.5}">
+									<i class="fa-solid fa-star" style="color: #ffdd00;"></i>
+       								<i class="fa-regular fa-star-half-stroke" style="color: #ffdd00;"></i>
+       								<i class="fa-regular fa-star" style="color: #ffdd00;"></i>
+       								<i class="fa-regular fa-star" style="color: #ffdd00;"></i>
+       								<i class="fa-regular fa-star" style="color: #ffdd00;"></i>
+       							</c:if>
+       							<c:if test="${bizInfo.bizReviewStar gt 1.5 and bizInfo.bizReviewStar lt 2}">
+									<i class="fa-solid fa-star" style="color: #ffdd00;"></i>
+       								<i class="fa-solid fa-star" style="color: #ffdd00;"></i>
+       								<i class="fa-regular fa-star" style="color: #ffdd00;"></i>
+       								<i class="fa-regular fa-star" style="color: #ffdd00;"></i>
+       								<i class="fa-regular fa-star" style="color: #ffdd00;"></i>
+       							</c:if>
+       							<c:if test="${bizInfo.bizReviewStar gt 2 and bizInfo.bizReviewStar lt 2.5}">
+									<i class="fa-solid fa-star" style="color: #ffdd00;"></i>
+       								<i class="fa-solid fa-star" style="color: #ffdd00;"></i>
+       								<i class="fa-regular fa-star-half-stroke" style="color: #ffdd00;"></i>
+       								<i class="fa-regular fa-star" style="color: #ffdd00;"></i>
+       								<i class="fa-regular fa-star" style="color: #ffdd00;"></i>
+       							</c:if>
+       							<c:if test="${bizInfo.bizReviewStar gt 2.5 and bizInfo.bizReviewStar lt 3}">
+									<i class="fa-solid fa-star" style="color: #ffdd00;"></i>
+       								<i class="fa-solid fa-star" style="color: #ffdd00;"></i>
+       								<i class="fa-solid fa-star" style="color: #ffdd00;"></i>
+       								<i class="fa-regular fa-star" style="color: #ffdd00;"></i>
+       								<i class="fa-regular fa-star" style="color: #ffdd00;"></i>
+       							</c:if>
+       							<c:if test="${bizInfo.bizReviewStar gt 3 and bizInfo.bizReviewStar lt 3.5}">
+									<i class="fa-solid fa-star" style="color: #ffdd00;"></i>
+       								<i class="fa-solid fa-star" style="color: #ffdd00;"></i>
+       								<i class="fa-solid fa-star" style="color: #ffdd00;"></i>
+       								<i class="fa-regular fa-star-half-stroke" style="color: #ffdd00;"></i>
+       								<i class="fa-regular fa-star" style="color: #ffdd00;"></i>
+       							</c:if>
+       							<c:if test="${bizInfo.bizReviewStar gt 3.5 and bizInfo.bizReviewStar lt 4}">
+									<i class="fa-solid fa-star" style="color: #ffdd00;"></i>
+       								<i class="fa-solid fa-star" style="color: #ffdd00;"></i>
+       								<i class="fa-solid fa-star" style="color: #ffdd00;"></i>
+       								<i class="fa-solid fa-star" style="color: #ffdd00;"></i>
+       								<i class="fa-regular fa-star" style="color: #ffdd00;"></i>
+       							</c:if>
+       							<c:if test="${bizInfo.bizReviewStar gt 4 and bizInfo.bizReviewStar lt 4.5}">
+									<i class="fa-solid fa-star" style="color: #ffdd00;"></i>
+       								<i class="fa-solid fa-star" style="color: #ffdd00;"></i>
+       								<i class="fa-solid fa-star" style="color: #ffdd00;"></i>
+       								<i class="fa-solid fa-star" style="color: #ffdd00;"></i>
+       								<i class="fa-regular fa-star-half-stroke" style="color: #ffdd00;"></i>
+       							</c:if>
+       							<c:if test="${bizInfo.bizReviewStar gt 4.5 and bizInfo.bizReviewStar lt 5}">
+									<i class="fa-solid fa-star" style="color: #ffdd00;"></i>
+       								<i class="fa-solid fa-star" style="color: #ffdd00;"></i>
+       								<i class="fa-solid fa-star" style="color: #ffdd00;"></i>
+       								<i class="fa-solid fa-star" style="color: #ffdd00;"></i>
+       								<i class="fa-solid fa-star" style="color: #ffdd00;"></i>
+       							</c:if>
+	       						<span style="font-weight: bold; color: #aaaaaa">${bizInfo.bizReviewCnt}개</span>
+	       					</div>
+	       					<c:if test="${not empty bizReviewList}">
+		       				<c:forEach items="${bizReviewList}" var="review">
+		       					<div class="row mt-3 list-row">
+			       					<div class="col-8">
+			       						<span class="star" style="top: -6px;">
+			       							<c:if test="${review.reviewStar eq 1}">
+												<i class="fa-regular fa-star-half-stroke" style="color: #ffdd00;"></i>
+			       								<i class="fa-regular fa-star" style="color: #ffdd00;"></i>
+			       								<i class="fa-regular fa-star" style="color: #ffdd00;"></i>
+			       								<i class="fa-regular fa-star" style="color: #ffdd00;"></i>
+			       								<i class="fa-regular fa-star" style="color: #ffdd00;"></i>
+			       							</c:if>
+			       							<c:if test="${review.reviewStar eq 2}">
+												<i class="fa-solid fa-star" style="color: #ffdd00;"></i>
+			       								<i class="fa-regular fa-star" style="color: #ffdd00;"></i>
+			       								<i class="fa-regular fa-star" style="color: #ffdd00;"></i>
+			       								<i class="fa-regular fa-star" style="color: #ffdd00;"></i>
+			       								<i class="fa-regular fa-star" style="color: #ffdd00;"></i>
+			       							</c:if>
+			       							<c:if test="${review.reviewStar eq 3}">
+												<i class="fa-solid fa-star" style="color: #ffdd00;"></i>
+			       								<i class="fa-regular fa-star-half-stroke" style="color: #ffdd00;"></i>
+			       								<i class="fa-regular fa-star" style="color: #ffdd00;"></i>
+			       								<i class="fa-regular fa-star" style="color: #ffdd00;"></i>
+			       								<i class="fa-regular fa-star" style="color: #ffdd00;"></i>
+			       							</c:if>
+			       							<c:if test="${review.reviewStar eq 4}">
+												<i class="fa-solid fa-star" style="color: #ffdd00;"></i>
+			       								<i class="fa-solid fa-star" style="color: #ffdd00;"></i>
+			       								<i class="fa-regular fa-star" style="color: #ffdd00;"></i>
+			       								<i class="fa-regular fa-star" style="color: #ffdd00;"></i>
+			       								<i class="fa-regular fa-star" style="color: #ffdd00;"></i>
+			       							</c:if>
+			       							<c:if test="${review.reviewStar eq 5}">
+												<i class="fa-solid fa-star" style="color: #ffdd00;"></i>
+			       								<i class="fa-solid fa-star" style="color: #ffdd00;"></i>
+			       								<i class="fa-regular fa-star-half-stroke" style="color: #ffdd00;"></i>
+			       								<i class="fa-regular fa-star" style="color: #ffdd00;"></i>
+			       								<i class="fa-regular fa-star" style="color: #ffdd00;"></i>
+			       							</c:if>
+			       							<c:if test="${review.reviewStar eq 6}">
+												<i class="fa-solid fa-star" style="color: #ffdd00;"></i>
+			       								<i class="fa-solid fa-star" style="color: #ffdd00;"></i>
+			       								<i class="fa-solid fa-star" style="color: #ffdd00;"></i>
+			       								<i class="fa-regular fa-star" style="color: #ffdd00;"></i>
+			       								<i class="fa-regular fa-star" style="color: #ffdd00;"></i>
+			       							</c:if>
+			       							<c:if test="${review.reviewStar eq 7}">
+												<i class="fa-solid fa-star" style="color: #ffdd00;"></i>
+			       								<i class="fa-solid fa-star" style="color: #ffdd00;"></i>
+			       								<i class="fa-solid fa-star" style="color: #ffdd00;"></i>
+			       								<i class="fa-regular fa-star-half-stroke" style="color: #ffdd00;"></i>
+			       								<i class="fa-regular fa-star" style="color: #ffdd00;"></i>
+			       							</c:if>
+			       							<c:if test="${review.reviewStar eq 8}">
+												<i class="fa-solid fa-star" style="color: #ffdd00;"></i>
+			       								<i class="fa-solid fa-star" style="color: #ffdd00;"></i>
+			       								<i class="fa-solid fa-star" style="color: #ffdd00;"></i>
+			       								<i class="fa-solid fa-star" style="color: #ffdd00;"></i>
+			       								<i class="fa-regular fa-star" style="color: #ffdd00;"></i>
+			       							</c:if>
+			       							<c:if test="${review.reviewStar eq 9}">
+												<i class="fa-solid fa-star" style="color: #ffdd00;"></i>
+			       								<i class="fa-solid fa-star" style="color: #ffdd00;"></i>
+			       								<i class="fa-solid fa-star" style="color: #ffdd00;"></i>
+			       								<i class="fa-solid fa-star" style="color: #ffdd00;"></i>
+			       								<i class="fa-regular fa-star-half-stroke" style="color: #ffdd00;"></i>
+			       							</c:if>
+			       							<c:if test="${review.reviewStar eq 10}">
+												<i class="fa-solid fa-star" style="color: #ffdd00;"></i>
+			       								<i class="fa-solid fa-star" style="color: #ffdd00;"></i>
+			       								<i class="fa-solid fa-star" style="color: #ffdd00;"></i>
+			       								<i class="fa-solid fa-star" style="color: #ffdd00;"></i>
+			       								<i class="fa-solid fa-star" style="color: #ffdd00;"></i>
+			       							</c:if>
+										</span>
+			       					</div>
+			       					<div class="col-4 text-end">
+			       						<c:if test="${empty review.reviewRedate}">
+			       							<p class="review-date"><fmt:formatDate value="${review.reviewDate}" pattern="yyyy.MM.dd"/></p>
+				       					</c:if>
+				       					<c:if test="${not empty review.reviewRedate}">
+				       						<p class="review-date"><fmt:formatDate value="${review.reviewReDate}" pattern="yyyy.MM.dd"/></p>
+				       					</c:if>
+			       					</div>
+		       						<div class="written-content">
+				  						<textarea class="updateTextarea" readonly>${review.reviewContent}</textarea>
+				  					</div>
+		       					</div>
+		       				</c:forEach>
+		       				</c:if>
+		       				<div class="row mt-3 f-review-plus">
+		   						<div class="col align-self-center text-center">
+		   							리뷰 더보기
+			    				</div>
+			    			</div>
+			    			<div class="row mt-3 s-review-plus" style="display: none">
+		   						<div class="col align-self-center text-center">
+		   							리뷰 더보기
+			    				</div>
+			    			</div>
+	       				</div>
+	       			</div>
+	       			<div class="mt-5 info-text" style="margin-bottom: 300px;">
+	       				<div class="row row-cols-auto my-1">
+	       					<div class="col-3">
+	       						<p>사업자</p>
+	       					</div>
+	       					<div class="col-9">
+			       				<p>${bizInfo.bizName}</p>
+	       					</div>
+	       				</div>
+	       				<div class="row row-cols-auto my-1">
+	       					<div class="col-3">
+	       						<p>사업자 번호</p>
+	       					</div>
+	       					<div class="col-9">
+			       				<p>${bizInfo.bizCrn}</p>
+	       					</div>
+	       				</div>
+	       				<div class="row row-cols-auto my-1">
+	       					<div class="col-3">
+	       						<p>메일 주소</p>
+	       					</div>
+	       					<div class="col-9">
+			       				<p>${bizInfo.bizEmail}</p>
+	       					</div>
+	       				</div>
+	       				<div class="row row-cols-auto my-1">
+	       					<div class="col-3">
+	       						<p>홈페이지 주소</p>
+	       					</div>
+	       					<div class="col-9">
+			       				<p>${bizInfo.bizHp }</p>
+	       					</div>
+	       				</div>
+	       			</div>
 	       		</div>
        		</div>
-      		</div>
+   		</div>
 	</section>
-	
-	<jsp:include page="/WEB-INF/views/footer.jsp"/>
 	
   <!-- Scripts -->
   <script src="<%= request.getContextPath() %>/resources/chain/vendor/jquery/jquery.min.js"></script>

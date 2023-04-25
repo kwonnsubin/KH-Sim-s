@@ -13,13 +13,7 @@ import javax.servlet.http.HttpServletRequest;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.core.Authentication;
-import org.springframework.security.core.GrantedAuthority;
-import org.springframework.security.core.context.SecurityContext;
-import org.springframework.security.core.context.SecurityContextHolder;
-import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -27,12 +21,11 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
 import kh.finalproject.sims.biz.model.service.BizInfoMngtService;
-import kh.finalproject.sims.biz.model.vo.BizApplyVo;
+import kh.finalproject.sims.biz.model.service.BizReviewMngtService;
 import kh.finalproject.sims.biz.model.vo.BizInfoMngtVo;
+import kh.finalproject.sims.biz.model.vo.BizReviewMngtVo;
 import kh.finalproject.sims.biz.model.vo.bizInfoMngServiceVo;
 import kh.finalproject.sims.user.model.service.UserPlanFindService;
-import kh.finalproject.sims.user.model.service.UserPlanService;
-import kh.finalproject.sims.user.model.vo.MemberVo;
 import kh.finalproject.sims.user.model.vo.PlanVo;
 
 /**
@@ -49,11 +42,14 @@ public class HomeController {
 	@Autowired
 	private BizInfoMngtService bizInfoService;
 	
+	@Autowired
+	private BizReviewMngtService bizReviewMngtService;
+	
 	/**
 	 * Simply selects the home view to render by returning its name.
 	 */
 	@RequestMapping(value = "/", method = RequestMethod.GET)
-	public ModelAndView home(ModelAndView mv, Principal principal) {
+	public ModelAndView mainPage(ModelAndView mv, Principal principal) {
 		
 		if(principal != null) {
 			String username = principal.getName();
@@ -72,16 +68,18 @@ public class HomeController {
 		return mv;
 	}
 	
-	@GetMapping("/bizinfo/{bizId}")
+	@GetMapping("bizinfo/{bizId}")
 	public ModelAndView authdiv(ModelAndView mv, @PathVariable String bizId) {
 		
 		BizInfoMngtVo bizInfo = bizInfoService.selectMainBizInfo(bizId);
 		List<bizInfoMngServiceVo> bizService = bizInfoService.selectListService(bizId);
 		List<PlanVo> bizPlanList = userPlanFindService.selectBizPlanList(bizId);
+		List<BizReviewMngtVo> bizReviewList = bizReviewMngtService.selectBizReviewList(bizId);
 		
 		mv.addObject("bizInfo", bizInfo);
 		mv.addObject("bizService", bizService);
 		mv.addObject("planList", bizPlanList);
+		mv.addObject("bizReviewList", bizReviewList);
 		
 		mv.setViewName("/main/telinfo");
 		return mv;
@@ -99,15 +97,5 @@ public class HomeController {
 		}
 		
 		return mv;
-	}
-	
-	@GetMapping("/chain")
-	public String temp() {
-		return "chain";
-	}
-	
-	@GetMapping("/admin")
-	public String admin() {
-		return "admin";
 	}
 }

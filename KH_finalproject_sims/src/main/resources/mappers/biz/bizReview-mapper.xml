@@ -65,11 +65,18 @@
 	</delete>
   
 
-  <!-- 리뷰 상세 보기 -->
-  <select id="selectReviewDetail" resultType="kh.finalproject.sims.biz.model.vo.BizReviewMngtVo">
-  	select * 
-	 from biz_review 
-	 where review_no = #{reviewNo}
-  </select>
+	<!-- 리뷰 상세 보기 -->
+	<select id="selectReviewDetail" resultType="kh.finalproject.sims.biz.model.vo.BizReviewMngtVo">
+		select * 
+		from biz_review 
+		where review_no = #{reviewNo}
+	</select>
+  
+  	<!-- 통신사 페이지 리뷰 -->
+  	<select id="selectBizReviewList" parameterType="string" resultType="brVo">
+  		select * from biz_review
+  		where biz_id=#{bizId}
+  		order by review_date desc
+  	</select>
 
 </mapper>

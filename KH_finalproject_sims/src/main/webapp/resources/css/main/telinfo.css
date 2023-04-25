@@ -1,5 +1,6 @@
 @charset "UTF-8";
 
+
 p {
 	color: black;
 }
@@ -18,11 +19,15 @@ p {
 }
 
 .menu-div {
+	background-color: white;
+	width: 100%;
+	top: 100px;
 	border-bottom: 1px solid #eeeeee;
+	position: sticky;
 }
 
 .menu-text {
-	height: 50px;
+	height: 40px;
 	font-size: 16px;
 	cursor: pointer;
 }
@@ -85,3 +90,50 @@ p {
 	color: #afafaf;
 }
 /* */
+
+.plan-plus,
+.f-review-plus,
+.s-review-plus {
+	width: 100%;
+
+	margin-left: 0px;
+	cursor: pointer;
+	font-size: 14px;
+	padding: 10px 0px 10px 0px;
+	
+	background: #fff;
+	-webkit-border-radius: 10px;
+	-moz-border-radius: 10px;
+	border-radius: 10px;
+	-webkit-box-shadow: 0 3px 10px 0 rgba(0, 0, 0, 0.15);
+	-moz-box-shadow: 0 3px 10px 0 rgba(0, 0, 0, 0.15);
+	box-shadow: 0 3px 10px 0 rgba(0, 0, 0, 0.15);
+}
+
+.plan-plus:hover,
+.f-review-plus:hover,
+.s-review-plus:hover {
+	background-color: #e8eefb;
+}
+
+.list-row {
+	width: 100%;
+	min-height: 100px;
+}
+
+.written-content textarea {
+	width: 100%;
+	height: auto;
+	padding: 10px;
+	overflow: hidden;
+	resize: none;
+	border: none;
+	border-radius: 10px;
+	cursor: default;
+	outline: none;
+}
+
+.info-text p {
+	font-size: 14px;
+	color: #868e96;
+}

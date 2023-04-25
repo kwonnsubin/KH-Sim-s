@@ -54,5 +54,11 @@ public class BizReviewMngtServiceImpl implements BizReviewMngtService {
 		return dao.selectReviewDetail(reviewNo);
 	}
 
+	// 메인 통신사 페이지 리뷰
+	@Override
+	public List<BizReviewMngtVo> selectBizReviewList(String bizId) {
+		return dao.selectBizReviewList(bizId);
+	}
+
 
 }
