@@ -60,20 +60,20 @@ $('.review-cnt').on('click', function() {
 
 function goToScroll(name) {
 	var target = $("#" + name).offset().top;
-	$(window).scrollTop(target - 120);
+	$(window).scrollTop(target - 180);
 }
 
 $(window).scroll(function(){
 	var height = $(window).scrollTop();
-	if(height > 470 && height < 970) {
+	if(height >= 400 && height < 1000) {
 		$('.menu-text').eq(0).css('border-bottom', '3px solid');
 		$('.menu-text').eq(1).css('border-bottom', '');
 		$('.menu-text').eq(2).css('border-bottom', '');
-	} else if(height > 1100 && height < 2006) {
+	} else if(height >= 1000 && height < 2030) {
 		$('.menu-text').eq(1).css('border-bottom', '3px solid');
 		$('.menu-text').eq(0).css('border-bottom', '');
 		$('.menu-text').eq(2).css('border-bottom', '');
-	} else if(height > 2100 && height < 2900) {
+	} else if(height > 2030 && height < 2700) {
 		$('.menu-text').eq(2).css('border-bottom', '3px solid');
 		$('.menu-text').eq(0).css('border-bottom', '');
 		$('.menu-text').eq(1).css('border-bottom', '');

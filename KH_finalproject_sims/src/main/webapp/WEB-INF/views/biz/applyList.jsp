@@ -121,7 +121,7 @@
 
 
 
- <table class="table table-hover table-responsive" id="applyTb" style="width: 80%;  position: relative;">
+ 	<table class="table table-hover table-responsive" id="applyTb" style="width: 80%;  position: relative;">
             <thead>
                 <tr class="text-center mx-auto" style="background-color: #ecf7fd;">
                     <th>번호</th>

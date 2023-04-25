@@ -7,7 +7,7 @@
 
 <div id="wrap">
 <nav id="header">
-	        <p class="tit"><a href="${path}/biz/main">마이페이지</a></p>
+	        <p class="tit"><a href="${path}/biz/myPage">마이페이지</a></p>
 	        <ul class="list">
 	            <li>
 	                <a href="${path}/biz/infodetail">
@@ -37,6 +37,14 @@
 	            <li>
 	                <a href="${path}/biz/reviewList">
 	                    	리뷰 현황
+	                        <span class="material-symbols-outlined">
+	                        arrow_forward_ios
+	                        </span>
+	                </a>
+	            </li>
+	            <li>
+	                <a href="${path}/biz/main">
+	                    	통계 현황
 	                        <span class="material-symbols-outlined">
 	                        arrow_forward_ios
 	                        </span>

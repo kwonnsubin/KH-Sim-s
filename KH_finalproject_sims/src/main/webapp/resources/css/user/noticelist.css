@@ -10,11 +10,11 @@
 }
 
 .notice-div {
-	width: 80%;
+	width: 60%;
 }
 
 .notice-list-div {
-	max-width: 550px;
+	max-width: 100%;
 	padding: 0px 20px 0px 20px;
 	
 	background: #fff;

@@ -95,14 +95,16 @@
 	                                data-bs-toggle="modal" data-bs-target="#reportModal" 
 	                                data-bs-whatever="${reviewList.userId}"
 	                                data-reviewno="${reviewList.reviewNo}"
-	                                data-reportstatus="${reviewList.reportStatus }">신고하기</button>
+	                                data-reportstatus="${reviewList.reportStatus }"
+	                                style="background:#e1727d !important">신고하기</button>
 	                    </c:when>
 	                    <c:when test="${reviewList.reportStatus == 2 || reviewList.reportStatus == 3  }">
-	                        <button class="btn" disabled>신고하기</button>
+	                        <button class="btn"  disabled>신고하기</button>
 	                    </c:when>
 	                    <c:when test="${reviewList.reportStatus == 1 }">
 	                        <button type="button" class="cancleBtn btn"
-	                                data-reviewno="${reviewList.reviewNo}">신고취소</button>
+	                                data-reviewno="${reviewList.reviewNo}"
+	                                style="background: #71b77d !important">신고취소</button>
 	                    </c:when>
 	                </c:choose>
 	            </div>

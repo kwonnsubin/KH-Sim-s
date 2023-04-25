@@ -81,3 +81,6 @@
   font-size: 24px; /* 아이콘 크기 */
   vertical-align: middle; /* 아이콘 수직 중앙 정렬 */
 }
+.btn{
+	background: #8dbdd7 !important;
+}

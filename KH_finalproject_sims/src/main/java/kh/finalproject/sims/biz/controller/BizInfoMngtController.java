@@ -261,7 +261,7 @@ public class BizInfoMngtController {
 //		vo.setBizAccPayDate(bizAccPayDate);
 //		vo.setBizBeginTime(bizBeginTime);
 //		vo.setBizEndTime(bizEndTime);
-//		vo.setBizClosedDay(bizClosedDay);
+		vo.setBizClosedDay(bizClosedDay);
 //		vo.setPhoneOpTime(phoneOpTime);
 //		vo.setPhoneOpTimeUsim(phoneOpTimeUsim);
 		vo.setNetwork(network);

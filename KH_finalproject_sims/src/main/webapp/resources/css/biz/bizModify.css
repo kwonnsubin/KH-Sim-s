@@ -34,5 +34,20 @@
 .btnGroup{
 	position: absolute;
     left: 44%;
-    bottom: -46%;
+    bottom: -20%;
+}
+.division-box{
+	border: solid 3px;
+	width: 8%;
+	border-radius: 8px;
+	text-align: center;
+	border-color:#6b91b3;
+}
+hr{
+	width: -webkit-fill-available;
+	
+}
+hr:not([size]) {
+    height: 3px !important;
+    color:#6b91b3;
 }

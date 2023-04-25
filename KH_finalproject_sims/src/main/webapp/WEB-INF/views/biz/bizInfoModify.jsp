@@ -44,8 +44,11 @@
 <div class="container" style="margin-top:2%; width: 70%">
 	<form action="modifyInfo" method="post" enctype="multipart/form-data" id="modifyForm">
 	
-			<div>
-				<span>기본정보</span>
+			<div class="d-flex">
+				<div class="division-box">
+					<span>기본정보</span>
+				</div>
+				<hr>
 			</div>
 		
 			<table class="table">
@@ -105,8 +108,13 @@
 				</tbody>
 			</table>
 		
-			<div style="margin-top:4%;">
-				<span>상세정보</span>
+			
+			
+			<div class="d-flex" style="margin-top:4%;">
+				<div class="division-box" >
+					<span>상세정보</span>
+				</div>
+				<hr>
 			</div>
 			
 			<table class="table" style="margin-top:2%;">

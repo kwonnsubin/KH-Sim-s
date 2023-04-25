@@ -20,7 +20,7 @@
 .searchTop{
 	display : flex;
 	float: left;
-	width: 80%;
+	width: 140%;
     margin-top: 60px;
     padding: 10px 10px 10px 10px;
     border: solid 0.4px #999ba5;
@@ -30,7 +30,6 @@
  #planTb {
     /* display:block; */
     margin: 0;
-
     table-layout: fixed;
     border-collapse: collapse;
     empty-cells: show;
@@ -61,11 +60,20 @@
 }
 .pagination {
 	padding-top: 40px;
-    left: 50%;
+    left: 63%;
     transform: translateX(-50%);
 }
 .regBtn{
 	  position: absolute; /* 절대적으로 배치됨 */
-	  right: 8%;
-   	  top: 27% ;
+	  right:-40%;
+   	  top: 50% ;
+}
+@media (max-width: 1200px) {
+  #wrap {
+    display: none; /*화면 너비가 지정 크기 이하일 때 사이드 바가 안보이게 함. */
+  }
+}
+.content{
+	position: relative;
+    margin-left: 3%;
 }
