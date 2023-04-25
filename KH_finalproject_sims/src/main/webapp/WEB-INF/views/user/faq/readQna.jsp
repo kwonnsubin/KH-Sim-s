@@ -7,7 +7,9 @@
 <%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
 <c:set var="cpath" value="${pageContext.request.contextPath }"/>
+<% pageContext.setAttribute("replaceChar", "\n"); %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -46,8 +48,9 @@
 				</div>
 				<div class="col-sm-auto p-3 small mb-3">
 					<span class="pe-3">${question.userId }</span>
-					<span class="pe-3">${question.aqDate }</span>
-					<span class="pe-3">${question.aqRedate }</span>
+					<span class="pe-3"><fmt:formatDate value="${question.aqDate}" pattern="yy.MM.dd HH:mm"/></span>
+					<span class="pe-3"><fmt:formatDate value="${question.aqRedate}" pattern="yy.MM.dd HH:mm"/></span>
+					
 					<span>
 					<sec:authorize access="hasRole('ROLE_USER')">
 						<sec:authentication property="principal.username" var="username"/>
@@ -92,30 +95,30 @@
 							<div class="row my-4">
 								<div class="answer-writer col-6 small py-2">
 									${answer.adminId == null ? answer.userId : answer.adminId}
+									<!-- 작성자=사용자이면 답변 수정,삭제 버튼 표시 -->
+									<span class="btn-ans-mod mx-3">
+										<sec:authorize access="hasRole('ROLE_USER')">
+											<c:if test="${username eq answer.userId}">
+												<div class="btn-group btn-group-sm" role="group">
+													<button data-bs-target="#ans${answer.aaNo}" class="btn btn-gray" type="button"
+														data-bs-toggle="collapse" aria-expanded="false" aria-controls="collapseExample">수정</button>
+													<button type="button" class="btn btn-gray"
+													onclick="location.href='${pageContext.request.contextPath}/faq/ansdelete/${answer.aqNo}/${answer.aaNo}'">
+														삭제</button>
+												</div>
+											</c:if>
+										</sec:authorize>
+									</span>
 								</div>
 								
 								<div class="answer-date col-6 small py-2 text-end">
 									<fmt:formatDate value="${answer.aaRedate == null ? answer.aaDate : answer.aaRedate}" pattern="yyyy.MM.dd HH:mm"/>
 								</div>
 								
-								<div class="answer-content col-10 py-4">
-									${answer.aaContent } 
+								<div class="answer-content col-12 py-4 lh-lg">
+									${answer.aaContent }
 								</div>
 
-								<!-- 작성자=사용자이면 답변 수정,삭제 버튼 표시 -->
-								<div class="btn-ans-mod col-2 small py-1 text-end">
-									<sec:authorize access="hasRole('ROLE_USER')">
-										<c:if test="${username eq answer.userId}">
-											<div class="btn-group btn-group-sm" role="group">
-												<button data-bs-target="#ans${answer.aaNo}" class="btn btn-gray" type="button"
-													data-bs-toggle="collapse" aria-expanded="false" aria-controls="collapseExample">수정</button>
-												<button type="button" class="btn btn-gray"
-												onclick="location.href='${pageContext.request.contextPath}/faq/ansdelete/${answer.aqNo}/${answer.aaNo}'">
-													삭제</button>
-											</div>
-										</c:if>
-									</sec:authorize>
-								</div>
 								<!-- /답변 수정,삭제 버튼 -->
 								<!-- 답변 수정 폼 -->
 								<div class="collapse" id="ans${answer.aaNo}">
@@ -127,75 +130,73 @@
 									</form>
 								</div>
 								<!-- /답변 수정 폼 -->
-								
-								<button data-bs-target="#rplsBy${answer.aaNo}" class="btn btn-primary" type="button"
-									data-bs-toggle="collapse" aria-expanded="false" aria-controls="collapseExample">댓글</button>
-								<div class="collapse" id="rplsBy${answer.aaNo}">
-									<!-- 댓글목록 -->
-									<div class="reply-item">
-										<c:forEach items="${answer.aaRpls}" var="rpl">
-											<div class="row">
-												<div class="reply-writer col small py-1">
-													${rpl.adminId == null ? rpl.userId : rpl.adminId}
-												</div>
-												<div class="reply-date col small py-1 text-end">
-													<fmt:formatDate value="${rpl.rplRedate == null ? rpl.rplDate : rpl.rplRedate}" pattern="yyyy.MM.dd HH:mm"/>
-												</div>
+							</div>
+							<button data-bs-target="#rplsBy${answer.aaNo}" class="btn btn-primary" type="button"
+								data-bs-toggle="collapse" aria-expanded="false" aria-controls="collapseExample">댓글</button>
+							<div class="collapse" id="rplsBy${answer.aaNo}">
+								<!-- 댓글목록 -->
+								<div class="reply-item">
+									<c:forEach items="${answer.aaRpls}" var="rpl">
+										<div class="row">
+											<div class="reply-writer col small py-1">
+												${rpl.adminId == null ? rpl.userId : rpl.adminId}
 											</div>
-											<!-- 기존 댓글 -->
-											<div class="reply-content row">
-												<div class="col-10 py-2">
-													${rpl.rplContent }
-												</div>
-												
-												<!-- 작성자=사용자이면 댓글 수정,삭제 버튼 표시 -->
-												<div class="btn-rpl-mod col-2 small py-1 text-end">
-													<sec:authorize access="hasRole('ROLE_USER')">
-														<c:if test="${username eq rpl.userId}">
-															<div class="btn-group btn-group-sm" role="group">
-																<button data-bs-target="#rpl${rpl.rplNo}" class="btn btn-gray" 
-																type="button" data-bs-toggle="collapse" aria-expanded="false"
-																	aria-controls="collapseExample">수정</button>
-																<button type="button" class="btn btn-gray" 
-															  	onclick="location.href='${pageContext.request.contextPath}/faq/rpldelete/${answer.aqNo}/${rpl.aaNo}/${rpl.rplNo}'">
-															  	삭제</button>
-															</div>
-														</c:if>	
-													</sec:authorize>
-												</div>
-												<!-- /댓글 수정,삭제 버튼 -->
+											<div class="reply-date col small py-1 text-end">
+												<fmt:formatDate value="${rpl.rplRedate == null ? rpl.rplDate : rpl.rplRedate}" pattern="yyyy.MM.dd HH:mm"/>
 											</div>
-											<!-- /기존 댓글 -->
-											<!-- 댓글 수정 폼 -->
-											<div class="collapse" id="rpl${rpl.rplNo}">
-												<form action="${cpath }/faq/rplupdate/${rpl.rplNo }" method="post">
-													<div class="input-group">
-														<input type="text" name="rplContent" class="form-control" value="${rpl.rplContent }" size="60">
-														<button class="btn" type="submit">수정</button>
-													</div>
-												</form>
+										</div>
+										<!-- 기존 댓글 -->
+										<div class="reply-content row">
+											<div class="col-10 py-2">
+												${rpl.rplContent }
 											</div>
-											<!-- /댓글 수정 폼 -->
-										</c:forEach>
-									</div>
-									<!-- /댓글목록 -->
-																
-									<!-- 댓글 작성 -->
-									<sec:authorize access="hasRole('ROLE_USER')">
-										<div class="p-3 pb-1">
-											<form action="${cpath }/faq/ans/${answer.aaNo}/reply" method="post">
-												<input type="hidden" value="${username }" name="userId" id="userId">
-												<input type="hidden" value="${answer.aaNo }" name="aaNo" id="aaNo">
+											
+											<!-- 작성자=사용자이면 댓글 수정,삭제 버튼 표시 -->
+											<div class="btn-rpl-mod col-2 small py-1 text-end">
+												<sec:authorize access="hasRole('ROLE_USER')">
+													<c:if test="${username eq rpl.userId}">
+														<div class="btn-group btn-group-sm" role="group">
+															<button data-bs-target="#rpl${rpl.rplNo}" class="btn btn-gray" 
+															type="button" data-bs-toggle="collapse" aria-expanded="false"
+																aria-controls="collapseExample">수정</button>
+															<button type="button" class="btn btn-gray" 
+														  	onclick="location.href='${pageContext.request.contextPath}/faq/rpldelete/${answer.aqNo}/${rpl.aaNo}/${rpl.rplNo}'">
+														  	삭제</button>
+														</div>
+													</c:if>	
+												</sec:authorize>
+											</div>
+											<!-- /댓글 수정,삭제 버튼 -->
+										</div>
+										<!-- /기존 댓글 -->
+										<!-- 댓글 수정 폼 -->
+										<div class="collapse" id="rpl${rpl.rplNo}">
+											<form action="${cpath }/faq/rplupdate/${rpl.rplNo }" method="post">
 												<div class="input-group">
-												  	<input type="text" name="rplContent" id="rplContent" class="form-control" placeholder="댓글을 작성해주세요">
-												  	<button class="btn" type="submit" id="btn-writeRpl">완료</button>
+													<input type="text" name="rplContent" class="form-control" value="${rpl.rplContent }" size="60">
+													<button class="btn" type="submit">수정</button>
 												</div>
 											</form>
 										</div>
-									</sec:authorize>
-									<!-- /댓글 작성 -->
+										<!-- /댓글 수정 폼 -->
+									</c:forEach>
 								</div>
-								
+								<!-- /댓글목록 -->
+															
+								<!-- 댓글 작성 -->
+								<sec:authorize access="hasRole('ROLE_USER')">
+									<div class="p-3 pb-1">
+										<form action="${cpath }/faq/ans/${answer.aaNo}/reply" method="post">
+											<input type="hidden" value="${username }" name="userId" id="userId">
+											<input type="hidden" value="${answer.aaNo }" name="aaNo" id="aaNo">
+											<div class="input-group">
+											  	<input type="text" name="rplContent" id="rplContent" class="form-control" placeholder="댓글을 작성해주세요">
+											  	<button class="btn" type="submit" id="btn-writeRpl">완료</button>
+											</div>
+										</form>
+									</div>
+								</sec:authorize>
+								<!-- /댓글 작성 -->
 							</div>
 							<hr>
 						</c:forEach>	
@@ -311,6 +312,17 @@
 			} else if(result[i].adminId) {
 				html += result[i].adminId;
 			}
+			html += '<span class="btn-ans-mod mx-3">';
+			if("${username}" == result[i].userId) {
+				html += '<div class="btn-group btn-group-sm" role="group">';
+				html += '<button data-bs-target="#ans' + result[i].aaNo + '" class="btn btn-gray" type="button" ';
+				html += 'data-bs-toggle="collapse" aria-expanded="false" aria-controls="collapseExample">수정</button>';
+				html += '<button type="button" class="btn btn-gray"';
+				var location = "location.href='${cpath}/faq/ansdelete/" + result[i].aqNo + "/" + result[i].aaNo + "'";
+				html += 'onclick="' + location + '">삭제</button>';
+				html += '</div>';
+			}
+			html += '</span>';
 			html += '</div>';
 			html += '<div class="answer-date col-6 small py-2 text-end">';
 			if(result[i].aaRedate) {
@@ -319,19 +331,8 @@
 				html += result[i].aaDate;
 			}
 			html += '</div>';
-			html += '<div class="answer-content col-10 py-4">';
+			html += '<div class="answer-content col-12 py-4 lh-lg">';
 			html += result[i].aaContent;
-			html += '</div>';
-			html += '<div class="btn-ans-mod col-2 small py-1 text-end">';
-			if("${username}" == result[i].userId) {
-				html += '<div class="btn-group btn-group-sm" role="group">';
-				html += '<button data-bs-target="#ans' + result[i].aaNo + '" class="btn btn-gray" type="button" ';
-				html += 'data-bs-toggle="collapse" aria-expanded="false" aria-controls="collapseExample">수정</button>';
-				html += '<button type="button" class="btn btn-gray"';
-				var location = "location.href='<%=request.getContextPath()%>/faq/ansdelete/" + result[i].aqNo + "/" + result[i].aaNo + "'";
-				html += 'onclick="' + location + '">삭제</button>';
-				html += '</div>';
-			}
 			html += '</div>';
 			
 			<!-- 답변 수정 폼 -->
@@ -346,6 +347,8 @@
 			html += '</div>';
 			<!-- /답변 수정 폼 -->
 			
+			
+			html += '</div>';
 			html += '<button data-bs-target="#rplsBy' + result[i].aaNo + '" class="btn btn-primary" type="button" ';
 			html += 'data-bs-toggle="collapse" aria-expanded="false" aria-controls="collapseExample">댓글</button>';
 			html += '<div class="collapse" id="rplsBy' + result[i].aaNo + '">';  
@@ -418,32 +421,9 @@
 			html += '</div>';
 			html += '</div>';
 			<!-- /댓글작성 -->
-			
-			html += '</div>';
 			html += '<hr>';			
 		}
 		$(".answer-item").append(html);
 	}
-	
-	<%-- 	// 댓글 수정
-		$('#btn-updateRpl').on("click", function() {
-			var rplContent = $("#rplContent").val();
-			$.ajax({
-				url: "<%=request.getContextPath()%>/faq/qna/updaterpl",
-				data: {
-					rplContent: rplContent
-				},
-				type: "post",
-				success: function(result) {
-					if (result == "success") {
-						alert("댓글 수정 성공");
-						getAnsList();
-					}
-				},
-				error: function() {
-					alert("댓글 수정 실패");
-				}
-			})
-		}) --%>
 </script>
 </html>

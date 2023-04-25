@@ -50,15 +50,6 @@
 							<button name="btnSearch" id="btnSearch" class="btn" type="submit">검색</button>
 						</div>
 					</div>
-					<div>
-						<form action="${pageContext.request.contextPath}/faq/">
-							<select name="cnt" onchange="submit();">
-								<c:forEach var="num" begin="5" end="30" step="5">
-									<option value="${num }" ${requestScope.paging.pageLimit eq num ? "selected" : "" }>${num }개</option>
-								</c:forEach>
-							</select>
-						</form>
-					</div>
 					<% if (request.getParameter("keyword") != null && !request.getParameter("keyword").isEmpty()) { %>
 					    <span>"<%=request.getParameter("keyword")%>"의 검색 결과입니다.</span>
 					<% } %>
@@ -114,50 +105,56 @@
 							<div class="pb-1">
 								<a href="${pageContext.request.contextPath}/faq/qna/${qna.aqNo}">${qna.aqTitle}</a>
 							</div>
-							<div class="small col-1 pe-0">조회 <fmt:formatNumber value="${qna.aqViews}" pattern="###,###"/></div>
-							<div class="small col-9">답변 ${qna.aqAnswers }</div>
-							<div class="small col-2 text-end"><fmt:formatDate value="${qna.aqDate}" pattern="yyyy.MM.dd HH:mm"/></div>
+							<div class="small col-md-1 pe-0">답변 ${qna.aqAnswers }</div>
+							<div class="small col-md-9">조회 <fmt:formatNumber value="${qna.aqViews}" pattern="###,###"/></div>
+							<div class="small col-md-2 text-end"><fmt:formatDate value="${qna.aqDate}" pattern="yy.MM.dd HH:mm"/></div>
 						</div>
 						<hr>
 					</c:forEach>
 				</c:if>
 			</div>
-			<!-- 페이지 번호 -->
-		     <c:if test="${not empty requestScope.paging.page}"> <!-- 신청서가 하나도 없으면 페이징X -->
-				<ul class="pagination">
-					<c:set var="pageNumber" value="${empty param.p ? 1 : param.p }" />
-					<c:choose>
-						<c:when test="${requestScope.paging.prevPage eq -1 }">
-							<li class="page-item disabled"><a class="page-link">prev</a></li>
-						</c:when>
-						<c:otherwise>
-							<li class="page-item">
-							<a class="page-link" href="${pageContext.request.contextPath}/faq/?p=${requestScope.paging.prevPage }&searchType=${searchType }&keyword=${keyword }">prev</a>
-							</li>
-						</c:otherwise>
-					</c:choose>
-					<c:forEach var="pNum" items="${requestScope.paging.pageList }">
-						<li class="page-item ${pNum eq pageNumber ? 'active' : '' }">
-						<a class="page-link" href="${pageContext.request.contextPath}/faq/?p=${pNum }&searchType=${searchType }&keyword=${keyword }">${pNum }</a>
-						</li>
-					</c:forEach>
-					<c:choose>
-						<c:when test="${requestScope.paging.nextPage eq -1 }">
-							<li class="page-item disabled"><a class="page-link">next</a></li>
-						</c:when>
-						<c:otherwise>
-							<li class="page-item">
-							<a class="page-link" href="${pageContext.request.contextPath}/faq/?p=${requestScope.paging.nextPage }&searchType=${searchType }&keyword=${keyword }">next</a>
-							</li>
-						</c:otherwise>
-					</c:choose>
-				</ul>
-			  </c:if>
-			<sec:authorize access="hasRole('ROLE_USER')">
-				<button type="button" onclick="location.href='myqna'">내 질문/답변</button>
-				<button type="button" onclick="location.href='qna/write'">질문하기</button>
-			</sec:authorize>
 			<!-- ***** 일반 질문 end ***** -->
+			<div class="row">
+				<!-- 페이지 번호 -->
+				<div class="col-md-8">
+					<c:if test="${not empty requestScope.paging.page}"> <!-- 신청서가 하나도 없으면 페이징X -->
+						<ul class="pagination my-2">
+							<c:set var="pageNumber" value="${empty param.p ? 1 : param.p }" />
+							<c:choose>
+								<c:when test="${requestScope.paging.prevPage eq -1 }">
+									<li class="page-item disabled"><a class="page-link">prev</a></li>
+								</c:when>
+								<c:otherwise>
+									<li class="page-item">
+										<a class="page-link" href="${pageContext.request.contextPath}/faq/?p=${requestScope.paging.prevPage }&searchType=${searchType }&keyword=${keyword }">prev</a>
+									</li>
+								</c:otherwise>
+							</c:choose>
+							<c:forEach var="pNum" items="${requestScope.paging.pageList }">
+								<li class="page-item ${pNum eq pageNumber ? 'active' : '' }">
+									<a class="page-link" href="${pageContext.request.contextPath}/faq/?p=${pNum }&searchType=${searchType }&keyword=${keyword }">${pNum }</a>
+								</li>
+							</c:forEach>
+							<c:choose>
+								<c:when test="${requestScope.paging.nextPage eq -1 }">
+									<li class="page-item disabled"><a class="page-link">next</a></li>
+								</c:when>
+								<c:otherwise>
+									<li class="page-item">
+										<a class="page-link" href="${pageContext.request.contextPath}/faq/?p=${requestScope.paging.nextPage }&searchType=${searchType }&keyword=${keyword }">next</a>
+									</li>
+								</c:otherwise>
+							</c:choose>
+						</ul>
+					</c:if>
+				</div>
+				<div class="col-md-4 text-end my-2">
+					<sec:authorize access="hasRole('ROLE_USER')">
+						<button type="button" class="btn btn-m" onclick="location.href='myqna'">내 질문/답변</button>
+						<button type="button" class="btn btn-m" onclick="location.href='qna/write'">질문하기</button>
+					</sec:authorize>
+				</div>
+			</div>
 		</div>
 
 	</section>

@@ -101,7 +101,6 @@ public class UserFaqController {
 		
 		//
 		mv.addObject("faqlist", service.selectFaqList());
-		// mv.addObject("qnalist", service.selectQnaList());
 		mv.setViewName("user/faq/faqlist");
 		return mv;
 	}
@@ -124,7 +123,13 @@ public class UserFaqController {
 			, @PathVariable int aqNo
 			) {
 		service.viewCount(aqNo);
-		mv.addObject("question", service.selectQnaDetail(aqNo));
+		UserQnaVo question = service.selectQnaDetail(aqNo);
+		question.setAqContent(question.getAqContent().replaceAll(System.lineSeparator(), "<br>"));
+		List<UserAnsVo> answers = service.selectAnsList(aqNo);
+		for(int i = 0; i < answers.size(); i++) {
+			answers.get(i).setAaContent(answers.get(i).getAaContent().replaceAll(System.lineSeparator(), "<br>"));
+		}
+		mv.addObject("question", question);
 		mv.addObject("answers", service.selectAnsList(aqNo));
 		
 		mv.setViewName("user/faq/readQna");
@@ -138,6 +143,9 @@ public class UserFaqController {
 		service.selectQnaDetail(aqNo);
 		List<UserAnsVo> ansList = service.selectAnsList(aqNo);
 		if (!ansList.isEmpty()) {
+			for(int i = 0; i < ansList.size(); i++) {
+				ansList.get(i).setAaContent(ansList.get(i).getAaContent().replaceAll(System.lineSeparator(), "<br>"));
+			}
 			Gson gson = new GsonBuilder().setDateFormat("yyyy.MM.dd HH:mm").create();
 			return gson.toJson(ansList);
 		}
