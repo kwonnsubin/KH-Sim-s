@@ -414,8 +414,9 @@
 		
 	    $(document).ready(function() {
 	        $('#submitBtn').click(function() {
-	        	const planPay = $('input[name="planPay"]').val();
-	            if (planPay == "1") {
+	        	const planPay = $('input[name="planPay"]:checked').val();
+	        	console.log("planPay: " + planPay);
+	            if (planPay == '1') {
 		            const bizId = $('input[name="bizId"]').val();
 		            const userId = $('input[name="userId"]').val();
 		            const planNo = parseInt($('input[name="planNo"]').val());
@@ -424,14 +425,14 @@
 		            const simYn = sessionStorage.getItem('simYn');
 		            const currentTelecom = $('select[name="currentTelecom"]').val();
 		            const planBill = $('input[name="planBill"]').val();
-		            const planPay = $('input[name="planPay"]').val();
+		            const planPay = '1';
 		            const netNo = parseInt($('input[name="netNo"]').val());
 		            const genNo = parseInt($('input[name="genNo"]').val());
 		            const orderPrice = parseInt($('input[name="orderPrice"]').val());
 		            const orderData = parseInt($('input[name="orderData"]').val());
 		            const orderVoice = parseInt($('input[name="orderVoice"]').val());
 		            const orderMessage = parseInt($('input[name="orderMessage"]').val());
-		            const orderAddress = '[' + $('#sample6_postcode').val() + ']' + $('#sample6_address').val()
+		            const orderAddress = '[' + $('#sample6_postcode').val() + ']' + $('#sample6_address').val() + ' '
 		            	+ $('#sample6_detailAddress').val() + $('#sample6_extraAddress').val();
 		            const cardHolder = $('#cardHolder').val();
 		            const cardSsn = $('#cardSsn1').val() + '-' + $('#cardSsn2').val();
@@ -479,7 +480,7 @@
 		                	alert("요금제 신청 실패");
 		                }
 		            });
-	            } else if (planPay == "2") {
+	            } else if (planPay == '2') {
 		            const bizId = $('input[name="bizId"]').val();
 		            const userId = $('input[name="userId"]').val();
 		            const planNo = parseInt($('input[name="planNo"]').val());
@@ -488,14 +489,14 @@
 		            const simYn = sessionStorage.getItem('simYn');
 		            const currentTelecom = $('select[name="currentTelecom"]').val();
 		            const planBill = $('input[name="planBill"]').val();
-		            const planPay = $('input[name="planPay"]').val();
+		            const planPay = '2';
 		            const netNo = parseInt($('input[name="netNo"]').val());
 		            const genNo = parseInt($('input[name="genNo"]').val());
 		            const orderPrice = parseInt($('input[name="orderPrice"]').val());
 		            const orderData = parseInt($('input[name="orderData"]').val());
 		            const orderVoice = parseInt($('input[name="orderVoice"]').val());
 		            const orderMessage = parseInt($('input[name="orderMessage"]').val());
-		            const orderAddress = '[' + $('#sample6_postcode').val() + ']' + $('#sample6_address').val()
+		            const orderAddress = '[' + $('#sample6_postcode').val() + ']' + $('#sample6_address').val() + ' '
 		            	+ $('#sample6_detailAddress').val() + $('#sample6_extraAddress').val();
 			        const accHolder = $('#accHolder').val();
 		            const accSsn = $('#accountSsn1').val() + '-' + $('#accountSsn2').val();
