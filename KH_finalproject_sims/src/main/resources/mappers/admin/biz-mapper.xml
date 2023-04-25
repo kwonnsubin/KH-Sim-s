@@ -41,7 +41,7 @@
 	
 	<!-- 통신사 신청정보 리스트 -->
 	<select id="selectApplyListCnt" resultType="_int">
-	/** 통신사 신청정보 리스트 전체 갯수(selectApplyListCnt)**/
+	/** 통신사 신청정보 리스트 전체 개수(selectApplyListCnt)**/
 		SELECT
 			COUNT(*) AS TOTAL_ROW_COUNT
 		FROM 
@@ -273,7 +273,6 @@
 		    , (SELECT user_name FROM user_table WHERE user_id = A.user_id) as userName
 		    , (SELECT user_ssn FROM user_table WHERE user_id = A.user_id) as userSsn
 		    , (SELECT user_phone FROM user_table WHERE user_id = A.user_id) as userPhone
-		    , (SELECT user_address FROM user_table WHERE user_id = A.user_id) as userAddress
 		    , (SELECT user_email FROM user_table WHERE user_id = A.user_id) as userEmail
 		    , (SELECT plan_name FROM plan_table WHERE plan_no = A.plan_no) as planName
 		    , (SELECT net_name FROM network_table WHERE net_no = A.net_no) as net_name

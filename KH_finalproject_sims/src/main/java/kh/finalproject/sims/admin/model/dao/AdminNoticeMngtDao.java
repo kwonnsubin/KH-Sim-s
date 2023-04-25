@@ -1,6 +1,8 @@
 package kh.finalproject.sims.admin.model.dao;
 
 import java.util.List;
+import java.util.Map;
+
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
@@ -14,9 +16,14 @@ public class AdminNoticeMngtDao {
 	SqlSession sqlSession;
 
 	//관리자 공지사항 리스트
-	public List<AdminNoticeMngtVo> selectNoticeList(AdminNoticeMngtVo vo) {
-		return sqlSession.selectList("adminNotice.selectNoticeList", vo);
+	public List<AdminNoticeMngtVo> selectNoticeList(Map<String, Object> map) {
+		return sqlSession.selectList("adminNotice.selectNoticeList", map);
 	}
+	
+	//관리자  공지사항 리스트 전체 개수
+		public int selectNoticeListCnt(Map<String, Object> map) {
+			return sqlSession.selectOne("adminNotice.selectNoticeListCnt", map);
+		}
 
 	//관리자 공지사항 상세 페이지 호출
 	public AdminNoticeMngtVo selectNoticeDetail(int ntcNo) {

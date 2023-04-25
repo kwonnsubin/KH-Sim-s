@@ -1,7 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>    
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>  
+<c:set var="path" value="${pageContext.request.contextPath}"/>  
 <!DOCTYPE html>
 <html>
 <head>
@@ -81,9 +82,9 @@
 														</tr>
 													</thead>
 													<tbody>
-														<c:forEach var="list" items="${userList}" varStatus="status">
+														<c:forEach var="list" items="${requestScope.paging.page}" varStatus="status">
 															<tr>
-																<td>${status.count}</td>
+																<td>${paging.totalRowCount - (paging.currentPage-1) * paging.pageLimit - status.index}</td>
 																<td><a href="<%=request.getContextPath()%>/admin/userDetail/${list.userId}">${list.userId}</a></td>
 																<td>${list.userName}</td>
 																<td>${list.userEmail}</td>
@@ -96,12 +97,30 @@
 											</div>
 											<nav aria-label="Page navigation example">
 												<ul class="pagination justify-content-center">
-													<li class="page-item"><a class="page-link" href="" aria-label="Previous"><span aria-hidden="true">«</span><span class="sr-only">Previous</span></a></li>
-													<li class="page-item"><a class="page-link" href="" aria-label="Previous">1</a></li>
-													<li class="page-item"><a class="page-link" href="" aria-label="Previous">2</a></li>
-													<li class="page-item"><a class="page-link" href="" aria-label="Previous">3</a></li>
-													<li class="page-item"><a class="page-link" href="" aria-label="Previous"><span aria-hidden="true">»</span><span class="sr-only">Next</span></a></li>
-												</ul>
+														<c:set var="pageNumber" value="${empty param.p ? 1 : param.p }" />
+														<c:choose>
+															<c:when test="${requestScope.paging.prevPage eq -1 }">
+																<li class="page-item disabled"><a class="page-link">prev</a></li>
+															</c:when>
+															<c:otherwise>
+																<li class="page-item"><a class="page-link"
+																 href="${path}/admin/userList?p=${requestScope.paging.prevPage }">prev</a></li>
+															</c:otherwise>
+														</c:choose>
+														<c:forEach var="pNum" items="${requestScope.paging.pageList }">
+															<li class="page-item ${pNum eq pageNumber ? 'active' : '' }"><a class="page-link" 
+															href="${path}/admin/userList?p=${pNum }">${pNum }</a></li>
+														</c:forEach>
+														<c:choose>
+															<c:when test="${requestScope.paging.nextPage eq -1 }">
+																<li class="page-item disabled"><a class="page-link">next</a></li>
+															</c:when>
+															<c:otherwise>
+																<li class="page-item"><a class="page-link"
+																 href="${path}/admin/userList?p=${requestScope.paging.nextPage }">next</a></li>
+															</c:otherwise>
+														</c:choose>
+													</ul>
 											</nav>
 										</div>
 									</div>

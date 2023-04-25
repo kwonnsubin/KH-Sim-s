@@ -170,6 +170,21 @@
 		                                        </div>
 		                                    </div>
 		                                    <div class="form-group row">
+		                                        <label for="planPay" class="col-sm-1 col-form-label text-center">예금주명</label>
+		                                        <div class="col-sm-5">
+		                                            <input type="text" class="form-control"  name="planPay" <c:if test="${cmd eq 'read' }">readonly</c:if>
+		                                            <c:choose>
+															<c:when test="${bizPlanApplyDetail.simType eq '1'.charAt(0)}">value="카드" </c:when>
+															<c:otherwise>value="계좌이체"</c:otherwise>
+													 </c:choose>
+													 > 
+		                                        </div>
+		                                        <label for="cardNumber" class="col-sm-1 col-form-label text-center">예금주 주민등록번호</label>
+		                                        <div class="col-sm-5">
+		                                            <input type="text" class="form-control"  name="cardNumber" <c:if test="${cmd eq 'read' }">readonly</c:if> value="${bizPlanApplyDetail.cardNumber}">
+		                                        </div>
+		                                    </div>
+		                                    <div class="form-group row">
 		                                        <label for="cardExpiration" class="col-sm-1 col-form-label text-center">유효기간</label>
 		                                        <div class="col-sm-3">
 		                                            <input type="text" class="form-control"  name="cardExpiration" <c:if test="${cmd eq 'read' }">readonly</c:if> value="${bizPlanApplyDetail.cardExpiration}">

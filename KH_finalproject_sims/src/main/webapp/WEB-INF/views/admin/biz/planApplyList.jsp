@@ -81,7 +81,7 @@
 													<table class="table table-hover">
 														<thead>
 															<tr>
-																<th>주문번호</th>
+																<th>번호</th>
 																<th>신청자</th>
 																<th>요금제명</th>
 																<th>신청상태</th>

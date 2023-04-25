@@ -71,10 +71,12 @@ public class AdminBizMngtDao {
 		return sqlSession.update("adminBiz.updateBizStatus", vo);
 	}
 
+	//통신사 탈퇴 확정
 	public int updateWithdrawalBizStatus(AdminBizMngtVo vo) {
 		return sqlSession.update("adminBiz.updateWithdrawalBizStatus", vo);
 	}
 
+	// 요금제 상세 정보 호출 ajax
 	public AdminBizMngtVo selectPlanAjax(int planNo) {
 		return sqlSession.selectOne("adminBiz.selectBizPlanDetailAjax", planNo);
 	}

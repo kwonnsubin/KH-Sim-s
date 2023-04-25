@@ -1,9 +1,12 @@
 package kh.finalproject.sims.admin.controller;
 
 import java.security.Principal;
+import java.util.HashMap;
+import java.util.Map;
 
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -12,11 +15,13 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 
 import kh.finalproject.sims.admin.model.service.AdminNoticeMngtService;
+import kh.finalproject.sims.admin.model.vo.AdminBizMngtVo;
 import kh.finalproject.sims.admin.model.vo.AdminNoticeMngtVo;
 import kh.finalproject.sims.common.page.Search;
 
@@ -27,12 +32,66 @@ public class AdminNoticeMngtController {
 	@Autowired
 	private AdminNoticeMngtService service;
 	
+	public Map<String, String> paginationInfo(String pageNumber, HttpServletRequest request, HttpServletResponse response) {
+		Map<String, String> map = new HashMap<String, String>();
+		
+		int pNum;
+		if(pageNumber == null || pageNumber.isEmpty()) {
+			pNum = 1;
+		} else {
+			pNum = Integer.parseInt(pageNumber);
+		}
+		
+		Cookie cookie = null;
+		Cookie[] cookies = request.getCookies();
+		for(Cookie c : cookies) {
+			if(c.getName().equals("cnt")) {
+				cookie = c;
+			}
+		}
+		
+		String cnt = request.getParameter("cnt");
+		if(cnt != null) {
+			if(cnt.isEmpty()) {
+				if(cookie != null) {
+					cnt = cookie.getValue();
+				} else {
+					cnt = "10";
+				}
+			}
+		} else {
+			if(cookie != null) {
+				cnt = cookie.getValue();
+			} else {
+				cnt = "10";
+			}
+		}
+		
+		cookie = new Cookie("cnt", cnt);
+		cookie.setMaxAge(60 * 60 * 24 * 5);
+		response.addCookie(cookie);
+		
+		map.put("pNum", String.valueOf(pNum));
+		map.put("cnt", cnt);
+		
+		return map;
+		
+	}
+	
 	//관리자 공지사항 리스트로 이동
 	@RequestMapping(value="/noticeList", method = {RequestMethod.GET, RequestMethod.POST})
-	public ModelAndView selectNoticeList(ModelAndView mv, AdminNoticeMngtVo vo) {
-		mv.addObject("noticeList",service.selectNoticeList(vo));
-		mv.addObject("searchOption", vo.getSearchOption());
-		mv.addObject("searchBox", vo.getSearchBox());
+	public ModelAndView selectNoticeList(ModelAndView mv, AdminBizMngtVo vo, @RequestParam(value="p", required = false) String pageNumber, HttpServletRequest request, HttpServletResponse response) throws Exception {
+		
+		Map<String, String> paginationInfo = paginationInfo(pageNumber, request, response);
+		int pNum = Integer.parseInt(paginationInfo.get("pNum"));
+		int cnt = Integer.parseInt(paginationInfo.get("cnt"));
+		String searchOption = vo.getSearchOption();
+		String searchBox = vo.getSearchBox();
+		Search search = service.selectNoticeList(pNum, cnt, searchOption, searchBox);
+		request.setAttribute("paging", search);
+		
+		mv.addObject("searchOption", searchOption);
+		mv.addObject("searchBox", searchBox);
 		mv.setViewName("admin/notice/noticeList");
 		return mv;
 	}

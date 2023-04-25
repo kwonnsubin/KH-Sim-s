@@ -1,12 +1,16 @@
 package kh.finalproject.sims.admin.model.service;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import kh.finalproject.sims.admin.model.dao.AdminUserMngtDao;
+import kh.finalproject.sims.admin.model.vo.AdminBizMngtVo;
 import kh.finalproject.sims.admin.model.vo.AdminUserMngtVo;
+import kh.finalproject.sims.common.page.Search;
 
 @Service
 public class AdminUserMngtServiceImpl implements AdminUserMngtService{
@@ -16,8 +20,19 @@ public class AdminUserMngtServiceImpl implements AdminUserMngtService{
 	
 		//관리자의 사용자 관리 리스트
 		@Override
-		public List<AdminUserMngtVo> selectUserList(AdminUserMngtVo vo) {
-			return dao.selectUserList(vo);
+		public Search selectUserList(int pNum, int cnt, String searchUserId, String searchUserName, String searchRadioVal) {
+			Map<String, Object> map = new HashMap<String, Object>();
+			map.put("start", (pNum - 1) * cnt + 1);
+			map.put("end", pNum * cnt);
+			map.put("searchUserId", searchUserId);
+			map.put("searchUserName", searchUserName);
+			map.put("searchRadioVal", searchRadioVal);
+			List<AdminUserMngtVo> dataList = dao.selectUserList(map);
+			int totalRowCount = dao.selectUserListCnt(map);
+			int mod = totalRowCount % cnt == 0 ? 0 : 1;
+			int pageCount = (totalRowCount / cnt) + mod;
+			Search search = new Search(dataList, pNum, pageCount, cnt, 5, totalRowCount, searchUserId, searchUserName, searchRadioVal);
+			return search;
 		}
 
 		//관리자의 사용자 관리 상세

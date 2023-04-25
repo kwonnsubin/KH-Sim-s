@@ -7,7 +7,38 @@
 	<select id="selectNoticeList" resultType="adNtcvo">
 	/** 관리자 공지사항 리스트 (selectNoticeList) **/
 		SELECT
-			*
+			B.*
+		FROM
+		(
+			SELECT
+				A.*
+				, ROWNUM AS RO
+			FROM 
+			NOTICE A
+		WHERE 1=1
+			<if test="searchOption != null">
+				<choose>
+					<when test="searchOption == 'title'">
+						AND UPPER(NTC_TITLE) LIKE UPPER('%'||#{searchBox}||'%')
+					</when>
+					<when test="searchOption == 'writer'">
+						AND UPPER(ADMIN_ID) LIKE UPPER('%'||#{searchBox}||'%')
+					</when>
+					<when test="searchOption == 'content'">
+						AND UPPER(NTC_CONTENT) LIKE UPPER('%'||#{searchBox}||'%')
+					</when>
+				</choose>
+			</if>
+			) B
+			WHERE 1=1
+				AND RO BETWEEN #{start} AND #{end}
+	</select>
+	
+	<!-- 관리자 공지사항 리스트 전체 개수-->
+	<select id="selectNoticeListCnt" resultType="_int">
+	/** 관리자 공지사항 리스트 (selectNoticeListCnt) **/
+		SELECT
+			COUNT(*) AS TOTAL_ROW_COUNT
 		FROM
 			NOTICE
 		WHERE 1=1
@@ -24,7 +55,7 @@
 					</when>
 				</choose>
 			</if>
-		ORDER BY NTC_DATE DESC
+			
 	</select>
 	
 	
