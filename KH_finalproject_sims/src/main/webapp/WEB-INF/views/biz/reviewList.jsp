@@ -37,138 +37,145 @@
 </head>
 <body>
 <jsp:include page="/WEB-INF/views/header.jsp"/>
-<jsp:include page="/WEB-INF/views/biz/nav.jsp"/>
-
-통신사 (자사 ) 리뷰 리스트
 
 
-<div class="container">
-	<div class="d-flex selectBox" >
-		<form action="${path}/biz/reviewList">
-			<select name="cnt" onchange="submit();" class="form-select" style="width:91px;">
-				<c:forEach var="num" begin="5" end="30" step="5">
-					<option value="${num }" ${requestScope.paging.pageLimit eq num ? "selected" : "" }>${num } 개</option>
-				</c:forEach>
-			</select>
-		</form>
+
+
+<div class="container" style="display:flex; margin:-103px 0 -200px 0; padding:150px 0 380px 0;">
+	<jsp:include page="/WEB-INF/views/biz/nav.jsp"/>
+
+	<div class="content">
+
+		<h2 class="tit">통신사 리뷰 현황</h2>
 	
-		<div>
-			<c:if test="${not empty requestScope.paging.page}">
-				총 ${reviewCnt }개의 리뷰가 있습니다.
-			</c:if>
+		<div class="d-flex selectBox" >
+			<form action="${path}/biz/reviewList">
+				<select name="cnt" onchange="submit();" class="form-select" style="width:91px;">
+					<c:forEach var="num" begin="5" end="30" step="5">
+						<option value="${num }" ${requestScope.paging.pageLimit eq num ? "selected" : "" }>${num } 개</option>
+					</c:forEach>
+				</select>
+			</form>
+		
+			<div>
+				<c:if test="${not empty requestScope.paging.page}">
+					총 ${reviewCnt }개의 리뷰가 있습니다.
+				</c:if>
+			</div>
+	
 		</div>
-
-	</div>
-	
-	<c:if test="${empty requestScope.paging.page}">
-            		<tr>
-            			<td colspan="6">사용자 리뷰가 없습니다.</td>
-            		</tr>
-    </c:if>
-	<c:if test="${not empty requestScope.paging.page}">
 		
-		<c:forEach var="reviewList" items="${requestScope.paging.page}">
-	    <div class="review-box">
-	        <div class="review-header">
-	            <div class="review-header-item">${reviewList.rn}</div>
-	            <div class="review-header-item">${reviewList.userId}</div>
-	            <div class="review-header-item">${reviewList.reviewDate}</div>
-	            <div class="review-header-item">${reviewList.reportStatus == 1 ? '상태 : 신고처리중' : reviewList.reportStatus == 2 ? '상태 : 삭제완료' : reviewList.reportStatus == 3 ? '상태 : 반려' : '' }</div>
-	        </div>
-	        <div class="review-content">
-	            <%-- <a href="${path }/biz/reviewDetail?reviewNo=${reviewList.reviewNo }" class=""> --%>
-	                ${reviewList.reviewContent}
-	           <!--  </a> -->
-	        </div>
-	        <div class="review-footer">
-	            <div class="review-footer-item">
-	                <div class="form-control-plaintext">
-	                    <c:forEach var="i" begin="1" end="5">
-	                        <i class="fa${(reviewList.reviewStar)/2 >= i ? '-solid fa-star' : ((reviewList.reviewStar)/2 >= (i - 0.5) ? '-star-half-stroke fa-regular' : '-regular fa-star')}" style="color: #ffdd00;"></i>
-	                    </c:forEach>
-	                </div>
-	            </div>
-	            <div class="review-footer-item">
-	                <c:choose>
-	                    <c:when test="${reviewList.reportStatus == '' }">
-	                        <button type="button" class="reportBtn btn" 
-	                                data-bs-toggle="modal" data-bs-target="#reportModal" 
-	                                data-bs-whatever="${reviewList.userId}"
-	                                data-reviewno="${reviewList.reviewNo}"
-	                                data-reportstatus="${reviewList.reportStatus }"
-	                                style="background:#e1727d !important">신고하기</button>
-	                    </c:when>
-	                    <c:when test="${reviewList.reportStatus == 2 || reviewList.reportStatus == 3  }">
-	                        <button class="btn"  disabled>신고하기</button>
-	                    </c:when>
-	                    <c:when test="${reviewList.reportStatus == 1 }">
-	                        <button type="button" class="cancleBtn btn"
-	                                data-reviewno="${reviewList.reviewNo}"
-	                                style="background: #71b77d !important">신고취소</button>
-	                    </c:when>
-	                </c:choose>
-	            </div>
-	        </div>
-	    </div>
-	</c:forEach>
+		<c:if test="${empty requestScope.paging.page}">
+	            		<tr>
+	            			<td colspan="6">사용자 리뷰가 없습니다.</td>
+	            		</tr>
+	    </c:if>
+		<c:if test="${not empty requestScope.paging.page}">
+			
+			<c:forEach var="reviewList" items="${requestScope.paging.page}">
+		    <div class="review-box">
+		        <div class="review-header">
+		            <div class="review-header-item">${reviewList.rn}</div>
+		            <div class="review-header-item">${reviewList.userId}</div>
+		            <div class="review-header-item">${reviewList.reviewDate}</div>
+		            <div class="review-header-item">${reviewList.reportStatus == 1 ? '상태 : 신고처리중' : reviewList.reportStatus == 2 ? '상태 : 삭제완료' : reviewList.reportStatus == 3 ? '상태 : 반려' : '' }</div>
+		        </div>
+		        <div class="review-content">
+		            <%-- <a href="${path }/biz/reviewDetail?reviewNo=${reviewList.reviewNo }" class=""> --%>
+		                ${reviewList.reviewContent}
+		           <!--  </a> -->
+		        </div>
+		        <div class="review-footer">
+		            <div class="review-footer-item">
+		                <div class="form-control-plaintext">
+		                    <c:forEach var="i" begin="1" end="5">
+		                        <i class="fa${(reviewList.reviewStar)/2 >= i ? '-solid fa-star' : ((reviewList.reviewStar)/2 >= (i - 0.5) ? '-star-half-stroke fa-regular' : '-regular fa-star')}" style="color: #ffdd00;"></i>
+		                    </c:forEach>
+		                </div>
+		            </div>
+		            <div class="review-footer-item">
+		                <c:choose>
+		                    <c:when test="${reviewList.reportStatus == '' }">
+		                        <button type="button" class="reportBtn btn" 
+		                                data-bs-toggle="modal" data-bs-target="#reportModal" 
+		                                data-bs-whatever="${reviewList.userId}"
+		                                data-reviewno="${reviewList.reviewNo}"
+		                                data-reportstatus="${reviewList.reportStatus }"
+		                                style="background:#e1727d !important; margin-left: 89%;">신고하기</button>
+		                    </c:when>
+		                    <c:when test="${reviewList.reportStatus == 2 || reviewList.reportStatus == 3  }">
+		                        <button class="btn"  disabled style="margin-left: 89%;">신고하기</button>
+		                    </c:when>
+		                    <c:when test="${reviewList.reportStatus == 1 }">
+		                        <button type="button" class="cancleBtn btn"
+		                                data-reviewno="${reviewList.reviewNo}"
+		                                style="background: #71b77d !important; margin-left: 89%;">신고취소</button>
+		                    </c:when>
+		                </c:choose>
+		            </div>
+		        </div>
+		    </div>
+		</c:forEach>
+			
 		
-	
-		
-		<!-- 신고하기 모달 -->
-	<div class="modal fade" id="reportModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-	  <div class="modal-dialog">
-	    <div class="modal-content">
-	      <div class="modal-header">
-	        <h1 class="modal-title fs-5" id="exampleModalLabel">리뷰 신고하기</h1>
-	        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-	      </div>
-	      <div class="modal-body">
-	        <form>
-	          <div class="mb-3">
-	            <label for="recipient-name" class="col-form-label">신고대상 아이디</label>
-	            <input type="text" class="form-control" id="recipient-name" readonly="readonly">
-	          </div>
-	          <div class="mb-3">
-	          	<input type="hidden" id="selectdReviewNo">
-	            <label for="message-text" class="col-form-label">신고사유 </label>
-	            <textarea class="form-control" id="message-text"></textarea>
-	          </div>
-	        </form>
-	      </div>
-	      <div class="modal-footer">
-	        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">취소</button>
-	        <button type="button" class="btn btn-primary modalReport">신고하기</button>
-	      </div>
-	    </div>
-	  </div>
-	</div>
-		
-		 <!-- 페이지 번호 -->
-	     <c:if test="${not empty requestScope.paging.page}"> <!-- 신청서가 하나도 없으면 페이징X -->
-			<ul class="pagination" style="padding-left : 40%;">
-				<c:set var="pageNumber" value="${empty param.p ? 1 : param.p }" />
-				<c:choose>
-					<c:when test="${requestScope.paging.prevPage eq -1 }">
-						<li class="page-item disabled"><a class="page-link">prev</a></li>
-					</c:when>
-					<c:otherwise>
-						<li class="page-item"><a class="page-link" href="${path}/biz/reviewList?p=${requestScope.paging.prevPage }">prev</a></li>
-					</c:otherwise>
-				</c:choose>
-				<c:forEach var="pNum" items="${requestScope.paging.pageList }">
-					<li class="page-item ${pNum eq pageNumber ? 'active' : '' }"><a class="page-link" href="${path}/biz/reviewList?p=${pNum }">${pNum }</a></li>
-				</c:forEach>
-				<c:choose>
-					<c:when test="${requestScope.paging.nextPage eq -1 }">
-						<li class="page-item disabled"><a class="page-link">next</a></li>
-					</c:when>
-					<c:otherwise>
-						<li class="page-item"><a class="page-link" href="${path}/biz/reviewList?p=${requestScope.paging.nextPage }">next</a></li>
-					</c:otherwise>
-				</c:choose>
-			</ul>
+			
+			<!-- 신고하기 모달 -->
+		<div class="modal fade" id="reportModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+		  <div class="modal-dialog">
+		    <div class="modal-content">
+		      <div class="modal-header">
+		        <h1 class="modal-title fs-5" id="exampleModalLabel">리뷰 신고하기</h1>
+		        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+		      </div>
+		      <div class="modal-body">
+		        <form>
+		          <div class="mb-3">
+		            <label for="recipient-name" class="col-form-label">신고대상 아이디</label>
+		            <input type="text" class="form-control" id="recipient-name" readonly="readonly">
+		          </div>
+		          <div class="mb-3">
+		          	<input type="hidden" id="selectdReviewNo">
+		            <label for="message-text" class="col-form-label">신고사유 </label>
+		            <textarea class="form-control" id="message-text"></textarea>
+		          </div>
+		        </form>
+		      </div>
+		      <div class="modal-footer">
+		        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">취소</button>
+		        <button type="button" class="btn btn-primary modalReport">신고하기</button>
+		      </div>
+		    </div>
+		  </div>
+		</div>
+			
+			 <!-- 페이지 번호 -->
+		     <c:if test="${not empty requestScope.paging.page}"> <!-- 신청서가 하나도 없으면 페이징X -->
+				<ul class="pagination" style="padding-left : 40%;">
+					<c:set var="pageNumber" value="${empty param.p ? 1 : param.p }" />
+					<c:choose>
+						<c:when test="${requestScope.paging.prevPage eq -1 }">
+							<li class="page-item disabled"><a class="page-link">prev</a></li>
+						</c:when>
+						<c:otherwise>
+							<li class="page-item"><a class="page-link" href="${path}/biz/reviewList?p=${requestScope.paging.prevPage }">prev</a></li>
+						</c:otherwise>
+					</c:choose>
+					<c:forEach var="pNum" items="${requestScope.paging.pageList }">
+						<li class="page-item ${pNum eq pageNumber ? 'active' : '' }"><a class="page-link" href="${path}/biz/reviewList?p=${pNum }">${pNum }</a></li>
+					</c:forEach>
+					<c:choose>
+						<c:when test="${requestScope.paging.nextPage eq -1 }">
+							<li class="page-item disabled"><a class="page-link">next</a></li>
+						</c:when>
+						<c:otherwise>
+							<li class="page-item"><a class="page-link" href="${path}/biz/reviewList?p=${requestScope.paging.nextPage }">next</a></li>
+						</c:otherwise>
+					</c:choose>
+				</ul>
+			  </c:if>
 		  </c:if>
-	  </c:if>
+	  </div>
+		
 </div>	
 <script>
 const exampleModal = document.getElementById('reportModal')

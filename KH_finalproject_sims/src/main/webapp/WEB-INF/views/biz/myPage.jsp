@@ -34,38 +34,40 @@
 </head>
 <body>
 <jsp:include page="/WEB-INF/views/header.jsp"/>
-<jsp:include page="/WEB-INF/views/biz/nav.jsp"/>
 
-<div class="container d-flex">
-	<div class="container">
-	컨테이너 1
-		<div class="text-center" style="margin-top: 215px!important;">
-			<img src="${path}${imagePath}" class="mx-auto" style="width: 35% !important"/>
-		</div> 
+	<div class="container" style="display:flex; margin:-103px 0 -200px 0; padding:150px 0 380px 0;">
+		<jsp:include page="/WEB-INF/views/biz/nav.jsp"/>
 	
+		<div class="container d-flex content">
+			<div class="container">
+			컨테이너 1
+				<div class="text-center" style="margin-top: 125px!important;">
+					<img src="${path}${imagePath}" class="mx-auto" style="width: 70% !important"/>
+				</div> 
+			
+			</div>
+			
+			<div class="container">
+			컨테이너 2
+				<div class="cntMentBox">
+					오늘 등록된 리뷰 수는 ${todayReviewCnt }개입니다. 
+				</div>
+				<div class="cntMentBox">
+					총 리뷰 수는 ${totalReviewCnt }개입니다. 
+				</div>
+				<div class="cntMentBox">
+					오늘 가입한 고객의 수는 ${todayApplyCnt }명입니다. 
+				</div>
+				<div class="cntMentBox">
+					총 가입자 수는 ${totalApplyCnt }명입니다. 
+				</div>
+				<div class="cntMentBox">
+					총 등록한 요금제 수는 ${totalPlanCnt }개입니다. 
+				</div>
+			
+			</div>
+		</div>
 	</div>
-	
-	<div class="container">
-	컨테이너 2
-		<div class="cntMentBox">
-			오늘 등록된 리뷰 수는 ${todayReviewCnt }개입니다. 
-		</div>
-		<div class="cntMentBox">
-			총 리뷰 수는 ${totalReviewCnt }개입니다. 
-		</div>
-		<div class="cntMentBox">
-			오늘 가입한 고객의 수는 ${todayApplyCnt }명입니다. 
-		</div>
-		<div class="cntMentBox">
-			총 가입자 수는 ${totalApplyCnt }명입니다. 
-		</div>
-		<div class="cntMentBox">
-			총 등록한 요금제 수는 ${totalPlanCnt }개입니다. 
-		</div>
-	
-	</div>
-</div>
-
 
 
 

@@ -34,116 +34,100 @@
 <body>
 
 <jsp:include page="/WEB-INF/views/header.jsp"/>
-<jsp:include page="/WEB-INF/views/biz/nav.jsp"/>
 
 
-<div class="container" style="margin-top: 3%">
+
+<div class="container" style="display:flex; margin:-103px 0 -200px 0; padding:150px 0 380px 0;">
 통신사 정보 수정
-</div>
 
-<div class="container" style="margin-top:2%; width: 70%">
-	<form action="modifyInfo" method="post" enctype="multipart/form-data" id="modifyForm">
+	<jsp:include page="/WEB-INF/views/biz/nav.jsp"/>
 	
-			<div class="d-flex">
-				<div class="division-box">
-					<span>기본정보</span>
-				</div>
-				<hr>
-			</div>
+	<div class="content">
+		<form action="modifyInfo" method="post" enctype="multipart/form-data" id="modifyForm">
 		
-			<table class="table">
-				<tbody>
-					<tr>
-						<th scope="row">
-							<span >법인명</span>
-						</th>
-						<td><input type="text" class="form-control" name="bizName" value="${bizinfo.bizName }"></td>
-						<th scope="row">
-							<span>대표자명</span>
-						</th>
-						<td><input type="text" class="form-control" name="bizOwnerName"  value="${bizinfo.bizOwnerName }"></td>
-					</tr>
-					<tr>
-						<th scope="row">
-							<span>사업자등록번호</span>
-						</th>
-						<td><input type="text" class="form-control" name="bizCrn" value="${bizinfo.bizCrn }"></td>
-						<th scope="row">
-							<span>법인등록번호</span>
-						</th>
-						<td><input type="text" class="form-control" name="bizSsn" value="${bizinfo.bizSsn }"></td>
-					</tr>
-					<tr>
-						<th scope="row">
-							<span>회사주소</span>
-						</th>
-						<td colspan="3"> 
-						<div class="d-flex" style="margin-bottom: 1%;">
-							<input type="text" class="form-control" style="width: 20%;margin-right: 14%;" id="postcode" name="bizZipCode" placeholder="우편번호" value="${bizinfo.bizZipCode }">
-							<input type="button"  onclick="execDaumPostcode()" value="우편번호 찾기" class="btn"><br>
-						</div>
-						<input type="text" class="form-control" id="roadAddress" name="bizLocation" placeholder="도로명주소"  value="${bizinfo.bizLocation }">
-						</td>
-					</tr>
-					<tr>
-						<th scope="row">
-							<span>연락처</span>
-						</th>
-						<td><input type="text" class="form-control" name="bizPhone" value="${bizinfo.bizPhone }"></td>
-						<th scope="row">
-							<span>팩스</span>
-						</th>
-						<td><input type="text" class="form-control" name="bizFax" value="${bizinfo.bizFax }"></td>
-					</tr>
-					<tr>
-						<th scope="row">
-							<span>이메일</span>
-						</th>
-						<td><input type="text" class="form-control"  name="bizEmail" value="${bizinfo.bizEmail }"></td>
-						<th scope="row">
-							<span>홈페이지</span>
-						</th>
-						<td ><input type="text" class="form-control" name="bizHp" value="${bizinfo.bizHp }"></td>
-					</tr>
-				</tbody>
-			</table>
-		
-			
-			
-			<div class="d-flex" style="margin-top:4%;">
-				<div class="division-box" >
-					<span>상세정보</span>
+				<div class="d-flex">
+					<div class="division-box">
+						<span>기본정보</span>
+					</div>
+					<hr>
 				</div>
-				<hr>
-			</div>
 			
-			<table class="table" style="margin-top:2%;">
-				<tr>
-					<th scope="row" class="col-md-1">
-						<span>개통 소요시간</span>
-					</th>
-					<td class="col-md-2"> 
-					평균 <select name="phoneOpTime" class="form-select">
-					  <c:forEach var="i" begin="0" end="150" step="1">
-					  	<c:choose>
-					  		<c:when test="${bizinfo.phoneOpTime eq (i/10.0)}">
-						    <option value="${i/10.0}" selected>${i/10.0}</option>
-					  		</c:when>
-					  		<c:otherwise>
-						    <option value="${i/10.0}">${i/10.0}</option>
-					  		</c:otherwise>
-					  	</c:choose>
-					  </c:forEach>
-					</select>일
-					</td>
-					<th scope="row" class="col-md-1">
-						<span>개통 소요시간 <br>(유심보유시)</span>
-					</th>
-					<td class="col-md-2">
-					평균 <select name="phoneOpTimeUsim" class="form-select">
+				<table class="table">
+					<tbody>
+						<tr>
+							<th scope="row">
+								<span >법인명</span>
+							</th>
+							<td><input type="text" class="form-control" name="bizName" value="${bizinfo.bizName }"></td>
+							<th scope="row">
+								<span>대표자명</span>
+							</th>
+							<td><input type="text" class="form-control" name="bizOwnerName"  value="${bizinfo.bizOwnerName }"></td>
+						</tr>
+						<tr>
+							<th scope="row">
+								<span>사업자등록번호</span>
+							</th>
+							<td><input type="text" class="form-control" name="bizCrn" value="${bizinfo.bizCrn }"></td>
+							<th scope="row">
+								<span>법인등록번호</span>
+							</th>
+							<td><input type="text" class="form-control" name="bizSsn" value="${bizinfo.bizSsn }"></td>
+						</tr>
+						<tr>
+							<th scope="row">
+								<span>회사주소</span>
+							</th>
+							<td colspan="3"> 
+							<div class="d-flex" style="margin-bottom: 1%;">
+								<input type="text" class="form-control" style="width: 20%;margin-right: 14%;" id="postcode" name="bizZipCode" placeholder="우편번호" value="${bizinfo.bizZipCode }">
+								<input type="button"  onclick="execDaumPostcode()" value="우편번호 찾기" class="btn"><br>
+							</div>
+							<input type="text" class="form-control" id="roadAddress" name="bizLocation" placeholder="도로명주소"  value="${bizinfo.bizLocation }">
+							</td>
+						</tr>
+						<tr>
+							<th scope="row">
+								<span>연락처</span>
+							</th>
+							<td><input type="text" class="form-control" name="bizPhone" value="${bizinfo.bizPhone }"></td>
+							<th scope="row">
+								<span>팩스</span>
+							</th>
+							<td><input type="text" class="form-control" name="bizFax" value="${bizinfo.bizFax }"></td>
+						</tr>
+						<tr>
+							<th scope="row">
+								<span>이메일</span>
+							</th>
+							<td><input type="text" class="form-control"  name="bizEmail" value="${bizinfo.bizEmail }"></td>
+							<th scope="row">
+								<span>홈페이지</span>
+							</th>
+							<td ><input type="text" class="form-control" name="bizHp" value="${bizinfo.bizHp }"></td>
+						</tr>
+					</tbody>
+				</table>
+			
+				
+				
+				<div class="d-flex" style="margin-top:4%;">
+					<div class="division-box" >
+						<span>상세정보</span>
+					</div>
+					<hr>
+				</div>
+				
+				<table class="table" style="margin-top:2%;">
+					<tr>
+						<th scope="row" class="col-md-1">
+							<span>개통 소요시간</span>
+						</th>
+						<td class="col-md-2"> 
+						평균 <select name="phoneOpTime" class="form-select">
 						  <c:forEach var="i" begin="0" end="150" step="1">
 						  	<c:choose>
-						  		<c:when test="${bizinfo.phoneOpTimeUsim eq (i/10.0)}">
+						  		<c:when test="${bizinfo.phoneOpTime eq (i/10.0)}">
 							    <option value="${i/10.0}" selected>${i/10.0}</option>
 						  		</c:when>
 						  		<c:otherwise>
@@ -152,182 +136,200 @@
 						  	</c:choose>
 						  </c:forEach>
 						</select>일
-					</td>
-				</tr>
-				
-				<tr>
-					<th scope="row">
-						<span>카드 결제일</span>
-					</th>
-					<td>
-					<select name="bizCardPayDate" class="form-select">
-						<c:forEach var="date" begin="1" end="31" step="1">
-							<option value="${date }" ${bizinfo.bizCardPayDate eq date ? "selected" : "" }>${date}</option>
-						</c:forEach>
-					</select>일
-					</td>
-					<th scope="row">
-						<span>계좌이체 결제일</span>
-					</th>
-					<td>
-					<select name="bizAccPayDate" class="form-select">
-						<c:forEach var="date" begin="1" end="31" step="1">
-							<option value="${date }" ${bizinfo.bizAccPayDate eq date ? "selected" : "" }>${date}</option>
-						</c:forEach>
-					</select>일
-					</td>
-				</tr>
-		
-				
-				<tr >
-					<th scope="row">
-						<span>영업시간</span>
-					</th>
-					<td >
-						<select name="bizBeginTime" class="form-select">
-							<c:forEach var="hour" begin="0" end="23">
-							  <c:forEach var="minute" begin="0" end="30" step="30">
-							    <c:set var="time" value="${hour}:${minute == 0 ? '00' : '30'}" />
-							    <c:set var="beginTime" value="${bizinfo.bizBeginTime }" />
-							    <c:choose>
-							    <c:when test="${beginTime eq time}">
-							    <option value="${time}" selected>${time}</option>
-							    </c:when>
-							    <c:otherwise>
-							    <option value="${time}">${time}</option>
-							    </c:otherwise>
-							    </c:choose>
-							  </c:forEach>
-							</c:forEach>
-						</select>
-						
-						
-						~
-						
-						<select name="bizEndTime" class="form-select">
-							<c:forEach var="hour" begin="0" end="23">
-							  <c:forEach var="minute" begin="0" end="30" step="30">
-							    <c:set var="time" value="${hour}:${minute == 0 ? '00' : '30'}" />
-							    <c:set var="endTime" value="${bizinfo.bizEndTime }" />
-							    <c:choose>
-							    <c:when test="${endTime eq time}">
-							    <option value="${time}" selected>${time}</option>
-							    </c:when>
-							    <c:otherwise>
-							    <option value="${time}">${time}</option>
-							    </c:otherwise>
-							    </c:choose>
-							  </c:forEach>
-							</c:forEach>
-						</select>  
-					</td>
-					<th scope="row">
-						<span>휴무일</span>
-					</th>
-					<td colspan="2" style="display: flex; height: 56px;">
-						<div class="form-check">
-							<input class="form-check-input" type="checkbox" name="weekday" value="월">월
-						</div>
-						<div class="form-check">
-							<input class="form-check-input" type="checkbox" name="weekday" value="화">화
-						</div>
-						<div class="form-check">
-							<input class="form-check-input" type="checkbox" name="weekday" value="수">수
-						</div>
-						<div class="form-check">
-							<input class="form-check-input" type="checkbox" name="weekday" value="목">목
-						</div>
-						<div class="form-check">
-							<input class="form-check-input" type="checkbox" name="weekday" value="금">금
-						</div>
-						<div class="form-check">
-							<input class="form-check-input" type="checkbox" name="weekday" value="토">토
-						</div>
-						<div class="form-check">
-							<input class="form-check-input" type="checkbox" name="weekday" value="일">일
-						</div>
-						<div class="form-check">
-							<input class="form-check-input" type="checkbox" name="weekday" value="공휴일">공휴일
-						</div>
-					</td>
-				</tr>
-		
-				<tr>
-					<th scope="row">
-						<span>지원통신망</span>
-					</th>
-					<td colspan="2" style="display: flex; height: 52px;">
-					<div class="form-check">
-						<input class="form-check-input" type="checkbox" name="net" value="KT망" >KT망
-					</div>
-					<div class="form-check">
-			        	<input class="form-check-input" type="checkbox" name="net" value="SKT망" >SKT망
-			        </div>
-			        <div class="form-check">
-			        	<input class="form-check-input" type="checkbox" name="net" value="LG망" >LGU+망
-			        </div>	
-					</td>
-				</tr>
-		
-		
-				<c:forEach var="service" items="${serviceList}">
-					<tr class="col-md-6">
-						<th scope="row">
-							<span>고객센터번호</span>
+						</td>
+						<th scope="row" class="col-md-1">
+							<span>개통 소요시간 <br>(유심보유시)</span>
 						</th>
-						<td colspan="2">
-							<c:choose>
-								<c:when test="${service.netNo == 1}">
-									<span style="display: none">KT</span>
-									<c:if test="${not empty service.bizNetService}">
-										<input class="form-control" style="display: none" type="text" name="KtService" value="${service.bizNetService}">
-									</c:if>
-									<c:if test="${empty service.bizNetService}">
-										<input class="form-control" style="display: none" type="text" name="KtService">
-									</c:if>
-								</c:when>
-								<c:when test="${service.netNo == 2}">
-									<span style="display: none">SKT</span>
-									<c:if test="${not empty service.bizNetService}">
-										<input class="form-control" style="display: none" type="text" name="SktService" value="${service.bizNetService}">
-									</c:if>
-									<c:if test="${empty service.bizNetService}">
-										<input class="form-control" style="display: none" type="text" name="SktService">
-									</c:if>
-								</c:when>
-								<c:when test="${service.netNo == 3}">
-									<span style="display: none">LGU+</span>
-									<c:if test="${not empty service.bizNetService}">
-										<input class="form-control" style="display: none" type="text" name="LguService" value="${service.bizNetService}">
-									</c:if>
-									<c:if test="${empty service.bizNetService}">
-										<input class="form-control" style="display: none" type="text" name="LguService">
-									</c:if>
-								</c:when>
-							</c:choose>
+						<td class="col-md-2">
+						평균 <select name="phoneOpTimeUsim" class="form-select">
+							  <c:forEach var="i" begin="0" end="150" step="1">
+							  	<c:choose>
+							  		<c:when test="${bizinfo.phoneOpTimeUsim eq (i/10.0)}">
+								    <option value="${i/10.0}" selected>${i/10.0}</option>
+							  		</c:when>
+							  		<c:otherwise>
+								    <option value="${i/10.0}">${i/10.0}</option>
+							  		</c:otherwise>
+							  	</c:choose>
+							  </c:forEach>
+							</select>일
 						</td>
 					</tr>
-				</c:forEach>
+					
+					<tr>
+						<th scope="row">
+							<span>카드 결제일</span>
+						</th>
+						<td>
+						<select name="bizCardPayDate" class="form-select">
+							<c:forEach var="date" begin="1" end="31" step="1">
+								<option value="${date }" ${bizinfo.bizCardPayDate eq date ? "selected" : "" }>${date}</option>
+							</c:forEach>
+						</select>일
+						</td>
+						<th scope="row">
+							<span>계좌이체 결제일</span>
+						</th>
+						<td>
+						<select name="bizAccPayDate" class="form-select">
+							<c:forEach var="date" begin="1" end="31" step="1">
+								<option value="${date }" ${bizinfo.bizAccPayDate eq date ? "selected" : "" }>${date}</option>
+							</c:forEach>
+						</select>일
+						</td>
+					</tr>
 			
-			</table>
+					
+					<tr >
+						<th scope="row">
+							<span>영업시간</span>
+						</th>
+						<td >
+							<select name="bizBeginTime" class="form-select">
+								<c:forEach var="hour" begin="0" end="23">
+								  <c:forEach var="minute" begin="0" end="30" step="30">
+								    <c:set var="time" value="${hour}:${minute == 0 ? '00' : '30'}" />
+								    <c:set var="beginTime" value="${bizinfo.bizBeginTime }" />
+								    <c:choose>
+								    <c:when test="${beginTime eq time}">
+								    <option value="${time}" selected>${time}</option>
+								    </c:when>
+								    <c:otherwise>
+								    <option value="${time}">${time}</option>
+								    </c:otherwise>
+								    </c:choose>
+								  </c:forEach>
+								</c:forEach>
+							</select>
+							
+							
+							~
+							
+							<select name="bizEndTime" class="form-select">
+								<c:forEach var="hour" begin="0" end="23">
+								  <c:forEach var="minute" begin="0" end="30" step="30">
+								    <c:set var="time" value="${hour}:${minute == 0 ? '00' : '30'}" />
+								    <c:set var="endTime" value="${bizinfo.bizEndTime }" />
+								    <c:choose>
+								    <c:when test="${endTime eq time}">
+								    <option value="${time}" selected>${time}</option>
+								    </c:when>
+								    <c:otherwise>
+								    <option value="${time}">${time}</option>
+								    </c:otherwise>
+								    </c:choose>
+								  </c:forEach>
+								</c:forEach>
+							</select>  
+						</td>
+						<th scope="row">
+							<span>휴무일</span>
+						</th>
+						<td colspan="2" style="display: flex; height: 56px;">
+							<div class="form-check">
+								<input class="form-check-input" type="checkbox" name="weekday" value="월">월
+							</div>
+							<div class="form-check">
+								<input class="form-check-input" type="checkbox" name="weekday" value="화">화
+							</div>
+							<div class="form-check">
+								<input class="form-check-input" type="checkbox" name="weekday" value="수">수
+							</div>
+							<div class="form-check">
+								<input class="form-check-input" type="checkbox" name="weekday" value="목">목
+							</div>
+							<div class="form-check">
+								<input class="form-check-input" type="checkbox" name="weekday" value="금">금
+							</div>
+							<div class="form-check">
+								<input class="form-check-input" type="checkbox" name="weekday" value="토">토
+							</div>
+							<div class="form-check">
+								<input class="form-check-input" type="checkbox" name="weekday" value="일">일
+							</div>
+							<div class="form-check">
+								<input class="form-check-input" type="checkbox" name="weekday" value="공휴일">공휴일
+							</div>
+						</td>
+					</tr>
+			
+					<tr>
+						<th scope="row">
+							<span>지원통신망</span>
+						</th>
+						<td colspan="2" style="display: flex; height: 52px;">
+						<div class="form-check">
+							<input class="form-check-input" type="checkbox" name="net" value="KT망" >KT망
+						</div>
+						<div class="form-check">
+				        	<input class="form-check-input" type="checkbox" name="net" value="SKT망" >SKT망
+				        </div>
+				        <div class="form-check">
+				        	<input class="form-check-input" type="checkbox" name="net" value="LG망" >LGU+망
+				        </div>	
+						</td>
+					</tr>
+			
+			
+					<c:forEach var="service" items="${serviceList}">
+						<tr class="col-md-6">
+							<th scope="row">
+								<span>고객센터번호</span>
+							</th>
+							<td colspan="2">
+								<c:choose>
+									<c:when test="${service.netNo == 1}">
+										<span style="display: none">KT</span>
+										<c:if test="${not empty service.bizNetService}">
+											<input class="form-control" style="display: none" type="text" name="KtService" value="${service.bizNetService}">
+										</c:if>
+										<c:if test="${empty service.bizNetService}">
+											<input class="form-control" style="display: none" type="text" name="KtService">
+										</c:if>
+									</c:when>
+									<c:when test="${service.netNo == 2}">
+										<span style="display: none">SKT</span>
+										<c:if test="${not empty service.bizNetService}">
+											<input class="form-control" style="display: none" type="text" name="SktService" value="${service.bizNetService}">
+										</c:if>
+										<c:if test="${empty service.bizNetService}">
+											<input class="form-control" style="display: none" type="text" name="SktService">
+										</c:if>
+									</c:when>
+									<c:when test="${service.netNo == 3}">
+										<span style="display: none">LGU+</span>
+										<c:if test="${not empty service.bizNetService}">
+											<input class="form-control" style="display: none" type="text" name="LguService" value="${service.bizNetService}">
+										</c:if>
+										<c:if test="${empty service.bizNetService}">
+											<input class="form-control" style="display: none" type="text" name="LguService">
+										</c:if>
+									</c:when>
+								</c:choose>
+							</td>
+						</tr>
+					</c:forEach>
 				
-		
+				</table>
+					
 			
-			<div>
-				<label>로고이미지 첨부</label> <!-- 파일첨부 -->
-				<input type="file" name="logo" placeholder="첨부파일" multiple="multiple"  >
-				<input type="hidden" name="originalFilename" value="${bizinfo.originalFilename }">
-				<input type="hidden" name="logoRenameFilename" value="${bizinfo.logoRenameFilename }">
-			</div>
-	       
-	       <div class="btnGroup">
-	        <button type="button" onclick="goBack()" class="btn">뒤로 가기</button>
-	        <button type="submit" class="btn">등록</button>
-	       </div>
-	    </form>
-    
- </div>
-    
+				
+				<div>
+					<label>로고이미지 첨부</label> <!-- 파일첨부 -->
+					<input type="file" name="logo" placeholder="첨부파일" multiple="multiple"  >
+					<input type="hidden" name="originalFilename" value="${bizinfo.originalFilename }">
+					<input type="hidden" name="logoRenameFilename" value="${bizinfo.logoRenameFilename }">
+				</div>
+		       
+		       <div class="btnGroup">
+		        <button type="button" onclick="goBack()" class="btn">뒤로 가기</button>
+		        <button type="submit" class="btn">등록</button>
+		       </div>
+		    </form>
+	    
+	 </div>
+	    
+</div>
 
 <script>
 	function goBack() {

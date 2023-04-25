@@ -49,7 +49,7 @@
 	<jsp:include page="/WEB-INF/views/header.jsp" />
 	<jsp:include page="/WEB-INF/views/biz/nav.jsp" />
 
-	<div class="container">
+	<div class="container" style="margin-left:18%">
 		<div class="text-center" style="margin-top: 70px;">
 			<img src="${path}${imagePath}" class="mx-auto"
 				style="width: 35% !important" />

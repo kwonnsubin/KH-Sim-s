@@ -36,166 +36,170 @@
 </head>
 <body>
 <jsp:include page="/WEB-INF/views/header.jsp"/>
-<jsp:include page="/WEB-INF/views/biz/nav.jsp"/>
 
 
 
-<div>
 
-	<div class="searchTop d-flex">
+<div class="container" style="display:flex; margin:-103px 0 -200px 0; padding:150px 0 380px 0; /* height: 900px; */" >
+	<jsp:include page="/WEB-INF/views/biz/nav.jsp"/>
 	
-		<div class="col-md-2">
-			<form action="${path}/biz/applyList" class="listSelect">
-					<select class="form-select" style="width: 100px" name="cnt" onchange="submit();">
-						<c:forEach var="num" begin="5" end="30" step="5">
-							<option value="${num }" ${requestScope.paging.pageLimit eq num ? "selected" : "" }>${num } 개</option>
-						</c:forEach>
+	
+	<div class="content">
+		<div class="searchTop d-flex">
+		
+			<div class="col-md-2">
+				<form action="${path}/biz/applyList" class="listSelect">
+						<select class="form-select" style="width: 100px" name="cnt" onchange="submit();">
+							<c:forEach var="num" begin="5" end="30" step="5">
+								<option value="${num }" ${requestScope.paging.pageLimit eq num ? "selected" : "" }>${num } 개</option>
+							</c:forEach>
+						</select>
+				</form>	
+			</div>
+		
+			<div class="input-group col-md-3" style="padding-right: 60px;">
+			
+			<!-- search{s} -->
+				<div style="display: flex;">
+		
+					<select class="form-select" style="display: inline-block; width: 120px" name="searchType" id="searchType">
+						<option value="planName">요금제명</option>
+						<option value="userId">신청자</option>
 					</select>
-			</form>	
-		</div>
-	
-		<div class="input-group col-md-3" style="padding-right: 60px;">
-		
-		<!-- search{s} -->
-			<div style="display: flex;">
-	
-				<select class="form-select" style="display: inline-block; width: 120px" name="searchType" id="searchType">
-					<option value="planName">요금제명</option>
-					<option value="userId">신청자</option>
-				</select>
-				<input class="form-control" style="display: inline-block; width: 300px;" type="text" name="keyword" id="keyword">
-				
-		<!-- 분류 {s} -->
-		
-		
-			</div>
-		
-		</div>
+					<input class="form-control" style="display: inline-block; width: 300px;" type="text" name="keyword" id="keyword">
+					
+			<!-- 분류 {s} -->
 			
 			
-		
-		<%
-		    String orderStatus = request.getParameter("orderStatus");
-		%>
-		<div class="rdGroup col-md-4" >
-			<div class="form-check-inline">
-			    <input class="form-check-input" type="radio" name="division" id="exampleRadios1" value="0" <% if (orderStatus == null || orderStatus.equals("0") || orderStatus.equals("")) { %>checked<% } %>>
-			    <label class="form-check-label" for="exampleRadios1">
-			        전체
-			    </label>
+				</div>
+			
 			</div>
-			<div class="form-check-inline">
-			    <input class="form-check-input" type="radio" name="division" id="exampleRadios2" value="1" <% if (orderStatus != null && orderStatus.equals("1")) { %>checked<% } %>>
-			    <label class="form-check-label" for="exampleRadios2">
-			        신청완료
-			    </label>
-			</div>
-			<div class="form-check-inline">
-			    <input class="form-check-input" type="radio" name="division" id="exampleRadios3" value="2" <% if (orderStatus != null && orderStatus.equals("2")) { %>checked<% } %>>
-			    <label class="form-check-label" for="exampleRadios3">
-			        승인완료
-			    </label>
-			</div>
-			<div class="form-check-inline">
-			    <input class="form-check-input" type="radio" name="division" id="exampleRadios4" value="3" <% if (orderStatus != null && orderStatus.equals("3")) { %>checked<% } %>>
-			    <label class="form-check-label" for="exampleRadios4">
-			        승인보류
-			    </label>
-			</div>
-		</div>
 				
-				<button name="btnSearch" id="btnSearch" class="btn btn-outline-secondary col-md-2">
-				<span class="material-symbols-outlined">
-				search
-				</span>
-				</button>
-	</div>		
-
-
-	<div class="totalMent">총 ${applyListCnt}개의 결과가 있습니다.</div>
-
- 	<% if (request.getParameter("keyword") != null && !request.getParameter("keyword").isEmpty()) { %>
-    <span class="resultMent">"<%=request.getParameter("keyword")%>"의 검색 결과입니다.</span>
-	<% } %>
-
-
-
-
- 	<table class="table table-hover table-responsive" id="applyTb" style="width: 80%;  position: relative;">
-            <thead>
-                <tr class="text-center mx-auto" style="background-color: #ecf7fd;">
-                    <th>번호</th>
-                    <th>요금제명</th>
-                    <th>신청번호<br>신청자</th>
-                    <th>가입신청상태</th>
-                    <th>신청일자</th>
-                    <th>관리</th>
-                </tr>
-            </thead>
-            <tbody>
-            	<c:if test="${empty requestScope.paging.page}">
-            		<tr>
-            			<td colspan="6">가입신청서가 없습니다.</td>
-            		</tr>
-            	</c:if>
-            
-            	<c:if test="${not empty requestScope.paging.page}">
-	                <c:forEach var="applyList" items="${requestScope.paging.page}">
-	                <tr class="text-center mx-auto">
-	                    <td>${applyList.rn }</td>
-	                    <td>${applyList.planName }</td>
-	                    <td>${applyList.serialNo }<br>${applyList.userId }</td>
-	                    <td>
-	                    <c:choose>
-	                    	<c:when test="${applyList.orderStatus eq 1}">
-	                    		신청완료
-	                    	</c:when>
-	                    	<c:when test="${applyList.orderStatus eq 2}">
-	                    		승인완료
-	                    	</c:when>
-	                    	<c:otherwise>
-							승인보류
-							</c:otherwise>
-	                    </c:choose>
-	                    </td>
-	                    <td>${applyList.orderDate }</td>
-	                    <td><button type="button" class="btn detail" data-orderNo="${applyList.orderNo}"
-	                    onclick="location.href='<%=request.getContextPath()%>/biz/applydetail?orderNo=${applyList.orderNo}'">
-	                    상세보기</button></td>
+				
+			
+			<%
+			    String orderStatus = request.getParameter("orderStatus");
+			%>
+			<div class="rdGroup col-md-4" >
+				<div class="form-check-inline">
+				    <input class="form-check-input" type="radio" name="division" id="exampleRadios1" value="0" <% if (orderStatus == null || orderStatus.equals("0") || orderStatus.equals("")) { %>checked<% } %>>
+				    <label class="form-check-label" for="exampleRadios1">
+				        전체
+				    </label>
+				</div>
+				<div class="form-check-inline">
+				    <input class="form-check-input" type="radio" name="division" id="exampleRadios2" value="1" <% if (orderStatus != null && orderStatus.equals("1")) { %>checked<% } %>>
+				    <label class="form-check-label" for="exampleRadios2">
+				        신청완료
+				    </label>
+				</div>
+				<div class="form-check-inline">
+				    <input class="form-check-input" type="radio" name="division" id="exampleRadios3" value="2" <% if (orderStatus != null && orderStatus.equals("2")) { %>checked<% } %>>
+				    <label class="form-check-label" for="exampleRadios3">
+				        승인완료
+				    </label>
+				</div>
+				<div class="form-check-inline">
+				    <input class="form-check-input" type="radio" name="division" id="exampleRadios4" value="3" <% if (orderStatus != null && orderStatus.equals("3")) { %>checked<% } %>>
+				    <label class="form-check-label" for="exampleRadios4">
+				        승인보류
+				    </label>
+				</div>
+			</div>
+					
+					<button name="btnSearch" id="btnSearch" class="btn btn-outline-secondary col-md-2">
+					<span class="material-symbols-outlined">
+					search
+					</span>
+					</button>
+		</div>		
+	
+	
+		<div class="totalMent">총 ${applyListCnt}개의 결과가 있습니다.</div>
+	
+	 	<% if (request.getParameter("keyword") != null && !request.getParameter("keyword").isEmpty()) { %>
+	    <span class="resultMent">"<%=request.getParameter("keyword")%>"의 검색 결과입니다.</span>
+		<% } %>
+	
+	
+	
+	
+	 	<table class="table table-hover table-responsive" id="applyTb" style="width: 130%;  position: relative;">
+	            <thead>
+	                <tr class="text-center mx-auto" style="background-color: #ecf7fd;">
+	                    <th>번호</th>
+	                    <th>요금제명</th>
+	                    <th>신청번호<br>신청자</th>
+	                    <th>가입신청상태</th>
+	                    <th>신청일자</th>
+	                    <th>관리</th>
 	                </tr>
-	                </c:forEach>   
-                </c:if>          
-            </tbody>
-        </table>
-        
-     <!-- 페이지 번호 -->
-     <c:if test="${not empty requestScope.paging.page}"> <!-- 신청서가 하나도 없으면 페이징X -->
-		<ul class="pagination" style="position: absolute;">
-			<c:set var="pageNumber" value="${empty param.p ? 1 : param.p }" />
-			<c:choose>
-				<c:when test="${requestScope.paging.prevPage eq -1 }">
-					<li class="page-item disabled"><a class="page-link">prev</a></li>
-				</c:when>
-				<c:otherwise>
-					<li class="page-item"><a class="page-link" 
-					href="${path}/biz/applyList?p=${requestScope.paging.prevPage }&searchType=${searchType }&keyword=${keyword }&orderStatus=${orderStatus}">prev</a></li>
-				</c:otherwise>
-			</c:choose>
-			<c:forEach var="pNum" items="${requestScope.paging.pageList }">
-				<li class="page-item ${pNum eq pageNumber ? 'active' : '' }"><a class="page-link"
-				 href="${path}/biz/applyList?p=${pNum }&searchType=${searchType }&keyword=${keyword }&orderStatus=${orderStatus}">${pNum }</a></li>
-			</c:forEach>
-			<c:choose>
-				<c:when test="${requestScope.paging.nextPage eq -1 }">
-					<li class="page-item disabled"><a class="page-link">next</a></li>
-				</c:when>
-				<c:otherwise>
-					<li class="page-item"><a class="page-link" 
-					href="${path}/biz/applyList?p=${requestScope.paging.nextPage }&searchType=${searchType }&keyword=${keyword }&orderStatus=${orderStatus}">next</a></li>
-				</c:otherwise>
-			</c:choose>
-		</ul>
-	  </c:if>
+	            </thead>
+	            <tbody>
+	            	<c:if test="${empty requestScope.paging.page}">
+	            		<tr>
+	            			<td colspan="6">가입신청서가 없습니다.</td>
+	            		</tr>
+	            	</c:if>
+	            
+	            	<c:if test="${not empty requestScope.paging.page}">
+		                <c:forEach var="applyList" items="${requestScope.paging.page}">
+		                <tr class="text-center mx-auto">
+		                    <td>${applyList.rn }</td>
+		                    <td>${applyList.planName }</td>
+		                    <td>${applyList.serialNo }<br>${applyList.userId }</td>
+		                    <td>
+		                    <c:choose>
+		                    	<c:when test="${applyList.orderStatus eq 1}">
+		                    		신청완료
+		                    	</c:when>
+		                    	<c:when test="${applyList.orderStatus eq 2}">
+		                    		승인완료
+		                    	</c:when>
+		                    	<c:otherwise>
+								승인보류
+								</c:otherwise>
+		                    </c:choose>
+		                    </td>
+		                    <td>${applyList.orderDate }</td>
+		                    <td><button type="button" class="btn detail" data-orderNo="${applyList.orderNo}"
+		                    onclick="location.href='<%=request.getContextPath()%>/biz/applydetail?orderNo=${applyList.orderNo}'">
+		                    상세보기</button></td>
+		                </tr>
+		                </c:forEach>   
+	                </c:if>          
+	            </tbody>
+	        </table>
+	        
+	     <!-- 페이지 번호 -->
+	     <c:if test="${not empty requestScope.paging.page}"> <!-- 신청서가 하나도 없으면 페이징X -->
+			<ul class="pagination" style="position: absolute;">
+				<c:set var="pageNumber" value="${empty param.p ? 1 : param.p }" />
+				<c:choose>
+					<c:when test="${requestScope.paging.prevPage eq -1 }">
+						<li class="page-item disabled"><a class="page-link">prev</a></li>
+					</c:when>
+					<c:otherwise>
+						<li class="page-item"><a class="page-link" 
+						href="${path}/biz/applyList?p=${requestScope.paging.prevPage }&searchType=${searchType }&keyword=${keyword }&orderStatus=${orderStatus}">prev</a></li>
+					</c:otherwise>
+				</c:choose>
+				<c:forEach var="pNum" items="${requestScope.paging.pageList }">
+					<li class="page-item ${pNum eq pageNumber ? 'active' : '' }"><a class="page-link"
+					 href="${path}/biz/applyList?p=${pNum }&searchType=${searchType }&keyword=${keyword }&orderStatus=${orderStatus}">${pNum }</a></li>
+				</c:forEach>
+				<c:choose>
+					<c:when test="${requestScope.paging.nextPage eq -1 }">
+						<li class="page-item disabled"><a class="page-link">next</a></li>
+					</c:when>
+					<c:otherwise>
+						<li class="page-item"><a class="page-link" 
+						href="${path}/biz/applyList?p=${requestScope.paging.nextPage }&searchType=${searchType }&keyword=${keyword }&orderStatus=${orderStatus}">next</a></li>
+					</c:otherwise>
+				</c:choose>
+			</ul>
+		  </c:if>
+	</div>	  
 
 </div>
 

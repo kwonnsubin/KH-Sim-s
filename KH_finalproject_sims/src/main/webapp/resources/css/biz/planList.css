@@ -64,9 +64,9 @@
     transform: translateX(-50%);
 }
 .regBtn{
-	  position: absolute; /* 절대적으로 배치됨 */
+	 /*  position: absolute; 절대적으로 배치됨
 	  right:-40%;
-   	  top: 50% ;
+   	  top: 50% ; */
 }
 @media (max-width: 1200px) {
   #wrap {

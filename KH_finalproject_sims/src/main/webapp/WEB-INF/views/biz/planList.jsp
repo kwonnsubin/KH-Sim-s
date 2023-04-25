@@ -47,7 +47,7 @@
 
 
 
-<div class="container" style="display:flex; margin:-103px 0 -200px 0; padding:150px 0 380px 0; height: 900px;">
+<div class="container" style="display:flex; margin:-103px 0 -200px 0; padding:150px 0 380px 0;">
 
 
 
@@ -91,12 +91,12 @@
     
     
     
-    <div>
-		<div>
+    <div style="display: inline-flex;width: 180%; margin-top: 4%;">
+		<div style="width:253%">
 	        <span class="count float-1 totalMent" >총 ${vo} 건의 결과가 있습니다.</span>
 	    </div>
 	    
-	     <div class="regBtn">
+	     <div class="regBtn" style="width:116%">
 	    	<button type="button" class="btn" onclick="registerBtn(this);">요금제 등록하기</button>
 	    </div>
 	</div>   

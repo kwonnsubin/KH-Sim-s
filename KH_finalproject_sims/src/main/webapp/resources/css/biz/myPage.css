@@ -15,3 +15,12 @@
     margin-left: 138px;
     border-bottom: 1px solid #ddd;
 }
+@media (max-width: 1200px) {
+  #wrap {
+    display: none; /*화면 너비가 지정 크기 이하일 때 사이드 바가 안보이게 함. */
+  }
+}
+.content{
+	position: relative;
+    margin-left: 3%;
+}

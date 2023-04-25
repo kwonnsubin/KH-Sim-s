@@ -22,7 +22,6 @@
   background-color: #ae8fef;
   color: white;
 }
-/*수정중*/
 .review-header {
   display: flex;
   align-items: center;
@@ -65,4 +64,24 @@
 	width: 80%;
 	margin-left: 11%;
 	margin-top: 5%;
+}
+@media (max-width: 1200px) {
+  #wrap {
+    display: none; /*화면 너비가 지정 크기 이하일 때 사이드 바가 안보이게 함. */
+  }
+}
+.content{
+	position: relative;
+    margin-left: -5%;
+    margin-right: -17%;
+    width: -webkit-fill-available;
+}
+h2.tit{
+    margin-top: 1%;
+    margin-left: 10%;
+    color: #333;
+    font-size: 1.7143em;
+    line-height: 1.1;
+    font-weight: 700;
+    letter-spacing: -0.05em;
 }
