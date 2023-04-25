@@ -2,6 +2,7 @@ package kh.finalproject.sims.user.model.service;
 
 import java.util.List;
 
+import kh.finalproject.sims.common.page.Search;
 import kh.finalproject.sims.user.model.vo.UserAnsVo;
 import kh.finalproject.sims.user.model.vo.UserFaqVo;
 import kh.finalproject.sims.user.model.vo.UserQnaVo;
@@ -44,5 +45,9 @@ public interface UserFaqService {
 	// 답변수 -1/+1
 	public boolean deAnswers(int aqNo);
 	public boolean upAnswers(int aqNo);
+	
+	// search 목록
+	public Search getPage(int pNum, int cnt, String searchType, String keyword);
+	public int getSearchListCount(String searchType, String keyword);
 
 }

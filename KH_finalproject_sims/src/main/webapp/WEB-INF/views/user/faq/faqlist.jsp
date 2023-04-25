@@ -40,18 +40,28 @@
 				<div class="col-lg-12 p-2">
 					<h5 class="py-3 fw-bolder">알뜰폰 궁금한 점 무엇이든 물어보세요</h5>
 					<div class="row">
-						<form action="<%=request.getContextPath()%>/faq/" method="post">
-							<div class="input-group my-3">
-								<select name="searchOption" class="btn dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
-									<option value="">선택</option>
-									<option value="title">제목</option>
-									<option value="content">내용</option>
-								</select>
-								<input type="text" class="form-control" placeholder="검색해보세요" name="searchBox" value="${searchBox }">
-								<button class="btn" type="submit">검색</button>
-							</div>
+						<!-- 검색 -->
+						<div class="input-group my-3">
+							<select name="searchType" id="searchType" class="btn dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
+								<option value="title">제목</option>
+								<option value="content">내용</option>
+							</select>
+							<input type="text" class="form-control" placeholder="검색해보세요" name="keyword" id="keyword">
+							<button name="btnSearch" id="btnSearch" class="btn" type="submit">검색</button>
+						</div>
+					</div>
+					<div>
+						<form action="${pageContext.request.contextPath}/faq">
+							<select name="cnt" onchange="submit();">
+								<c:forEach var="num" begin="5" end="30" step="5">
+									<option value="${num }" ${requestScope.paging.pageLimit eq num ? "selected" : "" }>${num }개</option>
+								</c:forEach>
+							</select>
 						</form>
 					</div>
+					<% if (request.getParameter("keyword") != null && !request.getParameter("keyword").isEmpty()) { %>
+					    <span>"<%=request.getParameter("keyword")%>"의 검색 결과입니다.</span>
+					<% } %>
 				</div>
 			</div>
 			<!-- ***** 자주묻는질문 Start ***** -->
@@ -66,7 +76,7 @@
 										<img src="https://dummyimage.com/30x10" class="d-block w-100" alt="...">
 										<div class="carousel-caption">
 											<span>${faq.faqNo}</span> 
-												<a href="<%=request.getContextPath()%>/faq/faqread/${faq.faqNo}">${faq.faqTitle}</a>
+												<a href="${pageContext.request.contextPath}/faq/faqread/${faq.faqNo}">${faq.faqTitle}</a>
 										</div>
 									</div>
 								</c:if>
@@ -75,7 +85,7 @@
 										<img src="https://dummyimage.com/30x10" class="d-block w-100" alt="...">
 										<div class="carousel-caption">
 											<span>${faq.faqNo}</span> 
-											<a href="<%=request.getContextPath()%>/faq/faqread/${faq.faqNo}">${faq.faqTitle}</a>
+											<a href="${pageContext.request.contextPath}/faq/faqread/${faq.faqNo}">${faq.faqTitle}</a>
 										</div>
 									</div>
 								</c:if>
@@ -98,11 +108,11 @@
 			
 			<!-- ***** 일반 질문 Start ***** -->
 			<div class="col-lg-12 py-2">
-				<c:if test="${not empty qnalist }">
-					<c:forEach items="${qnalist }" var="qna">
+				<c:if test="${not empty requestScope.paging.page}">
+					<c:forEach items="${requestScope.paging.page}" var="qna">
 						<div class="row my-3">
 							<div class="pb-1">
-								<a href="<%=request.getContextPath()%>/faq/qna/${qna.aqNo}">${qna.aqTitle}</a>
+								<a href="${pageContext.request.contextPath}/faq/qna/${qna.aqNo}">${qna.aqTitle}</a>
 							</div>
 							<div class="small col-1 pe-0">조회 <fmt:formatNumber value="${qna.aqViews}" pattern="###,###"/></div>
 							<div class="small col-9">답변 ${qna.aqAnswers }</div>
@@ -112,6 +122,37 @@
 					</c:forEach>
 				</c:if>
 			</div>
+			<!-- 페이지 번호 -->
+		     <c:if test="${not empty requestScope.paging.page}"> <!-- 신청서가 하나도 없으면 페이징X -->
+				<ul class="pagination">
+					<c:set var="pageNumber" value="${empty param.p ? 1 : param.p }" />
+					<c:choose>
+						<c:when test="${requestScope.paging.prevPage eq -1 }">
+							<li class="page-item disabled"><a class="page-link">prev</a></li>
+						</c:when>
+						<c:otherwise>
+							<li class="page-item">
+							<a class="page-link" href="${pageContext.request.contextPath}/faq?p=${requestScope.paging.prevPage }&searchType=${searchType }&keyword=${keyword }">prev</a>
+							</li>
+						</c:otherwise>
+					</c:choose>
+					<c:forEach var="pNum" items="${requestScope.paging.pageList }">
+						<li class="page-item ${pNum eq pageNumber ? 'active' : '' }">
+						<a class="page-link" href="${pageContext.request.contextPath}/faq?p=${pNum }&searchType=${searchType }&keyword=${keyword }">${pNum }</a>
+						</li>
+					</c:forEach>
+					<c:choose>
+						<c:when test="${requestScope.paging.nextPage eq -1 }">
+							<li class="page-item disabled"><a class="page-link">next</a></li>
+						</c:when>
+						<c:otherwise>
+							<li class="page-item">
+							<a class="page-link" href="${pageContext.request.contextPath}/faq?p=${requestScope.paging.nextPage }&searchType=${searchType }&keyword=${keyword }">next</a>
+							</li>
+						</c:otherwise>
+					</c:choose>
+				</ul>
+			  </c:if>
 			<sec:authorize access="hasRole('ROLE_USER')">
 				<button type="button" onclick="location.href='myqna'">내 질문/답변</button>
 				<button type="button" onclick="location.href='qna/write'">질문하기</button>
@@ -130,6 +171,18 @@
 	<script src="<%= request.getContextPath() %>/resources/chain/assets/js/imagesloaded.js"></script>
 	<script src="<%= request.getContextPath() %>/resources/chain/assets/js/popup.js"></script>
 	<script src="<%= request.getContextPath() %>/resources/chain/assets/js/custom.js"></script>
-
+	
+	<script>
+	//검색
+		$(document).on('click', '#btnSearch', function(e){
+			e.preventDefault();
+			var url="${pageContext.request.contextPath}/faq";
+			url = url + "?searchType="+$('#searchType').val();
+			url = url + "&keyword="+$('#keyword').val();
+			location.href=url;
+			console.log(url);
+			
+		});
+	</script>
 </body>
 </html>

@@ -72,7 +72,7 @@ public class HomeController {
 		return mv;
 	}
 	
-	@GetMapping("/{bizId}")
+	@GetMapping("/bizinfo/{bizId}")
 	public ModelAndView authdiv(ModelAndView mv, @PathVariable String bizId) {
 		
 		BizInfoMngtVo bizInfo = bizInfoService.selectMainBizInfo(bizId);

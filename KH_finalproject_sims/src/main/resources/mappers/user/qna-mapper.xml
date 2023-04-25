@@ -20,7 +20,53 @@
 			<result column="RPL_USER_ID" property="userId" />
 		</collection>
 	</resultMap>
-  
+	
+	<!-- search 목록 -->
+	<select id="searchList" parameterType="map" resultType="usQnavo">
+		select * 
+		from (
+			select 
+				rownum rn
+				, aq_no
+				, aq_title
+				, aq_date
+				, aq_views
+				, aq_answers
+			from qna
+		)
+		where rn between #{start} and #{end}
+		<if test="searchType == 'title' and keyword != null and keyword != ''">
+			and AQ_TITLE like ('%'|| #{keyword} ||'%')
+		</if>
+		<if test="searchType == 'content' and keyword != null and keyword != ''">
+			and AQ_CONTENT like ('%'|| #{keyword} ||'%')
+		</if>
+	</select>
+	
+	<!-- search 목록 출력 개수 -->
+	<select id="getSearchListCount" parameterType="map" resultType="_int">
+		select count(*) searchCnt
+		from (
+			select * 
+			from (
+				select
+					rownum rn
+					, aq_no
+					, aq_title
+					, aq_date
+					, aq_views
+					, aq_answers
+				from qna
+				<if test="searchType == 'title' and keyword != null and keyword != ''">
+					where AQ_TITLE like ('%'|| #{keyword} ||'%')
+				</if>
+				<if test="searchType == 'content' and keyword != null and keyword != ''">
+					where AQ_CONTENT like ('%'|| #{keyword} ||'%')
+				</if>
+			)
+		)
+	</select>
+
   	<!-- 문의게시판 질문 목록 -->
   	<select id="selectQnaList" resultType="usQnavo">
 		select aq_no, aq_title, aq_date, aq_views, aq_answers

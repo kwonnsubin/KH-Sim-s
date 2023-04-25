@@ -1,6 +1,7 @@
 package kh.finalproject.sims.user.model.dao;
 
 import java.util.List;
+import java.util.Map;
 
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -104,6 +105,14 @@ public class UserFaqDao {
 
 	public int updateRpl(UserRplVo vo) {
 		return session.update("qna.updateRpl", vo);
+	}
+
+	public int getSearchListCount(Map<String, String> mapCnt) {
+		return session.selectOne("qna.getSearchListCount", mapCnt);
+	}
+
+	public List<UserQnaVo> searchList(Map<String, Object> map) {
+		return session.selectList("qna.searchList", map);
 	}
 
 }

@@ -5,7 +5,10 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Controller;
@@ -21,6 +24,7 @@ import org.springframework.web.servlet.ModelAndView;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 
+import kh.finalproject.sims.common.page.Search;
 import kh.finalproject.sims.user.model.service.UserFaqService;
 import kh.finalproject.sims.user.model.vo.UserAnsVo;
 import kh.finalproject.sims.user.model.vo.UserQnaVo;
@@ -34,20 +38,70 @@ public class UserFaqController {
 	UserFaqService service;
 	
 	// 질문 목록
-	@RequestMapping(value = "/", method = {RequestMethod.GET, RequestMethod.POST})
+	@GetMapping("/")
 	public ModelAndView selectFaqList(
 			ModelAndView mv
 			, UserQnaVo vo
+			, @RequestParam(required = false) String keyword
+			, @RequestParam(required = false) String searchType
+			, HttpServletRequest req
+			, HttpServletResponse resp
 			) {
-		mv.addObject("faqlist", service.selectFaqList());
-		
-		if (vo.getSearchOption() == null) { 
-		  	mv.addObject("qnalist", service.selectQnaList());
+		// 페이징
+		String pageNum = req.getParameter("p");
+		int pNum;
+		if (pageNum == null || pageNum.isEmpty()) {
+			pNum = 1;
 		} else {
-			mv.addObject("qnalist", service.searchQnaList(vo));
-			mv.addObject("searchOption", vo.getSearchOption());
-			mv.addObject("searchBox", vo.getSearchBox());
+			pNum = Integer.parseInt(pageNum);
 		}
+		
+		Cookie cookie = null;
+		Cookie[] cookies = req.getCookies();
+		for (Cookie c : cookies) {
+			if (c.getName().equals("cnt")) {
+				cookie = c;
+			}
+		}
+		
+		String cnt = req.getParameter("cnt");
+		if (cnt != null) {
+			if (cnt.isEmpty()) {
+				if (cookie != null) {
+					cnt = cookie.getValue();
+				} else {
+					cnt = "10"; // 초기값
+				}
+			}
+		} else {
+			if (cookie != null) {
+				cnt = cookie.getValue();
+			} else {
+				cnt = "10";
+			}
+		}
+		
+		cookie = new Cookie("cnt", cnt);
+		cookie.setMaxAge(60 * 60 * 24 * 5);
+		resp.addCookie(cookie);
+		
+		int searchListCount = service.getSearchListCount(searchType, keyword);
+		System.out.println("검색 결과 목록 개수는 " + searchListCount);
+		
+		Search search = service.getPage(pNum, Integer.parseInt(cnt), searchType, keyword);
+		
+		req.setAttribute("paging", search);
+		
+		System.out.println("@@@@search.getPage(): " + search.getPage());
+		System.out.println("######getPageList: " + search.getPageList());
+		
+		mv.addObject("listCnt", searchListCount);
+		mv.addObject("searchType", searchType);
+		mv.addObject("keyword", keyword);
+		
+		//
+		mv.addObject("faqlist", service.selectFaqList());
+		// mv.addObject("qnalist", service.selectQnaList());
 		mv.setViewName("user/faq/faqlist");
 		return mv;
 	}

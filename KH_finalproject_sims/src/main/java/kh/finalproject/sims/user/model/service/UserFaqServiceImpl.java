@@ -1,11 +1,14 @@
 package kh.finalproject.sims.user.model.service;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import kh.finalproject.sims.common.page.Search;
 import kh.finalproject.sims.user.model.dao.UserFaqDao;
 import kh.finalproject.sims.user.model.vo.UserAnsVo;
 import kh.finalproject.sims.user.model.vo.UserFaqVo;
@@ -141,6 +144,36 @@ public class UserFaqServiceImpl implements UserFaqService {
 	public boolean upAnswers(int aqNo) {
 	    int count = dao.upAnswers(aqNo);
 	    return count > 0;
+	}
+
+	@Override
+	public Search getPage(int pNum, int cnt, String searchType, String keyword) {
+		Map<String, Object> map = new HashMap<String, Object>();
+		map.put("start", (pNum - 1) * cnt + 1);
+		map.put("end", pNum * cnt);	
+		map.put("searchType",searchType);
+		map.put("keyword",keyword);
+
+		Map<String, String> mapCnt = new HashMap<String, String>();
+		mapCnt.put("searchType", searchType);
+		mapCnt.put("keyword", keyword);
+
+		int totalRowCount = dao.getSearchListCount(mapCnt);
+		int mod = totalRowCount % cnt == 0 ? 0 : 1;
+		int pageCount = (totalRowCount / cnt) + mod;
+
+		List<UserQnaVo>data = dao.searchList(map);
+		Search search = new Search(data, pNum, pageCount, cnt, 5, searchType, keyword );
+		return search;
+	}
+
+	@Override
+	public int getSearchListCount(String searchType, String keyword) {
+		Map<String, String> mapCnt = new HashMap<String, String>();
+		mapCnt.put("searchType", searchType);
+		mapCnt.put("keyword", keyword);
+		System.out.println("*********mapCnt: " + mapCnt);
+		return dao.getSearchListCount(mapCnt);
 	}
 
 	
