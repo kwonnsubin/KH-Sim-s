@@ -467,13 +467,12 @@
 		                    'cardExpiration': cardExpiration,
 		                },
 		                success: function(result) {
-		                	console.log(result);
 		                	alert("요금제 신청 성공");
+		                	window.location.href = '/plan/' + planNo;
 		                },
 		                error: function(xhr, status, error) {
 		                	console.log("xhr.status: " + xhr.status);
 			                console.log("xhr.statusText: " + xhr.statusText);
-			                console.log("xhr.responseText: " + xhr.responseText);
 			                console.log("xhr.readyState: " + xhr.readyState);
 			                console.log(status);
 			                console.log(error);
@@ -530,13 +529,12 @@
 		                    'accBank': accBank
 		                },
 		                success: function(result) {
-		                	console.log(result);
 		                	alert("요금제 신청 성공");
+		                	window.location.href = '/sims/plan/' + planNo;
 		                },
 		                error: function(xhr, status, error) {
 		                	console.log("xhr.status: " + xhr.status);
 			                console.log("xhr.statusText: " + xhr.statusText);
-			                console.log("xhr.responseText: " + xhr.responseText);
 			                console.log("xhr.readyState: " + xhr.readyState);
 			                console.log(status);
 			                console.log(error);
