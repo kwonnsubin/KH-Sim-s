@@ -112,6 +112,7 @@ public class AdminBizMngtVo {
 	// ORDER_DATA			NULL		NUMBER
 	// ORDER_VOICE			NULL		NUMBER
 	// ORDER_MESSAGE		NULL		NUMBER
+	// ORDER_ADDRESS		NULL        VARCHAR(500) 
 	
 	private int orderNo;
 	private String userId;
@@ -122,16 +123,40 @@ public class AdminBizMngtVo {
 	private char currentTelecom;
 	private char planBill;
 	private char planPay;
-	private String cardNumber;
-	private String cardExpiration;
-	private String bank;
-	private String bankNumber;
 	private Date orderDate;
 	private char orderStatus;
 	private int orderPrice;
 	private int orderData;
 	private int orderVoice;
 	private int orderMessage;
+	private String orderAddress;
+	
+	//카드납부정보
+	//CARD_HOLDER        NOT NULL  VARCHAR2(20)
+	//CARD_SSN		     NULL	   VARCHAR2(20)
+	//CARD_RELATIONSHIP  NULL	   NUMBER
+	//CARD_NUMBER        NULL      VARCHAR2(30)
+	//CARD_EXPIRATION    NULL      VARCHAR2(10)
+	
+	private String cardHolder;
+	private String cardSsn;
+	private int cardRelationship;
+	private String cardNumber;
+	private String cardExpiration;
+	
+	//계좌납부정보
+	//ACC_HOLDER       NULL	  VARCHAR2(20)
+	//ACC_SSN          NULL   VARCHAR2(20)
+	//ACC_RELATIONSHIP NULL   NUMBER
+	//ACC_NUMBER       NULL   VARCHAR2(50)
+	//ACC_BANK         NULL   VARCHAR2(30)
+	
+	private String accHolder;
+	private String accSsn;
+	private int accRelationship;
+	private String accNumber;
+	private String accBank;
+	
 	
 	// 요금제
 	
@@ -188,7 +213,6 @@ public class AdminBizMngtVo {
 	// USER_GENDER	NOT NULL		CHAR(1)
 	// USER_PHONE	NULL			VARCHAR2(20)
 	// USER_EMAIL	NULL			VARCHAR2(30)
-	// USER_ADDRESS	NULL			VARCHAR2(100)
 	
 	private String userName;
 	private String userSsn;
@@ -197,6 +221,5 @@ public class AdminBizMngtVo {
 	private char userGender;
 	private String userPhone;
 	private String userEmail;
-	private String userAddress;
 	
 }	
