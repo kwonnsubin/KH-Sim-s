@@ -109,7 +109,7 @@ public class AdminQnaMngtController {
 			, HttpServletResponse response
 			) {
 	    String username = principal.getName(); // 사용자(관리자)정보 가져오기
-	    AdminQnaMngtVo qnaDetail = service.selectQnaListDetail(aqNo);
+	    
 	    mv.addObject("qnaAnsList", service.selectQnaAnsList(aqNo));
 	    mv.addObject("username", username);
 	    mv.addObject("aqNo", aqNo);
@@ -127,13 +127,10 @@ public class AdminQnaMngtController {
 			}
 		}
 	
-       if (qnaDetail != null) {
-    		mv.addObject("qnaDetail", qnaDetail);
- 
-            if (viewCookie == null) {    
-                System.out.println("cookie 없음");
-                
-                Cookie newCookie = new Cookie("cookie" + aqNo , "|" + aqNo + "|");
+        if (viewCookie == null) {    
+            System.out.println("cookie 없음");
+            
+            Cookie newCookie = new Cookie("cookie" + aqNo , "|" + aqNo + "|");
                 newCookie.setMaxAge(10);
                                 
                 response.addCookie(newCookie);
@@ -142,30 +139,25 @@ public class AdminQnaMngtController {
                 
                 if(result>0) {
                     System.out.println("조회수 증가");
-                }else {
-                    System.out.println("조회수 증가 에러");
-                }
+            }else {
+                System.out.println("조회수 증가 에러");
             }
-            
-            else {
-                System.out.println("cookie 있음");
-                
-                String value = viewCookie.getValue();
-                
-                System.out.println("cookie 값 : " + value);
-        
-            }
-            
-            // 상세페이지로 이동
-    		mv.setViewName("admin/qna/detail");
-    		return mv;
-        } 
-        else {
-//            // 에러 페이지 설정
-//            view.setViewName("error/reviewError");
-//            return view;
         }
-	return mv;
+        
+        else {
+            System.out.println("cookie 있음");
+            
+            String value = viewCookie.getValue();
+            
+            System.out.println("cookie 값 : " + value);
+    
+        }
+        AdminQnaMngtVo qnaDetail = service.selectQnaListDetail(aqNo);
+        mv.addObject("qnaDetail", qnaDetail);
+        
+        // 상세페이지로 이동
+		mv.setViewName("admin/qna/detail");
+		return mv; 
     }
 	
 	// 답변 작성 ajax
@@ -293,7 +285,7 @@ public class AdminQnaMngtController {
 			return result;		
 	}
 	
-	// 조회수 조회 ajax
+	// 조회수 증가 ajax
 	@ResponseBody
 	@PostMapping("/qna/selectViewCount")
 	public int selectViewCount(@RequestParam("aqNo") int aqNo) {
