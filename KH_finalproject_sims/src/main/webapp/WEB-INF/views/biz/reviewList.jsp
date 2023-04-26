@@ -51,10 +51,10 @@
 		<!-- 버튼으로 조회 -->
 		<form id="reportStatusForm" action="<%=request.getContextPath()%>/biz/selectByReportStatus" method="get" style="display: flex; justify-content: flex-end; margin-right: 10%;">
 		  <div class="btn-group mt-3 mb-3" role="group" aria-label="Basic example">
-		  	<button type="button" class="btn btn-primary" id="all">전체</button>
-		    <button type="button" class="btn btn-primary" id="inProgress">신고처리중</button>
-		    <button type="button" class="btn btn-primary" id="rejected">반려</button>
-		    <button type="button" class="btn btn-primary" id="deleted">삭제</button>
+		  	<button type="button" class="btn btn-outline-primary" id="all">전체</button>
+		    <button type="button" class="btn btn-outline-primary" id="inProgress">신고처리중</button>
+		    <button type="button" class="btn btn-outline-primary" id="rejected">반려</button>
+		    <button type="button" class="btn btn-outline-primary" id="deleted">삭제</button>
 		  </div>
 		  <input type="hidden" id="reportStatus" name="reportStatus" value="">
 		</form>
