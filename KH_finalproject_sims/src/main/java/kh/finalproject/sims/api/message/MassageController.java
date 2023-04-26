@@ -1,5 +1,6 @@
 package kh.finalproject.sims.api.message;
 
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -13,9 +14,15 @@ import net.nurigo.sdk.message.service.DefaultMessageService;
 public class MassageController {
 	final DefaultMessageService messageService;
 	
+	@Value("#{apikey['apikey.massageKey']}")
+	private String massageKey;
+	
+	@Value("#{apikey['apikey.massageSecret']}")
+	private String massageSecret;
+	
     public MassageController() {
         // 반드시 계정 내 등록된 유효한 API 키, API Secret Key를 입력해주셔야 합니다!
-        this.messageService = NurigoApp.INSTANCE.initialize("NCSV2TIUIGQZMXPY", "UOAJO1DUAGM2PNNKMLTLHSC2XENYZTWJ", "https://api.coolsms.co.kr");
+        this.messageService = NurigoApp.INSTANCE.initialize("massageKey", "massageSecret", "https://api.coolsms.co.kr");
     }
     
     
