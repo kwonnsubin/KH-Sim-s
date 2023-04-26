@@ -230,39 +230,8 @@
 				</when>
 			</choose>
 		</if>
-		<!-- ORDER BY A.ORDER_NO DESC -->
 				
 	</select>
-	
-	<!-- 통신사 요금제 개통 신청 리스트 -->
-	<!-- <select id="selectBizPlanApplyList" resultType="adBizVo">
-	/** 통신사 요금제 개통 신청 리스트(selectBizPlanApplyList)**/
-		SELECT
-			*
-		FROM 
-			PLAN_ORDER A
-			INNER JOIN PLAN_TABLE B ON A.PLAN_NO = B.PLAN_NO
-		WHERE 1=1
-		<if test="searchRadioVal != null">
-			<choose>
-				<when test="searchRadioVal != 'total'">
-					AND A.ORDER_STATUS = #{searchRadioVal}
-				</when>
-			</choose>
-		</if>
-		<if test="searchOption != null">
-			<choose>
-				<when test="searchOption == 'planName'">
-					AND UPPER(B.PLAN_NAME) LIKE UPPER('%'||#{searchBox}||'%')
-				</when>
-				<when test="searchOption == 'userId'">
-					AND UPPER(A.USER_ID) LIKE UPPER('%'||#{searchBox}||'%')
-				</when>
-			</choose>
-		</if>
-		ORDER BY A.ORDER_NO DESC
-				
-	</select> -->
 	
 	<!-- 통신사 요금제 개통 신청 상세 -->
 	<select id="selectBizPlanApplyDetail" resultType="adBizVo">

@@ -94,7 +94,10 @@
 		/** 관리자의 사용자 관리 수정 (saveUserModify) **/
 		UPDATE USER_TABLE
 		SET
-			USER_EMAIL = #{userEmail}
+			USER_NAME = #{userName}
+			, USER_SSN = #{userSsn}
+			, USER_GENDER = #{userGender}
+			, USER_EMAIL = #{userEmail}
 			, USER_PHONE = #{userPhone}
 			, USER_UP_DATE = SYSDATE
 		WHERE USER_ID = #{userId}	
