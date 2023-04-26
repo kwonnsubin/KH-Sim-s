@@ -33,7 +33,9 @@
 	<section>
 		<div class="container-fluid d-flex justify-content-center" style="width: 800px; margin-top: 100px;">
 			<div class="col-md-6">
-				<h2>로그인</h2>
+				<div class="text-center mb-5">
+					<h2 style="color: #979797">로그인</h2>
+				</div>
 				<c:url value="/login" var="loginUrl" />
 				<form:form name="f" action="${loginUrl}" method="POST">
 					<c:if test="${param.error != null}">
@@ -51,7 +53,7 @@
 				
 				  <!-- Submit button -->
 				  <div class="d-flex justify-content-center">
-				  	<button type="submit" class="btn btn-primary btn-block mb-2">로그인</button>
+				  	<button type="submit" class="btn btn-primary btn-block mb-2" style="width: 100%; background-color: white; border: 1px solid #4B8EF1; border-radius: 20px; color: #4B8EF1;">로그인</button>
 				  </div>
 				</form:form>
 			</div>
