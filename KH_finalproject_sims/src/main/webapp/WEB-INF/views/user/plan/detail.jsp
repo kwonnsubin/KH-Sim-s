@@ -26,6 +26,7 @@
     <link rel="stylesheet" href="<%= request.getContextPath() %>/resources/chain/assets/css/animated.css">
     <link rel="stylesheet" href="<%= request.getContextPath() %>/resources/chain/assets/css/owl.css">
 	<link rel="stylesheet" href="<%= request.getContextPath() %>/resources/css/user/plan.css">
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
 	
 </head>
 <body>
@@ -38,8 +39,8 @@
 		
 			<!-- 통신사 로고, 요금제명, 찜, 공유 -->
 			<div class="row m-3 py-4">
-				<div class="col-sm-2 float-sm-none">
-					<a href="#"> <!-- 통신사 페이지 만들어서 연결 -->
+				<div class="col-sm-2 float-sm-none vertical-center">
+					<a href="${cpath}/bizinfo/${biz.bizId}">
 						<img class="logo-m" src="${cpath}/resources/img/${biz.bizId}.png" alt="${plan.bizName}">
 					</a>
 				</div>
@@ -132,12 +133,12 @@
 				<div class="card-body">
 					<div class="row">
 						<div class="col-2">
-							<a href="#"> <!-- 통신사 페이지 만들어서 연결 -->
+							<a href="${cpath}/bizinfo/${biz.bizId}">
 								<img class="logo-s" src="${cpath}/resources/img/${biz.bizId}.png" alt="${plan.bizName}">
 							</a>
 						</div>
 						<div class="col-6 vertical-center">
-							<a href="#"> <!-- 통신사 페이지 만들어서 연결 -->
+							<a href="${cpath}/bizinfo/${biz.bizId}">
 								${plan.bizName}>
 							</a>
 						</div>
@@ -187,15 +188,26 @@
 								<div class="card" style="min-height: 150px;"> <!-- 클릭하면 통신사 리뷰 모달 / 통신사 리뷰 페이지 이동-->
 									<div class="card-body">
 										<div class="row mb-3">
-											<div class="col-sm-7" style="padding-right:0;">
+											<div class="col-sm-5" style="padding-right:0;">
 												${fn:substring(review.userId,0,3)}
 												<c:forEach begin="4" end="${fn:length(review.userId)}">
 												*
 												</c:forEach>
-												<span class="small"><fmt:formatDate value="${review.reviewDate}" pattern="yy.MM.dd"/></span>
 											</div>
-											<div class="col-sm-4 text-end px-0">
-												${review.reviewStar } <!-- 별점 표현 -->
+											<div class="col-sm-7 text-end">
+												<c:forEach var="i" begin="1" end="5">
+													<c:choose>
+														<c:when test="${review.reviewStar >= (i - 0.5) && review.reviewStar < i}">
+															<i class="fa-regular fa-star-half-stroke" style="color: #ffdd00;"></i>
+														</c:when>
+														<c:when test="${review.reviewStar >= i}">
+															<i class="fa-solid fa-star" style="color: #ffdd00;"></i>
+														</c:when>
+														<c:otherwise>
+															<i class="fa-regular fa-star" style="color: #ffdd00;"></i>
+														</c:otherwise>
+													</c:choose>
+												</c:forEach>
 											</div>
 										</div>
 										<h6 class="card-text">${review.reviewContent}</h6>
