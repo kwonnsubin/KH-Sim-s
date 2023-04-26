@@ -1,7 +1,10 @@
 package kh.finalproject.sims.api.message;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.google.gson.Gson;
@@ -12,7 +15,7 @@ import net.nurigo.sdk.message.request.SingleMessageSendingRequest;
 import net.nurigo.sdk.message.response.SingleMessageSentResponse;
 import net.nurigo.sdk.message.service.DefaultMessageService;
 
-@RestController
+@Controller
 public class MassageController {
 	
 	@Value("#{apikey['apikey.messageSecret']}")
@@ -21,20 +24,16 @@ public class MassageController {
 	@Value("#{apikey['apikey.messageKey']}")
 	private String messageKey;
 	
-	final DefaultMessageService messageService;
-	
-	
-    public MassageController() {
-        // 반드시 계정 내 등록된 유효한 API 키, API Secret Key를 입력해주셔야 합니다!
-        this.messageService = NurigoApp.INSTANCE.initialize("NCSV2TIUIGQZMXPY", "UOAJO1DUAGM2PNNKMLTLHSC2XENYZTWJ", "https://api.coolsms.co.kr");
-    }
+	private DefaultMessageService messageService;
     
     
     /**
      * 단일 메시지 발송 예제
      */
+	@ResponseBody
     @PostMapping("/send-one")
     public String sendOne(String phoneNum) {
+    	messageService = NurigoApp.INSTANCE.initialize(messageKey, messageSecret, "https://api.coolsms.co.kr");
         Message message = new Message();
         // 발신번호 및 수신번호는 반드시 01012345678 형태로 입력되어야 합니다.
         message.setFrom("01027431304"); // 계정에서 등록할 발신번호 입력
