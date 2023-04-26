@@ -14,4 +14,8 @@ public interface BizReviewMngtService {
 	
 	// 메인 통신사 페이지 리뷰
 	public List<BizReviewMngtVo> selectBizReviewList(String bizId);
+	
+	//신고처리상태에 따른 조회
+	public Paging selectByReportStatus(String bizid, int pNum, int cnt, String reportStatus);
+	public int selectByReportStatusCnt(String bizid, String reportStatus);
 }

@@ -47,6 +47,37 @@
 	<div class="content">
 
 		<h2 class="tit">통신사 리뷰 현황</h2>
+		
+		<!-- 버튼으로 조회 -->
+		<form id="reportStatusForm" action="<%=request.getContextPath()%>/biz/selectByReportStatus" method="get" style="display: flex; justify-content: flex-end; margin-right: 10%;">
+		  <div class="btn-group mt-3 mb-3" role="group" aria-label="Basic example">
+		  	<button type="button" class="btn btn-primary" id="all">전체</button>
+		    <button type="button" class="btn btn-primary" id="inProgress">신고처리중</button>
+		    <button type="button" class="btn btn-primary" id="rejected">반려</button>
+		    <button type="button" class="btn btn-primary" id="deleted">삭제</button>
+		  </div>
+		  <input type="hidden" id="reportStatus" name="reportStatus" value="">
+		</form>
+
+
+		<!-- 라디오 버튼으로 변경하는 중..  -->
+		 <%-- <form id="reportStatusForm" action="<%=request.getContextPath()%>/biz/selectByReportStatus" method="get">
+			<div class="btn-group" role="group" aria-label="Basic radio toggle button group">
+			  <input type="radio" class="btn-check" name="btnradio" id="btnradio1" autocomplete="off" value="0" checked>
+			  <label class="btn btn-outline-primary" for="btnradio1">전체</label>
+			
+			  <input type="radio" class="btn-check" name="btnradio" id="btnradio2" autocomplete="off" value="1">
+			  <label class="btn btn-outline-primary" for="btnradio2">신고처리중</label>
+			
+			  <input type="radio" class="btn-check" name="btnradio" id="btnradio3" autocomplete="off" value="2">
+			  <label class="btn btn-outline-primary" for="btnradio3">반려</label>
+			  
+			  <input type="radio" class="btn-check" name="btnradio" id="btnradio4" autocomplete="off" value="3">
+			  <label class="btn btn-outline-primary" for="btnradio4">삭제</label>
+			  
+			</div>
+		</form>  --%>
+		
 	
 		<div class="d-flex selectBox" >
 			<form action="${path}/biz/reviewList">
@@ -57,13 +88,37 @@
 				</select>
 			</form>
 		
-			<div>
+			<div style="margin-right: 1%;">
 				<c:if test="${not empty requestScope.paging.page}">
 					총 ${reviewCnt }개의 리뷰가 있습니다.
 				</c:if>
 			</div>
 	
 		</div>
+		
+		<!-- 
+		분류 {s}
+			<div class="radio-group">
+				<div class="form-check form-check-inline">
+				  <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio1" value="0">
+				  <label class="form-check-label" for="inlineRadio1">전체</label>
+				</div>
+				<div class="form-check form-check-inline">
+				  <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio2" value="1">
+				  <label class="form-check-label" for="inlineRadio2">신고처리중</label>
+				</div>
+				<div class="form-check form-check-inline">
+				  <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio3" value="2" >
+				  <label class="form-check-label" for="inlineRadio3">삭제</label>
+				</div>
+				<div class="form-check form-check-inline">
+				  <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio4" value="3" >
+				  <label class="form-check-label" for="inlineRadio4">반려</label>
+				</div>
+			</div>
+		분류 {e} -->
+		
+		
 		
 		<c:if test="${empty requestScope.paging.page}">
 	            		<tr>
@@ -95,7 +150,7 @@
 		            </div>
 		            <div class="review-footer-item">
 		                <c:choose>
-		                    <c:when test="${reviewList.reportStatus == '' }">
+		                    <c:when test="${reviewList.reportStatus == null }">	<!--reportStatus 타입이 integer이기 때문에 ''가 아닌 null 써야 함.   -->
 		                        <button type="button" class="reportBtn btn" 
 		                                data-bs-toggle="modal" data-bs-target="#reportModal" 
 		                                data-bs-whatever="${reviewList.userId}"
@@ -149,7 +204,7 @@
 		</div>
 			
 			 <!-- 페이지 번호 -->
-		     <c:if test="${not empty requestScope.paging.page}"> <!-- 신청서가 하나도 없으면 페이징X -->
+		     <%-- <c:if test="${not empty requestScope.paging.page}"> <!-- 신청서가 하나도 없으면 페이징X -->
 				<ul class="pagination" style="padding-left : 40%;">
 					<c:set var="pageNumber" value="${empty param.p ? 1 : param.p }" />
 					<c:choose>
@@ -157,18 +212,42 @@
 							<li class="page-item disabled"><a class="page-link">prev</a></li>
 						</c:when>
 						<c:otherwise>
-							<li class="page-item"><a class="page-link" href="${path}/biz/reviewList?p=${requestScope.paging.prevPage }">prev</a></li>
+							<li class="page-item"><a class="page-link" href="${path}/biz/reviewList?p=${requestScope.paging.prevPage }&reportStatus=${reportStatus}">prev</a></li>
 						</c:otherwise>
 					</c:choose>
 					<c:forEach var="pNum" items="${requestScope.paging.pageList }">
-						<li class="page-item ${pNum eq pageNumber ? 'active' : '' }"><a class="page-link" href="${path}/biz/reviewList?p=${pNum }">${pNum }</a></li>
+						<li class="page-item ${pNum eq pageNumber ? 'active' : '' }"><a class="page-link" href="${path}/biz/reviewList?p=${pNum }&reportStatus=${reportStatus}">${pNum }</a></li>
 					</c:forEach>
 					<c:choose>
 						<c:when test="${requestScope.paging.nextPage eq -1 }">
 							<li class="page-item disabled"><a class="page-link">next</a></li>
 						</c:when>
 						<c:otherwise>
-							<li class="page-item"><a class="page-link" href="${path}/biz/reviewList?p=${requestScope.paging.nextPage }">next</a></li>
+							<li class="page-item"><a class="page-link" href="${path}/biz/reviewList?p=${requestScope.paging.nextPage }&reportStatus=${reportStatus}">next</a></li>
+						</c:otherwise>
+					</c:choose>
+				</ul>
+			  </c:if> --%>
+			  <c:if test="${not empty requestScope.paging.page}"> <!-- 신청서가 하나도 없으면 페이징X -->
+				<ul class="pagination" style="padding-left : 40%;">
+					<c:set var="pageNumber" value="${empty param.p ? 1 : param.p }" />
+					<c:choose>
+						<c:when test="${requestScope.paging.prevPage eq -1 }">
+							<li class="page-item disabled"><a class="page-link">prev</a></li>
+						</c:when>
+						<c:otherwise>
+							<li class="page-item"><a class="page-link" href="${path}/biz/selectByReportStatus?p=${requestScope.paging.prevPage }&reportStatus=${reportStatus}">prev</a></li>
+						</c:otherwise>
+					</c:choose>
+					<c:forEach var="pNum" items="${requestScope.paging.pageList }">
+						<li class="page-item ${pNum eq pageNumber ? 'active' : '' }"><a class="page-link" href="${path}/biz/selectByReportStatus?p=${pNum }&reportStatus=${reportStatus}">${pNum }</a></li>
+					</c:forEach>
+					<c:choose>
+						<c:when test="${requestScope.paging.nextPage eq -1 }">
+							<li class="page-item disabled"><a class="page-link">next</a></li>
+						</c:when>
+						<c:otherwise>
+							<li class="page-item"><a class="page-link" href="${path}/biz/selectByReportStatus?p=${requestScope.paging.nextPage }&reportStatus=${reportStatus}">next</a></li>
 						</c:otherwise>
 					</c:choose>
 				</ul>
@@ -249,6 +328,72 @@ $(document).ready(function(){
 		})
 	})
 });
+</script>
+
+<!-- 분류에 따른 조회 -->
+<!-- <script>
+$(document).ready(function() {
+	  $('input[type=radio][name=inlineRadioOptions]').change(function() {
+		  if (this.value !== "0") { // radio_value 값이 0이 아닐 때에만 ajax 요청을 보냄
+	    $.ajax({
+	      url: "${pageContext.request.contextPath}/biz/selectByReportStatus.aj",
+	      type: 'post',
+	      data: { radio_value: this.value },
+	      dataType:"json",
+	      success: function(response) {
+	    	  console.log(response);
+	        //location.reload();
+	        displayFrm(response);
+	      },
+	      error: function(xhr) {
+	    	  alert("에러가 발생했습니다. ");
+	      		}
+	    	});
+		  } 
+	  });
+	});
+</script> -->
+
+<!-- 버튼으로 분류 조회 -->
+<script type="text/javascript">
+
+	$(document).ready(function() {
+		$('#all').on("click", function() {
+		      // reportStatus 값을 form의 hidden input에 설정하고 form 제출
+		      $('#reportStatus').val(0);
+		      $('#reportStatusForm').submit();
+		    });
+		
+	    $('#inProgress').on("click", function() {
+	      // reportStatus 값을 form의 hidden input에 설정하고 form 제출
+	      $('#reportStatus').val(1);
+	      $('#reportStatusForm').submit();
+	    });
+	  
+	    $('#deleted').on("click", function() {
+	      // reportStatus 값을 form의 hidden input에 설정하고 form 제출
+	      $('#reportStatus').val(2);
+	      $('#reportStatusForm').submit();
+	    });
+	
+	    $('#rejected').on("click", function() {
+	      // reportStatus 값을 form의 hidden input에 설정하고 form 제출
+	      $('#reportStatus').val(3);
+	      $('#reportStatusForm').submit();
+	    });
+  });
+  
+</script>
+
+
+<script>
+  // 라디오 버튼 클릭 시 폼 제출
+  const radioButtons = document.querySelectorAll('input[name="btnradio"]');
+  radioButtons.forEach(button => {
+    button.addEventListener('click', () => {
+      document.getElementById('reportStatusForm').submit();
+    });
+  });
 </script>
 
 

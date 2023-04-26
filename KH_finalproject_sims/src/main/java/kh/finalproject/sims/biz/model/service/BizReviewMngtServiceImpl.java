@@ -60,5 +60,33 @@ public class BizReviewMngtServiceImpl implements BizReviewMngtService {
 		return dao.selectBizReviewList(bizId);
 	}
 
+	//신고처리상태에 따른 조회
+	@Override
+	public Paging selectByReportStatus(String bizid, int pNum, int cnt, String reportStatus) {
+		Map<String, Object> map = new HashMap<String, Object>();
+		map.put("start", (pNum - 1) * cnt + 1);
+		map.put("end", pNum * cnt);	
+		map.put("bizid",bizid);
+		map.put("reportStatus",reportStatus);
+		
+		int totalRowCount = dao.selectByReportStatusCnt(map);
+		int mod = totalRowCount % cnt == 0 ? 0 : 1;
+		int pageCount = (totalRowCount / cnt) + mod;
+		
+		List<BizReviewMngtVo>data = dao.selectByReportStatus(map);
+		Paging paging = new Paging(data, pNum, pageCount, cnt, 5);
+		
+		return paging;
+	}
+
+	@Override
+	public int selectByReportStatusCnt(String bizid, String reportStatus) {
+		Map<String, Object> map = new HashMap<String, Object>();
+		map.put("bizid",bizid);
+		map.put("reportStatus",reportStatus);
+		
+		return dao.selectByReportStatusCnt(map);
+	}
+
 
 }

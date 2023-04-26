@@ -52,6 +52,6 @@ public class BizReviewMngtVo {
 //	REPORT_REASON NOT NULL VARCHAR2(50) 
 	
 	private Date reportDate;
-	private int reportStatus;
+	private Integer reportStatus;
 	private String reportReason;
 }

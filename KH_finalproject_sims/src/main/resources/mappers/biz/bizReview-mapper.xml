@@ -13,6 +13,7 @@
   </select>
   
   <!-- paging -->
+  <!-- 분류 : 전체 -->
   <select id="selectPage" parameterType="map" resultType="kh.finalproject.sims.biz.model.vo.BizReviewMngtVo">
   	SELECT * 
 	FROM (
@@ -25,6 +26,48 @@
 	    AND REVIEW_HIDDEN != 1
 	) 
 	WHERE rn BETWEEN #{start} AND #{end}
+  </select>
+  
+  <!-- 신고처리상태에 따른 분류 -->
+  <select id="selectByReportStatus" parameterType ="map" resultType="kh.finalproject.sims.biz.model.vo.BizReviewMngtVo">
+  SELECT * 
+	FROM (
+	    SELECT ROW_NUMBER() OVER (ORDER BY REVIEW_NO DESC) rn, 
+	    		REVIEW_CONTENT, REVIEW_STAR, USER_ID, REVIEW_DATE, REVIEW_NO, REPORT_STATUS
+	    FROM biz_review
+	    LEFT JOIN  REVIEW_REPORT
+        USING(REVIEW_NO)
+	    WHERE biz_id = #{bizid}
+	    AND REVIEW_HIDDEN != 1
+	  <!--   <choose>
+	    	<when test="reportStatus != null and reportStatus == 1"> AND REPORT_STATUS = 1</when>
+			<when test="reportStatus != null and reportStatus == 2"> AND REPORT_STATUS = 2</when>
+			<when test="reportStatus != null and reportStatus == 3"> AND REPORT_STATUS = 3</when>
+	    </choose> -->
+        AND REPORT_STATUS = #{reportStatus}
+	)
+	WHERE rn BETWEEN #{start} AND #{end}
+  
+  </select>
+  
+  <!-- 신고처리상태에 따른 분류 목록 개수 -->
+  <select id="selectByReportStatusCnt" parameterType ="map" resultType="_int">
+  SELECT count(*) listCnt 
+	FROM (
+	    SELECT ROW_NUMBER() OVER (ORDER BY REVIEW_NO DESC) rn, 
+	    		REVIEW_CONTENT, REVIEW_STAR, USER_ID, REVIEW_DATE, REVIEW_NO, REPORT_STATUS
+	    FROM biz_review
+	    LEFT JOIN  REVIEW_REPORT
+        USING(REVIEW_NO)
+	    WHERE biz_id = #{bizid}
+	    AND REVIEW_HIDDEN != 1
+	  <!--   <choose>
+	    	<when test="reportStatus != null and reportStatus == 1"> AND REPORT_STATUS = 1</when>
+			<when test="reportStatus != null and reportStatus == 2"> AND REPORT_STATUS = 2</when>
+			<when test="reportStatus != null and reportStatus == 3"> AND REPORT_STATUS = 3</when>
+	    </choose> -->
+        AND REPORT_STATUS = #{reportStatus}
+	)
   </select>
   
   

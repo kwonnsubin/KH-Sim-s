@@ -37,5 +37,16 @@ public class BizReviewMngtDao {
 	public List<BizReviewMngtVo> selectBizReviewList(String bizId) {
 		return sqlSession.selectList("bizReview.selectBizReviewList", bizId);
 	}
+
 	
+	//신고처리상태 분류에 따른 조회
+	public int selectByReportStatusCnt(Map<String, Object> map) {
+		return sqlSession.selectOne("selectByReportStatusCnt", map);
+	}
+
+	public List<BizReviewMngtVo> selectByReportStatus(Map<String, Object> map) {
+		return sqlSession.selectList("selectByReportStatus", map);
+	}
+
+
 }

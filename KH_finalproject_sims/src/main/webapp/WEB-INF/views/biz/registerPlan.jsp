@@ -34,128 +34,133 @@
 </head>
 <body>
 <jsp:include page="/WEB-INF/views/header.jsp"/>
-<jsp:include page="/WEB-INF/views/biz/nav.jsp"/>
 
 
-	<div class="titleMent">
-    	<span class="material-symbols-outlined" style="float: left;">
-		more_vert
-		</span>
-		<span>요금제 등록하기</span>
-    </div>
-
-
-	<form action="registerPlan" method="post" class="needs-validation regiForm" novalidate>
-        <!-- 테이블 적용 s-->
-        <table class="table" style="width: 70%" id="regiPlanTb">
-		<tr>
-			<th>
-				<span>요금제명</span>
-			</th>
-			<td><input type="text" name="planName"  class="form-control" required>
-			<div class="invalid-feedback">
-		      요금제명을 입력해주세요. 
+	<div class="container" style="display:flex; margin:-103px 0 -200px 0; padding:150px 0 380px 0;">
+		<jsp:include page="/WEB-INF/views/biz/nav.jsp"/>
+		
+		<div class="content">
+			<!-- <div class="titleMent">
+		    	<span class="material-symbols-outlined" style="float: left;">
+				more_vert
+				</span>
+				<span>요금제 등록하기</span>
 		    </div>
-		    </td>
-			
-			<th>
-				<span>통신사명</span>
-			</th>
-			<td><input type="hidden" name="bizName"  value="${vo.bizName}" >${vo.bizName}</td> <!-- 통신사명은 변경 불가 -->
-		</tr>
-		<tr>
-			<th>
-				<span>통신망</span>
-			</th>
-			<td>
-				<select name="netNo" class="form-select" required>
-				  <option value="1">SKT</option>
-               	  <option value="2">KT</option>
-                  <option value="3">LGU+</option>
-				</select>
-			</td>
-			
-			<th>
-				<span>통신세대</span>
-			</th>
-			<td>
-				<select name="genNo" class="form-select" required>
-				    <option value="1">5G</option>
-                	<option value="2">LTE</option>
-                    <option value="3">3G</option>
-                    <option value="4">LTE/3G</option>
-				</select>
-			</td>
-		</tr>
-		<tr>
-			<th>
-				<span>기본료(원)</span>
-			</th>
-			<td><input type="text" name="planPrice" class="form-control" required>
-			<div class="invalid-feedback">
-		      값을 입력해주세요. 
-		    </div></td>
-			<th>
-				<span>기본음성(분)</span>
-			</th>
-			<td><input type="text" name="planVoice" class="form-control" required>
-			<div class="invalid-feedback">
-		      값을 입력해주세요. 
-		    </div>
-			</td>
-		</tr>
-		<tr>
-			<th>
-				<span>기본문자(건)</span>
-			</th>
-			<td><input type="text" name="planMessage" class="form-control" required >
-			<div class="invalid-feedback">
-		      값을 입력해주세요. 
-		    </div></td>
-			<th>
-				<span>기본데이터(mb)</span>
-			</th>
-			<td><input type="text" name="planData" class="form-control" required>
-			<div class="invalid-feedback">
-		      값을 입력해주세요. 
-		    </div></td>
-		</tr>
-		<tr>
-			<th>
-				<span>초과음성단가(초)</span>
-			</th>
-			<td><input type="text" name="planVoiceOver" class="form-control" required>
-			<div class="invalid-feedback">
-		      값을 입력해주세요. 
-		    </div></td>
-			<th>
-				<span>초과문자단가(건)</span>
-			</th>
-			<td><input type="text" name="planMessageOver" class="form-control" required>
-			<div class="invalid-feedback">
-		      값을 입력해주세요. 
-		    </div></td>
-			<th>
-				<span>초과데이터단가(mb)</span>
-			</th>
-			<td><input type="text" name="planDataOver" class="form-control" required>
-			<div class="invalid-feedback">
-		      값을 입력해주세요. 
-		    </div></td>
-		</tr>
-	</table>
-        
-        <!-- 테이블 적용 e -->
-        
-        <div class="btnGroup">
-	        <button type="button" onclick="goList()" class="btn">취소</button>
-	        <button type="submit" class="btn">등록</button>
-	        <%-- location.href='${pageContext.request.contextPath}/biz/planList' --%>
-        </div>
-    </form>
-    
+		 -->
+		 	<h2 class="tit">요금제 등록하기</h2>
+		
+			<form action="registerPlan" method="post" class="needs-validation regiForm" novalidate>
+		        <!-- 테이블 적용 s-->
+		        <table class="table" style="width:120%; height:453px;" id="regiPlanTb">
+				<tr>
+					<th>
+						<span>요금제명</span>
+					</th>
+					<td><input type="text" name="planName"  class="form-control" required>
+					<div class="invalid-feedback">
+				      요금제명을 입력해주세요. 
+				    </div>
+				    </td>
+					
+					<th>
+						<span>통신사명</span>
+					</th>
+					<td><input type="hidden" name="bizName"  value="${vo.bizName}" >${vo.bizName}</td> <!-- 통신사명은 변경 불가 -->
+				</tr>
+				<tr>
+					<th>
+						<span>통신망</span>
+					</th>
+					<td>
+						<select name="netNo" class="form-select" required>
+						  <option value="1">SKT</option>
+		               	  <option value="2">KT</option>
+		                  <option value="3">LGU+</option>
+						</select>
+					</td>
+					
+					<th>
+						<span>통신세대</span>
+					</th>
+					<td>
+						<select name="genNo" class="form-select" required>
+						    <option value="1">5G</option>
+		                	<option value="2">LTE</option>
+		                    <option value="3">3G</option>
+		                    <option value="4">LTE/3G</option>
+						</select>
+					</td>
+				</tr>
+				<tr>
+					<th>
+						<span>기본료(원)</span>
+					</th>
+					<td><input type="text" name="planPrice" class="form-control" required>
+					<div class="invalid-feedback">
+				      값을 입력해주세요. 
+				    </div></td>
+					<th>
+						<span>기본음성(분)</span>
+					</th>
+					<td><input type="text" name="planVoice" class="form-control" required>
+					<div class="invalid-feedback">
+				      값을 입력해주세요. 
+				    </div>
+					</td>
+				</tr>
+				<tr>
+					<th>
+						<span>기본문자(건)</span>
+					</th>
+					<td><input type="text" name="planMessage" class="form-control" required >
+					<div class="invalid-feedback">
+				      값을 입력해주세요. 
+				    </div></td>
+					<th>
+						<span>기본데이터(mb)</span>
+					</th>
+					<td><input type="text" name="planData" class="form-control" required>
+					<div class="invalid-feedback">
+				      값을 입력해주세요. 
+				    </div></td>
+				</tr>
+				<tr>
+					<th>
+						<span>초과음성단가(초)</span>
+					</th>
+					<td><input type="text" name="planVoiceOver" class="form-control" required>
+					<div class="invalid-feedback">
+				      값을 입력해주세요. 
+				    </div></td>
+					<th>
+						<span>초과문자단가(건)</span>
+					</th>
+					<td><input type="text" name="planMessageOver" class="form-control" required>
+					<div class="invalid-feedback">
+				      값을 입력해주세요. 
+				    </div></td>
+					<th>
+						<span>초과데이터단가(mb)</span>
+					</th>
+					<td><input type="text" name="planDataOver" class="form-control" required>
+					<div class="invalid-feedback">
+				      값을 입력해주세요. 
+				    </div></td>
+				</tr>
+			</table>
+		        
+		        <!-- 테이블 적용 e -->
+		        
+		        <div class="btnGroup">
+			        <button type="button" onclick="goList()" class="btn">취소</button>
+			        <button type="submit" class="btn">등록</button>
+			        <%-- location.href='${pageContext.request.contextPath}/biz/planList' --%>
+		        </div>
+		    </form>
+		    
     <!-- 등록이 되면 등록이 되었다는 창이 뜨게 하고 요금제 목록 창으로  -->
-    
+    	</div>
+    </div>	
  
 	<jsp:include page="/WEB-INF/views/footer.jsp"/>
 	
