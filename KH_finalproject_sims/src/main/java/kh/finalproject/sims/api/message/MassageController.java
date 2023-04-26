@@ -30,11 +30,11 @@ public class MassageController {
      * 단일 메시지 발송 예제
      */
     @PostMapping("/send-one")
-    public SingleMessageSentResponse sendOne() {
+    public SingleMessageSentResponse sendOne(String phoneNum) {
         Message message = new Message();
         // 발신번호 및 수신번호는 반드시 01012345678 형태로 입력되어야 합니다.
         message.setFrom("01027431304"); // 계정에서 등록할 발신번호 입력
-        message.setTo("01027431304"); // 수신번호 입력
+        message.setTo(phoneNum); // 수신번호 입력
         message.setText("문자 테스트 "); // "SMS는 한글 45자, 영자 90자까지 입력할 수 있습니다."
 
         SingleMessageSentResponse response = this.messageService.sendOne(new SingleMessageSendingRequest(message));

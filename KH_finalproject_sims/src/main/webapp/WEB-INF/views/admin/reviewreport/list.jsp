@@ -61,11 +61,21 @@
 									<!-- 검색 {e} -->
 									<!-- 처리 상태별로 보기 버튼 {s} -->
 									<form id="reportStatusForm" action="<%=request.getContextPath()%>/admin/reviewreport/list" method="post" style="display: flex; justify-content: flex-end;">
-									  <div class="btn-group mt-3 mb-3" role="group" aria-label="Basic example">
-									    <button type="button" class="btn btn-primary" id="not-confirmed">미확인</button>
-									    <button type="button" class="btn btn-primary" id="rejected">반려</button>
-									    <button type="button" class="btn btn-primary" id="deleted">삭제</button>
-									  </div>
+	 								  <div class="btn-group mt-3 mb-3" role="group" aria-label="Basic example">
+										    <button type="button" class="btn btn-primary" id="not-confirmed">미확인</button>
+										    <button type="button" class="btn btn-primary" id="rejected">반려</button>
+										    <button type="button" class="btn btn-primary" id="deleted">삭제</button>
+									 </div>
+									  
+<!-- 										<div class="btn-group btn-group-toggle" data-toggle="buttons">
+											<label class="btn btn-secondary" id="not-confirmed">
+												<input type="radio" name="options" >미확인</label>
+											<label class="btn btn-secondary" id="rejected">
+												<input type="radio" name="options" >반려</label>
+											<label class="btn btn-secondary" id="deleted">
+												<input type="radio" name="options" >삭제</label>
+										</div> -->
+									  							  
 									  <input type="hidden" id="reportStatus" name="reportStatus" value="">
 									</form>
                                     <!-- 처리 상태별로 보기 버튼 {e} -->
@@ -140,7 +150,7 @@
 </body>
 <script type="text/javascript">
 
-	$(document).ready(function() {
+ 	$(document).ready(function() {
 	    $('#not-confirmed').on("click", function() {
 	      // reportStatus 값을 form의 hidden input에 설정하고 form 제출
 	      $('#reportStatus').val(1);
@@ -159,7 +169,7 @@
 	      $('#reportStatusForm').submit();
 	    });
   });
-  
+
 </script>
 
 </html>

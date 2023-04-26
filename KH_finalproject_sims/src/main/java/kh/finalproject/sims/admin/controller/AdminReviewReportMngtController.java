@@ -43,8 +43,7 @@ public class AdminReviewReportMngtController {
 			, HttpServletResponse response	
 			) {
 		
-		//페이징
-  		//String pageNumber = request.getParameter("p"); 굳이 이렇게 안가져오고 @RequestParam으로 받아도됨.
+		// 페이징
   		int pNum;
   		if (pageNumber == null || pageNumber.isEmpty()) {
   			pNum = 1;
@@ -103,6 +102,19 @@ public class AdminReviewReportMngtController {
 	// 처리(반려/삭제)
 	@PostMapping("/reviewreport/status")
 	public String updateReviewReportStatus(
+			@RequestParam("reviewNo") int reviewNo
+			, @RequestParam("reviewHidden") int reviewHidden
+			, @RequestParam("reportStatus") int reportStatus
+			, AdminReviewMngtVo vo
+			) {
+		service.updateReviewReportStatus(vo);
+		return "redirect:/admin/reviewreport/detail/"+reviewNo;
+	}
+	
+	// ajax
+	@ResponseBody
+	@PostMapping("/getReviewReportList")
+	public String getReviewReportList(
 			@RequestParam("reviewNo") int reviewNo
 			, @RequestParam("reviewHidden") int reviewHidden
 			, @RequestParam("reportStatus") int reportStatus

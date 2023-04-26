@@ -411,6 +411,28 @@
 		  });
 		});
 		
+		$('#submitBtn').click(function() {
+	           
+	        $.ajax({
+	            url: '${cpath}/send-one',
+	            type: 'POST',
+	            data: {
+	                'phoneNum': $('#phoneFirst').val()+$('#phoneMiddle').val()+$('#phoneLast').val()
+	            },
+	            success: function(result) {
+	            	alert("문자 보냄");
+	            },
+	            error: function(xhr, status, error) {
+	            	console.log("xhr.status: " + xhr.status);
+	             console.log("xhr.statusText: " + xhr.statusText);
+	             console.log("xhr.responseText: " + xhr.responseText);
+	             console.log("xhr.readyState: " + xhr.readyState);
+	             console.log(status);
+	             console.log(error);
+	            	alert("문자 실패");
+	            }
+	        });
+		
 		
 	    $(document).ready(function() {
 	        $('#submitBtn').click(function() {
@@ -467,12 +489,13 @@
 		                    'cardExpiration': cardExpiration,
 		                },
 		                success: function(result) {
+		                	console.log(result);
 		                	alert("요금제 신청 성공");
-		                	window.location.href = '/plan/' + planNo;
 		                },
 		                error: function(xhr, status, error) {
 		                	console.log("xhr.status: " + xhr.status);
 			                console.log("xhr.statusText: " + xhr.statusText);
+			                console.log("xhr.responseText: " + xhr.responseText);
 			                console.log("xhr.readyState: " + xhr.readyState);
 			                console.log(status);
 			                console.log(error);
@@ -529,12 +552,13 @@
 		                    'accBank': accBank
 		                },
 		                success: function(result) {
+		                	console.log(result);
 		                	alert("요금제 신청 성공");
-		                	window.location.href = '/sims/plan/' + planNo;
 		                },
 		                error: function(xhr, status, error) {
 		                	console.log("xhr.status: " + xhr.status);
 			                console.log("xhr.statusText: " + xhr.statusText);
+			                console.log("xhr.responseText: " + xhr.responseText);
 			                console.log("xhr.readyState: " + xhr.readyState);
 			                console.log(status);
 			                console.log(error);
