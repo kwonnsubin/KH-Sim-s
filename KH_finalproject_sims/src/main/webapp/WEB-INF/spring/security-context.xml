@@ -17,6 +17,7 @@
 		<s:intercept-url pattern="/plan/**/order/**" access="hasRole('ROLE_USER')"/>
 		<s:intercept-url pattern="/biz/**" access="hasRole('ROLE_BIZ')"/>
 		<s:intercept-url pattern="/admin/**" access="hasRole('ROLE_ADMIN')"/>
+		<s:intercept-url pattern="/feeapitest" access="hasRole('ROLE_ADMIN')"/>
 		
 		<s:form-login login-page="/login"
                 default-target-url="/authdiv"
