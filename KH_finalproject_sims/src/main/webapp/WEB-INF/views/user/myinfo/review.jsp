@@ -64,12 +64,17 @@
 			       						<p class="plan-name-text">
 			       							<input class="bizId" type="hidden" value="${po.bizId}">
 			       							${po.planName} + 
-			       							<c:if test="${po.planData lt 1000}">
-					    					${po.planData}MB 
-					    					</c:if>
-					    					<c:if test="${po.planData gt 1000}">
-					    					<fmt:formatNumber var="data" type="number" maxFractionDigits="1" value="${po.planData / 1000}" />
-					    					${data}G
+			       							<c:if test="${po.planData eq 0}">
+			       								없음
+			       							</c:if>
+			       							<c:if test="${po.planData ne 0}">
+						    					<c:if test="${po.planData lt 1000}">
+						    					${po.planData} MB 
+						    					</c:if>
+						    					<c:if test="${po.planData gt 1000}">
+						    					<fmt:formatNumber var="data" type="number" maxFractionDigits="1" value="${po.planData / 1000}" />
+						    					${data} GB
+						    					</c:if>
 					    					</c:if>
 			       						</p>
 			       						<p>

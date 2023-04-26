@@ -411,28 +411,6 @@
 		  });
 		});
 		
-		$('#submitBtn').click(function() {
-	           
-	        $.ajax({
-	            url: '${cpath}/send-one',
-	            type: 'POST',
-	            data: {
-	                'phoneNum': $('#phoneFirst').val()+$('#phoneMiddle').val()+$('#phoneLast').val()
-	            },
-	            success: function(result) {
-	            	alert("문자 보냄");
-	            },
-	            error: function(xhr, status, error) {
-	            	console.log("xhr.status: " + xhr.status);
-	             console.log("xhr.statusText: " + xhr.statusText);
-	             console.log("xhr.responseText: " + xhr.responseText);
-	             console.log("xhr.readyState: " + xhr.readyState);
-	             console.log(status);
-	             console.log(error);
-	            	alert("문자 실패");
-	            }
-	        });
-		
 		
 	    $(document).ready(function() {
 	        $('#submitBtn').click(function() {
@@ -491,6 +469,27 @@
 		                success: function(result) {
 		                	console.log(result);
 		                	alert("요금제 신청 성공");
+		                	
+		                	// 문자 보내기
+		                	$.ajax({
+		        	            url: '${cpath}/send-one',
+		        	           	type: 'POST',
+		        	            data: {
+		        	                'phoneNum': $('#phoneFirst').val()+$('#phoneMiddle').val()+$('#phoneLast').val()
+		        	            },
+		        	            success: function(result) {
+		        	            	alert("문자 보냄");
+		        	            },
+		        	            error: function(xhr, status, error) {
+		        	            	console.log("xhr.status: " + xhr.status);
+		        	             console.log("xhr.statusText: " + xhr.statusText);
+		        	             console.log("xhr.responseText: " + xhr.responseText);
+		        	             console.log("xhr.readyState: " + xhr.readyState);
+		        	             console.log(status);
+		        	             console.log(error);
+		        	            	alert("문자 실패");
+		        	            }
+		        	        });
 		                },
 		                error: function(xhr, status, error) {
 		                	console.log("xhr.status: " + xhr.status);
@@ -554,6 +553,27 @@
 		                success: function(result) {
 		                	console.log(result);
 		                	alert("요금제 신청 성공");
+		                	
+		                	// 문자 보내기
+		                	$.ajax({
+		        	            url: '${cpath}/send-one',
+		        	           	type: 'POST',
+		        	            data: {
+		        	                'phoneNum': $('#phoneFirst').val()+$('#phoneMiddle').val()+$('#phoneLast').val()
+		        	            },
+		        	            success: function(result) {
+		        	            	alert("문자 보냄");
+		        	            },
+		        	            error: function(xhr, status, error) {
+		        	            	console.log("xhr.status: " + xhr.status);
+		        	             console.log("xhr.statusText: " + xhr.statusText);
+		        	             console.log("xhr.responseText: " + xhr.responseText);
+		        	             console.log("xhr.readyState: " + xhr.readyState);
+		        	             console.log(status);
+		        	             console.log(error);
+		        	            	alert("문자 실패");
+		        	            }
+		        	        });
 		                },
 		                error: function(xhr, status, error) {
 		                	console.log("xhr.status: " + xhr.status);

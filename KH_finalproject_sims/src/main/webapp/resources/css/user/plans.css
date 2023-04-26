@@ -244,6 +244,10 @@ fieldset label:hover {
 	font-size: 14px;
 }
 
+.modalBtn:hover {
+	border-color: #C4C4C4;
+}
+
 /* 커스텀 셀렉트 */
 /* reset */
 ul,li{

@@ -108,16 +108,21 @@
        						</div>
        						
        						<div class="planData ms-2">
-       							<p>월&nbsp;<p>
-		    					<p>
-		    					<c:if test="${viewList.planData lt 1000}">
-		    					${viewList.planData} MB 
+       							<c:if test="${viewList.planData eq 0}">
+       								<p>없음</p>
+       							</c:if>
+       							<c:if test="${viewList.planData ne 0}">
+	       							<p>월&nbsp;<p>
+			    					<p>
+			    					<c:if test="${viewList.planData lt 1000}">
+			    					${viewList.planData} MB 
+			    					</c:if>
+			    					<c:if test="${viewList.planData gt 1000}">
+			    					<fmt:formatNumber var="data" type="number" maxFractionDigits="1" value="${viewList.planData / 1000}" />
+			    					${data} GB
+			    					</c:if>
+			    					</p>
 		    					</c:if>
-		    					<c:if test="${viewList.planData gt 1000}">
-		    					<fmt:formatNumber var="viewdata" type="number" maxFractionDigits="1" value="${viewList.planData / 1000}" />
-		    					${viewdata} GB
-		    					</c:if>
-		    					</p>
        						</div>
 	    					
 	    					<div class="ms-2">
@@ -173,16 +178,21 @@
        						</div>
        						
        						<div class="planData ms-2">
-       							<p>월&nbsp;<p>
-		    					<p>
-		    					<c:if test="${likeList.planData lt 1000}">
-		    					${likeList.planData} MB 
+       							<c:if test="${likeList.planData eq 0}">
+       								<p>없음</p>
+       							</c:if>
+       							<c:if test="${likeList.planData ne 0}">
+	       							<p>월&nbsp;<p>
+			    					<p>
+			    					<c:if test="${likeList.planData lt 1000}">
+			    					${likeList.planData} MB 
+			    					</c:if>
+			    					<c:if test="${likeList.planData gt 1000}">
+			    					<fmt:formatNumber var="data" type="number" maxFractionDigits="1" value="${likeList.planData / 1000}" />
+			    					${data} GB
+			    					</c:if>
+			    					</p>
 		    					</c:if>
-		    					<c:if test="${likeList.planData gt 1000}">
-		    					<fmt:formatNumber var="likedata" type="number" maxFractionDigits="1" value="${likeList.planData / 1000}" />
-		    					${likedata} GB
-		    					</c:if>
-		    					</p>
        						</div>
 	    					
 	    					<div class="ms-2">
@@ -238,16 +248,21 @@
        						</div>
        						
        						<div class="planData ms-2">
-       							<p>월&nbsp;<p>
-		    					<p>
-		    					<c:if test="${orderList.planData lt 1000}">
-		    					${orderList.planData} MB 
+       							<c:if test="${orderList.planData eq 0}">
+       								<p>없음</p>
+       							</c:if>
+       							<c:if test="${orderList.planData ne 0}">
+	       							<p>월&nbsp;<p>
+			    					<p>
+			    					<c:if test="${orderList.planData lt 1000}">
+			    					${orderList.planData} MB 
+			    					</c:if>
+			    					<c:if test="${orderList.planData gt 1000}">
+			    					<fmt:formatNumber var="data" type="number" maxFractionDigits="1" value="${orderList.planData / 1000}" />
+			    					${data} GB
+			    					</c:if>
+			    					</p>
 		    					</c:if>
-		    					<c:if test="${orderList.planData gt 1000}">
-		    					<fmt:formatNumber var="orderdata" type="number" maxFractionDigits="1" value="${orderList.planData / 1000}" />
-		    					${orderdata} GB
-		    					</c:if>
-		    					</p>
        						</div>
 	    					
 	    					<div class="ms-2">

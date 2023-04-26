@@ -63,6 +63,7 @@
 	       				</c:otherwise>
 	       			</c:choose>
 	       		</div>
+   				
 	       		<div class="col m-3 filter-area">
 	       			<p>통화량</p>
 	       			<c:choose>
@@ -86,6 +87,7 @@
 	       				</c:otherwise>
 	       			</c:choose>
 	       		</div>
+   				
 	       		<div class="col m-3 filter-area">
 	       			<p>가격</p>
 	       			<c:choose>
@@ -135,7 +137,7 @@
 					</div>
 				</div>
 				<div class="col" style="display: flex; justify-content : center;">
-      				<div class="vr" style="background-color:black; height:40px;"></div>
+      				<div class="vr" style="background-color:black; height:43px;"></div>
    				</div>
 				<div class="col">
 					<button type="button" class="btn btn-light btn-outline-secondary modalBtn" data-bs-toggle="modal" data-bs-target="#filter-modal">
@@ -591,16 +593,21 @@
        						</div>
        						
        						<div class="planData ms-2">
-       							<p>월&nbsp;<p>
-		    					<p>
-		    					<c:if test="${list.planData lt 1000}">
-		    					${list.planData} MB 
+       							<c:if test="${list.planData eq 0}">
+       								<p>없음</p>
+       							</c:if>
+       							<c:if test="${list.planData ne 0}">
+	       							<p>월&nbsp;<p>
+			    					<p>
+			    					<c:if test="${list.planData lt 1000}">
+			    					${list.planData} MB 
+			    					</c:if>
+			    					<c:if test="${list.planData gt 1000}">
+			    					<fmt:formatNumber var="data" type="number" maxFractionDigits="1" value="${list.planData / 1000}" />
+			    					${data} GB
+			    					</c:if>
+			    					</p>
 		    					</c:if>
-		    					<c:if test="${list.planData gt 1000}">
-		    					<fmt:formatNumber var="data" type="number" maxFractionDigits="1" value="${list.planData / 1000}" />
-		    					${data} GB
-		    					</c:if>
-		    					</p>
        						</div>
 	    					
 	    					<div class="ms-2">

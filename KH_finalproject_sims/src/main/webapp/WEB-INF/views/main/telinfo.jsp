@@ -192,16 +192,21 @@
 			       						</div>
 			       						
 			       						<div class="planData ms-2">
-			       							<p>월&nbsp;<p>
-					    					<p>
-					    					<c:if test="${list.planData lt 1000}">
-					    					${list.planData} MB 
+			       							<c:if test="${list.planData eq 0}">
+			       								<p>없음</p>
+			       							</c:if>
+			       							<c:if test="${list.planData ne 0}">
+				       							<p>월&nbsp;<p>
+						    					<p>
+						    					<c:if test="${list.planData lt 1000}">
+						    					${list.planData} MB 
+						    					</c:if>
+						    					<c:if test="${list.planData gt 1000}">
+						    					<fmt:formatNumber var="data" type="number" maxFractionDigits="1" value="${list.planData / 1000}" />
+						    					${data} GB
+						    					</c:if>
+						    					</p>
 					    					</c:if>
-					    					<c:if test="${list.planData gt 1000}">
-					    					<fmt:formatNumber var="viewdata" type="number" maxFractionDigits="1" value="${list.planData / 1000}" />
-					    					${viewdata} GB
-					    					</c:if>
-					    					</p>
 			       						</div>
 				    					
 				    					<div class="ms-2">

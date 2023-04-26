@@ -77,13 +77,18 @@
 	       						<p class="mb-2">통신망		|	3G</p>
        						</c:if>
        						
-							<c:if test="${poVo.planData lt 1000}">
-	    						<c:set var="data" value="${poVo.planData}"/> 
-	       						<p class="mb-2">데이터량	|	${data} MB</p>
-	    					</c:if>
-	    					<c:if test="${poVo.planData gt 1000}">
-	    						<fmt:formatNumber var="data" type="number" maxFractionDigits="1" value="${poVo.planData / 1000}" />
-	    						<p class="mb-2">데이터량	|	${data} GB</p>
+       						<c:if test="${poVo.planData eq 0}">
+   								<p class="mb-2">데이터량	|	없음</p>
+   							</c:if>
+   							<c:if test="${poVo.planData ne 0}">
+								<c:if test="${poVo.planData lt 1000}">
+		    						<c:set var="data" value="${poVo.planData}"/> 
+		       						<p class="mb-2">데이터량	|	${data} MB</p>
+		    					</c:if>
+		    					<c:if test="${poVo.planData gt 1000}">
+		    						<fmt:formatNumber var="data" type="number" maxFractionDigits="1" value="${poVo.planData / 1000}" />
+		    						<p class="mb-2">데이터량	|	${data} GB</p>
+		    					</c:if>
 	    					</c:if>
 	    					
 	    					<c:if test="${poVo.planVoice eq 0}">
