@@ -113,7 +113,7 @@ public class UserPlanController {
 	
 	// 신청서 저장
 	@PostMapping("/{planNo}/order")
-	public void savePlanOrder(
+	public String savePlanOrder(
 			@PathVariable int planNo
 			, @ModelAttribute PlanOrderVo orderVo
 			, @ModelAttribute PayCardVo cardVo
@@ -129,6 +129,7 @@ public class UserPlanController {
 			accVo.setOrderNo(orderNo);
 			planService.insertPayinfoAcc(accVo);
 		}
+        return "redirect:/";
 	}
 	
 	// 찜하기
