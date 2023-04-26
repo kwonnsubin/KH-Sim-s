@@ -184,23 +184,35 @@
 		                           			 <div class="form-group row">
 		                                        <label for="phoneOpTime" class="col-sm-1 col-form-label text-center">개통 소요시간</label>
 		                                        <div class="col-sm-5" >
-		                                            <input type="text" class="form-control"  name="phoneOpTime" <c:if test="${cmd eq 'read' }">readonly</c:if> value="평균 ${applyDetail.phoneOpTime}일">
+		                                            <input type="text" class="form-control"  name="phoneOpTime" <c:if test="${cmd eq 'read' }">readonly</c:if> value="${applyDetail.phoneOpTime}">
 		                                        </div>
 		                                         <label for="phoneOpTimeUsim" class="col-sm-1 col-form-label text-center">개통소요시간(유심보유시)</label>
 		                                        <div class="col-sm-5">
-		                                            <input type="text" class="form-control"  name="phoneOpTimeUsim" <c:if test="${cmd eq 'read' }">readonly</c:if> value="평균 ${applyDetail.phoneOpTimeUsim}일">
+		                                            <input type="text" class="form-control"  name="phoneOpTimeUsim" <c:if test="${cmd eq 'read' }">readonly</c:if> value=" ${applyDetail.phoneOpTimeUsim}">
 		                                        </div>
 		                                    </div>
 		                           			 <div class="form-group row">
 		                                        <label for="bizCardPayDate" class="col-sm-1 col-form-label text-center">카드 결제일</label>
 		                                        <div class="col-sm-5" >
-		                                            <input type="text" class="form-control"  name="bizCardPayDate" <c:if test="${cmd eq 'read' }">readonly</c:if> value="${applyDetail.bizCardPayDate}일">
+		                                            <input type="text" class="form-control"  name="bizCardPayDate" <c:if test="${cmd eq 'read' }">readonly</c:if> value="${applyDetail.bizCardPayDate}">
 		                                        </div>
 		                                         <label for="bizAccPayDate" class="col-sm-1 col-form-label text-center">계좌이체 결제일</label>
 		                                        <div class="col-sm-5">
-		                                           <input type="text" class="form-control"  name="bizAccPayDate" <c:if test="${cmd eq 'read' }">readonly</c:if> value="${applyDetail.bizAccPayDate}일">
+		                                           <input type="text" class="form-control"  name="bizAccPayDate" <c:if test="${cmd eq 'read' }">readonly</c:if> value="${applyDetail.bizAccPayDate}">
 		                                        </div>
 		                                    </div>
+		                           			 <div class="form-group row">
+		                                        <%-- <label for="bizCardPayDate" class="col-sm-1 col-form-label text-center">카드 결제일</label>
+		                                        <div class="col-sm-5" >
+		                                            <input type="text" class="form-control"  name="bizCardPayDate" <c:if test="${cmd eq 'read' }">readonly</c:if> value="${applyDetail.bizCardPayDate}">
+		                                        </div> --%>
+		                                         <label for="bizTime" class="col-sm-1 col-form-label text-center">영업 시간</label>
+		                                        <div class="col-sm-5">
+		                                         	<input type="hidden" class="form-control"  name="bizBeginTime" value="${applyDetail.bizBeginTime}">
+		                                            <input type="hidden" class="form-control"  name="bizEndTime" value="${applyDetail.bizEndTime}">
+		                                            <input type="text" class="form-control"  name="bizTime" <c:if test="${cmd eq 'read' }">readonly</c:if> value="${applyDetail.bizBeginTime} ~ ${applyDetail.bizEndTime}">
+		                                        </div>
+		                                     </div>
 		                                    <div class="form-group row">
 		                                        <label for="bizClosedDay" class="col-sm-1 col-form-label text-center">휴무일</label>
 		                                        <div class="col-sm-5">
