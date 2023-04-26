@@ -52,6 +52,6 @@ public class BizReviewMngtVo {
 //	REPORT_REASON NOT NULL VARCHAR2(50) 
 	
 	private Date reportDate;
-	private Integer reportStatus;
+	private Integer reportStatus; //빈문자열을 int로 변환할 수가 없어서 Integer로 바꿈. 
 	private String reportReason;
 }
