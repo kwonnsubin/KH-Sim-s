@@ -34,13 +34,6 @@ public class AdminStatisticsController {
 			) {
 		mv.addObject("orderByRegistration", service.selectOrderByRegistration()); // 가입자 많은 순
 		mv.addObject("ageGroupPlans",service.selectAgeGroupPlans()); // 연령대별 요금제 
-		mv.addObject("starRating", service.selectStarRating()); // 별점순 통신사
-		//mv.addObject("monthlyPlanOrderCount", service.selectMonthlyPlanOrderCount()); // 월별 총 가입자 수
-		mv.addObject("ageGroupPlanOrderCount", service.selectAgeGroupPlanOrderCount()); // 연령대별 총 가입자 수 
-		//mv.addObject("dailyTotalUserWriteCount", service.selectDailyTotalUserWriteCount()); // 일별 총 가입자 수 변화
-		//mv.addObject("dailyGenderUserWriteCount", service.selectDailyGenderUserWriteCount()); // 일별 성별 가입자 수 변화
-		mv.addObject("genderRatioByTotalUserRatio", service.selectGenderRatioByTotalUserRatio()); // 성별 가입자 수 비율
-		mv.addObject("ageGroupByTotalUserRatio", service.selectAgeGroupByTotalUserRatio()); // 연령대 가입자 수 비율
 		mv.setViewName("/admin/statistics");
 		return mv;
 	}
@@ -71,6 +64,44 @@ public class AdminStatisticsController {
 		List<AdminStatisticsVo> chartList = service.selectDailyGenderUserWriteCount(); // 차트 리스트
 		return new Gson().toJson(chartList);	
 	}
+	
+	// 일별 성별 가입자 수 
+	@ResponseBody
+	@PostMapping("/genderRatioByTotalUserRatio")
+	public String selectGenderRatioByTotalUserRatio(
+			) {
+		AdminStatisticsVo chartList = service.selectGenderRatioByTotalUserRatio(); // 차트 리스트
+		return new Gson().toJson(chartList);
+	}
+	
+	// 연령별 총 가입자 수  
+	@ResponseBody
+	@PostMapping("/ageGroupPlanOrderCount")
+	public String selectAgeGroupPlanOrderCount(
+			) {
+		List<AdminStatisticsVo> chartList = service.selectAgeGroupPlanOrderCount(); // 차트 리스트
+		return new Gson().toJson(chartList);
+	}
+	
+	// 연령별 가입자 수 비율 
+	@ResponseBody
+	@PostMapping("/ageGroupByTotalUserRatio")
+	public String selectAgeGroupByTotalUserRatio(
+			) {
+		List<AdminStatisticsVo> chartList = service.selectAgeGroupByTotalUserRatio(); // 차트 리스트
+		return new Gson().toJson(chartList);
+	}
+	
+	// 별점순 통신사 
+	@ResponseBody
+	@PostMapping("/starRating")
+	public String selectStarRating(
+			) {
+		List<AdminStatisticsVo> chartList = service.selectStarRating(); // 차트 리스트
+		return new Gson().toJson(chartList);
+	}
+	
+	
 }
 
 

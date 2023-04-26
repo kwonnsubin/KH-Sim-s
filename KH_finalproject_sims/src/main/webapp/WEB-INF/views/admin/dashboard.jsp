@@ -46,38 +46,60 @@
 	                    <div class="card-body">
 	                    	<div id="dailyTotalUserWriteCount_chart_div"></div>
 	                    	<script>
-	                        var options = {
-	                                series: [{
-	                                  name: "Today",
-	                                  data: [${dailyTotalUserWriteCount[0].cnt}, ${dailyTotalUserWriteCount[1].cnt}, ${dailyTotalUserWriteCount[2].cnt}, ${dailyTotalUserWriteCount[3].cnt}, ${dailyTotalUserWriteCount[4].cnt}, ${dailyTotalUserWriteCount[5].cnt}, ${dailyTotalUserWriteCount[6].cnt}]
-	                              }],
-	                                chart: {
-	                                height: 640,
-	                                type: 'line',
-	                                type: 'area',
-	                                zoom: {
-	                                  enabled: false
-	                                }
-	                              },
-	                              dataLabels: {
-	                                enabled: false
-	                              },
-	                              stroke: {
-	                                curve: 'smooth'
-	                              },
-	                              grid: {
-	                                row: {
-	                                  colors: ['#f3f3f3', 'transparent'], // takes an array which will be repeated on columns
-	                                  opacity: 0.5
-	                                },
-	                              },
-	                              xaxis: {
-	                                categories: ['${dailyTotalUserWriteCount[0].userWrDate}', '${dailyTotalUserWriteCount[1].userWrDate}', '${dailyTotalUserWriteCount[2].userWrDate}', '${dailyTotalUserWriteCount[3].userWrDate}', '${dailyTotalUserWriteCount[4].userWrDate}', '${dailyTotalUserWriteCount[5].userWrDate}', '${dailyTotalUserWriteCount[6].userWrDate}'],
-	                              }
-	                              };
+	  	                    	$.ajax({
+		                    	    url: "<%=request.getContextPath()%>/admin/dashBoardDailyTotalUserWriteCount",
+		                    	    type: "POST",
+		                    	    dataType: "json", 
+		                    	    success: function(data) {
+		                    	        
+		                    	        var chartData = [];
+		                    	        var chartCategories = [];
 
-	                              var chart = new ApexCharts(document.querySelector("#dailyTotalUserWriteCount_chart_div"), options);
-	                              chart.render();
+		                    	        for (var i = 0; i < data.length; i++) {
+		                    	          chartData.push(data[i].cnt);
+		                    	        }
+		                    	        
+		                    	        for (var j = 0; j < data.length; j++) {
+		                    	        	chartCategories.push(data[j].userWrDate);
+			                    	    }
+
+		    	                        var options = {
+		    	                                series: [{
+		    	                                  name: "Today",
+		    	                               	  data: chartData
+		    	                              }],
+			  	                              chart: {
+			  		                                height: 640,
+			  		                                type: 'line',
+			  		                                type: 'area',
+			  		                                zoom: {
+			  		                                  enabled: false
+			  		                                }
+		    	                              },
+		    	                              dataLabels: {
+		    	                                enabled: false
+		    	                              },
+		    	                              stroke: {
+		    	                            	  curve: 'smooth'
+		    	                              },
+		    	                              grid: {
+		    	                                row: {
+		    	                                  colors: ['#f3f3f3', 'transparent'],
+		    	                                  opacity: 0.5
+		    	                                },
+		    	                              },
+		    	                              xaxis: {
+		    	                                categories: chartCategories
+		    	                              }
+		    	                              };
+
+		                    	        var chart = new ApexCharts(document.querySelector("#dailyTotalUserWriteCount_chart_div"), options);
+		                    	        chart.render();
+		                    	    },
+		                    	    error: function() {
+		                    	        console.error("error");
+		                    	    }
+		                    	});
 	                    	</script>
 						</div>
 					 </div>
