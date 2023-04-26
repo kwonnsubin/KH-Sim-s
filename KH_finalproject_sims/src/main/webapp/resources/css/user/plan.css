@@ -1,5 +1,9 @@
 @charset "UTF-8";
 
+.div-sm {
+	max-width: 840px
+}
+
 .div-m {
 	max-width: 960px
 }
@@ -35,10 +39,6 @@ a:active {
 	object-fit: contain
 }
 
-.vertical-center {
-	margin: auto 0
-}
-
 .center {
 	margin: auto
 }
@@ -53,16 +53,57 @@ a:active {
 	border-radius: .25rem;
 	padding: 2px;
 	box-sizing: content-box;
-	background-color: white;
-	border-width: 1px;
-	border-color: gray;
+	background-color: #fff;
+    border-width: 1px;
+    border-color: transparent;
 }
 
-.btn {
+.btn-inherit {
 	background: inherit;
 	color: inherit;
+	display: inline-block;
+	font-weight: 400;
+	line-height: 1.5;
+	text-align: center;
+	text-decoration: none;
+	vertical-align: middle;
+	cursor: pointer;
+	user-select: none;
+	border-width: 1px;
+	border-style: solid;
+	width: 48%;
+	border-radius: 0.2rem;
+}
+
+.btn-m {
+	padding-bottom: 5px;
+	padding-top: 5px;
 }
 
 .btn-sm {
 	padding: 3px 15px;
+}
+
+.btn-xl {
+	font-size: 1.3rem;
+    border-radius: 1rem;
+}
+
+.table-p-10 table {
+	border-collapse: collapse;
+	border-spacing: 0;
+    }
+
+.table-p-10 td {
+	padding: 5px; /* 셀 내부 여백 설정 */
+}
+
+.table-p-10 tr {
+	height: 30px; /* 행 높이 설정 */
+    }
+    
+.table-rd {
+	border-radius: 0.25rem;
+  	border-style: hidden;
+  	box-shadow: 0 0 0 1px #dee2e6;
 }

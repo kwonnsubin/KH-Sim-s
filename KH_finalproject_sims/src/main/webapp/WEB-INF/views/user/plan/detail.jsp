@@ -28,6 +28,7 @@
     <link rel="stylesheet" href="<%= request.getContextPath() %>/resources/chain/assets/css/owl.css">
 	<link rel="stylesheet" href="<%= request.getContextPath() %>/resources/css/user/plan.css">
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+	<script src="https://kit.fontawesome.com/faa91ebb6a.js" crossorigin="anonymous"></script>
 	
 </head>
 <body>
@@ -35,27 +36,27 @@
 	<jsp:include page="/WEB-INF/views/header.jsp"/>
 	
 	<section>
-		<div class="container-sm div-m">
+		<div class="container-sm div-sm">
 		
 		
 			<!-- 통신사 로고, 요금제명, 찜, 공유 -->
 			<div class="row m-3 py-4">
-				<div class="col-sm-2 float-sm-none vertical-center">
+				<div class="col-sm-2 float-sm-none my-auto">
 					<a href="${cpath}/bizinfo/${biz.bizId}">
 						<img class="logo-m" src="${cpath}/resources/img/${biz.bizId}.png" alt="${plan.bizName}">
 					</a>
 				</div>
-				<div class="col-sm-7 float-sm-none vertical-center px-4">
+				<div class="col-sm-7 float-sm-none my-auto px-4">
 					<h3>${plan.planName}</h3>
 				</div>
-				<div class="col-2 float-sm-none vertical-center">
+				<div class="col-2 float-sm-none my-auto">
 					<c:set var="cpath" value="${pageContext.request.contextPath }" />
 					<a class="like" onclick="toggleLike(${plan.planNo})"> 
 						<img class="logo-s float-end" src="${cpath}/resources/img/like.png" alt="like">
 					</a>
 				</div>
 
-				<div class="col-1 float-sm-none vertical-center">
+				<div class="col-1 float-sm-none my-auto">
 					<a class="share" onclick="shareMessage()">
 						<img src="${cpath}/resources/img/share.png" alt="카카오톡 공유 보내기 버튼" />
 					</a>
@@ -108,7 +109,7 @@
 						</h3>
 					</div>
 				</div>
-				<div class="col-6 text-end vertical-center">
+				<div class="col-6 text-end mt-auto">
 					<span class="fs-4">월</span>
 					<span class="fw-bold fs-3">${plan.planPrice}</span>
 					<span class="fs-4">원</span>
@@ -116,19 +117,11 @@
 			</div>
 			
 			<!-- 통신사 문의, 간편 신청 -->
-			<div class="card-group my-5">
-				<div class="card text-center bg-primary">
-					<div class="card-body">
-						<h5><a class="text-white" href="#">통신사 문의</a></h5>
-					</div>
-				</div>
-				<div class="card text-center bg-primary">
-					<div class="card-body">
-						<h5><a class="text-white" href="${cpath}/plan/${plan.planNo}/order/terms">신청하기</a></h5>
-					</div>
-				</div>
+			<div class="my-5 row">
+				<button type="button" onclick="location.href='${cpath}/plan/${plan.planNo}/order/terms'" class="btn btn-xl p-3">신청하기</button>
 			</div>
-
+			
+			
 			<!-- 통신사 간략 -->
 			<div class="my-5 card biz-card">
 				<div class="card-body">
@@ -138,13 +131,18 @@
 								<img class="logo-s" src="${cpath}/resources/img/${biz.bizId}.png" alt="${plan.bizName}">
 							</a>
 						</div>
-						<div class="col-6 vertical-center">
+						<div class="col-6 my-auto">
 							<a href="${cpath}/bizinfo/${biz.bizId}">
-								${plan.bizName}>
+								<span class="fw-bold">
+									${plan.bizName}
+								</span>
+								<span>
+									<i class="fa-solid fa-chevron-right"></i>
+								</span>
 							</a>
 						</div>
 					</div>
-					<table class="mt-2">
+					<table class="mt-3 table-p-10">
 						<tr>
 							<td width="250px">개통 소요 시간</td>
 							<td>평균 ${biz.phoneOpTime}일</td>
@@ -170,32 +168,32 @@
 			<!-- 통신사 리뷰 -->
 			<div class="my-3">
 				<div class="row">
-					<h5 class="mb-3 fw-bold">통신사 리뷰</h5>
+					<h5 class="fw-bold">통신사 리뷰</h5>
 					
 					<div class="row my-3">
 						<div class="col-1">
 							<img class="logo-s" src="${cpath}/resources/img/star.png" alt="stars">
 						</div>
-						<div class="col-1 vertical-center">
+						<div class="col-1 my-auto">
 							<h4>${biz.bizReviewStar}</h4>
 						</div>
-						<div class="col-10 vertical-center">
+						<div class="col-10 my-auto">
 							<a href="#">${cntReview}개></a> <!-- 통신사 리뷰 모달 띄우기 / 통신사 리뷰 페이지 이동-->
 						</div>
 					</div>
 					<div class="row my-3">
 						<c:forEach items="${reviewList}" var="review" begin="0" end="2">
 							<div class="col-sm-4">
-								<div class="card" style="min-height: 150px;"> <!-- 클릭하면 통신사 리뷰 모달 / 통신사 리뷰 페이지 이동-->
+								<div class="card" style="min-height: 200px;"> <!-- 클릭하면 통신사 리뷰 모달 / 통신사 리뷰 페이지 이동-->
 									<div class="card-body">
 										<div class="row mb-3">
-											<div class="col-sm-5" style="padding-right:0;">
+											<div class="col-md-5 pe-0" style="padding-right:0;">
 												${fn:substring(review.userId,0,3)}
 												<c:forEach begin="4" end="${fn:length(review.userId)}">
 												*
 												</c:forEach>
 											</div>
-											<div class="col-sm-7 text-end">
+											<div class="col-md-7 ps-0 text-end">
 												<c:forEach var="i" begin="1" end="5">
 													<c:choose>
 														<c:when test="${review.reviewStar >= (i - 0.5) && review.reviewStar < i}">
@@ -211,7 +209,7 @@
 												</c:forEach>
 											</div>
 										</div>
-										<h6 class="card-text">${review.reviewContent}</h6>
+										<h6 class="card-text lh-base">${review.reviewContent}</h6>
 									</div>
 								</div>
 							</div>

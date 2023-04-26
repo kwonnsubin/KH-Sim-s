@@ -106,7 +106,7 @@
 
 						<div class="row btn_confirm text-center">
 							<div class="col">
-								<button class="btn btn-primary next-btn" type="button">다음</button>
+								<button class="btn next-btn" type="button">다음</button>
 							</div>
 						</div>
 

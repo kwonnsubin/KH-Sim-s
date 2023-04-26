@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>    
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <c:set var="cpath" value="${pageContext.request.contextPath }"/>
 <!DOCTYPE html>
 <html>
@@ -35,7 +36,7 @@
 			<div class="row">
 				<div class="col-sm-4 mt-5">
 					<h4 class="m-3 text-center">요금제 정보</h4>
-					<table class="table table-bordered">
+					<table class="table table-bordered table-rd">
 						<tr>
 							<td>요금제명</td> 
 							<td>${plan.planName }</td>
@@ -67,53 +68,53 @@
 					<form id="option" action="${cpath}/plan/${plan.planNo}/order">
 						<div class="card">
 							<div class="card-body">
-								<table class="w-100">
+								<table class="w-100 table-p-10">
 									<tr>
 										<td style="width: 30%">가입유형</td>
 										<td>
 											<input type="radio" class="btn-check" name="join-category" value="1" id="change-num" autocomplete="off">
-											<label class="btn btn-sm btn-outline-secondary" for="change-num">번호이동</label>
+											<label class="btn-inherit btn-m btn-outline-secondary" for="change-num">번호이동</label>
 											
 											<input type="radio" class="btn-check" name="join-category" value="2" id="new-num" autocomplete="off">
-											<label class="btn btn-sm btn-outline-secondary" for="new-num">신규가입</label>
+											<label class="btn-inherit btn-m btn-outline-secondary" for="new-num">신규가입</label>
 										</td>
 									</tr>
 									<tr>
 										<td>유심보유</td>
 										<td>
 											<input type="radio" class="btn-check" name="sim-yn" value="1" id="no-sim" autocomplete="off">
-											<label class="btn btn-sm btn-outline-secondary" for="no-sim">없어요(택배 요청)</label>
+											<label class="btn-inherit btn-m btn-outline-secondary" for="no-sim">없어요(택배 요청)</label>
 											
 											<input type="radio" class="btn-check" name="sim-yn" value="2" id="yes-sim" autocomplete="off">
-											<label class="btn btn-sm btn-outline-secondary" for="yes-sim">가지고 있어요</label>
+											<label class="btn-inherit btn-m btn-outline-secondary" for="yes-sim">가지고 있어요</label>
 										</td>
 									</tr>
 									<tr>
 										<td>유심유형</td>
 										<td>
 											<input type="radio" class="btn-check" name="sim-type" value="1" id="usim" autocomplete="off">
-											<label class="btn btn-sm btn-outline-secondary" for="usim">일반유심</label>
+											<label class="btn-inherit btn-m btn-outline-secondary" for="usim">일반유심</label>
 											
 											<input type="radio" class="btn-check" name="sim-type" value="2" id="nfc-sim" autocomplete="off">
-											<label class="btn btn-sm btn-outline-secondary" for="nfc-sim">NFC유심</label>
+											<label class="btn-inherit btn-m btn-outline-secondary" for="nfc-sim">NFC유심</label>
 										</td>
 									</tr>
 								</table>
 							</div>
 						</div>
 						
-						<div class="card">
+						<div class="card my-3">
 							<div class="card-body">
 								<table style="width: 100%">
 									<tr style="width: 100%">
 										<td style="width: 50%">월 납부총액(VAT 포함)</td>
-										<td class="text-end" width="150">${plan.planPrice }원</td>
+										<td class="text-end" width="150"><fmt:formatNumber value="${plan.planPrice}" pattern="###,###"/>원</td>
 									</tr>
 								</table>
 							</div>
 						</div>
-						<div class="text-end">
-							<input class="btn btn-primary" type="submit" value="구매신청">
+						<div class="text-end mt-3">
+							<input class="btn btn-lg" type="submit" value="구매신청">
 						</div>
 					</form>
 					
