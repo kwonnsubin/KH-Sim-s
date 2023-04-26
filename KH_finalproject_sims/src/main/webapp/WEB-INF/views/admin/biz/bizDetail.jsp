@@ -136,7 +136,7 @@
 	                    				</div>
 	                    				<div class="card-body">
 	                    					<!-- 로고있어야하넹 로고자리입니다-->
-	                    					<img src="${path}${imagePath}" style="width:200px;height:60px;"/>
+	                    					<img src="${path}${imagePath}" style="width:200px;height:60px;" alt="이미지" onerror="this.style.display='none'"/>
 		                                    <div class="form-group row">
 		                                    </div>
 		                                    <div class="form-group row">
@@ -255,6 +255,8 @@
 		                                        <div class="col-sm-5">
 		                                            <input type="text" class="form-control" id="roadAddress"  name="bizLocation" <c:if test="${cmd eq 'read' }">readonly</c:if> value="${applyDetail.bizLocation}">
 		                                        </div>
+		                                        
+		                                        
 		                                    </div>
 		                                    <div class="card">
 											<div class="card-body table-border-style">
