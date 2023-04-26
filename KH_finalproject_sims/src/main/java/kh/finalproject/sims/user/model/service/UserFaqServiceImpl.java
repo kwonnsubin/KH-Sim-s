@@ -166,6 +166,4 @@ public class UserFaqServiceImpl implements UserFaqService {
 		return dao.getSearchListCount(mapCnt);
 	}
 
-	
-
 }

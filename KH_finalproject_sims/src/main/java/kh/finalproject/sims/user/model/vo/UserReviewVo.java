@@ -1,6 +1,5 @@
 package kh.finalproject.sims.user.model.vo;
 
-import java.sql.Date;
 import java.sql.Timestamp;
 
 import org.springframework.stereotype.Component;

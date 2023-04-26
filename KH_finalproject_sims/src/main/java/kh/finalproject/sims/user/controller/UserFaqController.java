@@ -16,7 +16,6 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
@@ -163,20 +162,15 @@ public class UserFaqController {
 	    return map;
 	}
 	
-	// 답변달기 ajax
-	@ResponseBody
+
 	@PostMapping(value = "/qna/{aqNo}/answer")
 	public String insertAnswer(
 			@PathVariable int aqNo
 			, UserAnsVo vo
 			) {
-		int result = service.insertAnswer(aqNo, vo);
+		service.insertAnswer(aqNo, vo);
 		service.upAnswers(aqNo);
-		if(result > 0) {
-			return "success";
-		} else {
-			return "fail";
-		}
+		return "redirect:/faq/qna/" + aqNo;
 	}
 	
 	// 댓글달기
@@ -311,40 +305,4 @@ public class UserFaqController {
 		return mv;
 	}
 	
-//	// 댓글 수정 페이지
-//	@GetMapping("/rplupdate/{rplNo}")
-//	public ModelAndView updateRplForm(
-//			ModelAndView mv
-//			, @PathVariable int rplNo
-//			) {
-//		mv.addObject("myrpl", service.getRplByNo(rplNo));
-//		mv.setViewName("user/faq/updateRpl");
-//		return mv;
-//	}
-	
-//	// 댓글달기 ajax
-//	@ResponseBody
-//	@PostMapping("/ans/{aaNo}/reply2")
-//	public String insertReply2(
-//			@PathVariable int aaNo
-//			, UserRplVo vo
-//			) {
-//		int result = service.insertReply(aaNo, vo);
-//		if (result > 0) {
-//			return "success";
-//		} else {
-//			return "fail";
-//		}
-//	}
-	
-//	// 내 답변 수정 페이지
-//	@GetMapping("/ansupdate/{aaNo}")
-//	public ModelAndView updateAnsForm(
-//			ModelAndView mv
-//			, @PathVariable int aaNo
-//			) {
-//		mv.addObject("myans", service.getAnsByNo(aaNo));
-//		mv.setViewName("user/faq/updateAns");
-//		return mv;
-//	}
 }
