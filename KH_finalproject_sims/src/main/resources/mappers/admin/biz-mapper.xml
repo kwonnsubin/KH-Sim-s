@@ -104,9 +104,17 @@
 		/** 관리자의 통신사 관리 수정(saveBizModify)**/
 		UPDATE BIZ
 		SET
-			BIZ_EMAIL = #{bizEmail}
+			BIZ_ZIP_CODE = #{bizZipCode}
+			, BIZ_NAME = #{bizName}
+			, BIZ_SSN = #{bizSsn}
+			, BIZ_CRN = #{bizCrn}
+			, BIZ_FAX = #{bizFax}
+			, BIZ_OWner_NAME = #{bizOwnerName}
+			, BIZ_EMAIL = #{bizEmail}
 			, BIZ_LOCATION = #{bizLocation}
 			, BIZ_PHONE = #{bizPhone}
+			, BIZ_FAX = #{bizFax}
+			
 			, UPDATE_DATE = SYSDATE
 		WHERE BIZ_ID =#{bizId}
 	</update>
