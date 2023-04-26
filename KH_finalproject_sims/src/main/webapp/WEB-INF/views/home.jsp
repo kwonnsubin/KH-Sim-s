@@ -34,6 +34,7 @@
     <link rel="stylesheet" href="<%= request.getContextPath() %>/resources/chain/assets/css/animated.css">
     <link rel="stylesheet" href="<%= request.getContextPath() %>/resources/chain/assets/css/owl.css">
     <link rel="stylesheet" href="<%= request.getContextPath() %>/resources/css/main/home.css"/>
+    <link rel="stylesheet" href="<%= request.getContextPath() %>/resources/css/main/header.css"/>
     
 </head>
 <body>

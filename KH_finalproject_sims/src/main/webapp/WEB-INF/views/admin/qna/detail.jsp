@@ -149,6 +149,16 @@ $(document).ready(function(){
  		html += '		<span class="float-right f-13 text-muted">'+result[i].aaDate+'</span>';
  		html += '		</h6>';	                                    				                                
  		html += '		<p class="m-t-15 m-b-15 text-muted">'+result[i].aaContent+'</p> ';
+ 		
+ 		
+ 		html += '<div class="collapse" id="collapseExample">';
+		html += '  <div class="card card-body">';
+		html += '    Some placeholder content for the collapse component. This panel is hidden by default but revealed when the user activates the relevant trigger.';
+		html += '  </div>';
+		html += '</div>';
+ 		
+ 		
+ 		
  		html += '		<label class="badge badge-light-primary" onclick="qnaReplyList('+result[i].aaNo+')">답글</label>';
  		html += '	</div>';
  		html += '	<div class="qnaReplyList"></div>'; 
@@ -211,12 +221,12 @@ function qnaAnsUpdate(aaNo, adminId, aaContent, aaDate) {
 	html += '<div class="qnaAns m-t-15 m-b-30" id="no'+aaNo+'">';
 	html +='	<h6 class="m-b-15">'+adminId;
 	html +='		<a class="m-l-5 text-info" onclick="qnaUpdateAns('+aaNo+')">저장</a>';
-	html +='		<a class="m-l-5 text-info" onclick="">취소</a>';
+	html +='		<a class="m-l-5 text-info" onclick="getAnsList()">취소</a>';
 	html +='		<span class="float-right f-13 text-muted">'+aaDate+'</span>';
 	html +='	</h6>';					                                						                                    				                                
 	html +='<textarea class="form-control m-b-20" id="exampleFormControlTextarea1" rows="3" name="aaContent">'+aaContent+'</textarea>';
 	
-	$('#no' + aaNo).replaceWith(html);
+	$('#no' + aaNo).children().first().replaceWith(html);
 }
 
 // 답변 수정 내용 저장 ajax
@@ -318,9 +328,9 @@ function qnaReplyUpdateForm(aaNo, rplNo, adminId, rplContent, rplDate) {
 	var rplDate = rplDate;
 
 	html +='   		<div class="m-t-15 m-b-20 p-l-20" id="rplNo'+rplNo+'">';
-	html +='			<h6>'+adminId;	
+	html +='			<h6>'+adminId;
 	html +='				<a class="m-l-5 text-info" onclick="qnaUpdateReply('+rplNo+')">저장</button>';
-	html +='				<a class="m-l-5 text-info" onclick="">취소</button>';
+	html +='				<a class="m-l-5 text-info" onclick="qnaReplyList('+aaNo+')">취소</button>';
 	html +='				<span class="float-right f-13 text-muted">'+rplDate+'</span>';
 	html +='			</h6>';				    
 	html +='			<textarea class="form-control m-b-20" name="rplContent" rows="3" placeholder="댓글을 입력해보세요.">'+rplContent+'</textarea>';
