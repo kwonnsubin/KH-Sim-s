@@ -49,17 +49,19 @@
 				<div class="col-sm-7 float-sm-none my-auto px-4">
 					<h3>${plan.planName}</h3>
 				</div>
-				<div class="col-2 float-sm-none my-auto">
-					<c:set var="cpath" value="${pageContext.request.contextPath }" />
-					<a class="like" onclick="toggleLike(${plan.planNo})"> 
-						<img class="logo-s float-end" src="${cpath}/resources/img/like.png" alt="like">
-					</a>
-				</div>
-
-				<div class="col-1 float-sm-none my-auto">
-					<a class="share" onclick="shareMessage()">
-						<img src="${cpath}/resources/img/share.png" alt="카카오톡 공유 보내기 버튼" />
-					</a>
+				<div class="col-sm-3 row">
+					<div class="col-6 float-sm-none my-auto">
+						<c:set var="cpath" value="${pageContext.request.contextPath }" />
+						<a class="like" onclick="toggleLike(${plan.planNo})"> 
+							<img class="logo-s float-end" src="${cpath}/resources/img/like.png" alt="like">
+						</a>
+					</div>
+	
+					<div class="col-6 float-sm-none my-auto">
+						<a class="share" onclick="shareMessage()">
+							<img class="logo-s" src="${cpath}/resources/img/share.png" alt="카카오톡 공유 보내기 버튼" />
+						</a>
+					</div>
 				</div>
 			</div>
 			<hr>
@@ -74,11 +76,11 @@
 				</div>
 				<div class="row">
 					<h4 class="col-3 fw-semibold">
-						<c:if test="${plan.planVoice eq 0}">무제한</c:if>
+						<c:if test="${plan.planVoice eq 0}">기본제공</c:if>
 						<c:if test="${plan.planVoice ne 0}">${plan.planVoice}분</c:if>
 					</h4>
 					<h4 class="col-3 fw-semibold">
-						<c:if test="${plan.planMessage eq 0}">무제한</c:if>
+						<c:if test="${plan.planMessage eq 0}">기본제공</c:if>
 						<c:if test="${plan.planMessage ne 0}">${plan.planMessage}건</c:if>
 					</h4>
 					<h4 class="col-3 fw-semibold">${plan.netName}망</h4>
@@ -93,7 +95,7 @@
 					<p class="text-sm-center">데이터</p>
 					<div class="row">
 						<h3 class="fw-bolder text-sm-center">
-							<c:if test="${plan.planData eq 0}">무제한</c:if>
+							<c:if test="${plan.planData eq 0}">없음</c:if>
 							<c:if test="${plan.planData ne 0 && plan.planData < 1024}">${plan.planData}MB</c:if>
 							<c:if test="${plan.planData >= 1024}">
 								<c:set var="dataInGB" value="${plan.planData/1024.0}" />
@@ -117,9 +119,7 @@
 			</div>
 			
 			<!-- 통신사 문의, 간편 신청 -->
-			<div class="my-5 row">
-				<button type="button" onclick="location.href='${cpath}/plan/${plan.planNo}/order/terms'" class="btn btn-xl p-3">신청하기</button>
-			</div>
+			<button class="btn btn-lg my-4 p-3 w-100" type="button" onclick="location.href='${cpath}/plan/${plan.planNo}/order/terms'" class="btn btn-xl p-3">신청하기</button>
 			
 			
 			<!-- 통신사 간략 -->
@@ -166,56 +166,71 @@
 			</div>
 			
 			<!-- 통신사 리뷰 -->
-			<div class="my-3">
-				<div class="row">
-					<h5 class="fw-bold">통신사 리뷰</h5>
-					
-					<div class="row my-3">
-						<div class="col-1">
-							<img class="logo-s" src="${cpath}/resources/img/star.png" alt="stars">
-						</div>
-						<div class="col-1 my-auto">
-							<h4>${biz.bizReviewStar}</h4>
-						</div>
-						<div class="col-10 my-auto">
-							<a href="#">${cntReview}개></a> <!-- 통신사 리뷰 모달 띄우기 / 통신사 리뷰 페이지 이동-->
-						</div>
+			<div class="my-5 row">
+				<h5 class="fw-bold">통신사 리뷰</h5>
+				
+				<div class="row my-3">
+					<div class="col-1">
+						<img class="logo-s" src="${cpath}/resources/img/star.png" alt="stars">
 					</div>
-					<div class="row my-3">
-						<c:forEach items="${reviewList}" var="review" begin="0" end="2">
-							<div class="col-sm-4">
-								<div class="card" style="min-height: 200px;"> <!-- 클릭하면 통신사 리뷰 모달 / 통신사 리뷰 페이지 이동-->
-									<div class="card-body">
-										<div class="row mb-3">
-											<div class="col-md-5 pe-0" style="padding-right:0;">
-												${fn:substring(review.userId,0,3)}
-												<c:forEach begin="4" end="${fn:length(review.userId)}">
-												*
-												</c:forEach>
-											</div>
-											<div class="col-md-7 ps-0 text-end">
-												<c:forEach var="i" begin="1" end="5">
-													<c:choose>
-														<c:when test="${review.reviewStar >= (i - 0.5) && review.reviewStar < i}">
-															<i class="fa-regular fa-star-half-stroke" style="color: #ffdd00;"></i>
-														</c:when>
-														<c:when test="${review.reviewStar >= i}">
-															<i class="fa-solid fa-star" style="color: #ffdd00;"></i>
-														</c:when>
-														<c:otherwise>
-															<i class="fa-regular fa-star" style="color: #ffdd00;"></i>
-														</c:otherwise>
-													</c:choose>
-												</c:forEach>
-											</div>
-										</div>
-										<h6 class="card-text lh-base">${review.reviewContent}</h6>
-									</div>
-								</div>
-							</div>
-						</c:forEach>
+					<div class="col-1 my-auto">
+						<h4>${biz.bizReviewStar}</h4>
+					</div>
+					<div class="col-10 my-auto">
+						<a href="#">${cntReview}개></a> <!-- 통신사 리뷰 모달 띄우기 / 통신사 리뷰 페이지 이동-->
 					</div>
 				</div>
+				<div class="row my-3">
+					<c:forEach items="${reviewList}" var="review" begin="0" end="2">
+						<div class="col-sm-4">
+							<div class="card bg-green border-0" style="min-height: 200px;"> <!-- 클릭하면 통신사 리뷰 모달 / 통신사 리뷰 페이지 이동-->
+								<div class="card-body">
+									<div class="row mb-3">
+										<div class="col-md-5 pe-0" style="padding-right:0;">
+											${fn:substring(review.userId,0,3)}
+											<c:forEach begin="4" end="${fn:length(review.userId)}">
+											*
+											</c:forEach>
+										</div>
+										<div class="col-md-7 ps-0 text-end">
+											<c:forEach var="i" begin="1" end="5">
+												<c:choose>
+													<c:when test="${review.reviewStar >= (i - 0.5) && review.reviewStar < i}">
+														<i class="fa-regular fa-star-half-stroke" style="color: #ffdd00;"></i>
+													</c:when>
+													<c:when test="${review.reviewStar >= i}">
+														<i class="fa-solid fa-star" style="color: #ffdd00;"></i>
+													</c:when>
+													<c:otherwise>
+														<i class="fa-regular fa-star" style="color: #ffdd00;"></i>
+													</c:otherwise>
+												</c:choose>
+											</c:forEach>
+										</div>
+									</div>
+									<h6 class="card-text lh-base">${review.reviewContent}</h6>
+								</div>
+							</div>
+						</div>
+					</c:forEach>
+				</div>
+			</div>
+			
+			<!-- 기본 제공 초과시 -->
+			<div class="my-5">
+				<h6 class="fw-bold">기본 제공 초과 시</h6>
+				<table class="table-p-10 w-100 my-3 table table-borderless text-center table-rd-light">
+					<tr class="table-active-bl">
+						<td>음성</td>
+						<td>문자</td>
+						<td>데이터</td>
+					</tr>
+					<tr>
+						<td>${plan.planVoiceOver}원/초</td>
+						<td>${plan.planMessageOver}원/건</td>
+						<td>${plan.planDataOver}원/MB</td>
+					</tr>
+				</table>
 			</div>
 			
 		</div>
