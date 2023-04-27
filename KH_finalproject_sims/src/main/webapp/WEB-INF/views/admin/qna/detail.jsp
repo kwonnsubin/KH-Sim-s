@@ -329,8 +329,8 @@ function qnaReplyUpdateForm(aaNo, rplNo, adminId, rplContent, rplDate) {
 
 	html +='   		<div class="m-t-15 m-b-20 p-l-20" id="rplNo'+rplNo+'">';
 	html +='			<h6>'+adminId;
-	html +='				<a class="m-l-5 text-info" onclick="qnaUpdateReply('+rplNo+')">저장</button>';
-	html +='				<a class="m-l-5 text-info" onclick="qnaReplyList('+aaNo+')">취소</button>';
+	html +='				<a class="m-l-5 text-info" onclick="qnaUpdateReply('+rplNo+')">저장</a>';
+	html +='				<a class="m-l-5 text-info" onclick="qnaReplyList('+aaNo+')">취소</a>';
 	html +='				<span class="float-right f-13 text-muted">'+rplDate+'</span>';
 	html +='			</h6>';				    
 	html +='			<textarea class="form-control m-b-20" name="rplContent" rows="3" placeholder="댓글을 입력해보세요.">'+rplContent+'</textarea>';
