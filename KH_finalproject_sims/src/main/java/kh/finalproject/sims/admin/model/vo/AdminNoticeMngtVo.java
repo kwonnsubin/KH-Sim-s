@@ -38,7 +38,12 @@ public class AdminNoticeMngtVo {
 	private String searchOption;	// 조회 조건 
 	private String searchBox;		// 조회 문구
 
-
+	// 페이징 처리용
+	private int totalRowCount;	// 전체 갯수
+	private int currentPage;
+	private int lastPage;
+	private int pageLimit;
+	private int listLimit;
 	
 	
 }
