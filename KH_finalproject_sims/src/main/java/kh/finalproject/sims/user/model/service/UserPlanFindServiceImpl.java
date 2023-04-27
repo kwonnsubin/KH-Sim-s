@@ -95,4 +95,10 @@ public class UserPlanFindServiceImpl implements UserPlanFindService {
 		return dao.selectBizPlanList(bizId);
 	}
 
+	// 통신사 id
+	@Override
+	public List<BizInfoMngtVo> selectBizIdList() {
+		return dao.selectBizIdList();
+	}
+
 }
