@@ -88,3 +88,8 @@ h2.tit{
 .radio-group{
 	margin-left: 11%;
 }
+.btnStatus{
+	background: #e6f1fb !important;
+    color: #000 !important;
+    border-color: #fff !important;
+}

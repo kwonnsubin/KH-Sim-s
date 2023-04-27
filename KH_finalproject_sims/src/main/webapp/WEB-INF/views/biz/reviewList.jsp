@@ -49,16 +49,16 @@
 		<h2 class="tit">통신사 리뷰 현황</h2>
 		
 		<!-- 버튼으로 조회 -->
-		<form id="reportStatusForm" action="<%=request.getContextPath()%>/biz/selectByReportStatus" method="get" style="display: flex; justify-content: flex-end; margin-right: 10%;">
+		<%-- <form id="reportStatusForm" action="<%=request.getContextPath()%>/biz/selectByReportStatus" method="get" style="display: flex; justify-content: flex-end; margin-right: 10%;">
 		  <div class="btn-group mt-3 mb-3" role="group" aria-label="Basic example">
 		  	<button type="button" class="btn btn-outline-primary" id="all">전체</button>
 		    <button type="button" class="btn btn-outline-primary" id="inProgress">신고처리중</button>
 		    <button type="button" class="btn btn-outline-primary" id="rejected">반려</button>
 		    <button type="button" class="btn btn-outline-primary" id="deleted">삭제</button>
 		  </div>
-		  <input type="hidden" id="reportStatus" name="reportStatus" value="">
+		  <input type="hidden" id="reportStatus" name="reportStatus" value=""> <!-- 클릭하면 value에 값이 들어가게 함.  -->
 		</form>
-
+ --%>
 
 		<!-- 라디오 버튼으로 변경하는 중..  -->
 		 <%-- <form id="reportStatusForm" action="<%=request.getContextPath()%>/biz/selectByReportStatus" method="get">
@@ -77,6 +77,33 @@
 			  
 			</div>
 		</form>  --%>
+		
+		
+		<%
+		    String reportStatus = request.getParameter("reportStatus");
+		%>
+		<form id="reportStatusForm" action="<%=request.getContextPath()%>/biz/selectByReportStatus" method="get" style="display: flex; justify-content: flex-end; margin-right: 10%;">
+		  <div class="btn-group mt-3 mb-3" role="group" aria-label="Basic example">
+		    <label for="all" class="btn btnStatus btn-outline-primary">
+		      <input type="radio" id="all" name="reportStatus" value="0" 
+		        <% if (reportStatus == null || reportStatus.equals("0") || reportStatus.equals("")) 
+    			{ %>checked<% } %>>전체
+		    </label>
+		    <label for="inProgress" class="btn btnStatus btn-outline-primary">
+		      <input type="radio" id="inProgress" name="reportStatus" value="1" <% if (reportStatus != null && reportStatus.equals("1")) { %>checked<% } %>>
+		     	 신고처리중
+		    </label>
+		    <label for="rejected" class="btn btnStatus btn-outline-primary">
+		      <input type="radio" id="rejected" name="reportStatus" value="2" <% if (reportStatus != null && reportStatus.equals("2")) { %>checked<% } %>>
+		     	 삭제
+		    </label>
+		    <label for="deleted" class="btn btnStatus btn-outline-primary">
+		      <input type="radio" id="deleted" name="reportStatus" value="3" <% if (reportStatus != null && reportStatus.equals("3")) { %>checked<% } %>>
+		      	반려
+		    </label>
+		  </div>
+		</form>
+		
 		
 	
 		<div class="d-flex selectBox" >
@@ -355,7 +382,7 @@ $(document).ready(function() {
 </script> -->
 
 <!-- 버튼으로 분류 조회 -->
-<script type="text/javascript">
+<!-- <script type="text/javascript">
 
 	$(document).ready(function() {
 		$('#all').on("click", function() {
@@ -383,7 +410,18 @@ $(document).ready(function() {
 	    });
   });
   
+</script> -->
+
+<script type="text/javascript">
+  $(document).ready(function() {
+    $('input[type=radio][name=reportStatus]').change(function() {
+      // 선택한 라디오 버튼의 값을 form의 hidden input에 설정하고 form 제출
+      $('#reportStatus').val(this.value);
+      $('#reportStatusForm').submit();
+    });
+  });
 </script>
+
 
 
 <script>
