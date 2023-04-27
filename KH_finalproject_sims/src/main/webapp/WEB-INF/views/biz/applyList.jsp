@@ -57,8 +57,11 @@
 				</form>	
 			</div>
 		
-			<div class="input-group col-md-3" style="padding-right: 60px;">
-			
+			<div class="input-group col-md-3" style="padding-right: 60px;">	
+			<!-- 검색창에 검색값 유지  -->
+			<%
+				String keyword = request.getParameter("keyword");
+			%>
 			<!-- search{s} -->
 				<div style="display: flex;">
 		
@@ -66,16 +69,14 @@
 						<option value="planName">요금제명</option>
 						<option value="userId">신청자</option>
 					</select>
-					<input class="form-control" style="display: inline-block; width: 300px;" type="text" name="keyword" id="keyword">
+					<input class="form-control" style="display: inline-block; width: 300px;" type="text"
+					 name="keyword" id="keyword" value=${keyword}>
 					
 			<!-- 분류 {s} -->
-			
-			
-				</div>
-			
+				</div>	
 			</div>
 				
-				
+			
 			
 			<%
 			    String orderStatus = request.getParameter("orderStatus");
