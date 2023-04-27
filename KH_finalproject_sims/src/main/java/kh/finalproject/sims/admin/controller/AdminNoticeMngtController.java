@@ -180,7 +180,7 @@ public class AdminNoticeMngtController {
 
 		service.deleteNotice(ntcNo);
 		rttr.addFlashAttribute("result", "삭제가 완료되었습니다.");
-		return "redirect:/adminNotice/noticeList";
+		return "redirect:/admin/noticeList";
 	}
 	
 	

@@ -88,14 +88,10 @@
 		                                         	</c:when>
 		                                         	<c:otherwise>
 		                                         		<div class="col-sm-5">
-		                                        			<select class="custom-select" id="inputGroupSelect04">
-		                                        				<!-- <option selected>선택안함</option> -->
-		                                        				<option value="M">M</option>
-		                                        				<option value="F">F</option>
+		                                        			<select class="custom-select" id="inputGroupSelect04" name="userGender">
+		                                        				<option value="M" <c:if test="${userDetail.userGender eq 'M'.charAt(0) }">selected</c:if>>M</option>
+		                                        				<option value="F" <c:if test="${userDetail.userGender eq 'F'.charAt(0) }">selected</c:if>>F</option>
 		                                        			</select>
-		                                        			<!-- <div class="input-group-append">
-		                                        				<button class="btn btn-primary" type="button">선택</button>
-		                                        			</div> -->
 		                                        		</div>
 		                                         	</c:otherwise>
 		                                         </c:choose>
