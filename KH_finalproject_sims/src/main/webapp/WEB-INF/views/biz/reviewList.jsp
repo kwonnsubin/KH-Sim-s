@@ -59,24 +59,6 @@
 		  <input type="hidden" id="reportStatus" name="reportStatus" value=""> <!-- 클릭하면 value에 값이 들어가게 함.  -->
 		</form>
  --%>
-
-		<!-- 라디오 버튼으로 변경하는 중..  -->
-		 <%-- <form id="reportStatusForm" action="<%=request.getContextPath()%>/biz/selectByReportStatus" method="get">
-			<div class="btn-group" role="group" aria-label="Basic radio toggle button group">
-			  <input type="radio" class="btn-check" name="btnradio" id="btnradio1" autocomplete="off" value="0" checked>
-			  <label class="btn btn-outline-primary" for="btnradio1">전체</label>
-			
-			  <input type="radio" class="btn-check" name="btnradio" id="btnradio2" autocomplete="off" value="1">
-			  <label class="btn btn-outline-primary" for="btnradio2">신고처리중</label>
-			
-			  <input type="radio" class="btn-check" name="btnradio" id="btnradio3" autocomplete="off" value="2">
-			  <label class="btn btn-outline-primary" for="btnradio3">반려</label>
-			  
-			  <input type="radio" class="btn-check" name="btnradio" id="btnradio4" autocomplete="off" value="3">
-			  <label class="btn btn-outline-primary" for="btnradio4">삭제</label>
-			  
-			</div>
-		</form>  --%>
 		
 		
 		<%
@@ -418,18 +400,6 @@ $(document).ready(function() {
       // 선택한 라디오 버튼의 값을 form의 hidden input에 설정하고 form 제출
       $('#reportStatus').val(this.value);
       $('#reportStatusForm').submit();
-    });
-  });
-</script>
-
-
-
-<script>
-  // 라디오 버튼 클릭 시 폼 제출
-  const radioButtons = document.querySelectorAll('input[name="btnradio"]');
-  radioButtons.forEach(button => {
-    button.addEventListener('click', () => {
-      document.getElementById('reportStatusForm').submit();
     });
   });
 </script>

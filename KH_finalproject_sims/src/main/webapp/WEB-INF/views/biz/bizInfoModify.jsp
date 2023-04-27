@@ -319,6 +319,10 @@
 					<input type="file" name="logo" placeholder="첨부파일" multiple="multiple"  >
 					<input type="hidden" name="originalFilename" value="${bizinfo.originalFilename }">
 					<input type="hidden" name="logoRenameFilename" value="${bizinfo.logoRenameFilename }">
+					
+					<input type="file" onchange="readURL(this);"> <!-- 미리보기 -->
+					<img id="preview" />
+					
 				</div>
 		       
 		       <div class="btnGroup">
@@ -509,6 +513,20 @@ $(document).ready(function() {
 		  }
 		}
 
+</script>
+
+<script>
+function readURL(input) {
+  if (input.files && input.files[0]) {
+    var reader = new FileReader();
+    reader.onload = function(e) {
+      document.getElementById('preview').src = e.target.result;
+    };
+    reader.readAsDataURL(input.files[0]);
+  } else {
+    document.getElementById('preview').src = "";
+  }
+}
 </script>
 
 </body>

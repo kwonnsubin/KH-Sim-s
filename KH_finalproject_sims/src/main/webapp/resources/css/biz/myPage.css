@@ -11,9 +11,10 @@
     padding: 10px;
     box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.1);
     background-color: #fff;
-    width: 80%;
-    margin-left: 138px;
+    width: 90%;
+    margin-left: 58px;
     border-bottom: 1px solid #ddd;
+    height: 106px;
 }
 @media (max-width: 1200px) {
   #wrap {
@@ -24,3 +25,29 @@
 	position: relative;
     margin-left: 3%;
 }
+.review-wrapper{
+	/* display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    grid-gap: 10px; */
+    display: flex;
+    position: relative;
+
+}
+.review-box {
+  /* grid-column: span 1; */
+  flex: 1;
+  margin-bottom: 40px;
+  padding: 10px;
+  box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.1);
+  background-color: #fff;
+  margin-left: 11px;
+  border-bottom: 1px solid #ddd;
+  height: 200px;
+  
+}
+.review-footer{
+	position: absolute;
+	bottom: 24%;
+}
+
+

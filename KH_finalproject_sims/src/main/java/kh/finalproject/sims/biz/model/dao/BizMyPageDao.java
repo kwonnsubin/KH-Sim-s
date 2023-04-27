@@ -37,4 +37,8 @@ public class BizMyPageDao {
 	public BizMyPageVo getLogo(String bizid) {
 		return sqlSession.selectOne("mypage.getLogo",bizid);
 	}
+	
+	public List<BizMyPageVo> getRecentReview(String bizid){
+		return sqlSession.selectList("mypage.getRecentReview", bizid);
+	}
 }

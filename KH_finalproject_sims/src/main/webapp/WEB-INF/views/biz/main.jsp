@@ -339,6 +339,15 @@
 			    <div class="col chartbox" id="donutchart" style="width: 900px; height: 500px;"></div>
 				<div class="col chartbox" id="donutchart2" style="width: 900px; height: 500px;"></div>
 		    </div>
+		    
+		    <!-- 한 페이지에 여러 차트 그리는 법 -->
+		     <!-- <table class="columns">
+		      <tr>
+		        <td><div id="Sarah_chart_div" style="border: 1px solid #ccc"></div></td>
+		        <td><div id="Anthony_chart_div" style="border: 1px solid #ccc"></div></td>
+		      </tr>
+		    </table> -->
+		    
 	    </div>
     </div>
 </div>

@@ -1,14 +1,24 @@
 package kh.finalproject.sims.biz.controller;
 
 import java.security.Principal;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.List;
 
+import org.json.JSONArray;
+import org.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
+import kh.finalproject.sims.biz.model.service.BizMainService;
 import kh.finalproject.sims.biz.model.service.BizMyPageService;
+import kh.finalproject.sims.biz.model.vo.BizChartVo;
 import kh.finalproject.sims.biz.model.vo.BizMyPageVo;
 
 @Controller
@@ -18,6 +28,9 @@ public class BizMyPageController {
 	
 	@Autowired
 	private BizMyPageService service;
+	
+	@Autowired
+	private BizMainService chartService;
 	
 	//마이페이지 텍스트 통계
 		 @GetMapping("/myPage")
@@ -33,7 +46,7 @@ public class BizMyPageController {
 			 mv.addObject("totalApplyCnt",service.getTotalApplyCnt(bizid));
 			 mv.addObject("totalPlanCnt",service.getTotalPlanCnt(bizid));
 			 
-			 mv.setViewName("/biz/myPage");
+			 
 			 
 			 BizMyPageVo vo = service.getLogo(bizid);
 			 System.out.println("로고 : "+vo);
@@ -46,6 +59,38 @@ public class BizMyPageController {
 				}
 			 mv.addObject("imagePath",imagePath);
 			 
+			 mv.addObject("recentReview",service.getRecentReview(bizid));
+			 System.out.println("getRecentReview(bizid) : "+service.getRecentReview(bizid));
+			 
+			 mv.setViewName("/biz/myPage");
 			 return mv;
+		 }
+		 
+		 //최근 일주일간 해당 통신사 요금제 가입자
+		 @PostMapping("/chart.aj")
+		 @ResponseBody
+		 public String chart(Principal principal
+				 , JSONArray jsonArray
+				 ) {
+			 String bizid = principal.getName();
+			 System.out.println("통신사 아이디 :"+bizid);
+			 
+			 List<BizChartVo> chartList = chartService.selectJoinPlanByDate(bizid);
+			 System.out.println("최근 일주일간 통신사 요금제 가입자 수 chartList :"+chartList);
+			 
+			 DateFormat df = new SimpleDateFormat("yy-MM-dd");
+			 for(BizChartVo vo : chartList) {
+				 Date dt = vo.getOrderDate();
+				 String date = df.format(dt);
+				 
+				 JSONObject jsonObject = new JSONObject();
+				 jsonObject.put("orderDate", date);
+				 jsonObject.put("orderCnt", vo.getOrderCnt());
+				 jsonArray.put(jsonObject);
+			 }
+			 
+			 System.out.println("jsonArray : "+jsonArray);
+			 
+			 return jsonArray.toString();
 		 }
 }

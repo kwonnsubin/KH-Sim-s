@@ -25,4 +25,10 @@ public class BizMyPageVo {
 	
 	String originalFilename;
 	String logoRenameFilename;
+	
+	int rn;
+	String reviewContent;
+	int reviewStar;
+	String userId;
+	Date reviewDate;
 }

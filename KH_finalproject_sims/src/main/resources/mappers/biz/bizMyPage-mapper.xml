@@ -45,4 +45,19 @@
 	  where biz_id=#{bizid}
   </select>
   
+  <!-- 최근 통신사 리뷰 / 최신순 3개만 -->
+  <select id="getRecentReview" resultType="kh.finalproject.sims.biz.model.vo.BizMyPageVo">
+  	SELECT * 
+	FROM (
+	    SELECT ROW_NUMBER() OVER (ORDER BY REVIEW_NO DESC) rn, 
+	    		REVIEW_CONTENT, REVIEW_STAR, USER_ID, REVIEW_DATE
+	    FROM biz_review
+	    LEFT JOIN  REVIEW_REPORT
+        USING(REVIEW_NO)
+	    WHERE biz_id = #{bizid}
+	    AND REVIEW_HIDDEN != 1
+	) 
+	WHERE rn BETWEEN 1 AND 4
+  </select>
+  
 </mapper>

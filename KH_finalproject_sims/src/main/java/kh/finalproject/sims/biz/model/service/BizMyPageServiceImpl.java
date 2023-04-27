@@ -43,4 +43,9 @@ public class BizMyPageServiceImpl implements BizMyPageService{
 	public BizMyPageVo getLogo(String bizid) {
 		return dao.getLogo(bizid);
 	}
+
+	@Override
+	public List<BizMyPageVo> getRecentReview(String bizid) {
+		return dao.getRecentReview(bizid);
+	}
 }

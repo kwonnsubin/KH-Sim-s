@@ -17,4 +17,6 @@ public interface BizMyPageService {
 	public int getTotalPlanCnt(String bizid);
 	
 	public BizMyPageVo getLogo(String bizid);
+	
+	public List<BizMyPageVo> getRecentReview(String bizid);
 }
