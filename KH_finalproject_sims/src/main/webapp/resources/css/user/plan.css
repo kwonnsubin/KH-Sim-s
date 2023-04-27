@@ -107,3 +107,18 @@ a:active {
   	border-style: hidden;
   	box-shadow: 0 0 0 1px #dee2e6;
 }
+
+.table-rd-light {
+	border-radius: 0.25rem;
+  	border-style: hidden;
+  	box-shadow: 0 0 0 1px #f9fafb;
+}
+
+.table-active-bl {
+    --bs-table-accent-bg: rgb(236 245 255);
+    color: var(--bs-table-active-color);
+}
+
+.bg-green {
+    background-color: ##b8c9ac1f;
+}
