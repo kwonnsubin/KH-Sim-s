@@ -34,6 +34,7 @@
 				</when>
 			</choose>
 		</if>
+		ORDER BY A.WRITE_DATE DESC
 		) C
 		WHERE 1=1
 			AND RO BETWEEN #{start} AND #{end}
@@ -132,7 +133,7 @@
 	
 	
 	<!-- 통신사 탈퇴정보 리스트 -->
-	<select id="selectWithdrawalList" resultType="adBizVo">
+	<!-- <select id="selectWithdrawalList" resultType="adBizVo">
 	/** 통신사 탈퇴정보 리스트(selectWithdrawalList)**/
 		SELECT
 			*
@@ -140,7 +141,7 @@
 			BIZ A
 			INNER JOIN MEMBER B ON A.BIZ_ID = B.ID
 		
-	</select>
+	</select> -->
 	
 	<!-- 통신사 탈퇴정보 상세 -->
 	<select id="selectWithdrawalDetail" resultType="adBizVo">
@@ -214,7 +215,7 @@
 						</when>
 					</choose>
 				</if>
-				ORDER BY A.ORDER_NO DESC
+				ORDER BY A.ORDER_DATE DESC
 			) C
 		) D
 		WHERE 1=1

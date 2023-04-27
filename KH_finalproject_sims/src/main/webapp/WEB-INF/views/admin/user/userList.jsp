@@ -77,7 +77,7 @@
 															<th>아이디</th>
 															<th>이름</th>
 															<th>메일</th>
-															<th>전화번호</th>
+															<th>신청상태</th>
 															<th>가입일</th>
 														</tr>
 													</thead>
@@ -88,7 +88,14 @@
 																<td><a href="<%=request.getContextPath()%>/admin/userDetail/${list.userId}">${list.userId}</a></td>
 																<td>${list.userName}</td>
 																<td>${list.userEmail}</td>
-																<td>${list.userPhone}</td>
+																<td>
+																	<c:choose>
+																			<c:when test="${list.enable eq '0'}"> 인증 전 </c:when>
+																			<c:when test="${list.enable eq '1'}"> 가입 완료 </c:when>
+																			<c:when test="${list.enable eq '3'}"> 반려</c:when>
+																			<c:otherwise>탈퇴 회원</c:otherwise>
+																	</c:choose>
+																</td>
 																<td><fmt:formatDate value="${list.userWrdate}" pattern="yyyy.MM.dd"/> </td>
 															</tr>
 														</c:forEach>

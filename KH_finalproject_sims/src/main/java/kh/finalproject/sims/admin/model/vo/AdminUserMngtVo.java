@@ -50,8 +50,11 @@ public class AdminUserMngtVo {
 	private int pageLimit;
 	private int listLimit;
 	
-
+	//모든멤버
+	private int enable;
+	private String opinion;
 	
+	private String planName;
 	
 	
 	

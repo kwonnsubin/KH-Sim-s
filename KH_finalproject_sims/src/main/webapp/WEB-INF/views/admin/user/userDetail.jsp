@@ -80,10 +80,25 @@
 		                                            <input type="text" class="form-control"  name="userEmail" <c:if test="${cmd eq 'read' }">readonly</c:if> value="${userDetail.userEmail}">
 		                                        </div>
 		                                         <label for="userGender" class="col-sm-1 col-form-label text-center">성별</label>
-		                                        <div class="col-sm-5">
-		                                            <input type="text" class="form-control"  name="userGender" <c:if test="${cmd eq 'read' }">readonly</c:if> value="${userDetail.userGender}">
-		                                        </div>
-		                                        
+		                                         <c:choose>
+		                                         	<c:when test="${cmd eq 'read'}">
+		                                         		<div class="col-sm-5">
+		                                            	<input type="text" class="form-control"  name="userGender" <c:if test="${cmd eq 'read' }">readonly</c:if> value="${userDetail.userGender}">
+		                                        		</div>
+		                                         	</c:when>
+		                                         	<c:otherwise>
+		                                         		<div class="col-sm-5">
+		                                        			<select class="custom-select" id="inputGroupSelect04">
+		                                        				<!-- <option selected>선택안함</option> -->
+		                                        				<option value="M">M</option>
+		                                        				<option value="F">F</option>
+		                                        			</select>
+		                                        			<!-- <div class="input-group-append">
+		                                        				<button class="btn btn-primary" type="button">선택</button>
+		                                        			</div> -->
+		                                        		</div>
+		                                         	</c:otherwise>
+		                                         </c:choose>
 		                                    </div>
 		                                    <div class="form-group row">
 		                                        <label for="userSsn" class="col-sm-1 col-form-label text-center">생년월일</label>
@@ -95,15 +110,24 @@
 		                                            <input type="text" class="form-control"  name="userPhone" <c:if test="${cmd eq 'read' }">readonly</c:if> value="${userDetail.userPhone}">
 		                                        </div>
 		                                    </div>
-		                                    <div class="form-group">
-	                                			<label for="userAddress" class="col-sm-1 col-form-label text-center">주소</label>
-	                                			<input type="text" class="form-control"  name="userAddress" <c:if test="${cmd eq 'read' }">readonly</c:if> value="${userDetail.userAddress}">
-	                            			</div>
-	                            			<div class="form-group">
-	                                			<label for="userAddress2" class="col-sm-1 col-form-label text-center">상세 주소</label>
-	                                			<input type="text" class="form-control"  name="userAddress2" <c:if test="${cmd eq 'read' }">readonly</c:if> value="${userDetail.userAddress}">
-	                            			</div>
-	                            		</div>	
+		                                    
+	                            		</div>
+	                            			
+									</div>
+									<div class="card">
+	                    				<div class="card-header">
+	                        				<h5>신청한 요금제</h5>
+	                    				</div>
+	                    				<div class="card-body">
+		                                    <div class="form-group row">
+		                                        <label for="planName" class="col-sm-1 col-form-label text-center">요금제 </label>
+		                                        <div class="col-sm-5">
+		                                            <input type="text" class="form-control"  name="planName" readonly value="${userDetail.planName}">
+		                                        </div>
+		                                        
+		                                    </div>
+	                            		</div>
+	                            			
 									</div>
 								</div>
 							</form>

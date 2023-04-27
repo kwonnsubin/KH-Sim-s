@@ -97,9 +97,16 @@
 			                                        </div>
 			                                    </div>
 			                           			 <div class="form-group row">
-			                                        <label for="bizLocation" class="col-sm-2 col-form-label text-center">주소</label>
+			                                        <label for="bizLocation" class="col-sm-2 col-form-label text-center">신청상태</label>
 			                                        <div class="col-sm-10">
-			                                            <input type="text" class="form-control"  name="bizLocation" <c:if test="${cmd eq 'read' }">readonly</c:if> value="${applyDetail.bizLocation}">
+			                                            <input type="text" class="form-control"  name="bizLocation" <c:if test="${cmd eq 'read' }">readonly</c:if> 
+			                                            	<c:choose>
+																<c:when test="${applyDetail.enable eq '0'.charAt(0)}">value="인증 전" </c:when>
+																<c:when test="${applyDetail.enable eq '1'.charAt(0)}">value="인증 완료" </c:when>
+																<c:when test="${applyDetail.enable eq '3'.charAt(0)}">value="반려" </c:when>
+																<c:otherwise>value=""</c:otherwise>
+															</c:choose>
+			                                            >
 			                                        </div>
 			                                    </div>
 		                            		</div>	
