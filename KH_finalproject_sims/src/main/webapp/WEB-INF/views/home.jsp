@@ -136,12 +136,12 @@
 	    					</div>
 	    					
 	    				</div>
-	    				<div class="col-4 row mb-2">
+	    				<div class="d-flex flex-column col-4 mb-2">
 	    					<div class="text-end">
 	    						<i class="fa-solid fa-star me-2" style="color: #ffdd00;"></i><span>${viewList.bizReviewStar}</span>
-	    						<p class="viewCount">${viewList.orderCount}명 선택</p>
+	    						<p class="viewCount">${viewList.viewRank}회 조회</p>
 	    					</div>
-	    					<div class="text-end align-self-end">
+	    					<div class="mt-auto text-end">
 		    					<div class="planPrice">
 			    					<p>월&nbsp;<p>
 			    					<p class="priceText">${viewList.planPrice}</p>
@@ -206,12 +206,12 @@
 	    					</div>
 	    					
 	    				</div>
-	    				<div class="col-4 row mb-2">
+	    				<div class="d-flex flex-column col-4 mb-2">
 	    					<div class="text-end">
 	    						<i class="fa-solid fa-star me-2" style="color: #ffdd00;"></i><span>${likeList.bizReviewStar}</span>
-	    						<p class="viewCount">${likeList.orderCount}명 선택</p>
+	    						<p class="viewCount">${likeList.likeRank}명 찜</p>
 	    					</div>
-	    					<div class="text-end align-self-end">
+	    					<div class="mt-auto text-end">
 		    					<div class="planPrice ms-2 mt-3">
 			    					<p>월&nbsp;<p>
 			    					<p class="priceText">${likeList.planPrice}</p>
@@ -276,12 +276,12 @@
 	    					</div>
 	    					
 	    				</div>
-	    				<div class="col-4 row mb-2">
+	    				<div class="d-flex flex-column col-4 mb-2">
 	    					<div class="text-end">
 	    						<i class="fa-solid fa-star me-2" style="color: #ffdd00;"></i><span>${orderList.bizReviewStar}</span>
 	    						<p class="viewCount">${orderList.orderCount}명 선택</p>
 	    					</div>
-	    					<div class="text-end align-self-end">
+	    					<div class="mt-auto text-end">
 		    					<div class="planPrice ms-2 mt-3">
 			    					<p>월&nbsp;<p>
 			    					<p class="priceText">${orderList.planPrice}</p>

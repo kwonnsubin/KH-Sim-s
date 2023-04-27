@@ -100,9 +100,15 @@
 			    					<p>&nbsp;원</p>
 		    					</div>
 		    				</div>
-		    				<div class="col-4 text-end align-self-end mb-2">
-		    					<button type="button" class="btn btn-primary btn-sm" onclick="location.href='${pageContext.request.contextPath}/plan/${list.planNo}'">자세히 보기</button>
-		    				</div>
+		    				<div class="d-flex flex-column col-4 mb-2">
+		    					<div class="text-end">
+		    						<i class="fa-solid fa-star me-2" style="color: #ffdd00;"></i><span>${list.bizReviewStar}</span>
+		    						<p class="viewCount">${list.orderCount}명 선택</p>
+		    					</div>
+		    					<div class="mt-auto text-end">
+			    					<button type="button" class="btn btn-primary btn-sm" onclick="location.href='${pageContext.request.contextPath}/plan/${list.planNo}'">자세히 보기</button>
+		    					</div>
+    						</div>
 		    			</div>
 	    				</c:forEach>
 	    				</c:if>

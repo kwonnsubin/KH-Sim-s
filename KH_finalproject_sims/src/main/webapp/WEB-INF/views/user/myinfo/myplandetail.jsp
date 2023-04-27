@@ -159,7 +159,7 @@
 	       							<p class="mb-2">카드번호		|	${poVo.cardNumber}</p>
        							</c:if>
        							<c:if test="${poVo.planPay eq 2}">
-	       							<p class="mb-2">계좌번호		|	${poVo.bankNumber}</p>
+	       							<p class="mb-2">계좌번호		|	${poVo.accNumber}</p>
        							</c:if>
        							
        							<c:if test="${poVo.planBill eq 1}">

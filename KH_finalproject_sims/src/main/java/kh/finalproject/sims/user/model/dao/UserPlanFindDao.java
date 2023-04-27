@@ -30,7 +30,7 @@ public class UserPlanFindDao {
 	}
 	
 	public int cntPlanFilterList(Map<String, Object> searchMap) {
-		return sqlSession.selectOne("plan.cntSearchPlanFilterList", searchMap);
+		return sqlSession.selectOne("plan.cntPlanFilterList", searchMap);
 	}
 
 	public List<BizInfoMngtVo> selectBizNameList() {

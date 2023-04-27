@@ -27,7 +27,7 @@ public class UserPlanFindServiceImpl implements UserPlanFindService {
 	// 검색 요금제 리스트
 	@Override
 	public List<PlanVo> selectPlanFilterList(Map<String, Object> searchMap) {
-		return dao.selectPlanList(searchMap);
+		return dao.selectPlanFilterList(searchMap);
 	}
 
 	// 요금제 총 갯수
@@ -39,7 +39,7 @@ public class UserPlanFindServiceImpl implements UserPlanFindService {
 	// 검색된 요금제 갯수
 	@Override
 	public int cntPlanFilterList(Map<String, Object> searchMap) {
-		return dao.cntPlanList(searchMap);
+		return dao.cntPlanFilterList(searchMap);
 	}
 
 	// 통신사 리스트

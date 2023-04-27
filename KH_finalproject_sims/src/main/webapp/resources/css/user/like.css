@@ -21,6 +21,7 @@ p {
 	width: 90%;
 
 	padding: 20px;
+	min-height: 200px; 
 	
 	background: #fff;
 	-webkit-border-radius: 10px;

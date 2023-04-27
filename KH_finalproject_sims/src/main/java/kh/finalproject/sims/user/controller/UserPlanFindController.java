@@ -39,7 +39,7 @@ public class UserPlanFindController {
 			, String select
 			, HttpServletRequest req
 			) {
-		Map<String, Object> searchMap;
+		Map<String, Object> searchMap = null;
 		List<PlanVo> planList = null;
 		int cnt = 0;
 		

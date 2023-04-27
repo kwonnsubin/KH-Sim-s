@@ -625,15 +625,15 @@
 		    					<p>&nbsp;원</p>
 	    					</div>
 	    				</div>
-	    				<div class="col-4 row mb-2">
+	    				<div class="d-flex flex-column col-4 mb-2">
 	    					<div class="text-end">
 	    						<i class="fa-solid fa-star me-2" style="color: #ffdd00;"></i><span>${list.bizReviewStar}</span>
 	    						<p class="viewCount">${list.orderCount}명 선택</p>
 	    					</div>
-	    					<div class="text-end align-self-end">
+	    					<div class="mt-auto text-end">
 		    					<button type="button" class="btn btn-primary btn-sm" onclick="location.href='${pageContext.request.contextPath}/plan/${list.planNo}'">자세히 보기</button>
 	    					</div>
-	    				</div>
+    					</div>
 	    			</div>
 	    			</c:forEach>
 	    			</c:if>
@@ -707,45 +707,5 @@
   <script src="<%= request.getContextPath() %>/resources/chain/assets/js/custom.js"></script>
   <script src="<%= request.getContextPath() %>/resources/js/user/plans.js"></script>
   
-  <script>
-	(function() {
-		var w = window;
-		if (w.ChannelIO) {
-			return w.console.error("ChannelIO script included twice.")
-		}
-		var ch = function() {
-			ch.c(arguments)
-		};
-		ch.q = [];
-		ch.c = function(args) {
-			ch.q.push(args)
-		};
-		w.ChannelIO = ch;
-		function l() {
-			if (w.ChannelIOInitialized) {
-				return
-			}
-			w.ChannelIOInitialized = true;
-			var s = document.createElement("script");
-			s.type = "text/javascript";
-			s.async = true;
-			s.src = "https://cdn.channel.io/plugin/ch-plugin-web.js";
-			var x = document.getElementsByTagName("script")[0];
-			if (x.parentNode) {
-				x.parentNode.insertBefore(s, x)
-			}
-		}
-		if (document.readyState === "complete") {
-			l()
-		} else {
-			w.addEventListener("DOMContentLoaded", l);
-			w.addEventListener("load", l)
-		}
-		})();
-
-		ChannelIO('boot', {
-			"pluginKey" : "<c:out value='${channelIO}' />"
-		});
-	</script>
 </body>
 </html>
