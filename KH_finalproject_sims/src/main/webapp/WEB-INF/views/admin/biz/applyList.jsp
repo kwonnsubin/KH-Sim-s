@@ -34,7 +34,7 @@
 									</div>
 								</div>
 								<form id="searchForm" name="searchForm" action="<%=request.getContextPath()%>/admin/applyList" method="post">
-									<input type="hidden" name="currentPage" value="${currentPage}"/>
+									<%-- <input type="hidden" name="currentPage" value="${currentPage}"/> --%>
 									<div class="col-md-12">
 										<div class="card">
 											<div class="card-body">
