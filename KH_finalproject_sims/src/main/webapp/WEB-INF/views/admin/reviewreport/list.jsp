@@ -61,15 +61,7 @@
 									<!-- 검색 {e} -->
 									<!-- 처리 상태별로 보기 버튼 {s} -->
 									<form id="reportStatusForm" action="<%=request.getContextPath()%>/admin/reviewreport/list" method="post" style="display: flex; justify-content: flex-end;">
-<!-- 	 	 							<div class="btn-group btn-group mt-3 mb-3" role="group" aria-label="Basic example" style="font-size: smaller;">
-		 								 		<button type="button" class="btn btn-primary" id="all">전체</button>
-											    <button type="button" class="btn btn-primary" id="not-confirmed">미확인</button>
-											    <button type="button" class="btn btn-primary" id="rejected">반려</button>
-											    <button type="button" class="btn btn-primary" id="deleted">삭제</button>
-										</div> 
-										<input type="hidden" id="reportStatus" name="reportStatus"> -->
 									 <div class="btn-group btn-group-toggle mt-3 mb-3" data-toggle="buttons">
- 									 <!-- <div class="btn-group btn-group-toggle mt-3 mb-3" data-toggle="buttons"> -->
 									    <label for="all" class="btn btn-primary">
 									      <input type="radio" id="all" name="reportStatus" value="0">전체
 									    </label>
@@ -155,39 +147,11 @@
 <jsp:include page="/WEB-INF/views/admin/include/footer.jsp" />
 </body>
 <script type="text/javascript">
-
-/*   	$(document).ready(function() {
-	    $('#all').on("click", function() {
-	      // reportStatus 값을 form의 hidden input에 설정하고 form 제출
-	      $('#reportStatusForm').submit();
-		});
- 		
-	    $('#not-confirmed').on("click", function() {
-	      // reportStatus 값을 form의 hidden input에 설정하고 form 제출
-	      $('#reportStatus').val(1);
-	      $('#reportStatusForm').submit();
-	    });
-	  
-	    $('#deleted').on("click", function() {
-	      // reportStatus 값을 form의 hidden input에 설정하고 form 제출
-	      $('#reportStatus').val(2);
-	      $('#reportStatusForm').submit();
-	    });
-	
-	    $('#rejected').on("click", function() {
-	      // reportStatus 값을 form의 hidden input에 설정하고 form 제출
-	      $('#reportStatus').val(3);
-	      $('#reportStatusForm').submit();
-	    });
-  }); */
-  
-  
    $(document).ready(function() {
 	     var selectedValue = "<%= request.getParameter("reportStatus") %>";
 	     // 서버에서 전달된 선택값
 	     
 	     if (selectedValue) { // selectedValue가 존재하는 경우
-	       //$('input[type=radio][name=reportStatus][value="' + selectedValue + '"]').prop('checked', true); // 선택값에 해당하는 라디오 버튼 체크
 	         $('input[type=radio][name=reportStatus][value="' + selectedValue + '"]').parent().addClass('active');
 	     }
 
@@ -196,8 +160,6 @@
 	       $('#reportStatusForm').submit(); // 폼 제출
 	     });
 	   });
-
-  
 </script>
 
 </html>
