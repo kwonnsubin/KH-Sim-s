@@ -120,5 +120,12 @@ a:active {
 }
 
 .bg-green {
-    background-color: ##b8c9ac1f;
+    background-color: #b8c9ac1f;
 }
+
+.card-blue {
+	background-color: #4b8ef1;
+	color: white;
+	border: 0;
+}
+

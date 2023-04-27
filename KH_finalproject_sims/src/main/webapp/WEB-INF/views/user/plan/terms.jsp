@@ -102,7 +102,7 @@
 							</div>
 						</div>
 
-						<div class="alert-div mb-3 text-center" style="displan: none"></div>
+						<div class="alert-div mb-3 text-center" style="display: none;"></div>
 
 						<div class="row btn_confirm text-center">
 							<div class="col">

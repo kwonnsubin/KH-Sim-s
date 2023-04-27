@@ -32,10 +32,14 @@
 	<jsp:include page="/WEB-INF/views/header.jsp"/>
 	
 	<section>
-		<div class="container-sm div-m">
+		<div class="container-sm div-sm">
 			<div class="row">
 				<div class="col-sm-4 mt-5">
-					<h4 class="m-3 text-center">요금제 정보</h4>
+					<div class="card card-blue">
+						<div class="card-body">
+							<h4 class="text-center">요금제 정보</h4>
+						</div>
+					</div>
 					<table class="table table-bordered table-rd">
 						<tr>
 							<td>요금제명</td> 
@@ -64,13 +68,17 @@
 					</table>
 				</div>
 				<div class="col-sm-8 mt-5">
-					<h4 class="m-3 text-center">가입 조건 선택</h4>
+					<div class="card card-blue">
+						<div class="card-body">
+							<h4 class="text-center">가입 조건 선택</h4>
+						</div>
+					</div>
 					<form id="option" action="${cpath}/plan/${plan.planNo}/order">
 						<div class="card">
 							<div class="card-body">
 								<table class="w-100 table-p-10">
 									<tr>
-										<td style="width: 30%">가입유형</td>
+										<td style="width: 20%">가입유형</td>
 										<td>
 											<input type="radio" class="btn-check" name="join-category" value="1" id="change-num" autocomplete="off">
 											<label class="btn-inherit btn-m btn-outline-secondary" for="change-num">번호이동</label>
@@ -113,8 +121,9 @@
 								</table>
 							</div>
 						</div>
-						<div class="text-end mt-3">
-							<input class="btn btn-lg" type="submit" value="구매신청">
+						<div class="alert-div my-2 text-center" style="display: none;"></div>
+						<div class="text-end my-3">
+							<input class="btn btn-lg submit" type="submit" value="구매신청" style="padding: 8px 30px;">
 						</div>
 					</form>
 					
@@ -138,24 +147,31 @@
 	const form = document.getElementById("option");
 
 	form.addEventListener("submit", (event) => {
-	  event.preventDefault(); // 폼 제출 방지
+		event.preventDefault(); // 폼 제출 방지
+		
+		const selectedJoinCategory = document.querySelector('input[name="join-category"]:checked');
+		const selectedSimYn = document.querySelector('input[name="sim-yn"]:checked');
+		const selectedSimType = document.querySelector('input[name="sim-type"]:checked');
 
-	  const selectedJoinCategory = document.querySelector('input[name="join-category"]:checked').value;
-	  const selectedSimYn = document.querySelector('input[name="sim-yn"]:checked').value;
-	  const selectedSimType = document.querySelector('input[name="sim-type"]:checked').value;
+		if (!selectedJoinCategory || !selectedSimYn || !selectedSimType) {
+		    $('.alert-div').html("<p style='color: red;'>가입 조건을 모두 선택해주세요.</p>");
+		    $('.alert-div').css("display", "block");
+		} else {
+		    sessionStorage.setItem('joinCategory', selectedJoinCategory.value);
+		    sessionStorage.setItem('simYn', selectedSimYn.value);
+		    sessionStorage.setItem('simType', selectedSimType.value);
 
-	  sessionStorage.setItem('joinCategory', selectedJoinCategory);
-	  sessionStorage.setItem('simYn', selectedSimYn);
-	  sessionStorage.setItem('simType', selectedSimType);
-	  
-	  console.log(sessionStorage.getItem('joinCategory'));
-	  console.log(sessionStorage.getItem('simYn'));
-	  console.log(sessionStorage.getItem('simType'));
-	  
-	  const planNo = "${plan.planNo}";
-	  location.href = '${cpath}/plan/${planNo}/order?joinCategory=${selectedJoinCategory}&simYn=${selectedSimYn}&simType=${selectedSimType}';
+		    console.log(sessionStorage.getItem('joinCategory'));
+		    console.log(sessionStorage.getItem('simYn'));
+		    console.log(sessionStorage.getItem('simType'));
+
+		    const planNo = "${plan.planNo}";
+		    location.href = '${cpath}/plan/${planNo}/order?joinCategory=${selectedJoinCategory.value}&simYn=${selectedSimYn.value}&simType=${selectedSimType.value}';
+		}
+
 	});
 	
+
 	</script>
 </body>
 </html>
