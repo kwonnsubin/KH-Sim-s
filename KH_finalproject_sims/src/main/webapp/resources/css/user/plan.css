@@ -129,3 +129,25 @@ a:active {
 	border: 0;
 }
 
+input:focus {
+	outline: none !important; 
+	border-color: #dee2e6; 
+}
+
+input[type="text"], input[type="password"] {
+	border: 0;
+	border-bottom: 1px solid #dee2e6;
+	height: 95%;
+	padding: 8px;
+	box-sizing: border-box; /* 선택적인 스타일링 */
+}
+
+.btn-check:active+.btn-outline-secondary
+, .btn-check:checked+.btn-outline-secondary
+, .btn-outline-secondary.active
+, .btn-outline-secondary.dropdown-toggle.show
+, .btn-outline-secondary:active {
+    color: #fff;
+    background-color: #4b8ef1;
+    border-color: transparent;
+}
