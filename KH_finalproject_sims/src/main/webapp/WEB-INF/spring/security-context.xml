@@ -15,6 +15,11 @@
 		<s:intercept-url pattern="/mypage/**" access="hasRole('ROLE_USER')"/>
 		<s:intercept-url pattern="/planfind" access="hasRole('ROLE_USER')"/>
 		<s:intercept-url pattern="/plan/**/order/**" access="hasRole('ROLE_USER')"/>
+		<s:intercept-url pattern="/plan/**/like" access="hasRole('ROLE_USER')"/>
+		<s:intercept-url pattern="/faq/qna/**/answer" access="hasRole('ROLE_USER')"/>
+		<s:intercept-url pattern="/faq/ans/**/reply" access="hasRole('ROLE_USER')"/>
+		<s:intercept-url pattern="/faq/myqna" access="hasRole('ROLE_USER')"/>
+		<s:intercept-url pattern="/faq/qna/write" access="hasRole('ROLE_USER')"/>
 		<s:intercept-url pattern="/biz/**" access="hasRole('ROLE_BIZ')"/>
 		<s:intercept-url pattern="/admin/**" access="hasRole('ROLE_ADMIN')"/>
 		<s:intercept-url pattern="/feeapitest" access="hasRole('ROLE_ADMIN')"/>
