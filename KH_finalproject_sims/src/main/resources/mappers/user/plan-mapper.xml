@@ -185,6 +185,10 @@
 		select biz_name from biz
 	</select>
 	
+	<select id="selectbizIdList" resultType="bvo">
+		select biz_id from biz
+	</select>
+	
 	<select id="selectUser" parameterType="string" resultType="int">
 		select count(*) from custom_q where user_id=#{userId}
 	</select>

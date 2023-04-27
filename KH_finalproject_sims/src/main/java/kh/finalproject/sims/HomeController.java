@@ -59,10 +59,13 @@ public class HomeController {
 		List<PlanVo> viewRankList = userPlanFindService.selectViewRankList();
 		List<PlanVo> likeRankList = userPlanFindService.selectLikeRankList();
 		List<PlanVo> orderRankList = userPlanFindService.selectOrderRankList();
+//		List<BizInfoMngtVo> bizList = userPlanFindService.selectBizIdList();
 		
 		mv.addObject("viewRankList", viewRankList);
 		mv.addObject("likeRankList", likeRankList);
 		mv.addObject("orderRankList", orderRankList);
+//		mv.addObject("bizList", bizList);
+		
 		mv.setViewName("home");
 		
 		return mv;

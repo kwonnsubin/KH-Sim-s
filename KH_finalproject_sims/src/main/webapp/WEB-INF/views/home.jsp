@@ -296,6 +296,17 @@
 	    </div>
 	    <!-- 랭킹 div 끝 -->
 	    
+	    <!-- 통신사 이미지 
+	    <div class="row">
+	    	<c:forEach items="${bizList}" var="biz">
+		    	<div class="col">
+		    		<a href="${pageContext.request.contextPath}/bizinfo/${biz.bizId}">
+			    		<img src="<%=request.getContextPath()%>/resources/img/${biz.bizId}.png" style="max-width: 100px; height: 40px;">
+		    		</a>
+	    		</div>
+	    	</c:forEach>
+	    </div>
+	    -->
 	</section>
 	
 	<jsp:include page="/WEB-INF/views/footer.jsp"/>

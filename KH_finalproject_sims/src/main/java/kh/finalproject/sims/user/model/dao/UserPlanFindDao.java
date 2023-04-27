@@ -68,5 +68,9 @@ public class UserPlanFindDao {
 	public List<PlanVo> selectBizPlanList(String bizId) {
 		return sqlSession.selectList("plan.selectBizPlanList", bizId);
 	}
+
+	public List<BizInfoMngtVo> selectBizIdList() {
+		return sqlSession.selectList("plan.selectBizIdList");
+	}
 	
 }
