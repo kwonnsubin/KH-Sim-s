@@ -73,7 +73,7 @@
 													<tbody>
 														<c:forEach var="review" items="${requestScope.paging.page}">
 															<tr>
-																<td class="text-center">${review.reviewNo}</td>
+																<td class="text-center">${review.n}</td>
 																<td>
 																	<c:choose>
 															          <c:when test="${fn:length(review.reviewContent) > 40}">
