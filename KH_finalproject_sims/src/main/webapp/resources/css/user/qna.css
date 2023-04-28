@@ -40,7 +40,7 @@ a:active {
 #input-answer {
 	position: fixed;
 	bottom: 0;
-	max-width: 800px
+	max-width: 960px
 }
 
 textarea {
@@ -91,4 +91,16 @@ textarea {
 	font-weight: bolder;
 }
 
+.btn:hover {
+    background: #0a58ca;
+    color: #fff;
+}
 
+.btn-inherit {
+	background: inherit;
+	color: inherit;
+}
+
+.btn-inherit:hover {
+	background: #808080;
+}

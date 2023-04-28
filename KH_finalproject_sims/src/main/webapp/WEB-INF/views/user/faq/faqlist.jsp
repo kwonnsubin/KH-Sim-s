@@ -43,7 +43,7 @@
 			<div class="row">
 				<div class="col-lg-12 my-3">
 					<h5 class="py-3 fw-bolder">알뜰폰 궁금한 점 무엇이든 물어보세요</h5>
-					<div id="carouselExampleControls" class="carousel slide"
+					<div id="carouselExampleControls" class="carousel slide carousel-fade"
 						data-bs-ride="carousel">
 						<div class="carousel-inner">
 							<c:forEach items="${faqlist}" var="faq">
