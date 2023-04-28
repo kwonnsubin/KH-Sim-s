@@ -33,7 +33,7 @@
             SELECT * 
             FROM
         		(SELECT 
-                ROWNUM AS N
+                ROW_NUMBER() OVER (ORDER BY REPORT_DATE DESC) AS n
                , R.REVIEW_NO
                , R.REPORT_DATE
                , CASE R.REPORT_STATUS
@@ -55,7 +55,7 @@
 		</choose>
 		)
         WHERE N BETWEEN #{start} AND #{end}
-        ORDER BY REPORT_DATE DESC
+        <!-- ORDER BY REPORT_DATE DESC -->
 	</select>
 	
 	<!-- 글 개수 -->

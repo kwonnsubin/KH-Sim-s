@@ -94,7 +94,7 @@
 													<tbody>
 														<c:forEach var="reviewreport" items="${requestScope.paging.page}">
 															<tr>
-																<td class="text-center">${reviewreport.reviewNo}</td>
+																<td class="text-center">${reviewreport.n}</td>
 																<td>
 																	<a href="<%=request.getContextPath()%>/admin/reviewreport/detail/${reviewreport.reviewNo}" style="font-weight: bold;">${reviewreport.reportReason}</a>
 																	<jsp:useBean id="now" class="java.util.Date" />

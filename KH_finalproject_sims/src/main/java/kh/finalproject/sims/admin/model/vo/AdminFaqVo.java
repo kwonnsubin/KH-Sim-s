@@ -26,6 +26,7 @@ public class AdminFaqVo {
 	private String faqRewriter; // 수정자아이디
 	private Date faqDate; // 작성일
 	private Date faqRedate; // 수정일
+	private int n; // rowNumber
 	
 	// 조회용 변수
 	//private String searchOption;	// 조회 조건 

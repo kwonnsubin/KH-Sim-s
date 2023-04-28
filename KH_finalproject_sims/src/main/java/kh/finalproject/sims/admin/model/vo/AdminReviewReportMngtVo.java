@@ -28,4 +28,5 @@ public class AdminReviewReportMngtVo {
 	private int reviewHidden; // 숨김처리
 	private Date reviewDate; // 리뷰등록일
 	private int reviewStar; // 별점
+	private int n; // rowNumber
 }

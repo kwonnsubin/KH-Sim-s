@@ -40,18 +40,10 @@
 	
 	<!-- search -->
 	<select id="searchQnaPageList" parameterType="map" resultType="kh.finalproject.sims.admin.model.vo.AdminQnaMngtVo">
-		SELECT 
-		AQ_NO
-		, USER_ID
-		, AQ_TITLE
-		, AQ_CONTENT
-		, AQ_DATE
-		, AQ_REDATE
-		, AQ_VIEWS
-		, AQ_ANSWERS
+		SELECT *
 		FROM (
         SELECT
-            ROWNUM AS N
+            ROW_NUMBER() OVER (ORDER BY AQ_DATE DESC) AS n
             , AQ_NO
             , USER_ID
             , AQ_TITLE
@@ -68,7 +60,7 @@
 		</choose>
 		)
 		WHERE N BETWEEN #{start} AND #{end}
-		ORDER BY AQ_DATE DESC
+		<!-- ORDER BY AQ_DATE DESC -->
 	</select>
 	
 	<!-- 글 개수 -->

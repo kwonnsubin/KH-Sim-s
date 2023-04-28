@@ -44,19 +44,12 @@
 		DELETE FROM FAQ WHERE FAQ_NO=#{faqNo}
 	</delete>
 	
-	<!-- 페이징 search 글 목록-->
+	<!-- search-->
 	<select id="searchFaqPageList" parameterType="map" resultType="kh.finalproject.sims.admin.model.vo.AdminFaqVo">
-	  SELECT
-	    FAQ_NO,
-	    FAQ_TITLE,
-	    FAQ_CONTENT,
-	    ADMIN_ID,
-	    FAQ_REWRITER,
-	    FAQ_DATE,
-	    FAQ_REDATE
+	  SELECT *
 	  FROM(
 	    SELECT
-	      ROWNUM AS N,
+	      ROW_NUMBER() OVER (ORDER BY FAQ_REDATE DESC) AS n,
 	      FAQ_NO,
 	      FAQ_TITLE,
 	      FAQ_CONTENT,
@@ -70,13 +63,12 @@
 	      <when test="searchType != null and searchType == 'writer'"> WHERE ADMIN_ID LIKE '%'|| #{keyword} ||'%'</when>
 	      <when test="searchType != null and searchType == 'content'"> WHERE FAQ_CONTENT LIKE '%'|| #{keyword} ||'%'</when>
 	    </choose>
-	    ORDER BY FAQ_REDATE DESC
 	  )
 	  WHERE N BETWEEN #{start} AND #{end}
-	  ORDER BY FAQ_REDATE ASC
+	  <!-- ORDER BY FAQ_REDATE ASC -->
 	</select>
 
-	<!-- 페이징 search 글 목록 갯수 -->
+	<!-- search -->
 	<select id="getSearchFaqListCnt" parameterType="map" resultType="_int">
 		SELECT COUNT(*) FROM FAQ
 		<choose>
