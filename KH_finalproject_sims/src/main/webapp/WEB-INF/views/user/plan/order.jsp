@@ -606,15 +606,16 @@
 			        	                'phoneNum': $('#phoneFirst').val()+$('#phoneMiddle').val()+$('#phoneLast').val()
 			        	            },
 			        	            success: function(result) {
-	
+			        	            	alert("문자 보냄");
 			        	            },
 			        	            error: function(xhr, status, error) {
 			        	            	console.log("xhr.status: " + xhr.status);
-			        	             console.log("xhr.statusText: " + xhr.statusText);
-			        	             console.log("xhr.responseText: " + xhr.responseText);
-			        	             console.log("xhr.readyState: " + xhr.readyState);
-			        	             console.log(status);
-			        	             console.log(error);
+										console.log("xhr.statusText: " + xhr.statusText);
+										console.log("xhr.responseText: " + xhr.responseText);
+										console.log("xhr.readyState: " + xhr.readyState);
+										console.log(status);
+										console.log(error);
+										alert("문자 실패");
 			        	            }
 			        	        });
 			                },
