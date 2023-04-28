@@ -5,37 +5,42 @@
 	<!-- 통신사 신청정보 리스트 -->
 	<select id="selectApplyList" resultType="adBizVo">
 	/** 통신사 신청정보 리스트(selectApplyList)**/
-		SELECT
-			C.*
+		SELECT E.*
 		FROM
-		(
-		SELECT
-			A.*
-			, B.*
-			, ROWNUM AS RO
-		FROM 
-			BIZ A
-		INNER JOIN MEMBER B ON A.BIZ_ID = B.ID
-		WHERE 1=1
-		<if test="searchRadioVal != null">
-			<choose>
-				<when test="searchRadioVal != 'total'">
-					AND B.ENABLE = #{searchRadioVal}
-				</when>
-			</choose>
-		</if>
-		<if test="searchOption != null">
-			<choose>
-				<when test="searchOption == 'bizName'">
-					AND UPPER(A.BIZ_NAME) LIKE UPPER('%'||#{searchBox}||'%')
-				</when>
-				<when test="searchOption == 'bizOwnerName'">
-					AND UPPER(A.BIZ_OWNER_NAME) LIKE UPPER('%'||#{searchBox}||'%')
-				</when>
-			</choose>
-		</if>
-		ORDER BY A.WRITE_DATE DESC
-		) C
+			(SELECT D.*
+			FROM
+				(SELECT
+  				 ROWNUM AS RO
+   				, C.*
+				FROM
+					(SELECT A.BIZ_NAME
+     				, A.BIZ_OWNER_NAME
+     				, A.WRITE_DATE
+     				, B. ENABLE
+ 				FROM BIZ A
+ 				INNER JOIN MEMBER B ON A.BIZ_ID = B.ID
+				WHERE 1=1
+				<if test="searchRadioVal != null">
+					<choose>
+					<when test="searchRadioVal != 'total'">
+						AND B.ENABLE = #{searchRadioVal}
+					</when>
+					</choose>
+				</if>
+				<if test="searchOption != null">
+					<choose>
+						<when test="searchOption == 'bizName'">
+							AND UPPER(A.BIZ_NAME) LIKE UPPER('%'||#{searchBox}||'%')
+						</when>
+						<when test="searchOption == 'bizOwnerName'">
+							AND UPPER(A.BIZ_OWNER_NAME) LIKE UPPER('%'||#{searchBox}||'%')
+						</when>
+					</choose>
+				</if>
+				ORDER BY A.WRITE_DATE DESC
+					)C
+ 			)D
+ 		)E
 		WHERE 1=1
 			AND RO BETWEEN #{start} AND #{end}
 	</select>
