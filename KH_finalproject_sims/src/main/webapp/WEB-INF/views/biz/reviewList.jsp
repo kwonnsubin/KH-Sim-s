@@ -45,9 +45,11 @@
 	<jsp:include page="/WEB-INF/views/biz/nav.jsp"/>
 
 	<div class="content">
-
-		<h2 class="tit">통신사 리뷰 현황</h2>
 		
+		<div class="container">
+			<h2 class="tit">통신사 리뷰 현황</h2>
+			<hr class="line">
+		</div>	
 		<!-- 버튼으로 조회 -->
 		<%-- <form id="reportStatusForm" action="<%=request.getContextPath()%>/biz/selectByReportStatus" method="get" style="display: flex; justify-content: flex-end; margin-right: 10%;">
 		  <div class="btn-group mt-3 mb-3" role="group" aria-label="Basic example">
@@ -97,7 +99,7 @@
 				</select>
 			</form>
 		
-			<div style="margin-right: 1%;">
+			<div style="margin-right: 1%; padding-top: 1%;">
 				<c:if test="${not empty requestScope.paging.page}">
 					총 ${reviewCnt }개의 리뷰가 있습니다.
 				</c:if>
@@ -105,34 +107,11 @@
 	
 		</div>
 		
-		<!-- 
-		분류 {s}
-			<div class="radio-group">
-				<div class="form-check form-check-inline">
-				  <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio1" value="0">
-				  <label class="form-check-label" for="inlineRadio1">전체</label>
-				</div>
-				<div class="form-check form-check-inline">
-				  <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio2" value="1">
-				  <label class="form-check-label" for="inlineRadio2">신고처리중</label>
-				</div>
-				<div class="form-check form-check-inline">
-				  <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio3" value="2" >
-				  <label class="form-check-label" for="inlineRadio3">삭제</label>
-				</div>
-				<div class="form-check form-check-inline">
-				  <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio4" value="3" >
-				  <label class="form-check-label" for="inlineRadio4">반려</label>
-				</div>
-			</div>
-		분류 {e} -->
-		
-		
-		
+				
 		<c:if test="${empty requestScope.paging.page}">
-	            		<tr>
-	            			<td colspan="6">사용자 리뷰가 없습니다.</td>
-	            		</tr>
+	            		<div class="review-box" style="margin-top: 3%;">
+	            			사용자 리뷰가 없습니다
+	            		</div>
 	    </c:if>
 		<c:if test="${not empty requestScope.paging.page}">
 			
@@ -212,31 +191,7 @@
 		  </div>
 		</div>
 			
-			 <!-- 페이지 번호 -->
-		     <%-- <c:if test="${not empty requestScope.paging.page}"> <!-- 신청서가 하나도 없으면 페이징X -->
-				<ul class="pagination" style="padding-left : 40%;">
-					<c:set var="pageNumber" value="${empty param.p ? 1 : param.p }" />
-					<c:choose>
-						<c:when test="${requestScope.paging.prevPage eq -1 }">
-							<li class="page-item disabled"><a class="page-link">prev</a></li>
-						</c:when>
-						<c:otherwise>
-							<li class="page-item"><a class="page-link" href="${path}/biz/reviewList?p=${requestScope.paging.prevPage }&reportStatus=${reportStatus}">prev</a></li>
-						</c:otherwise>
-					</c:choose>
-					<c:forEach var="pNum" items="${requestScope.paging.pageList }">
-						<li class="page-item ${pNum eq pageNumber ? 'active' : '' }"><a class="page-link" href="${path}/biz/reviewList?p=${pNum }&reportStatus=${reportStatus}">${pNum }</a></li>
-					</c:forEach>
-					<c:choose>
-						<c:when test="${requestScope.paging.nextPage eq -1 }">
-							<li class="page-item disabled"><a class="page-link">next</a></li>
-						</c:when>
-						<c:otherwise>
-							<li class="page-item"><a class="page-link" href="${path}/biz/reviewList?p=${requestScope.paging.nextPage }&reportStatus=${reportStatus}">next</a></li>
-						</c:otherwise>
-					</c:choose>
-				</ul>
-			  </c:if> --%>
+			
 			  <c:if test="${not empty requestScope.paging.page}"> <!-- 신청서가 하나도 없으면 페이징X -->
 				<ul class="pagination" style="padding-left : 40%;">
 					<c:set var="pageNumber" value="${empty param.p ? 1 : param.p }" />

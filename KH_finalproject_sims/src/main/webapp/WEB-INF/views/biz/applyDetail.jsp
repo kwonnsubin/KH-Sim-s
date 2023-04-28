@@ -40,16 +40,14 @@
 	<jsp:include page="/WEB-INF/views/biz/nav.jsp"/>
 
 		<div class="content">
-		    <!-- <div class="titleMent">
-		    	<span class="material-symbols-outlined" style="float: left;">
-				more_vert
-				</span>
-				<span>요금제 신청서 상세정보</span>
-		    </div> -->
-		    <h2 class="tit">요금제 신청서 상세정보</h2>
+
+		    <div class="container" style="margin-left: -9%;">
+				<h2 class="tit">요금제 신청서 상세정보</h2>
+				<hr class="line">
+			</div>
 		    
 		   
-		    <div class="container-fluid">
+		    <div class="container-fluid" style="margin-top: -6%;">
 		    <table class="table" id="applyDetail" style="width: 125%; margin-top: 120px;">
 				<tbody style="height: 485px;">
 					<tr>

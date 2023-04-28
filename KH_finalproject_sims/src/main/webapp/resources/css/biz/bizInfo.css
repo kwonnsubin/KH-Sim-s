@@ -60,3 +60,19 @@ table{
 th[scope="row"] {
   background-color: #ecf7fd !important;
 }
+h2.tit{
+    margin-top: 1%;
+    margin-left: 10%;
+    color: #333;
+    font-size: 1.7143em;
+    line-height: 1.1;
+    font-weight: 700;
+    letter-spacing: -0.05em;
+}
+.line{
+	width: 211px;
+    margin-left: 10%;
+    height: 4px !important;
+    color: #488ed5;
+    opacity: 1;
+}

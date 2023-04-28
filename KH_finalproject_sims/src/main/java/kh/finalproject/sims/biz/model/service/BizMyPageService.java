@@ -3,6 +3,7 @@ package kh.finalproject.sims.biz.model.service;
 import java.util.List;
 
 import kh.finalproject.sims.biz.model.vo.BizMyPageVo;
+import kh.finalproject.sims.biz.model.vo.BizPlanMngtVo;
 
 public interface BizMyPageService {
 
@@ -19,4 +20,6 @@ public interface BizMyPageService {
 	public BizMyPageVo getLogo(String bizid);
 	
 	public List<BizMyPageVo> getRecentReview(String bizid);
+	
+	public List<BizPlanMngtVo> getTopFivePlanInfo(String bizid);
 }

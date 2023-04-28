@@ -58,9 +58,14 @@ public class BizMyPageController {
 				  imagePath = "/resources/img/" + vo.getLogoRenameFilename();
 				}
 			 mv.addObject("imagePath",imagePath);
-			 
+
+			 //최근리뷰
 			 mv.addObject("recentReview",service.getRecentReview(bizid));
 			 System.out.println("getRecentReview(bizid) : "+service.getRecentReview(bizid));
+			 
+			 //top 5 요금제 정보
+			 mv.addObject("topPlanList",service.getTopFivePlanInfo(bizid));
+			 System.out.println("topPlanList : "+service.getTopFivePlanInfo(bizid));
 			 
 			 mv.setViewName("/biz/myPage");
 			 return mv;

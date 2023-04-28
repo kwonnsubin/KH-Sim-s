@@ -49,7 +49,14 @@
 	<jsp:include page="/WEB-INF/views/header.jsp" />
 	<jsp:include page="/WEB-INF/views/biz/nav.jsp" />
 
+
 	<div class="container" style="margin-left:18%">
+	
+	<div class="container" style="margin-left: -139px;">
+			<h2 class="tit">내 정보 보기</h2>
+			<hr class="line">
+	</div>
+	
 		<div class="text-center" style="margin-top: 70px;">
 			<img src="${path}${imagePath}" class="mx-auto"
 				style="width: 35% !important" />

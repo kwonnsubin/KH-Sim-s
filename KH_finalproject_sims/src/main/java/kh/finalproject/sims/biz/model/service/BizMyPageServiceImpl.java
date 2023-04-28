@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 
 import kh.finalproject.sims.biz.model.dao.BizMyPageDao;
 import kh.finalproject.sims.biz.model.vo.BizMyPageVo;
+import kh.finalproject.sims.biz.model.vo.BizPlanMngtVo;
 
 @Service
 public class BizMyPageServiceImpl implements BizMyPageService{
@@ -47,5 +48,10 @@ public class BizMyPageServiceImpl implements BizMyPageService{
 	@Override
 	public List<BizMyPageVo> getRecentReview(String bizid) {
 		return dao.getRecentReview(bizid);
+	}
+
+	@Override
+	public List<BizPlanMngtVo> getTopFivePlanInfo(String bizid) {
+		return dao.getTopFivePlanInfo(bizid);
 	}
 }

@@ -45,8 +45,12 @@
 	
 	
 	<div class="content">
+		<div class="container" style="margin-left: -11%;">
+			<h2 class="tit">가입 신청 현황</h2>
+			<hr class="line">
+		</div>
+	
 		<div class="searchTop d-flex">
-		
 			<div class="col-md-2">
 				<form action="${path}/biz/applyList" class="listSelect">
 						<select class="form-select" style="width: 100px" name="cnt" onchange="submit();">

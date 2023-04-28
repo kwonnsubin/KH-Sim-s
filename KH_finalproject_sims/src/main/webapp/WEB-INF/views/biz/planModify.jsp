@@ -39,14 +39,12 @@
 
 
 
-	<div class="titleMent">
-    	<span class="material-symbols-outlined" style="float: left;">
-		more_vert
-		</span>
-		<span>요금제 수정하기</span>
-    </div>
+	<div class="container" style="margin-left: 269px;">
+			<h2 class="tit">요금제 수정하기</h2>
+			<hr class="line">
+	</div>
 
-<div class="container" style="margin-top: 5%";>
+<div class="container" style="margin-top: -4%";>
 	<form action="modifyPlan" method="post" style="width: 155%">
 	<input type="hidden" name="planNo" value="${planDetail.planNo }">
 	<table class="table modiPlanTb" style="width: 65%">

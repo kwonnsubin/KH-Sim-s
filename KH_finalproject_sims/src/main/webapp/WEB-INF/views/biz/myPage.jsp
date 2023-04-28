@@ -36,6 +36,7 @@
     <!-- google icon -->
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
     
+    
     <!-- 구글차트 -->
     <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
     <script type="text/javascript">
@@ -98,17 +99,48 @@
 				<div class="container" style="display: grid; grid-template-columns: repeat(2, 1fr); grid-template-rows: repeat(2, 1fr);">
 				컨테이너 2
 					<div class="cntMentBox" style="grid-column: 1 / 2; grid-row: 1 / 2;">
-						오늘 등록된 리뷰 수는 ${todayReviewCnt }개입니다. 
+						<div class="cntMentBox-header">
+							<div class="material-symbols-outlined" >
+							rate_review
+							</div>
+						</div>
+						<div class="cntMentBox-content">
+						오늘 등록된 리뷰 수는 ${todayReviewCnt }개입니다.
+						</div>
 					</div>
+					
 					<div class="cntMentBox" style="grid-column: 2 / 2; grid-row: 1 / 2;">
+						<div class="cntMentBox-header">
+							<div class="material-symbols-outlined" >
+							rate_review
+							</div>
+						</div>
+						<div class="cntMentBox-content">
 						총 리뷰 수는 ${totalReviewCnt }개입니다. 
+						</div>
 					</div>
+					
 					<div class="cntMentBox" style="grid-column: 1 / 2; grid-row: 2 / 2;">
+						<div class="cntMentBox-header">
+							<span class="material-symbols-outlined">
+							group_add
+							</span>
+						</div>
+						<div class="cntMentBox-content">
 						오늘 가입한 고객의 수는 ${todayApplyCnt }명입니다. 
+						</div>
 					</div>
 					<div class="cntMentBox" style="grid-column: 2 / 2; grid-row: 2 / 2;">
+						<div class="cntMentBox-header">
+							<span class="material-symbols-outlined">
+							group_add
+							</span>
+						</div>
+						<div class="cntMentBox-content">
 						총 가입자 수는 ${totalApplyCnt }명입니다. 
+						</div>
 					</div>
+					
 					<div class="cntMentBox">
 						총 등록한 요금제 수는 ${totalPlanCnt }개입니다. 
 					</div>
@@ -117,11 +149,37 @@
 			</div>
 			
 			<div class="container">
-				<div id="chart_div"></div>
+				<div id="chart_div" style="height: 500px;"></div>
 			</div>
 			
-			<div class="container" style="border: solid; height: 400px">
+			<div class="container" style="height: 400px">
 			상위 5개 요금제 정보 -요금제 번호, 요금제명, 기본료, 등록일자
+			
+				<table class="table topPlanInfo table-hover">
+					<thead>
+						<tr>
+							<th>요금제 번호</th>
+							<th>요금제 이름</th>
+							<th>기본료</th>
+							<th>등록일자</th>
+							<th>가입자수</th>
+						</tr>
+					</thead>
+					<tbody>
+						<c:forEach var="pl" items="${topPlanList }">
+						<tr>
+							<td>${pl.planNo }</td>
+							<td><a href="${pageContext.request.contextPath }/biz/planDetail?planNo=${pl.planNo }">
+								${pl.planName }</a></td>
+							<td>${pl.planPrice }</td>
+							<td>${pl.planDate }</td>
+							<td>${pl.planCnt }</td>
+						</tr>
+						</c:forEach>
+					</tbody>
+				
+				</table>
+			
 			</div>
 			
 			<div class="container" style="border: solid; height: 400px">
@@ -157,7 +215,15 @@
 					        </div>
 					    </div>
 					</c:forEach>
+					<div class="review-box"> <!-- 더보기 박스 -->
+						리뷰 현황 더 보기
+						<a class="material-symbols-outlined more-icon" onclick="location.href='${pageContext.request.contextPath}/biz/reviewList'"
+						 		style="font-size: 170px; color: darkgray;">
+								read_more
+						</a>
+					</div>
 				</div>	
+				
 			</div>
 		</div>	
 			

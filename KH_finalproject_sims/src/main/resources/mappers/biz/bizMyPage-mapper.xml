@@ -57,7 +57,21 @@
 	    WHERE biz_id = #{bizid}
 	    AND REVIEW_HIDDEN != 1
 	) 
-	WHERE rn BETWEEN 1 AND 4
+	WHERE rn BETWEEN 1 AND 3
+  </select>
+  
+  <!-- 인기있는 요금제 상위 5개 정보(가입자순 기준)/ 가입자수도 함께 출력/ BizPlanMngtVo 사용 -->
+  <select id="getTopFivePlanInfo" resultType="kh.finalproject.sims.biz.model.vo.BizPlanMngtVo">
+	  SELECT p.*, plan_cnt
+		FROM (
+		    SELECT p.plan_no, COUNT(po.plan_no) AS plan_cnt
+		    FROM plan_table p
+		    LEFT JOIN plan_order po ON p.plan_no = po.plan_no
+		    WHERE biz_id = #{bizid}
+		    GROUP BY p.plan_no
+		    ORDER BY plan_cnt DESC
+		) sub, plan_table p
+		WHERE sub.plan_no = p.plan_no AND ROWNUM <![CDATA[  <=  ]]> 5
   </select>
   
 </mapper>

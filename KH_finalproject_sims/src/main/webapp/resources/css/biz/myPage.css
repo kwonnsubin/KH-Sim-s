@@ -49,5 +49,23 @@
 	position: absolute;
 	bottom: 24%;
 }
+.topPlanInfo{
+	margin: 0;
+	margin-top: 1%;
+    table-layout: fixed;
+    border-collapse: collapse;
+    empty-cells: show;
+    justify-content: center;
+	align-items: center;
+	border-style: none;
+	box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.1);
+    background-color: #fff;
+    margin-left: 11px;
+    border-bottom: 1px solid #ddd;
+}
+.cntMentBox-header{
+	display: inline-block;
+}
+
 
 

@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import kh.finalproject.sims.biz.model.vo.BizMyPageVo;
+import kh.finalproject.sims.biz.model.vo.BizPlanMngtVo;
 
 @Repository
 public class BizMyPageDao {
@@ -40,5 +41,9 @@ public class BizMyPageDao {
 	
 	public List<BizMyPageVo> getRecentReview(String bizid){
 		return sqlSession.selectList("mypage.getRecentReview", bizid);
+	}
+	
+	public List<BizPlanMngtVo> getTopFivePlanInfo(String bizid){
+		return sqlSession.selectList("mypage.getTopFivePlanInfo", bizid);
 	}
 }

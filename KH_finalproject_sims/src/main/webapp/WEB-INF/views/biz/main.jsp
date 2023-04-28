@@ -320,35 +320,46 @@
 
 <div class="container mw-100" style="display:flex; margin:-103px 0 -200px 0; padding:150px 0 380px 0;">
 <jsp:include page="/WEB-INF/views/biz/nav.jsp"/>
-	
-	<div class="content">
-		<div class="container">
-			<div class="row">
-				<div class="chart-container col-8 chartbox" id="chart_div2"></div>   
-				<div class="chart-container col-4 chartbox" id="chart_div" ></div>
-			</div>
+
+	<div class="container">
+
+		<div class="container" style="margin-left: -277px;">
+				<h2 class="tit">통계 현황</h2>
+				<hr class="line">
 		</div>
-		  
 		
-		<div class="container">
-			<div class="row">
-				<!-- 원형차트 / 가장 인기 있는 요금제 기준-->
-			    <div class="col chartbox" id="piechart" style="width: 900px; height: 500px;" ></div> 
-			    <div class="col chartbox" id="piechart2" style="width: 900px; height: 500px;"></div>
-			      <!-- 도넛 차트 / 통신사 전체 기준-->
-			    <div class="col chartbox" id="donutchart" style="width: 900px; height: 500px;"></div>
-				<div class="col chartbox" id="donutchart2" style="width: 900px; height: 500px;"></div>
+		
+		<div class="container content" style="width: 104%; margin-left: -13%;">
+			<div class="container">
+				<div class="row">
+					<div class="chart-container col-8 chartbox" id="chart_div2"></div>   
+					<div class="chart-container col-4 chartbox" id="chart_div" ></div>
+				</div>
+			</div>
+			  
+			
+			<div class="container">
+				<div class="row">
+					<!-- 원형차트 / 가장 인기 있는 요금제 기준-->
+				    <div class="col chartbox" id="piechart" style="width: 900px; height: 500px;" ></div> 
+				    <div class="col chartbox" id="piechart2" style="width: 900px; height: 500px;"></div>
+			    </div>
+			    <div class="row">
+				      <!-- 도넛 차트 / 통신사 전체 기준-->
+				    <div class="col chartbox" id="donutchart" style="width: 900px; height: 500px;"></div>
+					<div class="col chartbox" id="donutchart2" style="width: 900px; height: 500px;"></div>
+			    </div>
+			    <!-- 한 페이지에 여러 차트 그리는 법 -->
+			    <!--  <table class="columns">
+			      <tr>
+			        <td><div id="donutchart" style="border: 1px solid #ccc"></div></td>
+			        <td><div id="donutchart2" style="border: 1px solid #ccc"></div></td>
+			      </tr>
+			    </table>
+			     -->
 		    </div>
-		    
-		    <!-- 한 페이지에 여러 차트 그리는 법 -->
-		     <!-- <table class="columns">
-		      <tr>
-		        <td><div id="Sarah_chart_div" style="border: 1px solid #ccc"></div></td>
-		        <td><div id="Anthony_chart_div" style="border: 1px solid #ccc"></div></td>
-		      </tr>
-		    </table> -->
-		    
 	    </div>
+    
     </div>
 </div>
 	  

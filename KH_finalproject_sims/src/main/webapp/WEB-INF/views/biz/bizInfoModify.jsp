@@ -38,13 +38,17 @@
 
 
 <div class="container" style="display:flex; margin:-103px 0 -200px 0; padding:150px 0 380px 0;">
-통신사 정보 수정
+
 
 	<jsp:include page="/WEB-INF/views/biz/nav.jsp"/>
 	
 	<div class="content">
+		<div class="container" style="margin-left: -107px; margin-bottom: 5%;">
+			<h2 class="tit">통신사 정보 수정하기</h2>
+			<hr class="line">
+		</div>
+	
 		<form action="modifyInfo" method="post" enctype="multipart/form-data" id="modifyForm">
-		
 				<div class="d-flex">
 					<div class="division-box">
 						<span>기본정보</span>
@@ -225,7 +229,7 @@
 						<th scope="row">
 							<span>휴무일</span>
 						</th>
-						<td colspan="2" style="display: flex; height: 56px;">
+						<td colspan="2" style="display: flex; height: 58px;">
 							<div class="form-check">
 								<input class="form-check-input" type="checkbox" name="weekday" value="월">월
 							</div>
@@ -257,7 +261,7 @@
 						<th scope="row">
 							<span>지원통신망</span>
 						</th>
-						<td colspan="2" style="display: flex; height: 52px;">
+						<td colspan="2" style="display: flex; height: 54px; width: 242%;">
 						<div class="form-check">
 							<input class="form-check-input" type="checkbox" name="net" value="KT망" >KT망
 						</div>
@@ -315,12 +319,12 @@
 			
 				
 				<div>
-					<label>로고이미지 첨부</label> <!-- 파일첨부 -->
-					<input type="file" name="logo" placeholder="첨부파일" multiple="multiple"  >
+					<label class="file-label">로고이미지 첨부</label>
+					
+					<input type="file" name="logo" placeholder="첨부파일" multiple="multiple" onchange="readURL(this);" >
 					<input type="hidden" name="originalFilename" value="${bizinfo.originalFilename }">
 					<input type="hidden" name="logoRenameFilename" value="${bizinfo.logoRenameFilename }">
-					
-					<input type="file" onchange="readURL(this);"> <!-- 미리보기 -->
+					<!-- 미리보기 -->
 					<img id="preview" />
 					
 				</div>

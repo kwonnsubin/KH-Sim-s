@@ -82,6 +82,9 @@ public class BizPlanMngtVo {
 
 	//search
 	private String keyword;
+	
+	//bizMyPage-mapper에서 사용
+	private int planCnt;
 
 	
 	
