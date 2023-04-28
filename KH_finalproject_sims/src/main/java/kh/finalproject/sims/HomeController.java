@@ -49,12 +49,7 @@ public class HomeController {
 	 * Simply selects the home view to render by returning its name.
 	 */
 	@RequestMapping(value = "/", method = RequestMethod.GET)
-	public ModelAndView mainPage(ModelAndView mv, Principal principal) {
-		
-		if(principal != null) {
-			String username = principal.getName();
-			mv.addObject("username", username);
-		}
+	public ModelAndView mainPage(ModelAndView mv, HttpServletRequest req) {
 		
 		List<PlanVo> viewRankList = userPlanFindService.selectViewRankList();
 		List<PlanVo> likeRankList = userPlanFindService.selectLikeRankList();

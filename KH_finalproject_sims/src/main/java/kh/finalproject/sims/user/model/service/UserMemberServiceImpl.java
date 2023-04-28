@@ -105,18 +105,15 @@ public class UserMemberServiceImpl implements UserMemberService {
     @Override
     @Transactional
     public void kakaoJoin(MemberVo memberVo, UserMemberVo userMemberVo) {
-        dao.kakaoInsert(memberVo);
-        dao.kakaoInsertUserMember(userMemberVo);
+        int result = dao.kakaoInsert(memberVo);
+        if(result == 1) {
+        	dao.kakaoInsertUserMember(userMemberVo);
+        }
     }
 
     @Override
     public MemberVo kakaoLogin(String snsId) {
         return dao.kakaoSelect(snsId);
-    }
-
-    @Override
-    public String findAuthBy(String userid) {
-        return dao.findAuthBy(userid);
     }
 
     @Override

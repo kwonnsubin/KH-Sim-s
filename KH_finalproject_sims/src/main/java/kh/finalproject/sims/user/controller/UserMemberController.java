@@ -2,12 +2,13 @@ package kh.finalproject.sims.user.controller;
 
 import java.util.HashMap;
 
+import javax.servlet.http.HttpServletRequest;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -39,8 +40,7 @@ public class UserMemberController {
 
 	// 로그인 페이지
 	@GetMapping("login")
-	public ModelAndView LoginDo(ModelAndView mv) {
-		mv.addObject("kakaoKey", kakaoKey);
+	public ModelAndView LoginDo(ModelAndView mv, HttpServletRequest req) {
 		
 		mv.setViewName("main/login");
 		

@@ -59,15 +59,15 @@
 	</update>
 	
 	<select id="kakaoSelect" parameterType="string" resultType="memVo">
-		select * from member where id=#{snsId}
+		select * from member where opinion=#{snsId}
 	</select>
 	
-	<select id="findAuthBy" parameterType="string" resultType="string">
-		select role from member where id=#{userid}
-	</select>
+	<insert id="kakaoInsertMember" parameterType="memVo">
+		insert into member values(#{id}, #{pw}, #{role}, #{enable}, #{opinion})
+	</insert>
 	
-	<insert id="kakaoInsertuserMember">
-		insert into user_table values(#{userId}, #{userName}, #{userSsn}, sysdate, null, #{userGender}, #{userPhone}, #{userEmail})
+	<insert id="kakaoInsertUserMember" parameterType="userVo">
+		insert into user_table values(#{userId}, #{userName}, #{userSsn}, sysdate, null, null, #{userPhone}, #{userEmail})
 	</insert>
 
 </mapper>

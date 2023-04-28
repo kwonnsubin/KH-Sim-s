@@ -34,12 +34,10 @@ public interface UserMemberService {
 	public int updateEnable(String id);
 	
 	// 카카오 로그인
-	void kakaoJoin(MemberVo memberVo, UserMemberVo userMemberVo);
+	public void kakaoJoin(MemberVo memberVo, UserMemberVo userMemberVo);
 
-	MemberVo kakaoLogin(String snsId);
+	public MemberVo kakaoLogin(String snsId);
 
-	String findAuthBy(String userid);
-
-	MemberVo findByUserId(String snsId);
+	public MemberVo findByUserId(String snsId);
 	
 }

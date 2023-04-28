@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 <%@ taglib uri="http://www.springframework.org/tags" prefix="spring" %>
 <!DOCTYPE html>
@@ -69,12 +70,12 @@
 		<div class="container px-2 text-center" style="width:60%;">
 			<div class="row row-cols-auto justify-content-md-center">
 				<div class="col">	
-					<div class="p-3">
-						<a href="<%=request.getContextPath()%>/findid">아이디 찾기</a>
+					<div class="p-5">
+						<a class="mx-3" style="font-size:14px" href="<%=request.getContextPath()%>/findid">아이디 찾기</a>
 						<div class="vr" style="width:1px; height: 20px; background-color: black; margin-bottom: -4px;"></div>
-				    	<a href="<%=request.getContextPath()%>/findpw">비밀번호 찾기</a>
+				    	<a class="mx-3" style="font-size:14px" href="<%=request.getContextPath()%>/findpw">비밀번호 찾기</a>
 				    	<div class="vr" style="width:1px; height: 20px; background-color: black; margin-bottom: -4px;"></div>
-				    	<a href="<%=request.getContextPath()%>/contract">회원가입</a>
+				    	<a class="mx-3" style="font-size:14px" href="<%=request.getContextPath()%>/contract">회원가입</a>
 					</div>
 				</div>
 			</div>
@@ -99,11 +100,19 @@
 	        Kakao.init("<c:out value='${kakaoJs}' />");
 	        Kakao.isInitialized();
 	    });
+	    
+	    // uri 제거한 url
+	    function getContextPath() {
+	    	var hostIndex = location.href.indexOf(location.host) + location.host.length;
+	    	return location.href.substring(0, location.href.indexOf('/', hostIndex + 1));
+	    }
+	    var cPath = getContextPath();
 	
 	    function loginWithKakao() {
 	        Kakao.Auth.authorize({ 
-	        redirectUri: 'http://localhost:8090/sims/kakaoLogin' 
-	        }); // 등록한 리다이렉트uri 입력
+	        redirectUri: cPath + '/kakaoLogin'
+	        }); 
+	        // 등록한 리다이렉트uri 입력
 	    }
 	</script>
 </body>

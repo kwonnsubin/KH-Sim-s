@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -38,10 +39,10 @@ public class KakaoController {
 	private BCryptPasswordEncoder pwEncoder;
 
     @RequestMapping(value = "/kakaoLogin", method = RequestMethod.GET)
-    public String redirectkakao(@RequestParam String code, HttpSession session) throws IOException {
+    public String redirectkakao(@RequestParam String code, HttpSession session, HttpServletRequest req) throws IOException {
 
         // 접속토큰 get
-        String kakaoToken = kakaoService.getReturnAccessToken(code);
+        String kakaoToken = kakaoService.getReturnAccessToken(code, req);
 
         // 접속자 정보 get
         Map<String, Object> result = kakaoService.getUserInfo(kakaoToken);
@@ -55,14 +56,14 @@ public class KakaoController {
         UserMemberVo userMemberVo = new UserMemberVo();
         // 일치하는 snsId 없을 시 회원가입
         if (memberService.kakaoLogin(snsId) == null) {
-            memberVo.setId(snsId);
+            memberVo.setId(email);
             memberVo.setPw(pwEncoder.encode(userpw));
             memberVo.setEnable(1);
             memberVo.setRole("ROLE_USER");
+            memberVo.setOpinion(snsId);
             
-            userMemberVo.setUserId(snsId);
-            userMemberVo.setUserName(userName);
-            userMemberVo.setUserGender("S");
+            userMemberVo.setUserId(email);
+            userMemberVo.setUserName(userName); 
             userMemberVo.setUserEmail(email);
             userMemberVo.setUserSsn("snsLogin");
             memberService.kakaoJoin(memberVo, userMemberVo);
@@ -73,7 +74,7 @@ public class KakaoController {
         
         /*Security Authentication에 붙이는 과정*/
         List<GrantedAuthority> roles = new ArrayList<>(1);
-        roles.add(new SimpleGrantedAuthority("ROLE_USER"));
+        roles.add(new SimpleGrantedAuthority(vo.getRole()));
         Authentication auth = new UsernamePasswordAuthenticationToken(vo.getId(), null, roles);
         SecurityContextHolder.getContext().setAuthentication(auth);
 

@@ -10,6 +10,8 @@ import java.net.URL;
 import java.util.HashMap;
 import java.util.Map;
 
+import javax.servlet.http.HttpServletRequest;
+
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 
@@ -23,7 +25,7 @@ public class KakaoService {
 	@Value("#{apikey['apikey.kakaoRest']}")
 	private String kakaoRest;
 	
-     public String getReturnAccessToken(String code) {
+     public String getReturnAccessToken(String code, HttpServletRequest req) {
          String access_token = "";
          String refresh_token = "";
          String reqURL = "https://kauth.kakao.com/oauth/token";
@@ -32,42 +34,43 @@ public class KakaoService {
             URL url = new URL(reqURL);
             HttpURLConnection conn = (HttpURLConnection) url.openConnection();
 
-             //HttpURLConnection 설정 값 셋팅
-             conn.setRequestMethod("POST");
-             conn.setDoOutput(true);
+            //HttpURLConnection 설정 값 셋팅
+            conn.setRequestMethod("POST");
+            conn.setDoOutput(true);
+             
+            String nowUrl = req.getRequestURL().substring(0, 27);
+
+            // buffer 스트림 객체 값 셋팅 후 요청
+            BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(conn.getOutputStream()));
+            StringBuilder sb = new StringBuilder();
+            sb.append("grant_type=authorization_code");
+            sb.append("&client_id=" + kakaoRest);  //앱 KEY VALUE
+            sb.append("&redirect_uri=" + nowUrl + "kakaoLogin"); // 앱 CALLBACK 경로
+            sb.append("&code=" + code);
+            bw.write(sb.toString());
+            bw.flush();
+
+            //  RETURN 값 result 변수에 저장
+            BufferedReader br = new BufferedReader(new InputStreamReader(conn.getInputStream()));
+            String br_line = "";
+            String result = "";
+
+            while ((br_line = br.readLine()) != null) {
+                result += br_line;
+            }
+
+//          JsonParser parser = new JsonParser();
+            JsonElement element = JsonParser.parseString(result);
 
 
-             // buffer 스트림 객체 값 셋팅 후 요청
-             BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(conn.getOutputStream()));
-             StringBuilder sb = new StringBuilder();
-             sb.append("grant_type=authorization_code");
-             sb.append("&client_id=" + kakaoRest);  //앱 KEY VALUE
-             sb.append("&redirect_uri=http://localhost:8090/sims/kakaoLogin"); // 앱 CALLBACK 경로
-             sb.append("&code=" + code);
-             bw.write(sb.toString());
-             bw.flush();
+            // 토큰 값 저장 및 리턴
+            access_token = element.getAsJsonObject().get("access_token").getAsString();
+            refresh_token = element.getAsJsonObject().get("refresh_token").getAsString();
 
-             //  RETURN 값 result 변수에 저장
-             BufferedReader br = new BufferedReader(new InputStreamReader(conn.getInputStream()));
-             String br_line = "";
-             String result = "";
-
-             while ((br_line = br.readLine()) != null) {
-                 result += br_line;
-             }
-
-//             JsonParser parser = new JsonParser();
-             JsonElement element = JsonParser.parseString(result);
-
-
-             // 토큰 값 저장 및 리턴
-             access_token = element.getAsJsonObject().get("access_token").getAsString();
-             refresh_token = element.getAsJsonObject().get("refresh_token").getAsString();
-
-             br.close();
-             bw.close();
+            br.close();
+            bw.close();
          } catch (IOException e) {
-             e.printStackTrace();
+        	e.printStackTrace();
          }
 
          return access_token;

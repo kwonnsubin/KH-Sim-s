@@ -58,8 +58,8 @@ public class UserMemberDao {
 		return sqlSession.update("member.updateEnable", id);
 	}
 
-	public void kakaoInsert(MemberVo memberVo) {
-		sqlSession.insert("member.signUpMember", memberVo);
+	public int kakaoInsert(MemberVo memberVo) {
+		return sqlSession.insert("member.kakaoInsertMember", memberVo);
 	}
 	
 	public void kakaoInsertUserMember(UserMemberVo userMemberVo) {
@@ -68,14 +68,6 @@ public class UserMemberDao {
 
 	public MemberVo kakaoSelect(String snsId) {
 		return sqlSession.selectOne("member.kakaoSelect", snsId);
-	}
-
-	public String findAuthBy(String userid) {
-		return sqlSession.selectOne("member.findAuthBy", userid);
-	}
-
-	public MemberVo findByUserId(String snsId) {
-		return sqlSession.selectOne("member.findByUserId", snsId);
 	}
 	
 }
