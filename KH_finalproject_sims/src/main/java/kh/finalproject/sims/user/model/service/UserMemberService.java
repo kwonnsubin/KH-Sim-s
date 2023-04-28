@@ -33,4 +33,13 @@ public interface UserMemberService {
 	// 계정 복구
 	public int updateEnable(String id);
 	
+	// 카카오 로그인
+	void kakaoJoin(MemberVo memberVo, UserMemberVo userMemberVo);
+
+	MemberVo kakaoLogin(String snsId);
+
+	String findAuthBy(String userid);
+
+	MemberVo findByUserId(String snsId);
+	
 }

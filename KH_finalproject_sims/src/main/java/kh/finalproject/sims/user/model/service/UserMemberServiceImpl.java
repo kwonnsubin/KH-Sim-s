@@ -100,5 +100,28 @@ public class UserMemberServiceImpl implements UserMemberService {
 		int result = dao.changePw(memVo);
 		return result;
 	}
+	
+	/* 카카오 로그인 */
+    @Override
+    @Transactional
+    public void kakaoJoin(MemberVo memberVo, UserMemberVo userMemberVo) {
+        dao.kakaoInsert(memberVo);
+        dao.kakaoInsertUserMember(userMemberVo);
+    }
+
+    @Override
+    public MemberVo kakaoLogin(String snsId) {
+        return dao.kakaoSelect(snsId);
+    }
+
+    @Override
+    public String findAuthBy(String userid) {
+        return dao.findAuthBy(userid);
+    }
+
+    @Override
+    public MemberVo findByUserId(String snsId) {
+        return dao.kakaoSelect(snsId);
+    }
 
 }

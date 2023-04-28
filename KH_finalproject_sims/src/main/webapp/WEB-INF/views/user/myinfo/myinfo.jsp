@@ -112,9 +112,36 @@
 	            <div class="invalid-feedback">전화번호를 입력하세요</div>
 	        </div>
 	        
-	        <div class="text-center">
-		       	<button class="btn btn-primary mx-5 subBtn" type="submit" disabled>수정</button>
-		       	<button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#relModal">탈퇴</button>
+	        <!-- 성별 -->
+           	<label for="genderDiv">성별</label>
+            <div class="row text-center">
+	          <div class="col input-group mb-3">
+				  <div class="input-group-text">
+				  	<c:if test="${userInfo.userGender eq 'M'}">
+				    	<input class="form-check-input mt-0" type="radio" value="M" name="userGender" checked>
+				    </c:if>
+				    <c:if test="${userInfo.userGender ne 'M'}">
+				    	<input class="form-check-input mt-0" type="radio" value="M" name="userGender">
+				    </c:if>
+				  </div>
+				  <input type="text" class="form-control" value="여성" readonly style="background-color:white;">
+			  </div>
+			  <div class="col input-group mb-3">
+				  <div class="input-group-text">
+				  	<c:if test="${userInfo.userGender eq 'F'}">
+				    	<input class="form-check-input mt-0" type="radio" value="F" name="userGender" checked>
+				    </c:if>
+				    <c:if test="${userInfo.userGender ne 'F'}">
+				    	<input class="form-check-input mt-0" type="radio" value="F" name="userGender">
+				    </c:if>
+				  </div>
+				  <input type="text" class="form-control" value="남성" readonly style="background-color:white;">
+			  </div>
+        	</div>
+	        
+	        <div class="text-center mt-5">
+		       	<button class="btn btn-primary mx-3 subBtn" type="submit" disabled>수정</button>
+		       	<button type="button" class="btn btn-primary mx-3" data-bs-toggle="modal" data-bs-target="#relModal">탈퇴</button>
         	</div>
 	        
 	        </form:form>

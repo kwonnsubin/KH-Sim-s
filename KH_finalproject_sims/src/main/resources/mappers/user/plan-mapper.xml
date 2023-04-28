@@ -186,7 +186,8 @@
 	</select>
 	
 	<select id="selectBizIdList" resultType="bvo">
-		select biz_id from biz
+		select b.biz_id from biz b
+		where (select enable from member m where b.biz_id = m.id) = 1
 	</select>
 	
 	<select id="selectUser" parameterType="string" resultType="int">

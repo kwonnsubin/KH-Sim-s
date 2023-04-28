@@ -55,7 +55,19 @@
 	</update>
 	
 	<update id="updateMyPageModify" parameterType="userVo">
-		update user_table set user_email=#{userEmail}, user_phone=#{userPhone} where user_id=#{userId}
+		update user_table set user_email=#{userEmail}, user_phone=#{userPhone}, user_gender=#{userGender} where user_id=#{userId}
 	</update>
+	
+	<select id="kakaoSelect" parameterType="string" resultType="memVo">
+		select * from member where id=#{snsId}
+	</select>
+	
+	<select id="findAuthBy" parameterType="string" resultType="string">
+		select role from member where id=#{userid}
+	</select>
+	
+	<insert id="kakaoInsertuserMember">
+		insert into user_table values(#{userId}, #{userName}, #{userSsn}, sysdate, null, #{userGender}, #{userPhone}, #{userEmail})
+	</insert>
 
 </mapper>

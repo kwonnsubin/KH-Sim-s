@@ -57,5 +57,25 @@ public class UserMemberDao {
 	public int updateEnable(String id) {
 		return sqlSession.update("member.updateEnable", id);
 	}
+
+	public void kakaoInsert(MemberVo memberVo) {
+		sqlSession.insert("member.signUpMember", memberVo);
+	}
+	
+	public void kakaoInsertUserMember(UserMemberVo userMemberVo) {
+		sqlSession.insert("member.kakaoInsertUserMember", userMemberVo);
+	}
+
+	public MemberVo kakaoSelect(String snsId) {
+		return sqlSession.selectOne("member.kakaoSelect", snsId);
+	}
+
+	public String findAuthBy(String userid) {
+		return sqlSession.selectOne("member.findAuthBy", userid);
+	}
+
+	public MemberVo findByUserId(String snsId) {
+		return sqlSession.selectOne("member.findByUserId", snsId);
+	}
 	
 }

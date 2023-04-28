@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <!-- ***** Preloader Start ***** -->
  <div id="js-preloader" class="js-preloader">
    <div class="preloader-inner">
@@ -32,7 +33,12 @@
 						<li><a href="<%=request.getContextPath()%>/login">로그인 </a></li>
 						</sec:authorize>
 						<sec:authorize access="isAuthenticated()">
-						<li><a href="<%=request.getContextPath()%>/logout">로그아웃</a></li>
+						<c:if test="${empty kakaoToken}">
+							<li><a href="<%=request.getContextPath()%>/logout">로그아웃</a></li>
+						</c:if>
+						<c:if test="${not empty kakaoToken}">
+							<li><a href="<%=request.getContextPath()%>/logoutKakao">로그아웃</a></li>
+						</c:if>
 						</sec:authorize>
 						<sec:authorize access="!hasRole('ROLE_BIZ')">
 						<li><a href="<%=request.getContextPath()%>/mypage" class="mypage">마이페이지</a></li>

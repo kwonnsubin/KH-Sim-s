@@ -66,4 +66,5 @@ public interface UserMyPageService {
 	// 찜한 요금제 갯수
 	public int selectLikeListCount(String userId);
 	
+	
 }

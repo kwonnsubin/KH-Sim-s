@@ -20,5 +20,6 @@ public class MemberVo {
 	private String pw;
 	private String role;
 	private int enable;
+	private String opinion;
 	
 }

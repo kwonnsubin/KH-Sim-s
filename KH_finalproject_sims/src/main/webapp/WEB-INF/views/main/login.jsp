@@ -2,6 +2,7 @@
 	pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
+<%@ taglib uri="http://www.springframework.org/tags" prefix="spring" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -55,18 +56,20 @@
 				  <div class="d-flex justify-content-center">
 				  	<button type="submit" class="btn btn-primary btn-block mb-2" style="width: 100%; background-color: white; border: 1px solid #4B8EF1; border-radius: 20px; color: #4B8EF1;">로그인</button>
 				  </div>
+				  
+				  <div class="d-flex justify-content-center mt-3">
+				  	<div class="col-lg-12 text-center">
+					    <img alt="카카오로그인" src="${pageContext.request.contextPath}/resources/img/kakao_login_medium_wide.png" style="max-height:50px; width:300px; cursor:pointer;" onclick="loginWithKakao()">
+					</div>
+				  </div>
 				</form:form>
 			</div>
 		</div>
 		
 		<div class="container px-2 text-center" style="width:60%;">
 			<div class="row row-cols-auto justify-content-md-center">
-				<div class="col">
+				<div class="col">	
 					<div class="p-3">
-						<!-- 
-						<button class="kakao btn btn-primary btn-block mb-4" type="button" onclick="location.href='https://kauth.kakao.com/oauth/authorize?client_id=${kakaoKey}&redirect_uri=http://localhost:8080/sims/kakaoLogin&response_type=code'">카카오 로그인</button>
-						 -->
-					
 						<a href="<%=request.getContextPath()%>/findid">아이디 찾기</a>
 						<div class="vr" style="width:1px; height: 20px; background-color: black; margin-bottom: -4px;"></div>
 				    	<a href="<%=request.getContextPath()%>/findpw">비밀번호 찾기</a>
@@ -88,5 +91,20 @@
   <script src="<%= request.getContextPath() %>/resources/chain/assets/js/imagesloaded.js"></script>
   <script src="<%= request.getContextPath() %>/resources/chain/assets/js/popup.js"></script>
   <script src="<%= request.getContextPath() %>/resources/chain/assets/js/custom.js"></script>
+  
+  <spring:eval expression="@apikey['apikey.kakaoJavaScript']" var="kakaoJs"/>
+  <script type="text/javascript" src="https://developers.kakao.com/sdk/js/kakao.min.js" charset="utf-8"></script>
+	<script type="text/javascript">
+	    $(document).ready(function(){
+	        Kakao.init("<c:out value='${kakaoJs}' />");
+	        Kakao.isInitialized();
+	    });
+	
+	    function loginWithKakao() {
+	        Kakao.Auth.authorize({ 
+	        redirectUri: 'http://localhost:8090/sims/kakaoLogin' 
+	        }); // 등록한 리다이렉트uri 입력
+	    }
+	</script>
 </body>
 </html>
