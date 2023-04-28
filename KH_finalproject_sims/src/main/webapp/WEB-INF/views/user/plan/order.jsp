@@ -31,8 +31,7 @@
 	<jsp:include page="/WEB-INF/views/header.jsp"/>
 	
 	<section>
-		<div class="container-sm div-sm">
-			<div class="row mt-5"></div>
+		<div class="container-sm div-sm rounded-form">
 			
 			<div class="row my-3">
 				<h4>가입 고객 정보</h4>
@@ -101,7 +100,7 @@
 					    <tr>
 					        <td>이용중인 통신사</td>
 					        <td>
-					            <select name="currentTelecom" class="form-select">
+					            <select name="currentTelecom" class="form-select" style="width: 150px;">
 					                <option value="1">SKT</option>
 					                <option value="2">KT</option>
 					                <option value="3">LGU+</option>
@@ -114,6 +113,7 @@
 					</table>
 				</div>
 			</div>
+			<hr>
 			<div class="row my-3">
 				<div class="col-sm-12 my-3">
 					<h4>납부 정보</h4>
