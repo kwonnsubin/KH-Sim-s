@@ -166,7 +166,7 @@
 			, QNA_RPL.RPL_REDATE
 		from QNA_ANS LEFT OUTER JOIN QNA_RPL USING (AA_NO)
 		where AQ_NO = #{aqNo}
-		order by QNA_RPL.RPL_NO, aa_no
+		order by aa_no, QNA_RPL.RPL_NO
 	</select>
 
 	<!-- 내 답변 목록 -->

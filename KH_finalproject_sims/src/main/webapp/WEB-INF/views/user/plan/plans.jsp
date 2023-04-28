@@ -575,7 +575,7 @@
 	    					<div class="row">
 	    						<div class="col-4">
 	    							<a href="<%=request.getContextPath()%>/bizinfo/${list.bizId}">
-	       								<img src="<%=request.getContextPath()%>/resources/img/${list.bizId}.png" style="max-width: 100px; height: 40px;">
+	       								<img src="<%=request.getContextPath()%>/resources/img/${list.bizId}.png" style="max-width: 100px; max-height: 40px;">
        								</a>
 	    						</div>
 	       						<div class="col-8">

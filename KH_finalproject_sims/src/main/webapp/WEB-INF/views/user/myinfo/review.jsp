@@ -58,7 +58,7 @@
 	       					<div class="insert-div">
 			       				<div class="row my-3 list-row">
 			       					<div class="col-2 text-center align-self-center">
-		       							<img src="<%=request.getContextPath()%>/resources/img/${po.bizId}.png" style="max-width: 100px; height: 40px;">
+		       							<img src="<%=request.getContextPath()%>/resources/img/${po.bizId}.png" style="max-width: 100px; max-height: 40px;">
 			       					</div>
 			       					<div class="col-7 align-self-center">
 			       						<p class="plan-name-text">

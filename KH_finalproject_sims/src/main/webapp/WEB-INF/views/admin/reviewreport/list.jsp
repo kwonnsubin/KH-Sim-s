@@ -95,7 +95,15 @@
 														<c:forEach var="reviewreport" items="${requestScope.paging.page}">
 															<tr>
 																<td class="text-center">${reviewreport.reviewNo}</td>
-																<td><a href="<%=request.getContextPath()%>/admin/reviewreport/detail/${reviewreport.reviewNo}" style="font-weight: bold;">${reviewreport.reportReason}</a></td>															
+																<td>
+																	<a href="<%=request.getContextPath()%>/admin/reviewreport/detail/${reviewreport.reviewNo}" style="font-weight: bold;">${reviewreport.reportReason}</a>
+																	<jsp:useBean id="now" class="java.util.Date" />
+																	<fmt:parseNumber value="${now.time / (1000*60*60*24)}" integerOnly="true" var="nowTime" scope="request"/>
+																	<fmt:parseNumber value="${reviewreport.reportDate.time / (1000*60*60*24)}" integerOnly="true" var="reportDateTime" scope="request"/>
+																	<c:if test="${nowTime - reportDateTime <= 3}">
+																	<img src="<%=request.getContextPath()%>/resources/img/admin/new.png" width="12px" alt="new" />
+																	</c:if>
+																</td>															
 																<td class="text-center">${reviewreport.bizId}</td>
 																<td class="text-center"><fmt:formatDate value="${reviewreport.reportDate}" pattern="yyyy.MM.dd"/> </td>
 																<td class="text-center">${reviewreport.reportStatus}</td>

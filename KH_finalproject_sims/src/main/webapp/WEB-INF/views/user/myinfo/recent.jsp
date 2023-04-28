@@ -51,7 +51,7 @@
 		    				<div class="col-8">
 		    					<div class="row">
 		    						<div class="col-4">
-		       							<img src="<%=request.getContextPath()%>/resources/img/${list.bizId}.png" style="max-width: 100px; height: 40px;">
+		       							<img src="<%=request.getContextPath()%>/resources/img/${list.bizId}.png" style="max-width: 100px; max-height: 40px;">
 		    						</div>
 		       						<div class="col-8">
 				    					<p class="planName">${list.planName}</p>

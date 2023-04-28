@@ -4,6 +4,7 @@
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
+<c:set var="cpath" value="${pageContext.request.contextPath }"/>
 <!DOCTYPE html>
 <html>
 <head>
@@ -51,7 +52,9 @@
 		    				<div class="col-8">
 		    					<div class="row">
 		    						<div class="col-4">
-		       							<img src="<%=request.getContextPath()%>/resources/img/${list.bizId}.png" style="max-width: 100px; height: 40px;">
+		       							<a href="<%=request.getContextPath()%>/bizinfo/${list.bizId}">
+		       								<img src="<%=request.getContextPath()%>/resources/img/${list.bizId}.png" style="max-width: 100px; max-height: 40px;">
+	       								</a>
 		    						</div>
 		       						<div class="col-8">
 				    					<p class="planName">${list.planName}</p>
@@ -102,7 +105,9 @@
 		    				</div>
 		    				<div class="d-flex flex-column col-4 mb-2">
 		    					<div class="text-end">
-		    						<i class="fa-solid fa-heart fa-xl" style="color: #f72b2b;"></i>
+		    						<a data-tooltip="찜 삭제" onclick="toggleLike(${list.planNo})">
+			    						<i class="fa-solid fa-heart fa-xl" style="color: #f72b2b;"></i>
+		    						</a>
 		    					</div>
 		    					<div class="mt-auto text-end">
 			    					<button type="button" class="btn btn-primary btn-sm" onclick="location.href='${pageContext.request.contextPath}/plan/${list.planNo}'">자세히 보기</button>
@@ -134,6 +139,29 @@
 	<script src="<%= request.getContextPath() %>/resources/chain/assets/js/imagesloaded.js"></script>
 	<script src="<%= request.getContextPath() %>/resources/chain/assets/js/popup.js"></script>
 	<script src="<%= request.getContextPath() %>/resources/chain/assets/js/custom.js"></script>
+	
+	<script>
+		function toggleLike(planNo) {
+			console.log(planNo);
+			$.ajax({
+	            url: '${cpath}/plan/'+ planNo +'/like',
+	            type: 'POST',
+	            dataType: 'json',
+	            data: {
+	                planNo: planNo
+	            },
+	            success: function(result) {
+	            	location.reload();
+	            },
+	            error: function(xhr, status, error) {
+	                console.log("xhr.status: " + xhr.status);
+	                console.log("xhr.statusText: " + xhr.statusText);
+	                console.log("xhr.responseText: " + xhr.responseText);
+	                console.log("xhr.readyState: " + xhr.readyState);
+	            }
+	        });
+		}
+	</script>
   
 </body>
 </html>
