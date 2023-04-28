@@ -92,7 +92,7 @@
 	    						<div class="col-4">
 	    							<input class="planNo" type="hidden" value="${viewList.planNo}">
 	    						
-	       							<img src="<%=request.getContextPath()%>/resources/img/${viewList.bizId}.png" style="max-width: 100px; height: 40px;">
+	       							<img src="<%=request.getContextPath()%>/resources/img/${viewList.bizId}.png" style="max-width: 100px; max-height: 40px;">
 	    						</div>
 	       						<div class="col-8">
 			    					<p class="planName">${viewList.planName}</p>
@@ -162,7 +162,7 @@
 	    						<div class="col-4">
 	    							<input class="planNo" type="hidden" value="${likeList.planNo}">
 	    						
-	       							<img src="<%=request.getContextPath()%>/resources/img/${likeList.bizId}.png" style="max-width: 100px; height: 40px;">
+	       							<img src="<%=request.getContextPath()%>/resources/img/${likeList.bizId}.png" style="max-width: 100px; max-height: 40px;">
 	    						</div>
 	       						<div class="col-8">
 			    					<p class="planName">${likeList.planName}</p>
@@ -232,7 +232,7 @@
 	    						<div class="col-4">
 	    							<input class="planNo" type="hidden" value="${orderList.planNo}">
 	    						
-	       							<img src="<%=request.getContextPath()%>/resources/img/${orderList.bizId}.png" style="max-width: 100px; height: 40px;">
+	       							<img src="<%=request.getContextPath()%>/resources/img/${orderList.bizId}.png" style="max-width: 100px; max-height: 40px;">
 	    						</div>
 	       						<div class="col-8">
 			    					<p class="planName">${orderList.planName}</p>
@@ -296,17 +296,18 @@
 	    </div>
 	    <!-- 랭킹 div 끝 -->
 	    
-	    <!-- 통신사 이미지 
-	    <div class="row">
-	    	<c:forEach items="${bizList}" var="biz">
-		    	<div class="col">
-		    		<a href="${pageContext.request.contextPath}/bizinfo/${biz.bizId}">
-			    		<img src="<%=request.getContextPath()%>/resources/img/${biz.bizId}.png" style="max-width: 100px; height: 40px;">
-		    		</a>
-	    		</div>
-	    	</c:forEach>
-	    </div>
-	    -->
+	    <!-- 통신사 이미지 -->
+	    <div class="container-fluid d-flex justify-content-center" style="width: 80%; margin-top: 80px;">
+		    <div class="row row-cols-auto" style="width: 60%">
+		    	<c:forEach items="${bizList}" var="biz">
+			    	<div class="col mt-3 my-3">
+			    		<a href="${pageContext.request.contextPath}/bizinfo/${biz.bizId}">
+				    		<img src="${pageContext.request.contextPath}/resources/img/${biz.bizId}.png" style="max-width: 100px; max-height: 40px;">
+			    		</a>
+		    		</div>
+		    	</c:forEach>
+		    </div>
+    	</div>
 	</section>
 	
 	<jsp:include page="/WEB-INF/views/footer.jsp"/>

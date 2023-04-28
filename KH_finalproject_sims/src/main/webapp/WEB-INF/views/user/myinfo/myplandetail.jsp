@@ -52,7 +52,7 @@
        						<p class="mb-3 plan-info-text">요금제 정보</p>
        						
        						<div class="mb-3">
-       							<img src="<%=request.getContextPath()%>/resources/img/${poVo.bizId}.png" style="max-width: 100px; height: 40px;">
+       							<img src="<%=request.getContextPath()%>/resources/img/${poVo.bizId}.png" style="max-width: 100px; max-height: 40px;">
        						</div>
        						
        						<p class="mb-2">요금제명	|	${poVo.planName}</p>

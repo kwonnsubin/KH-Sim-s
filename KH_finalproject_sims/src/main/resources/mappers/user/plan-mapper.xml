@@ -185,7 +185,7 @@
 		select biz_name from biz
 	</select>
 	
-	<select id="selectbizIdList" resultType="bvo">
+	<select id="selectBizIdList" resultType="bvo">
 		select biz_id from biz
 	</select>
 	
