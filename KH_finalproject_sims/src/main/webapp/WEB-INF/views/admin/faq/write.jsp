@@ -8,6 +8,12 @@
 <html>
 <head>
 <meta charset="UTF-8">
+<script src="https://cdn.ckeditor.com/ckeditor5/37.0.1/classic/ckeditor.js"></script>
+<style>
+	.ck-editor__editable {
+	min-height: 500px;
+}
+</style>
 <title>자주묻는질문 작성</title>
 </head>
 <body>
@@ -44,8 +50,6 @@
 								</div>
 								<div class="card text-center">
 									<div class="card-body">
-										<!-- <h5 class="card-text"></h5>
-										<p class="card-text"></p> -->
 										<div class="row">
 											<div class="col-sm-12">
 												<div class="form-group">
@@ -54,7 +58,7 @@
 											</div>
 											<div class="col-sm-12">
 												<div class="form-group">
-			                                        <textarea class="form-control" name="faqContent" rows="20" placeholder="내용을 입력하세요"></textarea>
+			                                        <textarea class="form-control" name="faqContent" rows="20" placeholder="내용을 입력하세요" id="faqContent_textarea"></textarea>
 			                                    </div>
 											</div>
 										</div>
@@ -69,5 +73,12 @@
 	</div>
 </div>
 <jsp:include page="/WEB-INF/views/admin/include/footer.jsp" />
+<script>
+	ClassicEditor
+	.create(document.querySelector('#faqContent_textarea'))
+	.catch(error=>{
+		console.error(error);
+	});
+</script>
 </body>
 </html>
