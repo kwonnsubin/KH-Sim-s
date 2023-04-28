@@ -13,12 +13,10 @@
   				 ROWNUM AS RO
    				, C.*
 				FROM
-					(SELECT A.BIZ_NAME
-     				, A.BIZ_OWNER_NAME
-     				, A.WRITE_DATE
+					(SELECT A.*
      				, B. ENABLE
  				FROM BIZ A
- 				INNER JOIN MEMBER B ON A.BIZ_ID = B.ID
+ 				LEFT OUTER JOIN MEMBER B ON A.BIZ_ID = B.ID
 				WHERE 1=1
 				<if test="searchRadioVal != null">
 					<choose>
