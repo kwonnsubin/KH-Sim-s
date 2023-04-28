@@ -48,7 +48,8 @@
 	    		, type : "post"
 	    		, dataType : "json"
 	    		, success : function(json){
-	    			console.log("json :"+json);
+	    			console.log("json :"+json); /* [object Object],[object Object] */
+	    			console.log(json); /* [object Object],[object Object] */
 	    			
 	    			var data = new google.visualization.DataTable();
 	    				data.addColumn('string','일자');
@@ -56,7 +57,7 @@
 	    				for(var i=0; i < json.length; i++){
 	    					data.addRow([json[i].orderDate, json[i].orderCnt]);
 	    				}
-	    				console.log("data : "+ data);
+	    				console.log("data : "+ data); /* [object Object] */
 
 	    				var options = {
 	    				        hAxis: {
