@@ -1,7 +1,10 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="sec"
+	uri="http://www.springframework.org/security/tags"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
+<c:set var="cpath" value="${pageContext.request.contextPath }" />
 <!DOCTYPE html>
 <html>
 <head>
@@ -32,92 +35,96 @@
     
 </head>
 <body>
-	<jsp:include page="/WEB-INF/views/header.jsp"/>
-	
+	<jsp:include page="/WEB-INF/views/header.jsp" />
+
 	<section>
 		<div class="container-sm div-m">
-			<div class="row">
-				<div class="col-lg-12 p-2">
-					<h5 class="py-3 fw-bolder">알뜰폰 궁금한 점 무엇이든 물어보세요</h5>
-					<div class="row">
-						<!-- 검색 -->
-						<div class="input-group my-3">
-							<select name="searchType" id="searchType" class="btn dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
-								<option value="title">제목</option>
-								<option value="content">내용</option>
-							</select>
-							<input type="text" class="form-control" placeholder="검색해보세요" name="keyword" id="keyword">
-							<button name="btnSearch" id="btnSearch" class="btn" type="submit">검색</button>
-						</div>
-					</div>
-					<% if (request.getParameter("keyword") != null && !request.getParameter("keyword").isEmpty()) { %>
-					    <span>"<%=request.getParameter("keyword")%>"의 검색 결과입니다.</span>
-					<% } %>
-				</div>
-			</div>
 			<!-- ***** 자주묻는질문 Start ***** -->
 			<div class="row">
-				<div class="col-lg-12 p-2">
-					<h6 class="py-2 fw-bolder">자주 묻는 질문</h6>
-					<div id="carouselExampleControls" class="carousel slide" data-bs-ride="carousel">
+				<div class="col-lg-12 my-3">
+					<h5 class="py-3 fw-bolder">알뜰폰 궁금한 점 무엇이든 물어보세요</h5>
+					<div id="carouselExampleControls" class="carousel slide"
+						data-bs-ride="carousel">
 						<div class="carousel-inner">
 							<c:forEach items="${faqlist}" var="faq">
 								<c:if test="${faq.faqNo eq 1}">
 									<div class="carousel-item active">
-										<img src="https://dummyimage.com/30x10" class="d-block w-100" alt="...">
-										<div class="carousel-caption">
-											<span>${faq.faqNo}</span> 
-												<a href="${pageContext.request.contextPath}/faq/faqread/${faq.faqNo}">${faq.faqTitle}</a>
+										<img src="<%=request.getContextPath()%>/resources/img/faq.png" class="d-block w-100" alt="...">
+										<div class="carousel-caption pb-5">
+											<h1>
+												<a href="${cpath}/faq/faqread/${faq.faqNo}">${faq.faqTitle}</a>
+											</h1>
 										</div>
 									</div>
 								</c:if>
 								<c:if test="${faq.faqNo ne 1}">
 									<div class="carousel-item">
-										<img src="https://dummyimage.com/30x10" class="d-block w-100" alt="...">
-										<div class="carousel-caption">
-											<span>${faq.faqNo}</span> 
-											<a href="${pageContext.request.contextPath}/faq/faqread/${faq.faqNo}">${faq.faqTitle}</a>
+										<img src="<%=request.getContextPath()%>/resources/img/faq.png" class="d-block w-100" alt="...">
+										<div class="carousel-caption fs-1 pb-5">
+											<h1>
+												<a href="${cpath}/faq/faqread/${faq.faqNo}">${faq.faqTitle}</a>
+											</h1>
 										</div>
 									</div>
 								</c:if>
 							</c:forEach>
 						</div>
-						<button class="carousel-control-prev" type="button"
-							data-bs-target="#carouselExampleControls" data-bs-slide="prev">
+						<button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="prev">
 							<span class="carousel-control-prev-icon" aria-hidden="true"></span>
 							<span class="visually-hidden">Previous</span>
 						</button>
-						<button class="carousel-control-next" type="button"
-							data-bs-target="#carouselExampleControls" data-bs-slide="next">
+						<button class="carousel-control-next" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="next">
 							<span class="carousel-control-next-icon" aria-hidden="true"></span>
 							<span class="visually-hidden">Next</span>
 						</button>
 					</div>
 				</div>
-			</div>
-			<!-- ***** 자주묻는질문 end ***** -->
-			
-			<!-- ***** 일반 질문 Start ***** -->
-			<div class="col-lg-12 py-2">
-				<c:if test="${not empty requestScope.paging.page}">
-					<c:forEach items="${requestScope.paging.page}" var="qna">
-						<div class="row my-3">
-							<div class="pb-1">
-								<a href="${pageContext.request.contextPath}/faq/qna/${qna.aqNo}">${qna.aqTitle}</a>
+				<!-- ***** 자주묻는질문 end ***** -->
+
+				<div class="col-lg-12 my-3">
+					<!-- 검색 -->
+					<div class="input-group my-1">
+						<select name="searchType" id="searchType" class="btn dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
+							<option value="title">제목</option>
+							<option value="content">내용</option>
+						</select> 
+						<input type="text" class="form-control" placeholder="검색해보세요" name="keyword" id="keyword" value=${keyword }>
+						<button name="btnSearch" id="btnSearch" class="btn" type="submit">검색</button>
+					</div>
+					<%
+						if (request.getParameter("keyword") != null && !request.getParameter("keyword").isEmpty()) {
+					%>
+					<span class="msg-search">'<%=request.getParameter("keyword")%>'으로 검색한 결과입니다.</span>
+					<%
+						}
+					%>
+				</div>
+
+				<!-- ***** 일반 질문 Start ***** -->
+				<div class="col-lg-12 my-3">
+					<c:if test="${not empty requestScope.paging.page}">
+						<c:forEach items="${requestScope.paging.page}" var="qna">
+							<div class="row py-3 div-hover">
+								<div class="pb-1">
+									<a href="${pageContext.request.contextPath}/faq/qna/${qna.aqNo}">${qna.aqTitle}</a>
+								</div>
+								<div class="small col-md-1 pe-0">답변 ${qna.aqAnswers }</div>
+								<div class="small col-md-9">
+									조회 <fmt:formatNumber value="${qna.aqViews}" pattern="###,###" />
+								</div>
+								<div class="small col-md-2 text-end">
+									<fmt:formatDate value="${qna.aqDate}" pattern="yy.MM.dd HH:mm" />
+								</div>
 							</div>
-							<div class="small col-md-1 pe-0">답변 ${qna.aqAnswers }</div>
-							<div class="small col-md-9">조회 <fmt:formatNumber value="${qna.aqViews}" pattern="###,###"/></div>
-							<div class="small col-md-2 text-end"><fmt:formatDate value="${qna.aqDate}" pattern="yy.MM.dd HH:mm"/></div>
-						</div>
-						<hr>
-					</c:forEach>
-				</c:if>
-			</div>
-			<!-- ***** 일반 질문 end ***** -->
-			<div class="row">
+							<hr>
+						</c:forEach>
+					</c:if>
+				</div>
+				<!-- ***** 일반 질문 end ***** -->
 				<!-- 페이지 번호 -->
 				<div class="col-md-8">
-					<c:if test="${not empty requestScope.paging.page}"> <!-- 신청서가 하나도 없으면 페이징X -->
+					<c:if test="${not empty requestScope.paging.page}">
+						<!-- 신청서가 하나도 없으면 페이징X -->
 						<ul class="pagination my-2">
 							<c:set var="pageNumber" value="${empty param.p ? 1 : param.p }" />
 							<c:choose>
@@ -149,36 +156,36 @@
 					</c:if>
 				</div>
 				<div class="col-md-4 text-end my-2">
-					<sec:authorize access="hasRole('ROLE_USER')">
-						<button type="button" class="btn btn-m" onclick="location.href='myqna'">내 질문/답변</button>
-						<button type="button" class="btn btn-m" onclick="location.href='qna/write'">질문하기</button>
-					</sec:authorize>
+					<button type="button" class="btn btn-m" onclick="location.href='myqna'">내 질문/답변</button>
+					<button type="button" class="btn btn-m" onclick="location.href='qna/write'">질문하기</button>
 				</div>
 			</div>
 		</div>
 
+
 	</section>
-	<jsp:include page="/WEB-INF/views/footer.jsp"/>
-	
+	<jsp:include page="/WEB-INF/views/footer.jsp" />
+
 	<!-- Scripts -->
-	<script src="<%= request.getContextPath() %>/resources/chain/vendor/jquery/jquery.min.js"></script>
-	<script src="<%= request.getContextPath() %>/resources/chain/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
-	<script src="<%= request.getContextPath() %>/resources/chain/assets/js/owl-carousel.js"></script>
-	<script src="<%= request.getContextPath() %>/resources/chain/assets/js/animation.js"></script>
-	<script src="<%= request.getContextPath() %>/resources/chain/assets/js/imagesloaded.js"></script>
-	<script src="<%= request.getContextPath() %>/resources/chain/assets/js/popup.js"></script>
-	<script src="<%= request.getContextPath() %>/resources/chain/assets/js/custom.js"></script>
-	
+	<script src="<%=request.getContextPath()%>/resources/chain/vendor/jquery/jquery.min.js"></script>
+	<script src="<%=request.getContextPath()%>/resources/chain/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+	<script src="<%=request.getContextPath()%>/resources/chain/assets/js/owl-carousel.js"></script>
+	<script src="<%=request.getContextPath()%>/resources/chain/assets/js/animation.js"></script>
+	<script src="<%=request.getContextPath()%>/resources/chain/assets/js/imagesloaded.js"></script>
+	<script src="<%=request.getContextPath()%>/resources/chain/assets/js/popup.js"></script>
+	<script src="<%=request.getContextPath()%>/resources/chain/assets/js/custom.js"></script>
+
 	<script>
-	//검색
-		$(document).on('click', '#btnSearch', function(e){
+		//검색
+		$(document).on('click', '#btnSearch', function(e) {
 			e.preventDefault();
-			var url="${pageContext.request.contextPath}/faq/";
-			url = url + "?searchType="+$('#searchType').val();
-			url = url + "&keyword="+$('#keyword').val();
-			location.href=url;
+			var url = "${pageContext.request.contextPath}/faq/";
+			url = url + "?searchType=" + $('#searchType').val();
+			var keyword = $('#keyword').val();
+			url = url + "&keyword=" + keyword;
+			location.href = url;
 			console.log(url);
-			
+			$('#keyword').val(keyword);
 		});
 	</script>
 </body>

@@ -6,7 +6,7 @@ hr {
 	background-color: currentColor;
 	border: 0;
 	border-top: 1px solid;
-	opacity: .25
+	opacity: .25;
 }
 
 a {
@@ -74,3 +74,21 @@ textarea {
     font-size: .875rem;
     border-radius: 0.2rem;
 }
+
+.msg-search {
+	color: #045faa;
+	padding-left: 1rem;
+}
+
+.div-hover:hover {
+	background-color: #d4e4f461;
+	border-radius: 10px;
+	color: #3a4750;
+}
+
+.div-hover:hover a {
+	color: #3a4750;
+	font-weight: bolder;
+}
+
+

@@ -12,6 +12,7 @@ import javax.servlet.http.HttpServletResponse;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Controller;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -62,23 +63,7 @@ public class UserFaqController {
 				cookie = c;
 			}
 		}
-		
-		String cnt = req.getParameter("cnt");
-		if (cnt != null) {
-			if (cnt.isEmpty()) {
-				if (cookie != null) {
-					cnt = cookie.getValue();
-				} else {
-					cnt = "10"; // 초기값
-				}
-			}
-		} else {
-			if (cookie != null) {
-				cnt = cookie.getValue();
-			} else {
-				cnt = "10";
-			}
-		}
+		String cnt = "5";
 		
 		cookie = new Cookie("cnt", cnt);
 		cookie.setMaxAge(60 * 60 * 24 * 5);
@@ -134,36 +119,10 @@ public class UserFaqController {
 		mv.setViewName("user/faq/readQna");
 		return mv;
 	}
-	
-	// 답변 불러오기 ajax
-	@ResponseBody
-	@GetMapping(value = "/qna/ansList", produces = "application/json;charset=utf-8")
-	public String ansList(@RequestParam("aqNo") int aqNo) {
-		service.selectQnaDetail(aqNo);
-		List<UserAnsVo> ansList = service.selectAnsList(aqNo);
-		if (!ansList.isEmpty()) {
-			for(int i = 0; i < ansList.size(); i++) {
-				ansList.get(i).setAaContent(ansList.get(i).getAaContent().replaceAll(System.lineSeparator(), "<br>"));
-			}
-			Gson gson = new GsonBuilder().setDateFormat("yyyy.MM.dd HH:mm").create();
-			return gson.toJson(ansList);
-		}
-		return null;
-	}
-	
-	// 답변수 ajax
-	@ResponseBody
-	@GetMapping(value = "/qna/ansCount")
-	public Map<String, Integer> answerCount(@RequestParam("aqNo") int aqNo) {
-	    Map<String, Integer> map = new HashMap<>();
-	    UserQnaVo vo = service.selectQnaDetail(aqNo);
-	    int count = vo.getAqAnswers();
-	    map.put("answer_count", count);
-	    return map;
-	}
-	
 
+	//  답변달기
 	@PostMapping(value = "/qna/{aqNo}/answer")
+	@Transactional
 	public String insertAnswer(
 			@PathVariable int aqNo
 			, UserAnsVo vo
@@ -236,6 +195,7 @@ public class UserFaqController {
 	
 	// 내 답변 삭제
 	@GetMapping("/ansdelete/{aqNo}/{aaNo}")
+	@Transactional
 	public String deleteAns(
 			@PathVariable int aqNo
 			, @PathVariable int aaNo
