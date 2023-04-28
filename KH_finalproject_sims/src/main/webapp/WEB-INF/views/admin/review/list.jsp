@@ -86,6 +86,12 @@
 												                       <c:forEach var="i" begin="1" end="5">
 												                           <i class="fa${(review.reviewStar)/2 >= i ? '-solid fa-star' : ((review.reviewStar)/2 >= (i - 0.5) ? '-star-half-stroke fa-regular' : '-regular fa-star')}" style="color: #ffdd00;"></i>
 												                       </c:forEach>
+												                    <jsp:useBean id="now" class="java.util.Date" />
+																	<fmt:parseNumber value="${now.time / (1000*60*60*24)}" integerOnly="true" var="nowTime" scope="request"/>
+																	<fmt:parseNumber value="${review.reviewDate.time / (1000*60*60*24)}" integerOnly="true" var="reviewDateTime" scope="request"/>
+																	<c:if test="${nowTime - reviewDateTime <= 3}">
+																	<img src="<%=request.getContextPath()%>/resources/img/admin/new.png" width="12px" alt="new" />
+																	</c:if>
 																</td>
 																<td class="text-center">${review.userId}</td>
 																<td class="text-center"><fmt:formatDate value="${review.reviewDate}" pattern="yyyy.MM.dd"/> </td>

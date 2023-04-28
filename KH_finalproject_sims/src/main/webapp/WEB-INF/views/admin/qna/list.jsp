@@ -75,7 +75,15 @@
 														<c:forEach var="qna" items="${requestScope.paging.page}">
 															<tr>
 																<td class="text-center">${qna.aqNo}&nbsp;&nbsp;</td>
-																<td><a href="<%=request.getContextPath()%>/admin/qna/detail/${qna.aqNo}" style="font-weight: bold;">${qna.aqTitle}</a></td>
+																<td>
+																	<a href="<%=request.getContextPath()%>/admin/qna/detail/${qna.aqNo}" style="font-weight: bold;">${qna.aqTitle}</a>
+																	<jsp:useBean id="now" class="java.util.Date" />
+																	<fmt:parseNumber value="${now.time / (1000*60*60*24)}" integerOnly="true" var="nowTime" scope="request"/>
+																	<fmt:parseNumber value="${qna.aqDate.time / (1000*60*60*24)}" integerOnly="true" var="aqDateTime" scope="request"/>
+																	<c:if test="${nowTime - aqDateTime <= 3}">
+																		<img src="<%=request.getContextPath()%>/resources/img/admin/new.png" width="12px" alt="new" />
+																	</c:if>
+																</td>
 																<td class="text-center">${qna.userId}</td>
 																<td class="text-center"><fmt:formatDate value="${qna.aqDate}" pattern="yyyy.MM.dd"/></td>
 																<td class="text-center">${qna.aqViews}</td>
