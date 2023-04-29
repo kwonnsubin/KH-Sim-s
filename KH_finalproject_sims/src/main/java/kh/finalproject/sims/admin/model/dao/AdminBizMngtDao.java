@@ -32,8 +32,13 @@ public class AdminBizMngtDao {
 	}
 	
 	//통신사 요금제 리스트
-	public List<AdminBizMngtVo> selectBizPlanList(String bizId) {
-		return sqlSession.selectList("adminBiz.selectBizPlanList", bizId);
+	public List<AdminBizMngtVo> selectBizPlanList(Map<String, Object> map) {
+		return sqlSession.selectList("adminBiz.selectBizPlanList", map);
+	}
+	
+	//통신사 요금제 리스트 전체 개수
+	public int selectBizPlanListCnt(Map<String, Object> map) {
+		return sqlSession.selectOne("adminBiz.selectBizPlanListCnt", map);
 	}
 	
 	//통신사의 탈퇴 신청 리스트로 이동

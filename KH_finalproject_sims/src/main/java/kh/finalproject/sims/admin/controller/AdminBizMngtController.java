@@ -99,20 +99,39 @@ public class AdminBizMngtController {
 
 	// 통신사 신청정보 상세 페이지로 이동
 	@GetMapping("/applyDetail/{bizId}")
-	public ModelAndView selectApplyDetail(ModelAndView mv, @PathVariable String bizId, HttpServletRequest request,
+	public ModelAndView selectApplyDetail(ModelAndView mv, @PathVariable String bizId, HttpServletRequest request, HttpServletResponse response, @RequestParam(value="p", required = false) String pageNumber,
 			AdminBizMngtVo vo) throws Exception {
 		String divCheck = request.getParameter("divCheck");
+		
+		Map<String, String> paginationInfo = null;
+		int pNum = 0;
+		int cnt = 0;
+		String searchOption = vo.getSearchOption();
+		String searchRadioVal = vo.getSearchRadioVal();
+		String searchBox = vo.getSearchBox();
+		Search search = null;
+		
 		switch (divCheck) {
 		case "apply":
 			mv.setViewName("admin/biz/applyDetail");
 			break;
 		case "detail":
+			paginationInfo = paginationInfo(pageNumber, request, response);
+			pNum = Integer.parseInt(paginationInfo.get("pNum"));
+			cnt = Integer.parseInt(paginationInfo.get("cnt"));
+			searchRadioVal = bizId;
+			search = service.selectBizPlanList(pNum, cnt, searchOption, searchRadioVal, searchBox);
 			mv.setViewName("admin/biz/bizDetail");
-			mv.addObject("bizPlanList", service.selectBizPlanList(bizId));
+			/* mv.addObject("bizPlanList", service.selectBizPlanList(bizId)); */
 			break;
 		default:
+			paginationInfo = paginationInfo(pageNumber, request, response);
+			pNum = Integer.parseInt(paginationInfo.get("pNum"));
+			cnt = Integer.parseInt(paginationInfo.get("cnt"));
+			searchRadioVal = bizId;
+			search = service.selectBizPlanList(pNum, cnt, searchOption, searchRadioVal, searchBox);
 			mv.setViewName("admin/biz/bizDetail");
-			mv.addObject("bizPlanList", service.selectBizPlanList(bizId));
+			/* mv.addObject("bizPlanList", service.selectBizPlanList(bizId)); */
 			break;
 		}
 		AdminBizMngtVo applyDetail = service.selectApplyDetail(bizId);
@@ -124,6 +143,12 @@ public class AdminBizMngtController {
 		} else {
 			imagePath ="/resources/img/"+applyDetail.getLogoRenameFileName();
 		}
+		
+		request.setAttribute("paging", search);
+		mv.addObject("searchOption", searchOption);
+		mv.addObject("searchBox", searchBox);
+		mv.addObject("searchRadioVal", searchRadioVal);
+		mv.addObject("divCheck", divCheck);
 		
 		mv.addObject("imagePath",imagePath);
 		return mv;
@@ -145,7 +170,7 @@ public class AdminBizMngtController {
 
 	// 통신사 상세 수정 페이지로 이동
 	@GetMapping("/selectBizModify/{bizId}")
-	public ModelAndView selectBizModify(ModelAndView mv, @PathVariable String bizId, AdminBizMngtVo vo)
+	public ModelAndView selectBizModify(ModelAndView mv, @PathVariable String bizId, AdminBizMngtVo vo,  HttpServletRequest request, HttpServletResponse response, @RequestParam(value="p", required = false) String pageNumber)
 			throws Exception {
 		AdminBizMngtVo applyDetail = service.selectApplyDetail(bizId);
 		mv.addObject("applyDetail", applyDetail);
@@ -159,7 +184,21 @@ public class AdminBizMngtController {
 		}
 		
 		mv.addObject("imagePath",imagePath);
-		mv.addObject("bizPlanList", service.selectBizPlanList(bizId));
+		
+		Map<String, String> paginationInfo = paginationInfo(pageNumber, request, response);
+		int pNum = Integer.parseInt(paginationInfo.get("pNum"));
+		int cnt = Integer.parseInt(paginationInfo.get("cnt"));
+		String searchOption = vo.getSearchOption();
+		String searchRadioVal = vo.getSearchRadioVal();
+		String searchBox = vo.getSearchBox();
+		Search search = service.selectBizPlanList(pNum, cnt, searchOption, searchRadioVal, searchBox);
+		/* mv.addObject("applyList", search); */
+		request.setAttribute("paging", search);
+		mv.addObject("searchOption", searchOption);
+		mv.addObject("searchBox", searchBox);
+		mv.addObject("searchRadioVal", searchRadioVal);
+		
+		/* mv.addObject("bizPlanList", service.selectBizPlanList(bizId)); */
 		mv.setViewName("/admin/biz/bizDetail");
 		return mv;
 	}

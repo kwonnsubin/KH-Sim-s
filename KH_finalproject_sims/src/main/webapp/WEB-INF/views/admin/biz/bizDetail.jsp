@@ -12,6 +12,7 @@
 <body>
 <!-- 우편번호 찾기 API -->
 <script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
+<script src="http://code.jquery.com/jquery-latest.js"></script> 
 <script type="text/javascript">
 	/* 요금제 정보 호출 ajax */
 	function fn_selectPlanAjax(planNo){
@@ -78,7 +79,60 @@
             }
         }).open();
     }
-</script>
+	
+	/*수정 취소(뒤로가기)*/
+	function goBack(){
+		window.history.back();
+	}
+	
+	/*체크박스 값 가져오기*/
+	/* var bizClosedDayCheck = "$("input[name='bizClosedDay']:checked").length;
+	if(bizClosedDayCheck > 1){//개수를 체크하고 2개부터는 each 함수를 각각 가져온다.}
+		$("input[name='bizClose']:checked").each(function(e){
+	        console.log($(this).val())
+	    })
+	} */
+	$(document).ready(function(){
+		/*지원통신망 입력 값 쪼개기*/
+		var network = "${applyDetail.network}";
+		console.log("network : "+network);
+		var networkArr = network.split(",");
+		console.log("networkArr : "+networkArr);
+		for(var i = 0; i < networkArr.length; i++){
+			var net = networkArr[i];
+			switch(network){
+			case "KT망" :
+			case "SKT망" :
+			case "LG망" :
+				$("[name=network][value="+network+"]").prop("checked", true);
+				break;
+			}
+		}
+		
+		/*휴무일 입력 값 쪼개기*/
+		var bizClosedDay = "${applyDetail.bizClosedDay}";
+		console.log("bizClosedDay : " + bizClosedDay);
+		var bizClosedDayArr = bizClosedDay.split(",");
+		console.log(bizClosedDayArr);
+		for(var i = 0; i < bizClosedDayArr.length; i++){
+			var day = bizClosedDayArr[i];
+			switch(day){
+			case "월" :
+			case "화" :
+			case "수" :
+			case "목" :
+			case "금" :
+			case "토" :
+			case "일" :
+			case "공휴일" :
+				console.log("day : " + day);
+				$("[name=bizClosedDay][value=" + day + "]").prop("checked", true);
+				break;
+			}
+		}
+	})
+	
+	</script>
 <jsp:include page="../include/header.jsp" />
 <div class="pcoded-main-container">
 	<div class="pcoded-wrapper container">
@@ -116,7 +170,14 @@
 							<form action="<%=request.getContextPath()%>/admin/saveBizModify" method="post" onsubmit="return confirm('저장 하시겠습니까?');">
 								<div class="col-md-12">
 									<div class="simsBtn m-b-15">
-										<input class="btn btn-primary right m-l-10" type="button" onclick="location.href='<%=request.getContextPath()%>/admin/applyList'" value="목록">
+										<c:choose>
+											<c:when test="${cmd eq 'read'}">
+												<input class="btn btn-primary right m-l-10" type="button" onclick="location.href='<%=request.getContextPath()%>/admin/applyList'" value="목록">
+											</c:when>
+											<c:otherwise>
+												<input class="btn btn-primary right m-l-10" type="button" onclick="goBack()" value="취소">
+											</c:otherwise>
+										</c:choose>
 										<input class="btn btn-primary right m-l-10" type="button" onclick="location.href='<%=request.getContextPath()%>/admin/withdrawalDetail/${applyDetail.bizId}'" value="탈퇴">
 											<c:choose>
 												<c:when test="${cmd eq 'read' }">
@@ -144,36 +205,35 @@
 		                                        <div class="col-sm-5">
 		                                            <input type="text" class="form-control"  name="bizName" <c:if test="${cmd eq 'read' }">readonly</c:if> value="${applyDetail.bizName}">
 		                                        </div>
-		                                        <label for="bizSsn" class="col-sm-1 col-form-label text-center">법인 등록번호</label>
-		                                        <div class="col-sm-5">
-		                                            <input type="text" class="form-control"  name="bizSsn" <c:if test="${cmd eq 'read' }">readonly</c:if> value="${applyDetail.bizSsn}">
-		                                        </div>
-		                                    </div>
-		                           			 <div class="form-group row">
-		                                        <label for="bizCrn" class="col-sm-1 col-form-label text-center">사업자번호</label>
-		                                        <div class="col-sm-5">
-		                                            <input type="text" class="form-control"  name="bizCrn" <c:if test="${cmd eq 'read' }">readonly</c:if> value="${applyDetail.bizCrn}">
-		                                        </div>
-		                                         <label for="bizId" class="col-sm-1 col-form-label text-center">아이디</label>
-		                                        <div class="col-sm-5">
-		                                            <input type="text" class="form-control"  name="bizId" <c:if test="${cmd eq 'read' }">readonly</c:if> value="${applyDetail.bizId}">
-		                                        </div>
-		                                        
-		                                    </div>
-		                                    <div class="form-group row">
-		                                        <label for="bizEmail" class="col-sm-1 col-form-label text-center">이메일</label>
-		                                        <div class="col-sm-5">
-		                                            <input type="text" class="form-control"  name="bizEmail" <c:if test="${cmd eq 'read' }">readonly</c:if> value="${applyDetail.bizEmail}">
-		                                        </div>
-		                                        <label for="bizPhone" class="col-sm-1 col-form-label text-center">연락처</label>
-		                                        <div class="col-sm-5">
-		                                            <input type="text" class="form-control"  name="bizPhone" <c:if test="${cmd eq 'read' }">readonly</c:if> value="${applyDetail.bizPhone}">
-		                                        </div>
-		                                    </div>
-		                                    <div class="form-group row">
 		                                        <label for="bizOwnerName" class="col-sm-1 col-form-label text-center">대표자명</label>
 		                                        <div class="col-sm-5">
 		                                            <input type="text" class="form-control"  name="bizOwnerName" <c:if test="${cmd eq 'read' }">readonly</c:if> value="${applyDetail.bizOwnerName}">
+		                                        </div>
+		                                    </div>
+		                           			 <div class="form-group row">
+		                           			 	<label for="bizSsn" class="col-sm-1 col-form-label text-center">법인 등록번호</label>
+		                                        <div class="col-sm-5">
+		                                            <input type="text" class="form-control"  name="bizSsn" <c:if test="${cmd eq 'read' }">readonly</c:if> value="${applyDetail.bizSsn}">
+		                                        </div>
+		                                        <label for="bizCrn" class="col-sm-1 col-form-label text-center">사업자등록번호</label>
+		                                        <div class="col-sm-5">
+		                                            <input type="text" class="form-control"  name="bizCrn" <c:if test="${cmd eq 'read' }">readonly</c:if> value="${applyDetail.bizCrn}">
+		                                        </div>
+		                                    </div>
+		                                    <div class="form-group row">
+		                                        <label for="bizPhone" class="col-sm-1 col-form-label text-center">전화</label>
+		                                        <div class="col-sm-5">
+		                                            <input type="text" class="form-control"  name="bizPhone" <c:if test="${cmd eq 'read' }">readonly</c:if> value="${applyDetail.bizPhone}">
+		                                        </div>
+		                                        <label for="bizFax" class="col-sm-1 col-form-label text-center">팩스</label>
+		                                        <div class="col-sm-5">
+		                                            <input type="text" class="form-control"  name="bizFax" <c:if test="${cmd eq 'read' }">readonly</c:if> value="${applyDetail.bizFax}">
+		                                        </div>
+		                                    </div>
+		                                    <div class="form-group row">
+		                                    	 <label for="bizEmail" class="col-sm-1 col-form-label text-center">이메일</label>
+		                                        <div class="col-sm-5">
+		                                            <input type="email" class="form-control"  name="bizEmail" <c:if test="${cmd eq 'read' }">readonly</c:if> value="${applyDetail.bizEmail}">
 		                                        </div>
 		                                        <label for="bizHp" class="col-sm-1 col-form-label text-center">홈페이지</label>
 		                                        <div class="col-sm-5">
@@ -207,17 +267,95 @@
 		                                            <input type="text" class="form-control"  name="bizCardPayDate" <c:if test="${cmd eq 'read' }">readonly</c:if> value="${applyDetail.bizCardPayDate}">
 		                                        </div> --%>
 		                                         <label for="bizTime" class="col-sm-1 col-form-label text-center">영업 시간</label>
-		                                        <div class="col-sm-5">
-		                                         	<input type="hidden" class="form-control"  name="bizBeginTime" value="${applyDetail.bizBeginTime}">
-		                                            <input type="hidden" class="form-control"  name="bizEndTime" value="${applyDetail.bizEndTime}">
-		                                            <input type="text" class="form-control"  name="bizTime" <c:if test="${cmd eq 'read' }">readonly</c:if> value="${applyDetail.bizBeginTime} ~ ${applyDetail.bizEndTime}">
-		                                        </div>
+		                                         <c:choose>
+		                                         	<c:when test="${cmd eq 'read'}">
+		                                         		<div class="col-sm-5">
+		                                         			<input type="text" class="form-control" name="bizTime" <c:if test="${cmd eq 'read'}">readonly</c:if> value="${applyDetail.bizBeginTime} ~ ${applyDetail.bizEndTime}">
+		                                         		</div>
+		                                         	</c:when>
+		                                         	<c:otherwise>
+		                                         		<div class="col-sm-5">
+		                                         			<select class="custom-select col-sm-3" id="inputGroupSelect04" name="bizBeginTime">
+		                                         				<c:forEach var="hour" begin="0" end="23">
+		                                         					<c:forEach var="minute" begin="0" end="30" step="30">
+		                                         						<c:set var="time" value="${hour}:${minute == 0? '00' :'30'}"/>
+		                                         						<c:set var="beginTime" value="${applyDetail.bizBeginTime}"/>
+		                                         						<c:choose>
+		                                         							<c:when test="${time eq beginTime}">
+		                                         								<option value="${time}" selected>${time}</option>
+		                                         							</c:when>
+		                                         							<c:otherwise>
+		                                         								<option value="${time}">${time}</option>
+		                                         							</c:otherwise>	
+		                                         						</c:choose>
+		                                         					</c:forEach>	
+		                                         				</c:forEach>
+		                                         			</select>
+		                                         			~
+		                                         			<select class="custom-select col-sm-3" id="inputGroupSelect05" name="bizEndTime">
+		                                         				<c:forEach var="hour" begin="0" end="23">
+		                                         					<c:forEach var="minute" begin="0" end="30" step="30">
+		                                         						<c:set var="time" value="${hour}:${minute == 0? '00' :'30'}"/>
+		                                         						<c:set var="endTime" value="${applyDetail.bizEndTime}"/>
+		                                         						<c:choose>
+		                                         							<c:when test="${time eq endTime}">
+		                                         								<option value="${time}" selected>${time}</option>
+		                                         							</c:when>
+		                                         							<c:otherwise>
+		                                         								<option value="${time}">${time}</option>
+		                                         							</c:otherwise>	
+		                                         						</c:choose>
+		                                         					</c:forEach>	
+		                                         				</c:forEach>
+		                                         			</select>
+		                                         		</div>
+		                                         	</c:otherwise>
+		                                         </c:choose>
+		                                         
+		                                         <label for="bizClosedDay2" class="col-sm-1 col-form-label text-center">휴무일</label>
+		                                        	<c:choose>
+		                                        	<c:when test="${cmd eq 'read'}">
+		                                        		<div class="col-sm-5">
+		                                            	<input type="text" class="form-control"  name="bizClosedDay" <c:if test="${cmd eq 'read' }">readonly</c:if> value="${applyDetail.bizClosedDay}">
+		                                        		</div>
+		                                        	</c:when>
+		                                        	<c:otherwise>
+		                                        		<div class="custom-control custom-checkbox mb-3">
+		                                         			<input type="checkbox" class="custom-control-input" id="customControlValidation11" name="bizClosedDay" value="월">
+                                							<label class="custom-control-label" for="customControlValidation11">월</label>
+		                                        		</div>
+		                                         		<div class="custom-control custom-checkbox mb-3">
+		                                         			<input type="checkbox" class="custom-control-input" id="customControlValidation12" name="bizClosedDay" value="화">
+		                                         			<label class="custom-control-label" for="customControlValidation12">화</label>
+		                                        		</div>
+		                                         		<div class="custom-control custom-checkbox mb-3">
+		                                         			<input type="checkbox" class="custom-control-input" id="customControlValidation13" name="bizClosedDay" value="수">
+		                                         			<label class="custom-control-label" for="customControlValidation13">수</label>
+		                                        		</div>
+		                                        		<div class="custom-control custom-checkbox mb-3">
+		                                         			<input type="checkbox" class="custom-control-input" id="customControlValidation14" name="bizClosedDay" value="목">
+                                							<label class="custom-control-label" for="customControlValidation14">목</label>
+		                                        		</div>
+		                                         		<div class="custom-control custom-checkbox mb-3">
+		                                         			<input type="checkbox" class="custom-control-input" id="customControlValidation15" name="bizClosedDay" value="금">
+		                                         			<label class="custom-control-label" for="customControlValidation15">금</label>
+		                                        		</div>
+		                                         		<div class="custom-control custom-checkbox mb-3">
+		                                         			<input type="checkbox" class="custom-control-input" id="customControlValidation16" name="bizClosedDay" value="토">
+		                                         			<label class="custom-control-label" for="customControlValidation16">토</label>
+		                                        		</div>
+		                                         		<div class="custom-control custom-checkbox mb-3">
+		                                         			<input type="checkbox" class="custom-control-input" id="customControlValidation17" name="bizClosedDay" value="일">
+		                                         			<label class="custom-control-label" for="customControlValidation17">일</label>
+		                                        		</div>
+		                                         		<div class="custom-control custom-checkbox mb-3">
+		                                         			<input type="checkbox" class="custom-control-input" id="customControlValidation18" name="bizClosedDay" value="공휴일">
+		                                         			<label class="custom-control-label" for="customControlValidation18">공휴일</label>
+		                                        		</div>
+		                                        	</c:otherwise>
+		                                        </c:choose>
 		                                     </div>
 		                                    <div class="form-group row">
-		                                        <label for="bizClosedDay" class="col-sm-1 col-form-label text-center">휴무일</label>
-		                                        <div class="col-sm-5">
-		                                            <input type="text" class="form-control"  name="bizClosedDay" <c:if test="${cmd eq 'read' }">readonly</c:if> value="${applyDetail.bizClosedDay}">
-		                                        </div>
 		                                        <label for="netService" class="col-sm-1 col-form-label text-center">고객센터번호</label>
 		                                        <c:set var="netService" value=""/>
 		                                        <c:if test="${not empty applyDetail.ktNetService }">
@@ -234,14 +372,34 @@
 		                                        </div>
 		                                    </div>
 		                                    <div class="form-group row">
-		                                        <label for="bizFax" class="col-sm-1 col-form-label text-center">팩스</label>
+		                                        <label for="bizId" class="col-sm-1 col-form-label text-center">아이디</label>
 		                                        <div class="col-sm-5">
-		                                            <input type="text" class="form-control"  name="bizFax" <c:if test="${cmd eq 'read' }">readonly</c:if> value="${applyDetail.bizFax}">
+		                                            <input type="text" class="form-control"  name="bizId" <c:if test="${cmd eq 'read' }">readonly</c:if> value="${applyDetail.bizId}">
 		                                        </div>
 		                                        <label for="network" class="col-sm-1 col-form-label text-center">지원통신망</label>
-		                                        <div class="col-sm-5">
-		                                            <input type="text" class="form-control"  name="network" <c:if test="${cmd eq 'read' }">readonly</c:if> value="${applyDetail.network}">
-		                                        </div>
+		                                        <c:choose>
+		                                         	<c:when test="${cmd eq 'read'}">
+		                                         		<div class="col-sm-5">
+		                                            	<input type="text" class="form-control"  name="network" <c:if test="${cmd eq 'read' }">readonly</c:if> value="${applyDetail.network}">
+		                                        		</div>
+		                                         	</c:when>
+		                                         	<c:otherwise>
+		                                         		<div class="custom-control custom-checkbox mb-3">
+		                                         			<input type="checkbox" class="custom-control-input" id="customControlValidation1" name="network" value="KT망">
+                                							<label class="custom-control-label" for="customControlValidation1">KT망</label>
+		                                        		</div>
+		                                         		<div class="custom-control custom-checkbox mb-3">
+		                                         			<input type="checkbox" class="custom-control-input" id="customControlValidation2" name="network" value="SKT망">
+		                                         			<label class="custom-control-label" for="customControlValidation2">SKT망</label>
+		                                        		</div>
+		                                         		<div class="custom-control custom-checkbox mb-3">
+		                                         			<input type="checkbox" class="custom-control-input" id="customControlValidation3" name="network" value="LG망">
+		                                         			<label class="custom-control-label" for="customControlValidation3">LGU+망</label>
+		                                        		</div>
+		                                         	</c:otherwise>
+		                                         </c:choose>
+		                                        	
+		                                        	
 		                                    </div>
 		                                    <div class="form-group row">
 		                                        <label for="bizZipCode" class="col-sm-1 col-form-label text-center">우편번호</label>
@@ -281,9 +439,8 @@
 															</tr>
 														</thead>
 														<tbody>
-															<c:forEach var="list" items="${bizPlanList}" varStatus="status">
+															<c:forEach var="list" items="${requestScope.paging.page}" varStatus="status">
 																<tr>
-																	<%-- <td>${status.count}</td> --%>
 																	<td>${list.planNo}</td>
 																	<td><a href="#" onclick="fn_selectPlanAjax('${list.planNo}');" data-toggle="modal" data-target="#gridSystemModal">${list.planName}</a></td>
 																</tr>
@@ -293,11 +450,29 @@
 												</div>
 												<nav aria-label="Page navigation example">
 													<ul class="pagination justify-content-center">
-														<li class="page-item"><a class="page-link" href="" aria-label="Previous"><span aria-hidden="true">«</span><span class="sr-only">Previous</span></a></li>
-														<li class="page-item"><a class="page-link" href="" aria-label="Previous">1</a></li>
-														<li class="page-item"><a class="page-link" href="" aria-label="Previous">2</a></li>
-														<li class="page-item"><a class="page-link" href="" aria-label="Previous">3</a></li>
-														<li class="page-item"><a class="page-link" href="" aria-label="Previous"><span aria-hidden="true">»</span><span class="sr-only">Next</span></a></li>
+														<c:set var="pageNumber" value="${empty param.p ? 1 : param.p }" />
+														<c:choose>
+															<c:when test="${requestScope.paging.prevPage eq -1 }">
+																<li class="page-item disabled"><a class="page-link">prev</a></li>
+															</c:when>
+															<c:otherwise>
+																<li class="page-item"><a class="page-link"
+																 href="${path}/admin/applyDetail/${applyDetail.bizId}?divCheck=${divCheck}&p=${requestScope.paging.prevPage }">prev</a></li>
+															</c:otherwise>
+														</c:choose>
+														<c:forEach var="pNum" items="${requestScope.paging.pageList }">
+															<li class="page-item ${pNum eq pageNumber ? 'active' : '' }"><a class="page-link" 
+															href="${path}/admin/applyDetail/${applyDetail.bizId}?divCheck=${divCheck}&p=${pNum }">${pNum }</a></li>
+														</c:forEach>
+														<c:choose>
+															<c:when test="${requestScope.paging.nextPage eq -1 }">
+																<li class="page-item disabled"><a class="page-link">next</a></li>
+															</c:when>
+															<c:otherwise>
+																<li class="page-item"><a class="page-link"
+																 href="${path}/admin/applyDetail/${applyDetail.bizId}?divCheck=${divCheck}p=${requestScope.paging.nextPage }">next</a></li>
+															</c:otherwise>
+														</c:choose>
 													</ul>
 												</nav>
 											</div>

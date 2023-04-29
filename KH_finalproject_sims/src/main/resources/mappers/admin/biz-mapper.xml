@@ -14,7 +14,7 @@
    				, C.*
 				FROM
 					(SELECT A.*
-     				, B. ENABLE
+     				, B.ENABLE
  				FROM BIZ A
  				LEFT OUTER JOIN MEMBER B ON A.BIZ_ID = B.ID
 				WHERE 1=1
@@ -92,13 +92,56 @@
 	<!-- 통신사 요금제 리스트  -->
 	<select id="selectBizPlanList" resultType="adBizVo">
 	/** 관리자의 통신사 요금제 리스트 (selectBizPlanList)**/	
-		SELECT
+		SELECT E.*
+		FROM
+			(SELECT D.*
+			FROM
+				(SELECT 
+     				ROWNUM AS RO
+   					, PLAN_NAME
+   					, PLAN_NO
+					, NET_NO
+					, GEN_NO
+					,PLAN_PRICE
+					, PLAN_VOICE
+					, PLAN_DATA
+					, PLAN_VOICE_OVER
+					, PLAN_MESSAGE_OVER
+					, PLAN_DATA_OVER
+					, PLAN_DATE
+				FROM
+					(SELECT
+    						A.*
+ 					FROM
+    					PLAN_TABLE A
+    					LEFT OUTER JOIN BIZ B ON A.BIZ_NAME = B.BIZ_NAME
+ 						WHERE 1=1
+    					AND B.BIZ_ID =#{bizId}
+    					ORDER BY PLAN_DATE DESC
+					)C
+				)D
+			)E
+			WHERE 1=1
+ 				AND RO BETWEEN #{start} AND #{end}
+	
+		<!-- SELECT
     		B.*
 		FROM
     		BIZ A
     		INNER JOIN PLAN_TABLE B ON A.BIZ_NAME = B.BIZ_NAME
 		WHERE 1=1
-    		AND A.BIZ_ID = #{bizId}
+    		AND A.BIZ_ID = #{bizId} -->
+	</select>
+	
+	<select id="selectBizPlanListCnt" resultType="_int">
+	/** 관리자의 통신사 요금제 리스트 전체 개수(selectBizPlanListCnt)**/
+		SELECT
+			COUNT(*) AS TOTAL_ROW_COUNT
+		FROM 
+			PLAN_TABLE A
+    		LEFT OUTER JOIN BIZ B ON A.BIZ_NAME = B.BIZ_NAME
+ 			WHERE 1=1
+ 				AND B.BIZ_ID =#{bizId}
 	</select>
 	
 	

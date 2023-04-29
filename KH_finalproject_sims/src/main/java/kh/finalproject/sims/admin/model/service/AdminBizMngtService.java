@@ -16,7 +16,7 @@ public interface AdminBizMngtService {
 	public AdminBizMngtVo selectApplyDetail(String bizId) throws Exception;
 	
 	//통신사의 요금제 리스트
-	public List<AdminBizMngtVo> selectBizPlanList(String bizId) throws Exception;
+	public Search selectBizPlanList(int pNum, int cnt, String searchOption, String searchRadioVal, String searchBox) throws Exception;
 	
 	//통신사 수정 저장
  	public int saveBizModify(AdminBizMngtVo vo) throws Exception;

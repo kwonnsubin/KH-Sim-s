@@ -50,8 +50,22 @@ public class AdminBizMngtServiceImpl implements AdminBizMngtService{
 	
 	//통신사의 요금제 정보 리스트
 	@Override
-	public List<AdminBizMngtVo> selectBizPlanList(String bizId) {
-		return dao.selectBizPlanList(bizId);
+	public Search selectBizPlanList(int pNum, int cnt, String searchOption, String searchRadioVal, String searchBox) {
+		/* return dao.selectBizPlanList(bizId); */
+		Map<String, Object> map = new HashMap<String, Object>();
+		map.put("start", (pNum - 1) * cnt + 1);
+		map.put("end", pNum * cnt);
+		map.put("searchOption", searchOption);
+		map.put("searchRadioVal", searchRadioVal);
+		map.put("searchBox", searchBox);
+		
+		map.put("bizId", searchRadioVal);
+		List<AdminBizMngtVo> dataList = dao.selectBizPlanList(map);
+		int totalRowCount = dao.selectBizPlanListCnt(map);
+		int mod = totalRowCount % cnt == 0 ? 0 : 1;
+		int pageCount = (totalRowCount / cnt) + mod;
+		Search search = new Search(dataList, pNum, pageCount, cnt, 5, totalRowCount, searchOption, searchRadioVal, searchBox);
+		return search;
 	}
 	
 	//통신사 검토결과 수정
