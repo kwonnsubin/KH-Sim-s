@@ -9,29 +9,29 @@ function getContextPath() {
 var contextPath = getContextPath();
 
 $(".myinfo-div").on("click", function() {
-	location.href= contextPath + "/mypage/myinfo/" + $('h4').text().substr('0' , $('h4').text().length - 7);
+	location.href= contextPath + "/mypage/myinfo/";
 });
 
 $(".faqDiv").on("click", function() {
-	location.href= contextPath + "/faq/"
+	location.href= contextPath + "/faq/";
 });
 
 $(".notice-div").on("click", function() {
-	location.href= contextPath + "/noticelist"
+	location.href= contextPath + "/noticelist";
 });
 
 $(".reviewDiv").on("click", function() {
-	location.href= contextPath + "/mypage/review"
+	location.href= contextPath + "/mypage/review";
 });
 
 $(".myPlanDiv").on("click", function() {
-	location.href= contextPath + "/mypage/myplan"
+	location.href= contextPath + "/mypage/myplan";
 });
 
 $(".recentDiv").on("click", function() {
-	location.href= contextPath + "/mypage/recent"
+	location.href= contextPath + "/mypage/recent";
 });
 
 $(".likeDiv").on("click", function() {
-	location.href= contextPath + "/mypage/like"
+	location.href= contextPath + "/mypage/like";
 });

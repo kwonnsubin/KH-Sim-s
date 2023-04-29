@@ -4,6 +4,7 @@ import java.security.Principal;
 import java.text.DateFormat;
 import java.util.Collection;
 import java.util.Date;
+import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Locale;
@@ -25,6 +26,7 @@ import kh.finalproject.sims.biz.model.service.BizReviewMngtService;
 import kh.finalproject.sims.biz.model.vo.BizInfoMngtVo;
 import kh.finalproject.sims.biz.model.vo.BizReviewMngtVo;
 import kh.finalproject.sims.biz.model.vo.bizInfoMngServiceVo;
+import kh.finalproject.sims.user.model.service.UserMemberService;
 import kh.finalproject.sims.user.model.service.UserPlanFindService;
 import kh.finalproject.sims.user.model.vo.PlanVo;
 
@@ -45,11 +47,21 @@ public class HomeController {
 	@Autowired
 	private BizReviewMngtService bizReviewMngtService;
 	
+	@Autowired
+	private UserMemberService userMemberService;
+	
 	/**
 	 * Simply selects the home view to render by returning its name.
 	 */
 	@RequestMapping(value = "/", method = RequestMethod.GET)
 	public ModelAndView mainPage(ModelAndView mv, HttpServletRequest req) {
+		
+		if(req.getUserPrincipal() != null && req.isUserInRole("ROLE_USER")) {
+			Principal prin = req.getUserPrincipal();
+			String userId = prin.getName();
+			String username = userMemberService.getUserName(userId);
+			mv.addObject("username", username);
+		}
 		
 		List<PlanVo> viewRankList = userPlanFindService.selectViewRankList();
 		List<PlanVo> likeRankList = userPlanFindService.selectLikeRankList();

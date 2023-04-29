@@ -69,5 +69,9 @@ public class UserMemberDao {
 	public MemberVo kakaoSelect(String snsId) {
 		return sqlSession.selectOne("member.kakaoSelect", snsId);
 	}
+
+	public String getUserName(String userId) {
+		return sqlSession.selectOne("member.getUserName", userId);
+	}
 	
 }

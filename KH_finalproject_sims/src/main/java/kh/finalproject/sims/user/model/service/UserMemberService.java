@@ -39,5 +39,8 @@ public interface UserMemberService {
 	public MemberVo kakaoLogin(String snsId);
 
 	public MemberVo findByUserId(String snsId);
+
+	// 로그인한 이름
+	public String getUserName(String userId);
 	
 }

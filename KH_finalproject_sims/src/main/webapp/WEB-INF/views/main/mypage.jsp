@@ -37,7 +37,7 @@
 	    	<div class="row">
 	      		<div class="col-md-8 mx-auto">
 	      			<div class="mb-5">
-	        			<h4><sec:authentication property="name"/>님 안녕하세요</h4>
+	        			<h4>${username}님 안녕하세요</h4>
 	        		</div>
 	        		<div class="row mb-5 text-center">
 	        			<div class="col faqDiv pointer">

@@ -53,7 +53,7 @@
 	       		<div class="col-8 align-self-center span-div">
 	       			<sec:authorize access="isAuthenticated()">
 		       			<span>
-		       			<sec:authentication property="name"/>님께 적합한<br>
+		       			${username}님께 적합한<br>
 		       			맞춤 요금제를 찾아보세요
 		       			</span>
 		       		</sec:authorize>

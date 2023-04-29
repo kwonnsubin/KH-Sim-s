@@ -69,5 +69,9 @@
 	<insert id="kakaoInsertUserMember" parameterType="userVo">
 		insert into user_table values(#{userId}, #{userName}, #{userSsn}, sysdate, null, null, #{userPhone}, #{userEmail})
 	</insert>
+	
+	<select id="getUserName" parameterType="string" resultType="string">
+		select user_name from user_table where user_id=#{userId}
+	</select>
 
 </mapper>

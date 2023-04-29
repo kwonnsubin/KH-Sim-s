@@ -121,4 +121,10 @@ public class UserMemberServiceImpl implements UserMemberService {
         return dao.kakaoSelect(snsId);
     }
 
+    // 로그인 한 이름
+	@Override
+	public String getUserName(String userId) {
+		return dao.getUserName(userId);
+	}
+
 }

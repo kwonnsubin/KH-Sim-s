@@ -20,6 +20,7 @@ import com.google.gson.Gson;
 import kh.finalproject.sims.admin.model.vo.AdminNoticeMngtVo;
 import kh.finalproject.sims.biz.model.vo.BizApplyVo;
 import kh.finalproject.sims.biz.model.vo.BizReviewMngtVo;
+import kh.finalproject.sims.user.model.service.UserMemberService;
 import kh.finalproject.sims.user.model.service.UserMyPageService;
 import kh.finalproject.sims.user.model.vo.MemberVo;
 import kh.finalproject.sims.user.model.vo.PlanVo;
@@ -32,11 +33,16 @@ public class UserMyPageController {
 	private UserMyPageService service;
 	
 	@Autowired
+	private UserMemberService userMemberService;
+	
+	@Autowired
 	private BCryptPasswordEncoder pwEncoder;
 	
 	@GetMapping("/mypage")
 	public ModelAndView myPage(ModelAndView mv, Principal prin) {
 		String userId = prin.getName();
+		String username = userMemberService.getUserName(userId);
+		
 		int reviewCnt = service.selectOrderListCount(userId);
 		int myPlanCnt = service.selectMyPlanListCount(userId);
 		int recentCnt = service.selectRecentListCount(userId);
@@ -48,7 +54,9 @@ public class UserMyPageController {
 		cnt.put("recentCnt", recentCnt);
 		cnt.put("likeCnt", likeCnt);
 		
+		mv.addObject("username", username);
 		mv.addObject("cnt", cnt);
+		
 		mv.setViewName("main/mypage");
 		
 		return mv;
@@ -66,10 +74,11 @@ public class UserMyPageController {
 	}
 	
 	// 내 정보 페이지
-	@GetMapping("/mypage/myinfo/{id}")
-	public ModelAndView selectMyPageInfo(ModelAndView mv, @PathVariable String id) {
+	@GetMapping("/mypage/myinfo")
+	public ModelAndView selectMyPageInfo(ModelAndView mv, Principal prin) {
 		
-		UserMemberVo userVo = service.selectMyPageInfo(id);
+		String userId = prin.getName();
+		UserMemberVo userVo = service.selectMyPageInfo(userId);
 		
 		mv.addObject("userInfo", userVo);
 		mv.setViewName("user/myinfo/myinfo");
