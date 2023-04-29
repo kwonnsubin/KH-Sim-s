@@ -441,7 +441,7 @@
 														<tbody>
 															<c:forEach var="list" items="${requestScope.paging.page}" varStatus="status">
 																<tr>
-																	<td>${list.planNo}</td>
+																	<td>${paging.totalRowCount - (paging.currentPage-1) * paging.pageLimit - status.index}</td>
 																	<td><a href="#" onclick="fn_selectPlanAjax('${list.planNo}');" data-toggle="modal" data-target="#gridSystemModal">${list.planName}</a></td>
 																</tr>
 															</c:forEach>
