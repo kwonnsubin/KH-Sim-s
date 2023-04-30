@@ -114,8 +114,7 @@ public class UserFaqController {
 			answers.get(i).setAaContent(answers.get(i).getAaContent().replaceAll(System.lineSeparator(), "<br>"));
 		}
 		mv.addObject("question", question);
-		mv.addObject("answers", service.selectAnsList(aqNo));
-		
+		mv.addObject("answers", answers);
 		mv.setViewName("user/faq/readQna");
 		return mv;
 	}
