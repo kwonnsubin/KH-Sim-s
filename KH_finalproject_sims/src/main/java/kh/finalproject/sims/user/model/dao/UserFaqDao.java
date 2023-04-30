@@ -23,8 +23,8 @@ public class UserFaqDao {
 		return session.selectList("faq.selectFaqList");
 	};
 	
-	public List<UserFaqVo> selectFaqDetail(int faqNo) {
-		return session.selectList("faq.selectFaqDetail", faqNo);
+	public UserFaqVo selectFaqDetail(int faqNo) {
+		return session.selectOne("faq.selectFaqDetail", faqNo);
 	}
 
 	public UserQnaVo selectQnaDetail(int aqNo) {

@@ -28,7 +28,7 @@ public class UserFaqServiceImpl implements UserFaqService {
 	}
 	
 	@Override
-	public List<UserFaqVo> selectFaqDetail(int faqNo) {
+	public UserFaqVo selectFaqDetail(int faqNo) {
 		return dao.selectFaqDetail(faqNo);
 	}
 	

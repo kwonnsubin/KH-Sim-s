@@ -33,14 +33,12 @@
 		
 		<div class="container-sm div-m">
 			<div class="row">
-				<c:forEach var="faqlist" items="${faqcontents }">
-					<div class="col-sm-12 p-3 float-sm-none mt-5">
-						<h4>${faqlist.faqTitle }</h4>
-					</div>
-					<div class="col-sm-12 my-4 p-3 lh-xl">
-						${faqlist.faqContent }
-					</div>
-				</c:forEach>
+				<div id="faq-title" class="col-sm-12 p-3 float-sm-none mt-5">
+					<h4>${faq.faqTitle }</h4>
+				</div>
+				<div id="faq-content" class="col-sm-12 my-4 p-3 lh-xl">
+					${faq.faqContent }
+				</div>
 			</div>
 		</div>
 		

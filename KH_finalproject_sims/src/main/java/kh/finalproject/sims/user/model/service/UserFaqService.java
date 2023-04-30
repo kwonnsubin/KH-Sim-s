@@ -12,7 +12,7 @@ public interface UserFaqService {
 
 	// 자주묻는질문 목록/조회
 	public List<UserFaqVo> selectFaqList();
-	public List<UserFaqVo> selectFaqDetail(int faqNo);
+	public UserFaqVo selectFaqDetail(int faqNo);
 
 	// 질문 조회/작성/삭제/수정
 	public UserQnaVo selectQnaDetail(int aqNo);

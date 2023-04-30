@@ -27,6 +27,7 @@ import com.google.gson.GsonBuilder;
 import kh.finalproject.sims.common.page.Search;
 import kh.finalproject.sims.user.model.service.UserFaqService;
 import kh.finalproject.sims.user.model.vo.UserAnsVo;
+import kh.finalproject.sims.user.model.vo.UserFaqVo;
 import kh.finalproject.sims.user.model.vo.UserQnaVo;
 import kh.finalproject.sims.user.model.vo.UserRplVo;
 
@@ -95,7 +96,10 @@ public class UserFaqController {
 			ModelAndView mv, 
 			@PathVariable int faqNo
 			) {
-		mv.addObject("faqcontents", service.selectFaqDetail(faqNo));
+		UserFaqVo faq = service.selectFaqDetail(faqNo);
+		faq.setFaqContent(faq.getFaqContent().replaceAll(System.lineSeparator(), "<br>"));
+		
+		mv.addObject("faq", faq);
 		mv.setViewName("user/faq/faqread");
 		return mv;
 	}

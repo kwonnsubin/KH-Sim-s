@@ -124,3 +124,11 @@ textarea {
     color: #4c99d6;
 }
 
+#faq-title, #faq-content, #aq-content, #aa-content {
+	word-break: keep-all
+}
+
+.btn-rpl-mod button {
+	padding: 2px 5px !important;
+	font-size: .9em;
+}
