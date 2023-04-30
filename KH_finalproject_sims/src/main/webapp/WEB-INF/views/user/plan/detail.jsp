@@ -177,13 +177,13 @@
 						<h4>${biz.bizReviewStar}</h4>
 					</div>
 					<div class="col-10 my-auto">
-						<a href="#">${cntReview}개></a> <!-- 통신사 리뷰 모달 띄우기 / 통신사 리뷰 페이지 이동-->
+						<a href="${cpath}/bizinfo/${biz.bizId}#biz-review">${cntReview}개></a> 
 					</div>
 				</div>
 				<div class="row my-3">
 					<c:forEach items="${reviewList}" var="review" begin="0" end="2">
 						<div class="col-sm-4">
-							<div class="card bg-green border-0" style="min-height: 200px;"> <!-- 클릭하면 통신사 리뷰 모달 / 통신사 리뷰 페이지 이동-->
+							<div class="card bg-green border-0" style="min-height: 200px;"> 
 								<div class="card-body">
 									<div class="row mb-3">
 										<div class="col-md-5 pe-0" style="padding-right:0;">
@@ -208,7 +208,9 @@
 											</c:forEach>
 										</div>
 									</div>
-									<h6 class="card-text lh-base">${review.reviewContent}</h6>
+									<h6 class="card-text lh-base">
+										<a href="${cpath}/bizinfo/${biz.bizId}#biz-review">${review.reviewContent}</a>
+									</h6>
 								</div>
 							</div>
 						</div>
