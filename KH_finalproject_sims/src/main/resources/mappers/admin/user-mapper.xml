@@ -112,4 +112,12 @@
 		WHERE USER_ID = #{userId}	
 	</update>
 	
+	<!-- 신청한 요금제 개수 -->
+	<select id="selectMyPlanListCountAdmin" parameterType="string" resultType="int">
+		SELECT COUNT(*)
+		FROM USER_TABLE A
+    	INNER JOIN PLAN_ORDER B ON A. USER_ID = B.USER_ID
+		WHERE A.USER_ID=#{userId}
+	</select>
+	
 </mapper>

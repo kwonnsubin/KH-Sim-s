@@ -85,13 +85,7 @@
 		window.history.back();
 	}
 	
-	/*체크박스 값 가져오기*/
-	/* var bizClosedDayCheck = "$("input[name='bizClosedDay']:checked").length;
-	if(bizClosedDayCheck > 1){//개수를 체크하고 2개부터는 each 함수를 각각 가져온다.}
-		$("input[name='bizClose']:checked").each(function(e){
-	        console.log($(this).val())
-	    })
-	} */
+
 	$(document).ready(function(){
 		/*지원통신망 입력 값 쪼개기*/
 		var network = "${applyDetail.network}";
@@ -215,7 +209,7 @@
 		                                        <div class="col-sm-5">
 		                                            <input type="text" class="form-control"  name="bizSsn" <c:if test="${cmd eq 'read' }">readonly</c:if> value="${applyDetail.bizSsn}">
 		                                        </div>
-		                                        <label for="bizCrn" class="col-sm-1 col-form-label text-center">사업자등록번호</label>
+		                                        <label for="bizCrn" class="col-sm-1 col-form-label text-center">사업자 등록번호</label>
 		                                        <div class="col-sm-5">
 		                                            <input type="text" class="form-control"  name="bizCrn" <c:if test="${cmd eq 'read' }">readonly</c:if> value="${applyDetail.bizCrn}">
 		                                        </div>
@@ -243,29 +237,91 @@
 		                                    </div>
 		                           			 <div class="form-group row">
 		                                        <label for="phoneOpTime" class="col-sm-1 col-form-label text-center">개통 소요시간</label>
-		                                        <div class="col-sm-5" >
-		                                            <input type="text" class="form-control"  name="phoneOpTime" <c:if test="${cmd eq 'read' }">readonly</c:if> value="${applyDetail.phoneOpTime}">
-		                                        </div>
+		                                        <c:choose>
+		                                        	<c:when test="${cmd eq 'read'}">
+		                                        		<div class="col-sm-5">
+		                                        			<input type="text" class="form-control" name="phoneOpTime"<c:if test="${cmd eq 'read'}">readonly</c:if> value="평균${applyDetail.phoneOpTime}일">
+		                                        		</div>
+		                                        	</c:when>
+		                                        	<c:otherwise>
+		                                        		<div class="col-sm-5">
+			                                        		<select class="custom-select col-sm-5" id="inputGroupSelectPot" name="phoneOpTime">
+			                                        			<c:forEach var="Pot" begin="0" end="150" step="1">
+			                                        				<c:choose>
+							  											<c:when test="${applyDetail.phoneOpTime eq (Pot/10.0)}">
+								    										<option value="${Pot/10.0}" selected>${Pot/10.0}</option>
+							  											</c:when>
+							  											<c:otherwise>
+								    										<option value="${Pot/10.0}">${Pot/10.0}</option>
+							  											</c:otherwise>
+						  											</c:choose>
+			                                        			</c:forEach>
+			                                        		</select>
+		                                        		</div>
+		                                        	</c:otherwise>
+		                                        </c:choose>
 		                                         <label for="phoneOpTimeUsim" class="col-sm-1 col-form-label text-center">개통소요시간(유심보유시)</label>
-		                                        <div class="col-sm-5">
-		                                            <input type="text" class="form-control"  name="phoneOpTimeUsim" <c:if test="${cmd eq 'read' }">readonly</c:if> value=" ${applyDetail.phoneOpTimeUsim}">
-		                                        </div>
+		                                         <c:choose>
+		                                        	<c:when test="${cmd eq 'read'}">
+		                                        		<div class="col-sm-5">
+		                                        			<input type="text" class="form-control" name="phoneOpTimeUsim"<c:if test="${cmd eq 'read'}">readonly</c:if> value="평균${applyDetail.phoneOpTimeUsim}일">
+		                                        		</div>
+		                                        	</c:when>
+		                                        	<c:otherwise>
+		                                        		<div class="col-sm-5">
+		                                        			<select class="custom-select col-sm-5" id="inputGroupSelectPotUsim" name="phoneOpTimeUsim">
+			                                        			<c:forEach var="PotUsim" begin="0" end="150" step="1">
+			                                        				<c:choose>
+							  											<c:when test="${applyDetail.phoneOpTimeUsim eq (PotUsim/10.0)}">
+								    										<option value="${PotUsim/10.0}" selected>${PotUsim/10.0}</option>
+							  											</c:when>
+							  											<c:otherwise>
+								    										<option value="${PotUsim/10.0}">${PotUsim/10.0}</option>
+							  											</c:otherwise>
+						  											</c:choose>
+			                                        			</c:forEach>
+		                                        			</select>
+		                                        		</div>
+		                                        	</c:otherwise>
+		                                        </c:choose>
 		                                    </div>
 		                           			 <div class="form-group row">
 		                                        <label for="bizCardPayDate" class="col-sm-1 col-form-label text-center">카드 결제일</label>
-		                                        <div class="col-sm-5" >
-		                                            <input type="text" class="form-control"  name="bizCardPayDate" <c:if test="${cmd eq 'read' }">readonly</c:if> value="${applyDetail.bizCardPayDate}">
-		                                        </div>
+			                                        <div class="col-sm-5">
+				                                        <c:choose>
+				                                        	<c:when test="${cmd eq 'read'}">
+				                                        		<input type="text" class="form-control" name="bizCardPayDate" <c:if test="${cmd eq 'read' }">readonly</c:if> value="${applyDetail.bizCardPayDate}일">
+				                                        	</c:when>
+				                                        	<c:otherwise>
+				                                        		<select class="custom-select col-sm-5" id="inputGroupSelectCardDate" name="bizCardPayDate">
+				                                        			<c:forEach var="date" begin="1" end="31" step="1">
+				                                        				<option value="${date }" ${applyDetail.bizCardPayDate eq date ? "selected" : "" }>${date}</option>
+				                                        			</c:forEach>
+				                                        		</select>	
+				                                        	</c:otherwise>
+				                                        </c:choose>
+			                                        </div>
 		                                         <label for="bizAccPayDate" class="col-sm-1 col-form-label text-center">계좌이체 결제일</label>
-		                                        <div class="col-sm-5">
+		                                         <div class="col-sm-5" >
+		                                         <c:choose>
+		                                         	<c:when test="${cmd eq 'read'}">
+		                                         		<input type="text" class="form-control" name="bizAccPayDate" <c:if test="${cmd eq 'read'}">readonly</c:if> value="${applyDetail.bizAccPayDate}일">
+		                                         	</c:when>
+		                                         	<c:otherwise>
+		                                         		<select class="custom-select col-sm-5" id="inputGroupSelectCardDate" name="bizAccPayDate">
+		                                         			<c:forEach var="date" begin="1" end="31" step="1">
+				                                        		<option value="${date }" ${applyDetail.bizCardPayDate eq date ? "selected" : "" }>${date}</option>
+				                                        	</c:forEach>
+		                                         		</select>
+		                                         	</c:otherwise>
+		                                         </c:choose>
+		                                         </div>
+		                                        <%-- <div class="col-sm-5">
+		                                        
 		                                           <input type="text" class="form-control"  name="bizAccPayDate" <c:if test="${cmd eq 'read' }">readonly</c:if> value="${applyDetail.bizAccPayDate}">
-		                                        </div>
+		                                        </div> --%>
 		                                    </div>
 		                           			 <div class="form-group row">
-		                                        <%-- <label for="bizCardPayDate" class="col-sm-1 col-form-label text-center">카드 결제일</label>
-		                                        <div class="col-sm-5" >
-		                                            <input type="text" class="form-control"  name="bizCardPayDate" <c:if test="${cmd eq 'read' }">readonly</c:if> value="${applyDetail.bizCardPayDate}">
-		                                        </div> --%>
 		                                         <label for="bizTime" class="col-sm-1 col-form-label text-center">영업 시간</label>
 		                                         <c:choose>
 		                                         	<c:when test="${cmd eq 'read'}">
@@ -311,7 +367,6 @@
 		                                         		</div>
 		                                         	</c:otherwise>
 		                                         </c:choose>
-		                                         
 		                                         <label for="bizClosedDay2" class="col-sm-1 col-form-label text-center">휴무일</label>
 		                                        	<c:choose>
 		                                        	<c:when test="${cmd eq 'read'}">
@@ -398,8 +453,6 @@
 		                                        		</div>
 		                                         	</c:otherwise>
 		                                         </c:choose>
-		                                        	
-		                                        	
 		                                    </div>
 		                                    <div class="form-group row">
 		                                        <label for="bizZipCode" class="col-sm-1 col-form-label text-center">우편번호</label>
@@ -425,8 +478,6 @@
 		                                        <div class="col-sm-5">
 		                                            <input type="text" class="form-control" id="roadAddress"  name="bizLocation" <c:if test="${cmd eq 'read' }">readonly</c:if> value="${applyDetail.bizLocation}">
 		                                        </div>
-		                                        
-		                                        
 		                                    </div>
 		                                    <div class="card">
 											<div class="card-body table-border-style">

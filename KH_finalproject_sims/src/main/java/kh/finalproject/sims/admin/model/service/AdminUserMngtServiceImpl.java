@@ -47,7 +47,10 @@ public class AdminUserMngtServiceImpl implements AdminUserMngtService{
 			return dao.saveUserModify(vo);
 		}
 	
-		
+		//가입한 요금제 개수
+		public int selectMyPlanListCountAdmin(String userId) {
+			return dao.selectMyPlanListCountAdmin(userId);
+		}
 
 	
 

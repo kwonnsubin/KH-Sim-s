@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import kh.finalproject.sims.admin.model.vo.AdminUserMngtVo;
+import kh.finalproject.sims.biz.model.vo.BizApplyVo;
 
 @Repository
 public class AdminUserMngtDao {
@@ -33,6 +34,11 @@ public class AdminUserMngtDao {
 	//관리자의 사용자 관리 수정 저장
 	public int saveUserModify(AdminUserMngtVo vo) {
 		return sqlSession.update("adminUser.saveUserModify", vo);
+	}
+
+	//가입한 요금제 개수
+	public int selectMyPlanListCountAdmin(String userId) {
+		return sqlSession.selectOne("adminUser.selectMyPlanListCountAdmin", userId);
 	}
 	
 	

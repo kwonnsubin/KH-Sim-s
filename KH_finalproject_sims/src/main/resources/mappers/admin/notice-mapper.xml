@@ -42,35 +42,28 @@
 		FROM
 		(
 			SELECT
-				ROWNUM AS RO
-  				, NTC_TITLE
-  				, NTC_NO
-  				, ADMIN_ID
-  				, NTC_CONTENT
-  				, NTC_DATE
-  				, NTC_REDATE
-  				, NTC_REWRITER
+				B.*
+				, ROWNUM AS RO
 			FROM 
-			(SELECT *
-			 FROM NOTICE A
-			 ORDER BY A.NTC_DATE DESC
-			 )B
+				(SELECT *
+				 FROM NOTICE A
+				WHERE 1=1
+				<if test="searchOption != null">
+					<choose>
+						<when test="searchOption == 'title'">
+							AND UPPER(NTC_TITLE) LIKE UPPER('%'||#{searchBox}||'%')
+						</when>
+						<when test="searchOption == 'writer'">
+							AND UPPER(ADMIN_ID) LIKE UPPER('%'||#{searchBox}||'%')
+						</when>
+						<when test="searchOption == 'content'">
+							AND UPPER(NTC_CONTENT) LIKE UPPER('%'||#{searchBox}||'%')
+						</when>
+					</choose>
+				</if>
+			 	ORDER BY A.NTC_DATE DESC
+			 	)B
 			 )C
-		
-			<if test="searchOption != null">
-				<choose>
-					<when test="searchOption == 'title'">
-						AND UPPER(NTC_TITLE) LIKE UPPER('%'||#{searchBox}||'%')
-					</when>
-					<when test="searchOption == 'writer'">
-						AND UPPER(ADMIN_ID) LIKE UPPER('%'||#{searchBox}||'%')
-					</when>
-					<when test="searchOption == 'content'">
-						AND UPPER(NTC_CONTENT) LIKE UPPER('%'||#{searchBox}||'%')
-					</when>
-				</choose>
-			</if>
-			
 			WHERE 1=1
 				AND RO BETWEEN #{start} AND #{end}
 	</select>

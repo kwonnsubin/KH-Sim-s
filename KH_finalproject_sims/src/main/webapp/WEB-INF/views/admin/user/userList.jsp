@@ -82,6 +82,11 @@
 														</tr>
 													</thead>
 													<tbody>
+														<c:if test="${empty requestScope.paging.page}">
+		            										<tr>
+		            											<td colspan="6">검색결과가 없습니다.</td>
+		            										</tr>
+		            									</c:if>
 														<c:forEach var="list" items="${requestScope.paging.page}" varStatus="status">
 															<tr>
 																<td>${paging.totalRowCount - (paging.currentPage-1) * paging.pageLimit - status.index}</td>
@@ -103,7 +108,8 @@
 												</table>
 											</div>
 											<nav aria-label="Page navigation example">
-												<ul class="pagination justify-content-center">
+												<c:if test="${not empty requestScope.paging.page}">
+													<ul class="pagination justify-content-center">
 														<c:set var="pageNumber" value="${empty param.p ? 1 : param.p }" />
 														<c:choose>
 															<c:when test="${requestScope.paging.prevPage eq -1 }">
@@ -111,12 +117,12 @@
 															</c:when>
 															<c:otherwise>
 																<li class="page-item"><a class="page-link"
-																 href="${path}/admin/userList?p=${requestScope.paging.prevPage }">prev</a></li>
+																	 href="${path}/admin/userList?p=${requestScope.paging.prevPage }&searchUserId=${searchUserId }&searchUserName=${searchUserName}&searchRadioVal=${searchRadioVal}">prev</a></li>
 															</c:otherwise>
 														</c:choose>
 														<c:forEach var="pNum" items="${requestScope.paging.pageList }">
 															<li class="page-item ${pNum eq pageNumber ? 'active' : '' }"><a class="page-link" 
-															href="${path}/admin/userList?p=${pNum }">${pNum }</a></li>
+																href="${path}/admin/userList?p=${pNum }&searchUserId=${searchUserId }&searchUserName=${searchUserName}&searchRadioVal=${searchRadioVal}">${pNum }</a></li>
 														</c:forEach>
 														<c:choose>
 															<c:when test="${requestScope.paging.nextPage eq -1 }">
@@ -124,10 +130,11 @@
 															</c:when>
 															<c:otherwise>
 																<li class="page-item"><a class="page-link"
-																 href="${path}/admin/userList?p=${requestScope.paging.nextPage }">next</a></li>
+																	 href="${path}/admin/userList?p=${requestScope.paging.nextPage }&searchUserId=${searchUserId }&searchUserName=${searchUserName}&searchRadioVal=${searchRadioVal}">next</a></li>
 															</c:otherwise>
 														</c:choose>
 													</ul>
+												</c:if>
 											</nav>
 										</div>
 									</div>

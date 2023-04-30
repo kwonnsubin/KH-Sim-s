@@ -10,6 +10,15 @@
 </head>
 <body>
 <jsp:include page="../include/header.jsp" />
+<script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
+<script>
+
+/*수정 취소(뒤로가기)*/
+function goBack(){
+	window.history.back();
+}
+
+</script>
 <div class="pcoded-main-container">
 	<div class="pcoded-wrapper container">
 		<div class="pcoded-content">
@@ -46,7 +55,14 @@
 							<form action="<%=request.getContextPath()%>/admin/saveUserModify" method="post">
 								<div class="col-md-12">
 									<div class="simsBtn m-b-15">
-										<input class="btn btn-primary right m-l-10" type="button" onclick="location.href='<%=request.getContextPath()%>/admin/userList'" value="목록">
+										<c:choose>
+											<c:when test="${cmd eq 'read'}">
+												<input class="btn btn-primary right m-l-10" type="button" onclick="location.href='<%=request.getContextPath()%>/admin/userList'" value="목록">
+											</c:when>
+											<c:otherwise>
+												<input class="btn btn-primary right m-l-10" type="button" onclick="goBack()" value="취소">
+											</c:otherwise>
+										</c:choose>
 											<c:choose>
 												<c:when test="${cmd eq 'read' }">
 													<input class="btn btn-primary right" type="button" onclick="location.href='<%=request.getContextPath()%>/admin/selectUserModify/${userDetail.userId}'" value="수정">
@@ -112,18 +128,23 @@
 									</div>
 									<div class="card">
 	                    				<div class="card-header">
-	                        				<h5>신청한 요금제</h5>
+	                        				<%-- <h5>${userDetail.userId}님의 요금제 정보</h5> --%>
 	                    				</div>
 	                    				<div class="card-body">
 		                                    <div class="form-group row">
-		                                        <label for="planName" class="col-sm-1 col-form-label text-center">요금제 </label>
+		                                        <label for="planName" class="col-sm-1 col-form-label text-center">신청한 요금제 </label>
 		                                        <div class="col-sm-5">
-		                                            <input type="text" class="form-control"  name="planName" readonly value="${userDetail.planName}">
+		                                            <input type="text" class="form-control"  name="planName" readonly value="${cnt.myPlanCnt}개" onclick="window.open('<%=request.getContextPath()%>/admin/bizPlanApplyList?searchOption=userId&searchBox=${userDetail.userId}','요금제 리스트','width = 500, height = 500')">
 		                                        </div>
-		                                        
 		                                    </div>
+		                                    <%-- <div class="form-group row">
+		                                        <label for="planName" class="col-sm-1 col-form-label text-center">리뷰 </label>
+		                                        <div class="col-sm-5">
+		                                            <input type="text" class="form-control"  name="planName" readonly value="${cnt.myPlanCnt}개" onclick="location.href='<%=request.getContextPath()%>/admin/bizPlanApplyList/${userDetail.userId}'">
+		                                        </div>
+		                                    </div> --%>
 	                            		</div>
-	                            			
+	                            		
 									</div>
 								</div>
 							</form>
