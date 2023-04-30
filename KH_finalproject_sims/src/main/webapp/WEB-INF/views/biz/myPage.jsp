@@ -50,7 +50,7 @@
 	    		, dataType : "json"
 	    		, success : function(json){
 	    			console.log("json :"+json); /* [object Object],[object Object] */
-	    			console.log(json); /* [object Object],[object Object] */
+	    			console.log(json); 
 	    			
 	    			var data = new google.visualization.DataTable();
 	    				data.addColumn('string','일자');

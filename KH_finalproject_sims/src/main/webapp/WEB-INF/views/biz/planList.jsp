@@ -108,6 +108,7 @@
         <table class="table table-hover" id="planTb" style="width: 140%; ">
             <thead>
                 <tr class="text-center mx-auto" style="background-color: #ecf7fd;">
+                	<th><input class="form-check-input" id="allCheck" type="checkbox" name="allCheck"/></th>
                     <th>번호</th>
                     <th>요금제명</th>
                     <th>등록일</th>
@@ -123,6 +124,7 @@
             	<c:if test="${not empty requestScope.paging.page}">
 	                <c:forEach var="plan" items="${requestScope.paging.page}">
 	                <tr class="text-center mx-auto">
+	                	<td><input class="form-check-input" name="RowCheck" type="checkbox" value="${plan.planNo }" /></td>
 	                    <td>${plan.rn }</td>
 	                    <td><a href="<%=request.getContextPath()%>/biz/planDetail?planNo=${plan.planNo }">${plan.planName }</a></td>
 	                    <td>${plan.planDate } </td>
@@ -138,8 +140,32 @@
             </tbody>
         </table>
  
+ 
+ 	<!-- 체크박스를 통한 선택삭제-->
+ 	<input type="button" value="선택삭제" class="btn" onclick="deleteValue(event);" id="checkDeleteBtn"/>
+ 		 <!-- data-bs-toggle="modal" data-bs-target="#checkDelete" -->
+ 		 
+ 	<!-- 선택삭제 Modal -->
+	<div class="modal fade" id="checkDelete" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+	  <div class="modal-dialog">
+	    <div class="modal-content">
+	      <div class="modal-header">
+	        <h1 class="modal-title fs-5" id="exampleModalLabel">선택한 요금제 삭제</h1>
+	        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+	      </div>
+	      <div class="modal-body">
+	        	선택한 요금제들을 정말로 삭제하시겠습니까?
+	      </div>
+	      <div class="modal-footer">
+	        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">취소</button>
+	        <button type="button" class="btn btn-primary checkDelete-modal">삭제</button>
+	      </div>
+	    </div>
+	  </div>
+	</div>	 
+ 		 
     
-     <!-- Modal -->
+     <!-- 개별 요금제 삭제 Modal -->
 	<div class="modal fade" id="deleteleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
 	  <div class="modal-dialog">
 	    <div class="modal-content">
@@ -235,15 +261,75 @@ $('.btn.modalDelete').click(function() {
 	    	}
 	    , error: function(xhr, status, error) {
 	    	
-	    	alert("에러가 발생했습니다. 왜?????????????");
+	    	alert("에러가 발생했습니다.");
 	    	console.log('에이작스 후 planNo : '+planNo);
 	    }
 	  });
 	});
 });
-
-
 </script>	
+
+<script>
+	$(function(){
+		var chkObj = document.getElementsByName("RowCheck");
+		var rowCnt = chkObj.length;
+		
+		$("input[name='allCheck']").click(function(){  //상단의 체크박스 선택시 모든 체크박스가 체크됨
+			var chk_listArr = $("input[name='RowCheck']");
+			for (var i=0; i < chk_listArr.length; i++){
+				chk_listArr[i].checked = this.checked; //이때 this는 이벤트가 발생한 체크박스 요소
+			}
+		});
+		$("input[name='RowCheck']").click(function(){ 
+			if($("input[name='RowCheck']:checked").length == rowCnt){
+				$("input[name='allCheck']")[0].checked = true;//모든 "RowCheck"가 체크되면 "allCheck"도 체크되게 함. 
+			} else { // RowCheck가 모두 선택되어있지 않다면 allCheck 체크 선택 해제하게 함.
+				$("input[name='allCheck']")[0].checked = false;
+			}
+		});
+	});
+	
+	function deleteValue(event){
+		var url = "/biz/deleteChkBox" // 컨트롤러로 보내고자 하는 url
+		var valueArr = new Array();
+		var list = $("input[name='RowCheck']");
+		for (var i = 0; i<list.length; i++){
+			if(list[i].checked){ // 선택되어 있으면 배열에 값을 저장
+				valueArr.push(list[i].value);
+				console.log(valueArr);
+			}
+		} 
+		
+		
+		
+		if (valueArr.length == 0){
+			alert("선택된 글이 없습니다.")
+			//TODO 모달창이 아예 작동하지 않게 해야 함.
+			$('#checkDeleteBtn').removeAttr('data-bs-toggle data-bs-target');
+			//1회차일 때는 모달창이 안나오지만 한번 체크된값 처리하고 다시 아무것도 체크안한 상태에서 삭제 누르면 모달창 다시 나옴.. 
+			// 이미 속성이 추가가 된 상태라... 
+			// 속성을 다시 제거.. 
+		}
+		else{
+			$('#checkDeleteBtn').attr({
+			      'data-bs-toggle': 'modal',
+			      'data-bs-target': '#checkDelete'
+			    });
+			 $('#checkDelete').modal('show');
+			 console.log(valueArr);
+			// 모달의 삭제 버튼 클릭시 이벤트 처리
+			$('.checkDelete-modal').on('click', function(){
+				// 선택된 값 컨트롤러로 전송
+				$.ajax({
+					
+					
+				});
+			});
+			
+		}
+		
+	}
+</script>
 
 
 	<jsp:include page="/WEB-INF/views/footer.jsp"/>
