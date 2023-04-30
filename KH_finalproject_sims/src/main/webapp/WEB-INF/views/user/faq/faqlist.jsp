@@ -50,20 +50,20 @@
 								<c:if test="${faq.faqNo eq 1}">
 									<div class="carousel-item active">
 										<img src="<%=request.getContextPath()%>/resources/img/faq.png" class="d-block w-100" alt="...">
-										<div class="carousel-caption pb-5">
-											<h1>
+										<div class="carousel-caption">
+											<h2 class="m-auto">
 												<a href="${cpath}/faq/faqread/${faq.faqNo}">${faq.faqTitle}</a>
-											</h1>
+											</h2>
 										</div>
 									</div>
 								</c:if>
 								<c:if test="${faq.faqNo ne 1}">
 									<div class="carousel-item">
 										<img src="<%=request.getContextPath()%>/resources/img/faq.png" class="d-block w-100" alt="...">
-										<div class="carousel-caption fs-1 pb-5">
-											<h1>
+										<div class="carousel-caption">
+											<h2 class="m-auto">
 												<a href="${cpath}/faq/faqread/${faq.faqNo}">${faq.faqTitle}</a>
-											</h1>
+											</h2>
 										</div>
 									</div>
 								</c:if>
