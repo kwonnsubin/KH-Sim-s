@@ -191,8 +191,27 @@
 	                    				</div>
 	                    				<div class="card-body">
 	                    					<!-- 로고있어야하넹 로고자리입니다-->
-	                    					<img src="${path}${imagePath}" style="width:200px;height:60px;" alt="이미지" onerror="this.style.display='none'"/>
+	                    					<%-- <img src="${path}${imagePath}" style="width:200px;height:60px;" alt="이미지" onerror="this.style.display='none'"/> --%>
 		                                    <div class="form-group row">
+			                                    <c:choose>
+			                                    	<c:when test="${cmd eq 'read'}">
+			                                    		<img src="${path}${imagePath}" style="width:200px;height:60px;" alt="이미지" onerror="this.style.display='none'"/>
+			                                    	</c:when>
+			                                    	<c:otherwise>
+			                                    		<label for="Logo_Rename_FileName" class="col-sm-1 col-form-label text-center">통신사 로고</label>
+			                                    		<div class="input-group cust-file-button col-sm-5">
+			                                    			<div class="custom-file">
+			                                    				<input type="file" class="custom-file-input" id="inputGroupFile04" name="Logo_Rename_FileName" <%-- value="${applyDetail.logoRenameFilename } --%>">
+			                                    				<label class="custom-file-label" for="inputGroupFile04">
+			                                    					파일을 선택해주세요
+			                                    				</label>
+			                                    			</div>
+			                                    			<div class="input-group-append">
+			                                    				<button class="btn btn-primary" type="button">Button</button>
+			                                    			</div>
+			                                    		</div>
+			                                   		</c:otherwise>
+			                                    </c:choose>
 		                                    </div>
 		                                    <div class="form-group row">
 		                                        <label for="bizName" class="col-sm-1 col-form-label text-center">법인명</label>
@@ -490,41 +509,48 @@
 															</tr>
 														</thead>
 														<tbody>
-															<c:forEach var="list" items="${requestScope.paging.page}" varStatus="status">
-																<tr>
-																	<td>${paging.totalRowCount - (paging.currentPage-1) * paging.pageLimit - status.index}</td>
-																	<td><a href="#" onclick="fn_selectPlanAjax('${list.planNo}');" data-toggle="modal" data-target="#gridSystemModal">${list.planName}</a></td>
-																</tr>
+															<c:if test="${empty requestScope.paging.page}">
+			            										<tr>
+			            											<td colspan="10">등록된 요금제가 없습니다.</td>
+			            										</tr>
+			            									</c:if>
+																<c:forEach var="list" items="${requestScope.paging.page}" varStatus="status">
+																	<tr>
+																		<td>${paging.totalRowCount - (paging.currentPage-1) * paging.pageLimit - status.index}</td>
+																		<td><a href="#" onclick="fn_selectPlanAjax('${list.planNo}');" data-toggle="modal" data-target="#gridSystemModal">${list.planName}</a></td>
+																	</tr>
+																</c:forEach>
+															</tbody>
+														</table>
+													</div>
+													<nav aria-label="Page navigation example">
+													<c:if test="${not empty requestScope.paging.page}">	
+														<ul class="pagination justify-content-center">
+															<c:set var="pageNumber" value="${empty param.p ? 1 : param.p }" />
+															<c:choose>
+																<c:when test="${requestScope.paging.prevPage eq -1 }">
+																	<li class="page-item disabled"><a class="page-link">prev</a></li>
+																</c:when>
+																<c:otherwise>
+																	<li class="page-item"><a class="page-link"
+																	 href="${path}/admin/applyDetail/${applyDetail.bizId}?divCheck=${divCheck}&p=${requestScope.paging.prevPage }&searchOption=${searchOption }&searchBox=${searchBox}&searchRadioVal=${searchRadioVal}">prev</a></li>
+																</c:otherwise>
+															</c:choose>
+															<c:forEach var="pNum" items="${requestScope.paging.pageList }">
+																<li class="page-item ${pNum eq pageNumber ? 'active' : '' }"><a class="page-link" 
+																href="${path}/admin/applyDetail/${applyDetail.bizId}?divCheck=${divCheck}&p=${pNum }&searchOption=${searchOption }&searchBox=${searchBox}&searchRadioVal=${searchRadioVal}">${pNum }</a></li>
 															</c:forEach>
-														</tbody>
-													</table>
-												</div>
-												<nav aria-label="Page navigation example">
-													<ul class="pagination justify-content-center">
-														<c:set var="pageNumber" value="${empty param.p ? 1 : param.p }" />
-														<c:choose>
-															<c:when test="${requestScope.paging.prevPage eq -1 }">
-																<li class="page-item disabled"><a class="page-link">prev</a></li>
-															</c:when>
-															<c:otherwise>
-																<li class="page-item"><a class="page-link"
-																 href="${path}/admin/applyDetail/${applyDetail.bizId}?divCheck=${divCheck}&p=${requestScope.paging.prevPage }">prev</a></li>
-															</c:otherwise>
-														</c:choose>
-														<c:forEach var="pNum" items="${requestScope.paging.pageList }">
-															<li class="page-item ${pNum eq pageNumber ? 'active' : '' }"><a class="page-link" 
-															href="${path}/admin/applyDetail/${applyDetail.bizId}?divCheck=${divCheck}&p=${pNum }">${pNum }</a></li>
-														</c:forEach>
-														<c:choose>
-															<c:when test="${requestScope.paging.nextPage eq -1 }">
-																<li class="page-item disabled"><a class="page-link">next</a></li>
-															</c:when>
-															<c:otherwise>
-																<li class="page-item"><a class="page-link"
-																 href="${path}/admin/applyDetail/${applyDetail.bizId}?divCheck=${divCheck}p=${requestScope.paging.nextPage }">next</a></li>
-															</c:otherwise>
-														</c:choose>
-													</ul>
+															<c:choose>
+																<c:when test="${requestScope.paging.nextPage eq -1 }">
+																	<li class="page-item disabled"><a class="page-link">next</a></li>
+																</c:when>
+																<c:otherwise>
+																	<li class="page-item"><a class="page-link"
+																	 href="${path}/admin/applyDetail/${applyDetail.bizId}?divCheck=${divCheck}p=${requestScope.paging.nextPage }&searchOption=${searchOption }&searchBox=${searchBox}&searchRadioVal=${searchRadioVal}">next</a></li>
+																</c:otherwise>
+															</c:choose>
+														</ul>
+													</c:if>
 												</nav>
 											</div>
 										</div>
