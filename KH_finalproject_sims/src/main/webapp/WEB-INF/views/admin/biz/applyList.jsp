@@ -94,7 +94,7 @@
 														<tbody>
 															<c:if test="${empty requestScope.paging.page}">
 											            		<tr>
-											            			<td colspan="6" class="text-center">결과가 없습니다.</td>
+											            			<td colspan="6" class="text-center">검색 결과가 없습니다.</td>
 											            		</tr>
 											            	</c:if>
 											            	<c:if test="${not empty requestScope.paging.page}">

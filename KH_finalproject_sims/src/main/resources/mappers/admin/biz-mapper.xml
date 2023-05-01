@@ -247,14 +247,14 @@
 					PLAN_ORDER A
 					INNER JOIN PLAN_TABLE B ON A.PLAN_NO = B.PLAN_NO
 				WHERE 1=1
-				<if test="searchRadioVal != null">
+				<if test="!(searchRadioVal == null or searchRadioVal == '') ">
 					<choose>
 						<when test="searchRadioVal != 'total'">
 							AND A.ORDER_STATUS = #{searchRadioVal}
 						</when>
 					</choose>
 				</if>
-				<if test="searchOption != null">
+				<if test="!(searchOption == null or searchOption == '')">
 					<choose>
 						<when test="searchOption == 'planName'">
 							AND UPPER(B.PLAN_NAME) LIKE UPPER('%'||#{searchBox}||'%')
@@ -263,6 +263,9 @@
 							AND UPPER(A.USER_ID) LIKE UPPER('%'||#{searchBox}||'%')
 						</when>
 					</choose>
+				</if>
+				<if test="(searchOption == null or searchOption == '') and !(searchBox == null or searchBox == '')">
+					AND (UPPER(B.PLAN_NAME) LIKE UPPER('%'||#{searchBox}||'%') OR AND UPPER(A.USER_ID) LIKE UPPER('%'||#{searchBox}||'%')) 
 				</if>
 				ORDER BY A.ORDER_DATE DESC
 			) C
@@ -280,23 +283,26 @@
 			PLAN_ORDER A
 			INNER JOIN PLAN_TABLE B ON A.PLAN_NO = B.PLAN_NO
 		WHERE 1=1
-		<if test="searchRadioVal != null">
+		<if test="!(searchRadioVal == null or searchRadioVal == '') ">
 			<choose>
 				<when test="searchRadioVal != 'total'">
 					AND A.ORDER_STATUS = #{searchRadioVal}
 				</when>
-			</choose>
-		</if>
-		<if test="searchOption != null">
-			<choose>
-				<when test="searchOption == 'planName'">
-					AND UPPER(B.PLAN_NAME) LIKE UPPER('%'||#{searchBox}||'%')
-				</when>
-				<when test="searchOption == 'userId'">
-					AND UPPER(A.USER_ID) LIKE UPPER('%'||#{searchBox}||'%')
-				</when>
-			</choose>
-		</if>
+					</choose>
+				</if>
+				<if test="!(searchOption == null or searchOption == '')">
+					<choose>
+						<when test="searchOption == 'planName'">
+							AND UPPER(B.PLAN_NAME) LIKE UPPER('%'||#{searchBox}||'%')
+						</when>
+						<when test="searchOption == 'userId'">
+							AND UPPER(A.USER_ID) LIKE UPPER('%'||#{searchBox}||'%')
+						</when>
+					</choose>
+				</if>
+				<if test="(searchOption == null or searchOption == '') and !(searchBox == null or searchBox == '')">
+					AND (UPPER(B.PLAN_NAME) LIKE UPPER('%'||#{searchBox}||'%') OR AND UPPER(A.USER_ID) LIKE UPPER('%'||#{searchBox}||'%')) 
+				</if>
 				
 	</select>
 	

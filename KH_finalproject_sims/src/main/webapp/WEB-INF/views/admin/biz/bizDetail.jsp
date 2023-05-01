@@ -120,7 +120,7 @@
 		}
 	})
 	
-	</script>
+</script>
 <jsp:include page="../include/header.jsp" />
 <div class="pcoded-main-container">
 	<div class="pcoded-wrapper container">
@@ -380,7 +380,7 @@
 		                                         		</div>
 		                                         	</c:otherwise>
 		                                         </c:choose>
-		                                         <label for="bizClosedDay2" class="col-sm-1 col-form-label text-center">휴무일</label>
+		                                         <label for="bizClosedDay" class="col-sm-1 col-form-label text-center">휴무일</label>
 		                                        	<c:choose>
 		                                        	<c:when test="${cmd eq 'read'}">
 		                                        		<div class="col-sm-5">
@@ -505,15 +505,17 @@
 														<tbody>
 															<c:if test="${empty requestScope.paging.page}">
 			            										<tr>
-			            											<td colspan="10">등록된 요금제가 없습니다.</td>
+			            											<td colspan="10" class="text-center">등록된 요금제가 없습니다.</td>
 			            										</tr>
 			            									</c:if>
+			            									<c:if test="${not empty requestScope.paging.page}">
 																<c:forEach var="list" items="${requestScope.paging.page}" varStatus="status">
 																	<tr>
 																		<td>${paging.totalRowCount - (paging.currentPage-1) * paging.pageLimit - status.index}</td>
 																		<td><a href="#" onclick="fn_selectPlanAjax('${list.planNo}');" data-toggle="modal" data-target="#gridSystemModal">${list.planName}</a></td>
 																	</tr>
 																</c:forEach>
+															</c:if>	
 															</tbody>
 														</table>
 													</div>

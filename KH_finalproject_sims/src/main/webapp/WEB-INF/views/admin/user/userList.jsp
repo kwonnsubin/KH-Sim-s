@@ -84,7 +84,7 @@
 													<tbody>
 														<c:if test="${empty requestScope.paging.page}">
 		            										<tr>
-		            											<td colspan="6">검색결과가 없습니다.</td>
+		            											<td colspan="6" class="text-center">검색 결과가 없습니다.</td>
 		            										</tr>
 		            									</c:if>
 														<c:forEach var="list" items="${requestScope.paging.page}" varStatus="status">
