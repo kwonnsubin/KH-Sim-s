@@ -41,7 +41,7 @@
 		
 		<div class="content">
 			<div class="container" style="margin-left: 6px;">
-				<h2 class="tit">요금제 수정하기</h2>
+				<h2 class="tit">요금제 등록하기</h2>
 				<hr class="line">
 			</div>
 		

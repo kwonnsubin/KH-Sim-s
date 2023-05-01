@@ -47,15 +47,18 @@
 </head>
 <body>
 	<jsp:include page="/WEB-INF/views/header.jsp" />
-	<jsp:include page="/WEB-INF/views/biz/nav.jsp" />
-
+	
+	
+	<div class="container" style="display:flex; margin:-103px 0 -200px 0; padding:150px 0 380px 0;">
+	<jsp:include page="/WEB-INF/views/biz/nav.jsp"/>
+	
 
 	<div class="container" style="margin-left:18%">
 	
-	<div class="container" style="margin-left: -139px;">
-			<h2 class="tit">내 정보 보기</h2>
-			<hr class="line">
-	</div>
+		<div class="container" style="margin-left: -139px;">
+				<h2 class="tit">내 정보 보기</h2>
+				<hr class="line">
+		</div>
 	
 		<div class="text-center" style="margin-top: 70px;">
 			<img src="${path}${imagePath}" class="mx-auto"
@@ -183,6 +186,7 @@
 			onclick="location.href='<%=request.getContextPath()%>/biz/modifyInfo'"
 			class="btn modyBtn">수정하기</button>
 
+	</div>
 	</div>
 
 	<jsp:include page="/WEB-INF/views/footer.jsp" />

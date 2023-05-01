@@ -86,6 +86,7 @@ public class BizPlanMngtController {
 		Search search = service.getPage(bizid, pNum, Integer.parseInt(cnt), keyword);
 		request.setAttribute("paging", search);
 		System.out.println("@@@@search.getPage() : " +search.getPage());//확인용
+		System.out.println("**********getPageList() : "+search.getPageList());
 		
 		//이름 고정용
 		BizPlanMngtVo bizName = service.findByBizName(bizid); //String으로 빼도 되는데 밑에 detail 작업 때문에.. 

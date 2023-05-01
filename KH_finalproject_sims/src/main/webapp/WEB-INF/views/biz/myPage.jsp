@@ -89,7 +89,6 @@
 		<div class="container">
 			<div class="container d-flex content">
 				<div class="container">
-				컨테이너 1
 					<div class="text-center" style="margin-top: 125px!important;">
 						<img src="${path}${imagePath}" class="mx-auto" style="width: 70% !important"/>
 					</div> 
@@ -97,7 +96,6 @@
 				</div>
 				
 				<div class="container" style="display: grid; grid-template-columns: repeat(2, 1fr); grid-template-rows: repeat(2, 1fr);">
-				컨테이너 2
 					<div class="cntMentBox" style="grid-column: 1 / 2; grid-row: 1 / 2;">
 						<div class="cntMentBox-header">
 							<div class="material-symbols-outlined" >
@@ -141,9 +139,7 @@
 						</div>
 					</div>
 					
-					<div class="cntMentBox">
-						총 등록한 요금제 수는 ${totalPlanCnt }개입니다. 
-					</div>
+					
 				
 				</div>
 			</div>
@@ -153,8 +149,9 @@
 			</div>
 			
 			<div class="container" style="height: 400px">
-			상위 5개 요금제 정보 -요금제 번호, 요금제명, 기본료, 등록일자
-			
+					<div class="cntMentBox">
+						총 등록한 요금제 수는 ${totalPlanCnt }개입니다. 
+					</div>
 				<table class="table topPlanInfo table-hover">
 					<thead>
 						<tr>
@@ -182,7 +179,7 @@
 			
 			</div>
 			
-			<div class="container" style="border: solid; height: 400px">
+			<div class="container" style="margin-top: 5%;">
 			최근 리뷰
 				<div class="review-wrapper">
 					<c:forEach var="recentReview" items="${recentReview}">
