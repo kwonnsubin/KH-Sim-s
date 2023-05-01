@@ -107,21 +107,12 @@ public class KakaoService {
 	         JsonObject kakao_account = element.getAsJsonObject().get("kakao_account").getAsJsonObject();
 	         String id = element.getAsJsonObject().get("id").getAsString();
 	         String nickname = properties.getAsJsonObject().get("nickname").getAsString();
-	         String email = kakao_account.getAsJsonObject().get("email").getAsString();
-	         String gender = kakao_account.getAsJsonObject().get("gender").getAsString();
-	         String birthday = kakao_account.getAsJsonObject().get("birthday").getAsString();
 	         
 	         System.out.println(id);
 	         System.out.println(nickname);
-	         System.out.println(email);
-	         System.out.println(gender);
-	         System.out.println(birthday);
 	         
 	         resultMap.put("nickname", nickname);
 	         resultMap.put("id", id);
-	         resultMap.put("email", email);
-	         resultMap.put("gender", gender);
-	         resultMap.put("birthday", birthday);
 	
 	     } catch (IOException e) {
 	         // TODO Auto-generated catch block
