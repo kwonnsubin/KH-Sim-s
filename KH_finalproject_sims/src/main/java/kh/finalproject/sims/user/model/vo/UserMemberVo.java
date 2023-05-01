@@ -25,6 +25,5 @@ public class UserMemberVo {
 	private String userGender;
 	private String userPhone;
 	private String userEmail;
-	private String userAddress;
 	
 }

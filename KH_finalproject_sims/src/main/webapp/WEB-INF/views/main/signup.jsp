@@ -227,8 +227,9 @@
 		            <div class="invalid-feedback">연락처를 입력하세요</div>
 		          </div>
 	           </div>
-	           
-	           <button class="btn btn-primary btn-lg btn-block" type="submit" disabled>가입</button>
+	           <div class="text-end">
+		           <button class="btn btn-primary btn-lg btn-block" type="submit" disabled>가입</button>
+	           </div>
             </form:form>
 	      </div>
 	    </div>
