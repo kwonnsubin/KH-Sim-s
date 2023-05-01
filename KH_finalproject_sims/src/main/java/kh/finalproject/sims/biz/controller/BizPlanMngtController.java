@@ -137,13 +137,38 @@ public class BizPlanMngtController {
 	}
 	
 	//요금제 삭제
-	//TODO 모달창에서 planNo 가져와야 함. 
 	@PostMapping("deletePlan")
 	@ResponseBody
 	public String deleteBizPlan(int planNo) {
 		System.out.println(planNo);
 		service.deleteBizPlan(planNo);
 		return "success";
+	}
+	
+	//체크박스를 통한 요금제 선택삭제
+	@PostMapping("deleteChkBox")
+	public String deleteChkBox(HttpServletRequest req) {
+		String [] ajaxMsg = req.getParameterValues("valueArr");
+		
+		if(ajaxMsg !=null && ajaxMsg.length > 0) {
+            for(int i=0; i<ajaxMsg.length; i++) {
+               System.out.println("ajax traditional result : " + i +" : "+ ajaxMsg[i]);
+       	    }
+		} // ajax traditional result : 0 : 201
+		
+		System.out.println("ajaxMsg : " + ajaxMsg); 
+		// ajaxMsg : [Ljava.lang.String;@5d59e93b
+		
+		int [] ajaxMsgInt = new int[ajaxMsg.length]; //String 배열을 int 배열로 변환
+		for (int i = 0; i < ajaxMsg.length; i++) {
+			ajaxMsgInt[i] = Integer.parseInt(ajaxMsg[i]);
+        }
+		
+		for (int i = 0; i <ajaxMsg.length; i++ ) {
+			service.deleteBizPlan(ajaxMsgInt[i]); 
+		}
+		
+		return  "redirect:/biz/planList"; //리다이렉트로 리턴해야 에러 안남. 
 	}
 	
 	//요금제 수정(기본값 출력용)
