@@ -49,6 +49,14 @@ public class KakaoController {
         String snsId = (String) result.get("id");
         String userName = (String) result.get("nickname");
         String email = (String) result.get("email");
+        
+        String gender = (String)result.get("gender");
+        if(gender.equals("male")) {
+        	gender = "M";
+        } else {
+        	gender = "F";
+        }
+        String birthday = (String) result.get("birthday");
         String userpw = snsId;
 
         // 분기
@@ -65,7 +73,8 @@ public class KakaoController {
             userMemberVo.setUserId(email);
             userMemberVo.setUserName(userName); 
             userMemberVo.setUserEmail(email);
-            userMemberVo.setUserSsn("snsLogin");
+            userMemberVo.setUserSsn(birthday);
+            userMemberVo.setUserGender(gender);
             memberService.kakaoJoin(memberVo, userMemberVo);
         }
 

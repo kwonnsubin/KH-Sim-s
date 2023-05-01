@@ -67,7 +67,7 @@
 	</insert>
 	
 	<insert id="kakaoInsertUserMember" parameterType="userVo">
-		insert into user_table values(#{userId}, #{userName}, #{userSsn}, sysdate, null, null, #{userPhone}, #{userEmail})
+		insert into user_table values(#{userId}, #{userName}, #{userSsn}, sysdate, null, #{userGender}, #{userPhone}, #{userEmail})
 	</insert>
 	
 	<select id="getUserName" parameterType="string" resultType="string">
