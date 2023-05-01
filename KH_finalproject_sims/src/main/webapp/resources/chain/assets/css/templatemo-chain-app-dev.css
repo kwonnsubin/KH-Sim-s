@@ -100,9 +100,15 @@ header, nav, section, article, aside, footer, hgroup {
 * {
   box-sizing: border-box;
 }
-
+/*폰트 변경*/
+@font-face {
+    font-family: 'NanumSquareNeo-Variable';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_11-01@1.0/NanumSquareNeo-Variable.woff2') format('woff2');
+    font-weight: normal;
+    font-style: normal;
+}
 html, body {
-  font-family: 'Roboto', sans-serif;
+  font-family: 'NanumSquareNeo-Variable'; /*폰트 변경*/
   font-weight: 400;
   background-color: #fff;
   -ms-text-size-adjust: 100%;
@@ -143,7 +149,7 @@ global styles
 html,
 body {
   background: #fff;
-  font-family: 'Roboto', sans-serif;
+  font-family: 'NanumSquareNeo-Variable', sans-serif; /*폰트 변경*/
 }
 
 ::selection {
