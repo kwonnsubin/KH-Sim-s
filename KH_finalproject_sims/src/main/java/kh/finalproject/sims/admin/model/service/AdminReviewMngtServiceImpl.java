@@ -57,6 +57,7 @@ public class AdminReviewMngtServiceImpl implements AdminReviewMngtService{
 		int pageCount = (totalRowCount / cnt) + mod;
 		
 		Search search = new Search(dataList, pNum, pageCount, cnt, 5, keyword, searchType);
+		search.setTotalRowCount(totalRowCount); // 역순
 		
 		return search;
 	}

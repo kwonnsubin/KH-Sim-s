@@ -150,14 +150,25 @@ public class AdminFaqMngtController {
 		return mv;
 	}
 	
-	// 자주묻는질문 삭제하기
-	@GetMapping("/faq/delete/{faqNo}")
-	public ModelAndView deleteFaq(
-			  ModelAndView mv
-			, @PathVariable int faqNo
-			) {
-		service.deleteFaq(faqNo);
-		mv.setViewName("redirect:/admin/faq/list");
-		return mv;
-	}
+//	// 자주묻는질문 삭제하기
+//	@GetMapping("/faq/delete/{faqNo}")
+//	public ModelAndView deleteFaq(
+//			  ModelAndView mv
+//			, @PathVariable int faqNo
+//			) {
+//		service.deleteFaq(faqNo);
+//		mv.setViewName("redirect:/admin/faq/list");
+//		return mv;
+//	}
+	
+//	// 자주묻는질문 삭제하기 ajax
+//	@GetMapping("/faq/delete")
+//	public ModelAndView deleteFaq(
+//			  ModelAndView mv,
+//			  AdminFaqVo vo
+//			) {
+//		service.deleteFaq(vo.getFaqNo());
+//		mv.setViewName("redirect:/admin/faq/list");
+//		return mv;
+//	}
 }

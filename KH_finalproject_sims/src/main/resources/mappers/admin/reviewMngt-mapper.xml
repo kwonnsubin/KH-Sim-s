@@ -25,7 +25,7 @@
     SELECT *
     FROM (
         SELECT
-            ROW_NUMBER() OVER (ORDER BY REVIEW_DATE ASC) AS n
+              ROW_NUMBER() OVER (ORDER BY REVIEW_DATE DESC) AS n
             , REVIEW_NO
             , REVIEW_CONTENT
             , REVIEW_DATE
@@ -40,8 +40,9 @@
             <when test="searchType != null and searchType == 'content'"> WHERE REVIEW_CONTENT LIKE '%'|| #{keyword} ||'%'</when>
         </choose>
     )
-    WHERE N BETWEEN #{start} AND #{end}
+    WHERE N BETWEEN 1 AND 5
 </select>
+
 
 	
 	<!-- 글 개수 -->
