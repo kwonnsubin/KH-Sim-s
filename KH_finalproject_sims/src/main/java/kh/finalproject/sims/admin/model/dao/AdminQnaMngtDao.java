@@ -35,6 +35,11 @@ public class AdminQnaMngtDao {
 		return sqlSession.selectOne("admin.selectQnaListDetail", aqNo);
 	}
 	
+	// 문의글 삭제
+	public int deleteQnaDetail(int aqNo) {
+		return sqlSession.delete("admin.deleteQnaDetail", aqNo);
+	}
+	
 	// 답변 리스트 ajax
 	public List<AdminQnaAnsVo> selectQnaAnsList(int aqNo) {
 		return sqlSession.selectList("admin.selectQnaAnsList", aqNo);

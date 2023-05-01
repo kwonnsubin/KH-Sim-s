@@ -88,6 +88,11 @@
 		WHERE AQ_NO = #{aqNo}
 	</select> 	
 	
+	<!-- 문의글 삭제 -->
+	<delete id="deleteQnaDetail">
+		DELETE FROM QNA WHERE AQ_NO = #{aqNo}
+	</delete>
+	
 	<!-- 문의 답변/답글 조회 -->
 	<!-- <select id="selectQnaAnsList" resultType="kh.finalproject.sims.admin.model.vo.AdminQnaAnsVo"> AdminQnaAnsVo안에  List<replyVo>가 들어있는데 이건 왜 안되는걸까요?? -->
 	<select id="selectQnaAnsList" resultMap="adminQnaAnsCollectionMap">

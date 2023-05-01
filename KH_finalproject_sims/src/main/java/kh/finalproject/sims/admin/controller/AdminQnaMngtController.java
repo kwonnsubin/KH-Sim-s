@@ -96,7 +96,7 @@ public class AdminQnaMngtController {
 		
 		mv.setViewName("admin/qna/list");
 		return mv;
-	}
+	}	
 	
 	// 상세보기
 	@GetMapping("/qna/detail/{aqNo}")
@@ -159,6 +159,16 @@ public class AdminQnaMngtController {
 		mv.setViewName("admin/qna/detail");
 		return mv; 
     }
+	
+	// 문의글 삭제
+	@GetMapping("/qna/delete")
+	public String deleteQnaDetail(
+			@RequestParam("aqNo") int aqNo,
+			ModelAndView mv
+			) {
+		service.deleteQnaDetail(aqNo);
+		return "redirect:admin/qna/list";	
+	}
 	
 	// 답변 작성 ajax
 	@ResponseBody

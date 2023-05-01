@@ -40,6 +40,12 @@ public class AdminQnaMngtServiceImpl implements AdminQnaMngtService{
 	public AdminQnaMngtVo selectQnaListDetail(int aqNo) {
 		return dao.selectQnaListDetail(aqNo);
 	}
+	
+	// 문의글 삭제
+	@Override
+	public int deleteQnaDetail(int aqNo) {
+		return dao.deleteQnaDetail(aqNo);
+	}
 
 	// 답변 리스트 ajax
 	@Override
@@ -136,5 +142,4 @@ public class AdminQnaMngtServiceImpl implements AdminQnaMngtService{
 		
 		return search; // 반환받은 결과 리턴
 	}
-
 }

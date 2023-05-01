@@ -20,6 +20,9 @@ public interface AdminQnaMngtService {
 	// 상세보기
 	public AdminQnaMngtVo selectQnaListDetail(int aqNo);
 	
+	// 문의글 삭제
+	public int deleteQnaDetail(int aqNo);
+	
 	// 답변 리스트
 	public List<AdminQnaAnsVo> selectQnaAnsList(int aqNo);
 	
