@@ -47,6 +47,7 @@
 .goList{
 	position: absolute;
 	right:34%;
+	background: #8dbdd7 !important;
 }
 .titleMent{
 	position: absolute;
@@ -64,11 +65,18 @@
   'opsz' 48
 }
 .btn{
-	background: #ecf7fd !important;
     color: #000 !important;
     border-radius: 5px;
     box-shadow: 2px 2px 5px rgba(0, 3, 0, 0.3);
     outline: none;
+}
+.approve{
+	background: #7ccba7!important;
+	font-weight: bold !important;
+}
+.hold{
+	background: #ff838c!important;
+	font-weight: bold !important;
 }
 @media (max-width: 1200px) {
   #wrap {
@@ -95,4 +103,12 @@ h2.tit{
     height: 4px !important;
     color: #488ed5;
     opacity: 1;
+}
+.hold-ment{
+	color : #f14f5b;
+	font-weight: bold;
+}
+.approve-ment{
+	color : #00a65a;
+	font-weight: bold;
 }

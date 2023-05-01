@@ -35,18 +35,18 @@
 </head>
 <body>
 <jsp:include page="/WEB-INF/views/header.jsp"/>
-<jsp:include page="/WEB-INF/views/biz/nav.jsp"/>
 
 
-	<div class="titleMent">
-    	<span class="material-symbols-outlined" style="float: left;">
-		more_vert
-		</span>
-		<span>요금제 정보</span>
-    </div>
+	<div class="container" style="display: flex; margin: -103px 0 -200px 0; padding: 150px 0 380px 0;">
+		<jsp:include page="/WEB-INF/views/biz/nav.jsp"/>
+
+	<div class="content">
+				<h2 class="tit">요금제 상세정보</h2>
+				<hr class="line">
+	
 
 	<div class="container">
-		<table class="table" id="planDetail" style="width: 88%">
+		<table class="table" id="planDetail" style="width: 118%">
 			<tr > 
 				<th>
 					<span>요금제명</span>
@@ -139,10 +139,13 @@
 		</table>
 	</div>
 	
-	<div class="btnGroup">
-		<button class= "btn" onclick="location.href='${pageContext.request.contextPath}/biz/planList'">목록</button>
-		<button class= "btn" onclick="location.href='${pageContext.request.contextPath}/biz/modifyPlan?planNo=${planDetail.planNo }'">수정</button>
+	
+		<div class="btnGroup">
+			<button class= "btn" onclick="location.href='${pageContext.request.contextPath}/biz/planList'">목록</button>
+			<button class= "btn" onclick="location.href='${pageContext.request.contextPath}/biz/modifyPlan?planNo=${planDetail.planNo }'">수정</button>
+		</div>
 	</div>
+</div>	
 <!-- <script>
 	function goBack() {
 	  window.history.back();

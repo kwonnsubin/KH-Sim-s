@@ -49,11 +49,11 @@
 	<jsp:include page="/WEB-INF/views/header.jsp" />
 	
 	
-	<div class="container" style="display:flex; margin:-103px 0 -200px 0; padding:150px 0 380px 0;">
+	<div class="container" style="margin:-103px 0 -200px 0; padding:150px 0 380px 0;">
 	<jsp:include page="/WEB-INF/views/biz/nav.jsp"/>
 	
 
-	<div class="container" style="margin-left:18%">
+	<div class="container" style="margin-left:27%">
 	
 		<div class="container" style="margin-left: -139px;">
 				<h2 class="tit">내 정보 보기</h2>

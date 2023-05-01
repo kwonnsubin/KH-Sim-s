@@ -67,8 +67,7 @@
 
 
 
-	<div class="container"
-		style="display: flex; margin: -103px 0 -200px 0; padding: 150px 0 380px 0;">
+	<div class="container" style="display: flex; margin: -103px 0 -200px 0; padding: 150px 0 380px 0;">
 
 
 
@@ -78,9 +77,13 @@
 
 
 		<div class="content">
-			<h2>${bizName.bizName}의요금제 목록</h2>
+			
+			<div class="container" style="margin-left: -139px;">
+				<h2 class="tit">${bizName.bizName}의 요금제 목록</h2>
+				<hr class="line">
+			</div>
+			
 			<div class="searchTop">
-
 				<form action="${path}/biz/planList" class="listSelect">
 					<select class="form-select" style="width: 100px" name="cnt"
 						onchange="submit();">
@@ -191,7 +194,7 @@
 
 
 			<!-- 체크박스를 통한 선택삭제-->
-			<input type="button" value="선택삭제" class="btn"
+			<input type="button" value="선택삭제" class="btn checkDeleteBtn"
 				onclick="deleteValue(event);" id="checkDeleteBtn" />
 			<!-- data-bs-toggle="modal" data-bs-target="#checkDelete" -->
 
@@ -360,8 +363,7 @@
 			if (valueArr.length == 0) {
 				alert("선택된 글이 없습니다.");
 				//TODO 모달창이 아예 작동하지 않게 해야 함.
-				$('#checkDeleteBtn')
-						.removeAttr('data-bs-toggle data-bs-target');
+				$('#checkDeleteBtn').removeAttr('data-bs-toggle data-bs-target');
 				//1회차일 때는 모달창이 안나오지만 한번 체크된값 처리하고 다시 아무것도 체크안한 상태에서 삭제 누르면 모달창 다시 나옴.. 
 				// 이미 속성이 추가가 된 상태라... 
 				// 속성을 다시 제거.. 

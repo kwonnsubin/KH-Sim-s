@@ -2,6 +2,7 @@
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
+<%@ page import="java.util.Date, java.text.SimpleDateFormat" %>
 
 <c:set var="path" value="${pageContext.request.contextPath}"/>
 <!DOCTYPE html>
@@ -85,14 +86,26 @@
 
 	<div class="container" style="display:flex; margin:-103px 0 -200px 0; padding:150px 0 380px 0;">
 		<jsp:include page="/WEB-INF/views/biz/nav.jsp"/>
-	
-		<div class="container">
+		
+		
+		<%
+		  Date date = new Date();
+		  SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm 기준");
+		  String currentTime = sdf.format(date);
+		%>
+		
+		
+		<div class="container" style="margin-left: 142px; width: 81%;">
+			<div class="container">
+			 <p><%=currentTime%></p>
+			</div>
+			
 			<div class="container d-flex content">
-				<div class="container">
-					<div class="text-center" style="margin-top: 125px!important;">
+			
+				<div class="container logo-img">
+					<div class="text-center">
 						<img src="${path}${imagePath}" class="mx-auto" style="width: 70% !important"/>
 					</div> 
-				
 				</div>
 				
 				<div class="container" style="display: grid; grid-template-columns: repeat(2, 1fr); grid-template-rows: repeat(2, 1fr);">
@@ -103,7 +116,7 @@
 							</div>
 						</div>
 						<div class="cntMentBox-content">
-						오늘 등록된 리뷰 수는 ${todayReviewCnt }개입니다.
+						오늘 등록된 리뷰 수는 <span>${todayReviewCnt }</span>개입니다.
 						</div>
 					</div>
 					
@@ -114,7 +127,7 @@
 							</div>
 						</div>
 						<div class="cntMentBox-content">
-						총 리뷰 수는 ${totalReviewCnt }개입니다. 
+						총 리뷰 수는 <span>${totalReviewCnt }</span>개입니다. 
 						</div>
 					</div>
 					
@@ -125,7 +138,7 @@
 							</span>
 						</div>
 						<div class="cntMentBox-content">
-						오늘 가입한 고객의 수는 ${todayApplyCnt }명입니다. 
+						오늘 가입한 고객의 수는 <span>${todayApplyCnt }</span>명입니다. 
 						</div>
 					</div>
 					<div class="cntMentBox" style="grid-column: 2 / 2; grid-row: 2 / 2;">
@@ -135,8 +148,18 @@
 							</span>
 						</div>
 						<div class="cntMentBox-content">
-						총 가입자 수는 ${totalApplyCnt }명입니다. 
+						총 가입자 수는 <span>${totalApplyCnt }</span>명입니다. 
 						</div>
+					</div>
+					<div class="cntMentBox" style="width: 195%;">
+						<div class="cntMentBox-header">
+							<span class="material-symbols-outlined">
+							order_approve
+							</span>
+						</div>
+						<div class="cntMentBox-content">
+						총 등록한 요금제 수는 <span>${totalPlanCnt }</span>개입니다.
+						</div> 
 					</div>
 					
 					
@@ -144,14 +167,18 @@
 				</div>
 			</div>
 			
-			<div class="container">
+			<div class="container" style="margin-top: 9%;">
+				<div>
+					<span class="mini-title">최근 7일간 가입자 수</span>
+				</div>
 				<div id="chart_div" style="height: 500px;"></div>
 			</div>
 			
 			<div class="container" style="height: 400px">
-					<div class="cntMentBox">
-						총 등록한 요금제 수는 ${totalPlanCnt }개입니다. 
-					</div>
+					
+				<div>
+					<span class="mini-title">인기있는 요금제</span>
+				</div>	
 				<table class="table topPlanInfo table-hover">
 					<thead>
 						<tr>
@@ -159,7 +186,7 @@
 							<th>요금제 이름</th>
 							<th>기본료</th>
 							<th>등록일자</th>
-							<th>가입자수</th>
+							<th>누적 가입자수</th>
 						</tr>
 					</thead>
 					<tbody>
@@ -179,8 +206,11 @@
 			
 			</div>
 			
-			<div class="container" style="margin-top: 5%;">
-			최근 리뷰
+			<div class="container" style="margin-top: 9%;">
+				<div>
+					<span class="mini-title">최근 리뷰</span>
+				</div>
+				
 				<div class="review-wrapper">
 					<c:forEach var="recentReview" items="${recentReview}">
 					    <div class="review-box">
@@ -212,10 +242,10 @@
 					        </div>
 					    </div>
 					</c:forEach>
-					<div class="review-box"> <!-- 더보기 박스 -->
-						리뷰 현황 더 보기
+					<div class="review-box" style="display: flex; align-items: center;"> <!-- 더보기 박스 -->
+						
 						<a class="material-symbols-outlined more-icon" onclick="location.href='${pageContext.request.contextPath}/biz/reviewList'"
-						 		style="font-size: 170px; color: darkgray;">
+						 		style="font-size: 220px; color: darkgray;  margin: auto; line-height: 0 !important;">
 								read_more
 						</a>
 					</div>

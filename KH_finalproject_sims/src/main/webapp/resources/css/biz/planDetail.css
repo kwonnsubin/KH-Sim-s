@@ -39,11 +39,11 @@
 }
 .btnGroup{
 	position: absolute;
-	left:50%;
-	bottom: 26%;
+	left: 60%;
+    bottom: 40%;
 }
 #planDetail{
-	margin: 10%;
+	margin-top: 4%;
 	width: 50%;
 	border-radius: 10px;
     /* padding: 10px; */
@@ -52,4 +52,27 @@
     outline: none;
     position:relative;
     height: 470px;
+}
+h2.tit{
+    margin-top: 1%;
+    margin-left: 10%;
+    color: #333;
+    font-size: 1.7143em;
+    line-height: 1.1;
+    font-weight: 700;
+    letter-spacing: -0.05em;
+}
+.line{
+	width: 289px;
+    margin-left: 10%;
+    height: 4px !important;
+    color: #488ed5;
+    opacity: 1;
+}
+.content{
+	position: relative;
+    margin-left: 3%;
+}
+.btn {
+    background: #8dbdd7 !important;
 }

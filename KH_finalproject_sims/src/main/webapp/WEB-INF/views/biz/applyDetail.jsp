@@ -319,10 +319,10 @@
 							신청완료
 						</c:when>
 						<c:when test="${applyDetailPlan.orderStatus eq 2}">
-							승인완료
+							<span class="approve-ment">승인완료</span>
 						</c:when>
 						<c:otherwise>
-							승인보류
+							<span class="hold-ment">승인보류</span>
 						</c:otherwise>
 					</c:choose>
 					</td>

@@ -20,7 +20,7 @@
 	position: relative;
 }
 .form-select{
-	width: 90px !important;
+	width: 100px !important;
     margin: 0;
     display: -webkit-inline-box !important;
 }
