@@ -40,7 +40,7 @@
 							</div>
 								<div class="col-md-12">
 									<div class="simsBtn m-b-15">
-										<input class="btn btn-primary right m-l-10" type="button" onclick="location.href='<%=request.getContextPath()%>/admin/qnadelete/${qnaDetail.aqNo}'" value="삭제">
+										<input class="btn btn-primary right m-l-10" type="button" onclick="location.href='<%=request.getContextPath()%>/admin/qna/delete?aqNo=${qnaDetail.aqNo}'" value="삭제">
 										<input class="btn btn-primary right " type="button" onclick="location.href='<%=request.getContextPath()%>/admin/qna/list'" value="목록">
 									</div>
 								</div>
@@ -96,7 +96,7 @@
 					                        </div>
 					                    </div>
 				                    </div> 
-				                </div>
+				               </div>
 						</div>
 				    </div>
 				</div>
