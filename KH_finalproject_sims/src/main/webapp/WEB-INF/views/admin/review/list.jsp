@@ -71,9 +71,10 @@
 														</tr>
 													</thead>
 													<tbody>
-														<c:forEach var="review" items="${requestScope.paging.page}">
+														<c:forEach var="review" items="${requestScope.paging.page}" varStatus="status">
 															<tr>
-																<td class="text-center">${review.n}</td>
+																<td class="text-center">${paging.totalRowCount - ((paging.currentPage-1) * 10 + status.index)}</td>
+																<%-- <td class="text-center">${paging.totalRowCount - ((paging.currentPage-1) * 10 + status.index)}</td>  --%>
 																<td>
 																	<c:choose>
 															          <c:when test="${fn:length(review.reviewContent) > 40}">
@@ -94,7 +95,7 @@
 																	</c:if>
 																</td>
 																<td class="text-center">${review.userId}</td>
-																<td class="text-center"><fmt:formatDate value="${review.reviewDate}" pattern="yyyy.MM.dd"/> </td>
+																<td class="text-center"><fmt:formatDate value="${review.reviewDate}" pattern="yyyy.MM.dd"/></td>
 															</tr>
 														</c:forEach>
 													</tbody>
