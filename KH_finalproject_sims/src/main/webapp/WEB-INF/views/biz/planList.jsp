@@ -14,6 +14,8 @@
 	content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <meta name="description" content="">
 <meta name="author" content="">
+
+
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link
@@ -22,6 +24,8 @@
 
 <title>${bizName.bizName}요금제 목록</title>
 <link rel="stylesheet" href="${path}/resources/css/biz/planList.css" />
+<link rel="stylesheet" href="${path}/resources/css/font.css"/>
+
 <script src="https://code.jquery.com/jquery-3.6.3.js"></script>
 
 <link type="text/css" rel="stylesheet"
@@ -145,11 +149,23 @@
 					</tr>
 				</thead>
 				<tbody>
-					<c:if test="${empty requestScope.paging.page}">
-						<tr>
-							<td colspan="4">등록된 요금제가 없습니다.</td>
-						</tr>
+					<c:if test="${ empty requestScope.paging.page}">
+						
+						<c:if test="${requestScope.paging.pageList.size() eq 0}">
+							<tr>
+								<td colspan="4">등록된 요금제가 없습니다.</td>
+							</tr>
+						</c:if>
+						<!-- pageList로 page 존재 유무 확인, 배열의 크기가 0보다 크면 그 이전 페이지로 이동.  -->
+						<c:if test="${requestScope.paging.pageList.size() gt 0}">
+							<% String p = request.getParameter("p"); 
+							   String keyword = request.getParameter("keyword");
+							   int intValueOfP = Integer.parseInt(p); // 문자열 p를 정수로 변환
+							   int pMinusOne = intValueOfP - 1; // p-1 계산하여 새로운 변수에 할당 
+							   response.sendRedirect(request.getContextPath() + "/biz/planList?p="+pMinusOne+"&keyword="+keyword); %>
+						</c:if>
 					</c:if>
+					
 					<c:if test="${not empty requestScope.paging.page}">
 						<c:forEach var="plan" items="${requestScope.paging.page}">
 							<tr class="text-center mx-auto">
@@ -270,8 +286,7 @@
 	<script>
 	$(document).on('click','#searchBtn', function(e){
 		e.preventDefault();
-		var url ="<%=request.getContextPath()%>
-		/biz/planList";
+		var url ="<%=request.getContextPath()%>/biz/planList";
 			url = url + "?keyword=" + $('#keyword').val();
 			location.href = url;
 			console.log(url);
@@ -379,8 +394,7 @@
 					});
 				});
 
-				$('#checkDeleteBtn')
-						.removeAttr('data-bs-toggle data-bs-target'); //속성 다시 제거해서 바로 다음 미체크시 모달창 작동 막음 
+				$('#checkDeleteBtn').removeAttr('data-bs-toggle data-bs-target'); //속성 다시 제거해서 바로 다음 미체크시 모달창 작동 막음 
 
 			}
 
