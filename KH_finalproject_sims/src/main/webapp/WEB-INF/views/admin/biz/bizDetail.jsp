@@ -89,18 +89,22 @@
 	$(document).ready(function(){
 		/*지원통신망 입력 값 쪼개기*/
 		var network = "${applyDetail.network}";
-		console.log("network : "+network);
 		var networkArr = network.split(",");
 		console.log("networkArr : "+networkArr);
 		for(var i = 0; i < networkArr.length; i++){
 			var net = networkArr[i];
-			switch(network){
+			switch(net){
+			case "SK망" :
+				net = "SKT망";
+				$("[name=network][value="+net+"]").prop("checked", true);
 			case "KT망" :
+				$("[name=network][value="+net+"]").prop("checked", true);
 			case "SKT망" :
+				$("[name=network][value="+net+"]").prop("checked", true);
 			case "LG망" :
-				$("[name=network][value="+network+"]").prop("checked", true);
-				break;
-			}
+				$("[name=network][value="+net+"]").prop("checked", true);
+				 break;
+			 }
 		}
 		
 		/*휴무일 입력 값 쪼개기*/
@@ -108,21 +112,11 @@
 		console.log("bizClosedDay : " + bizClosedDay);
 		var bizClosedDayArr = bizClosedDay.split(",");
 		console.log(bizClosedDayArr);
+		console.log(bizClosedDayArr.length);
+		var day;
 		for(var i = 0; i < bizClosedDayArr.length; i++){
-			var day = bizClosedDayArr[i];
-			switch(day){
-			case "월" :
-			case "화" :
-			case "수" :
-			case "목" :
-			case "금" :
-			case "토" :
-			case "일" :
-			case "공휴일" :
-				console.log("day : " + day);
-				$("[name=bizClosedDay][value=" + day + "]").prop("checked", true);
-				break;
-			}
+			day = bizClosedDayArr[i];
+			$("[name=bizClosedDay][value=" + day + "]").prop("checked", true);
 		}
 	})
 	

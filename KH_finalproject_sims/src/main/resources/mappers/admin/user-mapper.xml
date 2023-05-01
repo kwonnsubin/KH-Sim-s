@@ -91,7 +91,15 @@
 	<select id="selectUserDetail" resultType="adUserVo">
 	/** 관리자의 사용자 관리 상세 (selectUserDetail)**/	
 		SELECT
-			*
+			USER_ID
+		    , USER_NAME
+		    , USER_SSN
+		    , USER_WR_DATE
+		    , USER_UP_DATE
+		    , USER_GENDER
+		    , USER_PHONE
+		    , USER_EMAIL
+		    , SUBSTR(USER_SSN, 1,6) AS BIRTH
 		FROM
 			USER_TABLE
 		WHERE

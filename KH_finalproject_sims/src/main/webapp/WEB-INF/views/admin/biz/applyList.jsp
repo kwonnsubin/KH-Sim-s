@@ -92,26 +92,33 @@
 															</tr>
 														</thead>
 														<tbody>
-															<c:forEach var="list" items="${requestScope.paging.page}" varStatus="status">
-																<tr>
-																	<td>${paging.totalRowCount - (paging.currentPage-1) * paging.pageLimit - status.index}</td>
-																		<c:set var="divCheck" value="apply"/>
-																		<c:if test="${list.enable eq '1' }">
-																			<c:set var="divCheck" value="detail"/>
-																		</c:if>
-																	<td><a href="<%=request.getContextPath()%>/admin/applyDetail/${list.bizId}?divCheck=${divCheck}">${list.bizName}</a></td>
-																	<td><a href="<%=request.getContextPath()%>/admin/applyDetail/${list.bizId}?divCheck=${divCheck}">${list.bizOwnerName}</a></td>
-																	<td>
-																		<c:choose>
-																			<c:when test="${list.enable eq '0'}"> 인증 전 </c:when>
-																			<c:when test="${list.enable eq '1'}"> 인증 완료 </c:when>
-																			<c:when test="${list.enable eq '3'}"> 반려</c:when>
-																			<c:otherwise>탈퇴</c:otherwise>
-																		</c:choose>
-																	</td>
-																	<td><fmt:formatDate value="${list.writeDate}" pattern="yyyy.MM.dd"/> </td>
-																</tr>
-															</c:forEach>
+															<c:if test="${empty requestScope.paging.page}">
+											            		<tr>
+											            			<td colspan="6" class="text-center">결과가 없습니다.</td>
+											            		</tr>
+											            	</c:if>
+											            	<c:if test="${not empty requestScope.paging.page}">
+																<c:forEach var="list" items="${requestScope.paging.page}" varStatus="status">
+																	<tr>
+																		<td>${paging.totalRowCount - (paging.currentPage-1) * paging.pageLimit - status.index}</td>
+																			<c:set var="divCheck" value="apply"/>
+																			<c:if test="${list.enable eq '1' }">
+																				<c:set var="divCheck" value="detail"/>
+																			</c:if>
+																		<td><a href="<%=request.getContextPath()%>/admin/applyDetail/${list.bizId}?divCheck=${divCheck}">${list.bizName}</a></td>
+																		<td><a href="<%=request.getContextPath()%>/admin/applyDetail/${list.bizId}?divCheck=${divCheck}">${list.bizOwnerName}</a></td>
+																		<td>
+																			<c:choose>
+																				<c:when test="${list.enable eq '0'}"> 인증 전 </c:when>
+																				<c:when test="${list.enable eq '1'}"> 인증 완료 </c:when>
+																				<c:when test="${list.enable eq '3'}"> 반려</c:when>
+																				<c:otherwise>탈퇴</c:otherwise>
+																			</c:choose>
+																		</td>
+																		<td><fmt:formatDate value="${list.writeDate}" pattern="yyyy.MM.dd"/> </td>
+																	</tr>
+																</c:forEach>
+															</c:if>
 															<%-- <c:forEach var="list" items="${applyList}" varStatus="status">
 																<tr>
 																	<td>${status.count}</td>
@@ -132,35 +139,38 @@
 																	<td><fmt:formatDate value="${list.writeDate}" pattern="yyyy.MM.dd"/> </td>
 																</tr>
 															</c:forEach> --%>
+															
 														</tbody>
 													</table>
 												</div>
 												<nav aria-label="Page navigation example">
-													<ul class="pagination justify-content-center">
-														<c:set var="pageNumber" value="${empty param.p ? 1 : param.p }" />
-														<c:choose>
-															<c:when test="${requestScope.paging.prevPage eq -1 }">
-																<li class="page-item disabled"><a class="page-link">prev</a></li>
-															</c:when>
-															<c:otherwise>
-																<li class="page-item"><a class="page-link"
-																 href="${path}/admin/applyList?p=${requestScope.paging.prevPage }">prev</a></li>
-															</c:otherwise>
-														</c:choose>
-														<c:forEach var="pNum" items="${requestScope.paging.pageList }">
-															<li class="page-item ${pNum eq pageNumber ? 'active' : '' }"><a class="page-link" 
-															href="${path}/admin/applyList?p=${pNum }">${pNum }</a></li>
-														</c:forEach>
-														<c:choose>
-															<c:when test="${requestScope.paging.nextPage eq -1 }">
-																<li class="page-item disabled"><a class="page-link">next</a></li>
-															</c:when>
-															<c:otherwise>
-																<li class="page-item"><a class="page-link"
-																 href="${path}/admin/applyList?p=${requestScope.paging.nextPage }">next</a></li>
-															</c:otherwise>
-														</c:choose>
-													</ul>
+													<c:if test="${not empty requestScope.paging.page}">
+														<ul class="pagination justify-content-center">
+															<c:set var="pageNumber" value="${empty param.p ? 1 : param.p }" />
+															<c:choose>
+																<c:when test="${requestScope.paging.prevPage eq -1 }">
+																	<li class="page-item disabled"><a class="page-link">prev</a></li>
+																</c:when>
+																<c:otherwise>
+																	<li class="page-item"><a class="page-link"
+																	 href="${path}/admin/applyList?p=${requestScope.paging.prevPage }&searchOption=${searchOption }&searchBox=${searchBox }&searchRadioVal=${searchRadioVal}">prev</a></li>
+																</c:otherwise>
+															</c:choose>
+															<c:forEach var="pNum" items="${requestScope.paging.pageList }">
+																<li class="page-item ${pNum eq pageNumber ? 'active' : '' }"><a class="page-link" 
+																href="${path}/admin/applyList?p=${pNum }&searchOption=${searchOption }&searchBox=${searchBox }&searchRadioVal=${searchRadioVal}">${pNum }</a></li>
+															</c:forEach>
+															<c:choose>
+																<c:when test="${requestScope.paging.nextPage eq -1 }">
+																	<li class="page-item disabled"><a class="page-link">next</a></li>
+																</c:when>
+																<c:otherwise>
+																	<li class="page-item"><a class="page-link"
+																	 href="${path}/admin/applyList?p=${requestScope.paging.nextPage }&searchOption=${searchOption }&searchBox=${searchBox }&searchRadioVal=${searchRadioVal}">next</a></li>
+																</c:otherwise>
+															</c:choose>
+														</ul>
+													</c:if>
 												</nav>
 											</div>
 										</div>

@@ -37,6 +37,7 @@ public class AdminUserMngtVo {
 	private String userPhone;
 	private String userEmail;
 	private String userAddress;
+	private String birth;
 	
 	// 조회용 변수
 	private String searchUserId;	// 아이디 조회

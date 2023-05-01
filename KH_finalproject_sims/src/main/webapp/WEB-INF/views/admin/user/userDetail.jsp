@@ -115,7 +115,8 @@ function goBack(){
 		                                    <div class="form-group row">
 		                                        <label for="userSsn" class="col-sm-1 col-form-label text-center">생년월일</label>
 		                                        <div class="col-sm-5">
-		                                            <input type="text" class="form-control"  name="userSsn" <c:if test="${cmd eq 'read' }">readonly</c:if> value="${userDetail.userSsn}">
+		                                            <%-- <input type="text" class="form-control"  name="userSsn" <c:if test="${cmd eq 'read' }">readonly</c:if> value="${userDetail.userSsn}"> --%>
+		                                            <input type="text" class="form-control"  name="birth" <c:if test="${cmd eq 'read' }">readonly</c:if> value="${userDetail.birth}">
 		                                        </div>
 		                                        <label for="userPhone" class="col-sm-1 col-form-label text-center">전화번호</label>
 		                                        <div class="col-sm-5">

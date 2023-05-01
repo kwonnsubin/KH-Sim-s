@@ -176,10 +176,11 @@
 		                                        <div class="col-sm-5">
 		                                            <input type="text" class="form-control"  name="cardRelationship" <c:if test="${cmd eq 'read' }">readonly</c:if>
 		                                            <c:choose>
-															<c:when test="${bizPlanApplyDetail.cardRelationship eq '1'.charAt(0)}">value="본인" </c:when>
-															<c:when test="${bizPlanApplyDetail.cardRelationship eq '2'.charAt(0)}">value="부모" </c:when>
-															<c:when test="${bizPlanApplyDetail.cardRelationship eq '3'.charAt(0)}">value="자녀" </c:when>
-															<c:otherwise>value="배우자"</c:otherwise>
+															<c:when test="${bizPlanApplyDetail.cardRelationship eq '1'}">value="본인" </c:when>
+															<c:when test="${bizPlanApplyDetail.cardRelationship eq '2'}">value="부모" </c:when>
+															<c:when test="${bizPlanApplyDetail.cardRelationship eq '3'}">value="자녀" </c:when>
+															<c:when test="${bizPlanApplyDetail.cardRelationship eq '3'}">value="배우자" </c:when>
+															<c:otherwise>value=""</c:otherwise>
 													 </c:choose>
 													 > 
 		                                        </div>
@@ -208,10 +209,10 @@
 		                                        <div class="col-sm-3">
 		                                            <input type="text" class="form-control"  name="accRelationship" <c:if test="${cmd eq 'read' }">readonly</c:if>
 		                                             <c:choose>
-															<c:when test="${bizPlanApplyDetail.cardRelationship eq '1'.charAt(0)}">value="본인" </c:when>
-															<c:when test="${bizPlanApplyDetail.cardRelationship eq '2'.charAt(0)}">value="부모" </c:when>
-															<c:when test="${bizPlanApplyDetail.cardRelationship eq '3'.charAt(0)}">value="자녀" </c:when>
-															<c:when test="${bizPlanApplyDetail.cardRelationship eq '4'.charAt(0)}">value="배우자" </c:when>
+															<c:when test="${bizPlanApplyDetail.accRelationship eq '1'}">value="본인" </c:when>
+															<c:when test="${bizPlanApplyDetail.accRelationship eq '2'}">value="부모" </c:when>
+															<c:when test="${bizPlanApplyDetail.accRelationship eq '3'}">value="자녀" </c:when>
+															<c:when test="${bizPlanApplyDetail.accRelationship eq '4'}">value="배우자" </c:when>
 															<c:otherwise>value=""</c:otherwise>
 													 </c:choose>
 													 > 
