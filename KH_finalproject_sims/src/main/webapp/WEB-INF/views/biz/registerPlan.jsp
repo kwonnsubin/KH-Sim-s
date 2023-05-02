@@ -91,57 +91,77 @@
 					<th>
 						<span>기본료(원)</span>
 					</th>
-					<td><input type="text" name="planPrice" class="form-control" required>
-					<div class="invalid-feedback">
-				      값을 입력해주세요. 
-				    </div></td>
-					<th>
-						<span>기본음성(분)</span>
-					</th>
-					<td><input type="text" name="planVoice" class="form-control" required>
+					<td><input type="text" name="planPrice" class="form-control" required 
+								pattern="[0-9]*" oninput="checkInputNum(event)">
 					<div class="invalid-feedback">
 				      값을 입력해주세요. 
 				    </div>
+				    <span class="error-message-num" style="display: none">숫자만 입력가능합니다.</span>
+				    </td>
+					<th>
+						<span>기본음성(분)</span>
+					</th>
+					<td><input type="text" name="planVoice" class="form-control" required
+								pattern="[0-9]*" oninput="checkInputNum(event)">
+					<div class="invalid-feedback">
+				      값을 입력해주세요. 
+				    </div>
+				    <span class="error-message-num" style="display: none">숫자만 입력가능합니다.</span>
 					</td>
 				</tr>
 				<tr>
 					<th>
 						<span>기본문자(건)</span>
 					</th>
-					<td><input type="text" name="planMessage" class="form-control" required >
+					<td><input type="text" name="planMessage" class="form-control" required
+								pattern="[0-9]*" oninput="checkInputNum(event)">
 					<div class="invalid-feedback">
 				      값을 입력해주세요. 
-				    </div></td>
+				    </div>
+				    <span class="error-message-num" style="display: none">숫자만 입력가능합니다.</span>
+				    </td>
 					<th>
 						<span>기본데이터(mb)</span>
 					</th>
-					<td><input type="text" name="planData" class="form-control" required>
+					<td><input type="text" name="planData" class="form-control" required
+								pattern="[0-9]*" oninput="checkInputNum(event)">
 					<div class="invalid-feedback">
 				      값을 입력해주세요. 
-				    </div></td>
+				    </div>
+				    <span class="error-message-num" style="display: none">숫자만 입력가능합니다.</span>
+				    </td>
 				</tr>
 				<tr>
 					<th>
 						<span>초과음성단가(초)</span>
 					</th>
-					<td><input type="text" name="planVoiceOver" class="form-control" required>
+					<td><input type="text" name="planVoiceOver" class="form-control" required
+								pattern="[0-9]*" oninput="checkInputNum(event)">
 					<div class="invalid-feedback">
 				      값을 입력해주세요. 
-				    </div></td>
+				    </div>
+				    <span class="error-message-num" style="display: none">숫자만 입력가능합니다.</span>
+				    </td>
 					<th>
 						<span>초과문자단가(건)</span>
 					</th>
-					<td><input type="text" name="planMessageOver" class="form-control" required>
+					<td><input type="text" name="planMessageOver" class="form-control" required
+								pattern="[0-9]*" oninput="checkInputNum(event)">
 					<div class="invalid-feedback">
 				      값을 입력해주세요. 
-				    </div></td>
+				    </div>
+				    <span class="error-message-num" style="display: none">숫자만 입력가능합니다.</span>
+				    </td>
 					<th>
 						<span>초과데이터단가(mb)</span>
 					</th>
-					<td><input type="text" name="planDataOver" class="form-control" required>
+					<td><input type="text" name="planDataOver" class="form-control" required
+								pattern="[0-9]*" oninput="checkInputNum(event)">
 					<div class="invalid-feedback">
 				      값을 입력해주세요. 
-				    </div></td>
+				    </div>
+				    <span class="error-message-num" style="display: none">숫자만 입력가능합니다.</span>
+				    </td>
 				</tr>
 			</table>
 		        
@@ -187,6 +207,20 @@
 		  })
 		})()
 	</script>
+	
+<!-- 숫자만 입력가능 -->
+<script>
+function checkInputNum(event) {
+  const input = event.target;
+  const error = input.parentElement.querySelector('.error-message-num');
+  if (!input.validity.valid) {
+    error.style.display = 'block';
+    input.value = input.value.replace(/[^0-9]/g, '');
+  } else {
+    error.style.display = 'none';
+  }
+}
+</script>
 	
 	<!-- Scripts -->
 	<script src="<%= request.getContextPath() %>/resources/chain/vendor/jquery/jquery.min.js"></script>

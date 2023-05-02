@@ -98,20 +98,20 @@
 								<span>연락처</span>
 							</th>
 							<td><input type="text" class="form-control" name="bizPhone" value="${bizinfo.bizPhone }" pattern="[0-9\-]*" oninput="checkInput(event)">
-								<span id="error-message" style="display:none;">숫자와 하이픈(-)만 입력 가능합니다.</span>
+								<span class="error-message" style="display:none;">숫자와 하이픈(-)만 입력 가능합니다.</span>
 								</td>
 							<th scope="row">
 								<span>팩스</span>
 							</th>
 							<td><input type="text" class="form-control" name="bizFax" value="${bizinfo.bizFax }" pattern="[0-9\-]*" oninput="checkInput(event)">
-								<span id="error-message" style="display:none;">숫자와 하이픈(-)만 입력 가능합니다.</span>
+								<span class="error-message" style="display:none;">숫자와 하이픈(-)만 입력 가능합니다.</span>
 							</td>
 						</tr>
 						<tr>
 							<th scope="row">
 								<span>이메일</span>
 							</th>
-							<td><input type="text" class="form-control"  name="bizEmail" value="${bizinfo.bizEmail }"></td>
+							<td><input type="email" class="form-control"  name="bizEmail" value="${bizinfo.bizEmail }"></td>
 							<th scope="row">
 								<span>홈페이지</span>
 							</th>
@@ -596,7 +596,7 @@ function autoHyphenSsn(obj){
 <script>
 function checkInput(event) {
   const input = event.target;
-  const error = document.getElementById('error-message');
+  const error = input.parentElement.querySelector('.error-message');
   if (!input.validity.valid) {
     error.style.display = 'block';
     input.value = input.value.replace(/[^0-9\-]/g, '');

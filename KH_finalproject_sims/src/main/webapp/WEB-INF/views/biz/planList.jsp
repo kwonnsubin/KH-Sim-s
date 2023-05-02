@@ -194,10 +194,11 @@
 
 
 			<!-- 체크박스를 통한 선택삭제-->
-			<input type="button" value="선택삭제" class="btn checkDeleteBtn"
-				onclick="deleteValue(event);" id="checkDeleteBtn" />
-			<!-- data-bs-toggle="modal" data-bs-target="#checkDelete" -->
-
+			<div style="margin-top:2%;">
+				<input type="button" value="선택삭제" class="btn checkDeleteBtn"
+					onclick="deleteValue(event);" id="checkDeleteBtn" />
+				<!-- data-bs-toggle="modal" data-bs-target="#checkDelete" -->
+			</div>
 			<!-- 선택삭제 Modal -->
 			<div class="modal fade" id="checkDelete" tabindex="-1"
 				aria-labelledby="exampleModalLabel" aria-hidden="true">

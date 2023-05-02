@@ -86,35 +86,77 @@
 			<th>
 				<span>기본료(원)</span>
 			</th>
-			<td><input type="text" name="planPrice" class="form-control" value="${planDetail.planPrice }"></td>
+			<td><input type="text" name="planPrice" class="form-control" value="${planDetail.planPrice }" required
+						pattern="[0-9]*" oninput="checkInputNum(event)">
+				<div class="invalid-feedback">
+					      값을 입력해주세요. 
+				</div>
+				<span class="error-message-num" style="display: none">숫자만 입력가능합니다.</span>
+			</td>
 			<th>
 				<span>기본음성(분)</span>
 			</th>
-			<td><input type="text" name="planVoice" class="form-control" value="${planDetail.planVoice }"></td>
+			<td><input type="text" name="planVoice" class="form-control" value="${planDetail.planVoice }" required
+						pattern="[0-9]*" oninput="checkInputNum(event)">
+				<div class="invalid-feedback">
+					      값을 입력해주세요. 
+				</div>
+				<span class="error-message-num" style="display: none">숫자만 입력가능합니다.</span>
+			</td>
 		</tr>
 		<tr>
 			<th>
 				<span>기본문자(건)</span>
 			</th>
-			<td><input type="text" name="planMessage" class="form-control" value="${planDetail.planMessage }"></td>
+			<td><input type="text" name="planMessage" class="form-control" value="${planDetail.planMessage }" required
+						pattern="[0-9]*" oninput="checkInputNum(event)">
+				<div class="invalid-feedback">
+					      값을 입력해주세요. 
+				</div>
+				<span class="error-message-num" style="display: none">숫자만 입력가능합니다.</span>
+			</td>
 			<th>
 				<span>기본데이터(mb)</span>
 			</th>
-			<td><input type="text" name="planData" class="form-control" value="${planDetail.planData }"></td>
+			<td><input type="text" name="planData" class="form-control" value="${planDetail.planData }" required
+						pattern="[0-9]*" oninput="checkInputNum(event)">
+				<div class="invalid-feedback">
+					      값을 입력해주세요. 
+				</div>
+				<span class="error-message-num" style="display: none">숫자만 입력가능합니다.</span>
+			</td>
 		</tr>
 		<tr>
 			<th>
 				<span>초과음성단가(초)</span>
 			</th>
-			<td><input type="text" name="planVoiceOver" class="form-control" value="${planDetail.planVoiceOver }"></td>
+			<td><input type="text" name="planVoiceOver" class="form-control" value="${planDetail.planVoiceOver }" required
+						pattern="[0-9]*" oninput="checkInputNum(event)">
+				<div class="invalid-feedback">
+					      값을 입력해주세요. 
+				</div>
+				<span class="error-message-num" style="display: none">숫자만 입력가능합니다.</span>
+			</td>
 			<th>
 				<span>초과문자단가(건)</span>
 			</th>
-			<td><input type="text" name="planMessageOver" class="form-control" value="${planDetail.planMessageOver }"></td>
+			<td><input type="text" name="planMessageOver" class="form-control" value="${planDetail.planMessageOver }" required
+						pattern="[0-9]*" oninput="checkInputNum(event)">
+				<div class="invalid-feedback">
+					      값을 입력해주세요. 
+				</div>
+				<span class="error-message-num" style="display: none">숫자만 입력가능합니다.</span>
+			</td>
 			<th>
 				<span>초과데이터단가(mb)</span>
 			</th>
-			<td><input type="text" name="planDataOver" class="form-control"  value="${planDetail.planDataOver }"></td>
+			<td><input type="text" name="planDataOver" class="form-control"  value="${planDetail.planDataOver }" required
+						pattern="[0-9]*" oninput="checkInputNum(event)">
+				<div class="invalid-feedback">
+					      값을 입력해주세요. 
+				</div>
+				<span class="error-message-num" style="display: none">숫자만 입력가능합니다.</span>
+			</td>
 		</tr>
 	</table>
 	
@@ -128,6 +170,40 @@
     
 
 <jsp:include page="/WEB-INF/views/footer.jsp"/>
+<script>
+	// Example starter JavaScript for disabling form submissions if there are invalid fields
+		(() => {
+		  'use strict'
+		
+		  // Fetch all the forms we want to apply custom Bootstrap validation styles to
+		  const forms = document.querySelectorAll('.needs-validation')
+		
+		  // Loop over them and prevent submission
+		  Array.from(forms).forEach(form => {
+		    form.addEventListener('submit', event => {
+		      if (!form.checkValidity()) {
+		        event.preventDefault()
+		        event.stopPropagation()
+		      }
+		
+		      form.classList.add('was-validated')
+		    }, false)
+		  })
+		})()
+</script>
+<!-- 숫자만 입력가능 -->
+<script>
+function checkInputNum(event) {
+  const input = event.target;
+  const error = input.parentElement.querySelector('.error-message-num');
+  if (!input.validity.valid) {
+    error.style.display = 'block';
+    input.value = input.value.replace(/[^0-9]/g, '');
+  } else {
+    error.style.display = 'none';
+  }
+}
+</script>
 	
 	<!-- Scripts -->
 	<script src="<%= request.getContextPath() %>/resources/chain/vendor/jquery/jquery.min.js"></script>
