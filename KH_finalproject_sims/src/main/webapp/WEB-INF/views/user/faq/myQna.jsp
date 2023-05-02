@@ -2,7 +2,10 @@
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
 <c:set var="cpath" value="${pageContext.request.contextPath }"/>
+<% pageContext.setAttribute("CRLF", "\r\n"); %>
+<% pageContext.setAttribute("LF", "\n"); %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -35,53 +38,69 @@
 		<div class="container-sm div-m">
 		
 			<!-- ***** 내 질문 목록 start  ***** -->
-			<div class="row">
-				<h4>내 질문</h4>
-				<c:forEach items="${myqnalist}" var="myqnas">
-					<div class="col-8">
-						<a href="<%=request.getContextPath()%>/faq/qna/${myqnas.aqNo}">${myqnas.aqTitle}(${myqnas.aqAnswers })</a>
-					</div>
-					<div class="col-2">
-						<fmt:formatDate value="${myqnas.aqDate}" pattern="yyyy.MM.dd HH:mm"/>
-					</div>
-					<div class="col-2">
-						<div class="btn-group btn-group-sm" role="group">
-							<button class="btn btn-gray" type="button" 
-							onclick="location.href='<%=request.getContextPath()%>/faq/qnaupdate/${myqnas.aqNo}'">수정</button>
-							<button type="button" class="btn btn-gray" 
-							onclick="location.href='<%=request.getContextPath()%>/faq/qnadelete/${myqnas.aqNo}'">삭제</button>
+			<div class="box-myqna mx-auto">
+				<h4 class="mb-4">내 질문</h4>
+				<c:if test="${empty myqnalist }">
+					<p>작성하신 질문이 없습니다.</p>
+				</c:if>
+				<c:if test="${not empty myqnalist }">
+					<c:forEach items="${myqnalist}" var="myqnas">
+						<div class="row my-3">
+							<div class="col-sm-8 my-auto">
+								<a href="${cpath }/faq/qna/${myqnas.aqNo}">${myqnas.aqTitle}(${myqnas.aqAnswers })</a>
+							</div>
+							<div class="col-sm-2 m-auto">
+								<p><fmt:formatDate value="${myqnas.aqDate}" pattern="YY.MM.dd"/></p>
+							</div>
+							<div class="col-sm-2 text-end my-auto">
+								<div class="btn-group btn-group-sm" role="group">
+									<button class="btn btn-gray" type="button" 
+									onclick="location.href='${cpath }/faq/qnaupdate/${myqnas.aqNo}'">수정</button>
+									<button type="button" class="btn btn-gray" 
+									onclick="location.href='${cpath }/faq/qnadelete/${myqnas.aqNo}'">삭제</button>
+								</div>
+							</div>
 						</div>
-					</div>
-				</c:forEach>
+					</c:forEach>
+				</c:if>
 			</div>
 			<!-- ***** 내 질문 목록 end  ***** -->
 			<!-- ***** 내 답변 목록 start  ***** -->
-			<div class="row">
-				<h4>내 답변</h4>
-				<c:forEach items="${myanslist}" var="myanss">
-					<div class="col-8">
-						<a href="<%=request.getContextPath()%>/faq/qna/${myanss.aqNo}">${myanss.aaContent}</a>
-					</div>
-					<div class="col-2">
-						<fmt:formatDate value="${myanss.aaDate}" pattern="yyyy.MM.dd HH:mm"/>
-					</div>
-					<div class="col-2">	
-						<div class="btn-group btn-group-sm" role="group">
-								<button data-bs-target="#ans${myanss.aaNo}" class="btn btn-gray" type="button"
-									data-bs-toggle="collapse" aria-expanded="false" aria-controls="collapseExample">수정</button>
-								<button type="button" class="btn btn-gray"
-								onclick="location.href='<%=request.getContextPath()%>/faq/ansdelete/${myanss.aqNo}/${myanss.aaNo}'">삭제</button>
-						</div>
-					</div>
-					<div class="collapse" id="ans${myanss.aaNo}">
-						<form action="${cpath }/faq/ansupdate/${myanss.aaNo }" method="post">
-							<div class="input-group">
-								<input type="text" name="aaContent" class="form-control" value="${myanss.aaContent }" size="60">
-								<button class="btn" type="submit">수정</button>
+			<div class="box-myqna mx-auto">
+				<h4 class="mb-4">내 답변</h4>
+				<c:if test="${empty myanslist }">
+					<p>작성하신 답변이 없습니다.</p>
+				</c:if>
+				<c:if test="${not empty myanslist }">
+					<c:forEach items="${myanslist}" var="myanss">
+						<div class="row my-3">
+							<div class="col-sm-8 my-auto">
+								<a href="${cpath }/faq/qna/${myanss.aqNo}">${fn:replace(fn:replace(myanss.aaContent, CRLF, '<br>'), LF, '<br>')}</a>
 							</div>
-						</form>
-					</div>
-				</c:forEach>
+							<div class="col-sm-2 small my-auto">
+								<p><fmt:formatDate value="${myanss.aaDate}" pattern="YY.MM.dd"/></p>
+							</div>
+							<div class="col-sm-2 text-end my-auto">	
+								<div class="btn-group btn-group-sm" role="group">
+										<button data-bs-target="#ans${myanss.aaNo}" class="btn btn-gray" type="button"
+											data-bs-toggle="collapse" aria-expanded="false" aria-controls="collapseExample">수정</button>
+										<button type="button" class="btn btn-gray btn-ans-delete"
+										onclick="location.href='${cpath }/faq/ansdelete/${myanss.aqNo}/${myanss.aaNo}'">삭제</button>
+								</div>
+							</div>
+							<div class="collapse" id="ans${myanss.aaNo}">
+								<form action="${cpath }/faq/ansupdate/${myanss.aaNo }" method="post">
+									<div class="card mt-2">
+										<div class="card-body text-end">
+											<textarea name="aaContent" class="myans-form">${myanss.aaContent}</textarea>
+											<button class="btn btn-sm" type="submit">수정</button>
+										</div>
+									</div>
+								</form>
+							</div>
+						</div>
+					</c:forEach>
+				</c:if>
 			</div>
 			<!-- ***** 내 답변 목록 end  ***** -->
 		</div>
@@ -97,6 +116,28 @@
 	<script src="<%= request.getContextPath() %>/resources/chain/assets/js/imagesloaded.js"></script>
 	<script src="<%= request.getContextPath() %>/resources/chain/assets/js/popup.js"></script>
 	<script src="<%= request.getContextPath() %>/resources/chain/assets/js/custom.js"></script>
-	
+
+	<script>
+	// 내 답변 삭제
+	$(document).on("click", ".btn-ans-delete", function(event) {
+	    event.preventDefault();
+	    var aqNo = $(this).data("aqno");
+	    var aaNo = $(this).data("aano");
+	    var url = "${cpath}/faq/ansdelete/" + aqNo + "/" + aaNo;
+	    $.ajax({
+	        type: "GET",
+	        url: url,
+	        success: function(response) {
+	            // 삭제가 성공적으로 완료된 경우 처리
+	            alert("답변이 삭제되었습니다.");
+	        },
+	        error: function(xhr, status, error) {
+	            // 에러 발생 시 처리
+	            console.log(xhr.responseText);
+	        }
+	    });
+	});
+
+	</script>
 </body>
 </html>
