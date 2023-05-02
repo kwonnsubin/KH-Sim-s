@@ -117,22 +117,22 @@
             <div class="row text-center">
 	          <div class="col input-group mb-3">
 				  <div class="input-group-text">
-				  	<c:if test="${userInfo.userGender eq 'M'}">
-				    	<input class="form-check-input mt-0" type="radio" value="M" name="userGender" checked>
+				  	<c:if test="${userInfo.userGender eq 'F'}">
+				    	<input class="form-check-input mt-0" type="radio" value="F" name="userGender" checked>
 				    </c:if>
-				    <c:if test="${userInfo.userGender ne 'M'}">
-				    	<input class="form-check-input mt-0" type="radio" value="M" name="userGender">
+				    <c:if test="${userInfo.userGender ne 'F'}">
+				    	<input class="form-check-input mt-0" type="radio" value="F" name="userGender">
 				    </c:if>
 				  </div>
 				  <input type="text" class="form-control" value="여성" readonly style="background-color:white;">
 			  </div>
 			  <div class="col input-group mb-3">
 				  <div class="input-group-text">
-				  	<c:if test="${userInfo.userGender eq 'F'}">
-				    	<input class="form-check-input mt-0" type="radio" value="F" name="userGender" checked>
+				  	<c:if test="${userInfo.userGender eq 'M'}">
+				    	<input class="form-check-input mt-0" type="radio" value="M" name="userGender" checked>
 				    </c:if>
-				    <c:if test="${userInfo.userGender ne 'F'}">
-				    	<input class="form-check-input mt-0" type="radio" value="F" name="userGender">
+				    <c:if test="${userInfo.userGender ne 'M'}">
+				    	<input class="form-check-input mt-0" type="radio" value="M" name="userGender">
 				    </c:if>
 				  </div>
 				  <input type="text" class="form-control" value="남성" readonly style="background-color:white;">

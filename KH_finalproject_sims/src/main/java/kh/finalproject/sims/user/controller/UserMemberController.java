@@ -115,7 +115,7 @@ public class UserMemberController {
 			mv.setViewName("main/findid");
 		} else {
 			mv.addObject("resultId", result.getId());
-			if(result.getEnable() == 2) {
+			if(result.getEnable() == 2 && memVo.getRole().equals("ROLE_USER")) {
 				mv.addObject("resultEna", result.getEnable());
 			}
 			mv.setViewName("main/findid");

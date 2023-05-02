@@ -81,11 +81,12 @@
 		     , (select b.biz_name from biz b where b.biz_id = Br.biz_id) as biz_name
 		from biz_review Br
 		where Br.user_id=#{userId}
+		order by review_date desc and review_hidden=0
 	</select>
   
 	<!-- 리뷰 작성 -->
 	<insert id="insertReview" parameterType="brVo">
-		insert into biz_review values(biz_review_seq.nextval, #{reviewContent}, systimestamp, null, #{reviewStar}, #{userId}, #{bizId}, null)
+		insert into biz_review values(biz_review_seq.nextval, #{reviewContent}, systimestamp, null, #{reviewStar}, #{userId}, #{bizId}, 0)
 	</insert>
 	
 	<!-- 리뷰 수정 -->
@@ -103,13 +104,13 @@
 	<select id="selectReviewDetail" resultType="kh.finalproject.sims.biz.model.vo.BizReviewMngtVo">
 		select * 
 		from biz_review 
-		where review_no = #{reviewNo}
+		where review_no = #{reviewNo} and review_hidden=0
 	</select>
   
   	<!-- 통신사 페이지 리뷰 -->
   	<select id="selectBizReviewList" parameterType="string" resultType="brVo">
   		select * from biz_review
-  		where biz_id=#{bizId}
+  		where biz_id=#{bizId} and review_hidden=0
   		order by review_date desc
   	</select>
 

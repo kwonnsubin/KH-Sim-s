@@ -85,11 +85,15 @@
 	       		
 	       		<!-- 조회수 랭킹 -->
 	       		<div class="viewRankDiv">
-	       		<c:forEach var="viewList" items="${viewRankList}">
-	    			<div class="row mt-3 list-div">
+	       		<c:forEach var="viewList" items="${viewRankList}" varStatus="status">
+	    			<div class="row mt-3 list-div" style="position: relative;">
+	    				<c:if test="${status.count eq 1 || status.count eq 2 || status.count eq 3}">
+							<div class="rankCount"></div>
+							<div class="rankText">${status.count}</div>
+						</c:if>
 	    				<div class="col-8">
 	    					<div class="row">
-	    						<div class="col-4">
+	    						<div class="col-4 align-self-center">
 	    							<input class="planNo" type="hidden" value="${viewList.planNo}">
 	    						
 	       							<img src="<%=request.getContextPath()%>/resources/img/${viewList.bizId}.png" style="max-width: 100px; max-height: 40px;">
@@ -136,7 +140,7 @@
 	    					</div>
 	    					
 	    				</div>
-	    				<div class="d-flex flex-column col-4 mb-2">
+	    				<div class="d-flex flex-column col-4">
 	    					<div class="text-end">
 	    						<i class="fa-solid fa-star me-2" style="color: #ffdd00;"></i><span>${viewList.bizReviewStar}</span>
 	    						<p class="viewCount">${viewList.viewRank}회 조회</p>
@@ -155,11 +159,15 @@
     			
     			<!-- 찜 랭킹 -->
     			<div class="likeRankDiv" style="display:none">
-	       		<c:forEach var="likeList" items="${likeRankList}">
-	    			<div class="row mt-3 list-div">
+	       		<c:forEach var="likeList" items="${likeRankList}" varStatus="status">
+	    			<div class="row mt-3 list-div" style="position: relative;">
+	    				<c:if test="${status.count eq 1 || status.count eq 2 || status.count eq 3}">
+							<div class="rankCount"></div>
+							<div class="rankText">${status.count}</div>
+						</c:if>
 	    				<div class="col-8">
 	    					<div class="row">
-	    						<div class="col-4">
+	    						<div class="col-4 align-self-center">
 	    							<input class="planNo" type="hidden" value="${likeList.planNo}">
 	    						
 	       							<img src="<%=request.getContextPath()%>/resources/img/${likeList.bizId}.png" style="max-width: 100px; max-height: 40px;">
@@ -225,11 +233,15 @@
     			
     			<!-- 가입자 수 랭킹 -->
     			<div class="orderRankDiv" style="display:none">
-	       		<c:forEach var="orderList" items="${orderRankList}">
-	    			<div class="row mt-3 list-div">
+	       		<c:forEach var="orderList" items="${orderRankList}" varStatus="status">
+	    			<div class="row mt-3 list-div" style="position: relative;">
+	    				<c:if test="${status.count eq 1 || status.count eq 2 || status.count eq 3}">
+							<div class="rankCount"></div>
+							<div class="rankText">${status.count}</div>
+						</c:if>
 	    				<div class="col-8">
 	    					<div class="row">
-	    						<div class="col-4">
+	    						<div class="col-4 align-self-center">
 	    							<input class="planNo" type="hidden" value="${orderList.planNo}">
 	    						
 	       							<img src="<%=request.getContextPath()%>/resources/img/${orderList.bizId}.png" style="max-width: 100px; max-height: 40px;">
@@ -311,6 +323,7 @@
 	</section>
 	
 	<jsp:include page="/WEB-INF/views/footer.jsp"/>
+	
 	
 	<!-- Scripts -->
 	<script src="<%= request.getContextPath() %>/resources/chain/vendor/jquery/jquery.min.js"></script>

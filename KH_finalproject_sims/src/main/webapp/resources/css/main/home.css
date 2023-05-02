@@ -60,7 +60,30 @@ p {
 	border-radius: 10px;
 	-webkit-box-shadow: 0 3px 10px 0 rgba(0, 0, 0, 0.15);
 	-moz-box-shadow: 0 3px 10px 0 rgba(0, 0, 0, 0.15);
-	box-shadow: 0 3px 10px 0 rgba(0, 0, 0, 0.15);
+	box-shadow: 0 3px 10px 0 rgba(0, 0, 0, 0.15);	
+}
+
+.rankCount {
+	padding: 0;
+	width: 0;
+	height: 0;
+	border-bottom: 20px solid transparent;
+	border-top: 20px solid #566fee;
+	border-left: 20px solid #566fee;
+	border-right: 20px solid transparent;
+	
+	border-top-left-radius: 10px;
+	position: absolute;
+	top: -1px;
+	left: -1px;
+}
+
+.rankText {
+	position: absolute;
+	top: 0px;
+	left: -8px;
+	margin: 0;
+	color: white;
 }
 
 .planInfo p {

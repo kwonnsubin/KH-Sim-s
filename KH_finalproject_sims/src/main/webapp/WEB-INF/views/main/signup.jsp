@@ -136,13 +136,13 @@
 	            <div class="row text-center">
 		          <div class="col input-group mb-3">
 					  <div class="input-group-text">
-					    <input class="form-check-input mt-0" type="radio" value="M" name="userGender">
+					    <input class="form-check-input mt-0" type="radio" value="F" name="userGender">
 					  </div>
 					  <input type="text" class="form-control" value="여성" readonly style="background-color:white;">
 				  </div>
 				  <div class="col input-group mb-3">
 					  <div class="input-group-text">
-					    <input class="form-check-input mt-0" type="radio" value="F" name="userGender">
+					    <input class="form-check-input mt-0" type="radio" value="M" name="userGender">
 					  </div>
 					  <input type="text" class="form-control" value="남성" readonly style="background-color:white;">
 				  </div>
@@ -161,8 +161,9 @@
 		          </div>
 	          </div>
 	          
-	          
-	          <button class="btn btn-primary btn-lg btn-block" type="submit" disabled>가입</button>
+	          <div class="text-end">
+	          	<button class="btn btn-primary btn-lg btn-block" type="submit" disabled>가입</button>
+	          </div>
 	        </form:form>
 	        
 	        <form:form class="bizForm validation-form" name="f" action="${signupUrl}" style="display:none" method="post" novalidate="novalidate">

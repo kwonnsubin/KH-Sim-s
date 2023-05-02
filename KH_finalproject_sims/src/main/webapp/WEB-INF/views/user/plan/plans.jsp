@@ -573,7 +573,7 @@
 	    			<div class="row mt-3 list-div">
 	    				<div class="col-8">
 	    					<div class="row">
-	    						<div class="col-4">
+	    						<div class="col-4 align-self-center">
 	    							<a href="<%=request.getContextPath()%>/bizinfo/${list.bizId}">
 	       								<img src="<%=request.getContextPath()%>/resources/img/${list.bizId}.png" style="max-width: 100px; max-height: 40px;">
        								</a>
@@ -625,7 +625,7 @@
 		    					<p>&nbsp;원</p>
 	    					</div>
 	    				</div>
-	    				<div class="d-flex flex-column col-4 mb-2">
+	    				<div class="d-flex flex-column col-4">
 	    					<div class="text-end">
 	    						<i class="fa-solid fa-star me-2" style="color: #ffdd00;"></i><span>${list.bizReviewStar}</span>
 	    						<p class="viewCount">${list.orderCount}명 선택</p>
@@ -665,7 +665,7 @@
 			    			<div class="row mt-3 recent-list">
 	    						<div class="col-4 align-self-center">
 	    							<input type="hidden" value="${list.planNo}">
-	       							<img src="<%=request.getContextPath()%>/resources/img/${list.bizId}.png" style="max-width: 100px; height: 40px;">
+	       							<img src="<%=request.getContextPath()%>/resources/img/${list.bizId}.png" style="max-width: 100px; max-height: 40px;">
 	    						</div>
 	       						<div class="col-8">
 	       							<div>

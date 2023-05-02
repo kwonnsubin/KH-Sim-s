@@ -400,10 +400,10 @@
 			       					</div>
 			       					<div class="col-4 text-end">
 			       						<c:if test="${empty review.reviewRedate}">
-			       							<p class="review-date"><fmt:formatDate value="${review.reviewDate}" pattern="yyyy.MM.dd"/></p>
+			       							<p class="review-date" style="color: #868e96; font-size: 12px;"><fmt:formatDate value="${review.reviewDate}" pattern="yyyy.MM.dd"/></p>
 				       					</c:if>
 				       					<c:if test="${not empty review.reviewRedate}">
-				       						<p class="review-date"><fmt:formatDate value="${review.reviewReDate}" pattern="yyyy.MM.dd"/></p>
+				       						<p class="review-date" style="color: #868e96; font-size: 12px;"><fmt:formatDate value="${review.reviewReDate}" pattern="yyyy.MM.dd"/></p>
 				       					</c:if>
 			       					</div>
 		       						<div class="written-content">

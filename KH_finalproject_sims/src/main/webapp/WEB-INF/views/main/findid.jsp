@@ -85,18 +85,16 @@
 		              <div class="invalid-feedback">이름을 입력해주세요.</div>
 		          </div>
 				
-				<div class="container">
-		            <div class="row">
-			          <div class="col-9 mb-3 text-left">
-			            <label for="userEmail">이메일</label>
-			            <input type="email" class="form-control" name="userEmail" placeholder="you@example.com" required>
-			            <div class="invalid-feedback">이메일을 입력해주세요.</div>
-			          </div>
-			          <div class="col-3 mb-3 text-center align-self-end">
-			            <button class="btn btn-primary btn-sm btn-block" name="emailBtn" type="button" disabled="disabled">본인인증</button>
-			          </div>
-		            </div>
-		        </div>
+	            <div class="row">
+		          <div class="col-9 mb-3 text-left">
+		            <label for="userEmail">이메일</label>
+		            <input type="email" class="form-control" name="userEmail" placeholder="you@example.com" required>
+		            <div class="invalid-feedback">이메일을 입력해주세요.</div>
+		          </div>
+		          <div class="col-3 mb-3 text-center align-self-end">
+		            <button class="btn btn-primary btn-sm btn-block" name="emailBtn" type="button" disabled="disabled">본인인증</button>
+		          </div>
+	            </div>
 		
 		          <div class="mb-3">
 		            <label for="emailCheck">인증번호</label>
@@ -121,18 +119,16 @@
 		              <div class="invalid-feedback">법인명을 입력해주세요.</div>
 		          </div>
 		          
-				  <div class="container">
-			            <div class="row">
-				          <div class="col-9 mb-3 text-left">
-				            <label for="userEmail">이메일</label>
-				            <input type="email" class="form-control" name="bizEmail" placeholder="you@example.com" required>
-				            <div class="invalid-feedback">이메일을 입력해주세요.</div>
-				          </div>
-				          <div class="col-3 mb-3 text-center align-self-end">
-				            <button class="btn btn-primary btn-sm btn-block" name="emailBtn" type="button" disabled="disabled">본인인증</button>
-				          </div>
-			            </div>
-			      </div>
+		          <div class="row">
+			          <div class="col-9 mb-3 text-left">
+			            <label for="userEmail">이메일</label>
+			            <input type="email" class="form-control" name="bizEmail" placeholder="you@example.com" required>
+			            <div class="invalid-feedback">이메일을 입력해주세요.</div>
+			          </div>
+			          <div class="col-3 mb-3 text-center align-self-end">
+			            <button class="btn btn-primary btn-sm btn-block" name="emailBtn" type="button" disabled="disabled">본인인증</button>
+			          </div>
+		          </div>
 		
 		          <div class="mb-3">
 		            <label for="emailCheck">인증번호</label>
