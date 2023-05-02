@@ -72,11 +72,11 @@
 							<th scope="row">
 								<span>사업자등록번호</span>
 							</th>
-							<td><input type="text" class="form-control" name="bizCrn" value="${bizinfo.bizCrn }"></td>
+							<td><input type="text" class="form-control" name="bizCrn" value="${bizinfo.bizCrn }" maxlength="12" onkeyup="autoHyphenCrn(this)" ></td>
 							<th scope="row">
 								<span>법인등록번호</span>
 							</th>
-							<td><input type="text" class="form-control" name="bizSsn" value="${bizinfo.bizSsn }"></td>
+							<td><input type="text" class="form-control" name="bizSsn" value="${bizinfo.bizSsn }" maxlength="14" onkeyup="autoHyphenSsn(this)"></td>
 						</tr>
 						<tr>
 							<th scope="row">
@@ -94,11 +94,15 @@
 							<th scope="row">
 								<span>연락처</span>
 							</th>
-							<td><input type="text" class="form-control" name="bizPhone" value="${bizinfo.bizPhone }"></td>
+							<td><input type="text" class="form-control" name="bizPhone" value="${bizinfo.bizPhone }" pattern="[0-9\-]*" oninput="checkInput(event)">
+								<span id="error-message" style="display:none;">숫자와 하이픈(-)만 입력 가능합니다.</span>
+								</td>
 							<th scope="row">
 								<span>팩스</span>
 							</th>
-							<td><input type="text" class="form-control" name="bizFax" value="${bizinfo.bizFax }"></td>
+							<td><input type="text" class="form-control" name="bizFax" value="${bizinfo.bizFax }" pattern="[0-9\-]*" oninput="checkInput(event)">
+								<span id="error-message" style="display:none;">숫자와 하이픈(-)만 입력 가능합니다.</span>
+							</td>
 						</tr>
 						<tr>
 							<th scope="row">
@@ -527,6 +531,7 @@ $(document).ready(function() {
 
 </script>
 
+<!-- 파일첨부 미리보기 -->
 <script>
 function readURL(input) {
   if (input.files && input.files[0]) {
@@ -537,6 +542,62 @@ function readURL(input) {
     reader.readAsDataURL(input.files[0]);
   } else {
     document.getElementById('preview').src = "";
+  }
+}
+</script>
+
+
+<!-- 사업자등록번호 포맷 xxx-xx-xxxxx 10자리-->
+<script>
+function autoHyphenCrn(obj) {
+  var str = obj.value;
+  str = str.replace(/[^0-9]/g, '');
+  var tmp = '';
+  if (str.length < 4) {
+    obj.value = str;
+    return;
+  } else if (str.length < 10) {
+    tmp += str.substr(0, 3) + '-';
+    tmp += str.substr(3);
+  } else {
+    tmp += str.substr(0, 3) + '-';
+    tmp += str.substr(3, 2) + '-';
+    tmp += str.substr(5);
+  }
+  obj.value = tmp;
+}
+</script>
+
+<!-- 법인등록번호 포맷 xxxxxx-xxxxxxx 13자리 -->
+<script>
+function autoHyphenSsn(obj){
+  	var str = obj.value;
+    str = str.replace(/[^0-9]/g, '');
+    var tmp = '';
+    if (str.length < 7) {
+        obj.value = str;
+        return;
+    } else if (str.length < 13) {
+        tmp += str.substr(0, 6) + '-';
+        tmp += str.substr(6);
+    } else {
+        tmp += str.substr(0, 6) + '-';
+        tmp += str.substr(6, 7);
+        tmp += str.substr(13);
+    }
+    obj.value = tmp;
+}
+</script>
+
+<script>
+function checkInput(event) {
+  const input = event.target;
+  const error = document.getElementById('error-message');
+  if (!input.validity.valid) {
+    error.style.display = 'block';
+    input.value = input.value.replace(/[^0-9\-]/g, '');
+  } else {
+    error.style.display = 'none';
   }
 }
 </script>
