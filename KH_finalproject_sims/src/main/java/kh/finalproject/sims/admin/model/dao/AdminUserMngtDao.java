@@ -41,7 +41,10 @@ public class AdminUserMngtDao {
 		return sqlSession.selectOne("adminUser.selectMyPlanListCountAdmin", userId);
 	}
 	
-	
+	//리뷰를 단 요금제 개수
+	public int selectOrderListCountAdmin(String userId) {
+		return sqlSession.selectOne("adminUser.selectOrderListCountAdmin", userId);
+	}
 	
  
 

@@ -99,21 +99,13 @@ public class AdminUserMngtController {
 	@GetMapping("/userDetail/{userId}")
 	public ModelAndView selectUserDetail(ModelAndView mv, @PathVariable String userId) {
 		AdminUserMngtVo userDetail = service.selectUserDetail(userId);
-		/* int reviewCnt = service.selectOrderListCount(userId); */
+		int reviewCnt = service.selectOrderListCountAdmin(userId); 
 		int myPlanCnt = service.selectMyPlanListCountAdmin(userId);
-		/*
-		 * int recentCnt = service.selectRecentListCount(userId); int likeCnt =
-		 * service.selectLikeListCount(userId);
-		 */
 		
 		HashMap<String, Object> cnt = new HashMap<>();
-		/* cnt.put("reviewCnt", reviewCnt); */
+		cnt.put("reviewCnt", reviewCnt); 
 		cnt.put("myPlanCnt", myPlanCnt);
-		/*
-		 * cnt.put("recentCnt", recentCnt); cnt.put("likeCnt", likeCnt);
-		 */
 		
-		/* mv.addObject("username", username); */
 		mv.addObject("cnt", cnt);
 		mv.addObject("userDetail", userDetail);
 		mv.setViewName("admin/user/userDetail");
