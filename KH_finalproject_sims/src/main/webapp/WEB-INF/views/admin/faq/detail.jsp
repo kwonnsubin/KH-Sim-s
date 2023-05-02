@@ -38,8 +38,8 @@
 								<div class="col-md-12">
 									<div class="simsBtn m-b-15">
 										<input class="btn btn-primary right m-l-10" type="button" onclick="location.href='<%=request.getContextPath()%>/admin/faq/update/${faqlist.faqNo}'" value="수정">
-										<%-- <input class="btn btn-primary right m-l-10" type="button" onclick="location.href='<%=request.getContextPath()%>/admin/faq/delete/${faqlist.faqNo}'" value="삭제"> --%>
-										<input class="btn btn-primary right m-l-10" type="button" onclick="qnaAnsDeleteFunction('${faqlist.faqNo}')" value="삭제">
+										<input class="btn btn-primary right m-l-10" type="button" onclick="deleteFaq()" value="삭제">
+										<input type="hidden" name="faqNo" value="${faqlist.faqNo}">
 										<input class="btn btn-primary right " type="button" onclick="location.href='<%=request.getContextPath()%>/admin/faq/list'" value="목록">
 									</div>
 								</div>
@@ -85,22 +85,27 @@
 <script type="text/javascript">
 
 // 자주묻는질문 삭제
-function deleteFaq(faqNo) {
-	var faqNo = faqNo;
+function deleteFaq() {
+	
+	var faqNo = $('input[name=faqNo]').val();
+	console.log(faqNo);
+	
 	if(confirm("삭제하시겠습니까?")) {
-	$.ajax({
-        url : '<%=request.getContextPath()%>/admin/faq/delete',
-        data: faqNo: faqNo,
-		type : "get",
-		success : function(result) {
-				if (result != null) {
-					alert("삭제되었습니다.")
-				}
-			},
-		error : function() {
-			alert("서버 요청 실패!")
-		}
-	});			
+ 	 	$.ajax({
+	        url : '<%=request.getContextPath()%>/admin/faq/delete',
+	        data: {faqNo: faqNo},
+			type : "get",
+			success : function(result) {
+					if (result != null) {
+						let url = '<%=request.getContextPath()%>/admin/faq/list';
+						alert("삭제되었습니다.")
+						location.replace(url);
+					}
+				},
+			error : function() {
+				alert("서버 요청 실패!")
+			}
+		});		
 	}
 }
 

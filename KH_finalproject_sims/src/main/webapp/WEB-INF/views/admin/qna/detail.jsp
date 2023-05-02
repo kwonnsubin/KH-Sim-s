@@ -40,7 +40,9 @@
 							</div>
 								<div class="col-md-12">
 									<div class="simsBtn m-b-15">
-										<input class="btn btn-primary right m-l-10" type="button" onclick="location.href='<%=request.getContextPath()%>/admin/qna/delete?aqNo=${qnaDetail.aqNo}'" value="삭제">
+										<%-- <input class="btn btn-primary right m-l-10" type="button" onclick="location.href='<%=request.getContextPath()%>/admin/qna/delete?aqNo=${qnaDetail.aqNo}'" value="삭제"> --%>
+										<input class="btn btn-primary right m-l-10" type="button" onclick="deleteQna()" value="삭제">
+										<input type="hidden" name="aqNo" value="${qnaDetail.aqNo}">
 										<input class="btn btn-primary right " type="button" onclick="location.href='<%=request.getContextPath()%>/admin/qna/list'" value="목록">
 									</div>
 								</div>
@@ -400,6 +402,31 @@ function answerCount(aqNo) {
             alert("답변수 요청 실패!");
         }
     });	
+}
+
+// 문의글 삭제 ajax
+function deleteQna() {
+	
+	var aqNo = $('input[name=aqNo]').val();
+	console.log(aqNo);
+	
+	if(confirm("삭제하시겠습니까?")) {
+ 	 	$.ajax({
+	        url : '<%=request.getContextPath()%>/admin/qna/delete',
+	        data: {aqNo: aqNo},
+			type : "get",
+			success : function(result) {
+					if (result != null) {
+						let url = '<%=request.getContextPath()%>/admin/qna/list';
+						alert("삭제되었습니다.")
+						location.replace(url);
+					}
+				},
+			error : function() {
+				alert("서버 요청 실패!")
+			}
+		});		
+	}
 }
 </script>
 </html>

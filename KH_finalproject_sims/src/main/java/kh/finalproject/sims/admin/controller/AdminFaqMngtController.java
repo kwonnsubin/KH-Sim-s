@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import kh.finalproject.sims.admin.model.service.AdminFaqMngtService;
@@ -161,14 +162,14 @@ public class AdminFaqMngtController {
 //		return mv;
 //	}
 	
-//	// 자주묻는질문 삭제하기 ajax
-//	@GetMapping("/faq/delete")
-//	public ModelAndView deleteFaq(
-//			  ModelAndView mv,
-//			  AdminFaqVo vo
-//			) {
-//		service.deleteFaq(vo.getFaqNo());
-//		mv.setViewName("redirect:/admin/faq/list");
-//		return mv;
-//	}
+	// 자주묻는질문 삭제하기 ajax
+	@ResponseBody
+	@GetMapping("/faq/delete")
+	public String deleteFaq(
+			  AdminFaqVo vo,
+			  @RequestParam int faqNo
+			) {
+		service.deleteFaq(faqNo);
+		return null;
+	}
 }

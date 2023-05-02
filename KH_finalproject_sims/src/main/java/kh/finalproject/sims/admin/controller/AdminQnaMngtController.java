@@ -160,14 +160,14 @@ public class AdminQnaMngtController {
 		return mv; 
     }
 	
-	// 문의글 삭제
+	// 문의글 삭제 ajax
+	@ResponseBody
 	@GetMapping("/qna/delete")
 	public String deleteQnaDetail(
-			@RequestParam("aqNo") int aqNo,
-			ModelAndView mv
+			@RequestParam("aqNo") int aqNo
 			) {
 		service.deleteQnaDetail(aqNo);
-		return "redirect:admin/qna/list";	
+		return null;	
 	}
 	
 	// 답변 작성 ajax
