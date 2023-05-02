@@ -245,7 +245,7 @@
             		, A.ORDER_DATE
 				FROM
 					PLAN_ORDER A
-					INNER JOIN PLAN_TABLE B ON A.PLAN_NO = B.PLAN_NO
+					LEFT OUTER JOIN PLAN_TABLE B ON A.PLAN_NO = B.PLAN_NO
 				WHERE 1=1
 				<if test="!(searchRadioVal == null or searchRadioVal == '') ">
 					<choose>
@@ -281,7 +281,7 @@
 			COUNT(*) AS TOTAL_ROW_COUNT
 		FROM 
 			PLAN_ORDER A
-			INNER JOIN PLAN_TABLE B ON A.PLAN_NO = B.PLAN_NO
+			LEFT OUTER JOIN PLAN_TABLE B ON A.PLAN_NO = B.PLAN_NO
 		WHERE 1=1
 		<if test="!(searchRadioVal == null or searchRadioVal == '') ">
 			<choose>

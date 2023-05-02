@@ -65,22 +65,12 @@
 		                                        <div class="col-sm-3">
 		                                            <input type="text" class="form-control"  name="planName" <c:if test="${cmd eq 'read' }">readonly</c:if> value="${bizPlanApplyDetail.planName}">
 		                                        </div>
-		                                        <label for="userId" class="col-sm-1 col-form-label text-center">회원아이디</label>
-		                                        <div class="col-sm-2">
-		                                            <input type="text" class="form-control"  name="userId" <c:if test="${cmd eq 'read' }">readonly</c:if> value="${bizPlanApplyDetail.userId}">
-		                                        </div>
-		                                        <label for="userName" class="col-sm-1 col-form-label text-center">이름</label>
-		                                        <div class="col-sm-2">
-		                                            <input type="text" class="form-control"  name="userName" <c:if test="${cmd eq 'read' }">readonly</c:if> value="${bizPlanApplyDetail.userName}">
-		                                        </div>
-		                                    </div>
-		                           			<div class="form-group row">
 		                                        <label for="orderDate" class="col-sm-1 col-form-label text-center">신청일자</label>
-		                                        <div class="col-sm-5">
+		                                        <div class="col-sm-2">
 		                                            <input type="text" class="form-control"  name="orderDate" <c:if test="${cmd eq 'read' }">readonly</c:if> value="<fmt:formatDate value="${bizPlanApplyDetail.orderDate}" pattern="yyyy.MM.dd"/>">
 		                                        </div>
 		                                        <label for="userSsn" class="col-sm-1 col-form-label text-center">신청 상태</label>
-		                                        <div class="col-sm-5">
+		                                        <div class="col-sm-2">
 		                                            <input type="text" class="form-control"  name="userSsn" <c:if test="${cmd eq 'read' }">readonly</c:if> 
 		                                            	<c:choose>
 															<c:when test="${bizPlanApplyDetail.orderStatus eq '1'.charAt(0)}"> value="신청 완료" </c:when>
@@ -90,39 +80,49 @@
 													>	
 		                                        </div>
 		                                    </div>
+		                           			<div class="form-group row">
+		                                        <label for="userId" class="col-sm-2 col-form-label text-center">회원아이디</label>
+		                                        <div class="col-sm-4">
+		                                            <input type="text" class="form-control"  name="userId" <c:if test="${cmd eq 'read' }">readonly</c:if> value="${bizPlanApplyDetail.userId}">
+		                                        </div>
+		                                        <label for="userName" class="col-sm-2 col-form-label text-center">이름</label>
+		                                        <div class="col-sm-4">
+		                                            <input type="text" class="form-control"  name="userName" <c:if test="${cmd eq 'read' }">readonly</c:if> value="${bizPlanApplyDetail.userName}">
+		                                        </div>
+		                                    </div>
 		                                    	
 		                                    <div class="form-group row">
-		                                    	<label for="userSsn" class="col-sm-1 col-form-label text-center">주민등록번호</label>
-		                                        <div class="col-sm-5">
+		                                    	<label for="userSsn" class="col-sm-2 col-form-label text-center">주민등록번호</label>
+		                                        <div class="col-sm-4">
 		                                            <input type="text" class="form-control"  name="userSsn" <c:if test="${cmd eq 'read' }">readonly</c:if> value="${bizPlanApplyDetail.userSsn}">
 		                                        </div>
-		                                        <label for="userPhone" class="col-sm-1 col-form-label text-center">휴대폰 번호</label>
-		                                        <div class="col-sm-5">
+		                                        <label for="userPhone" class="col-sm-2 col-form-label text-center">휴대폰 번호</label>
+		                                        <div class="col-sm-4">
 		                                            <input type="text" class="form-control"  name="userPhone" <c:if test="${cmd eq 'read' }">readonly</c:if> value="${bizPlanApplyDetail.userPhone}">
 		                                        </div>
 		                                    </div>
 		                                    <div class="form-group row">
-		                                        <label for="userEmail" class="col-sm-1 col-form-label text-center">이메일</label>
-		                                        <div class="col-sm-5">
+		                                        <label for="userEmail" class="col-sm-2 col-form-label text-center">이메일</label>
+		                                        <div class="col-sm-4">
 		                                            <input type="text" class="form-control"  name="userEmail" <c:if test="${cmd eq 'read' }">readonly</c:if> value="${bizPlanApplyDetail.userEmail}">
 		                                        </div>
-		                                        <label for="orderAddress" class="col-sm-1 col-form-label text-center">주소</label>
-		                                        <div class="col-sm-5">
+		                                        <label for="orderAddress" class="col-sm-2 col-form-label text-center">주소</label>
+		                                        <div class="col-sm-4">
 		                                            <input type="text" class="form-control"  name="orderAddress" <c:if test="${cmd eq 'read' }">readonly</c:if> value="${bizPlanApplyDetail.orderAddress}">
 		                                        </div>
 		                                    </div>
 		                                    <div class="form-group row">
-		                                        <label for="simYn" class="col-sm-1 col-form-label text-center">유심 신청 여부</label>
-		                                        <div class="col-sm-5">
+		                                        <label for="simYn" class="col-sm-2 col-form-label text-center">유심 신청 여부</label>
+		                                        <div class="col-sm-4">
 		                                            <input type="text" class="form-control"  name="simYn" <c:if test="${cmd eq 'read' }">readonly</c:if>
 		                                       		<c:choose>
-															<c:when test="${bizPlanApplyDetail.simYn eq '1'.charAt(0)}">value="없어요" </c:when>
-															<c:otherwise>value="가지고 있어요"</c:otherwise>
+															<c:when test="${bizPlanApplyDetail.simYn eq '1'.charAt(0)}">value="Y" </c:when>
+															<c:otherwise>value="N"</c:otherwise>
 													 </c:choose>
 													 >
 		                                        </div>
-		                                        <label for="simType" class="col-sm-1 col-form-label text-center">심 종류</label>
-		                                        <div class="col-sm-5">
+		                                        <label for="simType" class="col-sm-2 col-form-label text-center">심 종류</label>
+		                                        <div class="col-sm-4">
 		                                            <input type="text" class="form-control"  name="simType" <c:if test="${cmd eq 'read' }">readonly</c:if>
 		                                       		<c:choose>
 															<c:when test="${bizPlanApplyDetail.simType eq '1'.charAt(0)}">value="일반유심" </c:when>
@@ -132,8 +132,8 @@
 		                                        </div>
 		                                    </div>
 		                                    <div class="form-group row">
-		                                        <label for="currentTelecom" class="col-sm-1 col-form-label text-center">현재 사용 통신사</label>
-		                                        <div class="col-sm-5">
+		                                        <label for="currentTelecom" class="col-sm-2 col-form-label text-center">현재 사용 통신사</label>
+		                                        <div class="col-sm-4">
 		                                            <input type="text" class="form-control"  name="currentTelecom" <c:if test="${cmd eq 'read' }">readonly</c:if>
 		                                            <c:choose>
 															<c:when test="${bizPlanApplyDetail.currentTelecom eq '1'.charAt(0)}">value="SKT" </c:when>
@@ -145,8 +145,8 @@
 													 </c:choose>
 													 >
 		                                        </div>
-		                                         <label for="joinCategory" class="col-sm-1 col-form-label text-center">가입 유형</label>
-		                                        <div class="col-sm-5">
+		                                         <label for="joinCategory" class="col-sm-2 col-form-label text-center">가입 유형</label>
+		                                        <div class="col-sm-4">
 		                                            <input type="text" class="form-control"  name="joinCategory" <c:if test="${cmd eq 'read' }">readonly</c:if>                                          
 		                                             <c:choose>
 															<c:when test="${bizPlanApplyDetail.joinCategory eq '1'.charAt(0)}">value="번호 이동" </c:when>
@@ -156,8 +156,8 @@
 				                                </div>
 		                                    </div>
 		                                    <div class="form-group row">
-		                                     <label for="planBill" class="col-sm-1 col-form-label text-center">청구서 유형</label>
-		                                        <div class="col-sm-5">
+		                                     <label for="planBill" class="col-sm-2 col-form-label text-center">청구서 유형</label>
+		                                        <div class="col-sm-4">
 		                                            <input type="text" class="form-control"  name="planBill" <c:if test="${cmd eq 'read' }">readonly</c:if>
 		                                            <c:choose>
 															<c:when test="${bizPlanApplyDetail.simType eq '1'.charAt(0)}">value="문자" </c:when>
@@ -165,8 +165,8 @@
 													 </c:choose>
 													 >
 		                                        </div>
-		                                        <label for="planPay" class="col-sm-1 col-form-label text-center">납부 방법</label>
-		                                        <div class="col-sm-5">
+		                                        <label for="planPay" class="col-sm-2 col-form-label text-center">납부 방법</label>
+		                                        <div class="col-sm-4">
 		                                            <input type="text" class="form-control"  name="planPay" <c:if test="${cmd eq 'read' }">readonly</c:if>
 		                                            <c:choose>
 															<c:when test="${bizPlanApplyDetail.planPay eq '1'.charAt(0)}">value="카드" </c:when>
@@ -175,19 +175,22 @@
 													 > 
 		                                        </div>
 		                                       </div> 
-		                                       <div class="form-group row">
+		                                        
 		                                        <c:choose>
 		                                        	<c:when test ="${bizPlanApplyDetail.planPay eq '1'.charAt(0) }">
-		                                        		<label for="cardHolder" class="col-sm-1 col-form-label text-center">카드 소유자</label>
-		                                        		<div class="col-sm-5">
+		                                        	    <div class="form-group row">
+		                                        		<label for="cardHolder" class="col-sm-2 col-form-label text-center">카드 소유자</label>
+		                                        		<div class="col-sm-4">
 				                                            <input type="text" class="form-control"  name="cardHolder" <c:if test="${cmd eq 'read' }">readonly</c:if> value="${bizPlanApplyDetail.cardHolder}">
 				                                        </div>
-				                                        <label for="cardSsn" class="col-sm-1 col-form-label text-center">카드 소유자 주민등록번호</label>
-		                                        		<div class="col-sm-5">
+				                                        <label for="cardSsn" class="col-sm-2 col-form-label text-center">카드 소유자 주민등록번호</label>
+		                                        		<div class="col-sm-4">
 		                                            		 <input type="text" class="form-control"  name="cardSsn" <c:if test="${cmd eq 'read' }">readonly</c:if> value="${bizPlanApplyDetail.cardSsn}">
 		                                       			</div>
-		                                       			<label for="cardRelationship" class="col-sm-1 col-form-label text-center">카드 소유자와 관계</label>
-		                                        		<div class="col-sm-5">
+		                                       			</div>
+		                                       			<div class="form-group row">
+		                                       			<label for="cardRelationship" class="col-sm-2 col-form-label text-center">카드 소유자와 관계</label>
+		                                        		<div class="col-sm-4">
 		                                           	 		<input type="text" class="form-control"  name="cardRelationship" <c:if test="${cmd eq 'read' }">readonly</c:if>
 		                                            		<c:choose>
 																<c:when test="${bizPlanApplyDetail.cardRelationship eq '1'}">value="본인" </c:when>
@@ -198,116 +201,55 @@
 														 	</c:choose>
 													 		> 
 		                                        		</div>
-		                                        		<label for="cardNumber" class="col-sm-1 col-form-label text-center">카드 번호</label>
-		                                        		<div class="col-sm-5">
+		                                        		<label for="cardNumber" class="col-sm-2 col-form-label text-center">카드 번호</label>
+		                                        		<div class="col-sm-4">
 		                                            		<input type="text" class="form-control"  name="cardNumber" <c:if test="${cmd eq 'read' }">readonly</c:if> value="${bizPlanApplyDetail.cardNumber}">
 		                                        		</div>
-		                                        		<label for="cardExpiration" class="col-sm-1 col-form-label text-center">카드 유효기간</label>
-				                                        <div class="col-sm-5">
+		                                        		</div>
+		                                        		<div class="form-group row">
+		                                        		<label for="cardExpiration" class="col-sm-2 col-form-label text-center">카드 유효기간</label>
+				                                        <div class="col-sm-4">
 				                                            <input type="text" class="form-control"  name="cardExpiration" <c:if test="${cmd eq 'read' }">readonly</c:if> value="${bizPlanApplyDetail.cardExpiration}">
+				                                        </div>
 				                                        </div>
 		                                        	</c:when>
 		                                        	<c:otherwise>
-		                                        		<label for="accHolder" class="col-sm-1 col-form-label text-center">예금주명</label>
-		                                        		<div class="col-sm-5">
+		                                        		<div class="form-group row">
+		                                        		<label for="accHolder" class="col-sm-2 col-form-label text-center">예금주 명</label>
+		                                        		<div class="col-sm-4">
 				                                            <input type="text" class="form-control"  name="accHolder" <c:if test="${cmd eq 'read' }">readonly</c:if> value="${bizPlanApplyDetail.accHolder}">
 				                                        </div>
-				                                        <label for="accSsn" class="col-sm-1 col-form-label text-center">예금주 주민등록번호</label>
-				                                        <div class="col-sm-5">
-				                                            <input type="text" class="form-control"  name="accSsn" <c:if test="${cmd eq 'read' }">readonly</c:if> value="${bizPlanApplyDetail.accSsn}">
+				                                        <label for="accSsn" class="col-sm-2 col-form-label text-center">예금주 주민등록번호</label>
+		                                        		<div class="col-sm-4">
+		                                            		 <input type="text" class="form-control"  name="accSsn" <c:if test="${cmd eq 'read' }">readonly</c:if> value="${bizPlanApplyDetail.accSsn}">
+		                                       			</div>
+		                                       			</div>
+		                                       			<div class="form-group row">
+		                                       			<label for="accRelationship" class="col-sm-2 col-form-label text-center">예금주와의 관계</label>
+		                                        		<div class="col-sm-4">
+		                                           	 		<input type="text" class="form-control"  name="accRelationship" <c:if test="${cmd eq 'read' }">readonly</c:if>
+		                                            		<c:choose>
+																<c:when test="${bizPlanApplyDetail.accRelationship eq '1'}">value="본인" </c:when>
+																<c:when test="${bizPlanApplyDetail.accRelationship eq '2'}">value="부모" </c:when>
+																<c:when test="${bizPlanApplyDetail.accRelationship eq '3'}">value="자녀" </c:when>
+																<c:when test="${bizPlanApplyDetail.accRelationship eq '3'}">value="배우자" </c:when>
+																<c:otherwise>value="해당없음"</c:otherwise>
+														 	</c:choose>
+													 		> 
+		                                        		</div>
+		                                        		<label for="accBank" class="col-sm-1 col-form-label text-center">은행</label>
+		                                        		<div class="col-sm-4">
+		                                            		<input type="text" class="form-control"  name="accBank" <c:if test="${cmd eq 'read' }">readonly</c:if> value="${bizPlanApplyDetail.accBank}">
+		                                        		</div>
+		                                        		</div>
+		                                        		<div class="form-group row">
+		                                        		<label for="accNumber" class="col-sm-1 col-form-label text-center">계좌번호</label>
+				                                        <div class="col-sm-4">
+				                                            <input type="text" class="form-control"  name="accNumber" <c:if test="${cmd eq 'read' }">readonly</c:if> value="${bizPlanApplyDetail.accNumber}">
 				                                        </div>
-				                                        <label for="accRelationship" class="col-sm-1 col-form-label text-center">예금주와 관계</label>
-				                                        <div class="col-sm-5">
-				                                            <input type="text" class="form-control"  name="accRelationship" <c:if test="${cmd eq 'read' }">readonly</c:if>
-				                                             <c:choose>
-																	<c:when test="${bizPlanApplyDetail.accRelationship eq '1'}">value="본인" </c:when>
-																	<c:when test="${bizPlanApplyDetail.accRelationship eq '2'}">value="부모" </c:when>
-																	<c:when test="${bizPlanApplyDetail.accRelationship eq '3'}">value="자녀" </c:when>
-																	<c:when test="${bizPlanApplyDetail.accRelationship eq '4'}">value="배우자" </c:when>
-																	<c:otherwise>value=""</c:otherwise>
-															 </c:choose>
-															 > 
 				                                        </div>
-				                                        <label for="accBank" class="col-sm-1 col-form-label text-center">은행</label>
-				                                        <div class="col-sm-5">
-				                                            <input type="text" class="form-control"  name="accBank" <c:if test="${cmd eq 'read' }">readonly</c:if> value="${bizPlanApplyDetail.accBank}">
-				                                        </div>
-				                                        
-				                                         <label for="accNumber" class="col-sm-1 col-form-label text-center">계좌번호</label>
-					                                     <div class="col-sm-5">
-					                                        <input type="text" class="form-control"  name="accNumber" <c:if test="${cmd eq 'read' }">readonly</c:if> value="${bizPlanApplyDetail.accNumber}">
-					                                     </div>
-					                                     
 				                                      </c:otherwise>
 				                                    </c:choose>
-		                                        
-		                                        
-		                                        
-		                                        
-		                                        
-		                                        <%-- <label for="cardHolder" class="col-sm-1 col-form-label text-center">카드 소유자</label>
-		                                        <div class="col-sm-5">
-		                                            <input type="text" class="form-control"  name="cardHolder" <c:if test="${cmd eq 'read' }">readonly</c:if> value="${bizPlanApplyDetail.cardHolder}">
-		                                        </div>
-		                                        <label for="cardSsn" class="col-sm-1 col-form-label text-center">카드 소유자 주민등록번호</label>
-		                                        <div class="col-sm-5">
-		                                            <input type="text" class="form-control"  name="cardSsn" <c:if test="${cmd eq 'read' }">readonly</c:if> value="${bizPlanApplyDetail.cardSsn}">
-		                                        </div>
-		                                        <label for="cardRelationship" class="col-sm-1 col-form-label text-center">카드 소유자와 관계</label>
-		                                        <div class="col-sm-5">
-		                                            <input type="text" class="form-control"  name="cardRelationship" <c:if test="${cmd eq 'read' }">readonly</c:if>
-		                                            <c:choose>
-															<c:when test="${bizPlanApplyDetail.cardRelationship eq '1'}">value="본인" </c:when>
-															<c:when test="${bizPlanApplyDetail.cardRelationship eq '2'}">value="부모" </c:when>
-															<c:when test="${bizPlanApplyDetail.cardRelationship eq '3'}">value="자녀" </c:when>
-															<c:when test="${bizPlanApplyDetail.cardRelationship eq '3'}">value="배우자" </c:when>
-															<c:otherwise>value=""</c:otherwise>
-													 </c:choose>
-													 > 
-		                                        </div>
-		                                        <label for="cardNumber" class="col-sm-1 col-form-label text-center">카드 번호</label>
-		                                        <div class="col-sm-5">
-		                                            <input type="text" class="form-control"  name="cardNumber" <c:if test="${cmd eq 'read' }">readonly</c:if> value="${bizPlanApplyDetail.cardNumber}">
-		                                        </div>
-		                                        <label for="cardExpiration" class="col-sm-1 col-form-label text-center">카드 유효기간</label>
-		                                        <div class="col-sm-5">
-		                                            <input type="text" class="form-control"  name="cardExpiration" <c:if test="${cmd eq 'read' }">readonly</c:if> value="${bizPlanApplyDetail.cardExpiration}">
-		                                        </div>
-		                                    </div>
-		                                    <div class="form-group row">
-		                                        <label for="accHolder" class="col-sm-1 col-form-label text-center">예금주명</label>
-		                                        <div class="col-sm-5">
-		                                            <input type="text" class="form-control"  name="accHolder" <c:if test="${cmd eq 'read' }">readonly</c:if> value="${bizPlanApplyDetail.accHolder}">
-		                                        </div>
-		                                        <label for="accSsn" class="col-sm-1 col-form-label text-center">예금주 주민등록번호</label>
-		                                        <div class="col-sm-5">
-		                                            <input type="text" class="form-control"  name="accSsn" <c:if test="${cmd eq 'read' }">readonly</c:if> value="${bizPlanApplyDetail.accSsn}">
-		                                        </div>
-		                                   
-		                                    </div>
-		                                    <div class="form-group row">
-		                                        <label for="accRelationship" class="col-sm-1 col-form-label text-center">예금주와 관계</label>
-		                                        <div class="col-sm-3">
-		                                            <input type="text" class="form-control"  name="accRelationship" <c:if test="${cmd eq 'read' }">readonly</c:if>
-		                                             <c:choose>
-															<c:when test="${bizPlanApplyDetail.accRelationship eq '1'}">value="본인" </c:when>
-															<c:when test="${bizPlanApplyDetail.accRelationship eq '2'}">value="부모" </c:when>
-															<c:when test="${bizPlanApplyDetail.accRelationship eq '3'}">value="자녀" </c:when>
-															<c:when test="${bizPlanApplyDetail.accRelationship eq '4'}">value="배우자" </c:when>
-															<c:otherwise>value=""</c:otherwise>
-													 </c:choose>
-													 > 
-		                                        </div>
-		                                        <label for="accBank" class="col-sm-1 col-form-label text-center">은행</label>
-		                                        <div class="col-sm-3">
-		                                            <input type="text" class="form-control"  name="accBank" <c:if test="${cmd eq 'read' }">readonly</c:if> value="${bizPlanApplyDetail.accBank}">
-		                                        </div>
-		                                        <label for="accNumber" class="col-sm-1 col-form-label text-center">계좌번호</label>
-		                                        <div class="col-sm-3">
-		                                            <input type="text" class="form-control"  name="accNumber" <c:if test="${cmd eq 'read' }">readonly</c:if> value="${bizPlanApplyDetail.accNumber}">
-		                                        </div>
-		                                    </div>
-		                                    
 		                                    <div class="form-group row">
 		                                        <label for="netName" class="col-sm-1 col-form-label text-center">통신망</label>
 		                                        <div class="col-sm-3">
@@ -335,7 +277,7 @@
 		                                        <div class="col-sm-3">
 		                                            <input type="text" class="form-control"  name="orderMessage" <c:if test="${cmd eq 'read' }">readonly</c:if> value="${bizPlanApplyDetail.orderMessage}">
 		                                        </div>
-		                                    </div> --%>
+		                                    </div>
 	                            		</div>	
 									</div>
 								</div>

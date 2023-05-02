@@ -8,6 +8,11 @@
 <head>
 <meta charset="UTF-8">
 <title></title>
+<style>
+	.bd-example-row{background-color:#fff !important;}
+	.dbtitle{background-color:#1abc9c !important; color:#fff;}
+	.dbbody{background-color:#fff !important; border:1px solid #ccc !important;}
+</style>
 </head>
 <body>
 <!-- 우편번호 찾기 API -->
@@ -273,7 +278,7 @@
 		                                        		</div>
 		                                        	</c:otherwise>
 		                                        </c:choose>
-		                                         <label for="phoneOpTimeUsim" class="col-sm-1 col-form-label text-center">개통소요시간(유심보유시)</label>
+		                                         <label for="phoneOpTimeUsim" class="col-sm-1 col-form-label text-center">유심보유시</label>
 		                                         <c:choose>
 		                                        	<c:when test="${cmd eq 'read'}">
 		                                        		<div class="col-sm-5">
@@ -424,7 +429,7 @@
 		                                        </c:choose>
 		                                     </div>
 		                                    <div class="form-group row">
-		                                        <label for="netService" class="col-sm-1 col-form-label text-center">고객센터번호</label>
+		                                        <label for="netService" class="col-sm-1 col-form-label text-center">고객센터 번호</label>
 		                                        <c:set var="netService" value=""/>
 		                                        <c:if test="${not empty applyDetail.ktNetService }">
 		                                        	<c:set var="netService" value="KT : ${applyDetail.ktNetService} / "/>
@@ -578,42 +583,42 @@
 						<div class="modal-body">
 							<div class="container-fluid bd-example-row">
 								<div class="row">
-									<div class="col-md-5">통신망</div>
-									<div class="col-md-7"><span id="netName"></span></div>
+									<div class="col-md-5 dbtitle">통신망</div>
+									<div class="col-md-7 dbbody"><span id="netName"></span></div>
 									<!-- <div class="col-md-4">.col-md-4</div>
 									<div class="col-md-4 ml-auto">.col-md-4 .ml-auto</div> -->
 								</div>
 								<div class="row">
-									<div class="col-md-5">통신세대</div>
-									<div class="col-md-7"><span id="genName"></span></div>
+									<div class="col-md-5 dbtitle">통신세대</div>
+									<div class="col-md-7 dbbody"><span id="genName"></span></div>
 								</div>
 								<div class="row">
-									<div class="col-md-5">기본료(원)</div>
-									<div class="col-md-7"><span id="planPrice"></span></div>
+									<div class="col-md-5 dbtitle">기본료(원)</div>
+									<div class="col-md-7 dbbody"><span id="planPrice"></span></div>
 								</div>
 								<div class="row">
-									<div class="col-md-5">기본음성(분)</div>
-									<div class="col-md-7"><span id="planVoice"></span></div>
+									<div class="col-md-5 dbtitle">기본음성(분)</div>
+									<div class="col-md-7 dbbody"><span id="planVoice"></span></div>
 								</div>
 								<div class="row">
-									<div class="col-md-5">기본문자(건)</div>
-									<div class="col-md-7"><span id="planMessage"></span></div>
+									<div class="col-md-5 dbtitle">기본문자(건)</div>
+									<div class="col-md-7 dbbody"><span id="planMessage"></span></div>
 								</div>
 								<div class="row">
-									<div class="col-md-5">기본데이터(mb)</div>
-									<div class="col-md-7"><span id="planData"></span></div>
+									<div class="col-md-5 dbtitle">기본데이터(mb)</div>
+									<div class="col-md-7 dbbody"><span id="planData"></span></div>
 								</div>
 								<div class="row">
-									<div class="col-md-5">초과음성단가(초)</div>
-									<div class="col-md-7"><span id="planVoiceOver"></span></div>
+									<div class="col-md-5 dbtitle">초과음성단가(초)</div>
+									<div class="col-md-7 dbbody"><span id="planVoiceOver"></span></div>
 								</div>
 								<div class="row">
-									<div class="col-md-5">초과문자단가(건)</div>
-									<div class="col-md-7"><span id="planMessageOver"></span></div>
+									<div class="col-md-5 dbtitle">초과문자단가(건)</div>
+									<div class="col-md-7 dbbody"><span id="planMessageOver"></span></div>
 								</div>
 								<div class="row">
-									<div class="col-md-5">초과데이터단가(mb)</div>
-									<div class="col-md-7"><span id="planDataOver"></span></div>
+									<div class="col-md-5 dbtitle">초과데이터단가(mb)</div>
+									<div class="col-md-7 dbbody"><span id="planDataOver"></span></div>
 								</div>
 							</div>
 						</div>
