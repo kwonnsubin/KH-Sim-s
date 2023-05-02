@@ -112,8 +112,8 @@
 					</div>
 				</div>
 				<div class="col-6 text-end mt-auto">
-					<span class="fs-4">월</span>
-					<span class="fw-bold fs-3">${plan.planPrice}</span>
+					<span class="fs-4">월 </span>
+					<span class="fw-bold fs-3"><fmt:formatNumber value="${plan.planPrice}" pattern="###,###"/></span>
 					<span class="fs-4">원</span>
 				</div>
 			</div>
@@ -156,7 +156,7 @@
 							<td>
 								<c:if test="${not empty bizNets}">
 									<c:forEach items="${bizNets}" var="biznet">
-										<button class="btn-net">${biznet}망</button>
+										<button class="btn-net" disabled="disabled">${biznet}망</button>
 									</c:forEach>
 								</c:if>
 							</td>
@@ -174,7 +174,7 @@
 						<img class="logo-s" src="${cpath}/resources/img/star.png" alt="stars">
 					</div>
 					<div class="col-1 my-auto">
-						<h4>${biz.bizReviewStar}</h4>
+						<h4 class="fw-bold">${biz.bizReviewStar}</h4>
 					</div>
 					<div class="col-10 my-auto">
 						<a href="${cpath}/bizinfo/${biz.bizId}#biz-review">${cntReview}개></a> 
@@ -183,12 +183,12 @@
 				<div class="row my-3">
 					<c:forEach items="${reviewList}" var="review" begin="0" end="2">
 						<div class="col-sm-4">
-							<div class="card bg-green border-0" style="min-height: 200px;"> 
+							<div onclick="window.open('${cpath}/bizinfo/${biz.bizId}#biz-review');" class="card card-review"> 
 								<div class="card-body">
 									<div class="row mb-3">
 										<div class="col-md-5 pe-0" style="padding-right:0;">
 											${fn:substring(review.userId,0,3)}
-											<c:forEach begin="4" end="${fn:length(review.userId)}">
+											<c:forEach begin="4" end="7">
 											*
 											</c:forEach>
 										</div>
@@ -270,7 +270,10 @@
 				}
 			});
 		}
-		
+	</script>
+	
+	<!-- 찜하기 -->
+	<script>
 	    function toggleLike(planNo) {
 	        $.ajax({
 	            url: '${cpath}/plan/${plan.planNo}/like',

@@ -116,13 +116,6 @@
 													</table>
 												</div>
 												<nav aria-label="Page navigation example">
-													<!-- <ul class="pagination justify-content-center">
-														<li class="page-item"><a class="page-link" href="" aria-label="Previous"><span aria-hidden="true">«</span><span class="sr-only">Previous</span></a></li>
-														<li class="page-item"><a class="page-link" href="" aria-label="Previous">1</a></li>
-														<li class="page-item"><a class="page-link" href="" aria-label="Previous">2</a></li>
-														<li class="page-item"><a class="page-link" href="" aria-label="Previous">3</a></li>
-														<li class="page-item"><a class="page-link" href="" aria-label="Previous"><span aria-hidden="true">»</span><span class="sr-only">Next</span></a></li>
-													</ul> -->
 													<c:if test="${not empty requestScope.paging.page}">
 														<ul class="pagination justify-content-center">
 															<c:set var="pageNumber" value="${empty param.p ? 1 : param.p }" />

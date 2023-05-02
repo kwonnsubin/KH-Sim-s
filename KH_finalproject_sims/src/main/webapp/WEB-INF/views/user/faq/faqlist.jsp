@@ -51,9 +51,9 @@
 									<div class="carousel-item active">
 										<img src="<%=request.getContextPath()%>/resources/img/faq.png" class="d-block w-100" alt="...">
 										<div class="carousel-caption">
-											<h2 class="m-auto">
+											<h3 class="m-auto">
 												<a href="${cpath}/faq/faqread/${faq.faqNo}">${faq.faqTitle}</a>
-											</h2>
+											</h3>
 										</div>
 									</div>
 								</c:if>
@@ -61,9 +61,9 @@
 									<div class="carousel-item">
 										<img src="<%=request.getContextPath()%>/resources/img/faq.png" class="d-block w-100" alt="...">
 										<div class="carousel-caption">
-											<h2 class="m-auto">
+											<h3 class="m-auto">
 												<a href="${cpath}/faq/faqread/${faq.faqNo}">${faq.faqTitle}</a>
-											</h2>
+											</h3>
 										</div>
 									</div>
 								</c:if>

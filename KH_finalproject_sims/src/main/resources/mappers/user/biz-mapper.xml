@@ -2,78 +2,9 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="usbiz">
 
-<!-- 	<resultMap type="bizVo" id="bizCollectionMap" >
-		<id column="BIZ_ID" property="bizId"/>
-		<result column="BIZ_NAME" property="bizName"/>
-		<result column="BIZ_SSN" property="bizSsn"/>
-		<result column="BIZ_CRN" property="bizCrn"/>
-		<result column="BIZ_EMAIL" property="bizEmail"/>
-		<result column="BIZ_PHONE" property="bizPhone"/>
-		<result column="BIZ_FAX" property="bizFax"/>
-		<result column="BIZ_OWNER_NAME" property="bizOwnerName"/>
-		<result column="BIZ_HP" property="bizHp"/>
-		<result column="BIZ_ZIP_CODE" property="bizZipCode"/>
-		<result column="BIZ_LOCATION" property="bizLocation"/>
-		<result column="BIZ_CARD_PAY_DATE" property="bizCardPayDate"/>
-		<result column="BIZ_ACC_PAY_DATE" property="bizAccPayDate"/>
-		<result column="BIZ_BEGIN_TIME" property="bizBeginTime"/>
-		<result column="BIZ_END_TIME" property="bizEndTime"/>
-		<result column="BIZ_CLOSED_DAY" property="bizClosedDay"/>
-		<result column="BIZ_REVIEW_STAR" property="bizReviewStar"/>
-		<result column="PHONE_OP_TIME" property="phoneOpTime"/>
-		<result column="PHONE_OP_TIME_USIM" property="phoneOpTimeUsim"/>
-		<result column="NETWORK" property="network"/>
-		<result column="WRITE_DATE" property="writeDate"/>
-		<result column="UPDATE_DATE" property="updateDate"/>
-		<result column="LOGO_RENAME_FILENAME" property="logoRenameFilename"/>
-		<collection column="BIZ_ID" property="bizId" ofType="usRvo">
-			<id column="REVIEW_NO" property="reviewNo"/>
-			<result column="REVIEW_CONTENT" property="reviewContent"/>
-			<result column="REVIEW_DATE" property="reviewDate"/>
-			<result column="REVIEW_REDATE" property="reviewRedate"/>
-			<result column="REVIEW_STAR" property="reviewStar"/>
-			<result column="USER_ID" property="userId"/>
-			<result column="REVIEW_HIDDEN" property="reviewHidden"/>
-		</collection>
-	</resultMap> -->
-
 	<select id="getBizByName" resultType="bizVo">
 		select * from biz where biz_name = #{bizName}
 	</select>
-		<!-- select b.BIZ_ID
-			, b.BIZ_NAME
-			, b.BIZ_SSN
-			, b.BIZ_CRN
-			, b.BIZ_EMAIL
-			, b.BIZ_PHONE
-			, b.BIZ_FAX
-			, b.BIZ_OWNER_NAME
-			, b.BIZ_HP
-			, b.BIZ_ZIP_CODE
-			, b.BIZ_LOCATION
-			, b.BIZ_CARD_PAY_DATE
-			, b.BIZ_ACC_PAY_DATE
-			, b.BIZ_BEGIN_TIME
-			, b.BIZ_END_TIME
-			, b.BIZ_CLOSED_DAY
-			, b.BIZ_REVIEW_STAR
-			, b.PHONE_OP_TIME
-			, b.PHONE_OP_TIME_USIM
-			, b.NETWORK
-			, b.WRITE_DATE
-			, b.UPDATE_DATE
-			, b.LOGO_RENAME_FILENAME
-			, r.REVIEW_NO
-			, r.REVIEW_CONTENT
-			, r.REVIEW_DATE
-			, r.REVIEW_REDATE
-			, r.REVIEW_STAR
-			, r.USER_ID
-			, r.REVIEW_HIDDEN
-		from biz b
-			full outer join biz_review r
-			on (b.biz_id = r.biz_id)
-		where biz_name = #{bizName} -->
 	
 	<select id="getNetListByBizId" resultType="string">
 		SELECT n.NET_NAME

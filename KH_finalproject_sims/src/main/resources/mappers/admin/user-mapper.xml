@@ -122,10 +122,18 @@
 	
 	<!-- 신청한 요금제 개수 -->
 	<select id="selectMyPlanListCountAdmin" parameterType="string" resultType="int">
+		/** 관리자의 사용자 신청자 요금제 개수 카운트 (selectMyPlanListCountAdmin)**/	
 		SELECT COUNT(*)
 		FROM USER_TABLE A
     	INNER JOIN PLAN_ORDER B ON A. USER_ID = B.USER_ID
 		WHERE A.USER_ID=#{userId}
 	</select>
 	
+	<!-- 사용자 리뷰를 단 요금제 개수 -->
+	<select id="selectOrderListCountAdmin" parameterType="string" resultType="int">
+	/** 사용자 리뷰를 단 요금제 개수 (selectOrderListCountAdmin)**/
+		SELECT COUNT(*)
+		FROM BIZ_REVIEW
+		WHERE USER_ID=#{userId}
+	</select>
 </mapper>

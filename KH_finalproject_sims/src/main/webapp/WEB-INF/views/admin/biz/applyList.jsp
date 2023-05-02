@@ -7,7 +7,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>통신사 가입 신청 리스트</title>
+<title>통신사 정보 리스트</title>
 </head>
 <body>
 	<jsp:include page="/WEB-INF/views/admin/include/header.jsp" />
