@@ -87,36 +87,24 @@ function goBack(){
 		                                        </div>
 		                                        <label for="userName" class="col-sm-1 col-form-label text-center">이름</label>
 		                                        <div class="col-sm-5">
-		                                            <input type="text" class="form-control"  name="userName" <c:if test="${cmd eq 'read' }">readonly</c:if> value="${userDetail.userName}">
+		                                            <input type="text" class="form-control"  name="userName" readonly <c:if test="${cmd eq 'read' }">readonly</c:if> value="${userDetail.userName}">
 		                                        </div>
 		                                    </div>
 		                           			 <div class="form-group row">
 		                                        <label for="userEmail" class="col-sm-1 col-form-label text-center">메일</label>
 		                                        <div class="col-sm-5">
-		                                            <input type="text" class="form-control"  name="userEmail" <c:if test="${cmd eq 'read' }">readonly</c:if> value="${userDetail.userEmail}">
+		                                            <input type="text" class="form-control"  name="userEmail" readonly <c:if test="${cmd eq 'read' }">readonly</c:if> value="${userDetail.userEmail}">
 		                                        </div>
 		                                         <label for="userGender" class="col-sm-1 col-form-label text-center">성별</label>
-		                                         <c:choose>
-		                                         	<c:when test="${cmd eq 'read'}">
-		                                         		<div class="col-sm-5">
-		                                            	<input type="text" class="form-control"  name="userGender" <c:if test="${cmd eq 'read' }">readonly</c:if> value="${userDetail.userGender}">
-		                                        		</div>
-		                                         	</c:when>
-		                                         	<c:otherwise>
-		                                         		<div class="col-sm-5">
-		                                        			<select class="custom-select" id="inputGroupSelect04" name="userGender">
-		                                        				<option value="M" <c:if test="${userDetail.userGender eq 'M'.charAt(0) }">selected</c:if>>M</option>
-		                                        				<option value="F" <c:if test="${userDetail.userGender eq 'F'.charAt(0) }">selected</c:if>>F</option>
-		                                        			</select>
-		                                        		</div>
-		                                         	</c:otherwise>
-		                                         </c:choose>
+		                                         <div class="col-sm-5">
+		                                            <input type="text" class="form-control"  name="userGender" readonly <c:if test="${cmd eq 'read' }">readonly</c:if> value="${userDetail.userGender}">
+		                                        </div>
 		                                    </div>
 		                                    <div class="form-group row">
 		                                        <label for="userSsn" class="col-sm-1 col-form-label text-center">생년월일</label>
 		                                        <div class="col-sm-5">
 		                                            <%-- <input type="text" class="form-control"  name="userSsn" <c:if test="${cmd eq 'read' }">readonly</c:if> value="${userDetail.userSsn}"> --%>
-		                                            <input type="text" class="form-control"  name="birth" <c:if test="${cmd eq 'read' }">readonly</c:if> value="${userDetail.birth}">
+		                                            <input type="text" class="form-control"  name="birth"  readonly <c:if test="${cmd eq 'read' }">readonly</c:if> value="${userDetail.birth}">
 		                                        </div>
 		                                        <label for="userPhone" class="col-sm-1 col-form-label text-center">전화번호</label>
 		                                        <div class="col-sm-5">

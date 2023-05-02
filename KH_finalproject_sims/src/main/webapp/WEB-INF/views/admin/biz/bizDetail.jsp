@@ -195,7 +195,7 @@
 			                                    		<label for="Logo_Rename_FileName" class="col-sm-1 col-form-label text-center">통신사 로고</label>
 			                                    		<div class="input-group cust-file-button col-sm-5">
 			                                    			<div class="custom-file">
-			                                    				<input type="file" class="custom-file-input" id="inputGroupFile04" name="Logo_Rename_FileName" <%-- value="${applyDetail.logoRenameFilename } --%>">
+			                                    				<input type="file" class="custom-file-input" id="inputGroupFile04" name="Logo_Rename_FileName" <%-- value="${applyDetail.logoRenameFilename } --%>>
 			                                    				<label class="custom-file-label" for="inputGroupFile04">
 			                                    					파일을 선택해주세요
 			                                    				</label>
@@ -210,37 +210,37 @@
 		                                    <div class="form-group row">
 		                                        <label for="bizName" class="col-sm-1 col-form-label text-center">법인명</label>
 		                                        <div class="col-sm-5">
-		                                            <input type="text" class="form-control"  name="bizName" <c:if test="${cmd eq 'read' }">readonly</c:if> value="${applyDetail.bizName}">
+		                                            <input type="text" class="form-control"  name="bizName" readonly <c:if test="${cmd eq 'read' }">readonly</c:if> value="${applyDetail.bizName}">
 		                                        </div>
 		                                        <label for="bizOwnerName" class="col-sm-1 col-form-label text-center">대표자명</label>
 		                                        <div class="col-sm-5">
-		                                            <input type="text" class="form-control"  name="bizOwnerName" <c:if test="${cmd eq 'read' }">readonly</c:if> value="${applyDetail.bizOwnerName}">
+		                                            <input type="text" class="form-control"  name="bizOwnerName" readonly <c:if test="${cmd eq 'read' }">readonly</c:if> value="${applyDetail.bizOwnerName}">
 		                                        </div>
 		                                    </div>
 		                           			 <div class="form-group row">
 		                           			 	<label for="bizSsn" class="col-sm-1 col-form-label text-center">법인 등록번호</label>
 		                                        <div class="col-sm-5">
-		                                            <input type="text" class="form-control"  name="bizSsn" <c:if test="${cmd eq 'read' }">readonly</c:if> value="${applyDetail.bizSsn}">
+		                                            <input type="text" class="form-control"  name="bizSsn" readonly <c:if test="${cmd eq 'read' }">readonly</c:if> value="${applyDetail.bizSsn}">
 		                                        </div>
 		                                        <label for="bizCrn" class="col-sm-1 col-form-label text-center">사업자 등록번호</label>
 		                                        <div class="col-sm-5">
-		                                            <input type="text" class="form-control"  name="bizCrn" <c:if test="${cmd eq 'read' }">readonly</c:if> value="${applyDetail.bizCrn}">
+		                                            <input type="text" class="form-control"  name="bizCrn" readonly <c:if test="${cmd eq 'read' }">readonly</c:if> value="${applyDetail.bizCrn}">
 		                                        </div>
 		                                    </div>
 		                                    <div class="form-group row">
 		                                        <label for="bizPhone" class="col-sm-1 col-form-label text-center">전화</label>
 		                                        <div class="col-sm-5">
-		                                            <input type="text" class="form-control"  name="bizPhone" <c:if test="${cmd eq 'read' }">readonly</c:if> value="${applyDetail.bizPhone}">
+		                                            <input type="text" class="form-control"  name="bizPhone"  <c:if test="${cmd eq 'read' }">readonly</c:if> value="${applyDetail.bizPhone}">
 		                                        </div>
-		                                        <label for="bizFax" class="col-sm-1 col-form-label text-center">팩스</label>
+		                                        <label for="bizFax" class="col-sm-1 col-form-label text-center">팩스 </label>
 		                                        <div class="col-sm-5">
-		                                            <input type="text" class="form-control"  name="bizFax" <c:if test="${cmd eq 'read' }">readonly</c:if> value="${applyDetail.bizFax}">
+		                                            <input type="text" class="form-control"  name="bizFax"  <c:if test="${cmd eq 'read' }">readonly</c:if> value="${applyDetail.bizFax}">
 		                                        </div>
 		                                    </div>
 		                                    <div class="form-group row">
 		                                    	 <label for="bizEmail" class="col-sm-1 col-form-label text-center">이메일</label>
 		                                        <div class="col-sm-5">
-		                                            <input type="email" class="form-control"  name="bizEmail" <c:if test="${cmd eq 'read' }">readonly</c:if> value="${applyDetail.bizEmail}">
+		                                            <input type="email" class="form-control"  name="bizEmail" readonly <c:if test="${cmd eq 'read' }">readonly</c:if> value="${applyDetail.bizEmail}">
 		                                        </div>
 		                                        <label for="bizHp" class="col-sm-1 col-form-label text-center">홈페이지</label>
 		                                        <div class="col-sm-5">

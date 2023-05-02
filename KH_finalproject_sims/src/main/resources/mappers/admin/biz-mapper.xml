@@ -15,35 +15,35 @@
 				FROM
 					(SELECT A.*
      				, B.ENABLE
- 				FROM BIZ A
- 				LEFT OUTER JOIN MEMBER B ON A.BIZ_ID = B.ID
-				WHERE 1=1
-				<if test="!(searchRadioVal == null or searchRadioVal == '') ">
-					<choose>
-						<when test="searchRadioVal != 'total'">
-							AND B.ENABLE = #{searchRadioVal}
-						</when>
-					</choose>
-				</if>
-				<if test="!(searchOption == null or searchOption == '')">
-					<choose>
-						<when test="searchOption == 'bizName'">
-							AND UPPER(A.BIZ_NAME) LIKE UPPER('%'||#{searchBox}||'%')
-						</when>
-						<when test="searchOption == 'bizOwnerName'">
-							AND UPPER(A.BIZ_OWNER_NAME) LIKE UPPER('%'||#{searchBox}||'%')
-						</when>
-					</choose>
-				</if>
-				<if test="(searchOption == null or searchOption == '') and !(searchBox == null or searchBox == '')">
-					AND (UPPER(A.BIZ_NAME) LIKE UPPER('%'||#{searchBox}||'%') OR AND UPPER(A.BIZ_OWNER_NAME) LIKE UPPER('%'||#{searchBox}||'%')) 
-				</if>
-				ORDER BY A.WRITE_DATE DESC
-					)C
- 			)D
- 		)E
-		WHERE 1=1
-			AND RO BETWEEN #{start} AND #{end}
+	 				FROM BIZ A
+	 				LEFT OUTER JOIN MEMBER B ON A.BIZ_ID = B.ID
+					WHERE 1=1
+					<if test="!(searchRadioVal == null or searchRadioVal == '') ">
+						<choose>
+							<when test="searchRadioVal != 'total'">
+								AND B.ENABLE = #{searchRadioVal}
+							</when>
+						</choose>
+					</if>
+					<if test="!(searchOption == null or searchOption == '')">
+						<choose>
+							<when test="searchOption == 'bizName'">
+								AND UPPER(A.BIZ_NAME) LIKE UPPER('%'||#{searchBox}||'%')
+							</when>
+							<when test="searchOption == 'bizOwnerName'">
+								AND UPPER(A.BIZ_OWNER_NAME) LIKE UPPER('%'||#{searchBox}||'%')
+							</when>
+						</choose>
+					</if>
+					<if test="(searchOption == null or searchOption == '') and !(searchBox == null or searchBox == '')">
+						AND (UPPER(A.BIZ_NAME) LIKE UPPER('%'||#{searchBox}||'%') OR AND UPPER(A.BIZ_OWNER_NAME) LIKE UPPER('%'||#{searchBox}||'%')) 
+					</if>
+					ORDER BY A.WRITE_DATE DESC
+						)C
+	 			)D
+	 		)E
+			WHERE 1=1
+				AND RO BETWEEN #{start} AND #{end}
 	</select>
 	
 	<!-- 통신사 신청정보 리스트 -->

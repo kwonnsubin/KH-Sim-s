@@ -137,6 +137,10 @@ public class AdminUserMngtController {
 			, @PathVariable String userId
 			, AdminUserMngtVo vo) {
 		AdminUserMngtVo userDetail = service.selectUserDetail(userId);
+		int myPlanCnt = service.selectMyPlanListCountAdmin(userId);
+		HashMap<String, Object> cnt = new HashMap<>();
+		cnt.put("myPlanCnt", myPlanCnt);
+		mv.addObject("cnt", cnt);
 		mv.addObject("userDetail", userDetail);
 		mv.addObject("cmd","update");
 		mv.setViewName("/admin/user/userDetail");
