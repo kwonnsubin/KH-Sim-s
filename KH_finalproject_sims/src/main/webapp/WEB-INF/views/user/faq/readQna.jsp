@@ -47,7 +47,7 @@
 			<div class="small my-3 text-end">
 				<span class="mx-3">${question.userId }</span>
 				<sec:authorize access="hasRole('ROLE_USER')">
-					<sec:authentication property="principal.username" var="username"/>
+					<sec:authentication property="name" var="username"/>
 					<c:if test="${username eq question.userId}">
 						<span class="mx-3">
 							<button class="btn btn-inherit btn-sm btn-outline-secondary"
