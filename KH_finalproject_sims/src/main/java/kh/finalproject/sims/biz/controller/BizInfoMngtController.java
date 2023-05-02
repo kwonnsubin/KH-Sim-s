@@ -47,18 +47,26 @@ public class BizInfoMngtController {
 		
 		//고객센터 번호
 		List<bizInfoMngServiceVo> serviceList = service.selectListService(bizid);
-		System.out.println(serviceList);
+		System.out.println("고객센터번호serviceList :"+ serviceList);
 	
 	
 		mv.addObject("bizinfo", vo);
+		System.out.println("vo에 담은 bizinfo : "+vo);
 		mv.addObject("serviceList",serviceList);
+		System.out.println("serviceList : "+serviceList);
+		
 		
 		String imagePath;
-		if (vo.getLogoRenameFilename() == null) {
+		if (vo.getLogoRenameFilename() == null && vo.getOriginalFilename() == null) {
+		  // 대체 이미지 링크
+		  imagePath = "/resources/img/default_logo.png";
+		} else if (vo.getLogoRenameFilename() == null) {
 		  imagePath = "/resources/img/" + vo.getOriginalFilename();
 		} else {
 		  imagePath = "/resources/img/" + vo.getLogoRenameFilename();
 		}
+		mv.addObject("imagePath", imagePath);
+		System.out.println("imagePath : "+imagePath);
 		
 		//String imagePath ="/resources/img/"+vo.getOriginalFilename();
 		mv.addObject("imagePath",imagePath);
@@ -81,17 +89,27 @@ public class BizInfoMngtController {
 		
 		//고객센터 번호
 		List<bizInfoMngServiceVo> serviceList = service.selectListService(bizid);
-		System.out.println(serviceList);
-		//
-		for (bizInfoMngServiceVo service : serviceList) {
-		    int netNo = service.getNetNo();
-		    String bizNetService = service.getBizNetService();
-		    System.out.println(netNo);
-		    System.out.println(bizNetService);
-
-		}
+		System.out.println("serviceList :"+serviceList);
 		
-	
+//		if (serviceList == null || serviceList.isEmpty()) {
+//		    serviceList = new ArrayList<bizInfoMngServiceVo>(); 
+//		    bizInfoMngServiceVo emptyService = new bizInfoMngServiceVo(); // netNo와 bizNetService를 0으로 초기화
+//		    emptyService.setNetNo(0);
+//		    emptyService.setBizNetService("0");
+//		    serviceList.add(emptyService); // 빈 서비스 객체를 리스트에 추가
+//		    System.out.println("serviceList가 null 일때 빈 리스트 생성 :"+serviceList);
+//
+//		} 
+		
+//		else {
+//		    for (bizInfoMngServiceVo service : serviceList) {
+//		        int netNo = service.getNetNo();
+//		        String bizNetService = service.getBizNetService();
+//		        System.out.println("netNo :"+netNo);
+//		        System.out.println("bizNetService :"+bizNetService);
+//		    }	
+//		}
+
 		mv.addObject("bizinfo", vo);
 		mv.addObject("serviceList",serviceList);
 		

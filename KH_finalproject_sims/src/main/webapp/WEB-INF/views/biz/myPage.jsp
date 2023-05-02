@@ -104,7 +104,7 @@
 			
 				<div class="container logo-img">
 					<div class="text-center">
-						<img src="${path}${imagePath}" class="mx-auto" style="width: 70% !important"/>
+						<img src="${path}${imagePath}" onerror="this.onerror=null; this.src='https://www.dummyimage.com/600x400/000/fff.jpg&text=Please+register+your+logo';" class="mx-auto" style="width: 70% !important"/>
 					</div> 
 				</div>
 				

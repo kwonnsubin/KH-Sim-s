@@ -282,6 +282,14 @@
 							</th>
 							<td colspan="2">
 								<c:choose>
+									<c:when test="${empty serviceList[0]}">
+										<span>KT</span>
+										<input class="form-control" type="text" name="KtService">
+										<span>SKT</span>
+										<input class="form-control" type="text" name="SktService">
+										<span>LGU+</span>
+										<input class="form-control" type="text" name="LguService">
+									</c:when>
 									<c:when test="${service.netNo == 1}">
 										<span style="display: none">KT</span>
 										<c:if test="${not empty service.bizNetService}">
