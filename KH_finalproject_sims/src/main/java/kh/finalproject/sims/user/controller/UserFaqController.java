@@ -1,10 +1,7 @@
 package kh.finalproject.sims.user.controller;
 
 import java.security.Principal;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
-
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -18,11 +15,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
-
-import com.google.gson.Gson;
-import com.google.gson.GsonBuilder;
 
 import kh.finalproject.sims.common.page.Search;
 import kh.finalproject.sims.user.model.service.UserFaqService;
@@ -83,8 +76,7 @@ public class UserFaqController {
 		mv.addObject("listCnt", searchListCount);
 		mv.addObject("searchType", searchType);
 		mv.addObject("keyword", keyword);
-		
-		//
+	
 		mv.addObject("faqlist", service.selectFaqList());
 		mv.setViewName("user/faq/faqlist");
 		return mv;
@@ -98,7 +90,6 @@ public class UserFaqController {
 			) {
 		UserFaqVo faq = service.selectFaqDetail(faqNo);
 		faq.setFaqContent(faq.getFaqContent().replaceAll(System.lineSeparator(), "<br>"));
-		
 		mv.addObject("faq", faq);
 		mv.setViewName("user/faq/faqread");
 		return mv;
@@ -154,7 +145,6 @@ public class UserFaqController {
 			) {
 		mv.setViewName("user/faq/writeQna");
 		String username = principal.getName();
-		
 		mv.addObject("username", username);
 		return mv;
 	}
