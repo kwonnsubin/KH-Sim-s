@@ -84,9 +84,12 @@
 							</th>
 							<td colspan="3"> 
 							<div class="d-flex" style="margin-bottom: 1%;">
-								<input type="text" class="form-control" style="width: 20%;margin-right: 14%;" id="postcode" name="bizZipCode" placeholder="우편번호" value="${bizinfo.bizZipCode }">
+								<input type="text" class="form-control" style="width: 20%;margin-right: 14%;" id="postcode" name="bizZipCode" 
+								placeholder="우편번호" value="${bizinfo.bizZipCode }" pattern="[0-9]*" oninput="checkInputNum(event)" >
 								<input type="button"  onclick="execDaumPostcode()" value="우편번호 찾기" class="btn"><br>
 							</div>
+							<span id="error-message-num" style="display:none;">숫자만 입력 가능합니다.</span>
+							
 							<input type="text" class="form-control" id="roadAddress" name="bizLocation" placeholder="도로명주소"  value="${bizinfo.bizLocation }">
 							</td>
 						</tr>
@@ -589,6 +592,7 @@ function autoHyphenSsn(obj){
 }
 </script>
 
+<!-- 숫자와 하이픈만 입력가능 -->
 <script>
 function checkInput(event) {
   const input = event.target;
@@ -601,6 +605,21 @@ function checkInput(event) {
   }
 }
 </script>
+
+<!-- 숫자만 입력가능 -->
+<script>
+function checkInputNum(event) {
+  const input = event.target;
+  const error = document.getElementById('error-message-num');
+  if (!input.validity.valid) {
+    error.style.display = 'block';
+    input.value = input.value.replace(/[^0-9]/g, '');
+  } else {
+    error.style.display = 'none';
+  }
+}
+</script>
+
 
 </body>
 </html>
