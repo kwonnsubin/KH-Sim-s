@@ -74,7 +74,6 @@
 														<c:forEach var="review" items="${requestScope.paging.page}" varStatus="status">
 															<tr>
 																<td class="text-center">${paging.totalRowCount - ((paging.currentPage-1) * 10 + status.index)}</td>
-																<%-- <td class="text-center">${paging.totalRowCount - ((paging.currentPage-1) * 10 + status.index)}</td>  --%>
 																<td>
 																	<c:choose>
 															          <c:when test="${fn:length(review.reviewContent) > 40}">

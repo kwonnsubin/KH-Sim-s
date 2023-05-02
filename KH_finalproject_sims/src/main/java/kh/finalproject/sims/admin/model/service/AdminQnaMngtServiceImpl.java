@@ -139,6 +139,7 @@ public class AdminQnaMngtServiceImpl implements AdminQnaMngtService{
 		int pageCount = (totalRowCount / cnt) + mod;
 		
 		Search search = new Search(dataList, pNum, pageCount, cnt, 5, keyword, searchType);
+		search.setTotalRowCount(totalRowCount);
 		
 		return search; // 반환받은 결과 리턴
 	}

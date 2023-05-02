@@ -72,9 +72,9 @@
 														</tr>
 													</thead>
 													<tbody>
-														<c:forEach var="qna" items="${requestScope.paging.page}">
+														<c:forEach var="qna" items="${requestScope.paging.page}" varStatus="status">
 															<tr>
-																<td class="text-center">${qna.n}&nbsp;&nbsp;</td>
+																<td class="text-center">${paging.totalRowCount - ((paging.currentPage-1) * 10 + status.index)}&nbsp;&nbsp;</td>
 																<td>
 																	<a href="<%=request.getContextPath()%>/admin/qna/detail/${qna.aqNo}" style="font-weight: bold;">${qna.aqTitle}</a>
 																	<jsp:useBean id="now" class="java.util.Date" />

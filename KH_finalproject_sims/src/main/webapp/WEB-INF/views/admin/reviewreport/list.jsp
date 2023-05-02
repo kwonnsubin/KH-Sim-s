@@ -92,9 +92,9 @@
 														</tr>
 													</thead>
 													<tbody>
-														<c:forEach var="reviewreport" items="${requestScope.paging.page}">
+														<c:forEach var="reviewreport" items="${requestScope.paging.page}" varStatus="status">
 															<tr>
-																<td class="text-center">${reviewreport.n}</td>
+																<td class="text-center">${paging.totalRowCount - ((paging.currentPage-1) * 10 + status.index)}</td>
 																<td>
 																	<a href="<%=request.getContextPath()%>/admin/reviewreport/detail/${reviewreport.reviewNo}" style="font-weight: bold;">${reviewreport.reportReason}</a>
 																	<jsp:useBean id="now" class="java.util.Date" />

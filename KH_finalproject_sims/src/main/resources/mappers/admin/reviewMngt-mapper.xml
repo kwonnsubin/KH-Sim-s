@@ -40,7 +40,7 @@
             <when test="searchType != null and searchType == 'content'"> WHERE REVIEW_CONTENT LIKE '%'|| #{keyword} ||'%'</when>
         </choose>
     )
-    WHERE N BETWEEN 1 AND 5
+    WHERE N BETWEEN #{start} AND #{end}
 </select>
 
 

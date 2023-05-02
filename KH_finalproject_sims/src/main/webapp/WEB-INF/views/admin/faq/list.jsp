@@ -76,9 +76,9 @@
 														</tr>
 													</thead>
 													<tbody>
-														<c:forEach var="faq" items="${requestScope.paging.page}">
+														<c:forEach var="faq" items="${requestScope.paging.page}" varStatus="status">
 															<tr>
-																<td class="text-center">${faq.n}</td>
+																<td class="text-center">${paging.totalRowCount - ((paging.currentPage-1) * 10 + status.index)}</td>
 																<td><a href="<%=request.getContextPath()%>/admin/faq/detail/${faq.faqNo}" style="font-weight: bold;">${faq.faqTitle}</a></td>
 																<td class="text-center">${faq.adminId}</td>
 																<td class="text-center"><fmt:formatDate value="${faq.faqDate}" pattern="yyyy.MM.dd"/></td>

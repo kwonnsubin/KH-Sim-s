@@ -64,6 +64,7 @@ public class AdminFaqMngtServiceImpl implements AdminFaqMngtService{
 		int pageCount = (totalRowCount / cnt) + mod; 
 		
 		Search search = new Search(dataList, pNum, pageCount, cnt, 5, keyword, searchType); 
+		search.setTotalRowCount(totalRowCount);
 		
 		return search; 
 	}

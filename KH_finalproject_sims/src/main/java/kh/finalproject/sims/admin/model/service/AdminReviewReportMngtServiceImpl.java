@@ -56,15 +56,16 @@ public class AdminReviewReportMngtServiceImpl implements AdminReviewReportMngtSe
 		map.put("searchType", searchType);
 		map.put("reportStatus", reportStatus);
 		
-		List<AdminReviewReportMngtVo> dataList = dao.searchReviewReportPageList(map); // 한 페이지의 글 목록
+		List<AdminReviewReportMngtVo> dataList = dao.searchReviewReportPageList(map); 
 		
-		int totalRowCount = dao.getSearchReviewReportListCnt(map); // 글목록 총 개수를 알아야한다.
+		int totalRowCount = dao.getSearchReviewReportListCnt(map);
 		int mod = totalRowCount % cnt == 0 ? 0 : 1;
-		int pageCount = (totalRowCount / cnt) + mod; // 그래야지만 총 페이지수를 구할수있으니깐!
+		int pageCount = (totalRowCount / cnt) + mod; 
 		
-		Search search = new Search(dataList, pNum, pageCount, cnt, 5, keyword, searchType); // 페이징 처리해달라고함.
+		Search search = new Search(dataList, pNum, pageCount, cnt, 5, keyword, searchType);
+		search.setTotalRowCount(totalRowCount);
 		
-		return search; // 반환받은 결과 리턴
+		return search; 
 	}
 	
 }
