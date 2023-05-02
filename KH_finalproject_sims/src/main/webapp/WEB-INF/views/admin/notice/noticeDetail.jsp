@@ -87,7 +87,7 @@
 			                                <!-- </div> -->
 											<div class="col-sm-12">
 												<div class="form-group">
-			                                        <textarea class="form-control" name="ntcContent" rows="20" <c:if test="${cmd eq 'read' }">readonly</c:if>>${noticeDetail.ntcContent}</textarea>
+			                                        <textarea class="form-control" name="ntcContent" rows="20" style=resize:none; <c:if test="${cmd eq 'read' }">readonly</c:if>>${noticeDetail.ntcContent}</textarea>
 			                                    </div>
 											</div>
 										</div>

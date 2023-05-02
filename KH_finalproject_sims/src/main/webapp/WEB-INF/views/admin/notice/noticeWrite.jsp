@@ -53,7 +53,7 @@
 											</div>
 											<div class="col-sm-12">
 												<div class="form-group">
-			                                        <textarea class="form-control" name="ntcContent" rows="20" placeholder="내용을 입력하세요"></textarea>
+			                                        <textarea class="form-control" name="ntcContent" rows="20" placeholder="내용을 입력하세요" style=resize:none;></textarea>
 			                                    </div>
 											</div>
 										</div>
