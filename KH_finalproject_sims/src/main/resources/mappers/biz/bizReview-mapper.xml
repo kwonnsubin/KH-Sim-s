@@ -38,12 +38,7 @@
 	    LEFT JOIN  REVIEW_REPORT
         USING(REVIEW_NO)
 	    WHERE biz_id = #{bizid}
-	    AND REVIEW_HIDDEN != 1
-	  <!--   <choose>
-	    	<when test="reportStatus != null and reportStatus == 1"> AND REPORT_STATUS = 1</when>
-			<when test="reportStatus != null and reportStatus == 2"> AND REPORT_STATUS = 2</when>
-			<when test="reportStatus != null and reportStatus == 3"> AND REPORT_STATUS = 3</when>
-	    </choose> -->
+	   <!--  AND REVIEW_HIDDEN != 1 -->
         AND REPORT_STATUS = #{reportStatus}
 	)
 	WHERE rn BETWEEN #{start} AND #{end}
@@ -60,12 +55,7 @@
 	    LEFT JOIN  REVIEW_REPORT
         USING(REVIEW_NO)
 	    WHERE biz_id = #{bizid}
-	    AND REVIEW_HIDDEN != 1
-	  <!--   <choose>
-	    	<when test="reportStatus != null and reportStatus == 1"> AND REPORT_STATUS = 1</when>
-			<when test="reportStatus != null and reportStatus == 2"> AND REPORT_STATUS = 2</when>
-			<when test="reportStatus != null and reportStatus == 3"> AND REPORT_STATUS = 3</when>
-	    </choose> -->
+	    <!-- AND REVIEW_HIDDEN != 1 -->
         AND REPORT_STATUS = #{reportStatus}
 	)
   </select>
