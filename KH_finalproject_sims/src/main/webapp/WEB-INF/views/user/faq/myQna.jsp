@@ -117,27 +117,5 @@
 	<script src="<%= request.getContextPath() %>/resources/chain/assets/js/popup.js"></script>
 	<script src="<%= request.getContextPath() %>/resources/chain/assets/js/custom.js"></script>
 
-	<script>
-	// 내 답변 삭제
-	$(document).on("click", ".btn-ans-delete", function(event) {
-	    event.preventDefault();
-	    var aqNo = $(this).data("aqno");
-	    var aaNo = $(this).data("aano");
-	    var url = "${cpath}/faq/ansdelete/" + aqNo + "/" + aaNo;
-	    $.ajax({
-	        type: "GET",
-	        url: url,
-	        success: function(response) {
-	            // 삭제가 성공적으로 완료된 경우 처리
-	            alert("답변이 삭제되었습니다.");
-	        },
-	        error: function(xhr, status, error) {
-	            // 에러 발생 시 처리
-	            console.log(xhr.responseText);
-	        }
-	    });
-	});
-
-	</script>
 </body>
 </html>
