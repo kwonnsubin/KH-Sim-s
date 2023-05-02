@@ -2,45 +2,6 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="plan">
 
-	<!-- 가입 신청 정보 -->
-<!-- 	<parameterMap type="kh.finalproject.sims.user.model.vo.PlanOrderVo" id="orderCollectionMap">
-		<id column="ORDER_NO" property="orderNo"/>
-		<result column="USER_ID" property="userId"/>
-		<result column="PLAN_NO" property="planNo"/>
-		<result column="JOIN_CATEGORY" property="joinCategory"/>
-		<result column="SIM_TYPE" property="simType"/>
-		<result column="SIM_YN" property="simYn"/>
-		<result column="CURRENT_TELECOM" property="currentTelecom"/>
-		<result column="PLAN_BILL" property="planBill"/>
-		<result column="PLAN_PAY" property="planPay"/>
-		<result column="ORDER_DATE" property="orderDate"/>
-		<result column="ORDER_STATUS" property="orderStatus"/>
-		<result column="NET_NO" property="netNo"/>
-		<result column="GEN_NO" property="genNo"/>
-		<result column="ORDER_PRICE" property="orderPrice"/>
-		<result column="ORDER_DATA" property="orderData"/>
-		<result column="ORDER_VOICE" property="orderVoice"/>
-		<result column="ORDER_MESSAGE" property="orderMessage"/>
-		<result column="BIZ_ID" property="bizId"/>
-		<result column="ORDER_ADDRESS" property="orderAddress"/>
-		<collection column="ORDER_NO" property="payInfoCard" ofType="kh.finalproject.sims.user.model.vo.PayCardVo">
-			<id column="ORDER_NO" property="orderNo"/>
-			<result column="CARD_HOLDER" property="cardHolder"/>
-			<result column="CARD_SSN" property="cardSsn"/>
-			<result column="CARD_RELATIONSHIP" property="cardRelationship"/>
-			<result column="CARD_NUMBER" property="cardNumber"/>
-			<result column="CARD_EXPIRATION" property="cardExpiration"/>
-		</collection>
-		<collection column="ORDER_NO" property="payInfoAcc" ofType="kh.finalproject.sims.user.model.vo.PayAccVo">
-			<id column="ORDER_NO" property="orderNo"/>
-			<result column="ACC_HOLDER" property="accHolder"/>
-			<result column="ACC_SSN" property="accSsn"/>
-			<result column="ACC_RELATIONSHIP" property="accRelationship"/>
-			<result column="ACC_NUMBER" property="accNumber"/>
-			<result column="ACC_BANK" property="accBank"/>
-		</collection>
-	</parameterMap> -->
-
 	<!-- api 데이터 -->
 	<insert id="insertPlanData" parameterType="map">
 		insert into plan_table values(plan_seq.nextval, #{chargeName}
