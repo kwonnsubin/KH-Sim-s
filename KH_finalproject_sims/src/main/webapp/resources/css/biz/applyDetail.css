@@ -10,7 +10,7 @@
 	align-items: center; /*행을 수직으로 중앙정렬*/
 }
  table {
-    display:block;
+   /*  display:block; */
     width: 100%;
     margin: 0;
     /* border: 0; */
@@ -32,7 +32,8 @@
     /* padding: 10px; */
     border-radius: 5px;
     box-shadow: 2px 2px 5px rgba(0, 3, 0, 0.3);
-    outline: none
+    outline: none;
+    align-items: center;
 }
 .infoContent{
 	border-bottom: 1px solid black;
@@ -78,11 +79,11 @@
 	background: #ff838c!important;
 	font-weight: bold !important;
 }
-@media (max-width: 1200px) {
+/* @media (max-width: 1200px) {
   #wrap {
-    display: none; /*화면 너비가 지정 크기 이하일 때 사이드 바가 안보이게 함. */
+    display: none; 화면 너비가 지정 크기 이하일 때 사이드 바가 안보이게 함.
   }
-}
+} */
 .content{
 	position: relative;
     margin-left: 3%;
