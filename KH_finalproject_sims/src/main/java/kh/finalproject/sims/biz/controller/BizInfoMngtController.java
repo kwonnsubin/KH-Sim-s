@@ -90,25 +90,6 @@ public class BizInfoMngtController {
 		//고객센터 번호
 		List<bizInfoMngServiceVo> serviceList = service.selectListService(bizid);
 		System.out.println("serviceList :"+serviceList);
-		
-//		if (serviceList == null || serviceList.isEmpty()) {
-//		    serviceList = new ArrayList<bizInfoMngServiceVo>(); 
-//		    bizInfoMngServiceVo emptyService = new bizInfoMngServiceVo(); // netNo와 bizNetService를 0으로 초기화
-//		    emptyService.setNetNo(0);
-//		    emptyService.setBizNetService("0");
-//		    serviceList.add(emptyService); // 빈 서비스 객체를 리스트에 추가
-//		    System.out.println("serviceList가 null 일때 빈 리스트 생성 :"+serviceList);
-//
-//		} 
-		
-//		else {
-//		    for (bizInfoMngServiceVo service : serviceList) {
-//		        int netNo = service.getNetNo();
-//		        String bizNetService = service.getBizNetService();
-//		        System.out.println("netNo :"+netNo);
-//		        System.out.println("bizNetService :"+bizNetService);
-//		    }	
-//		}
 
 		mv.addObject("bizinfo", vo);
 		mv.addObject("serviceList",serviceList);
@@ -121,7 +102,6 @@ public class BizInfoMngtController {
 
 	
 	//내 정보 수정하기
-	//TODO 요금제 테이블의 bizName도 같이 바꿔야 함. 
 	@PostMapping("/modifyInfo")
 	public String modifyBizInfo(HttpServletRequest request
 			, Principal principal

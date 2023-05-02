@@ -50,19 +50,12 @@ public class BizMyPageController {
 			 
 			 BizMyPageVo vo = service.getLogo(bizid);
 			 System.out.println("로고 : "+vo);
-			 
-//			 String imagePath;
-//				if (vo.getLogoRenameFilename() == null) {
-//				  imagePath = "/resources/img/" + vo.getOriginalFilename();
-//				} else {
-//				  imagePath = "/resources/img/" + vo.getLogoRenameFilename();
-//				}
-//			 mv.addObject("imagePath",imagePath);
+
 			 
 			 String imagePath;
 			 if (vo == null) {
 			   // vo가 null인 경우 대체 이미지 경로 또는 링크
-			   imagePath = "/resources/img/default_logo.png"; // 경로를 사용하는 경우
+			   imagePath = "/resources/img/default_logo.png"; // 경로를 사용하는 경우 , jsp에서 onerror로 처리함. 
 			   // imagePath = "https://www.dummyimage.com/600x400/000/fff.jpg&text=Please+register+your+logo"; // 링크를 사용하는 경우
 			 } else if (vo.getLogoRenameFilename() == null) {
 			   imagePath = "/resources/img/" + vo.getOriginalFilename();
