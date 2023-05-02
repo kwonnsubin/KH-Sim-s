@@ -84,16 +84,16 @@ public class AdminQnaMngtDao {
 	public int deleteQnaReply(int rplNo) {
 		return sqlSession.delete("admin.deleteQnaReply", rplNo);
 	}
-	
-	// 답변수 +1
-	public int upAnswerCount(int aaNo) {
-		return sqlSession.update("admin.upAnswerCount", aaNo);
-	}
-	
-	// 답변수 -1
-	public int downAnswerCount(int aaNo) {
-		return sqlSession.update("admin.downAnswerCount", aaNo);
-	}
+
+//	// 답변수 +1
+//	public int upAnswerCount(int aaNo) {
+//		return sqlSession.update("admin.upAnswerCount", aaNo);
+//	}
+//	
+//	// 답변수 -1
+//	public int downAnswerCount(int aaNo) {
+//		return sqlSession.update("admin.downAnswerCount", aaNo);
+//	}
 	
 	// 답변수 조회 ajax
 	public int selectAnswerCount(int aqNo) {

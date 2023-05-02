@@ -55,10 +55,9 @@ public class AdminQnaMngtServiceImpl implements AdminQnaMngtService{
 	
 	// 답변 작성 ajax
 	@Override
-	@Transactional
 	public int insertQnaAnsWrite(AdminQnaAnsVo vo) {
-		dao.upAnswerCount(vo.getAaNo());
-		return dao.insertQnaAnsWrite(vo);
+		//dao.upAnswerCount(vo.getAaNo());
+		return dao.insertQnaAnsWrite(vo); // 답변수 +1 증가 -> 트리거
 	}
 	
 	// 답글 작성 ajax
@@ -69,10 +68,9 @@ public class AdminQnaMngtServiceImpl implements AdminQnaMngtService{
 
 	// 답변 삭제 ajax
 	@Override
-	@Transactional
 	public int deleteQnaAns(int aaNo) {
-		dao.downAnswerCount(aaNo);
-		return dao.deleteQnaAns(aaNo);
+		//dao.downAnswerCount(aaNo);
+		return dao.deleteQnaAns(aaNo); // 답변수-1 감소 -> 트리거
 	}
 
 	// 답변 수정

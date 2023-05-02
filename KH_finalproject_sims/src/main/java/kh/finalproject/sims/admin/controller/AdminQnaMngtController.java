@@ -177,7 +177,7 @@ public class AdminQnaMngtController {
 			 AdminQnaAnsVo vo
 			) {
 		int result = service.insertQnaAnsWrite(vo);
-		userService.upAnswers(vo.getAqNo());
+		//userService.upAnswers(vo.getAqNo());
 		if(result > 0) {
 			return "success";
 		} else {
@@ -206,7 +206,7 @@ public class AdminQnaMngtController {
 	public String deleteQnaAns(
 			 int aaNo
 			) {
-		userService.deAnswers(userService.getAnsByNo(aaNo).getAqNo());
+		//userService.deAnswers(userService.getAnsByNo(aaNo).getAqNo());
 		int result = service.deleteQnaAns(aaNo);
 		if(result > 0) {
 			return "success";

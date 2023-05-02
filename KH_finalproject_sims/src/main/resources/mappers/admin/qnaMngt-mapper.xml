@@ -158,18 +158,18 @@
 	</delete>
 	
 	<!-- 답변수 +1 -->
-	<update id="upAnswerCount" parameterType="_int">
+<!-- 	<update id="upAnswerCount" parameterType="_int">
 		update QNA
 		set aq_answers = aq_answers + 1
 		where aq_no = #{aqNo}
-	</update>
+	</update> -->
 	
 	<!-- 답변수 -1 -->
-	<update id="downAnswerCount" parameterType="_int">
+<!-- 	<update id="downAnswerCount" parameterType="_int">
 		update QNA
 		set aq_answers = aq_answers - 1
 		where aq_no = #{aqNo}
-	</update>
+	</update> -->
 	
 	<!-- 답변수 조회 ajax -->
 	<select id="selectAnswerCount" parameterType="_int" resultType="_int">
