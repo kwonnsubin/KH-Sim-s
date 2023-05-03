@@ -48,12 +48,12 @@
 										<div class="row">
 											<div class="col-sm-12">
 												<div class="form-group">
-                                        			<input type="text" class="form-control" name="ntcTitle" placeholder="제목을 입력하세요">
+                                        			<input type="text" class="form-control" name="ntcTitle" placeholder="제목을 입력하세요" required>
                                     			</div>
 											</div>
 											<div class="col-sm-12">
 												<div class="form-group">
-			                                        <textarea class="form-control" name="ntcContent" rows="20" placeholder="내용을 입력하세요" style=resize:none;></textarea>
+			                                        <textarea class="form-control" name="ntcContent" rows="20" placeholder="내용을 입력하세요" style=resize:none; required></textarea>
 			                                    </div>
 											</div>
 										</div>

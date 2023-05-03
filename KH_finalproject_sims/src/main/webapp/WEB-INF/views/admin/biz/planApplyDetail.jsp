@@ -57,19 +57,21 @@
 	                    			</div>
 	                    				<div class="card-body">
 		                                	<div class="form-group row">
-		                                    	<label for="orderNo" class="col-sm-1 col-form-label text-center">신청번호</label>
-		                                        <div class="col-sm-1">
+		                                    	<label for="orderNo" class="col-sm-2 col-form-label text-center">신청번호</label>
+		                                        <div class="col-sm-4">
 		                                            <input type="text" class="form-control"  name="orderNo" readonly value="${bizPlanApplyDetail.orderNo}">
 		                                        </div>
-		                                        <label for="planName" class="col-sm-1 col-form-label text-center">요금제명</label>
-		                                        <div class="col-sm-3">
+		                                        <label for="planName" class="col-sm-2 col-form-label text-center">요금제명</label>
+		                                        <div class="col-sm-4">
 		                                            <input type="text" class="form-control"  name="planName" <c:if test="${cmd eq 'read' }">readonly</c:if> value="${bizPlanApplyDetail.planName}">
 		                                        </div>
-		                                        <label for="orderDate" class="col-sm-1 col-form-label text-center">신청일자</label>
-		                                        <div class="col-sm-2">
+		                                     </div>
+		                                  	<div class="form-group row">	
+		                                        <label for="orderDate" class="col-sm-2 col-form-label text-center">신청일자</label>
+		                                        <div class="col-sm-4">
 		                                            <input type="text" class="form-control"  name="orderDate" <c:if test="${cmd eq 'read' }">readonly</c:if> value="<fmt:formatDate value="${bizPlanApplyDetail.orderDate}" pattern="yyyy.MM.dd"/>">
 		                                        </div>
-		                                        <label for="userSsn" class="col-sm-1 col-form-label text-center">신청 상태</label>
+		                                        <label for="userSsn" class="col-sm-2 col-form-label text-center">신청 상태</label>
 		                                        <div class="col-sm-2">
 		                                            <input type="text" class="form-control"  name="userSsn" <c:if test="${cmd eq 'read' }">readonly</c:if> 
 		                                            	<c:choose>
@@ -265,21 +267,21 @@
 		                                        <div class="col-sm-3">
 		                                            <input type="text" class="form-control"  name="genName" <c:if test="${cmd eq 'read' }">readonly</c:if> value="${bizPlanApplyDetail.genName}">
 		                                        </div>
-		                                        <label for="orderPrice" class="col-sm-1 col-form-label text-center">가입 기본료</label>
+		                                        <label for="orderPrice" class="col-sm-1 col-form-label text-center">기본료(원)</label>
 		                                        <div class="col-sm-3">
 		                                            <input type="text" class="form-control"  name="orderPrice" <c:if test="${cmd eq 'read' }">readonly</c:if> value="${bizPlanApplyDetail.orderPrice}">
 		                                        </div>
 		                                    </div>
 		                                    <div class="form-group row">
-		                                        <label for="orderData" class="col-sm-1 col-form-label text-center">가입 데이터</label>
+		                                        <label for="orderData" class="col-sm-1 col-form-label text-center">기본 데이터(MB)</label>
 		                                        <div class="col-sm-3">
 		                                            <input type="text" class="form-control"  name="orderData" <c:if test="${cmd eq 'read' }">readonly</c:if> value="${bizPlanApplyDetail.orderData}">
 		                                        </div>
-		                                        <label for="orderVoice" class="col-sm-1 col-form-label text-center">가입 음성</label>
+		                                        <label for="orderVoice" class="col-sm-1 col-form-label text-center">기본 음성(분)</label>
 		                                        <div class="col-sm-3">
 		                                            <input type="text" class="form-control"  name="orderVoice" <c:if test="${cmd eq 'read' }">readonly</c:if> value="${bizPlanApplyDetail.orderVoice}">
 		                                        </div>
-		                                        <label for="orderMessage" class="col-sm-1 col-form-label text-center">가입 문자</label>
+		                                        <label for="orderMessage" class="col-sm-1 col-form-label text-center">기본 문자(건)</label>
 		                                        <div class="col-sm-3">
 		                                            <input type="text" class="form-control"  name="orderMessage" <c:if test="${cmd eq 'read' }">readonly</c:if> value="${bizPlanApplyDetail.orderMessage}">
 		                                        </div>

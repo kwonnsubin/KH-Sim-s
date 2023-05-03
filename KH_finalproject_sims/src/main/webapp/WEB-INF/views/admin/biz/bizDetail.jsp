@@ -235,7 +235,7 @@
 		                                    <div class="form-group row">
 		                                        <label for="bizPhone" class="col-sm-1 col-form-label text-center">전화</label>
 		                                        <div class="col-sm-5">
-		                                            <input type="text" class="form-control"  name="bizPhone"  <c:if test="${cmd eq 'read' }">readonly</c:if> value="${applyDetail.bizPhone}">
+		                                            <input type="text" class="form-control"  name="bizPhone" id="bizPhone" <c:if test="${cmd eq 'read' }">readonly</c:if> value="${applyDetail.bizPhone}">
 		                                        </div>
 		                                        <label for="bizFax" class="col-sm-1 col-form-label text-center">팩스 </label>
 		                                        <div class="col-sm-5">
