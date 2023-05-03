@@ -35,48 +35,53 @@
 		<div class="container-sm div-sm">
 			<div class="row">
 				<div class="col-sm-4 mt-5">
-					<div class="card card-blue">
+					<div class="card">
+						<div class="card-header card-blue">
+							<div class="card-body">
+								<h4 class="text-center">요금제 정보</h4>
+							</div>
+						</div>
 						<div class="card-body">
-							<h4 class="text-center">요금제 정보</h4>
+							<table class="table table-borderless mb-0 text-center">
+								<tr>
+									<td>요금제명</td> 
+									<td>${plan.planName }</td>
+								</tr>
+								<tr>
+									<td>통신사</td>
+									<td>${plan.bizName }</td>
+								</tr>
+								<tr>
+									<td>통신망</td>
+									<td>${plan.netName }</td>
+								</tr>
+								<tr>
+									<td>데이터</td>
+									<td>${plan.planData }</td>
+								</tr>
+								<tr>
+									<td>음성</td>
+									<td>${plan.planVoice }</td>
+								</tr>
+								<tr>
+									<td>메시지</td>
+									<td>${plan.planMessage }</td>
+								</tr>
+							</table>
 						</div>
 					</div>
-					<table class="table table-bordered table-rd">
-						<tr>
-							<td>요금제명</td> 
-							<td>${plan.planName }</td>
-						</tr>
-						<tr>
-							<td>통신사</td>
-							<td>${plan.bizName }</td>
-						</tr>
-						<tr>
-							<td>통신망</td>
-							<td>${plan.netName }</td>
-						</tr>
-						<tr>
-							<td>데이터</td>
-							<td>${plan.planData }</td>
-						</tr>
-						<tr>
-							<td>음성</td>
-							<td>${plan.planVoice }</td>
-						</tr>
-						<tr>
-							<td>메시지</td>
-							<td>${plan.planMessage }</td>
-						</tr>
-					</table>
+					
 				</div>
 				<div class="col-sm-8 mt-5">
-					<div class="card card-blue">
-						<div class="card-body">
-							<h4 class="text-center">가입 조건 선택</h4>
-						</div>
-					</div>
 					<form id="option" action="${cpath}/plan/${plan.planNo}/order">
 						<div class="card">
+							<div class="card-header card-blue">
+								<div class="card-body">
+									<h4 class="text-center">가입 조건 선택</h4>
+								</div>
+							</div>
 							<div class="card-body">
-								<table class="w-100 table-p-10">
+								<table class="w-100 table-h-50">
 									<tr>
 										<td style="width: 20%">가입유형</td>
 										<td>
@@ -111,9 +116,9 @@
 							</div>
 						</div>
 						
-						<div class="card my-3">
-							<div class="card-body">
-								<table style="width: 100%">
+						<div class="card my-4">
+							<div class="card-body p-3">
+								<table class="w-100">
 									<tr style="width: 100%">
 										<td style="width: 50%">월 납부총액(VAT 포함)</td>
 										<td class="text-end" width="150"><fmt:formatNumber value="${plan.planPrice}" pattern="###,###"/>원</td>

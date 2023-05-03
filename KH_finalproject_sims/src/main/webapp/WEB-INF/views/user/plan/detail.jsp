@@ -142,7 +142,7 @@
 							</a>
 						</div>
 					</div>
-					<table class="mt-3 table-p-10">
+					<table class="mt-3 table-h-30">
 						<tr>
 							<td width="250px">개통 소요 시간</td>
 							<td>평균 ${biz.phoneOpTime}일</td>
@@ -209,7 +209,7 @@
 										</div>
 									</div>
 									<h6 class="card-text lh-base">
-										<a href="${cpath}/bizinfo/${biz.bizId}#biz-review">${review.reviewContent}</a>
+										${review.reviewContent}
 									</h6>
 								</div>
 							</div>
@@ -221,7 +221,7 @@
 			<!-- 기본 제공 초과시 -->
 			<div class="my-5">
 				<h6 class="fw-bold">기본 제공 초과 시</h6>
-				<table class="table-p-10 w-100 my-3 table table-borderless text-center table-rd-light">
+				<table class="table-h-30 w-100 my-3 table table-borderless text-center table-rd-light">
 					<tr class="table-active-bl">
 						<td>음성</td>
 						<td>문자</td>
