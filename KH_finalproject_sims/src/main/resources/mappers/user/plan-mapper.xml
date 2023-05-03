@@ -142,7 +142,7 @@
 		</trim>
 	</select>
 	
-	<select id="bizNameList" resultType="bvo">
+	<select id="bizNameList" resultType="string">
 		select biz_name from biz
 	</select>
 	

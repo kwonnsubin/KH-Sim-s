@@ -17,7 +17,7 @@ public interface UserPlanFindService {
 	
 	public int cntPlanFilterList(Map<String, Object> searchMap);
 
-	public List<BizInfoMngtVo> selectBizNameList();
+	public List<String> selectBizNameList();
 
 	public CustomQueVo selectCustomQueList(String userId);
 

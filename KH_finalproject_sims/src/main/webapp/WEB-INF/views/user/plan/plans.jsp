@@ -502,8 +502,8 @@
 					        										<fmt:parseNumber var="endNum" integerOnly="true" value="${fn:length(bizList) / 2 - 1}" />
 						        										<c:forEach items="${bizList}" var="bizList" end="${endNum}">
 																			<label class="mx-1">
-																		    	<input type="radio" name="bizName" value="${bizList.bizName}" />
-																		    	<span class="px-2">${bizList.bizName}</span>
+																		    	<input type="radio" name="bizName" value="${bizList}" />
+																		    	<span class="px-2">${bizList}</span>
 																			</label>
 						        										</c:forEach>
 						        									</c:when>
@@ -511,8 +511,8 @@
 					        										<fmt:parseNumber var="endNum" integerOnly="true" value="${fn:length(bizList) / 2}" />
 						        										<c:forEach items="${bizList}" var="bizList" end="${endNum}">
 																			<label class="mx-1">
-																		    	<input type="radio" name="bizName" value="${bizList.bizName}" />
-																		    	<span class="px-2">${bizList.bizName}</span>
+																		    	<input type="radio" name="bizName" value="${bizList}" />
+																		    	<span class="px-2">${bizList}</span>
 																			</label>
 						        										</c:forEach>
 						        									</c:when>
@@ -524,8 +524,8 @@
 					        										<fmt:parseNumber var="begNum" integerOnly="true" value="${fn:length(bizList) / 2}" />
 						        										<c:forEach items="${bizList}" var="bizList" begin="${begNum}">
 																			<label class="mx-1">
-																		    	<input type="radio" name="bizName" value="${bizList.bizName}" />
-																		    	<span class="px-2">${bizList.bizName}</span>
+																		    	<input type="radio" name="bizName" value="${bizList}" />
+																		    	<span class="px-2">${bizList}</span>
 																			</label>
 						        										</c:forEach>
 						        									</c:when>
@@ -533,8 +533,8 @@
 					        										<fmt:parseNumber var="begNum" integerOnly="true" value="${fn:length(bizList) / 2 + 1}" />
 						        										<c:forEach items="${bizList}" var="bizList" begin="${begNum}">
 																			<label class="mx-1">
-																		    	<input type="radio" name="bizName" value="${bizList.bizName}" />
-																		    	<span class="px-2">${bizList.bizName}</span>
+																		    	<input type="radio" name="bizName" value="${bizList}" />
+																		    	<span class="px-2">${bizList}</span>
 																			</label>
 						        										</c:forEach>
 						        									</c:when>

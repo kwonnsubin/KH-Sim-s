@@ -35,6 +35,9 @@ public class PlanVo {
 	private String netName;
 	private String genName;
 	
+	// count
+	private int listCount;
+	
 	// biz
 	private String bizId;
 	private double bizReviewStar;

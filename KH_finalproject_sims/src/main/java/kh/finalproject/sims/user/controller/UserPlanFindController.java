@@ -67,7 +67,7 @@ public class UserPlanFindController {
 			cnt = planFindService.cntPlanFilterList(searchMap);
 		}
 		
-		List<BizInfoMngtVo> bizList = planFindService.selectBizNameList();
+		List<String> bizList = planFindService.selectBizNameList();
 		
 		if(req.getUserPrincipal() != null) {
 			Principal prin = req.getUserPrincipal();
