@@ -106,7 +106,9 @@
 																</td>															
 																<td class="text-center">${reviewreport.bizId}</td>
 																<td class="text-center"><fmt:formatDate value="${reviewreport.reportDate}" pattern="yyyy.MM.dd"/> </td>
-																<td class="text-center">${reviewreport.reportStatus}</td>
+																<td class="text-center" style="${reviewreport.reportStatus eq '미확인' ? 'color: red;' : ''}">
+  																	${reviewreport.reportStatus}
+																</td>
 															</tr>
 														</c:forEach>
 													</tbody>
