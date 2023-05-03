@@ -10,6 +10,7 @@
 <head>
 <meta charset="UTF-8">
 <title>문의내역 상세페이지</title>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
 <link rel="stylesheet" href="${path}/resources/css/admin/qnaDetail.css"/>
 <script src="https://code.jquery.com/jquery-latest.min.js"></script>
 </head>
@@ -81,6 +82,7 @@
 								<div class="card table-card review-card">
 				                    <div class="card-header borderless">
 				                        <div>
+				                        	<i class="fa-regular fa-comment-dots"></i>
 					                        <span id="answersCount">${qnaDetail.aqAnswers }</span>
 					                        <span>개의 답변</span>				                        
 						                    <div class="text-right">
