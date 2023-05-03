@@ -10,12 +10,13 @@ $(document).ready(function() {
     })
     
     // 유저 비밀번호 체크
-    $('.user input[name=pwCheck]').change(function(){
+    $('.user input[name=pwCheck]').keyup(function(){
 		if($('.user input[name=pw]').val() === $('.user input[name=pwCheck]').val()) {
 			$(".user .pwCheckDiv").html("<p style='color: green;'>비밀번호가 같습니다.</p>");
 			$(".user .pwCheckDiv").css("display", "block");
 			if($('input[name=userEmail').attr('readonly') === 'readonly' && 
-					$(".user .idCheckDiv").html() === '<p style="color: green;">사용 가능한 아이디입니다.</p>'){
+					$(".user .idCheckDiv").html() === '<p style="color: green;">사용 가능한 아이디입니다.</p>'&&
+					$(".user .passwdCheck").css('display') === 'none'){
 				$(".userForm .btn").removeAttr("disabled");
 			}
 		} else {
@@ -25,12 +26,13 @@ $(document).ready(function() {
 		}
 	});
 	
-	$('.user input[name=pw]').change(function(){
+	$('.user input[name=pw]').keyup(function(){
 		if($('.user input[name=pw]').val() === $('.user input[name=pwCheck]').val()) {
 			$(".user .pwCheckDiv").html("<p style='color: green;'>비밀번호가 같습니다.</p>");
 			$(".user .pwCheckDiv").css("display", "block");
 			if($('input[name=userEmail').attr('readonly') === 'readonly' && 
-					$(".user .idCheckDiv").html() === '<p style="color: green;">사용 가능한 아이디입니다.</p>'){
+					$(".user .idCheckDiv").html() === '<p style="color: green;">사용 가능한 아이디입니다.</p>' &&
+					$(".user .passwdCheck").css('display') === 'none'){
 				$(".userForm .btn").removeAttr("disabled");
 			}
 		} else {
@@ -41,7 +43,7 @@ $(document).ready(function() {
 	});
 	
 	// 통신사 비밀번호 체크
-	$('.biz input[name=pwCheck]').change(function(){
+	$('.biz input[name=pwCheck]').keyup(function(){
 		if($('.biz input[name=pw]').val() === $('.biz input[name=pwCheck]').val()) {
 			$(".biz .pwCheckDiv").html("<p style='color: green;'>비밀번호가 같습니다.</p>");
 			$(".biz .pwCheckDiv").css("display", "block");
@@ -55,7 +57,7 @@ $(document).ready(function() {
 		}
 	});
 	
-	$('.biz input[name=pw]').change(function(){
+	$('.biz input[name=pw]').keyup(function(){
 		if($('.biz input[name=pw]').val() === $('.biz input[name=pwCheck]').val()) {
 			$(".biz .pwCheckDiv").html("<p style='color: green;'>비밀번호가 같습니다.</p>");
 			$(".biz .pwCheckDiv").css("display", "block");
@@ -69,7 +71,7 @@ $(document).ready(function() {
 		}
 	});
 	
-	$('.user input[name=id]').change(function(){
+	$('.user input[name=id]').keyup(function(){
 		if($('.user input[name=id]').val() != null) {
 			$(".user button[name=idBtn]").removeAttr("disabled");
 		} else {
@@ -77,7 +79,7 @@ $(document).ready(function() {
 		}
 	});
 	
-	$('.user input[name=userEmail]').change(function(){
+	$('.user input[name=userEmail]').keyup(function(){
 		if($('.user input[name=userEmail]').val() != null) {
 			$("button[name=emailBtn]").removeAttr("disabled");
 		} else {
@@ -191,5 +193,100 @@ $('input[name=emailCheck]').on("blur", function () {
 	}else{
 		$resultMsg.html("<p style='color: green;'>인증번호가 불일치합니다. 다시 확인해주세요</p>");
 		$resultMsg.css("display", "block");
+	}
+});
+
+// 숫자만 입력가능
+function checkInput(event) {
+  const input = event.target;
+  const error = input.parentElement.querySelector('.error-message');
+  if (!input.validity.valid) {
+    error.style.display = 'block';
+    input.value = input.value.replace(/[^0-9]/g, '');
+  } else {
+    error.style.display = 'none';
+  }
+}
+
+// 주민등록번호 포맷 xxxxxx-xxxxxxx 13자리
+function autoHyphenSsn(obj){
+  	var str = obj.value;
+    str = str.replace(/[^0-9]/g, '');
+    var tmp = '';
+    if (str.length < 7) {
+        obj.value = str;
+        return;
+    } else if (str.length < 13) {
+        tmp += str.substr(0, 6) + '-';
+        tmp += str.substr(6);
+    } else {
+        tmp += str.substr(0, 6) + '-';
+        tmp += str.substr(6, 7);
+        tmp += str.substr(13);
+    }
+    obj.value = tmp;
+}
+
+// 사업자등록번호 포맷 xxx-xx-xxxxx 10자리
+function autoHyphenCrn(obj) {
+  var str = obj.value;
+  str = str.replace(/[^0-9]/g, '');
+  var tmp = '';
+  if (str.length < 4) {
+    obj.value = str;
+    return;
+  } else if (str.length < 10) {
+    tmp += str.substr(0, 3) + '-';
+    tmp += str.substr(3);
+  } else {
+    tmp += str.substr(0, 3) + '-';
+    tmp += str.substr(3, 2) + '-';
+    tmp += str.substr(5);
+  }
+  obj.value = tmp;
+}
+
+// 전화번호 포맷 xxx-xxxx-xxxx 11자리
+function autoHyphenPhone(obj) {
+  var str = obj.value;
+  str = str.replace(/[^0-9]/g, '');
+  var tmp = '';
+  if (str.length < 4) {
+    obj.value = str;
+    return;
+  } else if (str.length < 11) {
+    tmp += str.substr(0, 3) + '-';
+    tmp += str.substr(3);
+  } else {
+    tmp += str.substr(0, 3) + '-';
+    tmp += str.substr(3, 4) + '-';
+    tmp += str.substr(7);
+  }
+  obj.value = tmp;
+}
+
+$('.inputId').on('keyup', function (e) {
+	var userIdCheck = RegExp(/^[A-Za-z0-9_\-]{6,20}$/);
+	var str = $(e.target).val();
+	
+	if(userIdCheck.test(str) == false){
+		$(".user .idCheckDiv").html("<p style='color: red;'>양식에 맞게 작성해주세요.</p>");
+		$(".user .idCheckDiv").css("display", "block");
+		$(".user button[name=idBtn]").attr('disabled', 'disabled');
+	} else {
+		$(".user .idCheckDiv").css("display", "none");
+		$(".user button[name=idBtn]").removeAttr("disabled");
+	}
+});
+
+$('.inputPw').on('keyup', function (e) {
+	var passwdCheck = RegExp(/^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#$%^*()\-_=+\\\|\[\]{};:\'",.<>\/?]).{8,16}$/);
+	var str = $(e.target).val();
+	
+	console.log(passwdCheck.test(str));
+	if(passwdCheck.test(str) == false){
+		$(".user .passwdCheck").css("display", "block");
+	} else {
+		$(".user .passwdCheck").css("display", "none");
 	}
 });
