@@ -48,7 +48,7 @@
 										<div class="row">
 											<div class="col-sm-12">
 												<div class="form-group">
-	                                       			<input type="text" class="form-control" name="ntcTitle" value="${faqlist.faqTitle }" readonly>
+	                                       			<input type="text" class="form-control" name="ntcTitle" value="${faqlist.faqTitle }" readonly style="background-color: white;">
 	                                   			</div>
 											</div>
 											<!-- <div class="row"> -->
@@ -67,7 +67,7 @@
 			                                <!-- </div> -->
 											<div class="col-sm-12">
 												<div class="form-group">
-			                                        <textarea class="form-control" name="ntcContent" rows="20" readonly>${faqlist.faqContent }</textarea>
+			                                        <textarea class="form-control" name="ntcContent" rows="20" readonly style="background-color: white;">${faqlist.faqContent }</textarea>
 			                                    </div>
 											</div>
 										</div>

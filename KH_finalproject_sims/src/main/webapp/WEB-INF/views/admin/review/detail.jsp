@@ -70,7 +70,7 @@
 			                                </div>
 											<div class="col-sm-12">
 												<div class="form-group">
-			                                        <textarea class="form-control" name="ntcContent" rows="20" readonly>${reviewdetail.reviewContent }</textarea>
+			                                        <textarea class="form-control" name="ntcContent" rows="20" readonly style="background-color: white;">${reviewdetail.reviewContent }</textarea>
 			                                    </div>
 											</div>
 										</div>

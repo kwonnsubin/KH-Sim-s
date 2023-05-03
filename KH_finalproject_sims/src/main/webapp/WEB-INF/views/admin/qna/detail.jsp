@@ -51,7 +51,7 @@
 										<div class="row">
 											<div class="col-sm-12">
 												<div class="form-group">
-	                                       			<input type="text" class="form-control" name="ntcTitle" value="${qnaDetail.aqTitle }" readonly>
+	                                       			<input type="text" class="form-control" name="ntcTitle" value="${qnaDetail.aqTitle }" readonly style="background-color: white;">
 	                                   			</div>
 											</div>
 												<div class="col-sm-12">
@@ -72,7 +72,7 @@
 				                                </div>
 											<div class="col-sm-12">
 												<div class="form-group">
-			                                        <textarea class="form-control" name="ntcContent" rows="20" readonly>${qnaDetail.aqContent }</textarea>
+			                                        <textarea class="form-control" name="ntcContent" rows="20" readonly style="background-color: white;">${qnaDetail.aqContent }</textarea>
 			                                    </div>
 											</div>
 										</div>

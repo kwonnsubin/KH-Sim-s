@@ -94,7 +94,6 @@
 	</delete>
 	
 	<!-- 문의 답변/답글 조회 -->
-	<!-- <select id="selectQnaAnsList" resultType="kh.finalproject.sims.admin.model.vo.AdminQnaAnsVo"> AdminQnaAnsVo안에  List<replyVo>가 들어있는데 이건 왜 안되는걸까요?? -->
 	<select id="selectQnaAnsList" resultMap="adminQnaAnsCollectionMap">
         SELECT AQ_NO, AA_NO, QNA_RPL.RPL_NO, QNA_ANS.ADMIN_ID AS ANS_ADMIN_ID, QNA_ANS.USER_ID AS ANS_USER_ID, AA_CONTENT, AA_DATE, AA_REDATE, QNA_RPL.RPL_CONTENT, QNA_RPL.ADMIN_ID AS RPL_ADMIN_ID, QNA_RPL.USER_ID AS RPL_USER_ID, QNA_RPL.RPL_DATE, QNA_RPL.RPL_REDATE
 		FROM QNA_ANS LEFT OUTER JOIN QNA_RPL USING (AA_NO)
