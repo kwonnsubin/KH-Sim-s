@@ -494,6 +494,10 @@
 		}
   	});
   	
+  	$('.plan-plus').on('click', function() {
+  		location.href = cPath + "/plans?&planData=999999&planVoice=999999&planMessage=999999&planPrice=999999&bizName=${bizInfo.bizName}";
+  	});
+  	
   	// 채널톡
   	(function() {
 		var w = window;

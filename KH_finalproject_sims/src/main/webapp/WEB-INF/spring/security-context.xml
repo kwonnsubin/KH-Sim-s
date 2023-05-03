@@ -10,7 +10,7 @@
 	<bean id="bcryptPasswordEncoder" class="org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder"></bean>
 	
 	<s:http auto-config="true" use-expressions="true">
-		<s:intercept-url pattern="/login" access="permitAll"/>
+		<s:intercept-url pattern="/login" access="isAnonymous()"/>
 		<s:intercept-url pattern="/logout" access="hasRole('ROLE_ADMIN, ROLE_USER, ROLE_BIZ')"/>
 		<s:intercept-url pattern="/mypage/**" access="hasRole('ROLE_USER')"/>
 		<s:intercept-url pattern="/planfind" access="hasRole('ROLE_USER')"/>

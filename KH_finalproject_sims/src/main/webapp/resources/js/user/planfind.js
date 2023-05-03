@@ -64,12 +64,12 @@ function insertQueVal(e) {
 				else if(data == 2) data = 50000;
 				else if(data == 3) data = 10000;
 				else if(data == 4) data = 5000;
-				else if(data == 5) data = 1000;
+				else if(data == 5) data = 999999;
 				
 				if(voice == 1) voice = 300;
 				else if(voice == 2) voice = 180;
 				else if(voice == 3) voice = 60;
-				else if(voice == 4) voice = 30;
+				else if(voice == 4) voice = 999999;
 				
 				if(tel == 4 || tel == 0) {
 					location.href = cPath + "/plans?planData=" + data + "&planVoice=" + voice + "&genNo=" + speed;

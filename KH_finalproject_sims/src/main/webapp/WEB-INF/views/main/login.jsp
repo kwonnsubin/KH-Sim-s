@@ -41,7 +41,7 @@
 				<c:url value="/login" var="loginUrl" />
 				<form:form name="f" action="${loginUrl}" method="POST">
 					<c:if test="${param.error != null}">
-						<p>아이디와 비밀번호가 잘못되었습니다.</p>
+						<p>입력한 아이디와 비밀번호로 가입된 계정이 없습니다.</p>
 					</c:if>
 				  <!-- ID input -->
 				  <div class="form-outline mb-4">

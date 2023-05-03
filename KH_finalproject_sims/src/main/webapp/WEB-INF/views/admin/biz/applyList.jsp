@@ -185,5 +185,12 @@
 	</div>
 <jsp:include page="/WEB-INF/views/admin/include/footer.jsp" />
 
+<script>
+	$('.custom-radio').on('click', function(e) {
+		$('.custom-radio').children('input[type=radio]').attr('checked', false);
+		$(e.target).children('input[type=radio]').attr('checked', true);
+	});
+</script>
+
 </body>
 </html>

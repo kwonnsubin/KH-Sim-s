@@ -21,10 +21,6 @@ $('.list-div').on('click', function(e) {
 	location.href = cPath + "/plan/" + planNo;
 });
 
-$('.plan-plus').on('click', function() {
-	location.href = cPath + "/plans";
-});
-
 $('.f-review-plus').on('click', function() {
 	for(var i = 5; i < 10; i++) {
 		$('.list-row').eq(i).css('display', '');

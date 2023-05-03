@@ -225,6 +225,8 @@ function dataRdoValCheck(e) {
 		$("#planData div[sign]").eq(1).css("left", "100%");
 		$("#planData div[sign]").eq(0).children("span").text("0");
 		$("#planData div[sign]").eq(1).children("span").text("100");
+		$("#planData div[inverse-left]").css('width', '70%');
+		$("#planData div[inverse-right]").css('width', '70%');
 	} else if($(e.target).next().text() === "100GB 이상") {
 		$("#planData input[type=range]").eq(0).val("100");
 		$("#planData input[type=range]").eq(1).val("100");
@@ -236,6 +238,8 @@ function dataRdoValCheck(e) {
 		$("#planData div[sign]").eq(1).css("left", "100%");
 		$("#planData div[sign]").eq(0).children("span").text("100");
 		$("#planData div[sign]").eq(1).children("span").text("100");
+		$("#planData div[inverse-left]").css('width', '70%');
+		$("#planData div[inverse-right]").css('width', '70%');
 	} else if($(e.target).next().text() === "50~100GB") {
 		$("#planData input[type=range]").eq(0).val("50");
 		$("#planData input[type=range]").eq(1).val("100");
@@ -247,6 +251,8 @@ function dataRdoValCheck(e) {
 		$("#planData div[sign]").eq(1).css("left", "100%");
 		$("#planData div[sign]").eq(0).children("span").text("50");
 		$("#planData div[sign]").eq(1).children("span").text("100");
+		$("#planData div[inverse-left]").css('width', '70%');
+		$("#planData div[inverse-right]").css('width', '70%');
 	} else if($(e.target).next().text() === "10~50GB") {
 		$("#planData input[type=range]").eq(0).val("10");
 		$("#planData input[type=range]").eq(1).val("50");
@@ -258,6 +264,8 @@ function dataRdoValCheck(e) {
 		$("#planData div[sign]").eq(1).css("left", "50%");
 		$("#planData div[sign]").eq(0).children("span").text("10");
 		$("#planData div[sign]").eq(1).children("span").text("50");
+		$("#planData div[inverse-left]").css('width', '70%');
+		$("#planData div[inverse-right]").css('width', '70%');
 	} else if($(e.target).next().text() === "5~10GB") {
 		$("#planData input[type=range]").eq(0).val("5");
 		$("#planData input[type=range]").eq(1).val("10");
@@ -269,6 +277,8 @@ function dataRdoValCheck(e) {
 		$("#planData div[sign]").eq(1).css("left", "10%");
 		$("#planData div[sign]").eq(0).children("span").text("5");
 		$("#planData div[sign]").eq(1).children("span").text("10");
+		$("#planData div[inverse-left]").css('width', '70%');
+		$("#planData div[inverse-right]").css('width', '70%');
 	} else if($(e.target).next().text() === "5GB 이하") {
 		$("#planData input[type=range]").eq(0).val("0");
 		$("#planData input[type=range]").eq(1).val("5");
@@ -280,6 +290,8 @@ function dataRdoValCheck(e) {
 		$("#planData div[sign]").eq(1).css("left", "5%");
 		$("#planData div[sign]").eq(0).children("span").text("0");
 		$("#planData div[sign]").eq(1).children("span").text("5");
+		$("#planData div[inverse-left]").css('width', '70%');
+		$("#planData div[inverse-right]").css('width', '70%');
 	}
 }
 
@@ -330,6 +342,8 @@ function voiceRdoValCheck(e) {
 		$("#planVoice div[sign]").eq(1).css("left", "100%");
 		$("#planVoice div[sign]").eq(0).children("span").text("0");
 		$("#planVoice div[sign]").eq(1).children("span").text("100");
+		$("#planVoice div[inverse-left]").css('width', '70%');
+		$("#planVoice div[inverse-right]").css('width', '70%');
 	} else if($(e.target).next().text() === "기본제공") {
 		$("#planVoice input[type=range]").eq(0).val("0");
 		$("#planVoice input[type=range]").eq(1).val("0");
@@ -341,6 +355,8 @@ function voiceRdoValCheck(e) {
 		$("#planVoice div[sign]").eq(1).css("left", "0%");
 		$("#planVoice div[sign]").eq(0).children("span").text("0");
 		$("#planVoice div[sign]").eq(1).children("span").text("0");
+		$("#planVoice div[inverse-left]").css('width', '70%');
+		$("#planVoice div[inverse-right]").css('width', '70%');
 	} else if($(e.target).next().text() === "300분 이상") {
 		$("#planVoice input[type=range]").eq(0).val("300");
 		$("#planVoice input[type=range]").eq(1).val("300");
@@ -352,6 +368,8 @@ function voiceRdoValCheck(e) {
 		$("#planVoice div[sign]").eq(1).css("left", "100%");
 		$("#planVoice div[sign]").eq(0).children("span").text("300");
 		$("#planVoice div[sign]").eq(1).children("span").text("300");
+		$("#planVoice div[inverse-left]").css('width', '70%');
+		$("#planVoice div[inverse-right]").css('width', '70%');
 	} else if($(e.target).next().text() === "180~300분") {
 		$("#planVoice input[type=range]").eq(0).val("180");
 		$("#planVoice input[type=range]").eq(1).val("300");
@@ -363,6 +381,8 @@ function voiceRdoValCheck(e) {
 		$("#planVoice div[sign]").eq(1).css("left", "100%");
 		$("#planVoice div[sign]").eq(0).children("span").text("180");
 		$("#planVoice div[sign]").eq(1).children("span").text("300");
+		$("#planVoice div[inverse-left]").css('width', '70%');
+		$("#planVoice div[inverse-right]").css('width', '70%');
 	} else if($(e.target).next().text() === "60~180분") {
 		$("#planVoice input[type=range]").eq(0).val("60");
 		$("#planVoice input[type=range]").eq(1).val("180");
@@ -374,6 +394,8 @@ function voiceRdoValCheck(e) {
 		$("#planVoice div[sign]").eq(1).css("left", "60%");
 		$("#planVoice div[sign]").eq(0).children("span").text("60");
 		$("#planVoice div[sign]").eq(1).children("span").text("180");
+		$("#planVoice div[inverse-left]").css('width', '70%');
+		$("#planVoice div[inverse-right]").css('width', '70%');
 	} else if($(e.target).next().text() === "60분 이하") {
 		$("#planVoice input[type=range]").eq(0).val("0");
 		$("#planVoice input[type=range]").eq(1).val("60");
@@ -385,6 +407,8 @@ function voiceRdoValCheck(e) {
 		$("#planVoice div[sign]").eq(1).css("left", "20%");
 		$("#planVoice div[sign]").eq(0).children("span").text("0");
 		$("#planVoice div[sign]").eq(1).children("span").text("60");
+		$("#planVoice div[inverse-left]").css('width', '70%');
+		$("#planVoice div[inverse-right]").css('width', '70%');
 	}
 }
 
@@ -433,6 +457,8 @@ function messageRdoValCheck(e) {
 		$("#planMessage div[sign]").eq(1).css("left", "100%");
 		$("#planMessage div[sign]").eq(0).children("span").text("0");
 		$("#planMessage div[sign]").eq(1).children("span").text("300");
+		$("#planMessage div[inverse-left]").css('width', '70%');
+		$("#planMessage div[inverse-right]").css('width', '70%');
 	} else if($(e.target).next().text() === "기본제공") {
 		$("#planMessage input[type=range]").eq(0).val("0");
 		$("#planMessage input[type=range]").eq(1).val("0");
@@ -444,6 +470,8 @@ function messageRdoValCheck(e) {
 		$("#planMessage div[sign]").eq(1).css("left", "0%");
 		$("#planMessage div[sign]").eq(0).children("span").text("0");
 		$("#planMessage div[sign]").eq(1).children("span").text("0");
+		$("#planMessage div[inverse-left]").css('width', '70%');
+		$("#planMessage div[inverse-right]").css('width', '70%');
 	} else if($(e.target).next().text() === "300건 이상") {
 		$("#planMessage input[type=range]").eq(0).val("300");
 		$("#planMessage input[type=range]").eq(1).val("300");
@@ -455,6 +483,8 @@ function messageRdoValCheck(e) {
 		$("#planMessage div[sign]").eq(1).css("left", "100%");
 		$("#planMessage div[sign]").eq(0).children("span").text("300");
 		$("#planMessage div[sign]").eq(1).children("span").text("300");
+		$("#planMessage div[inverse-left]").css('width', '70%');
+		$("#planMessage div[inverse-right]").css('width', '70%');
 	} else if($(e.target).next().text() === "100~300건") {
 		$("#planMessage input[type=range]").eq(0).val("100");
 		$("#planMessage input[type=range]").eq(1).val("300");
@@ -466,6 +496,8 @@ function messageRdoValCheck(e) {
 		$("#planMessage div[sign]").eq(1).css("left", "100%");
 		$("#planMessage div[sign]").eq(0).children("span").text("100");
 		$("#planMessage div[sign]").eq(1).children("span").text("300");
+		$("#planMessage div[inverse-left]").css('width', '70%');
+		$("#planMessage div[inverse-right]").css('width', '70%');
 	} else if($(e.target).next().text() === "50~100건") {
 		$("#planMessage input[type=range]").eq(0).val("50");
 		$("#planMessage input[type=range]").eq(1).val("100");
@@ -477,6 +509,8 @@ function messageRdoValCheck(e) {
 		$("#planMessage div[sign]").eq(1).css("left", "33%");
 		$("#planMessage div[sign]").eq(0).children("span").text("50");
 		$("#planMessage div[sign]").eq(1).children("span").text("100");
+		$("#planMessage div[inverse-left]").css('width', '70%');
+		$("#planMessage div[inverse-right]").css('width', '70%');
 	} else if($(e.target).next().text() === "50건 이하") {
 		$("#planMessage input[type=range]").eq(0).val("0");
 		$("#planMessage input[type=range]").eq(1).val("50");
@@ -488,6 +522,8 @@ function messageRdoValCheck(e) {
 		$("#planMessage div[sign]").eq(1).css("left", "16%");
 		$("#planMessage div[sign]").eq(0).children("span").text("0");
 		$("#planMessage div[sign]").eq(1).children("span").text("50");
+		$("#planMessage div[inverse-left]").css('width', '70%');
+		$("#planMessage div[inverse-right]").css('width', '70%');
 	}
 }
 
