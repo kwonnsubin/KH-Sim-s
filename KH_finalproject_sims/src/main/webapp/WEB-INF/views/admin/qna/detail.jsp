@@ -38,6 +38,21 @@
 									</div>
 								</div>
 							</div>
+							
+<p>
+  <a class="btn btn-primary" data-toggle="collapse" href="#collapseExample" role="button" aria-expanded="false" aria-controls="collapseExample">
+    Link with href
+  </a>
+  <button class="btn btn-primary" type="button" data-toggle="collapse" data-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
+    Button with data-target
+  </button>
+</p>
+<div class="collapse" id="collapseExample">
+  <div class="card card-body">
+    Some placeholder content for the collapse component. This panel is hidden by default but revealed when the user activates the relevant trigger.
+  </div>
+</div>
+							
 								<div class="col-md-12">
 									<div class="simsBtn m-b-15">
 										<%-- <input class="btn btn-primary right m-l-10" type="button" onclick="location.href='<%=request.getContextPath()%>/admin/qna/delete?aqNo=${qnaDetail.aqNo}'" value="삭제"> --%>
@@ -84,7 +99,10 @@
 					                        <span id="answersCount">${qnaDetail.aqAnswers }</span>
 					                        <span>개의 답변</span>				                        
 						                    <div class="text-right">
-										          <textarea class="form-control m-t-15 m-b-15" id="aaContent" rows="3" placeholder="댓글을 입력해보세요."></textarea>
+										          <textarea class="form-control m-t-15 m-b-15" id="aaContent" rows="3" placeholder="댓글을 입력해보세요." required></textarea>
+										          <div class="invalid-tooltip">
+				                                       	 답변을 작성해주세요.
+				                                  </div>
 										          <button type="button" class="btn btn-sm btn-primary" id="ans-btn">등록</button>			                                					                    
 						                    </div>
 					                    </div>
@@ -106,7 +124,6 @@
 		</div>
 	</div>
 </div>
-
 <jsp:include page="/WEB-INF/views/admin/include/footer.jsp" />
 </body>
 <script>
@@ -153,14 +170,6 @@ $(document).ready(function(){
  		html += '		<p class="m-t-15 m-b-15 text-muted">'+result[i].aaContent+'</p> ';
  		
  		
- 		html += '<div class="collapse" id="collapseExample">';
-		html += '  <div class="card card-body">';
-		html += '    Some placeholder content for the collapse component. This panel is hidden by default but revealed when the user activates the relevant trigger.';
-		html += '  </div>';
-		html += '</div>';
- 		
- 		
- 		
  		html += '		<label class="badge badge-light-primary" onclick="qnaReplyList('+result[i].aaNo+')">답글</label>';
  		html += '	</div>';
  		html += '	<div class="qnaReplyList"></div>'; 
@@ -174,21 +183,26 @@ $('#ans-btn').on("click", function() {
 	var adminId = "${username}";
 	var aqNo = "${aqNo}";
 	var aaContent = $("#aaContent").val();
-	$.ajax({
-		url: '<%=request.getContextPath()%>/admin/qna/insertAns',
-		data : {adminId: adminId, aqNo: aqNo, aaContent: aaContent},
-		type : "post",
-		success : function(result) {
-			if (result == "success") {
-			$('#aaContent').val('') 
-			getAnsList(); 
-			answerCount(aqNo);
+	if (aaContent) {
+		$.ajax({
+			url: '<%=request.getContextPath()%>/admin/qna/insertAns',
+			data : {adminId: adminId, aqNo: aqNo, aaContent: aaContent},
+			type : "post",
+			success : function(result) {
+				if (result == "success") {
+				$('#aaContent').val('') 
+				getAnsList(); 
+				answerCount(aqNo);
+				}
+			},
+			error : function() {
+				alert("등록 실패")
 			}
-		},
-		error : function() {
-			alert("등록 실패")
-		}
-	})
+		})	
+	}
+	else {
+		alert("댓글 내용을 입력하지 않았습니다.");
+	}
 })
 		
 // 답변 삭제 ajax
@@ -235,19 +249,23 @@ function qnaAnsUpdate(aaNo, adminId, aaContent, aaDate) {
 function qnaUpdateAns(aaNo) {
 	var aaContent = $('textarea[name=aaContent]').val();
 	var aaNo = aaNo;
-	$.ajax({
-		url: '<%=request.getContextPath()%>/admin/qna/updateAns',
-		data : {aaNo: aaNo, aaContent: aaContent},
-		type : "post",
-		success : function(result) {
-			if (result == "success") {
-				getAnsList();
+	if(aaContent){
+		$.ajax({
+			url: '<%=request.getContextPath()%>/admin/qna/updateAns',
+			data : {aaNo: aaNo, aaContent: aaContent},
+			type : "post",
+			success : function(result) {
+				if (result == "success") {
+					getAnsList();
+				}
+			},
+			error : function() {
+				alert("수정 실패")
 			}
-		},
-		error : function() {
-			alert("수정 실패")
-		}
-	})
+		})	
+	} else {
+		alert("댓글 내용을 입력하지 않았습니다.");
+	}
 }
 
 // 답글 리스트 ajax
@@ -304,20 +322,24 @@ function insertReply(aaNo) {
 	var rplContent = $("#no" + aaNo + " [name='rplContent']").val();
 	var aaNo = aaNo;
 	
-	$.ajax({
-        url : '<%=request.getContextPath()%>/admin/qna/insertReply',
-        data: {adminId: adminId, rplContent: rplContent, aaNo: aaNo},
-		type : "post",
-		success : function(result) {
-				if (result != null) {
-					console.log(result);
-					qnaReplyList(aaNo);
-				}
-			},
-		error : function() {
-			alert("서버 요청 실패!")
-		}
-	});	
+	if(rplContent) {
+		$.ajax({
+	        url : '<%=request.getContextPath()%>/admin/qna/insertReply',
+	        data: {adminId: adminId, rplContent: rplContent, aaNo: aaNo},
+			type : "post",
+			success : function(result) {
+					if (result != null) {
+						console.log(result);
+						qnaReplyList(aaNo);
+					}
+				},
+			error : function() {
+				alert("서버 요청 실패!")
+			}
+		});		
+	} else {
+		alert("댓글 내용을 입력하지 않았습니다.");
+	}
 }
 
 // 답글 수정 폼 ajax
@@ -347,20 +369,25 @@ function qnaUpdateReply(rplNo) {
 	var rplNo = rplNo;
 	var rplContent = $("#rplNo" + rplNo + " [name='rplContent']").val(); 
 	var aaNo = $("#rplNo" + rplNo + " [name='aaNo']").val();
-	$.ajax({
-        url : '<%=request.getContextPath()%>/admin/qna/updateReply',
-        data: {rplNo: rplNo, rplContent: rplContent, aaNo: aaNo},
-		type : "post",
-		success : function(result) {
-				if (result != null) {
-					console.log(result);			
-					qnaReplyList(aaNo);
-				}
-			},
-		error : function() {
-			alert("서버 요청 실패!")
-		}
-	});		
+	
+	if(rplContent) {
+		$.ajax({
+	        url : '<%=request.getContextPath()%>/admin/qna/updateReply',
+	        data: {rplNo: rplNo, rplContent: rplContent, aaNo: aaNo},
+			type : "post",
+			success : function(result) {
+					if (result != null) {
+						console.log(result);			
+						qnaReplyList(aaNo);
+					}
+				},
+			error : function() {
+				alert("서버 요청 실패!")
+			}
+		});		
+	} else {
+		alert("댓글 내용을 입력하지 않았습니다.");
+	}
 }
 
 // 답글 삭제 ajax
@@ -423,7 +450,7 @@ function deleteQna() {
 					}
 				},
 			error : function() {
-				alert("서버 요청 실패!")
+				alert("삭제 실패!")
 			}
 		});		
 	}
