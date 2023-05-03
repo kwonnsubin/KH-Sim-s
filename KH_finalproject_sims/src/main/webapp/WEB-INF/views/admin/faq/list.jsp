@@ -79,7 +79,13 @@
 														<c:forEach var="faq" items="${requestScope.paging.page}" varStatus="status">
 															<tr>
 																<td class="text-center">${paging.totalRowCount - ((paging.currentPage-1) * 10 + status.index)}</td>
-																<td><a href="<%=request.getContextPath()%>/admin/faq/detail/${faq.faqNo}" style="font-weight: bold;">${faq.faqTitle}</a></td>
+																<td><a href="<%=request.getContextPath()%>/admin/faq/detail/${faq.faqNo}" style="font-weight: bold;">${faq.faqTitle}</a>																						<jsp:useBean id="now" class="java.util.Date" />
+																	<fmt:parseNumber value="${now.time / (1000*60*60*24)}" integerOnly="true" var="nowTime" scope="request"/>
+																	<fmt:parseNumber value="${faq.faqDate.time / (1000*60*60*24)}" integerOnly="true" var="faqDateTime" scope="request"/>
+																	<c:if test="${nowTime - faqDateTime <= 3}">
+																		<img src="<%=request.getContextPath()%>/resources/img/admin/new.png" width="12px" alt="new" />
+																	</c:if>
+																</td>
 																<td class="text-center">${faq.adminId}</td>
 																<td class="text-center"><fmt:formatDate value="${faq.faqDate}" pattern="yyyy.MM.dd"/></td>
 															</tr>

@@ -54,6 +54,7 @@
 	<script src="<%= request.getContextPath() %>/resources/chain/assets/js/imagesloaded.js"></script>
 	<script src="<%= request.getContextPath() %>/resources/chain/assets/js/popup.js"></script>
 	<script src="<%= request.getContextPath() %>/resources/chain/assets/js/custom.js"></script>
+	<script src="https://kit.fontawesome.com/faa91ebb6a.js" crossorigin="anonymous"></script>
 
 </body>
 </html>

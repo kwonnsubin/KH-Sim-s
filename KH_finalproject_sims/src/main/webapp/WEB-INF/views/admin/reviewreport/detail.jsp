@@ -69,7 +69,7 @@
 			                                <!-- </div> -->
 											<div class="col-sm-12">
 												<div class="form-group">
-			                                        <textarea class="form-control" name="ntcContent" rows="20" readonly>${detail.reviewContent}</textarea>
+			                                        <textarea class="form-control" name="ntcContent" rows="20" readonly style="background-color: white;">${detail.reviewContent}</textarea>
 			                                    </div>
 											</div>
 										</div>

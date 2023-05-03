@@ -41,7 +41,7 @@
 									</div>
 								</div>
 							</div>
-							<form:form action="${pageContext.request.contextPath}/admin/faq/write" method="post">
+							<form:form action="${pageContext.request.contextPath}/admin/faq/write" method="post" id="faqForm">
 								<div class="col-md-12">
 									<div class="simsBtn m-b-15">
 										<input type="hidden" value="${username }" name="adminId">
@@ -79,6 +79,14 @@
 	.catch(error=>{
 		console.error(error);
 	});
+
+	$("#faqForm").submit(function() {
+		  if(! $("input[name=faqTitle]").val() ) {
+		    alert("제목을 입력해주세요.");
+		    return false;
+		  }
+		  return true;
+		});
 </script>
 </body>
 </html>

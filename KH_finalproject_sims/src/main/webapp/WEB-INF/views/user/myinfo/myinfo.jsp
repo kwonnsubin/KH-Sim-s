@@ -14,6 +14,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@100;300;400;500;700;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
 
 	<title>Sims</title>
 	
@@ -63,21 +64,23 @@
 	      
 	        <div class="mb-3">
 	              <label for="userName">이름</label>
-	              <input type="text" class="form-control" name="userName" value="${userInfo.userName}" style="background-color:white;" readonly>
+	              <input type="text" class="form-control" name="userName" value="${userInfo.userName}" style="background-color:white; cursor:default;" readonly>
 	              <div class="invalid-feedback">이름을 입력해주세요.</div>
 	        </div>
 	        
 	        <div class="mb-3">
 	              <label for="id">아이디</label>
-	              <input type="text" class="form-control" name="id" value="${userInfo.userId}" style="background-color:white;" readonly>
+	              <input type="text" class="form-control" name="id" value="${userInfo.userId}" style="background-color:white; cursor:default;" readonly>
 	              <div class="invalid-feedback">아이디를 입력해주세요.</div>
 	        </div>
 	        
 	        <div class="mb-3">
-	            <label for="pw">비밀번호</label>
-	            <input type="password" class="form-control" name="pw" placeholder="비밀번호" required>
+	            <label for="pw" data-tooltip="영문 대문자와 소문자, 숫자, 특수문자를 하나 이상 포함하여 8-16자리 암호를 작성해주세요">비밀번호 <i class="fa-solid fa-circle-question" style="color: #538cee;"></i></label>
+	            <input type="password" class="form-control inputPw" name="pw" placeholder="비밀번호" required>
 	            <div class="invalid-feedback">비밀번호를 입력하세요</div>
 	        </div>
+	        
+	        <div class="passwdCheck" style="display:none; font-size: 14px;"><p style='color: red;'>양식에 맞게 작성해주세요.</p></div>
 	          
 	        <div class="mb-3">
 	            <label for="pwCheck">비밀번호 확인</label>
@@ -85,7 +88,7 @@
 	            <div class="invalid-feedback">비밀번호를 입력하세요</div>
 	        </div>
 	          
-	        <div class="pwCheckDiv" style="display:none;"></div>
+	        <div class="pwCheckDiv" style="display:none; font-size: 14px;"></div>
 				
             <div class="row">
 	          <div class="col-9 mb-3 text-left">
@@ -104,7 +107,7 @@
 	            <div class="invalid-feedback">인증번호를 입력하세요</div>
 	        </div>
 		          
-	        <div class="emailCheckDiv" style="display:none;"></div>
+	        <div class="emailCheckDiv" style="display:none; font-size: 14px;"></div>
 	        
 	        <div class="mb-3">
 	            <label for="userPhone">전화번호</label>

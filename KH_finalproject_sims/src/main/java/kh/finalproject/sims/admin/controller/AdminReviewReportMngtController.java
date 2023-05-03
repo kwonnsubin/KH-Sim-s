@@ -111,7 +111,7 @@ public class AdminReviewReportMngtController {
 		return "redirect:/admin/reviewreport/detail/"+reviewNo;
 	}
 	
-	// ajax
+	// 처리 상태별 리스트 ajax
 	@ResponseBody
 	@PostMapping("/getReviewReportList")
 	public String getReviewReportList(

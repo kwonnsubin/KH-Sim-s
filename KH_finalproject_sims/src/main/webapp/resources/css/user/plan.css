@@ -90,16 +90,29 @@ a:active {
     border-radius: 1rem;
 }
 
-.table-p-10 table {
+.table-h-50 table {
 	border-collapse: collapse;
 	border-spacing: 0;
     }
 
-.table-p-10 td {
+.table-h-50 td {
 	padding: 5px; 
 }
 
-.table-p-10 tr {
+.table-h-50 tr {
+	height: 50px; 
+    }
+    
+.table-h-30 table {
+	border-collapse: collapse;
+	border-spacing: 0;
+    }
+
+.table-h-30 td {
+	padding: 5px; 
+}
+
+.table-h-30 tr {
 	height: 30px; 
     }
     
@@ -123,7 +136,6 @@ a:active {
 .card-blue {
 	background-color: #4b8ef1;
 	color: white;
-	border: 0;
 }
 
 input:focus {

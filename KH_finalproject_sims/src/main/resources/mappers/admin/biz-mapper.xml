@@ -198,11 +198,13 @@
 	<select id="selectWithdrawalDetail" resultType="adBizVo">
 	/** 관리자의 통신사 탈퇴정보 상세 (selectWithdrawalDetail)**/	
 		SELECT
-			*
+		    A.*
+		    , B.ENABLE
 		FROM
-			BIZ
+		    BIZ A
+		    INNER JOIN MEMBER B ON A.BIZ_ID=B.ID
 		WHERE 
-			BIZ_ID = #{bizId}		
+			A.BIZ_ID = #{bizId}			
 	
 	</select>
 	
@@ -245,6 +247,7 @@
             		, B.PLAN_NAME
             		, A.ORDER_STATUS
             		, A.ORDER_DATE
+            		, B.BIZ_NAME
 				FROM
 					PLAN_ORDER A
 					LEFT OUTER JOIN PLAN_TABLE B ON A.PLAN_NO = B.PLAN_NO
@@ -264,10 +267,14 @@
 						<when test="searchOption == 'userId'">
 							AND UPPER(A.USER_ID) LIKE UPPER('%'||#{searchBox}||'%')
 						</when>
+						<when test="searchOption == 'bizName'">
+							AND UPPER(B.BIZ_NAME) LIKE UPPER('%'||#{searchBox}||'%')
+						</when>
 					</choose>
 				</if>
 				<if test="(searchOption == null or searchOption == '') and !(searchBox == null or searchBox == '')">
-					AND (UPPER(B.PLAN_NAME) LIKE UPPER('%'||#{searchBox}||'%') OR AND UPPER(A.USER_ID) LIKE UPPER('%'||#{searchBox}||'%')) 
+					AND (UPPER(B.PLAN_NAME) LIKE UPPER('%'||#{searchBox}||'%') OR AND UPPER(A.USER_ID) LIKE UPPER('%'||#{searchBox}||'%')
+					OR AND UPPER(B.BIZ_NAME) LIKE UPPER('%'||#{searchBox}||'%')) 
 				</if>
 				ORDER BY A.ORDER_DATE DESC
 			) C
@@ -300,10 +307,14 @@
 						<when test="searchOption == 'userId'">
 							AND UPPER(A.USER_ID) LIKE UPPER('%'||#{searchBox}||'%')
 						</when>
+						<when test="searchOption == 'bizName'">
+							AND UPPER(B.BIZ_NAME) LIKE UPPER('%'||#{searchBox}||'%')
+						</when>
 					</choose>
 				</if>
 				<if test="(searchOption == null or searchOption == '') and !(searchBox == null or searchBox == '')">
-					AND (UPPER(B.PLAN_NAME) LIKE UPPER('%'||#{searchBox}||'%') OR AND UPPER(A.USER_ID) LIKE UPPER('%'||#{searchBox}||'%')) 
+					AND (UPPER(B.PLAN_NAME) LIKE UPPER('%'||#{searchBox}||'%') OR AND UPPER(A.USER_ID) LIKE UPPER('%'||#{searchBox}||'%')
+					OR AND UPPER(B.BIZ_NAME) LIKE UPPER('%'||#{searchBox}||'%')) ) 
 				</if>
 				
 	</select>
@@ -312,10 +323,13 @@
 	<select id="selectBizPlanApplyDetail" resultType="adBizVo">
 	/** 통신사 요금제 개통 신청 상세 (selectBizPlanApplyDetail)**/
 		
+		
 		 SELECT
 		    A.*
 		    , (SELECT user_name FROM user_table WHERE user_id = A.user_id) as userName
-		    , (SELECT user_ssn FROM user_table WHERE user_id = A.user_id) as userSsn
+		    , (SELECT RPAD(SUBSTR(USER_SSN, 1, 8),13,'*')
+ 				FROM USER_TABLE
+ 				WHERE USER_ID=a.user_id) as userSsn
 		    , (SELECT user_phone FROM user_table WHERE user_id = A.user_id) as userPhone
 		    , (SELECT user_email FROM user_table WHERE user_id = A.user_id) as userEmail
 		    , (SELECT plan_name FROM plan_table WHERE plan_no = A.plan_no) as planName
@@ -327,15 +341,16 @@
 		    , (SELECT CARD_NUMBER FROM PAYINFO_CARD WHERE ORDER_NO = A.ORDER_NO) AS CARD_NUMBER
 		    , (SELECT CARD_EXPIRATION FROM PAYINFO_CARD WHERE ORDER_NO = A.ORDER_NO) AS CARD_EXPIRATION
 		    , (SELECT ACC_HOLDER FROM PAYINFO_ACC WHERE ORDER_NO = A.ORDER_NO) AS ACC_HOLDER
-		    , (SELECT ACC_SSN FROM PAYINFO_ACC WHERE ORDER_NO = A.ORDER_NO) AS ACC_SSN
+		    , (SELECT UBSTSSN FROM PAYINFO_ACC WHERE ORDER_NO = A.ORDER_NO) AS ACC_SSN
 		    , (SELECT ACC_RELATIONSHIP FROM PAYINFO_ACC WHERE ORDER_NO = A.ORDER_NO) AS ACC_RELATIONSHIP
 		    , (SELECT ACC_NUMBER FROM PAYINFO_ACC WHERE ORDER_NO = A.ORDER_NO) AS ACC_NUMBER
 		    , (SELECT ACC_BANK FROM PAYINFO_ACC WHERE ORDER_NO = A.ORDER_NO) AS ACC_BANK
+		    , (SELECT BIZ_NAME FROM BIZ WHERE BIZ_ID = A.BIZ_ID)AS BIZ_NAME
 		     
 		 FROM
 		    plan_order A
 		 WHERE 
-			A.order_no = #{orderNo}
+		A.order_no = #{orderNo}
 	</select>
 	
 	<!-- 통신사 요금제 상세 정보 Ajax -->

@@ -37,7 +37,7 @@
 								</div>
 							</div>
 								<%-- <form:form action="faq/update/${faqlist.faqNo}" method="post"> <- 왜 이렇게 오류나는건지 이해가 안갑니다.. --%>
- 								<form:form action="${pageContext.request.contextPath}/admin/faq/update/${faqlist.faqNo}" method="post"> <!-- 해결 : 상대경로이용 -->
+ 								<form:form action="${pageContext.request.contextPath}/admin/faq/update/${faqlist.faqNo}" method="post" id="faqForm"> <!-- 해결 : 상대경로이용 -->
 								<div class="col-md-12">
 									<div class="simsBtn m-b-15">
 										<input class="btn btn-primary right" type="submit" value="저장">
@@ -83,4 +83,13 @@
 </div>
 <jsp:include page="/WEB-INF/views/admin/include/footer.jsp" />
 </body>
+<script>
+	$("#faqForm").submit(function() {
+		  if(! $("input[name=faqTitle]").val() ) {
+		    alert("제목을 입력해주세요.");
+		    return false;
+		  }
+		  return true;
+		});
+</script>
 </html>

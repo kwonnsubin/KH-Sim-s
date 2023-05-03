@@ -141,7 +141,7 @@ public class AdminFaqMngtController {
 	
 	
 	// 자주묻는질문 수정하기
-	@PostMapping("/faq/update/{faqNo}") // 왜 url이 두개나오는거지??(faqupdate.jsp) 해결중!!!!!!!!!
+	@PostMapping("/faq/update/{faqNo}") 
 	public ModelAndView selectFaqModify(
 		     ModelAndView mv
 		   , @PathVariable int faqNo
@@ -150,17 +150,6 @@ public class AdminFaqMngtController {
 		mv.setViewName("redirect:/admin/faq/detail/"+vo.getFaqNo());
 		return mv;
 	}
-	
-//	// 자주묻는질문 삭제하기
-//	@GetMapping("/faq/delete/{faqNo}")
-//	public ModelAndView deleteFaq(
-//			  ModelAndView mv
-//			, @PathVariable int faqNo
-//			) {
-//		service.deleteFaq(faqNo);
-//		mv.setViewName("redirect:/admin/faq/list");
-//		return mv;
-//	}
 	
 	// 자주묻는질문 삭제하기 ajax
 	@ResponseBody

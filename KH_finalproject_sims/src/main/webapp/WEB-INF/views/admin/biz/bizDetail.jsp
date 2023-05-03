@@ -151,8 +151,8 @@
 												<li class="breadcrumb-item"><a href="<%=request.getContextPath()%>/admin/applyList"><i class="breadcrumb-item"></i>통신사 관리</a></li>
 												<li class="breadcrumb-item"><a href=""><i class="breadcrumb-item"></i>통신사 
 													<c:choose>
-														<c:when test="${cmd eq 'read' }"> 정보</c:when>
-														<c:otherwise> 수정</c:otherwise>
+														<c:when test="${cmd eq 'read' }"> 관리 상세</c:when>
+														<c:otherwise> 정보 수정</c:otherwise>
 													</c:choose>
 												</a></li>
 											</ul>
@@ -447,7 +447,7 @@
 		                                    <div class="form-group row">
 		                                        <label for="bizId" class="col-sm-1 col-form-label text-center">아이디</label>
 		                                        <div class="col-sm-5">
-		                                            <input type="text" class="form-control"  name="bizId" <c:if test="${cmd eq 'read' }">readonly</c:if> value="${applyDetail.bizId}">
+		                                            <input type="text" class="form-control"  name="bizId" readonly <c:if test="${cmd eq 'read' }">readonly</c:if> value="${applyDetail.bizId}">
 		                                        </div>
 		                                        <label for="network" class="col-sm-1 col-form-label text-center">지원통신망</label>
 		                                        <c:choose>

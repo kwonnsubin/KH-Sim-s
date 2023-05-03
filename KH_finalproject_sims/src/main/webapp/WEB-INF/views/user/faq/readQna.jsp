@@ -8,7 +8,8 @@
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
 <c:set var="cpath" value="${pageContext.request.contextPath }"/>
-<% pageContext.setAttribute("replaceChar", "\n"); %>
+<% pageContext.setAttribute("CRLF", "\r\n"); %>
+<% pageContext.setAttribute("LF", "\n"); %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -31,6 +32,7 @@
     <link rel="stylesheet" href="<%= request.getContextPath() %>/resources/chain/assets/css/animated.css">
     <link rel="stylesheet" href="<%= request.getContextPath() %>/resources/chain/assets/css/owl.css">
     <link rel="stylesheet" href="<%= request.getContextPath() %>/resources/css/user/qna.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
     	
 </head>
 <body>
@@ -44,8 +46,13 @@
 			<div class="my-3 float-sm-none mt-5">
 				<h4>${question.aqTitle }</h4>
 			</div>
-			<div class="small my-3 text-end">
-				<span class="mx-3">${question.userId }</span>
+			<div class="small my-3 text-end" style="color: #808080">
+				<span class="mx-3">
+					${fn:substring(question.userId,0,3)}
+					<c:forEach begin="4" end="7">
+						*
+					</c:forEach>
+				</span>
 				<sec:authorize access="hasRole('ROLE_USER')">
 					<sec:authentication property="name" var="username"/>
 					<c:if test="${username eq question.userId}">
@@ -55,18 +62,21 @@
 						</span>
 					</c:if>	
 				</sec:authorize>
-				<span class="mx-3"><fmt:formatDate value="${question.aqRedate == null ? question.aqDate : question.aqRedate}" pattern="yy.MM.dd HH:mm"/></span>
+				<span>
+					<fmt:formatDate value="${question.aqRedate == null ? question.aqDate : question.aqRedate}" pattern="yy.MM.dd HH:mm"/>
+					<c:if test="${question.aqRedate != null}">수정</c:if>
+				</span>
 			</div>
-			<hr>
 			<!-- /질문제목 -->
 			
 			<!-- 질문내용 -->
 			<div class="row">
+				<hr>
 				<div class="my-4">
-					<div id="aq-content" class="col-sm-12 py-3 lh-xl">
-						${question.aqContent }
+					<div id="aq-content" class="col-sm-12 p-3 lh-xl">
+						<h6>${fn:replace(fn:replace(question.aqContent, CRLF, '<br>'), LF, '<br>')}</h6>
 					</div>
-					<div class="col-sm-auto pt-5 small">
+					<div class="col-sm-auto pt-5 small" style="color: #808080">
 						조회 ${question.aqViews }
 					</div>
 				</div>
@@ -88,8 +98,18 @@
 				<div class="answer-item">
 					<c:forEach items="${answers }" var="answer">
 						<div class="row my-4 mx-2">
-							<div class="answer-writer col-6 small p-2">
-								${answer.adminId == null ? answer.userId : answer.adminId}
+							<div class="answer-writer col-6 small p-2" style="color: #808080">
+								<span>
+									<c:if test="${answer.adminId ne null }">
+										SIMS<i class="fa-solid fa-circle-check mx-2 my-auto" style="color: #0000ff;"></i>
+									</c:if>
+									<c:if test="${answer.userId ne null }">
+										${fn:substring(answer.userId,0,3)}
+										<c:forEach begin="4" end="7">
+											*
+										</c:forEach>
+									</c:if>
+								</span>
 								<!-- 작성자=사용자이면 답변 수정,삭제 버튼 표시 -->
 								<span class="btn-ans-mod mx-3">
 									<sec:authorize access="hasRole('ROLE_USER')">
@@ -106,29 +126,29 @@
 								</span>
 							</div>
 							
-							<div class="col-6 small py-2 text-end">
-								<fmt:formatDate value="${answer.aaRedate == null ? answer.aaDate : answer.aaRedate}" pattern="yyyy.MM.dd HH:mm"/>
+							<div class="col-6 small py-2 text-end" style="color: #808080">
+								<fmt:formatDate value="${answer.aaRedate == null ? answer.aaDate : answer.aaRedate}" pattern="yy.MM.dd HH:mm"/>
 							</div>
 							
 							<div id="aa-content" class="col-12 pt-4 lh-lg">
-								${answer.aaContent }
+								${fn:replace(fn:replace(answer.aaContent, CRLF, '<br>'), LF, '<br>')}
 							</div>
+							<!-- 답변 수정 폼 -->
+							<div class="collapse" id="ans${answer.aaNo}">
+								<form action="${cpath }/faq/ansupdate/${answer.aaNo }" method="post">
+									<div class="input-group">
+										<textarea name="aaContent" class="form-control">${answer.aaContent }</textarea>
+										<button class="btn" type="submit">수정</button>
+									</div>
+								</form>
+							</div>
+							<!-- /답변 수정 폼 -->
 							<div class="text-end">
 								<button data-bs-target="#rplsBy${answer.aaNo}" class="btn-inherit btn btn-sm btn-outline-secondary" type="button"
 								data-bs-toggle="collapse" aria-expanded="false" aria-controls="collapseExample">댓글</button>
 							</div>
 
 							<!-- /답변 수정,삭제 버튼 -->
-							<!-- 답변 수정 폼 -->
-							<div class="collapse" id="ans${answer.aaNo}">
-								<form action="${cpath }/faq/ansupdate/${answer.aaNo }" method="post">
-									<div class="input-group">
-										<input type="text" name="aaContent" class="form-control" value="${answer.aaContent }" size="60">
-										<button class="btn" type="submit">수정</button>
-									</div>
-								</form>
-							</div>
-							<!-- /답변 수정 폼 -->
 							<div class="collapse card" id="rplsBy${answer.aaNo}">
 								<div class="card-body">
 									<!-- 댓글목록 -->
@@ -142,48 +162,60 @@
 										</c:if>
 										<c:if test="${not empty answer.aaRpls}">
 											<c:forEach items="${answer.aaRpls}" var="rpl" varStatus="status">
-												<div class="row">
-													<div class="reply-writer col small">
-														${rpl.adminId == null ? rpl.userId : rpl.adminId}
-														<!-- 작성자=사용자이면 댓글 수정,삭제 버튼 표시 -->
-														<span class="btn-rpl-mod small mx-3">
-															<sec:authorize access="hasRole('ROLE_USER')">
-																<c:if test="${username eq rpl.userId}">
-																	<div class="btn-group" role="group">
-																		<button data-bs-target="#rpl${rpl.rplNo}" class="btn btn-inherit btn-outline-secondary" 
-																		type="button" data-bs-toggle="collapse" aria-expanded="false"
-																			aria-controls="collapseExample">수정</button>
-																		<button type="button" class="btn btn-inherit btn-outline-secondary" 
-																	  	onclick="location.href='${pageContext.request.contextPath}/faq/rpldelete/${answer.aqNo}/${rpl.aaNo}/${rpl.rplNo}'">
-																	  	삭제</button>
-																	</div>
-																</c:if>	
-															</sec:authorize>
-														</span>
-														<!-- /댓글 수정,삭제 버튼 -->
-													</div>
-													<div class="reply-date col small py-1 text-end">
-														<fmt:formatDate value="${rpl.rplRedate == null ? rpl.rplDate : rpl.rplRedate}" pattern="yyyy.MM.dd HH:mm"/>
-													</div>
-												</div>
-												<!-- 기존 댓글 -->
-												<div class="reply-content">
-													<div class="py-2">
-														${rpl.rplContent }
-													</div>
-													
-												</div>
-												<!-- /기존 댓글 -->
-												<!-- 댓글 수정 폼 -->
-												<div class="collapse" id="rpl${rpl.rplNo}">
-													<form action="${cpath }/faq/rplupdate/${rpl.rplNo }" method="post">
-														<div class="input-group">
-															<input type="text" name="rplContent" class="form-control" value="${rpl.rplContent }" size="60">
-															<button class="btn" type="submit">수정</button>
+												<div class="m-2">
+													<div class="row">
+														<div class="reply-writer col small" style="color: #808080">
+															<span>
+																<c:if test="${rpl.adminId ne null }">
+																	SIMS<i class="fa-solid fa-circle-check mx-2 my-auto" style="color: #0000ff;"></i>
+																</c:if>
+																<c:if test="${rpl.userId ne null }">
+																	${fn:substring(rpl.userId,0,3)}
+																	<c:forEach begin="4" end="7">
+																		*
+																	</c:forEach>
+																</c:if>
+															</span>
+															<!-- 작성자=사용자이면 댓글 수정,삭제 버튼 표시 -->
+															<span class="btn-rpl-mod small mx-3">
+																<sec:authorize access="hasRole('ROLE_USER')">
+																	<c:if test="${username eq rpl.userId}">
+																		<div class="btn-group" role="group">
+																			<button data-bs-target="#rpl${rpl.rplNo}" class="btn btn-inherit btn-outline-secondary" 
+																			type="button" data-bs-toggle="collapse" aria-expanded="false"
+																				aria-controls="collapseExample">수정</button>
+																			<button type="button" class="btn btn-inherit btn-outline-secondary" 
+																		  	onclick="location.href='${pageContext.request.contextPath}/faq/rpldelete/${answer.aqNo}/${rpl.aaNo}/${rpl.rplNo}'">
+																		  	삭제</button>
+																		</div>
+																	</c:if>	
+																</sec:authorize>
+															</span>
+															<!-- /댓글 수정,삭제 버튼 -->
 														</div>
-													</form>
+														<div class="reply-date col small py-1 text-end" style="color: #808080">
+															<fmt:formatDate value="${rpl.rplRedate == null ? rpl.rplDate : rpl.rplRedate}" pattern="yy.MM.dd HH:mm"/>
+															<c:if test="${rpl.rplRedate ne null}">수정</c:if>
+														</div>
+													</div>
+													<!-- 기존 댓글 -->
+													<div class="reply-content">
+														<div class="py-2">
+															${rpl.rplContent }
+														</div>
+													</div>
+													<!-- /기존 댓글 -->
+													<!-- 댓글 수정 폼 -->
+													<div class="collapse" id="rpl${rpl.rplNo}">
+														<form action="${cpath }/faq/rplupdate/${rpl.rplNo }" method="post">
+															<div class="input-group">
+																<input type="text" name="rplContent" class="form-control" value="${rpl.rplContent }" size="60">
+																<button class="btn" type="submit">수정</button>
+															</div>
+														</form>
+													</div>
+													<!-- /댓글 수정 폼 -->
 												</div>
-												<!-- /댓글 수정 폼 -->
 												<c:if test="${not status.last}">
 													<hr>
 												</c:if>

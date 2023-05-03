@@ -59,16 +59,23 @@
 						<tr>
 							<td class="w-25">주민등록번호</td>
 							<td>
-								<input id="ssnFirst" type="text" style="width: 100px"> -
-								<input id="ssnLast" type="password" style="width: 100px">
+								<input id="ssnFirst" type="text" style="width: 100px" maxlength="6" 
+									oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');"> -
+								<input id="ssnLast" type="password" style="width: 100px" maxlength="7"
+									oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');">
+								<div class="alert-ssn"></div>
 							</td>
 						</tr>
 						<tr>
 							<td class="w-25">휴대폰 번호</td>
 							<td>
-								<input id="phoneFirst" type="text" style="width: 60px"> -
-								<input id="phoneMiddle" type="text" style="width: 64px"> -
-								<input id="phoneLast" type="text" style="width: 64px">
+								<input id="phoneFirst" type="text" style="width: 60px" maxlength="3"
+									oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');"> -
+								<input id="phoneMiddle" type="text" style="width: 64px" maxlength="4"
+									oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');"> -
+								<input id="phoneLast" type="text" style="width: 64px" maxlength="4"
+									oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');">
+								<div class="alert-phone"></div>
 							</td>
 						</tr>
 						<tr>
@@ -90,7 +97,8 @@
 						<tr>
 							<td>배송지 주소</td>
 							<td class="lh-lg">
-								<input type="text" id="sample6_postcode" placeholder="우편번호">
+								<input type="text" id="sample6_postcode" placeholder="우편번호"
+									oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');">
 								<input type="button" onclick="sample6_execDaumPostcode()" value="우편번호 찾기" class="btn btn-sm"><br>
 								<input type="text" id="sample6_address" placeholder="주소" style="min-width: 55%"> 
 								<input type="text" id="sample6_extraAddress" placeholder="참고항목" style="min-width: 44%"><br>
@@ -131,7 +139,7 @@
 			<div class="row my-3">
 				<div class="col-sm-12">
 					<!-- 카드 납부 -->
-					<form name="payInfo1" action="#" method="post" style="display: none;">
+					<form name="payInfo1" method="post" style="display: none;">
 						<table class="table w-100 payInfoTable table-borderless">
 							<tr>
 								<td class="w-25">카드 소유자명</td>
@@ -144,17 +152,25 @@
 							<tr>
 								<td>소유자 주민등록번호</td>
 								<td>
-									<input id="cardSsn1" type="text" style="width: 100px"> -
-									<input id="cardSsn2" type="password" style="width: 100px">
+									<input id="cardSsn1" type="text" style="width: 100px" maxlength="6"
+										oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');"> -
+									<input id="cardSsn2" type="password" style="width: 100px" maxlength="7"
+										oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');">
+									<div class="alert-cardssn"></div>
 								</td>
 							</tr>
 							<tr>
 								<td>카드번호</td>
 								<td>
-									<input name="card1" type="text" style="width: 60px"> -
-									<input name="card2" type="password" style="width: 60px"> -
-									<input name="card3" type="password" style="width: 60px"> -
-									<input name="card4" type="text" style="width: 60px">
+									<input name="card1" id="card1" type="text" style="width: 60px" maxlength="4"
+										oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');"> -
+									<input name="card2" id="card2" type="password" style="width: 60px" maxlength="4"
+										oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');"> -
+									<input name="card3" id="card3" type="password" style="width: 60px" maxlength="4"
+										oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');"> -
+									<input name="card4" id="card4" type="text" style="width: 60px" maxlength="4"
+										oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');">
+									<div class="card-alert"></div>
 								</td>
 							</tr>
 							<tr>
@@ -208,12 +224,12 @@
 								<td>요금청구서 수령방법</td>
 								<td>
 									<div class="form-check form-check-inline">
-										<input class="form-check-input" type="radio" name="planBill" id="mobile" value="1"> 
-										<label class="form-check-label" for="mobile">모바일</label>
+										<input class="form-check-input" type="radio" name="cardPlanBill" id="card-mobile" value="1"> 
+										<label class="form-check-label" for="card-mobile">모바일</label>
 									</div>
 									<div class="form-check form-check-inline">
-										<input class="form-check-input" type="radio" name="planBill" id="email" value="2"> 
-										<label class="form-check-label" for="email">이메일</label>
+										<input class="form-check-input" type="radio" name="cardPlanBill" id="card-email" value="2"> 
+										<label class="form-check-label" for="card-email">이메일</label>
 									</div>
 								</td>
 							</tr>
@@ -221,7 +237,7 @@
 					</form>
 					
 					<!-- 계좌 납부 -->
-					<form name="payInfo2" action="#" method="post" style="display: none;">
+					<form name="payInfo2" method="post" style="display: none;">
 						<table class="table w-100 payInfoTable table-borderless">
 							<tr>
 								<td class="w-25">예금주</td>
@@ -234,8 +250,11 @@
 							<tr>
 								<td>예금주 주민등록번호</td>
 								<td>
-									<input id="accountSsn1" type="text"> -
-									<input id="accountSsn2" type="password">
+									<input id="accountSsn1" type="text" maxlength="6"
+										oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');"> -
+									<input id="accountSsn2" type="password" maxlength="7" 
+										oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');">
+									<div class="alert-accssn"></div>
 								</td>
 							</tr>
 							<tr>
@@ -268,6 +287,7 @@
 								<td>계좌번호</td>
 								<td>
 									<input id="accNumber" type="text" placeholder="숫자만 입력해 주세요">
+									<div class="acc-alert"></div>
 								</td>
 							</tr>
 							<tr>
@@ -286,12 +306,12 @@
 								<td>요금청구서 수령방법</td>
 								<td>
 									<div class="form-check form-check-inline">
-										<input class="form-check-input" type="radio" name="planBill" id="mobile" value="1"> 
-										<label class="form-check-label" for="mobile">모바일</label>
+										<input class="form-check-input" type="radio" name="accPlanBill" id="acc-mobile" value="1"> 
+										<label class="form-check-label" for="acc-mobile">모바일</label>
 									</div>
 									<div class="form-check form-check-inline">
-										<input class="form-check-input" type="radio" name="planBill" id="email" value="2"> 
-										<label class="form-check-label" for="email">이메일</label>
+										<input class="form-check-input" type="radio" name="accPlanBill" id="acc-email" value="2"> 
+										<label class="form-check-label" for="acc-email">이메일</label>
 									</div>
 								</td>
 							</tr>
@@ -435,7 +455,163 @@
 		  });
 		});
 		
+		// 카드번호 유효성체크
+		const card4 = document.getElementById('card4');
+		card4.addEventListener('input', () => {
+			const cardNum = $('input[name="card1"]').val() + $('input[name="card2"]').val()
+					            	+ $('input[name="card3"]').val() + $('input[name="card4"]').val();
+			let cardNumArr = Array.from(cardNum); // 카드번호 배열로
+			const lastNum = Number(cardNumArr.pop()); // 마지막 숫자
+			cardNumArr.reverse(); // 뒤집기
+			cardNumArr = cardNumArr.map((num, idx) => idx % 2 === 0 ? Number(num) * 2 : Number(num)); // 홀수번째숫자 *2
+			cardNumArr = cardNumArr.map((num) => 9 ? num - 9 : num); // 9보다 큰 숫자에서 -9
+			let sum = cardNumArr.reduce((acc, curr) => acc + curr, 0); // 합계
+			sum += lastNum;
+			const modulo = sum % 10; // 합이 10의 배수인지 확인
+			if (!modulo) {
+				$('.card-alert').html("<p style='color: red;'>유효한 카드번호입니다.</p>");
+			} else {
+				$('.card-alert').html("<p style='color: red;'>유효하지 않은 카드번호입니다.</p>");
+			}
+		})
 		
+		// 계좌번호 자릿수
+		const accNum = document.getElementById('accNumber');
+		accNum.addEventListener('input', () => {
+			if (accNum.value.length < 10 || accNum.value.length > 14) {
+				$('.acc-alert').html("<p style='color: red;'>유효하지 않은 계좌번호입니다.</p>");
+			} else {
+				$('.acc-alert').html("");
+			}
+		})
+		
+		// 주민등록번호 자릿수
+		const ssnFirst = document.getElementById('ssnFirst');
+		const ssnLast = document.getElementById('ssnLast');
+		const cardSsn1 = document.getElementById('cardSsn1');
+		const cardSsn2 = document.getElementById('cardSsn2');
+		const accSsn1 = document.getElementById('accountSsn1');
+		const accSsn2 = document.getElementById('accountSsn2');
+		ssnFirst.addEventListener('input', () => {
+			if (ssnFirst.value.length < 6) {
+				$('.alert-ssn').html("<p style='color: red;'>6자 이상 입력해주세요.</p>")
+			} else {
+				$('.alert-ssn').html("");
+			}
+		})
+		ssnLast.addEventListener('input', () => {
+			if (ssnFirst.value.length < 7) {
+				$('.alert-ssn').html("<p style='color: red;'>7자 이상 입력해주세요.</p>")
+			} else {
+				$('.alert-ssn').html("");
+			}
+		})
+		cardSsn1.addEventListener('input', () => {
+			if (cardSsn1.value.length < 6) {
+				$('.alert-cardssn').html("<p style='color: red;'>6자 이상 입력해주세요.</p>")
+			} else {
+				$('.alert-cardssn').html("");
+			}
+		})
+		cardSsn2.addEventListener('input', () => {
+			if (cardSsn2.value.length < 7) {
+				$('.alert-cardssn').html("<p style='color: red;'>7자 이상 입력해주세요.</p>")
+			} else {
+				$('.alert-cardssn').html("");
+			}
+		})
+		accSsn1.addEventListener('input', () => {
+			if (accSsn1.value.length < 6) {
+				$('.alert-accssn').html("<p style='color: red;'>6자 이상 입력해주세요.</p>")
+			} else {
+				$('.alert-accssn').html("");
+			}
+		})
+		accSsn2.addEventListener('input', () => {
+			if (accSsn2.value.length < 7) {
+				$('.alert-accssn').html("<p style='color: red;'>7자 이상 입력해주세요.</p>")
+			} else {
+				$('.alert-accssn').html("");
+			}
+		})
+		
+		// 전화번호 자릿수
+		const phoneFirst = document.getElementById('phoneFirst');
+		const phoneMiddle = document.getElementById('phoneMiddle');
+		const phoneLast = document.getElementById('phoneLast');
+		phoneFirst.addEventListener('input', () => {
+			if (phoneFirst.value.length < 3) {
+				$('.alert-phone').html("<p style='color: red;'>3자 이상 입력해주세요.</p>")
+			} else {
+				$('.alert-phone').html("");
+			}
+		})
+		phoneMiddle.addEventListener('input', () => {
+			if (phoneMiddle.value.length < 3) {
+				$('.alert-phone').html("<p style='color: red;'>3자 이상 입력해주세요.</p>")
+			} else {
+				$('.alert-phone').html("");
+			}
+		})
+		phoneLast.addEventListener('input', () => {
+			if (phoneLast.value.length < 4) {
+				$('.alert-phone').html("<p style='color: red;'>4자 이상 입력해주세요.</p>")
+			} else {
+				$('.alert-phone').html("");
+			}
+		})
+		
+		// 자동 이동
+		$('#ssnFirst').on('keyup', function() {
+			if (this.value.length == 6) {
+				$('#ssnLast').focus()
+			}
+		})
+		
+		
+		$('#phoneFirst').on('keyup', function() {
+			if (this.value.length == 3) {
+				$('#phoneMiddle').focus()
+			}
+		})
+		
+		$('#phoneMiddle').on('keyup', function() {
+			if (this.value.length == 4) {
+				$('#phoneLast').focus()
+			}
+		})
+		
+		$('#cardSsn1').on('keyup', function() {
+			if (this.value.length == 6) {
+				$('#cardSsn2').focus()
+			}
+		})
+		
+		$('#card1').on('keyup', function() {
+			if (this.value.length == 4) {
+				$('#card2').focus()
+			}
+		})
+		
+		$('#card2').on('keyup', function() {
+			if (this.value.length == 4) {
+				$('#card3').focus()
+			}
+		})
+		
+		$('#card3').on('keyup', function() {
+			if (this.value.length == 4) {
+				$('#card4').focus()
+			}
+		})
+		
+		$('#accountSsn1').on('keyup', function() {
+			if (this.value.length == 6) {
+				$('#accountSsn2').focus()
+			}
+		})
+		
+		// 신청 데이터
 	    $(document).ready(function() {
 	        $('#submitBtn').click(function() {
 	        	if ($('input[name="planPay"]:checked').val() == null) {
@@ -443,7 +619,7 @@
 	        	} else {
 		        	const planPay = $('input[name="planPay"]:checked').val();
 		            if (planPay == '1') {
-			            if ($('select[name="currentTelecom"]').val() === '' || $('input[name="planBill"]').val() === '' 
+			            if ($('select[name="currentTelecom"]').val() === '' || $('input[name="cardPlanBill"]').val() === '' 
 			                    || $('#sample6_postcode').val() === '' || $('#sample6_address').val() === '' || $('#cardHolder').val() === ''
 			                    || $('#cardSsn1').val() === '' || $('#cardSsn2').val() === '' 
 			                    || $('input[name="card1"]').val() === '' || $('input[name="card2"]').val() === ''
@@ -460,7 +636,7 @@
 				            const simType = sessionStorage.getItem('simType');
 				            const simYn = sessionStorage.getItem('simYn');
 				            const currentTelecom = $('select[name="currentTelecom"]').val();
-				            const planBill = $('input[name="planBill"]').val();
+				            const planBill = $('input[name="cardPlanBill"]').val();
 				            const planPay = '1';
 				            const netNo = parseInt($('input[name="netNo"]').val());
 				            const genNo = parseInt($('input[name="genNo"]').val());
@@ -539,7 +715,7 @@
 							});
 			            }
 		            } else if (planPay == '2') {
-			            if ($('select[name="currentTelecom"]').val() === '' || $('input[name="planBill"]').val() === '' 
+			            if ($('select[name="currentTelecom"]').val() === '' || $('input[name="accPlanBill"]').val() === '' 
 			            		|| $('#sample6_postcode').val() === '' || $('#sample6_address').val() === '' 
 			            		|| $('#accHolder').val() === ''
 			                    || $('#accountSsn1').val() === '' || $('#accountSsn2').val() === '' 
@@ -556,7 +732,7 @@
 				            const simType = sessionStorage.getItem('simType');
 				            const simYn = sessionStorage.getItem('simYn');
 				            const currentTelecom = $('select[name="currentTelecom"]').val();
-				            const planBill = $('input[name="planBill"]').val();
+				            const planBill = $('input[name="accPlanBill"]').val();
 				            const planPay = '2';
 				            const netNo = parseInt($('input[name="netNo"]').val());
 				            const genNo = parseInt($('input[name="genNo"]').val());

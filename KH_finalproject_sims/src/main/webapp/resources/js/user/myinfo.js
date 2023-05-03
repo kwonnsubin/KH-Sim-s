@@ -133,3 +133,15 @@ $('.relBtn').on("click", function() {
 		}
 	 });
 });
+
+$('.inputPw').on('keyup', function (e) {
+	var passwdCheck = RegExp(/^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#$%^*()\-_=+\\\|\[\]{};:\'",.<>\/?]).{8,16}$/);
+	var str = $(e.target).val();
+	
+	console.log(passwdCheck.test(str));
+	if(passwdCheck.test(str) == false){
+		$(".passwdCheck").css("display", "block");
+	} else {
+		$(".passwdCheck").css("display", "none");
+	}
+});
