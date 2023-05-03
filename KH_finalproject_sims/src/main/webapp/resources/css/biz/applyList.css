@@ -16,6 +16,7 @@
     justify-content: center;
 	align-items: center;
 	border-style: none;
+	vertical-align: middle !important;
 }
 #contents{
     float: left;
@@ -83,11 +84,11 @@
 .btn{
 	background: #8dbdd7 !important;
 }
-@media (max-width: 1200px) {
+/* @media (max-width: 1200px) {
   #wrap {
-    display: none; /*화면 너비가 지정 크기 이하일 때 사이드 바가 안보이게 함. */
+    display: none; 화면 너비가 지정 크기 이하일 때 사이드 바가 안보이게 함.
   }
-}
+} */
 .content{
 	position: relative;
     margin-left: 3%;

@@ -50,6 +50,7 @@
     outline: none;
     position:relative;
     height: 470px;
+    vertical-align: middle !important; /*수직정렬*/
 }
 h2.tit{
     margin-top: 1%;

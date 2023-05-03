@@ -83,4 +83,7 @@
   font-weight: bold; /* 텍스트를 진하게 만듭니다 */
   font-size: 2.2em; /* 텍스트 크기를 1.2em으로 설정합니다 */
 }
+.material-symbols-outlined.modify-icon a{
+    color: #9d9e9f !important;
+}
 

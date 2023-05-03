@@ -106,7 +106,12 @@
 					<div class="text-center">
 						<img src="${path}${imagePath}" onerror="this.onerror=null; this.src='https://www.dummyimage.com/600x400/000/fff.jpg&text=Please+upload+your+logo';" class="mx-auto" style="width: 70% !important"/>
 					</div> 
+					<span class="material-symbols-outlined modify-icon" style="font-size: 50px; margin-bottom: -24%;">
+						<a href="${pageContext.request.contextPath}/biz/modifyInfo">settings</a>
+					</span>
 				</div>
+				
+				
 				
 				<div class="container" style="display: grid; grid-template-columns: repeat(2, 1fr); grid-template-rows: repeat(2, 1fr);">
 					<div class="cntMentBox" style="grid-column: 1 / 2; grid-row: 1 / 2;">
@@ -167,7 +172,7 @@
 				</div>
 			</div>
 			
-			<div class="container" style="margin-top: 9%;">
+			<div class="container" style="margin-top: 5%;">
 				<div>
 					<span class="mini-title">최근 7일간 가입자 수</span>
 				</div>
@@ -206,7 +211,7 @@
 			
 			</div>
 			
-			<div class="container" style="margin-top: 9%;">
+			<div class="container" style="margin-top: 0%;">
 				<div>
 					<span class="mini-title">최근 리뷰</span>
 				</div>

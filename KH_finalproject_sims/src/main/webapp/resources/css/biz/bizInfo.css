@@ -5,19 +5,6 @@
 	padding:0;
 	box-sizing: border-box;
 }
-/* table{
-	border:medium;
-	display: flex;
-	height: 100vh;
-	justify-content: center;
-	align-items: center;
-	background: #fff;
-}
-table th{
-	width: 180px;
-	margin: 10px;
-}
- */
  table {
     display:block;
     width: 100%;
@@ -32,6 +19,7 @@ table th{
 	border-radius: 5px;
     box-shadow: 2px 2px 5px rgba(0, 3, 0, 0.3);
     outline: none; 
+    vertical-align: middle !important;
 }
 img{
 	width : 100px !important ; /*템플릿 css가 100% 적용이라 우선순위 부여*/
@@ -69,8 +57,8 @@ h2.tit{
     letter-spacing: -0.05em;
 }
 .line{
-	width: 211px;
-    margin-left: 10%;
+	width: 168px;
+    margin-left: 9%;
     height: 4px !important;
     color: #488ed5;
     opacity: 1;

@@ -103,17 +103,17 @@
 				<th>
 					<span>기본음성(분)</span>
 				</th>
-				<td colspan="2">${planDetail.planVoice}</td>
+				<td colspan="2"><fmt:formatNumber value="${planDetail.planVoice}" pattern="#,##0" /></td>
 			</tr>
 			<tr>
 				<th>
 					<span>기본문자(건)</span>
 				</th>
-				<td colspan="2">${planDetail.planMessage}</td>
+				<td colspan="2"><fmt:formatNumber value="${planDetail.planMessage}" pattern="#,##0" /></td>
 				<th>
 					<span>기본데이터(mb)</span>
 				</th>
-				<td colspan="2">${planDetail.planData}</td>
+				<td colspan="2"><fmt:formatNumber value="${planDetail.planData}" pattern="#,##0" /></td>
 			</tr>
 			<tr>
 				<th>

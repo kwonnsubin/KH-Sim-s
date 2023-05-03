@@ -59,9 +59,9 @@
 	            
 	 
 	            var options = {
-		                title: '요금제별  가입자 수(누적 / 하루)',
-		                width: '100%',
-		                height: '400',              
+		                title: '요금제별  가입자 수(누적 / 일일)',
+		                /* width: '100%',
+		                height: '400',  */             
 		                legend: { position: 'none' },
 		                vAxis:{format: '#'} //y축 값을 소수점 없이 정수로 표현하기 위한 포맷 설정
 		                //여기서 color를 정해도 되지만, 그 경우에 요금제가 새로 등록되었을 경우 열의 개수와
@@ -321,16 +321,23 @@
 <div class="container mw-100" style="display:flex; margin:-103px 0 -200px 0; padding:150px 0 380px 0;">
 <jsp:include page="/WEB-INF/views/biz/nav.jsp"/>
 
-	<div class="container">
+	<div class="container" style="margin-left: 3%;">
 
-		<div class="container" style="margin-left: -277px;">
+		<div class="container" style="margin-left: 2%;" >
 				<h2 class="tit">통계 현황</h2>
 				<hr class="line">
 		</div>
 		
 		
-		<div class="container content" style="width: 104%; margin-left: -13%;">
-			<div class="container">
+		<div class="container content" style="width: 104%; margin-top: -3%;">
+			<div class="container row-gourp">
+				<div class="d-flex">
+						<div class="division-box">
+							<span>가입자 수</span>
+						</div>
+						<hr>
+				</div>
+					
 				<div class="row">
 					<div class="chart-container col-8 chartbox" id="chart_div2"></div>   
 					<div class="chart-container col-4 chartbox" id="chart_div" ></div>
@@ -338,26 +345,56 @@
 			</div>
 			  
 			
-			<div class="container">
+			<div class="container row-gourp">
+				<div class="d-flex">
+						<div class="division-box">
+							<span>가장 인기있는 요금제</span>
+						</div>
+						<hr>
+				</div>
+			
 				<div class="row">
 					<!-- 원형차트 / 가장 인기 있는 요금제 기준-->
 				    <div class="col chartbox" id="piechart" style="width: 900px; height: 500px;" ></div> 
 				    <div class="col chartbox" id="piechart2" style="width: 900px; height: 500px;"></div>
 			    </div>
+			    
+			 </div>
+			 
+			 <div class="container row-gourp">   
+					 <div class="d-flex">
+							<div class="division-box">
+								<span>통신사 이용</span>
+							</div>
+							<hr>
+					</div>
+			 
 			    <div class="row">
 				      <!-- 도넛 차트 / 통신사 전체 기준-->
 				    <div class="col chartbox" id="donutchart" style="width: 900px; height: 500px;"></div>
 					<div class="col chartbox" id="donutchart2" style="width: 900px; height: 500px;"></div>
 			    </div>
+			  </div>
+			    
 			    <!-- 한 페이지에 여러 차트 그리는 법 -->
-			    <!--  <table class="columns">
+				<!-- <table class="columns">
+			      <tr>
+			        <td><div id="chart_div2" style="border: 1px solid #ccc"></div></td>
+			        <td><div id="chart_div" style="border: 1px solid #ccc"></div></td>
+			      </tr>
+			      <tr>
+			        <td><div id="piechart" style="border: 1px solid #ccc"></div></td>
+			        <td><div id="piechart2" style="border: 1px solid #ccc"></div></td>
+			      </tr>
 			      <tr>
 			        <td><div id="donutchart" style="border: 1px solid #ccc"></div></td>
 			        <td><div id="donutchart2" style="border: 1px solid #ccc"></div></td>
 			      </tr>
 			    </table>
+			    
 			     -->
 		    </div>
+		    
 	    </div>
     
     </div>
@@ -375,6 +412,21 @@
 	<script src="<%= request.getContextPath() %>/resources/chain/assets/js/custom.js"></script>
 	<script src="<%= request.getContextPath() %>/resources/js/user/myinfo.js"></script>
 	  
+<script>
+	  //create trigger to resizeEnd event     
+		$(window).resize(function() {
+		    if(this.resizeTO) clearTimeout(this.resizeTO);
+		    this.resizeTO = setTimeout(function() {
+		        $(this).trigger('resizeEnd');
+		    }, 500);
+		});
+		
+		//redraw graph when window resize is completed  
+		$(window).on('resizeEnd', function() {
+		    drawChart(data); 
+		});
+</script>
+
 <script> //채널톡
   (function(){var w=window;if(w.ChannelIO){return w.console.error("ChannelIO script included twice.")}var ch=function(){ch.c(arguments)};ch.q=[];ch.c=function(args){ch.q.push(args)};w.ChannelIO=ch;function l(){if(w.ChannelIOInitialized){return}w.ChannelIOInitialized=true;var s=document.createElement("script");s.type="text/javascript";s.async=true;s.src="https://cdn.channel.io/plugin/ch-plugin-web.js";var x=document.getElementsByTagName("script")[0];if(x.parentNode){x.parentNode.insertBefore(s,x)}}if(document.readyState==="complete"){l()}else{w.addEventListener("DOMContentLoaded",l);w.addEventListener("load",l)}})();
 

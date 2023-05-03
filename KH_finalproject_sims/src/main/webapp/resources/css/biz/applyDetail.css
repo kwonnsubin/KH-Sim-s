@@ -21,6 +21,7 @@
 	align-items: center;
 	border-style: none;
 	position: relative;
+	
 }
 .table th {
   background-color: #ecf7fd !important;
@@ -34,6 +35,7 @@
     box-shadow: 2px 2px 5px rgba(0, 3, 0, 0.3);
     outline: none;
     align-items: center;
+    vertical-align: middle !important;
 }
 .infoContent{
 	border-bottom: 1px solid black;
