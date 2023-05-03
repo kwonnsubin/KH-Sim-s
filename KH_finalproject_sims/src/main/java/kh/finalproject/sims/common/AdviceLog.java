@@ -24,7 +24,7 @@ public class AdviceLog {
 	@Pointcut("execution(public * kh.finalproject.sims..*Dao.*(..))")
 	public void daoPointCut() { }
 	
-	@Pointcut("execution(public * kh.finalproject.sims..*ServiceImpl.*(..))")
+//	@Pointcut("execution(public * kh.finalproject.sims..*ServiceImpl.*(..))")
 	public void serviceImplPointCut() { }
 	
 	@Around("controllerPointCut()")
@@ -47,7 +47,8 @@ public class AdviceLog {
 		returnObj = pjp.proceed();
 		stopwatch.stop();
 		
-		logger.info("▶Ctrl Return[" + stopwatch.getTotalTimeMillis() + "] : " + returnObj);
+		if(!pjp.getSignature().getName().equals("selectPlanList") && !pjp.getSignature().getName().equals("selectPlanFilterList"))
+			logger.info("▶Ctrl Return[" + stopwatch.getTotalTimeMillis() + "] : " + returnObj);
 		return returnObj;
 	}
 	
@@ -68,12 +69,13 @@ public class AdviceLog {
 		returnObj = pjp.proceed();
 		stopwatch.stop();
 		
-		logger.info("▶▶▶DAO Return[" + stopwatch.getTotalTimeMillis() + "] : " + returnObj);
+		if(!pjp.getSignature().getName().equals("selectPlanList") && !pjp.getSignature().getName().equals("selectPlanFilterList"))
+			logger.info("▶▶▶DAO Return[" + stopwatch.getTotalTimeMillis() + "] : " + returnObj);
 		
 		return returnObj;
 	}
 	
-	@Around("serviceImplPointCut()")
+//	@Around("serviceImplPointCut()")
 	public Object aroundServiceImplPointCut(ProceedingJoinPoint pjp) throws Throwable {
 		Object returnObj = null;
 		
@@ -90,7 +92,8 @@ public class AdviceLog {
 		returnObj = pjp.proceed();
 		stopwatch.stop();
 		
-		logger.info("▶▶Srvc Return[" + stopwatch.getTotalTimeMillis() + "] : " + returnObj);
+		if(!pjp.getSignature().getName().equals("selectPlanList") && !pjp.getSignature().getName().equals("selectPlanFilterList"))
+			logger.info("▶▶Srvc Return[" + stopwatch.getTotalTimeMillis() + "] : " + returnObj);
 		
 		return returnObj;
 	}
