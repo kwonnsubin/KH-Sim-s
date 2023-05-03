@@ -103,11 +103,7 @@ public class UserFaqController {
 			) {
 		service.viewCount(aqNo);
 		UserQnaVo question = service.selectQnaDetail(aqNo);
-		question.setAqContent(question.getAqContent().replaceAll(System.lineSeparator(), "<br>"));
 		List<UserAnsVo> answers = service.selectAnsList(aqNo);
-		for(int i = 0; i < answers.size(); i++) {
-			answers.get(i).setAaContent(answers.get(i).getAaContent().replaceAll(System.lineSeparator(), "<br>"));
-		}
 		mv.addObject("question", question);
 		mv.addObject("answers", answers);
 		mv.setViewName("user/faq/readQna");

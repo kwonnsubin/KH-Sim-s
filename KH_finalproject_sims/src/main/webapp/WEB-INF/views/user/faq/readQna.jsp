@@ -8,7 +8,8 @@
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
 <c:set var="cpath" value="${pageContext.request.contextPath }"/>
-<% pageContext.setAttribute("replaceChar", "\n"); %>
+<% pageContext.setAttribute("CRLF", "\r\n"); %>
+<% pageContext.setAttribute("LF", "\n"); %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -64,7 +65,7 @@
 			<div class="row">
 				<div class="my-4">
 					<div id="aq-content" class="col-sm-12 py-3 lh-xl">
-						${question.aqContent }
+						${fn:replace(fn:replace(question.aqContent, CRLF, '<br>'), LF, '<br>')}
 					</div>
 					<div class="col-sm-auto pt-5 small">
 						조회 ${question.aqViews }
@@ -111,24 +112,24 @@
 							</div>
 							
 							<div id="aa-content" class="col-12 pt-4 lh-lg">
-								${answer.aaContent }
+								${fn:replace(fn:replace(answer.aaContent, CRLF, '<br>'), LF, '<br>')}
 							</div>
+							<!-- 답변 수정 폼 -->
+							<div class="collapse" id="ans${answer.aaNo}">
+								<form action="${cpath }/faq/ansupdate/${answer.aaNo }" method="post">
+									<div class="input-group">
+										<textarea name="aaContent" class="form-control">${answer.aaContent }</textarea>
+										<button class="btn" type="submit">수정</button>
+									</div>
+								</form>
+							</div>
+							<!-- /답변 수정 폼 -->
 							<div class="text-end">
 								<button data-bs-target="#rplsBy${answer.aaNo}" class="btn-inherit btn btn-sm btn-outline-secondary" type="button"
 								data-bs-toggle="collapse" aria-expanded="false" aria-controls="collapseExample">댓글</button>
 							</div>
 
 							<!-- /답변 수정,삭제 버튼 -->
-							<!-- 답변 수정 폼 -->
-							<div class="collapse" id="ans${answer.aaNo}">
-								<form action="${cpath }/faq/ansupdate/${answer.aaNo }" method="post">
-									<div class="input-group">
-										<input type="text" name="aaContent" class="form-control" value="${answer.aaContent }" size="60">
-										<button class="btn" type="submit">수정</button>
-									</div>
-								</form>
-							</div>
-							<!-- /답변 수정 폼 -->
 							<div class="collapse card" id="rplsBy${answer.aaNo}">
 								<div class="card-body">
 									<!-- 댓글목록 -->
