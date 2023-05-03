@@ -37,20 +37,20 @@
 					<form action="${cpath }/faq/qna/write" method="post" id="writeQna">
 						<div class="py-2">
 							<input type="hidden" value="${username }" name="userId"> 
-							<input class="none-border full" type="text" name="aqTitle" size="60"
+							<input class="border-0 w-100" type="text" name="aqTitle" 
 								placeholder="예시) 기존 통신사는 직접 해지해야 되나요?">
 						</div>
 						<hr>
 						<div class="py-2">
-							<textarea class="none-border full" rows="10" name="aqContent"
+							<textarea class="border-0 w-100" rows="10" name="aqContent"
 							placeholder="현재 사용하시는 통신사 혹은 질문과 관련된 자세한 내용을 함께 적어주시면 더 정확한 답변이 가능해요."></textarea>
 						</div>
 					</form>
 				</div>
 			</div>
-			<div class="btn-group-lg">
-				<button class="btn btn-secondary btn-lg" type="button" onClick="history.back();">취소</button>
-				<button class="btn btn-primary btn-lg" type="submit" form="writeQna">작성</button>
+			<div class="text-end">
+				<button class="btn btn-secondary" type="button" onClick="history.back();">취소</button>
+				<button class="btn btn-primary" type="submit" form="writeQna">작성</button>
 			</div>
 		</div>
 	</section>

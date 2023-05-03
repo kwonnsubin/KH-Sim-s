@@ -1,6 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <c:set var="cpath" value="${pageContext.request.contextPath }"/>
 <!DOCTYPE html>
@@ -24,15 +23,8 @@
     <link rel="stylesheet" href="<%= request.getContextPath() %>/resources/chain/assets/css/templatemo-chain-app-dev.css">
     <link rel="stylesheet" href="<%= request.getContextPath() %>/resources/chain/assets/css/animated.css">
     <link rel="stylesheet" href="<%= request.getContextPath() %>/resources/chain/assets/css/owl.css">
-    	
-    <!-- Scripts -->
-	<script src="<%= request.getContextPath() %>/resources/chain/vendor/jquery/jquery.min.js"></script>
-	<script src="<%= request.getContextPath() %>/resources/chain/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
-	<script src="<%= request.getContextPath() %>/resources/chain/assets/js/owl-carousel.js"></script>
-	<script src="<%= request.getContextPath() %>/resources/chain/assets/js/animation.js"></script>
-	<script src="<%= request.getContextPath() %>/resources/chain/assets/js/imagesloaded.js"></script>
-	<script src="<%= request.getContextPath() %>/resources/chain/assets/js/popup.js"></script>
-	<script src="<%= request.getContextPath() %>/resources/chain/assets/js/custom.js"></script>
+    <link rel="stylesheet" href="<%= request.getContextPath() %>/resources/css/user/qna.css">
+    
 </head>
 <body>
 
@@ -40,19 +32,36 @@
 	
 	<section>
 		<div class="container-sm div-m">
-			<form:form action="${cpath }/faq/qnaupdate/${myqna.aqNo}" method="post">
-				<div>
-					<input type="text" name="aqTitle" value="${myqna.aqTitle }" size="60">
+			<div class="row">
+				<div class="col-sm-12 p-2 mt-3">
+					<form action="${cpath }/faq/qnaupdate/${myqna.aqNo}" method="post" id="updateQna">
+						<div class="py-2">
+							<input type="text" name="aqTitle" value="${myqna.aqTitle }" class="border-0 w-100">
+						</div>
+						<hr>
+						<div class="py-2">
+							<textarea class="border-0 w-100" rows="10" name="aqContent">${myqna.aqContent }</textarea>
+						</div>
+					</form>
 				</div>
-				<div>
-					<textarea rows="10" cols="100" name="aqContent">${myqna.aqContent }</textarea>
-				</div>
-				<div>
-					<button type="button" onClick="history.back();">취소</button>
-					<button type="submit">수정</button>
-				</div>
-			</form:form>
+			</div>
+			<div class="text-end">
+				<button class="btn btn-secondary btn-lg" type="button" onClick="history.back();">취소</button>
+				<button class="btn btn-primary btn-lg" type="submit" form="updateQna">수정</button>
+			</div>
 		</div>
 	</section>
+	
+	<jsp:include page="/WEB-INF/views/footer.jsp"/>
+
+	<!-- Scripts -->
+	<script src="<%= request.getContextPath() %>/resources/chain/vendor/jquery/jquery.min.js"></script>
+	<script src="<%= request.getContextPath() %>/resources/chain/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+	<script src="<%= request.getContextPath() %>/resources/chain/assets/js/owl-carousel.js"></script>
+	<script src="<%= request.getContextPath() %>/resources/chain/assets/js/animation.js"></script>
+	<script src="<%= request.getContextPath() %>/resources/chain/assets/js/imagesloaded.js"></script>
+	<script src="<%= request.getContextPath() %>/resources/chain/assets/js/popup.js"></script>
+	<script src="<%= request.getContextPath() %>/resources/chain/assets/js/custom.js"></script>
+	
 </body>
 </html>
