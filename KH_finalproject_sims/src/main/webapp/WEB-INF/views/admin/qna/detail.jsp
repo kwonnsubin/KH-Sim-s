@@ -37,22 +37,7 @@
 										</div>
 									</div>
 								</div>
-							</div>
-							
-<p>
-  <a class="btn btn-primary" data-toggle="collapse" href="#collapseExample" role="button" aria-expanded="false" aria-controls="collapseExample">
-    Link with href
-  </a>
-  <button class="btn btn-primary" type="button" data-toggle="collapse" data-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
-    Button with data-target
-  </button>
-</p>
-<div class="collapse" id="collapseExample">
-  <div class="card card-body">
-    Some placeholder content for the collapse component. This panel is hidden by default but revealed when the user activates the relevant trigger.
-  </div>
-</div>
-							
+							</div>			
 								<div class="col-md-12">
 									<div class="simsBtn m-b-15">
 										<%-- <input class="btn btn-primary right m-l-10" type="button" onclick="location.href='<%=request.getContextPath()%>/admin/qna/delete?aqNo=${qnaDetail.aqNo}'" value="삭제"> --%>
@@ -170,9 +155,9 @@ $(document).ready(function(){
  		html += '		<p class="m-t-15 m-b-15 text-muted">'+result[i].aaContent+'</p> ';
  		
  		
- 		html += '		<label class="badge badge-light-primary" onclick="qnaReplyList('+result[i].aaNo+')">답글</label>';
+ 		html += '		<label data-target="#rplsBy'+result[i].aaNo+'"class="badge badge-light-primary" role="button" data-toggle="collapse" aria-expanded="false" aria-controls="collapseExample" onclick="qnaReplyList('+result[i].aaNo+')">답글</label>';
  		html += '	</div>';
- 		html += '	<div class="qnaReplyList"></div>'; 
+ 		html += '	<div class="collapse qnaReplyList" id="rplsBy'+result[i].aaNo+'"></div>'; 
  		html += '</div>';
  	}
  	$("#qnaAnsList").html(html);
