@@ -74,7 +74,7 @@
 				<hr>
 				<div class="my-4">
 					<div id="aq-content" class="col-sm-12 p-3 lh-xl">
-						<h6>${fn:replace(fn:replace(question.aqContent, CRLF, '<br>'), LF, '<br>')}</h6>
+						${fn:replace(fn:replace(question.aqContent, CRLF, '<br>'), LF, '<br>')}
 					</div>
 					<div class="col-sm-auto pt-5 small" style="color: #808080">
 						조회 ${question.aqViews }

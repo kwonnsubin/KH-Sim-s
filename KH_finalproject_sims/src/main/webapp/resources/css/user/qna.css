@@ -29,6 +29,10 @@ a:active {
 	max-width: 960px
 }
 
+.div-sm {
+	max-width: 840px;
+}
+
 #input-answer {
 	position: fixed;
 	bottom: 0;

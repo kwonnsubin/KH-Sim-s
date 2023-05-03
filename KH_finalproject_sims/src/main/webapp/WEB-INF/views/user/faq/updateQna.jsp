@@ -31,9 +31,9 @@
 	<jsp:include page="/WEB-INF/views/header.jsp"/>
 	
 	<section>
-		<div class="container-sm div-m">
-			<div class="row">
-				<div class="col-sm-12 p-2 mt-3">
+		<div class="container-sm div-sm">
+			<div class="row box-myqna mx-auto">
+				<div class="col-sm-12 p-2">
 					<form action="${cpath }/faq/qnaupdate/${myqna.aqNo}" method="post" id="updateQna">
 						<div class="py-2">
 							<input type="text" name="aqTitle" value="${myqna.aqTitle }" class="border-0 w-100">
@@ -45,7 +45,7 @@
 					</form>
 				</div>
 			</div>
-			<div class="text-end">
+			<div class="text-end my-3">
 				<button class="btn btn-secondary btn-lg" type="button" onClick="history.back();">취소</button>
 				<button class="btn btn-primary btn-lg" type="submit" form="updateQna">수정</button>
 			</div>

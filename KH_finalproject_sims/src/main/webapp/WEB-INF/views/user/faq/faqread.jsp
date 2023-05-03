@@ -27,13 +27,13 @@
 </head>
 <body>
 	
-	<jsp:include page="../../header.jsp"/>
+	<jsp:include page="/WEB-INF/views/header.jsp"/>
 	
 	<section>
 		
-		<div class="container-sm div-m">
-			<div class="row">
-				<div id="faq-title" class="col-sm-12 p-3 float-sm-none mt-5">
+		<div class="container-sm div-sm">
+			<div class="row box-myqna mx-auto">
+				<div id="faq-title" class="col-sm-12 p-3 float-sm-none">
 					<h4>${faq.faqTitle }</h4>
 				</div>
 				<div id="faq-content" class="col-sm-12 my-4 p-3 lh-xl">
@@ -44,7 +44,7 @@
 		
 	</section>
 	
-	<jsp:include page="../../footer.jsp"/>
+	<jsp:include page="/WEB-INF/views/footer.jsp"/>
 	
 	<!-- Scripts -->
 	<script src="<%= request.getContextPath() %>/resources/chain/vendor/jquery/jquery.min.js"></script>
