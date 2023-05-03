@@ -39,7 +39,7 @@
 		
 			<!-- ***** 내 질문 목록 start  ***** -->
 			<div class="box-myqna mx-auto">
-				<h4 class="mb-4">내 질문</h4>
+				<h4 class="mb-4">내가 작성한 질문</h4>
 				<c:if test="${empty myqnalist }">
 					<p>작성하신 질문이 없습니다.</p>
 				</c:if>
@@ -67,7 +67,7 @@
 			<!-- ***** 내 질문 목록 end  ***** -->
 			<!-- ***** 내 답변 목록 start  ***** -->
 			<div class="box-myqna mx-auto">
-				<h4 class="mb-4">내 답변</h4>
+				<h4 class="mb-4">내가 작성한 답변</h4>
 				<c:if test="${empty myanslist }">
 					<p>작성하신 답변이 없습니다.</p>
 				</c:if>

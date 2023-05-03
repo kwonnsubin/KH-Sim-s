@@ -58,7 +58,7 @@
 					<c:if test="${username eq question.userId}">
 						<span class="mx-3">
 							<button class="btn btn-inherit btn-sm btn-outline-secondary"
-								onclick="location.href='${pageContext.request.contextPath}/faq/qnaupdate/${question.aqNo}'">수정</button>
+								onclick="location.href='${cpath}/faq/qnaupdate/${question.aqNo}'">수정</button>
 						</span>
 					</c:if>	
 				</sec:authorize>
@@ -86,9 +86,12 @@
 			
 			<!-- n개의 답변이 있어요 -->
 			<div class="row">
-				<div class="answer-count col-sm-12 p-3 my-2">
+				<div class="answer-count col-sm-10 p-3 my-2">
 					<span style="color: blue">${question.aqAnswers }개</span>
 					<span>의 답변이 있어요</span>
+				</div>
+				<div class="col-sm-2 my-auto text-end">
+					<button class="btn" onclick="location.href='${cpath}/faq/'">목록</button>
 				</div>
 				<hr>
 			</div>
@@ -128,6 +131,7 @@
 							
 							<div class="col-6 small py-2 text-end" style="color: #808080">
 								<fmt:formatDate value="${answer.aaRedate == null ? answer.aaDate : answer.aaRedate}" pattern="yy.MM.dd HH:mm"/>
+								<c:if test="${answer.aaRedate ne null}">수정</c:if>
 							</div>
 							
 							<div id="aa-content" class="col-12 pt-4 lh-lg">
@@ -224,20 +228,19 @@
 									</div>
 									<!-- /댓글목록 -->
 									<!-- 댓글 작성 -->
-									<div class="mt-3 mb-1">
-										<form action="${cpath }/faq/ans/${answer.aaNo}/reply" method="post">
-											<input type="hidden" value="${username }" name="userId" id="userId">
-											<input type="hidden" value="${answer.aaNo }" name="aaNo" id="aaNo">
-											<div class="input-group">
-											  	<input type="text" name="rplContent" id="rplContent" class="form-control" placeholder="댓글을 작성해주세요">
-											  	<button class="btn" type="submit" id="btn-writeRpl">완료</button>
-											</div>
-										</form>
-									</div>
+									<sec:authorize access="hasRole('ROLE_USER')">
+										<div class="mt-3 mb-1">
+											<form action="${cpath }/faq/ans/${answer.aaNo}/reply" method="post" onsubmit="return validateRpl(${answer.aaNo })">
+												<input type="hidden" value="${username }" name="userId" id="userId">
+												<input type="hidden" value="${answer.aaNo }" name="aaNo" id="aaNo">
+												<div class="input-group">
+												  	<input type="text" name="rplContent" id="rplContent_${answer.aaNo}" class="form-control" placeholder="댓글을 작성해주세요">
+												  	<button class="btn" type="submit" id="btn-writeRpl">완료</button>
+												</div>
+											</form>
+										</div>
+									</sec:authorize>
 									<!-- /댓글 작성 -->
-									<div id="loginAlert" style="display: none;" class="px-3">
-										댓글을 작성하시려면 로그인이 필요합니다. <a href="${cpath}/login">로그인</a>
-									</div>
 
 								</div>
 															
@@ -252,7 +255,7 @@
 			<!-- 답변달기 -->
 			<sec:authorize access="hasRole('ROLE_USER')">
 				<div class="row">
-					<form method="post" class="input-group my-4" id="input-answer" action="/sims/faq/qna/${question.aqNo}/answer">
+					<form method="post" class="input-group my-4" id="input-answer" action="/sims/faq/qna/${question.aqNo}/answer" onsubmit="return validateForm()">
 						<input type="hidden" name="userId" value="${username }">
 				 		<textarea id="aaContent" name="aaContent" class="form-control" rows="2" placeholder="답변은 구체적으로 남길수록 도움이 돼요"></textarea>
 				  		<button class="btn" type="submit" id="btn-writeAns">등록</button>
@@ -274,26 +277,24 @@
 	<script src="<%= request.getContextPath() %>/resources/chain/assets/js/imagesloaded.js"></script>
 	<script src="<%= request.getContextPath() %>/resources/chain/assets/js/popup.js"></script>
 	<script src="<%= request.getContextPath() %>/resources/chain/assets/js/custom.js"></script>
-	
+
+	<script>
+		function validateForm() {
+			var aaContent = document.getElementById("aaContent").value;
+			if (aaContent == "") {
+				alert("답변을 입력해주세요.");
+				return false;
+			}
+		}
+		function validateRpl(aaNo) {
+			var rplContent = document.getElementById("rplContent_" + aaNo).value;
+			if (rplContent == "") {
+				alert("댓글을 입력해주세요.");
+				return false;
+			}
+		}
+	</script>
+
 </body>
-<script>
-	
-	const rplContentInput = document.getElementById('rplContent');
-	const userId = document.getElementById('userId').value;
-	const loginAlert = document.getElementById('loginAlert');
 
-	rplContentInput.addEventListener('focus', function() {
-		if (!userId) {
-			loginAlert.style.display = 'block';
-			rplContentInput.blur(); // focus 해제
-		}
-	});
-
-	document.addEventListener('click', function(event) {
-		if (event.target.id !== 'rplContent') {
-			loginAlert.style.display = 'none';
-		}
-	});
-	
-</script>
 </html>

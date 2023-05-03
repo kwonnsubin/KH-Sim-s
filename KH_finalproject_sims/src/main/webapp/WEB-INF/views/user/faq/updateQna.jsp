@@ -40,14 +40,14 @@
 						</div>
 						<hr>
 						<div class="py-2">
-							<textarea class="border-0 w-100" rows="10" name="aqContent">${myqna.aqContent }</textarea>
+							<textarea class="border-0 w-100" rows="10" name="aqContent" id="aq-content">${myqna.aqContent }</textarea>
 						</div>
 					</form>
 				</div>
 			</div>
 			<div class="text-end my-3">
-				<button class="btn btn-secondary btn-lg" type="button" onClick="history.back();">취소</button>
-				<button class="btn btn-primary btn-lg" type="submit" form="updateQna">수정</button>
+				<button class="btn btn-secondary" type="button" onClick="history.back();">취소</button>
+				<button class="btn btn-primary" type="submit" form="updateQna">수정</button>
 			</div>
 		</div>
 	</section>

@@ -40,6 +40,9 @@
 					${faq.faqContent }
 				</div>
 			</div>
+			<div class="text-end my-3">
+				<button class="btn" onclick="location.href='${pageContext.request.contextPath}/faq/'">목록</button>
+			</div>
 		</div>
 		
 	</section>

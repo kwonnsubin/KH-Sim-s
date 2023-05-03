@@ -30,25 +30,29 @@
 	<jsp:include page="/WEB-INF/views/header.jsp"/>
 	
 	<section>
-		<div class="container-sm div-m">
-			<div class="row">
-				<div class="col-sm-12 p-2 mt-3">
-					<h5 class="py-3 fw-bolder">질문의 제목을 구체적으로 적어주세요</h5>
-					<form action="${cpath }/faq/qna/write" method="post" id="writeQna">
+		<div class="container-sm div-sm">
+			<div class="row box-myqna mx-auto">
+				<div class="col-sm-12 p-2">
+					<h5 class="mb-3 fw-bolder">질문의 제목을 구체적으로 적어주세요</h5>
+					<form action="${cpath }/faq/qna/write" method="post" id="writeQna" onsubmit="return validateForm()">
 						<div class="py-2">
 							<input type="hidden" value="${username }" name="userId"> 
-							<input class="border-0 w-100" type="text" name="aqTitle" 
+							<input class="border-0 w-100" type="text" name="aqTitle" id="aqTitle"
 								placeholder="예시) 기존 통신사는 직접 해지해야 되나요?">
 						</div>
 						<hr>
 						<div class="py-2">
-							<textarea class="border-0 w-100" rows="10" name="aqContent"
-							placeholder="현재 사용하시는 통신사 혹은 질문과 관련된 자세한 내용을 함께 적어주시면 더 정확한 답변이 가능해요."></textarea>
+							<textarea class="border-0 w-100" id="aqContent" rows="10" name="aqContent"
+							placeholder="현재 사용하시는 통신사 혹은 질문과 관련된 자세한 내용을 함께 적어주시면 더 정확한 답변이 가능해요.
+							
+예시) 지금 약정이 3개월 남았어요.
+예시) 지금 XX통신사를 사용하고 있는데...
+예시) 갤럭시 S10 5G를 쓰고 있는데..."></textarea>
 						</div>
 					</form>
 				</div>
 			</div>
-			<div class="text-end">
+			<div class="text-end my-3">
 				<button class="btn btn-secondary" type="button" onClick="history.back();">취소</button>
 				<button class="btn btn-primary" type="submit" form="writeQna">작성</button>
 			</div>
@@ -65,5 +69,17 @@
 	<script src="<%= request.getContextPath() %>/resources/chain/assets/js/imagesloaded.js"></script>
 	<script src="<%= request.getContextPath() %>/resources/chain/assets/js/popup.js"></script>
 	<script src="<%= request.getContextPath() %>/resources/chain/assets/js/custom.js"></script>
+
+	<script>
+		function validateForm() {
+			var aqTitle = document.getElementById("aqTitle").value;
+			var aqContent = document.getElementById("aqContent").value;
+			if (aqTitle == "" || aqContent == "") {
+				alert("내용을 입력해주세요.");
+				return false;
+			}
+		}
+	</script>
+
 </body>
 </html>
