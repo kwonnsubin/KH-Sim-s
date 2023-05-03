@@ -35,7 +35,7 @@
 												<li class="breadcrumb-item"><a href="<%=request.getContextPath()%>/admin/applyList"><i class="breadcrumb-item"></i>통신사 관리</a></li>
 												<li class="breadcrumb-item"><a href=""><i class="breadcrumb-item"></i>통신사 
 													<c:choose>
-														<c:when test="${cmd eq 'read' }"> 개통신청 상세 정보</c:when>
+														<c:when test="${cmd eq 'read' }"> 가입신청 상세 정보</c:when>
 														<c:otherwise> 수정</c:otherwise>
 													</c:choose>
 												</a></li>
@@ -53,7 +53,7 @@
 							 <div class="col-sm-12">
 	                		 	<div class="card">
 	                    			<div class="card-header">
-	                        	 		<h5>개통 신청 상세정보</h5>
+	                        	 		<h5>요금제 가입 신청서</h5>
 	                    			</div>
 	                    				<div class="card-body">
 		                                	<div class="form-group row">
@@ -110,6 +110,12 @@
 		                                        <div class="col-sm-4">
 		                                            <input type="text" class="form-control"  name="orderAddress" <c:if test="${cmd eq 'read' }">readonly</c:if> value="${bizPlanApplyDetail.orderAddress}">
 		                                        </div>
+		                                    </div>
+		                                    <div class="form-group row">
+		                                       <label for="bizName" class="col-sm-2 col-form-label text-center">통신사</label>
+				                               <div class="col-sm-4">
+				                                 <input type="text" class="form-control"  name="bizName" <c:if test="${cmd eq 'read' }">readonly</c:if> value="${bizPlanApplyDetail.bizName}">
+				                               </div>
 		                                    </div>
 		                                    <div class="form-group row">
 		                                        <label for="simYn" class="col-sm-2 col-form-label text-center">유심 신청 여부</label>
@@ -237,13 +243,13 @@
 														 	</c:choose>
 													 		> 
 		                                        		</div>
-		                                        		<label for="accBank" class="col-sm-1 col-form-label text-center">은행</label>
+		                                        		<label for="accBank" class="col-sm-2 col-form-label text-center">은행</label>
 		                                        		<div class="col-sm-4">
 		                                            		<input type="text" class="form-control"  name="accBank" <c:if test="${cmd eq 'read' }">readonly</c:if> value="${bizPlanApplyDetail.accBank}">
 		                                        		</div>
 		                                        		</div>
 		                                        		<div class="form-group row">
-		                                        		<label for="accNumber" class="col-sm-1 col-form-label text-center">계좌번호</label>
+		                                        		<label for="accNumber" class="col-sm-2 col-form-label text-center">계좌번호</label>
 				                                        <div class="col-sm-4">
 				                                            <input type="text" class="form-control"  name="accNumber" <c:if test="${cmd eq 'read' }">readonly</c:if> value="${bizPlanApplyDetail.accNumber}">
 				                                        </div>

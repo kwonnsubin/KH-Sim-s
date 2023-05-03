@@ -7,7 +7,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>통신사 요금제 개통 신청 리스트</title>
+<title>통신사 요금제 가입 신청 리스트</title>
 </head>
 <body>
 	<jsp:include page="/WEB-INF/views/admin/include/header.jsp" />
@@ -27,8 +27,8 @@
 												</div>
 												<ul class="breadcrumb">
 													<li class="breadcrumb-item"><a href="<%=request.getContextPath()%>/admin/dashboard"><i class="feather icon-home"></i></a></li>
-													<li class="breadcrumb-item"><a href=""><i class="<%=request.getContextPath()%>/admin/applyList"></i>통신사 관리</a></li>
-													<li class="breadcrumb-item"><a href=""><i class="<%=request.getContextPath()%>/admin/bizPlanApplyList"></i>통신사 요금제 개통 신청 정보</a></li>
+													<li class="breadcrumb-item"><a href="<%=request.getContextPath()%>/admin/applyList"><i></i>통신사 관리</a></li>
+													<li class="breadcrumb-item"><a href="<%=request.getContextPath()%>/admin/bizPlanApplyList"><i></i>통신사 요금제 가입 정보</a></li>
 												</ul>
 											</div>
 										</div>
@@ -47,6 +47,7 @@
 																<option value="">선택</option>
 																<option value="planName" <c:if test="${searchOption eq 'planName' }">selected</c:if>>요금제명</option>
 																<option value="userId" <c:if test="${searchOption eq 'userId' }">selected</c:if>>신청자</option>
+																<option value="bizName" <c:if test="${searchOption eq 'bizName' }">selected</c:if>>통신사명</option>
 															</select>
 															<input class="form-control" type="text" name="searchBox" value="${searchBox}">
 															<div class="col-sm-5 p-t-10">
@@ -83,6 +84,7 @@
 															<tr>
 																<th>번호</th>
 																<th>신청자</th>
+																<th>통신사명</th>
 																<th>요금제명</th>
 																<th>신청상태</th>
 																<th>신청일</th>
@@ -100,6 +102,7 @@
 																		<td>${paging.totalRowCount - (paging.currentPage-1) * paging.pageLimit - status.index}</td>
 																		<%-- <td><a href="<%=request.getContextPath()%>/admin/bizPlanApplyDetail/${list.orderNo}?divCheck=${divCheck}">${list.orderNo}</a></td> --%>
 																		<td><a href="<%=request.getContextPath()%>/admin/bizPlanApplyDetail/${list.orderNo}">${list.userId}</a></td>
+																		<td>${list.bizName}</td>
 																		<td>${list.planName}</td>
 																		<td>
 																			<c:choose>

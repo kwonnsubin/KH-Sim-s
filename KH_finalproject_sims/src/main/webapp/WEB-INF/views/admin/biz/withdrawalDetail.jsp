@@ -33,9 +33,9 @@
 											<ul class="breadcrumb">
 												<li class="breadcrumb-item"><a href="<%=request.getContextPath()%>/admin/dashboard"><i class="feather icon-home"></i></a></li>
 												<li class="breadcrumb-item"><a href="<%=request.getContextPath()%>/admin/applyList"><i class="breadcrumb-item"></i>통신사 관리</a></li>
-												<li class="breadcrumb-item"><a href=""><i class="breadcrumb-item"></i>통신사 관리 
+												<li class="breadcrumb-item"><a href=""><i class="breadcrumb-item"></i>통신사 
 													<c:choose>
-														<c:when test="${cmd eq 'read' }"> 상세</c:when>
+														<c:when test="${cmd eq 'read' }"> 탈퇴</c:when>
 														<c:otherwise> 수정</c:otherwise>
 													</c:choose>
 												</a></li>

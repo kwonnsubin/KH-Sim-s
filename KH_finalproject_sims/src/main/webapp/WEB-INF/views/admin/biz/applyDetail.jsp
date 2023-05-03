@@ -35,7 +35,7 @@
 												<li class="breadcrumb-item"><a href="<%=request.getContextPath()%>/admin/applyList"><i class="breadcrumb-item"></i>통신사 관리</a></li>
 												<li class="breadcrumb-item"><a href=""><i class="breadcrumb-item"></i>통신사 
 													<c:choose>
-														<c:when test="${cmd eq 'read' }"> 정보</c:when>
+														<c:when test="${cmd eq 'read' }">신청 관리</c:when>
 														<c:otherwise> 수정</c:otherwise>
 													</c:choose>
 												</a></li>
@@ -56,7 +56,7 @@
 									 <div class="col-sm-8">
 		                				<div class="card">
 		                    				<div class="card-header">
-		                        				<h5>통신사 정보</h5>
+		                        				<h5>통신사 신청 정보</h5>
 		                    				</div>
 		                    				<div class="card-body">
 			                                    <div class="form-group row">
