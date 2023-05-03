@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <c:set var="path" value="${pageContext.request.contextPath}"/>
 <!DOCTYPE html>
 <html>
@@ -98,7 +99,7 @@
 				<th>
 					<span>기본료(원)</span>
 				</th>
-				<td colspan="2">${planDetail.planPrice}</td>
+				<td colspan="2"><fmt:formatNumber value="${planDetail.planPrice}" pattern="#,##0" /></td> <!-- 천단위 구분 -->
 				<th>
 					<span>기본음성(분)</span>
 				</th>
@@ -143,16 +144,71 @@
 		<div class="btnGroup">
 			<button class= "btn" onclick="location.href='${pageContext.request.contextPath}/biz/planList'">목록</button>
 			<button class= "btn" onclick="location.href='${pageContext.request.contextPath}/biz/modifyPlan?planNo=${planDetail.planNo }'">수정</button>
+			<button type="button" class="btn deleteBtn" data-bs-toggle="modal" data-bs-target="#deleteleModal"
+					data-planno="${planDetail.planNo}">삭제</button>
 		</div>
+		
+		<!-- 개별 요금제 삭제 Modal -->
+			<div class="modal fade" id="deleteleModal" tabindex="-1"
+				aria-labelledby="exampleModalLabel" aria-hidden="true">
+				<div class="modal-dialog">
+					<div class="modal-content">
+						<div class="modal-header">
+							<h1 class="modal-title fs-5" id="exampleModalLabel">요금제 삭제</h1>
+							<button type="button" class="btn-close" data-bs-dismiss="modal"
+								aria-label="Close"></button>
+						</div>
+						<div class="modal-body">요금제를 정말로 삭제하시겠습니까?</div>
+						<div class="modal-footer">
+							<input type="hidden" id="selectedPlanNo">
+							<button type="button" class="btn modalDelete btn-secondary"
+								id="deletePostBtn">삭제</button>
+							<button type="button" class="btn btn-primary"
+								data-bs-dismiss="modal">취소</button>
+						</div>
+					</div>
+				</div>
+			</div>
+		
+		
 	</div>
 </div>	
-<!-- <script>
-	function goBack() {
-	  window.history.back();
-	}
-</script> -->
+
 
 	<jsp:include page="/WEB-INF/views/footer.jsp"/>
+	
+	<script>
+		$(document).ready(function() {
+
+			$(".deleteBtn").click(function() {
+				console.log($("#selectedPlanNo").val());
+				console.log($(this).data("planno"));
+				$("#selectedPlanNo").val($(this).data("planno"));
+			});
+			$('.btn.modalDelete').click(function() {
+				console.log("모달창의 삭제 버튼을 누름");
+				console.log('에이작스 전 planNo : ' + $("#selectedPlanNo").val());
+				//	  var planNo = $('.deleteBtn').data('planNo');
+				var planNo = $("#selectedPlanNo").val();
+				$.ajax({
+					url : "${pageContext.request.contextPath}/biz/deletePlan",
+					type : "post",
+					data : {
+						planNo : planNo
+					},
+					success : function(result) {
+						console.log('성공했을 때' + planNo);
+						location.href="${pageContext.request.contextPath}/biz/planList"
+					},
+					error : function(xhr, status, error) {
+
+						alert("에러가 발생했습니다.");
+						console.log('에이작스 후 planNo : ' + planNo);
+					}
+				});
+			});
+		});
+	</script>
 	
 	<!-- Scripts -->
 	<script src="<%= request.getContextPath() %>/resources/chain/vendor/jquery/jquery.min.js"></script>
