@@ -438,199 +438,203 @@
 		
 	    $(document).ready(function() {
 	        $('#submitBtn').click(function() {
-	        	const planPay = $('input[name="planPay"]:checked').val();
-	            if (planPay == '1') {
-		            if ($('select[name="currentTelecom"]').val() === '' || $('input[name="planBill"]').val() === '' 
-		                    || $('#sample6_postcode').val() === '' || $('#sample6_address').val() === '' || $('#cardHolder').val() === ''
-		                    || $('#cardSsn1').val() === '' || $('#cardSsn2').val() === '' 
-		                    || $('input[name="card1"]').val() === '' || $('input[name="card2"]').val() === ''
-		                    || $('input[name="card3"]').val() === '' || $('input[name="card4"]').val() === ''
-		                    || $('select[name="cardRelationship"]').val() === ''
-		                    || $('select[name="cardMonth"]').val() === '' || $('select[name="cardYear"]').val() === '') {
-		                alert('모든 입력 항목을 입력해주세요.');
-		                return;
-		            } else {
-			            const bizId = $('input[name="bizId"]').val();
-			            const userId = $('input[name="userId"]').val();
-			            const planNo = parseInt($('input[name="planNo"]').val());
-			            const joinCategory = sessionStorage.getItem('joinCategory');
-			            const simType = sessionStorage.getItem('simType');
-			            const simYn = sessionStorage.getItem('simYn');
-			            const currentTelecom = $('select[name="currentTelecom"]').val();
-			            const planBill = $('input[name="planBill"]').val();
-			            const planPay = '1';
-			            const netNo = parseInt($('input[name="netNo"]').val());
-			            const genNo = parseInt($('input[name="genNo"]').val());
-			            const orderPrice = parseInt($('input[name="orderPrice"]').val());
-			            const orderData = parseInt($('input[name="orderData"]').val());
-			            const orderVoice = parseInt($('input[name="orderVoice"]').val());
-			            const orderMessage = parseInt($('input[name="orderMessage"]').val());
-			            const orderAddress = '[' + $('#sample6_postcode').val() + ']' + $('#sample6_address').val() + ' '
-			            	+ $('#sample6_detailAddress').val() + $('#sample6_extraAddress').val();
-			            const cardHolder = $('#cardHolder').val();
-			            const cardSsn = $('#cardSsn1').val() + '-' + $('#cardSsn2').val();
-			            const cardRelationship = $('select[name="cardRelationship"]').val();
-			            const cardNumber = $('input[name="card1"]').val() + '-' + $('input[name="card2"]').val() + '-'
-			            	+ $('input[name="card3"]').val() + '-' + $('input[name="card4"]').val();
-			            const cardExpiration = $('select[name="cardMonth"]').val() + '/' + $('select[name="cardYear"]').val();
-			            $.ajax({
-			                url: '${cpath}/plan/${planNo}/order',
-			                type: 'POST',
-			                data: {
-			                    'bizId': bizId,
-			                    'userId': userId,
-			                    'planNo': planNo,
-			                    'joinCategory': joinCategory,
-			                    'simType': simType,
-			                    'simYn': simYn,
-			                    'currentTelecom': currentTelecom,
-			                    'planBill': planBill,
-			                    'planPay': planPay,
-			                    'netNo': netNo,
-			                    'genNo': genNo,
-			                    'orderPrice': orderPrice,
-			                    'orderData': orderData,
-			                    'orderVoice': orderVoice,
-			                    'orderMessage': orderMessage,
-			                    'orderAddress': orderAddress,
-			                    'cardHolder': cardHolder,
-			                    'cardSsn': cardSsn,
-			                    'cardRelationship': cardRelationship,
-			                    'cardNumber': cardNumber,
-			                    'cardExpiration': cardExpiration,
-			                },
-			                success: function(result) {
-			                	console.log(result);
-			                	alert("요금제 신청 성공");
-			                	
-			                	// 문자 보내기
-			                	$.ajax({
-			        	            url: '${cpath}/send-one',
-			        	           	type: 'POST',
-			        	            data: {
-			        	                'phoneNum': $('#phoneFirst').val()+$('#phoneMiddle').val()+$('#phoneLast').val()
-			        	            },
-			        	            success: function(result) {
-			        	            	alert("문자 보냄");
-			        	            },
-			        	            error: function(xhr, status, error) {
-			        	            	console.log("xhr.status: " + xhr.status);
-			        	             console.log("xhr.statusText: " + xhr.statusText);
-			        	             console.log("xhr.responseText: " + xhr.responseText);
-			        	             console.log("xhr.readyState: " + xhr.readyState);
-			        	             console.log(status);
-			        	             console.log(error);
-			        	            	alert("문자 실패");
-			        	            }
-			        	        });
-			                },
-			                error: function(xhr, status, error) {
-			                	console.log("xhr.status: " + xhr.status);
-				                console.log("xhr.statusText: " + xhr.statusText);
-				                console.log("xhr.responseText: " + xhr.responseText);
-				                console.log("xhr.readyState: " + xhr.readyState);
-				                console.log(status);
-				                console.log(error);
-			                	alert("요금제 신청 실패");
-			                }
-						});
+	        	if ($('input[name="planPay"]:checked').val() == null) {
+	        		alert('모든 항목을 입력해주세요.');
+	        	} else {
+		        	const planPay = $('input[name="planPay"]:checked').val();
+		            if (planPay == '1') {
+			            if ($('select[name="currentTelecom"]').val() === '' || $('input[name="planBill"]').val() === '' 
+			                    || $('#sample6_postcode').val() === '' || $('#sample6_address').val() === '' || $('#cardHolder').val() === ''
+			                    || $('#cardSsn1').val() === '' || $('#cardSsn2').val() === '' 
+			                    || $('input[name="card1"]').val() === '' || $('input[name="card2"]').val() === ''
+			                    || $('input[name="card3"]').val() === '' || $('input[name="card4"]').val() === ''
+			                    || $('select[name="cardRelationship"]').val() === ''
+			                    || $('select[name="cardMonth"]').val() === '' || $('select[name="cardYear"]').val() === '') {
+			                alert('모든 입력 항목을 입력해주세요.');
+			                return;
+			            } else {
+				            const bizId = $('input[name="bizId"]').val();
+				            const userId = $('input[name="userId"]').val();
+				            const planNo = parseInt($('input[name="planNo"]').val());
+				            const joinCategory = sessionStorage.getItem('joinCategory');
+				            const simType = sessionStorage.getItem('simType');
+				            const simYn = sessionStorage.getItem('simYn');
+				            const currentTelecom = $('select[name="currentTelecom"]').val();
+				            const planBill = $('input[name="planBill"]').val();
+				            const planPay = '1';
+				            const netNo = parseInt($('input[name="netNo"]').val());
+				            const genNo = parseInt($('input[name="genNo"]').val());
+				            const orderPrice = parseInt($('input[name="orderPrice"]').val());
+				            const orderData = parseInt($('input[name="orderData"]').val());
+				            const orderVoice = parseInt($('input[name="orderVoice"]').val());
+				            const orderMessage = parseInt($('input[name="orderMessage"]').val());
+				            const orderAddress = '[' + $('#sample6_postcode').val() + ']' + $('#sample6_address').val() + ' '
+				            	+ $('#sample6_detailAddress').val() + $('#sample6_extraAddress').val();
+				            const cardHolder = $('#cardHolder').val();
+				            const cardSsn = $('#cardSsn1').val() + '-' + $('#cardSsn2').val();
+				            const cardRelationship = $('select[name="cardRelationship"]').val();
+				            const cardNumber = $('input[name="card1"]').val() + '-' + $('input[name="card2"]').val() + '-'
+				            	+ $('input[name="card3"]').val() + '-' + $('input[name="card4"]').val();
+				            const cardExpiration = $('select[name="cardMonth"]').val() + '/' + $('select[name="cardYear"]').val();
+				            $.ajax({
+				                url: '${cpath}/plan/${planNo}/order',
+				                type: 'POST',
+				                data: {
+				                    'bizId': bizId,
+				                    'userId': userId,
+				                    'planNo': planNo,
+				                    'joinCategory': joinCategory,
+				                    'simType': simType,
+				                    'simYn': simYn,
+				                    'currentTelecom': currentTelecom,
+				                    'planBill': planBill,
+				                    'planPay': planPay,
+				                    'netNo': netNo,
+				                    'genNo': genNo,
+				                    'orderPrice': orderPrice,
+				                    'orderData': orderData,
+				                    'orderVoice': orderVoice,
+				                    'orderMessage': orderMessage,
+				                    'orderAddress': orderAddress,
+				                    'cardHolder': cardHolder,
+				                    'cardSsn': cardSsn,
+				                    'cardRelationship': cardRelationship,
+				                    'cardNumber': cardNumber,
+				                    'cardExpiration': cardExpiration,
+				                },
+				                success: function(result) {
+				                	console.log(result);
+				                	alert("요금제 신청 성공");
+				                	
+				                	// 문자 보내기
+				                	$.ajax({
+				        	            url: '${cpath}/send-one',
+				        	           	type: 'POST',
+				        	            data: {
+				        	                'phoneNum': $('#phoneFirst').val()+$('#phoneMiddle').val()+$('#phoneLast').val()
+				        	            },
+				        	            success: function(result) {
+				        	            	alert("문자 보냄");
+				        	            },
+				        	            error: function(xhr, status, error) {
+				        	            	console.log("xhr.status: " + xhr.status);
+				        	             console.log("xhr.statusText: " + xhr.statusText);
+				        	             console.log("xhr.responseText: " + xhr.responseText);
+				        	             console.log("xhr.readyState: " + xhr.readyState);
+				        	             console.log(status);
+				        	             console.log(error);
+				        	            	alert("문자 실패");
+				        	            }
+				        	        });
+				                },
+				                error: function(xhr, status, error) {
+				                	console.log("xhr.status: " + xhr.status);
+					                console.log("xhr.statusText: " + xhr.statusText);
+					                console.log("xhr.responseText: " + xhr.responseText);
+					                console.log("xhr.readyState: " + xhr.readyState);
+					                console.log(status);
+					                console.log(error);
+				                	alert("요금제 신청 실패");
+				                }
+							});
+			            }
+		            } else if (planPay == '2') {
+			            if ($('select[name="currentTelecom"]').val() === '' || $('input[name="planBill"]').val() === '' 
+			            		|| $('#sample6_postcode').val() === '' || $('#sample6_address').val() === '' 
+			            		|| $('#accHolder').val() === ''
+			                    || $('#accountSsn1').val() === '' || $('#accountSsn2').val() === '' 
+			                    || $('select[name="accRelationship"]').val() === ''
+			                    || $('#accNumber').val() === '' || $('select[name="accBank"]').val() === ''
+			                    ) {
+			                alert('모든 입력 항목을 입력해주세요.');
+			                return;
+			            } else {
+				            const bizId = $('input[name="bizId"]').val();
+				            const userId = $('input[name="userId"]').val();
+				            const planNo = parseInt($('input[name="planNo"]').val());
+				            const joinCategory = sessionStorage.getItem('joinCategory');
+				            const simType = sessionStorage.getItem('simType');
+				            const simYn = sessionStorage.getItem('simYn');
+				            const currentTelecom = $('select[name="currentTelecom"]').val();
+				            const planBill = $('input[name="planBill"]').val();
+				            const planPay = '2';
+				            const netNo = parseInt($('input[name="netNo"]').val());
+				            const genNo = parseInt($('input[name="genNo"]').val());
+				            const orderPrice = parseInt($('input[name="orderPrice"]').val());
+				            const orderData = parseInt($('input[name="orderData"]').val());
+				            const orderVoice = parseInt($('input[name="orderVoice"]').val());
+				            const orderMessage = parseInt($('input[name="orderMessage"]').val());
+				            const orderAddress = '[' + $('#sample6_postcode').val() + ']' + $('#sample6_address').val() + ' '
+				            	+ $('#sample6_detailAddress').val() + $('#sample6_extraAddress').val();
+					        const accHolder = $('#accHolder').val();
+				            const accSsn = $('#accountSsn1').val() + '-' + $('#accountSsn2').val();
+				            const accRelationship = $('select[name="accRelationship"]').val();
+				            const accNumber = $('#accNumber').val();
+				            const accBank = $('select[name="accBank"]').val();
+				            $.ajax({
+				                url: '${cpath}/plan/${planNo}/order',
+				                type: 'POST',
+				                data: {
+				                    'bizId': bizId,
+				                    'userId': userId,
+				                    'planNo': planNo,
+				                    'joinCategory': joinCategory,
+				                    'simType': simType,
+				                    'simYn': simYn,
+				                    'currentTelecom': currentTelecom,
+				                    'planBill': planBill,
+				                    'planPay': planPay,
+				                    'netNo': netNo,
+				                    'genNo': genNo,
+				                    'orderPrice': orderPrice,
+				                    'orderData': orderData,
+				                    'orderVoice': orderVoice,
+				                    'orderMessage': orderMessage,
+				                    'orderAddress': orderAddress,
+				                    'accHolder': accHolder,
+				                    'accSsn': accSsn,
+				                    'accRelationship': accRelationship,
+				                    'accNumber': accNumber,
+				                    'accBank': accBank
+				                },
+				                success: function(result) {
+				                	console.log(result);
+				                	alert("요금제 신청 성공");
+				                	
+				                	// 문자 보내기
+				                	$.ajax({
+				        	            url: '${cpath}/send-one',
+				        	           	type: 'POST',
+				        	            data: {
+				        	                'phoneNum': $('#phoneFirst').val()+$('#phoneMiddle').val()+$('#phoneLast').val()
+				        	            },
+				        	            success: function(result) {
+				        	            	alert("문자 보냄");
+				        	            },
+				        	            error: function(xhr, status, error) {
+				        	            	console.log("xhr.status: " + xhr.status);
+											console.log("xhr.statusText: " + xhr.statusText);
+											console.log("xhr.responseText: " + xhr.responseText);
+											console.log("xhr.readyState: " + xhr.readyState);
+											console.log(status);
+											console.log(error);
+											alert("문자 실패");
+				        	            }
+				        	        });
+				                },
+				                error: function(xhr, status, error) {
+				                	console.log("xhr.status: " + xhr.status);
+					                console.log("xhr.statusText: " + xhr.statusText);
+					                console.log("xhr.responseText: " + xhr.responseText);
+					                console.log("xhr.readyState: " + xhr.readyState);
+					                console.log(status);
+					                console.log(error);
+				                	alert("요금제 신청 실패");
+				                }
+				            });
+			            }
 		            }
-	            } else if (planPay == '2') {
-		            if ($('select[name="currentTelecom"]').val() === '' || $('input[name="planBill"]').val() === '' 
-		            		|| $('#sample6_postcode').val() === '' || $('#sample6_address').val() === '' 
-		            		|| $('#accHolder').val() === ''
-		                    || $('#accountSsn1').val() === '' || $('#accountSsn2').val() === '' 
-		                    || $('select[name="accRelationship"]').val() === ''
-		                    || $('#accNumber').val() === '' || $('select[name="accBank"]').val() === ''
-		                    ) {
-		                alert('모든 입력 항목을 입력해주세요.');
-		                return;
-		            } else {
-			            const bizId = $('input[name="bizId"]').val();
-			            const userId = $('input[name="userId"]').val();
-			            const planNo = parseInt($('input[name="planNo"]').val());
-			            const joinCategory = sessionStorage.getItem('joinCategory');
-			            const simType = sessionStorage.getItem('simType');
-			            const simYn = sessionStorage.getItem('simYn');
-			            const currentTelecom = $('select[name="currentTelecom"]').val();
-			            const planBill = $('input[name="planBill"]').val();
-			            const planPay = '2';
-			            const netNo = parseInt($('input[name="netNo"]').val());
-			            const genNo = parseInt($('input[name="genNo"]').val());
-			            const orderPrice = parseInt($('input[name="orderPrice"]').val());
-			            const orderData = parseInt($('input[name="orderData"]').val());
-			            const orderVoice = parseInt($('input[name="orderVoice"]').val());
-			            const orderMessage = parseInt($('input[name="orderMessage"]').val());
-			            const orderAddress = '[' + $('#sample6_postcode').val() + ']' + $('#sample6_address').val() + ' '
-			            	+ $('#sample6_detailAddress').val() + $('#sample6_extraAddress').val();
-				        const accHolder = $('#accHolder').val();
-			            const accSsn = $('#accountSsn1').val() + '-' + $('#accountSsn2').val();
-			            const accRelationship = $('select[name="accRelationship"]').val();
-			            const accNumber = $('#accNumber').val();
-			            const accBank = $('select[name="accBank"]').val();
-			            $.ajax({
-			                url: '${cpath}/plan/${planNo}/order',
-			                type: 'POST',
-			                data: {
-			                    'bizId': bizId,
-			                    'userId': userId,
-			                    'planNo': planNo,
-			                    'joinCategory': joinCategory,
-			                    'simType': simType,
-			                    'simYn': simYn,
-			                    'currentTelecom': currentTelecom,
-			                    'planBill': planBill,
-			                    'planPay': planPay,
-			                    'netNo': netNo,
-			                    'genNo': genNo,
-			                    'orderPrice': orderPrice,
-			                    'orderData': orderData,
-			                    'orderVoice': orderVoice,
-			                    'orderMessage': orderMessage,
-			                    'orderAddress': orderAddress,
-			                    'accHolder': accHolder,
-			                    'accSsn': accSsn,
-			                    'accRelationship': accRelationship,
-			                    'accNumber': accNumber,
-			                    'accBank': accBank
-			                },
-			                success: function(result) {
-			                	console.log(result);
-			                	alert("요금제 신청 성공");
-			                	
-			                	// 문자 보내기
-			                	$.ajax({
-			        	            url: '${cpath}/send-one',
-			        	           	type: 'POST',
-			        	            data: {
-			        	                'phoneNum': $('#phoneFirst').val()+$('#phoneMiddle').val()+$('#phoneLast').val()
-			        	            },
-			        	            success: function(result) {
-			        	            	alert("문자 보냄");
-			        	            },
-			        	            error: function(xhr, status, error) {
-			        	            	console.log("xhr.status: " + xhr.status);
-										console.log("xhr.statusText: " + xhr.statusText);
-										console.log("xhr.responseText: " + xhr.responseText);
-										console.log("xhr.readyState: " + xhr.readyState);
-										console.log(status);
-										console.log(error);
-										alert("문자 실패");
-			        	            }
-			        	        });
-			                },
-			                error: function(xhr, status, error) {
-			                	console.log("xhr.status: " + xhr.status);
-				                console.log("xhr.statusText: " + xhr.statusText);
-				                console.log("xhr.responseText: " + xhr.responseText);
-				                console.log("xhr.readyState: " + xhr.readyState);
-				                console.log(status);
-				                console.log(error);
-			                	alert("요금제 신청 실패");
-			                }
-			            });
-		            }
-	            }
+	        	}
 	        });
 	    });
 
