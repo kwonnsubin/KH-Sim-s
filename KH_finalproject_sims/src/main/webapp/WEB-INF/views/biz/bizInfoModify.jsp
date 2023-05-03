@@ -291,37 +291,46 @@
 								<c:choose>
 									<c:when test="${empty serviceList[0]}">
 										<span>KT</span>
-										<input class="form-control" type="text" name="KtService">
+										<input class="form-control" type="text" name="KtService" pattern="[0-9\-]*" oninput="checkInput(event)">
+										<span class="error-message" style="display:none;">숫자와 하이픈(-)만 입력 가능합니다.</span>
 										<span>SKT</span>
-										<input class="form-control" type="text" name="SktService">
+										<input class="form-control" type="text" name="SktService" pattern="[0-9\-]*" oninput="checkInput(event)">
+										<span class="error-message" style="display:none;">숫자와 하이픈(-)만 입력 가능합니다.</span>
 										<span>LGU+</span>
-										<input class="form-control" type="text" name="LguService">
+										<input class="form-control" type="text" name="LguService" pattern="[0-9\-]*" oninput="checkInput(event)">
+										<span class="error-message" style="display:none;">숫자와 하이픈(-)만 입력 가능합니다.</span>
 									</c:when>
 									<c:when test="${service.netNo == 1}">
 										<span style="display: none">KT</span>
 										<c:if test="${not empty service.bizNetService}">
-											<input class="form-control" style="display: none" type="text" name="KtService" value="${service.bizNetService}">
+											<input class="form-control" style="display: none" type="text" name="KtService" value="${service.bizNetService}" pattern="[0-9\-]*" oninput="checkInput(event)">
+											<span class="error-message" style="display:none;">숫자와 하이픈(-)만 입력 가능합니다.</span>
 										</c:if>
 										<c:if test="${empty service.bizNetService}">
-											<input class="form-control" style="display: none" type="text" name="KtService">
+											<input class="form-control" style="display: none" type="text" name="KtService" pattern="[0-9\-]*" oninput="checkInput(event)" >
+											<span class="error-message" style="display:none;">숫자와 하이픈(-)만 입력 가능합니다.</span>
 										</c:if>
 									</c:when>
 									<c:when test="${service.netNo == 2}">
 										<span style="display: none">SKT</span>
 										<c:if test="${not empty service.bizNetService}">
-											<input class="form-control" style="display: none" type="text" name="SktService" value="${service.bizNetService}">
+											<input class="form-control" style="display: none" type="text" name="SktService" value="${service.bizNetService}" pattern="[0-9\-]*" oninput="checkInput(event)">
+											<span class="error-message" style="display:none;">숫자와 하이픈(-)만 입력 가능합니다.</span>
 										</c:if>
 										<c:if test="${empty service.bizNetService}">
-											<input class="form-control" style="display: none" type="text" name="SktService">
+											<input class="form-control" style="display: none" type="text" name="SktService" pattern="[0-9\-]*" oninput="checkInput(event)">
+											<span class="error-message" style="display:none;">숫자와 하이픈(-)만 입력 가능합니다.</span>
 										</c:if>
 									</c:when>
 									<c:when test="${service.netNo == 3}">
 										<span style="display: none">LGU+</span>
 										<c:if test="${not empty service.bizNetService}">
-											<input class="form-control" style="display: none" type="text" name="LguService" value="${service.bizNetService}">
+											<input class="form-control" style="display: none" type="text" name="LguService" value="${service.bizNetService}" pattern="[0-9\-]*" oninput="checkInput(event)">
+											<span class="error-message" style="display:none;">숫자와 하이픈(-)만 입력 가능합니다.</span>
 										</c:if>
 										<c:if test="${empty service.bizNetService}">
-											<input class="form-control" style="display: none" type="text" name="LguService">
+											<input class="form-control" style="display: none" type="text" name="LguService" pattern="[0-9\-]*" oninput="checkInput(event)">
+											<span class="error-message" style="display:none;">숫자와 하이픈(-)만 입력 가능합니다.</span>
 										</c:if>
 									</c:when>
 								</c:choose>

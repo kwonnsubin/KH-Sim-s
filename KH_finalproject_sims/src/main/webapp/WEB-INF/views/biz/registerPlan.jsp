@@ -92,7 +92,7 @@
 						<span>기본료(원)</span>
 					</th>
 					<td><input type="text" name="planPrice" class="form-control" required 
-								pattern="[0-9]*" oninput="checkInputNum(event)">
+								pattern="[0-9]*" oninput="checkInputNum(event)" maxlength="9">
 					<div class="invalid-feedback">
 				      값을 입력해주세요. 
 				    </div>
@@ -102,7 +102,7 @@
 						<span>기본음성(분)</span>
 					</th>
 					<td><input type="text" name="planVoice" class="form-control" required
-								pattern="[0-9]*" oninput="checkInputNum(event)">
+								pattern="[0-9]*" oninput="checkInputNum(event)" maxlength="9">
 					<div class="invalid-feedback">
 				      값을 입력해주세요. 
 				    </div>
@@ -114,7 +114,7 @@
 						<span>기본문자(건)</span>
 					</th>
 					<td><input type="text" name="planMessage" class="form-control" required
-								pattern="[0-9]*" oninput="checkInputNum(event)">
+								pattern="[0-9]*" oninput="checkInputNum(event)" maxlength="9">
 					<div class="invalid-feedback">
 				      값을 입력해주세요. 
 				    </div>
@@ -124,7 +124,7 @@
 						<span>기본데이터(mb)</span>
 					</th>
 					<td><input type="text" name="planData" class="form-control" required
-								pattern="[0-9]*" oninput="checkInputNum(event)">
+								pattern="[0-9]*" oninput="checkInputNum(event)" maxlength="9">
 					<div class="invalid-feedback">
 				      값을 입력해주세요. 
 				    </div>
@@ -136,17 +136,17 @@
 						<span>초과음성단가(초)</span>
 					</th>
 					<td><input type="text" name="planVoiceOver" class="form-control" required
-								pattern="[0-9]*" oninput="checkInputNum(event)">
+								pattern="[0-9.]*" oninput="checkInputNumComma(event)">
 					<div class="invalid-feedback">
 				      값을 입력해주세요. 
 				    </div>
-				    <span class="error-message-num" style="display: none">숫자만 입력가능합니다.</span>
+				    <span class="error-message-num-comma" style="display: none">소수점을 포함한 숫자만 입력가능합니다.</span>
 				    </td>
 					<th>
 						<span>초과문자단가(건)</span>
 					</th>
 					<td><input type="text" name="planMessageOver" class="form-control" required
-								pattern="[0-9]*" oninput="checkInputNum(event)">
+								pattern="[0-9]*" oninput="checkInputNum(event)" maxlength="9">
 					<div class="invalid-feedback">
 				      값을 입력해주세요. 
 				    </div>
@@ -156,11 +156,11 @@
 						<span>초과데이터단가(mb)</span>
 					</th>
 					<td><input type="text" name="planDataOver" class="form-control" required
-								pattern="[0-9]*" oninput="checkInputNum(event)">
+								pattern="[0-9.]*" oninput="checkInputNumComma(event)">
 					<div class="invalid-feedback">
 				      값을 입력해주세요. 
 				    </div>
-				    <span class="error-message-num" style="display: none">숫자만 입력가능합니다.</span>
+				    <span class="error-message-num-comma" style="display: none">소수점을 포함한 숫자만 입력가능합니다.</span>
 				    </td>
 				</tr>
 			</table>
@@ -216,6 +216,20 @@ function checkInputNum(event) {
   if (!input.validity.valid) {
     error.style.display = 'block';
     input.value = input.value.replace(/[^0-9]/g, '');
+  } else {
+    error.style.display = 'none';
+  }
+}
+</script>
+
+<!-- 숫자와 콤마 입력가능 -->
+<script>
+function checkInputNumComma(event) {
+  const input = event.target;
+  const error = input.parentElement.querySelector('.error-message-num-comma');
+  if (!input.validity.valid) {
+    error.style.display = 'block';
+    input.value = input.value.replace(/[^0-9.]/g, '');
   } else {
     error.style.display = 'none';
   }
