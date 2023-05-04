@@ -34,7 +34,7 @@
 	<section>
 		<div class="container-sm div-sm">
 			<div class="row">
-				<div class="col-sm-4 mt-5">
+				<div class="col-md-5 mt-5">
 					<div class="card">
 						<div class="card-header card-blue">
 							<div class="card-body">
@@ -57,22 +57,52 @@
 								</tr>
 								<tr>
 									<td>데이터</td>
-									<td>${plan.planData }</td>
+									<td>
+									<c:if test="${plan.planData eq 0}">없음</c:if>
+										<c:if test="${plan.planData ne 0 && plan.planData < 1000}">${plan.planData}MB</c:if>
+										<c:if test="${plan.planData >= 1000}">
+											<c:set var="dataInGB" value="${plan.planData/1024.0}" />
+											<c:set var="dataInGB2" value="${plan.planData/1000.0}" />
+											<c:choose>
+												<c:when test="${dataInGB % 1 < 0.1}">
+										            ${String.format("%.0f", dataInGB)}GB
+										        </c:when>
+												<c:when test="${dataInGB % 1 == 0.5}">
+										            ${String.format("%.1f", dataInGB)}GB
+										        </c:when>
+										        <c:when test="${dataInGB2 % 1 < 0.1}">
+										        	${String.format("%.0f", dataInGB2)}GB
+										        </c:when>
+										        <c:when test="${dataInGB2 % 1 == 0.5}">
+										        	${String.format("%.1f", dataInGB2)}GB
+										        </c:when>
+												<c:otherwise>
+										            ${String.format("%.1f", dataInGB)}GB
+										        </c:otherwise>
+											</c:choose>
+										</c:if>
+									</td>
 								</tr>
 								<tr>
 									<td>음성</td>
-									<td>${plan.planVoice }</td>
+									<td>
+										<c:if test="${plan.planVoice eq 0}">기본제공</c:if>
+										<c:if test="${plan.planVoice ne 0}">${plan.planVoice}분</c:if>
+									</td>
 								</tr>
 								<tr>
 									<td>메시지</td>
-									<td>${plan.planMessage }</td>
+									<td>
+										<c:if test="${plan.planMessage eq 0}">기본제공</c:if>
+										<c:if test="${plan.planMessage ne 0}">${plan.planMessage}건</c:if>
+									</td>
 								</tr>
 							</table>
 						</div>
 					</div>
 					
 				</div>
-				<div class="col-sm-8 mt-5">
+				<div class="col-md-7 mt-5">
 					<form id="option" action="${cpath}/plan/${plan.planNo}/order">
 						<div class="card">
 							<div class="card-header card-blue">
