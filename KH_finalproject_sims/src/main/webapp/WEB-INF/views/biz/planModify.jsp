@@ -53,7 +53,7 @@
 			<th>
 				<span>요금제명</span>
 			</th>
-			<td><input type="text" name="planName"  class="form-control" value="${planDetail.planName }"></td>
+			<td><input type="text" name="planName"  class="form-control" value="${planDetail.planName }" required></td>
 			<th>
 				<span>통신사명</span>
 			</th>
@@ -153,7 +153,7 @@
 				<span>초과데이터단가(mb)</span>
 			</th>
 			<td><input type="text" name="planDataOver" class="form-control"  value="${planDetail.planDataOver }" required
-						pattern="[0-9.]*" oninput="checkInputNumComma(event)">
+						pattern="[0-9.]*" oninput="checkInputNumComma(event)" maxlength="9">
 				<div class="invalid-feedback">
 					      값을 입력해주세요. 
 				</div>

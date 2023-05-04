@@ -38,13 +38,13 @@ public class BizPlanMngtVo {
 	private String bizName;
 	private int netNo;
 	private int genNo;
-	private int planPrice;
-	private int planVoice;
-	private int planMessage;
-	private int planData;
-	private double planVoiceOver;
-	private int planMessageOver;
-	private double planDataOver;
+	private String planPrice;
+	private String planVoice;
+	private String planMessage;
+	private String planData;
+	private String planVoiceOver;
+	private String planMessageOver;
+	private String planDataOver;
 	private Date planDate;
 	
 	private Date planUpdateDate;

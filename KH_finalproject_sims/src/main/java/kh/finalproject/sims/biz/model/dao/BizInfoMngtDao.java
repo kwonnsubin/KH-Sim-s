@@ -51,4 +51,9 @@ public class BizInfoMngtDao {
 	public BizInfoMngtVo selectMainBizInfo(String bizId) {
 		return sqlSession.selectOne("biz.selectMainBizInfo", bizId);
 	}
+	
+	//새로가입한 통신사의 serviceList
+	public int insertServicList(String bizid) {
+		return sqlSession.insert("biz.insertServicList", bizid);
+	}
 }

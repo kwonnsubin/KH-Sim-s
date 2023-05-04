@@ -19,4 +19,6 @@ public interface BizInfoMngtService {
 	
 	// 메인 통신사 정보
 	public BizInfoMngtVo selectMainBizInfo(String bizId);
+	
+	public int insertServicList(String bizid);
 }

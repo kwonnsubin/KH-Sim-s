@@ -58,14 +58,6 @@
 			RIGHT JOIN BIZ
 			USING(BIZ_ID)
 		where biz_id=#{bizid}
-		<!-- SELECT CASE WHEN NET_NO = 1 THEN 'SKT'
-            		WHEN NET_NO = 2 THEN 'KT'
-            		ELSE 'LGU+' END AS NET_NO
-    			, BIZ_NET_SERVICE
-			FROM BIZ_NETWORK
-			JOIN BIZ
-			USING(BIZ_ID)
-		where biz_id='kctv' --><!-- 이 경우에는 NET_NO 자료형이  varchar2여야 함.  -->
 	</select>
 	
 	<!-- 고객센터번호 수정 -->
@@ -119,5 +111,24 @@
 		    , (select count(*) from biz_review br where b.biz_id=br.biz_id and br.review_hidden=0) as biz_review_cnt
 		from biz b where biz_id=#{bizId}
 	</select>
+	
+	<!-- 새로 회원가입한 통신사의 serviceList -->
+	<!-- TODO -->
+	<insert id="insertServicList" parameterType="string" >
+		INSERT INTO biz_network (biz_id, net_no, biz_net_service)
+			    SELECT #{bizId}, 1, NULL 
+			      FROM DUAL 
+			    WHERE NOT EXISTS (SELECT 1 FROM biz_network WHERE biz_id = #{bizId})
+			UNION ALL
+			    SELECT #{bizId}, 2, NULL
+			      FROM DUAL 
+			      WHERE NOT EXISTS (SELECT 1 FROM biz_network WHERE biz_id = #{bizId}
+			)
+			UNION ALL
+			    SELECT #{bizId}, 3, NULL 
+			      FROM DUAL 
+			      WHERE NOT EXISTS (SELECT 1 FROM biz_network WHERE biz_id = #{bizId}
+			)
+	</insert>
 	
 </mapper>

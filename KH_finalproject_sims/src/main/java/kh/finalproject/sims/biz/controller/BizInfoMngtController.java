@@ -85,7 +85,7 @@ public class BizInfoMngtController {
 		BizInfoMngtVo vo =service.selectBizInfoDetail(bizid);
 		System.out.println(vo);
 		
-		
+		service.insertServicList(bizid);
 		
 		//고객센터 번호
 		List<bizInfoMngServiceVo> serviceList = service.selectListService(bizid);

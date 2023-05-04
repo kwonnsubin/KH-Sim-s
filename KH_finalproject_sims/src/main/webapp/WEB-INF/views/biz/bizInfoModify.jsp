@@ -272,12 +272,12 @@
 						<div class="form-check">
 							<input class="form-check-input" type="checkbox" name="net" value="KT망" >KT망
 						</div>
-						<div class="form-check">
-				        	<input class="form-check-input" type="checkbox" name="net" value="SKT망" >SKT망
-				        </div>
 				        <div class="form-check">
 				        	<input class="form-check-input" type="checkbox" name="net" value="LG망" >LGU+망
 				        </div>	
+						<div class="form-check">
+				        	<input class="form-check-input" type="checkbox" name="net" value="SKT망" >SKT망
+				        </div>
 						</td>
 					</tr>
 			
@@ -291,7 +291,7 @@
 								<c:choose>
 									<c:when test="${empty serviceList[0]}">
 										<span>KT</span>
-										<input class="form-control" type="text" name="KtService" pattern="[0-9\-]*" oninput="checkInput(event)">
+										<input class="form-control" type="text" name="KtService" pattern="[0-9\-]*" oninput="checkInput(event)" >
 										<span class="error-message" style="display:none;">숫자와 하이픈(-)만 입력 가능합니다.</span>
 										<span>SKT</span>
 										<input class="form-control" type="text" name="SktService" pattern="[0-9\-]*" oninput="checkInput(event)">
@@ -307,7 +307,7 @@
 											<span class="error-message" style="display:none;">숫자와 하이픈(-)만 입력 가능합니다.</span>
 										</c:if>
 										<c:if test="${empty service.bizNetService}">
-											<input class="form-control" style="display: none" type="text" name="KtService" pattern="[0-9\-]*" oninput="checkInput(event)" >
+											<input class="form-control" style="display: none" type="text" name="KtService"  pattern="[0-9\-]*" oninput="checkInput(event)" >
 											<span class="error-message" style="display:none;">숫자와 하이픈(-)만 입력 가능합니다.</span>
 										</c:if>
 									</c:when>

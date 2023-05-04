@@ -136,7 +136,7 @@
 						<span>초과음성단가(초)</span>
 					</th>
 					<td><input type="text" name="planVoiceOver" class="form-control" required
-								pattern="[0-9.]*" oninput="checkInputNumComma(event)">
+								pattern="[0-9.]*" oninput="checkInputNumComma(event)" maxlength="9">
 					<div class="invalid-feedback">
 				      값을 입력해주세요. 
 				    </div>
@@ -156,7 +156,7 @@
 						<span>초과데이터단가(mb)</span>
 					</th>
 					<td><input type="text" name="planDataOver" class="form-control" required
-								pattern="[0-9.]*" oninput="checkInputNumComma(event)">
+								pattern="[0-9.]*" oninput="checkInputNumComma(event)" maxlength="9">
 					<div class="invalid-feedback">
 				      값을 입력해주세요. 
 				    </div>

@@ -61,4 +61,9 @@ public class BizInfoMngtServiceImpl implements BizInfoMngtService{
 		return dao.selectMainBizInfo(bizId);
 	}
 
+	@Override
+	public int insertServicList(String bizid) {
+		return dao.insertServicList(bizid);
+	}
+
 }
