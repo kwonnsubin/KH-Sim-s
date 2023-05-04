@@ -78,7 +78,6 @@ public class UserFaqDao {
 	public int deAnswers(int aqNo) {
 		return session.update("qna.deAnswers", aqNo);
 	}
-	
 	public int upAnswers(int aqNo) {
 		return session.update("qna.upAnswers", aqNo);
 	}
@@ -105,6 +104,10 @@ public class UserFaqDao {
 
 	public List<UserQnaVo> searchList(Map<String, Object> map) {
 		return session.selectList("qna.searchList", map);
+	}
+	
+	public int deleteQnaByAns(int aqNo) {
+		return session.delete("qna.deleteQnaByAns", aqNo);
 	}
 
 }

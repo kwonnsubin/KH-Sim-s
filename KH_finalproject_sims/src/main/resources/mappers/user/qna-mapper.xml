@@ -172,11 +172,15 @@
 		order by aa_no
 	</select>
 	
+	<!-- 문의글별 답변 삭제 트리거 적용 -->
+	<delete id="deleteQnaByAns" parameterType="_int">
+		DELETE FROM QNA_ANS where AQ_NO=#{aqNo}
+	</delete>
 	<!-- 내 답변 삭제 -->
 	<delete id="deleteAns" parameterType="_int">
 		delete from QNA_ANS
 		where aa_no = #{aaNo}
-	</delete>	
+	</delete>
 	
 	<!-- 댓글 삭제 -->
 	<delete id="deleteRpl" parameterType="_int">

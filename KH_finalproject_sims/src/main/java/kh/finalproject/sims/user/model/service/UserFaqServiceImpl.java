@@ -46,6 +46,7 @@ public class UserFaqServiceImpl implements UserFaqService {
 
 	@Override
 	public int deleteQna(int aqNo) {
+		dao.deleteQnaByAns(aqNo);
 		return dao.deleteQna(aqNo);
 	}
 
