@@ -659,7 +659,7 @@ $(".plus-p").on("click", function() {
 
 // 최근 본 요금제 클릭 시 해당 요금제 페이지로 이동
 $(".recent-list").on("click", function(e) {
-	const planNo = $(e.target).find("input").val();
+	var planNo = $(e.target).parents('.recent-list').find('.recent-planNo').val();
 	location.href= cPath + "/plan/" + planNo;
 });
 

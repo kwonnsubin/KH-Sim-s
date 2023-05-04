@@ -663,8 +663,8 @@
 	        				<c:if test="${not empty recentList}">
 	    					<c:forEach var="list" items="${recentList}">
 			    			<div class="row mt-3 recent-list">
+    							<input class="recent-planNo" type="hidden" value="${list.planNo}">
 	    						<div class="col-4 align-self-center">
-	    							<input type="hidden" value="${list.planNo}">
 	       							<img src="<%=request.getContextPath()%>/resources/img/${list.bizId}.png" style="max-width: 100px; max-height: 40px;">
 	    						</div>
 	       						<div class="col-8">

@@ -34,7 +34,7 @@
 			order by biz_review_star desc nulls last
 		</if>
 		<if test="select == 'data'.toString()">
-			order by plan_data desc
+			order by to_number(plan_data) desc
 		</if>
 	</select>
 	
@@ -89,7 +89,7 @@
 				order by biz_review_star desc nulls last
 			</if>
 			<if test="select == 'data'.toString()">
-				order by plan_data desc
+				order by to_number(plan_data) desc
 			</if>
 		</trim>
 	</select>
