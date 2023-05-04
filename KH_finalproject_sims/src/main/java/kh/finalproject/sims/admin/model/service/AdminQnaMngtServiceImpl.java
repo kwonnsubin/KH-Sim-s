@@ -44,6 +44,7 @@ public class AdminQnaMngtServiceImpl implements AdminQnaMngtService{
 	// 문의글 삭제
 	@Override
 	public int deleteQnaDetail(int aqNo) {
+		System.out.println(dao.deleteQnaByAns(aqNo));
 		return dao.deleteQnaDetail(aqNo);
 	}
 

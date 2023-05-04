@@ -88,6 +88,10 @@
 		WHERE AQ_NO = #{aqNo}
 	</select> 	
 	
+	<!-- 문의글별 답변 삭제 트리거 -->
+	<delete id="deleteQnaByAns" parameterType="_int">
+		DELETE FROM QNA_ANS where AQ_NO=#{aqNo}
+	</delete>
 	<!-- 문의글 삭제 -->
 	<delete id="deleteQnaDetail">
 		DELETE FROM QNA WHERE AQ_NO = #{aqNo}
