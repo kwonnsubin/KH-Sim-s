@@ -39,6 +39,12 @@ a:active {
 	object-fit: contain
 }
 
+.logo-s-cursor {
+	max-height: 40px;
+	object-fit: contain;
+	cursor: pointer
+}
+
 .center {
 	margin: auto
 }
