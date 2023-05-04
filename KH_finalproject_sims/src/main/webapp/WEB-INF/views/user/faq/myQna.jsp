@@ -94,7 +94,7 @@
 								<div class="card mt-2">
 									<div class="card-body text-end">
 										<textarea hidden="hidden" id="hiddenAa_${myanss.aaNo}">${myanss.aaContent}</textarea>
-										<textarea name="aaContent" class="myans-form">${myanss.aaContent}</textarea>
+										<textarea id="modAaContent_${myanss.aaNo }" name="aaContent" class="myans-form">${myanss.aaContent}</textarea>
 										<button class="btn btn-sm" type="submit">수정</button>
 										<button class="btn btn-sm" type="button" onclick="back(${myanss.aaNo});">취소</button>
 									</div>
