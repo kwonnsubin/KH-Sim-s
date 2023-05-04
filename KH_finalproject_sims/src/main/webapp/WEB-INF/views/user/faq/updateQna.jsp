@@ -34,12 +34,13 @@
 		<div class="container-sm div-sm">
 			<div class="row box-myqna mx-auto">
 				<div class="col-sm-12 p-2">
-					<form action="${cpath }/faq/qnaupdate/${myqna.aqNo}" method="post" id="updateQna">
+					<form action="${cpath }/faq/qnaupdate/${myqna.aqNo}" method="post" id="updateQna" onsubmit="return validForm()">
 						<div class="py-2">
 							<input type="text" name="aqTitle" value="${myqna.aqTitle }" class="border-0 w-100">
 						</div>
 						<hr>
 						<div class="py-2">
+							<textarea hidden="hidden" id="hiddenAa">${myqna.aqContent }</textarea>
 							<textarea class="border-0 w-100" rows="10" name="aqContent" id="aq-content">${myqna.aqContent }</textarea>
 						</div>
 					</form>
@@ -62,6 +63,20 @@
 	<script src="<%= request.getContextPath() %>/resources/chain/assets/js/imagesloaded.js"></script>
 	<script src="<%= request.getContextPath() %>/resources/chain/assets/js/popup.js"></script>
 	<script src="<%= request.getContextPath() %>/resources/chain/assets/js/custom.js"></script>
+	
+	<script>
+		function validForm() {
+			var aaContent = document.getElementById("aq-content").value;
+			var hiddenAa = document.getElementById("hiddenAa").value;
+			if (aaContent == "") {
+				alert("수정할 답변을 입력해주세요.");
+				return false;
+			} else if (aaContent == hiddenAa) {
+				alert("수정할 내용이 없습니다.");
+				return false;
+			}
+		}
+	</script>
 	
 </body>
 </html>

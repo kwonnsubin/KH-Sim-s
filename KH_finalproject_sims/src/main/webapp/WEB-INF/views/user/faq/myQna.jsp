@@ -73,7 +73,7 @@
 				</c:if>
 				<c:if test="${not empty myanslist }">
 					<c:forEach items="${myanslist}" var="myanss">
-						<div class="row my-3">
+						<div class="row my-3" id="aa-content-${myanss.aaNo}">
 							<div class="col-sm-8 my-auto">
 								<a href="${cpath }/faq/qna/${myanss.aqNo}">${fn:replace(fn:replace(myanss.aaContent, CRLF, '<br>'), LF, '<br>')}</a>
 							</div>
@@ -82,22 +82,24 @@
 							</div>
 							<div class="col-sm-2 text-end my-auto">	
 								<div class="btn-group btn-group-sm" role="group">
-										<button data-bs-target="#ans${myanss.aaNo}" class="btn btn-gray" type="button"
-											data-bs-toggle="collapse" aria-expanded="false" aria-controls="collapseExample">수정</button>
+										<button class="btn btn-gray" type="button" onclick="answerForm(${myanss.aaNo});">수정</button>
 										<button type="button" class="btn btn-gray btn-ans-delete"
-										onclick="location.href='${cpath }/faq/ansdelete/${myanss.aqNo}/${myanss.aaNo}'">삭제</button>
+										onclick="location.href='${cpath}/faq/ansdelete/${myanss.aqNo}/${myanss.aaNo}'">삭제</button>
 								</div>
 							</div>
-							<div class="collapse" id="ans${myanss.aaNo}">
-								<form action="${cpath }/faq/ansupdate/${myanss.aaNo }" method="post">
-									<div class="card mt-2">
-										<div class="card-body text-end">
-											<textarea name="aaContent" class="myans-form">${myanss.aaContent}</textarea>
-											<button class="btn btn-sm" type="submit">수정</button>
-										</div>
+						</div>
+						<!-- 답변 수정 폼 -->
+						<div id="update-answer-${myanss.aaNo}" style="display: none;">
+							<form action="${cpath }/faq/ansupdate/${myanss.aaNo }" method="post" onsubmit="return validModAns(${myanss.aaNo})">
+								<div class="card mt-2">
+									<div class="card-body text-end">
+										<textarea hidden="hidden" id="hiddenAa_${myanss.aaNo}">${myanss.aaContent}</textarea>
+										<textarea name="aaContent" class="myans-form">${myanss.aaContent}</textarea>
+										<button class="btn btn-sm" type="submit">수정</button>
+										<button class="btn btn-sm" type="button" onclick="back(${myanss.aaNo});">취소</button>
 									</div>
-								</form>
-							</div>
+								</div>
+							</form>
 						</div>
 					</c:forEach>
 				</c:if>
@@ -116,6 +118,32 @@
 	<script src="<%= request.getContextPath() %>/resources/chain/assets/js/imagesloaded.js"></script>
 	<script src="<%= request.getContextPath() %>/resources/chain/assets/js/popup.js"></script>
 	<script src="<%= request.getContextPath() %>/resources/chain/assets/js/custom.js"></script>
+	
+	<script>
+		function validModAns(aaNo) {
+			var aaContent = document.getElementById("modAaContent_" + aaNo).value;
+			var hiddenAa = document.getElementById("hiddenAa_" + aaNo).value;
+			if (aaContent == "") {
+				alert("수정할 답변을 입력해주세요.");
+				return false;
+			} else if (aaContent == hiddenAa) {
+				alert("수정할 내용이 없습니다.");
+				return false;
+			}
+		}
+		function answerForm(aaNo) {
+			var aaContent = document.getElementById("aa-content-"+ aaNo);
+			var upAnsForm = document.getElementById("update-answer-"+ aaNo);
+			aaContent.style.display = 'none';
+			upAnsForm.style.display = 'block';
+		}
+		function back(aaNo) {
+			var aaContent = document.getElementById("aa-content-"+ aaNo);
+			var upAnsForm = document.getElementById("update-answer-"+ aaNo);
+			aaContent.style.display = '';
+			upAnsForm.style.display = 'none';
+		}
+	</script>
 
 </body>
 </html>

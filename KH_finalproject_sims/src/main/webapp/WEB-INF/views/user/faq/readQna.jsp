@@ -118,15 +118,14 @@
 									<sec:authorize access="hasRole('ROLE_USER')">
 										<c:if test="${username eq answer.userId}">
 											<div class="btn-group btn-group-sm" role="group">
-												<button data-bs-target="#ans${answer.aaNo}" class="btn btn-gray" type="button"
-													data-bs-toggle="collapse" aria-expanded="false" aria-controls="collapseExample">수정</button>
+												<button class="btn btn-gray" type="button" onclick="answerForm(${answer.aaNo });">수정</button>
 												<button type="button" class="btn btn-gray"
-												onclick="location.href='${pageContext.request.contextPath}/faq/ansdelete/${answer.aqNo}/${answer.aaNo}'">
-													삭제</button>
+												onclick="location.href='${cpath}/faq/ansdelete/${answer.aqNo}/${answer.aaNo}'">삭제</button>
 											</div>
 										</c:if>
 									</sec:authorize>
 								</span>
+								<!-- /답변 수정,삭제 버튼 -->
 							</div>
 							
 							<div class="col-6 small py-2 text-end" style="color: #808080">
@@ -134,25 +133,27 @@
 								<c:if test="${answer.aaRedate ne null}">수정</c:if>
 							</div>
 							
-							<div id="aa-content" class="col-12 pt-4 lh-lg">
+							<div id="aa-content-${answer.aaNo}" class="aa-content-${answer.aaNo} col-12 pt-4 lh-lg">
 								${fn:replace(fn:replace(answer.aaContent, CRLF, '<br>'), LF, '<br>')}
 							</div>
+							
 							<!-- 답변 수정 폼 -->
-							<div class="collapse" id="ans${answer.aaNo}">
-								<form action="${cpath }/faq/ansupdate/${answer.aaNo }" method="post">
+							<div id="update-answer-${answer.aaNo}" style="display: none;"> 
+								<form action="${cpath }/faq/ansupdate/${answer.aaNo }" method="post" onsubmit="return validModAns(${answer.aaNo})">
 									<div class="input-group">
-										<textarea name="aaContent" class="form-control">${answer.aaContent }</textarea>
+										<textarea hidden="hidden" id="hiddenAa_${answer.aaNo}">${answer.aaContent }</textarea>
+										<textarea name="aaContent" id="modAaContent_${answer.aaNo}" class="form-control">${answer.aaContent }</textarea>
 										<button class="btn" type="submit">수정</button>
 									</div>
 								</form>
 							</div>
 							<!-- /답변 수정 폼 -->
+							
 							<div class="text-end">
 								<button data-bs-target="#rplsBy${answer.aaNo}" class="btn-inherit btn btn-sm btn-outline-secondary" type="button"
 								data-bs-toggle="collapse" aria-expanded="false" aria-controls="collapseExample">댓글</button>
 							</div>
 
-							<!-- /답변 수정,삭제 버튼 -->
 							<div class="collapse card" id="rplsBy${answer.aaNo}">
 								<div class="card-body">
 									<!-- 댓글목록 -->
@@ -185,9 +186,7 @@
 																<sec:authorize access="hasRole('ROLE_USER')">
 																	<c:if test="${username eq rpl.userId}">
 																		<div class="btn-group" role="group">
-																			<button data-bs-target="#rpl${rpl.rplNo}" class="btn btn-inherit btn-outline-secondary" 
-																			type="button" data-bs-toggle="collapse" aria-expanded="false"
-																				aria-controls="collapseExample">수정</button>
+																			<button class="btn btn-inherit btn-outline-secondary" type="button" onclick="rplForm(${rpl.rplNo});">수정</button>
 																			<button type="button" class="btn btn-inherit btn-outline-secondary" 
 																		  	onclick="location.href='${pageContext.request.contextPath}/faq/rpldelete/${answer.aqNo}/${rpl.aaNo}/${rpl.rplNo}'">
 																		  	삭제</button>
@@ -203,17 +202,18 @@
 														</div>
 													</div>
 													<!-- 기존 댓글 -->
-													<div class="reply-content">
+													<div class="reply-content" id="rpl-content-${rpl.rplNo}">
 														<div class="py-2">
 															${rpl.rplContent }
 														</div>
 													</div>
 													<!-- /기존 댓글 -->
 													<!-- 댓글 수정 폼 -->
-													<div class="collapse" id="rpl${rpl.rplNo}">
-														<form action="${cpath }/faq/rplupdate/${rpl.rplNo }" method="post">
+													<div id="update-rpl-${rpl.rplNo}" style="display: none;">
+														<form action="${cpath }/faq/rplupdate/${rpl.rplNo }" method="post" onsubmit="return validModRpl(${rpl.rplNo})">
 															<div class="input-group">
-																<input type="text" name="rplContent" class="form-control" value="${rpl.rplContent }" size="60">
+																<input type="hidden" id="hiddenRpl_${rpl.rplNo}" value="${rpl.rplContent }" size="60">
+																<input type="text" name="rplContent" id="modRplContent_${rpl.rplNo}" class="form-control" value="${rpl.rplContent }" size="60">
 																<button class="btn" type="submit">수정</button>
 															</div>
 														</form>
@@ -230,7 +230,7 @@
 									<!-- 댓글 작성 -->
 									<sec:authorize access="hasRole('ROLE_USER')">
 										<div class="mt-3 mb-1">
-											<form action="${cpath }/faq/ans/${answer.aaNo}/reply" method="post" onsubmit="return validateRpl(${answer.aaNo })">
+											<form action="${cpath }/faq/ans/${answer.aaNo}/reply" method="post" onsubmit="return validNewRpl(${answer.aaNo })">
 												<input type="hidden" value="${username }" name="userId" id="userId">
 												<input type="hidden" value="${answer.aaNo }" name="aaNo" id="aaNo">
 												<div class="input-group">
@@ -255,7 +255,7 @@
 			<!-- 답변달기 -->
 			<sec:authorize access="hasRole('ROLE_USER')">
 				<div class="row">
-					<form method="post" class="input-group my-4" id="input-answer" action="/sims/faq/qna/${question.aqNo}/answer" onsubmit="return validateForm()">
+					<form method="post" class="input-group my-4" id="input-answer" action="/sims/faq/qna/${question.aqNo}/answer" onsubmit="return validNewAns()">
 						<input type="hidden" name="userId" value="${username }">
 				 		<textarea id="aaContent" name="aaContent" class="form-control" rows="2" placeholder="답변은 구체적으로 남길수록 도움이 돼요"></textarea>
 				  		<button class="btn" type="submit" id="btn-writeAns">등록</button>
@@ -279,19 +279,66 @@
 	<script src="<%= request.getContextPath() %>/resources/chain/assets/js/custom.js"></script>
 
 	<script>
-		function validateForm() {
+		function validNewAns() {
 			var aaContent = document.getElementById("aaContent").value;
 			if (aaContent == "") {
 				alert("답변을 입력해주세요.");
 				return false;
 			}
 		}
-		function validateRpl(aaNo) {
+		function validNewRpl(aaNo) {
 			var rplContent = document.getElementById("rplContent_" + aaNo).value;
 			if (rplContent == "") {
 				alert("댓글을 입력해주세요.");
 				return false;
 			}
+		}
+		function validModAns(aaNo) {
+			var aaContent = document.getElementById("modAaContent_" + aaNo).value;
+			var hiddenAa = document.getElementById("hiddenAa_" + aaNo).value;
+			if (aaContent == "") {
+				alert("수정할 답변을 입력해주세요.");
+				return false;
+			} else if (aaContent == hiddenAa) {
+				alert("수정할 내용이 없습니다.");
+				return false;
+			}
+		}
+		function validModRpl(rplNo) {
+			var rplContent = document.getElementById("modRplContent_" + rplNo).value;
+			var hiddenRpl = document.getElementById("hiddenRpl_" + rplNo).value;
+			if (rplContent == "") {
+				alert("수정할 댓글을 입력해주세요.");
+				return false;
+			} else if (rplContent == hiddenRpl) {
+				alert("수정할 내용이 없습니다.");
+				return false;
+			}
+		}
+
+		function answerForm(aaNo) {
+			var aaContent = document.getElementById("aa-content-"+ aaNo);
+			var upAnsForm = document.getElementById("update-answer-"+ aaNo);
+			if (upAnsForm.style.display == 'none') {
+				aaContent.style.display = 'none';
+				upAnsForm.style.display = 'block';
+			} else {
+				aaContent.style.display = 'block';
+				upAnsForm.style.display = 'none';
+			}
+		}
+		
+		function rplForm(rplNo) {
+			var rplContent = document.getElementById("rpl-content-"+ rplNo);
+			var upRplForm = document.getElementById("update-rpl-"+ rplNo);
+			if (upRplForm.style.display == 'none') {
+				rplContent.style.display = 'none';
+				upRplForm.style.display = 'block';
+			} else {
+				rplContent.style.display = 'block';
+				upRplForm.style.display = 'none';
+			}
+			
 		}
 	</script>
 
