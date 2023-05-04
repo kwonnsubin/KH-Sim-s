@@ -250,9 +250,9 @@
 							<tr>
 								<td>예금주 주민등록번호</td>
 								<td>
-									<input id="accountSsn1" type="text" maxlength="6"
+									<input id="accountSsn1" type="text" maxlength="6" style="width: 100px"
 										oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');"> -
-									<input id="accountSsn2" type="password" maxlength="7" 
+									<input id="accountSsn2" type="password" maxlength="7" style="width: 100px"
 										oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');">
 									<div class="alert-accssn"></div>
 								</td>
