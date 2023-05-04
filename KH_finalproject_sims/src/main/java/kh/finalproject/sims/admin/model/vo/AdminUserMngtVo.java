@@ -56,6 +56,8 @@ public class AdminUserMngtVo {
 	private String opinion;
 	
 	private String planName;
+	private int planNo;
+	
 	
 	
 	

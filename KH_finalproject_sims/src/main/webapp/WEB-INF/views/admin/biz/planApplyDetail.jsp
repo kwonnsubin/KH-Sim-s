@@ -259,32 +259,35 @@
 				                                      </c:otherwise>
 				                                    </c:choose>
 		                                    <div class="form-group row">
-		                                        <label for="netName" class="col-sm-1 col-form-label text-center">통신망</label>
-		                                        <div class="col-sm-3">
+		                                        <label for="netName" class="col-sm-2 col-form-label text-center">통신망</label>
+		                                        <div class="col-sm-4">
 		                                            <input type="text" class="form-control"  name="netName" <c:if test="${cmd eq 'read' }">readonly</c:if> value="${bizPlanApplyDetail.netName}">
 		                                        </div>
-		                                        <label for="genName" class="col-sm-1 col-form-label text-center">이동통신세대</label>
-		                                        <div class="col-sm-3">
+		                                        <label for="genName" class="col-sm-2 col-form-label text-center">이동통신세대</label>
+		                                        <div class="col-sm-4">
 		                                            <input type="text" class="form-control"  name="genName" <c:if test="${cmd eq 'read' }">readonly</c:if> value="${bizPlanApplyDetail.genName}">
 		                                        </div>
-		                                        <label for="orderPrice" class="col-sm-1 col-form-label text-center">기본료(원)</label>
-		                                        <div class="col-sm-3">
+		                                    </div>
+		                                    <div class="form-group row">    
+		                                        <label for="orderPrice" class="col-sm-2 col-form-label text-center">기본료(원)</label>
+		                                        <div class="col-sm-4">
 		                                            <input type="text" class="form-control"  name="orderPrice" <c:if test="${cmd eq 'read' }">readonly</c:if> value="${bizPlanApplyDetail.orderPrice}">
 		                                        </div>
-		                                    </div>
-		                                    <div class="form-group row">
-		                                        <label for="orderData" class="col-sm-1 col-form-label text-center">기본 데이터(MB)</label>
-		                                        <div class="col-sm-3">
+		                                    	<label for="orderData" class="col-sm-2 col-form-label text-center">기본 데이터(MB)</label>
+		                                        <div class="col-sm-4">
 		                                            <input type="text" class="form-control"  name="orderData" <c:if test="${cmd eq 'read' }">readonly</c:if> value="${bizPlanApplyDetail.orderData}">
 		                                        </div>
-		                                        <label for="orderVoice" class="col-sm-1 col-form-label text-center">기본 음성(분)</label>
-		                                        <div class="col-sm-3">
+		                                     </div>   
+		                                    <div class="form-group row">
+		                                        <label for="orderVoice" class="col-sm-2 col-form-label text-center">기본 음성(분)</label>
+		                                        <div class="col-sm-4">
 		                                            <input type="text" class="form-control"  name="orderVoice" <c:if test="${cmd eq 'read' }">readonly</c:if> value="${bizPlanApplyDetail.orderVoice}">
 		                                        </div>
-		                                        <label for="orderMessage" class="col-sm-1 col-form-label text-center">기본 문자(건)</label>
-		                                        <div class="col-sm-3">
+		                                        <label for="orderMessage" class="col-sm-2 col-form-label text-center">기본 문자(건)</label>
+		                                        <div class="col-sm-4">
 		                                            <input type="text" class="form-control"  name="orderMessage" <c:if test="${cmd eq 'read' }">readonly</c:if> value="${bizPlanApplyDetail.orderMessage}">
 		                                        </div>
+		                                        
 		                                    </div>
 	                            		</div>	
 									</div>

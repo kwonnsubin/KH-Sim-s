@@ -11,12 +11,36 @@
 <body>
 <jsp:include page="../include/header.jsp" />
 <script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
+<script src="http://code.jquery.com/jquery-latest.js"></script> 
 <script>
 
 /*수정 취소(뒤로가기)*/
 function goBack(){
 	window.history.back();
 }
+
+/* 가입한 요금제 리스트 호출 ajax */
+function fn_applyPlanAjax(orderNo){
+	$.ajax({
+		url: "${pageContext.request.contextPath}/admin/selectPlanAjax",
+		type: "post",
+		data: {orderNo : orderNo},
+		dataType: "json",
+		success: function(json){
+			$("#userId").text(json.userId);
+			$("#bizName").text(json.bizName);
+			$("#planName").text(json.planName);
+			$("#enable").text(json.enable);
+			$("#orderDate").text(json.orderDate);
+		},
+		error: function(jqXHR, textStatus, errorThrown){
+			console.log(jqXHR);  //응답 메시지
+			console.log(textStatus); //"error"로 고정인듯함
+			console.log(errorThrown);
+		}
+	});
+}
+
 
 </script>
 <div class="pcoded-main-container">
@@ -123,7 +147,7 @@ function goBack(){
 		                                    <div class="form-group row">
 		                                        <label for="planName" class="col-sm-1 col-form-label text-center">신청한 요금제 </label>
 		                                        <div class="col-sm-5">
-		                                            <input type="text" class="form-control"  name="planName" readonly value="${cnt.myPlanCnt}개" onclick="window.open('<%=request.getContextPath()%>/admin/bizPlanApplyList?searchOption=userId&searchBox=${userDetail.userId}','요금제 리스트','width = 500, height = 500')">
+		                                            <input type="text" class="form-control"  name="planName" readonly value="${cnt.myPlanCnt}개" onclick="fn_applyPlanAjax('${userDetail.planNo}');" data-toggle="modal" data-target=".bd-example-modal-lg">
 		                                        </div>
 		                                    </div>
 		                                    <div class="form-group row">
@@ -141,10 +165,77 @@ function goBack(){
 					</div>
 				</div>
 			</div>
+			<div class="col-md-8 col-sm-12">
+				<!-- <div class="card">
+					<div class="card-header">
+						<h5>Optional Sizes</h5>
+					</div> -->
+					<div class="card-body">
+						<!-- <button type="button" class="btn  btn-primary" data-toggle="modal" data-target=".bd-example-modal-lg">Large modal</button> -->
+						<div class="modal fade bd-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+							<div class="modal-dialog modal-lg">
+								<div class="modal-content">
+									<div class="modal-header">
+										<h5 class="modal-title h4" id="myLargeModalLabel">${userDetail.userId}님의 신청요금제</h5>
+										<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+									</div>
+									<div class="modal-body">
+										<div class="col-md-10">
+						                    <div class="card-body table-border-style">
+						                        <div class="table-responsive">
+						                            <table class="table table-hover">
+						                                <thead>
+						                                    <tr>
+						                                        <th>번호</th>
+																<!-- <th>신청자</th> -->
+																<th>통신사명</th>
+																<th>요금제명</th>
+																<th>신청상태</th>
+																<th>신청일</th>
+						                                    </tr>
+						                                </thead>
+						                                <tbody>
+						                                     <c:if test="${not empty requestScope.paging.page}">
+																<c:forEach var="list" items="${requestScope.paging.page}" varStatus="status">
+																	<tr>
+																		<td>${paging.totalRowCount - (paging.currentPage-1) * paging.pageLimit - status.index}</td>
+																		<%-- <td><a href="<%=request.getContextPath()%>/admin/bizPlanApplyDetail/${list.orderNo}?divCheck=${divCheck}">${list.orderNo}</a></td> --%>
+																		<td><a href="<%=request.getContextPath()%>/admin/bizPlanApplyDetail/${list.orderNo}">${list.userId}</a></td>
+																		<td>${list.bizName}</td>
+																		<td>${list.planName}</td>
+																		<td>
+																			<c:choose>
+																				<c:when test="${list.orderStatus eq '1'.charAt(0)}"> 신청 완료 </c:when>
+																				<c:when test="${list.orderStatus eq '2'.charAt(0)}"> 승인 완료 </c:when>
+																				<c:otherwise>승인 보류</c:otherwise>
+																			</c:choose>
+																		</td>
+																		<td><fmt:formatDate value="${list.orderDate}" pattern="yyyy.MM.dd"/> </td>
+																	</tr>
+																</c:forEach>
+															</c:if>
+						                                    
+						                                    
+						                                </tbody>
+						                            </table>
+						                       </div>
+						                  </div>
+						            </div>
+										
+										
+										
+										
+										
+										
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
 		</div>
 	</div>
-</div>
-		
 <jsp:include page="../include/footer.jsp" />
 
 </body>
