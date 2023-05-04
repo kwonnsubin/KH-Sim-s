@@ -96,12 +96,22 @@
 					<div class="row">
 						<h3 class="fw-bolder text-sm-center">
 							<c:if test="${plan.planData eq 0}">없음</c:if>
-							<c:if test="${plan.planData ne 0 && plan.planData < 1024}">${plan.planData}MB</c:if>
-							<c:if test="${plan.planData >= 1024}">
+							<c:if test="${plan.planData ne 0 && plan.planData < 1000}">${plan.planData}MB</c:if>
+							<c:if test="${plan.planData >= 1000}">
 								<c:set var="dataInGB" value="${plan.planData/1024.0}" />
+								<c:set var="dataInGB2" value="${plan.planData/1000.0}" />
 								<c:choose>
-									<c:when test="${dataInGB % 1 == 0}">
-							            ${dataInGB}GB
+									<c:when test="${dataInGB % 1 < 0.1}">
+							            ${String.format("%.0f", dataInGB)}GB
+							        </c:when>
+									<c:when test="${dataInGB % 1 == 0.5}">
+							            ${String.format("%.1f", dataInGB)}GB
+							        </c:when>
+							        <c:when test="${dataInGB2 % 1 < 0.1}">
+							        	${String.format("%.0f", dataInGB2)}GB
+							        </c:when>
+							        <c:when test="${dataInGB2 % 1 == 0.5}">
+							        	${String.format("%.1f", dataInGB2)}GB
 							        </c:when>
 									<c:otherwise>
 							            ${String.format("%.1f", dataInGB)}GB
