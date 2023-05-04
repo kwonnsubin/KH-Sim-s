@@ -123,7 +123,7 @@
 							  	</label>
 							  	
 							  	<label class="my-3 rdo-label">
-							    	<input type="radio" name="speed" value="4" />
+							    	<input type="radio" name="speed" value="3" />
 							    	<span class="px-2">3G</span>
 							  	</label>
 							</fieldset>

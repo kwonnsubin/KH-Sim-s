@@ -175,7 +175,7 @@
 				    						<div class="col-4">
 				    							<input class="planNo" type="hidden" value="${list.planNo}">
 				    						
-				       							<img src="<%=request.getContextPath()%>/resources/img/${list.bizId}.png" style="max-width: 100px; height: 40px;">
+				       							<img src="<%=request.getContextPath()%>/resources/img/${list.bizId}.png" style="max-width: 100px; max-height: 40px;">
 				    						</div>
 				       						<div class="col-8">
 						    					<p class="planName">${list.planName}</p>

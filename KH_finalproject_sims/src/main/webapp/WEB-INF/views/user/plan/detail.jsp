@@ -53,13 +53,13 @@
 					<div class="col-6 float-sm-none my-auto">
 						<c:set var="cpath" value="${pageContext.request.contextPath }" />
 						<a class="like" onclick="toggleLike(${plan.planNo})"> 
-							<img class="logo-s float-end" src="${cpath}/resources/img/like.png" alt="like">
+							<img class="logo-s-cursor float-end" src="${cpath}/resources/img/like.png" alt="like">
 						</a>
 					</div>
 	
 					<div class="col-6 float-sm-none my-auto">
 						<a class="share" onclick="shareMessage()">
-							<img class="logo-s" src="${cpath}/resources/img/share.png" alt="카카오톡 공유 보내기 버튼" />
+							<img class="logo-s-cursor" src="${cpath}/resources/img/share.png" alt="카카오톡 공유 보내기 버튼" />
 						</a>
 					</div>
 				</div>
@@ -138,7 +138,7 @@
 					<div class="row">
 						<div class="col-2">
 							<a href="${cpath}/bizinfo/${biz.bizId}">
-								<img class="logo-s" src="${cpath}/resources/img/${biz.bizId}.png" alt="${plan.bizName}">
+								<img class="logo-s-cursor" src="${cpath}/resources/img/${biz.bizId}.png" alt="${plan.bizName}">
 							</a>
 						</div>
 						<div class="col-6 my-auto">
