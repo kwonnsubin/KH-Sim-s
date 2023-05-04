@@ -118,7 +118,7 @@ public class UserFaqController {
 			, UserAnsVo vo
 			) {
 		service.insertAnswer(aqNo, vo);
-		service.upAnswers(aqNo);
+		// service.upAnswers(aqNo);
 		return "redirect:/faq/qna/" + aqNo;
 	}
 	
@@ -191,7 +191,7 @@ public class UserFaqController {
 			, HttpServletRequest request
 			) {
 		service.deleteAns(aaNo);
-		service.deAnswers(aqNo);
+		// service.deAnswers(aqNo);
 		return "redirect:" + request.getHeader("Referer");
 	}
 	
