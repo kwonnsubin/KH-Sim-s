@@ -118,8 +118,8 @@ public class AdminFaqMngtController {
 		  , AdminFaqVo vo
 			) {
 	    // HTML 태그 제거
-		String plainText = vo.getFaqContent().replaceAll("\\<.*?\\>", "");
-		vo.setFaqContent(plainText);
+//		String plainText = vo.getFaqContent().replaceAll("\\<.*?\\>", "");
+//		vo.setFaqContent(plainText);
 		
 		service.insertFaqWrite(vo);
 		mv.setViewName("redirect:/admin/faq/list");

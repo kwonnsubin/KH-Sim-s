@@ -2,6 +2,7 @@
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
+<c:set var="path" value="${pageContext.request.contextPath}"/>
 <!-- 붙여야 <form method="post"> 작동함 -->
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 <!DOCTYPE html>
@@ -9,6 +10,7 @@
 <head>
 <meta charset="UTF-8">
 <title>자주묻는질문 상세페이지</title>
+<link rel="stylesheet" href="${path}/resources/css/admin/faqDetail.css"/>
 </head>
 <body>
 <jsp:include page="/WEB-INF/views/admin/include/header.jsp" />
@@ -43,7 +45,7 @@
 										<input class="btn btn-primary right " type="button" onclick="location.href='<%=request.getContextPath()%>/admin/faq/list'" value="목록">
 									</div>
 								</div>
-								<div class="card text-center">
+								<div class="card">
 									<div class="card-body">
 										<div class="row">
 											<div class="col-sm-12">
@@ -53,7 +55,7 @@
 											</div>
 											<!-- <div class="row"> -->
 												<div class="col-sm-12">
-					                                    <div class="form-group row">
+					                                    <div class="form-group row  text-center">
 					                                        <label for="adminId" class="col-sm-2 col-form-label left">작성자</label>
 					                                        <div class="col-sm-4">
 					                                            <input type="text" readonly class="form-control-plaintext" name="adminId" value="${faqlist.adminId }">
@@ -66,13 +68,16 @@
 				                                </div>
 			                                <!-- </div> -->
 											<div class="col-sm-12">
-												<div class="form-group">
+<%-- 											<div class="form-group">
 			                                        <textarea class="form-control" name="ntcContent" rows="20" readonly style="background-color: white;">${faqlist.faqContent }</textarea>
-			                                    </div>
+			                                    </div> --%>
+												<div class="form-group">
+												  <div class="textarea-like">${faqlist.faqContent}</div>
+												</div>
 											</div>
 										</div>
 									</div>
-								</div>	
+							</div>	
 						</div>
 				    </div>
 				</div>
