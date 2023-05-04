@@ -24,7 +24,7 @@ public class AdviceLog {
 	@Pointcut("execution(public * kh.finalproject.sims..*Dao.*(..))")
 	public void daoPointCut() { }
 	
-//	@Pointcut("execution(public * kh.finalproject.sims..*ServiceImpl.*(..))")
+	@Pointcut("execution(public * kh.finalproject.sims..*ServiceImpl.*(..))")
 	public void serviceImplPointCut() { }
 	
 	@Around("controllerPointCut()")
@@ -75,7 +75,7 @@ public class AdviceLog {
 		return returnObj;
 	}
 	
-//	@Around("serviceImplPointCut()")
+	@Around("serviceImplPointCut()")
 	public Object aroundServiceImplPointCut(ProceedingJoinPoint pjp) throws Throwable {
 		Object returnObj = null;
 		

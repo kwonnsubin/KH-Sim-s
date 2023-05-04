@@ -256,63 +256,63 @@
        								<i class="fa-regular fa-star" style="color: #ffdd00;"></i>
        								<i class="fa-regular fa-star" style="color: #ffdd00;"></i>
        							</c:if>
-       							<c:if test="${bizInfo.bizReviewStar gt 0.5 and bizInfo.bizReviewStar lt 1}">
+       							<c:if test="${bizInfo.bizReviewStar gt 0.5 and bizInfo.bizReviewStar le 1}">
 									<i class="fa-solid fa-star" style="color: #ffdd00;"></i>
        								<i class="fa-regular fa-star" style="color: #ffdd00;"></i>
        								<i class="fa-regular fa-star" style="color: #ffdd00;"></i>
        								<i class="fa-regular fa-star" style="color: #ffdd00;"></i>
        								<i class="fa-regular fa-star" style="color: #ffdd00;"></i>
        							</c:if>
-       							<c:if test="${bizInfo.bizReviewStar gt 1 and bizInfo.bizReviewStar lt 1.5}">
+       							<c:if test="${bizInfo.bizReviewStar gt 1 and bizInfo.bizReviewStar le 1.5}">
 									<i class="fa-solid fa-star" style="color: #ffdd00;"></i>
        								<i class="fa-regular fa-star-half-stroke" style="color: #ffdd00;"></i>
        								<i class="fa-regular fa-star" style="color: #ffdd00;"></i>
        								<i class="fa-regular fa-star" style="color: #ffdd00;"></i>
        								<i class="fa-regular fa-star" style="color: #ffdd00;"></i>
        							</c:if>
-       							<c:if test="${bizInfo.bizReviewStar gt 1.5 and bizInfo.bizReviewStar lt 2}">
+       							<c:if test="${bizInfo.bizReviewStar gt 1.5 and bizInfo.bizReviewStar le 2}">
 									<i class="fa-solid fa-star" style="color: #ffdd00;"></i>
        								<i class="fa-solid fa-star" style="color: #ffdd00;"></i>
        								<i class="fa-regular fa-star" style="color: #ffdd00;"></i>
        								<i class="fa-regular fa-star" style="color: #ffdd00;"></i>
        								<i class="fa-regular fa-star" style="color: #ffdd00;"></i>
        							</c:if>
-       							<c:if test="${bizInfo.bizReviewStar gt 2 and bizInfo.bizReviewStar lt 2.5}">
+       							<c:if test="${bizInfo.bizReviewStar gt 2 and bizInfo.bizReviewStar le 2.5}">
 									<i class="fa-solid fa-star" style="color: #ffdd00;"></i>
        								<i class="fa-solid fa-star" style="color: #ffdd00;"></i>
        								<i class="fa-regular fa-star-half-stroke" style="color: #ffdd00;"></i>
        								<i class="fa-regular fa-star" style="color: #ffdd00;"></i>
        								<i class="fa-regular fa-star" style="color: #ffdd00;"></i>
        							</c:if>
-       							<c:if test="${bizInfo.bizReviewStar gt 2.5 and bizInfo.bizReviewStar lt 3}">
+       							<c:if test="${bizInfo.bizReviewStar gt 2.5 and bizInfo.bizReviewStar le 3}">
 									<i class="fa-solid fa-star" style="color: #ffdd00;"></i>
        								<i class="fa-solid fa-star" style="color: #ffdd00;"></i>
        								<i class="fa-solid fa-star" style="color: #ffdd00;"></i>
        								<i class="fa-regular fa-star" style="color: #ffdd00;"></i>
        								<i class="fa-regular fa-star" style="color: #ffdd00;"></i>
        							</c:if>
-       							<c:if test="${bizInfo.bizReviewStar gt 3 and bizInfo.bizReviewStar lt 3.5}">
+       							<c:if test="${bizInfo.bizReviewStar gt 3 and bizInfo.bizReviewStar le 3.5}">
 									<i class="fa-solid fa-star" style="color: #ffdd00;"></i>
        								<i class="fa-solid fa-star" style="color: #ffdd00;"></i>
        								<i class="fa-solid fa-star" style="color: #ffdd00;"></i>
        								<i class="fa-regular fa-star-half-stroke" style="color: #ffdd00;"></i>
        								<i class="fa-regular fa-star" style="color: #ffdd00;"></i>
        							</c:if>
-       							<c:if test="${bizInfo.bizReviewStar gt 3.5 and bizInfo.bizReviewStar lt 4}">
+       							<c:if test="${bizInfo.bizReviewStar gt 3.5 and bizInfo.bizReviewStar le 4}">
 									<i class="fa-solid fa-star" style="color: #ffdd00;"></i>
        								<i class="fa-solid fa-star" style="color: #ffdd00;"></i>
        								<i class="fa-solid fa-star" style="color: #ffdd00;"></i>
        								<i class="fa-solid fa-star" style="color: #ffdd00;"></i>
        								<i class="fa-regular fa-star" style="color: #ffdd00;"></i>
        							</c:if>
-       							<c:if test="${bizInfo.bizReviewStar gt 4 and bizInfo.bizReviewStar lt 4.5}">
+       							<c:if test="${bizInfo.bizReviewStar gt 4 and bizInfo.bizReviewStar le 4.5}">
 									<i class="fa-solid fa-star" style="color: #ffdd00;"></i>
        								<i class="fa-solid fa-star" style="color: #ffdd00;"></i>
        								<i class="fa-solid fa-star" style="color: #ffdd00;"></i>
        								<i class="fa-solid fa-star" style="color: #ffdd00;"></i>
        								<i class="fa-regular fa-star-half-stroke" style="color: #ffdd00;"></i>
        							</c:if>
-       							<c:if test="${bizInfo.bizReviewStar gt 4.5 and bizInfo.bizReviewStar lt 5}">
+       							<c:if test="${bizInfo.bizReviewStar gt 4.5 and bizInfo.bizReviewStar le 5}">
 									<i class="fa-solid fa-star" style="color: #ffdd00;"></i>
        								<i class="fa-solid fa-star" style="color: #ffdd00;"></i>
        								<i class="fa-solid fa-star" style="color: #ffdd00;"></i>

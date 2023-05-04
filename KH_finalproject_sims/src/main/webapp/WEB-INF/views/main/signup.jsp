@@ -185,19 +185,19 @@
 				
 		          <div class="mb-3">
 		            <label for="bizSsn">법인등록번호</label>
-		            <input type="text" class="form-control" name="bizSsn" placeholder="법인등록번호" maxlength="12" onkeyup="autoHyphenCrn(this)" required>
+		            <input type="text" class="form-control" name="bizSsn" placeholder="법인등록번호" maxlength="14" onkeyup="autoHyphenSsn(this)" required>
 		            <div class="invalid-feedback">법인등록번호를 입력해주세요.</div>
 		          </div>
 		
 		          <div class="mb-3">
 		            <label for="bizCrn">사업자등록번호</label>
-		            <input type="text" class="form-control" name="bizCrn" placeholder="사업자등록번호" maxlength="14" onkeyup="autoHyphenSsn(this)" required>
+		            <input type="text" class="form-control" name="bizCrn" placeholder="사업자등록번호" maxlength="12" onkeyup="autoHyphenCrn(this)" required>
 		            <div class="invalid-feedback">사업자등록번호를 입력하세요</div>
 		          </div>
 		          
 	            <div class="row">
 		          <div class="col-9 mb-3 text-left">
-		            <label for="id">아이디</label>
+		            <label for="id" data-tooltip="영문, 숫자만 사용해주세요">아이디 <i class="fa-solid fa-circle-question" style="color: #538cee;"></i></label>
 		            <input type="text" class="form-control" name="id" placeholder="아이디" required>
 		            <div class="invalid-feedback">아이디를 입력해주세요.</div>
 		          </div>
@@ -209,7 +209,7 @@
 		        <div class="idCheckDiv" style="display:none; font-size: 14px;"></div>
 		          
 		          <div class="mb-3">
-		            <label for="pw">비밀번호</label>
+		            <label for="pw" data-tooltip="영문, 특수문자, 숫자만 사용해주세요">비밀번호 <i class="fa-solid fa-circle-question" style="color: #538cee;"></i></label>
 		            <input type="password" class="form-control" name="pw" placeholder="비밀번호" required>
 		            <div class="invalid-feedback">비밀번호를 입력하세요</div>
 		          </div>
@@ -230,7 +230,7 @@
 		          
 		          <div class="mb-3">
 		            <label for="bizPhone">연락처</label>
-		            <input type="text" class="form-control" name="bizPhone" placeholder="- 포함한 연락처" maxlength="13" pattern="[0-9\-]*" oninput="checkInput(event)" required>
+		            <input type="text" class="form-control" name="bizPhone" placeholder="연락처" maxlength="13" required>
 		            <div class="invalid-feedback">연락처를 입력하세요</div>
 		          </div>
 	           </div>

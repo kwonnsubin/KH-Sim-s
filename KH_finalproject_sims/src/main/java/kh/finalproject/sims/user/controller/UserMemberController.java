@@ -110,7 +110,7 @@ public class UserMemberController {
 			result = service.selectFindId(bizVo);
 		}
 		
-		if(result == null) {
+		if(result.getId() == null) {
 			mv.addObject("msg", "해당 정보에 맞는 아이디가 없습니다.");
 			mv.setViewName("main/findid");
 		} else {

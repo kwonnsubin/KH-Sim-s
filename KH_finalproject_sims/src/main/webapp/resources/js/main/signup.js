@@ -11,7 +11,9 @@ $(document).ready(function() {
     
     // 유저 비밀번호 체크
     $('.user input[name=pwCheck]').keyup(function(){
-		if($('.user input[name=pw]').val() === $('.user input[name=pwCheck]').val()) {
+		if($('.user input[name=pw]').val() === $('.user input[name=pwCheck]').val() && !$('.user input[name=pw]') == ""
+			&& !$('.user input[name=pw]') == null && !$('.user input[name=pw]') == undefined) {
+			
 			$(".user .pwCheckDiv").html("<p style='color: green;'>비밀번호가 같습니다.</p>");
 			$(".user .pwCheckDiv").css("display", "block");
 			if($('input[name=userEmail').attr('readonly') === 'readonly' && 
@@ -27,7 +29,9 @@ $(document).ready(function() {
 	});
 	
 	$('.user input[name=pw]').keyup(function(){
-		if($('.user input[name=pw]').val() === $('.user input[name=pwCheck]').val()) {
+		if($('.user input[name=pw]').val() === $('.user input[name=pwCheck]').val() && !$('.user input[name=pw]') == ""
+			&& !$('.user input[name=pw]') == null && !$('.user input[name=pw]') == undefined ) {
+			
 			$(".user .pwCheckDiv").html("<p style='color: green;'>비밀번호가 같습니다.</p>");
 			$(".user .pwCheckDiv").css("display", "block");
 			if($('input[name=userEmail').attr('readonly') === 'readonly' && 
@@ -44,7 +48,9 @@ $(document).ready(function() {
 	
 	// 통신사 비밀번호 체크
 	$('.biz input[name=pwCheck]').keyup(function(){
-		if($('.biz input[name=pw]').val() === $('.biz input[name=pwCheck]').val()) {
+		if($('.biz input[name=pw]').val() === $('.biz input[name=pwCheck]').val() && !$('.biz input[name=pw]') == ""
+			&& !$('.biz input[name=pw]') == null && !$('.biz input[name=pw]') == undefined) {
+			
 			$(".biz .pwCheckDiv").html("<p style='color: green;'>비밀번호가 같습니다.</p>");
 			$(".biz .pwCheckDiv").css("display", "block");
 			if($(".biz .idCheckDiv").html() === '<p style="color: green;">사용 가능한 아이디입니다.</p>'){
@@ -58,7 +64,8 @@ $(document).ready(function() {
 	});
 	
 	$('.biz input[name=pw]').keyup(function(){
-		if($('.biz input[name=pw]').val() === $('.biz input[name=pwCheck]').val()) {
+		if($('.biz input[name=pw]').val() === $('.biz input[name=pwCheck]').val() && !$('.biz input[name=pw]') == ""
+			&& !$('.biz input[name=pw]') == null && !$('.biz input[name=pw]') == undefined) {
 			$(".biz .pwCheckDiv").html("<p style='color: green;'>비밀번호가 같습니다.</p>");
 			$(".biz .pwCheckDiv").css("display", "block");
 			if($(".biz .idCheckDiv").html() === '<p style="color: green;">사용 가능한 아이디입니다.</p>'){
@@ -265,6 +272,7 @@ function autoHyphenPhone(obj) {
   obj.value = tmp;
 }
 
+// 아이디 정규식
 $('.inputId').on('keyup', function (e) {
 	var userIdCheck = RegExp(/^[A-Za-z0-9_\-]{6,20}$/);
 	var str = $(e.target).val();
@@ -279,15 +287,45 @@ $('.inputId').on('keyup', function (e) {
 	}
 });
 
+// 비밀번호 정규식
 $('.inputPw').on('keyup', function (e) {
 	var passwdCheck = RegExp(/^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#$%^*()\-_=+\\\|\[\]{};:\'",.<>\/?]).{8,16}$/);
 	var str = $(e.target).val();
 	
-	console.log(passwdCheck.test(str));
 	if(passwdCheck.test(str) == false){
 		$(".user .passwdCheck").css("display", "block");
 	} else {
 		$(".user .passwdCheck").css("display", "none");
+	}
+});
+
+// 통신사 연락처 정규식
+$('input[name=bizPhone').on('keyup', function (e) {
+	var bizPhoneCheck = RegExp(/^[0-9\-]*$/);
+	var str = $(e.target).val();
+	
+	if(bizPhoneCheck.test(str) == false){
+		$(e.target).val('');
+	}
+});
+
+// 통신사 아이디 정규식
+$('.biz input[name=id]').on('keyup', function (e) {
+	var bizIdCheck = RegExp(/^[A-Za-z0-9]*$/);
+	var str = $(e.target).val();
+	
+	if(bizIdCheck.test(str) == false){
+		$(e.target).val('');
+	}
+});
+
+// 통신사 비밀번호 정규식
+$('.biz input[name=pw]').on('keyup', function (e) {
+	var bizPwCheck = RegExp(/^[a-zA-Z0-9!@#$%^*()\-_=+\\\|\[\]{};:\'",.<>\/?]*$/);
+	var str = $(e.target).val();
+	
+	if(bizPwCheck.test(str) == false){
+		$(e.target).val('');
 	}
 });
 

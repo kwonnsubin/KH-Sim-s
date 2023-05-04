@@ -80,8 +80,8 @@
 	 	select review_no, review_content, review_date, review_redate, review_star, user_id, biz_id
 		     , (select b.biz_name from biz b where b.biz_id = Br.biz_id) as biz_name
 		from biz_review Br
-		where Br.user_id=#{userId}
-		order by review_date desc and review_hidden=0
+		where Br.user_id=#{userId} and review_hidden=0
+		order by review_date desc
 	</select>
   
 	<!-- 리뷰 작성 -->

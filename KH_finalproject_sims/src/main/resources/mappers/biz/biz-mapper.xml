@@ -116,7 +116,7 @@
 		select biz_id, biz_name, biz_ssn, biz_crn, biz_email, biz_phone, biz_fax, biz_owner_name
 		    , biz_hp, biz_zip_code, biz_location, biz_card_pay_date, biz_acc_pay_date, biz_begin_time
 		    , biz_end_time, biz_closed_day, biz_review_star, phone_op_time, phone_op_time_usim, network
-		    , (select count(*) from biz_review br where b.biz_id=br.biz_id where review_hidden=0) as biz_review_cnt
+		    , (select count(*) from biz_review br where b.biz_id=br.biz_id and br.review_hidden=0) as biz_review_cnt
 		from biz b where biz_id=#{bizId}
 	</select>
 	
