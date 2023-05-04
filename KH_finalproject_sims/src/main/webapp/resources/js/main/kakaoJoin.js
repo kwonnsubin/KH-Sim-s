@@ -63,3 +63,13 @@ $('input[name=emailCheck]').on("blur", function () {
 		$resultMsg.css("display", "block");
 	}
 });
+
+$('.genderInput1').on('click', function(e) {
+	$('.form-check-input').eq(0).prop('checked', true);
+	$('.form-check-input').eq(1).prop('checked', false);
+});
+
+$('.genderInput2').on('click', function(e) {
+	$('.form-check-input').eq(1).prop('checked', true);
+	$('.form-check-input').eq(0).prop('checked', false);
+});

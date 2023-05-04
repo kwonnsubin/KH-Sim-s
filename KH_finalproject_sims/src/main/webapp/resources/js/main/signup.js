@@ -290,3 +290,13 @@ $('.inputPw').on('keyup', function (e) {
 		$(".user .passwdCheck").css("display", "none");
 	}
 });
+
+$('.genderInput1').on('click', function(e) {
+	$('.form-check-input').eq(2).prop('checked', true);
+	$('.form-check-input').eq(3).prop('checked', false);
+});
+
+$('.genderInput2').on('click', function(e) {
+	$('.form-check-input').eq(3).prop('checked', true);
+	$('.form-check-input').eq(2).prop('checked', false);
+});

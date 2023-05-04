@@ -62,13 +62,13 @@
 					  <div class="input-group-text">
 					    <input class="form-check-input mt-0" type="radio" value="ROLE_USER" name="role" checked="checked">
 					  </div>
-					  <input type="text" class="form-control" value="사용자" readonly>
+					  <input type="text" class="form-control" value="사용자" style="cursor:default;" readonly>
 				  </div>
 				  <div class="col input-group mb-3">
 					  <div class="input-group-text">
 					    <input class="form-check-input mt-0" type="radio" value="ROLE_BIZ" name="role">
 					  </div>
-					  <input type="text" class="form-control" value="통신사" readonly>
+					  <input type="text" class="form-control" value="통신사" style="cursor:default;" readonly>
 				  </div>
 	            </div>
 	        </div>
@@ -140,15 +140,15 @@
 	            <div class="row text-center">
 		          <div class="col input-group mb-3">
 					  <div class="input-group-text">
-					    <input class="form-check-input mt-0" type="radio" value="F" name="userGender">
+					    <input class="form-check-input mt-0 radioCheck" type="radio" value="F" name="userGender" checked>
 					  </div>
-					  <input type="text" class="form-control" value="여성" readonly style="background-color:white;">
+					  <input type="text" class="form-control genderInput1" value="여성" readonly style="background-color:white; cursor:default; outline:none;">
 				  </div>
 				  <div class="col input-group mb-3">
 					  <div class="input-group-text">
-					    <input class="form-check-input mt-0" type="radio" value="M" name="userGender">
+					    <input class="form-check-input mt-0 radioCheck" type="radio" value="M" name="userGender">
 					  </div>
-					  <input type="text" class="form-control" value="남성" readonly style="background-color:white;">
+					  <input type="text" class="form-control genderInput2" value="남성" readonly style="background-color:white; cursor:default; outline:none;">
 				  </div>
 	        	</div>
 		          
@@ -199,7 +199,6 @@
 		          <div class="col-9 mb-3 text-left">
 		            <label for="id">아이디</label>
 		            <input type="text" class="form-control" name="id" placeholder="아이디" required>
-		            <i class="fa-solid fa-square-question" style="color: #6e99e2;"></i>
 		            <div class="invalid-feedback">아이디를 입력해주세요.</div>
 		          </div>
 		          <div class="col-3 mb-3 text-center align-self-end">
@@ -212,7 +211,6 @@
 		          <div class="mb-3">
 		            <label for="pw">비밀번호</label>
 		            <input type="password" class="form-control" name="pw" placeholder="비밀번호" required>
-		            <i class="fa-solid fa-square-question" style="color: #6e99e2;"></i>
 		            <div class="invalid-feedback">비밀번호를 입력하세요</div>
 		          </div>
 		          

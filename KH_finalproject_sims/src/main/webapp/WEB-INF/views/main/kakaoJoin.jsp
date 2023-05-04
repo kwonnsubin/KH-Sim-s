@@ -93,16 +93,17 @@
 	            <div class="row text-center">
 		          <div class="col input-group mb-3">
 					  <div class="input-group-text">
-					    <input class="form-check-input mt-0" type="radio" value="F" name="userGender">
+					    <input class="form-check-input mt-0" type="radio" value="F" name="userGender" checked>
 					  </div>
-					  <input type="text" class="form-control" value="여성" readonly style="background-color:white;">
+					  <input type="text" class="form-control genderInput1" value="여성" readonly style="background-color:white; cursor:default; outline:none;">
 				  </div>
 				  <div class="col input-group mb-3">
 					  <div class="input-group-text">
 					    <input class="form-check-input mt-0" type="radio" value="M" name="userGender">
 					  </div>
-					  <input type="text" class="form-control" value="남성" readonly style="background-color:white;">
+					  <input type="text" class="form-control genderInput2" value="남성" readonly style="background-color:white; cursor:default; outline:none;">
 				  </div>
+				  <div class="invalid-feedback">성별을 체크해주세요</div>
 	        	</div>
 		          
 		          <div class="mb-3">
