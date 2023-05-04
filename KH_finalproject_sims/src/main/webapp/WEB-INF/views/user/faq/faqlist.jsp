@@ -49,7 +49,7 @@
 							<c:forEach items="${faqlist}" var="faq">
 								<c:if test="${faq.faqNo eq 1}">
 									<div class="carousel-item active">
-										<img src="<%=request.getContextPath()%>/resources/img/faq.png" class="d-block w-100" alt="...">
+										<img src="${cpath }/resources/img/faq.png" class="d-block w-100" alt="...">
 										<div class="carousel-caption">
 											<h3 class="m-auto">
 												<a href="${cpath}/faq/faqread/${faq.faqNo}">${faq.faqTitle}</a>
@@ -59,7 +59,7 @@
 								</c:if>
 								<c:if test="${faq.faqNo ne 1}">
 									<div class="carousel-item">
-										<img src="<%=request.getContextPath()%>/resources/img/faq.png" class="d-block w-100" alt="...">
+										<img src="${cpath }/resources/img/faq.png" class="d-block w-100" alt="...">
 										<div class="carousel-caption">
 											<h3 class="m-auto">
 												<a href="${cpath}/faq/faqread/${faq.faqNo}">${faq.faqTitle}</a>
@@ -89,7 +89,7 @@
 							<option value="content">내용</option>
 						</select> 
 						<input type="text" class="form-control" placeholder="검색해보세요" name="keyword" id="keyword" value=${keyword }>
-						<button name="btnSearch" id="btnSearch" class="btn" type="submit">검색</button>
+						<button name="btnSearch" id="btnSearch" class="btn" type="button">검색</button>
 					</div>
 					<%
 						if (request.getParameter("keyword") != null && !request.getParameter("keyword").isEmpty()) {
@@ -106,7 +106,7 @@
 						<c:forEach items="${requestScope.paging.page}" var="qna">
 							<div class="row py-3 div-hover">
 								<div class="pb-1">
-									<a href="${pageContext.request.contextPath}/faq/qna/${qna.aqNo}">${qna.aqTitle}</a>
+									<a href="${cpath}/faq/qna/${qna.aqNo}">${qna.aqTitle}</a>
 								</div>
 								<div class="small col-md-1 pe-0">답변 ${qna.aqAnswers }</div>
 								<div class="small col-md-9">
@@ -133,13 +133,13 @@
 								</c:when>
 								<c:otherwise>
 									<li class="page-item">
-										<a class="page-link" href="${pageContext.request.contextPath}/faq/?p=${requestScope.paging.prevPage }&searchType=${searchType }&keyword=${keyword }">prev</a>
+										<a class="page-link" href="${cpath}/faq/?p=${requestScope.paging.prevPage }&searchType=${searchType }&keyword=${keyword }">prev</a>
 									</li>
 								</c:otherwise>
 							</c:choose>
 							<c:forEach var="pNum" items="${requestScope.paging.pageList }">
 								<li class="page-item ${pNum eq pageNumber ? 'active' : '' }">
-									<a class="page-link" href="${pageContext.request.contextPath}/faq/?p=${pNum }&searchType=${searchType }&keyword=${keyword }">${pNum }</a>
+									<a class="page-link" href="${cpath}/faq/?p=${pNum }&searchType=${searchType }&keyword=${keyword }">${pNum }</a>
 								</li>
 							</c:forEach>
 							<c:choose>
@@ -148,7 +148,7 @@
 								</c:when>
 								<c:otherwise>
 									<li class="page-item">
-										<a class="page-link" href="${pageContext.request.contextPath}/faq/?p=${requestScope.paging.nextPage }&searchType=${searchType }&keyword=${keyword }">next</a>
+										<a class="page-link" href="${cpath}/faq/?p=${requestScope.paging.nextPage }&searchType=${searchType }&keyword=${keyword }">next</a>
 									</li>
 								</c:otherwise>
 							</c:choose>
@@ -187,6 +187,12 @@
 			console.log(url);
 			$('#keyword').val(keyword);
 		});
+		
+		$('#keyword').on('keyup', function(e) {
+		    if (e.keyCode === 13) { // 엔터키코드
+		      $('#btnSearch').click();
+		    }
+		  });
 	</script>
 </body>
 </html>
