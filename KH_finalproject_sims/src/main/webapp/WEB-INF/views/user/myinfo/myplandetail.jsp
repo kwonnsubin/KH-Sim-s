@@ -143,7 +143,7 @@
        						<div class="plan-info">
        							<p class="mb-3 plan-info-text">납부 정보</p>
        							
-       							<p class="mb-2">월 납부 금액		|	${poVo.planPrice} 원</p>
+       							<p class="mb-2">월 납부 금액		|	<fmt:formatNumber value="${poVo.planPrice}" pattern="###,###" /> 원</p>
        							<p class="mb-2">초과데이터단가	|	MB당 ${poVo.planDataOver} 원</p>
        							<p class="mb-2">초과음성단가	|	초당 ${poVo.planVoiceOver} 원</p>
        							<p class="mb-2">초과문자단가	|	건당 ${poVo.planMessageOver} 원</p>

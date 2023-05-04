@@ -43,7 +43,7 @@
 	       		<div class="col col-height">
 	       			<div>
 	       				<div class="my-3">
-  							<img src="<%=request.getContextPath()%>/resources/img/${bizInfo.bizId}.png" style="max-width: 100px; height: 40px;">
+  							<img src="<%=request.getContextPath()%>/resources/img/${bizInfo.bizId}.png" style="max-width: 100px; max-height: 40px;">
 	       				</div>
 	       				<div class="row row-cols-auto">
 	       					<div class="col align-self-center">

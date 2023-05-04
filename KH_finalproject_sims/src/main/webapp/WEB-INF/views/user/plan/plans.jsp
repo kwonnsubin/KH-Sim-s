@@ -621,7 +621,7 @@
 	    					
 	    					<div class="planPrice ms-2 mt-3">
 		    					<p>월&nbsp;<p>
-		    					<p class="priceText">${list.planPrice}</p>
+		    					<p class="priceText"><fmt:formatNumber value="${list.planPrice}" pattern="###,###" /></p>
 		    					<p>&nbsp;원</p>
 	    					</div>
 	    				</div>
@@ -673,7 +673,7 @@
 	       							</div>
 			    					<div class="planPrice mt-1">
 				    					<p>월&nbsp;<p>
-				    					<p class="priceText">${list.planPrice}</p>
+				    					<p class="priceText"><fmt:formatNumber value="${list.planPrice}" pattern="###,###" /></p>
 				    					<p>&nbsp;원</p>
 			    					</div>
 			    				</div>

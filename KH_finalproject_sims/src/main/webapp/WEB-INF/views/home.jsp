@@ -148,7 +148,7 @@
 	    					<div class="mt-auto text-end">
 		    					<div class="planPrice">
 			    					<p>월&nbsp;<p>
-			    					<p class="priceText">${viewList.planPrice}</p>
+			    					<p class="priceText"><fmt:formatNumber value="${viewList.planPrice}" pattern="###,###"/></p>
 			    					<p>&nbsp;원</p>
 		    					</div>
 	    					</div>
@@ -222,7 +222,7 @@
 	    					<div class="mt-auto text-end">
 		    					<div class="planPrice ms-2 mt-3">
 			    					<p>월&nbsp;<p>
-			    					<p class="priceText">${likeList.planPrice}</p>
+			    					<p class="priceText"><fmt:formatNumber value="${likeList.planPrice}" pattern="###,###"/></p>
 			    					<p>&nbsp;원</p>
 		    					</div>
 	    					</div>
@@ -296,7 +296,7 @@
 	    					<div class="mt-auto text-end">
 		    					<div class="planPrice ms-2 mt-3">
 			    					<p>월&nbsp;<p>
-			    					<p class="priceText">${orderList.planPrice}</p>
+			    					<p class="priceText"><fmt:formatNumber value="${orderList.planPrice}" pattern="###,###"/></p>
 			    					<p>&nbsp;원</p>
 		    					</div>
 	    					</div>
