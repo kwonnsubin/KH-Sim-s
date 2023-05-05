@@ -2,6 +2,7 @@ package kh.finalproject.sims.admin.controller;
 
 import java.security.Principal;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import javax.servlet.http.Cookie;
@@ -16,9 +17,13 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.google.gson.Gson;
+
 import kh.finalproject.sims.admin.model.service.AdminUserMngtService;
+import kh.finalproject.sims.admin.model.vo.AdminBizMngtVo;
 import kh.finalproject.sims.admin.model.vo.AdminUserMngtVo;
 import kh.finalproject.sims.common.page.Search;
 
@@ -155,7 +160,16 @@ public class AdminUserMngtController {
 		  return mv;
 	}
 			
-			
+	//사용자가 신청한 요금제 리스트 ajax
+	@PostMapping("/selectUserApplyPlanAjax")
+	@ResponseBody
+	public String selectUserApplyPlanAjax(HttpServletRequest request) throws Exception {
+		String userId = request.getParameter("userId");
+		List<AdminBizMngtVo> selectUserApplyPlanAjax = service.selectUserApplyPlanAjax(userId);
+		Gson gson = new Gson();
+		String json = gson.toJson(selectUserApplyPlanAjax);
+		return json;
+	}
 			
 
 }

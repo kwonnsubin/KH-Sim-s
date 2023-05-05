@@ -59,4 +59,8 @@ public class AdminUserMngtServiceImpl implements AdminUserMngtService{
 			return dao.selectOrderListCountAdmin(userId);
 		}
 
+		//사용자가 신청한 요금제 리스트 ajax
+		public List<AdminBizMngtVo> selectUserApplyPlanAjax(String userId) {
+			return dao.selectUserApplyPlanAjax(userId);
+		}
 }

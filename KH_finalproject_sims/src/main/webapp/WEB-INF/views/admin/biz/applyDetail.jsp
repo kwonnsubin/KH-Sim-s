@@ -156,7 +156,7 @@ function fn_submitCheck(){
 			                    				<div class="row">
 			                    					<div class="col-md-12">
 			                    						<h5>검토의견</h5><hr><span></span>
-			                    						<textarea class="form-control" aria-label="with textarea" name="opinion" style= height:360px;resize:none;>${applyDetail.opinion }</textarea>
+			                    						<textarea class="form-control" aria-label="with textarea" name="opinion" style= height:360px;resize:none; required>${applyDetail.opinion }</textarea>
 			                    						<%-- <textarea class="col-md-12 bg-light p-4 mb-2" style="height:277px; resize:none; border:2px solid rgba(0, 0, 0, 0.15);" name="rvwOpinion">${applyDetail.opinion }</textarea> --%>
 			                    					</div>
 			                    				</div>

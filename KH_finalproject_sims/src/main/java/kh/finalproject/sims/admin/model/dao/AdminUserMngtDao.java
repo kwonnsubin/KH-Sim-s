@@ -7,6 +7,7 @@ import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import kh.finalproject.sims.admin.model.vo.AdminBizMngtVo;
 import kh.finalproject.sims.admin.model.vo.AdminUserMngtVo;
 import kh.finalproject.sims.biz.model.vo.BizApplyVo;
 
@@ -44,6 +45,11 @@ public class AdminUserMngtDao {
 	//리뷰를 단 요금제 개수
 	public int selectOrderListCountAdmin(String userId) {
 		return sqlSession.selectOne("adminUser.selectOrderListCountAdmin", userId);
+	}
+
+	//사용자가 신청한 요금제 리스트 ajax
+	public List<AdminBizMngtVo> selectUserApplyPlanAjax(String userId) {
+		return sqlSession.selectList("adminUser.selectUserApplyPlanAjax", userId);
 	}
 	
  

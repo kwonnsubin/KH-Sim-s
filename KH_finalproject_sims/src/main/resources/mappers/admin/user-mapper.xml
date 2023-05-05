@@ -134,20 +134,11 @@
 	</select>
 	
 	<!-- 사용자 신청 요금제 Ajax -->
-	<select id="selectUserApplyPlanlAjax" resultType="adBizVo">
-	/** 사용자 신청 요금제 상세 정보 Ajax (selectUserApplyPlanlAjax)**/
-		SELECT
-			D.*
-		FROM
-			(
-			SELECT
-				C.*
-				, ROWNUM AS RO
-			FROM 
-				(
+	<select id="selectUserApplyPlanAjax" resultType="adBizVo">
+	/** 사용자 신청 요금제 상세 정보 Ajax (selectUserApplyPlanAjax)**/
+		
 				SELECT
 					A.ORDER_NO
-            		, A.USER_ID
             		, B.PLAN_NAME
             		, A.ORDER_STATUS
             		, A.ORDER_DATE
@@ -157,9 +148,6 @@
 					LEFT OUTER JOIN PLAN_TABLE B ON A.PLAN_NO = B.PLAN_NO
 				WHERE 1=1
 				ORDER BY A.ORDER_DATE DESC
-			) C
-		) D
-		WHERE 1=1
-			AND RO BETWEEN #{start} AND #{end}
+		
 	</select>
 </mapper>

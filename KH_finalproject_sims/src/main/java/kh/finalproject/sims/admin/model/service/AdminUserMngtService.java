@@ -2,6 +2,7 @@ package kh.finalproject.sims.admin.model.service;
 
 import java.util.List;
 
+import kh.finalproject.sims.admin.model.vo.AdminBizMngtVo;
 import kh.finalproject.sims.admin.model.vo.AdminUserMngtVo;
 import kh.finalproject.sims.common.page.Search;
 
@@ -21,6 +22,9 @@ public interface AdminUserMngtService {
 	  
 	//리뷰 개수
 	public int selectOrderListCountAdmin(String userId);
+
+	//사용자가 신청한 요금제 리스트 ajax
+	public List<AdminBizMngtVo> selectUserApplyPlanAjax(String userId);
 	 
 	
 	

@@ -388,7 +388,7 @@
 		                                         <label for="bizClosedDay" class="col-sm-2 col-form-label text-center">휴무일</label>
 		                                        	<c:choose>
 		                                        	<c:when test="${cmd eq 'read'}">
-		                                        		<div class="col-sm-3">
+		                                        		<div class="col-sm-4">
 		                                            	<input type="text" class="form-control"  name="bizClosedDay" <c:if test="${cmd eq 'read' }">readonly</c:if> value="${applyDetail.bizClosedDay}">
 		                                        		</div>
 		                                        	</c:when>

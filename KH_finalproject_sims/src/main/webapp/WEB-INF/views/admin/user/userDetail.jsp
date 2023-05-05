@@ -20,18 +20,34 @@ function goBack(){
 }
 
 /* 가입한 요금제 리스트 호출 ajax */
-function fn_applyPlanAjax(orderNo){
+function fn_applyPlanAjax(userId){
+	var html = "";
+	/* var enable=td.eq(1).text('신청 완료'); */
+	var status=('#planSubList').find("td:eq(1)".text('신청 완료'');
+	
+	$("#planSubList").empty();
+	// planSubList
 	$.ajax({
-		url: "${pageContext.request.contextPath}/admin/selectPlanAjax",
+		url: "${pageContext.request.contextPath}/admin/selectUserApplyPlanAjax",
 		type: "post",
 		data: {userId : userId},
 		dataType: "json",
 		success: function(json){
-			$("#userId").text(json.userId);
-			$("#bizName").text(json.bizName);
-			$("#planName").text(json.planName);
-			$("#enable").text(json.enable);
-			$("#orderDate").text(json.orderDate);
+			for(var i=0; i<json.length; i++){
+				html += '<tr>';
+				html += '<td>'+json[i].orderNo+'</td>';
+				html += '<td>'+json[i].bizName+'</td>';
+				html += '<td>'+json[i].planName+'</td>';
+				
+				 
+				/* html += '<td>'+"$(json[i].orderStatus)":eq(1).html("신청완료")  */
+				/* html += $("td:eq(1)").html("신청 완료"); */
+				/* html += '<td>'+if(json[i].orderStatus == '1'){'신청 완료'}
+				else if{'승인 완료'}+'</td>'; */
+				html += '<td>'+json[i].orderDate+'</td>';
+				html += '</tr>';
+			}
+			$("#planSubList").append(html);
 		},
 		error: function(jqXHR, textStatus, errorThrown){
 			console.log(jqXHR);  //응답 메시지
@@ -147,7 +163,7 @@ function fn_applyPlanAjax(orderNo){
 		                                    <div class="form-group row">
 		                                        <label for="planName" class="col-sm-1 col-form-label text-center">신청한 요금제 </label>
 		                                        <div class="col-sm-5">
-		                                            <input type="text" class="form-control"  name="planName" readonly value="${cnt.myPlanCnt}개" onclick="fn_applyPlanAjax('${userDetail.planNo}');" data-toggle="modal" data-target=".bd-example-modal-lg">
+		                                            <input type="text" class="form-control"  name="planName" readonly value="${cnt.myPlanCnt}개" onclick="fn_applyPlanAjax('${userDetail.userId}');" data-toggle="modal" data-target=".bd-example-modal-lg">
 		                                        </div>
 		                                    </div>
 		                                    <div class="form-group row">
@@ -175,58 +191,30 @@ function fn_applyPlanAjax(orderNo){
 						<div class="modal fade bd-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
 							<div class="modal-dialog modal-lg">
 								<div class="modal-content">
-									<div class="modal-header">
+									<div class="modal-header col-md-12">
 										<h5 class="modal-title h4" id="myLargeModalLabel">${userDetail.userId}님의 신청요금제</h5>
 										<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
 									</div>
 									<div class="modal-body">
-										<div class="col-md-10">
+										<div class="col-md-12">
 						                    <div class="card-body table-border-style">
 						                        <div class="table-responsive">
 						                            <table class="table table-hover">
-						                                <thead>
+						                                <thead class="text-center">
 						                                    <tr>
 						                                        <th>번호</th>
-																<!-- <th>신청자</th> -->
 																<th>통신사명</th>
 																<th>요금제명</th>
 																<th>신청상태</th>
 																<th>신청일</th>
 						                                    </tr>
 						                                </thead>
-						                                <tbody>
-						                                     <c:if test="${not empty requestScope.paging.page}">
-																<c:forEach var="list" items="${requestScope.paging.page}" varStatus="status">
-																	<tr>
-																		<td>${paging.totalRowCount - (paging.currentPage-1) * paging.pageLimit - status.index}</td>
-																		<%-- <td><a href="<%=request.getContextPath()%>/admin/bizPlanApplyDetail/${list.orderNo}?divCheck=${divCheck}">${list.orderNo}</a></td> --%>
-																		<td><a href="<%=request.getContextPath()%>/admin/bizPlanApplyDetail/${list.orderNo}">${list.userId}</a></td>
-																		<td>${list.bizName}</td>
-																		<td>${list.planName}</td>
-																		<td>
-																			<c:choose>
-																				<c:when test="${list.orderStatus eq '1'.charAt(0)}"> 신청 완료 </c:when>
-																				<c:when test="${list.orderStatus eq '2'.charAt(0)}"> 승인 완료 </c:when>
-																				<c:otherwise>승인 보류</c:otherwise>
-																			</c:choose>
-																		</td>
-																		<td><fmt:formatDate value="${list.orderDate}" pattern="yyyy.MM.dd"/> </td>
-																	</tr>
-																</c:forEach>
-															</c:if>
-						                                    
-						                                    
+						                                <tbody id="planSubList" class="text-center">
 						                                </tbody>
 						                            </table>
 						                       </div>
 						                  </div>
 						            </div>
-										
-										
-										
-										
-										
-										
 									</div>
 								</div>
 							</div>
