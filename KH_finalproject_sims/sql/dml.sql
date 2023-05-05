@@ -488,3 +488,10 @@ select *
  (select plan_no 
     from plan_table 
     where biz_name like (select biz_name from biz where biz_id = 'sejong')); 
+
+
+
+--member 테이블에 데이터 삽입(비밀번호 암호화 적용)
+insert into member values ('admin' , '$2a$10$bt9PfhEJ3lryWC/p3w.lweFuqlxC76Hv6gimDPzlLg0CaJBUHqjSW', 'ROLE_ADMIN', 1);
+insert into member values ('user1' , '$2a$10$tCpvHB9A6DaRpi3A9kGAQe97j.PCADy1cQxuewZ0TkP1rBHoStVRO', 'ROLE_USER', 1);
+insert into member values ('sejong' , '$2a$12$WZPTu6ITZyZlsJqufbYVFu5c3CoYK.cRSuQljKaDrIsfl0.7WDMJe', 'ROLE_BIZ', 1);
