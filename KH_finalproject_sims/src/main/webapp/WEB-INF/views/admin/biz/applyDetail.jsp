@@ -10,7 +10,25 @@
 <title></title>
 </head>
 <body>
+
 <jsp:include page="../include/header.jsp" />
+<script>
+function fn_submitCheck(){
+	var testCheck = $('input[name=enable]:checked').val();
+	var html = "";
+	if(testCheck == '1'){
+		html = "승인";
+	} else if (testCheck == '3') {
+		html = "반려";
+	}
+	
+	if (confirm(html + " 하시겠습니까?")) {
+        $("#frm").submit();
+    } else {
+        alert("취소하셨습니다.");
+    }
+}
+</script>
 <div class="pcoded-main-container">
 	<div class="pcoded-wrapper container">
 		<div class="pcoded-content">
@@ -43,12 +61,13 @@
 										</div>
 									</div>
 								</div>
-							</div>
-							<form action="<%=request.getContextPath()%>/admin/updateBizStatus" method="post">
+							</div><!--confirm('승인하시겠습니까?')  -->
+							<%-- <form action="<%=request.getContextPath()%>/admin/updateBizStatus" method="post" onsubmit="return confirm('승인하시겠습니까?');"> --%>
+							<form action="<%=request.getContextPath()%>/admin/updateBizStatus" method="post" id="frm">
 								<div class="col-md-12">
 									<div class="simsBtn m-b-15">
 										<input class="btn btn-primary right m-l-10" type="button" onclick="location.href='<%=request.getContextPath()%>/admin/applyList'" value="목록">
-										<input class="btn btn-primary right" type="submit" value="저장">
+										<input class="btn btn-primary right" type="button" onclick="fn_submitCheck()" value="저장">
 									</div>
 								</div>
 							
@@ -97,9 +116,9 @@
 			                                        </div>
 			                                    </div>
 			                           			 <div class="form-group row">
-			                                        <label for="enable" class="col-sm-2 col-form-label text-center">신청상태</label>
+			                                        <label for="enableDetail" class="col-sm-2 col-form-label text-center">신청상태</label>
 			                                        <div class="col-sm-10">
-			                                            <input type="text" class="form-control"  name="enable" <c:if test="${cmd eq 'read' }">readonly</c:if> 
+			                                            <input type="text" class="form-control"  name="enableDetail" <c:if test="${cmd eq 'read' }">readonly</c:if> 
 			                                            	<c:choose>
 																<c:when test="${applyDetail.enable eq '0'}">value="인증 전" </c:when>
 																<c:when test="${applyDetail.enable eq '1'}">value="인증 완료" </c:when>
@@ -137,7 +156,7 @@
 			                    				<div class="row">
 			                    					<div class="col-md-12">
 			                    						<h5>검토의견</h5><hr><span></span>
-			                    						<textarea class="form-control" aria-label="with textarea" name="opinion" style= height:351px;resize:none;>${applyDetail.opinion }</textarea>
+			                    						<textarea class="form-control" aria-label="with textarea" name="opinion" style= height:360px;resize:none;>${applyDetail.opinion }</textarea>
 			                    						<%-- <textarea class="col-md-12 bg-light p-4 mb-2" style="height:277px; resize:none; border:2px solid rgba(0, 0, 0, 0.15);" name="rvwOpinion">${applyDetail.opinion }</textarea> --%>
 			                    					</div>
 			                    				</div>

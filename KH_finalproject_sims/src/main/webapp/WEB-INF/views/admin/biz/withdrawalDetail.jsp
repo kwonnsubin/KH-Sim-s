@@ -48,7 +48,9 @@
 								<div class="col-md-12">
 									<div class="simsBtn m-b-15">
 										<input class="btn btn-primary right m-l-10" type="button" onclick="location.href='<%=request.getContextPath()%>/admin/applyList'" value="목록">
-										<input class="btn btn-primary right" type="submit" value="탈퇴 확정">
+										<c:if test="${withdrawalDetail.enable ne '2' }">
+											<input class="btn btn-primary right" type="submit" value="탈퇴 확정">
+										</c:if>
 									</div>
 								</div>
 							
@@ -101,10 +103,11 @@
 			                                        <div class="col-sm-10">
 			                                            <input type="text" class="form-control"  name="bizLocation" <c:if test="${cmd eq 'read' }">readonly</c:if> 
 			                                           		<c:choose>
-																<c:when test="${withdrawalDetail.enable eq '0'.charAt(0)}">value="인증 전" </c:when>
-																<c:when test="${withdrawalDetail.enable eq '1'.charAt(0)}">value="인증 완료" </c:when>
-																<c:when test="${withdrawalDetail.enable eq '3'.charAt(0)}">value="반려" </c:when>
-																<c:otherwise>value="탈퇴"</c:otherwise>
+																<c:when test="${withdrawalDetail.enable eq '0'}">value="인증 전" </c:when>
+																<c:when test="${withdrawalDetail.enable eq '1'}">value="인증 완료" </c:when>
+																<c:when test="${withdrawalDetail.enable eq '3'}">value="반려" </c:when>
+																<c:when test="${withdrawalDetail.enable eq '2'}">value="탈퇴" </c:when>
+																<c:otherwise>value=""</c:otherwise>
 															</c:choose>
 			                                            >
 			                                        </div>
@@ -120,7 +123,7 @@
 			                    			<div class="card-body">
 			                    				<div class="row">
 			                    					<div class="col-md-12">
-			                    						<textarea class="form-control" aria-label="with textarea" name="opinion" style="height:427px; resize:none;">${withdrawalDetail.opinion }</textarea>
+			                    						<textarea class="form-control" aria-label="with textarea" name="opinion" style="height:435px; resize:none;">${withdrawalDetail.opinion }</textarea>
 			                    						<%-- <textarea class="col-md-12 bg-light p-4 mb-2" style="height:277px; resize:none; border:2px solid rgba(0, 0, 0, 0.15);" name="rvwOpinion">${applyDetail.opinion }</textarea> --%>
 			                    					</div>
 			                    				</div>

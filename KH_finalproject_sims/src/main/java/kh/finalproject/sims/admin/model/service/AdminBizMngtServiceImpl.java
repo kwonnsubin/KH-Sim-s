@@ -71,6 +71,39 @@ public class AdminBizMngtServiceImpl implements AdminBizMngtService{
 	//통신사 검토결과 수정
 	@Override
 	public int updateBizStatus(AdminBizMngtVo vo) {
+		
+		MimeMessage message = mailSender.createMimeMessage();
+		String text = "";
+		if("1".equals(String.valueOf(vo.getEnable()))) {
+			text = "승인";
+		} else if ("3".equals(String.valueOf(vo.getEnable()))) {
+			text = "반려";
+		}
+		// 메일 발송
+		try {
+			MimeMessageHelper helper = new MimeMessageHelper(message,true,"utf-8");
+			String setFrom = "sooseong1989@gmail.com";
+			String toMail = vo.getBizEmail();
+			String title = "[Sims] 가입 "+text+" 안내";
+			String content = "Sims "+text+" 안내 메일입니다.<br/>";
+			if("1".equals(String.valueOf(vo.getEnable()))) {
+				content += "축하합니다. 귀사의 가입이 아래와 같은 사유로 승인되었습니다. <br/><br/>";
+				content += vo.getOpinion();
+				content += "<br/><br/>";
+				content += "귀사의 상세정보를 입력해주시기 바랍니다.<br/>";
+				content += "감사합니다.";
+			} else if ("3".equals(String.valueOf(vo.getEnable()))) {
+				content += "죄송합니다. 귀사의 가입이 아래와 같은 사유로 반려되었습니다. <br/><br/>";
+				content += vo.getOpinion();
+			}
+			helper.setFrom(setFrom);
+			helper.setTo(toMail);
+			helper.setSubject(title);
+			helper.setText(content,true);
+			mailSender.send(message);
+		} catch (MessagingException e) {
+			e.printStackTrace();
+		}
 		return dao.updateBizStatus(vo);
 	}
 	

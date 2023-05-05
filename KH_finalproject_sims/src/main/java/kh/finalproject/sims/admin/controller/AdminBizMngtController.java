@@ -164,7 +164,7 @@ public class AdminBizMngtController {
 		mv.addObject("applyDetail", applyDetail);
 		mv.addObject("result", "수정이 완료되었습니다.");
 		mv.addObject("cmd", "read");
-		mv.setViewName("admin/biz/applyDetail");
+		mv.setViewName("admin/biz/bizDetail");
 		return mv;
 	}
 

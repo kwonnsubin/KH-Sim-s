@@ -24,7 +24,7 @@ function fn_applyPlanAjax(orderNo){
 	$.ajax({
 		url: "${pageContext.request.contextPath}/admin/selectPlanAjax",
 		type: "post",
-		data: {orderNo : orderNo},
+		data: {userId : userId},
 		dataType: "json",
 		success: function(json){
 			$("#userId").text(json.userId);
