@@ -46,14 +46,19 @@
 	</div>
 
 <div class="container" style="margin-top: -4%";>
-	<form action="modifyPlan" method="post" style="width: 155%">
+	<form class="needs-validation" action="modifyPlan" method="post" style="width: 155%" novalidate> 
 	<input type="hidden" name="planNo" value="${planDetail.planNo }">
 	<table class="table modiPlanTb" style="width: 65%">
 		<tr>
 			<th>
 				<span>요금제명</span>
 			</th>
-			<td><input type="text" name="planName"  class="form-control" value="${planDetail.planName }" required></td>
+			<td><input type="text" name="planName"  class="form-control" value="${planDetail.planName }" required>
+			<div class="invalid-feedback">
+					    요금제명을 입력해주세요. 
+			</div>
+			</td>
+			
 			<th>
 				<span>통신사명</span>
 			</th>

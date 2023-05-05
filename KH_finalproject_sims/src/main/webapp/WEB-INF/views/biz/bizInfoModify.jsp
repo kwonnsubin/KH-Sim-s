@@ -48,7 +48,7 @@
 			<hr class="line">
 		</div>
 	
-		<form action="modifyInfo" method="post" enctype="multipart/form-data" id="modifyForm">
+		<form action="modifyInfo " method="post" enctype="multipart/form-data" id="modifyForm" class="needs-validation" novalidate>
 				<div class="d-flex">
 					<div class="division-box">
 						<span>기본정보</span>
@@ -62,7 +62,11 @@
 							<th scope="row">
 								<span >법인명</span>
 							</th>
-							<td><input type="text" class="form-control" name="bizName" value="${bizinfo.bizName }"></td>
+							<td><input type="text" class="form-control" name="bizName" value="${bizinfo.bizName }" required>
+							<div class="invalid-feedback">
+						        필수 입력값입니다.
+					        </div>
+							</td>
 							<th scope="row">
 								<span>대표자명</span>
 							</th>
@@ -72,11 +76,19 @@
 							<th scope="row">
 								<span>사업자등록번호</span>
 							</th>
-							<td><input type="text" class="form-control" name="bizCrn" value="${bizinfo.bizCrn }" maxlength="12" onkeyup="autoHyphenCrn(this)" ></td>
+							<td><input type="text" class="form-control" name="bizCrn" value="${bizinfo.bizCrn }" maxlength="12" onkeyup="autoHyphenCrn(this)" required >
+							<div class="invalid-feedback">
+						        필수 입력값입니다.
+					        </div>
+							</td>
 							<th scope="row">
 								<span>법인등록번호</span>
 							</th>
-							<td><input type="text" class="form-control" name="bizSsn" value="${bizinfo.bizSsn }" maxlength="14" onkeyup="autoHyphenSsn(this)"></td>
+							<td><input type="text" class="form-control" name="bizSsn" value="${bizinfo.bizSsn }" maxlength="14" onkeyup="autoHyphenSsn(this)" required>
+							<div class="invalid-feedback">
+						        필수 입력값입니다.
+					        </div>
+							</td>
 						</tr>
 						<tr>
 							<th scope="row">
@@ -85,12 +97,18 @@
 							<td colspan="3"> 
 							<div class="d-flex" style="margin-bottom: 1%;">
 								<input type="text" class="form-control" style="width: 20%;margin-right: 14%;" id="postcode" name="bizZipCode" 
-								placeholder="우편번호" value="${bizinfo.bizZipCode }" pattern="[0-9]*" oninput="checkInputNum(event)" >
+								placeholder="우편번호" value="${bizinfo.bizZipCode }" pattern="[0-9]*" oninput="checkInputNum(event)" required >
 								<input type="button"  onclick="execDaumPostcode()" value="우편번호 찾기" class="btn"><br>
 							</div>
+							<div class="invalid-feedback">
+						        필수 입력값입니다.
+					        </div>
 							<span id="error-message-num" style="display:none;">숫자만 입력 가능합니다.</span>
 							
-							<input type="text" class="form-control" id="roadAddress" name="bizLocation" placeholder="도로명주소"  value="${bizinfo.bizLocation }">
+							<input type="text" class="form-control" id="roadAddress" name="bizLocation" placeholder="도로명주소"  value="${bizinfo.bizLocation }" required>
+							<div class="invalid-feedback">
+						        필수 입력값입니다.
+					        </div>
 							</td>
 						</tr>
 						<tr>
@@ -628,7 +646,26 @@ function checkInputNum(event) {
   }
 }
 </script>
+<script>
+// Example starter JavaScript for disabling form submissions if there are invalid fields
+(() => {
+  'use strict'
 
+  // Fetch all the forms we want to apply custom Bootstrap validation styles to
+  const forms = document.querySelectorAll('.needs-validation')
 
+  // Loop over them and prevent submission
+  Array.from(forms).forEach(form => {
+    form.addEventListener('submit', event => {
+      if (!form.checkValidity()) {
+        event.preventDefault()
+        event.stopPropagation()
+      }
+
+      form.classList.add('was-validated')
+    }, false)
+  })
+})()
+</script>
 </body>
 </html>
