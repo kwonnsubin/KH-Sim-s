@@ -506,3 +506,16 @@ select *
 insert into member values ('admin' , '$2a$10$bt9PfhEJ3lryWC/p3w.lweFuqlxC76Hv6gimDPzlLg0CaJBUHqjSW', 'ROLE_ADMIN', 1);
 insert into member values ('user1' , '$2a$10$tCpvHB9A6DaRpi3A9kGAQe97j.PCADy1cQxuewZ0TkP1rBHoStVRO', 'ROLE_USER', 1);
 insert into member values ('sejong' , '$2a$12$WZPTu6ITZyZlsJqufbYVFu5c3CoYK.cRSuQljKaDrIsfl0.7WDMJe', 'ROLE_BIZ', 1);
+
+
+-- 밑에 이 두 테이블(NETWORK, TEL_GEN) 쿼리문 먼저 수행 된 후에 PLAN_TABLE에 데이터 넣을 것
+--NETWORK_TABLE
+INSERT INTO NETWORK_TABLE (NET_NO, NET_NAME) VALUES ('1', 'KT');
+INSERT INTO NETWORK_TABLE (NET_NO, NET_NAME) VALUES ('2', 'SKT');
+INSERT INTO NETWORK_TABLE (NET_NO, NET_NAME) VALUES ('3', 'LG');
+
+--TEL_GEN_TABLE
+INSERT INTO TEL_GEN_TABLE (GEN_NO, GEN_NAME) VALUES ('1', '5G');
+INSERT INTO TEL_GEN_TABLE (GEN_NO, GEN_NAME) VALUES ('2', 'LTE');
+INSERT INTO TEL_GEN_TABLE (GEN_NO, GEN_NAME) VALUES ('3', '3G');
+INSERT INTO TEL_GEN_TABLE (GEN_NO, GEN_NAME) VALUES ('4', 'LTE/3G');
