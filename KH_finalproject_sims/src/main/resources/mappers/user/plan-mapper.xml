@@ -14,7 +14,7 @@
 	    	</choose>
 	    	)
 	    	, #{chargeAmount}, #{voiceAmount}, #{messageAmount}, #{dataAmount}
-	    	, #{overVoiceAmtUnit}, #{overMessageAmtUnit}, #{overDataAmtUnit}, sysdate)
+	    	, #{overVoiceAmtUnit}, #{overMessageAmtUnit}, #{overDataAmtUnit}, sysdate, null)
 	</insert>
 	
 	<select id="selectPlanList" parameterType="map" resultType="planVo">
