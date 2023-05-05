@@ -548,3 +548,10 @@ ALTER TABLE REVIEW_REPORT ADD CONSTRAINT FK_BIZ_REVIEW_TO_REVIEW_REPORT_1 FOREIG
 REFERENCES BIZ_REVIEW (
 	REVIEW_NO
 );
+
+
+--plan_table, biz 테이블 조인 뷰
+create or replace view view_plan_biz as select tbp.*, tbb.biz_id 
+from plan_table tbp 
+join biz tbb 
+on tbp.biz_name=tbb.biz_name;
