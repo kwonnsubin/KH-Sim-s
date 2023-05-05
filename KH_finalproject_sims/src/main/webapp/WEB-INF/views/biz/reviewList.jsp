@@ -170,8 +170,8 @@
 		        <h1 class="modal-title fs-5" id="exampleModalLabel">리뷰 신고하기</h1>
 		        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
 		      </div>
-		      <div class="modal-body">
-		        <form>
+		      <div>
+		        <form class="modal-body was-validated">
 		          <div class="mb-3">
 		            <label for="recipient-name" class="col-form-label">신고대상 아이디</label>
 		            <input type="text" class="form-control" id="recipient-name" readonly="readonly">
@@ -179,7 +179,10 @@
 		          <div class="mb-3">
 		          	<input type="hidden" id="selectdReviewNo">
 		            <label for="message-text" class="col-form-label">신고사유 </label>
-		            <textarea class="form-control" id="message-text"></textarea>
+		            <textarea class="form-control" id="message-text" placeholder="Required example textarea" required></textarea>
+		            <div class="invalid-feedback">
+				      신고사유를 입력해주세요. 
+				    </div>
 		          </div>
 		        </form>
 		      </div>
@@ -266,7 +269,7 @@ $(document).ready(function(){
 				alert("관리자가 승인 과정이 필요합니다. 조금만 기다려주세요. ");
 			}
 			, error : function(xhr, status, error){
-				alert("에러가 발생했습니다.");
+				alert("신고사유를 입력해주세요.");
 			}
  		}); //ajax
 		
@@ -358,6 +361,29 @@ $(document).ready(function() {
     });
   });
 </script>
+
+
+<script>
+	// Example starter JavaScript for disabling form submissions if there are invalid fields
+		(() => {
+		  'use strict'
+		
+		  // Fetch all the forms we want to apply custom Bootstrap validation styles to
+		  const forms = document.querySelectorAll('.needs-validation')
+		
+		  // Loop over them and prevent submission
+		  Array.from(forms).forEach(form => {
+		    form.addEventListener('submit', event => {
+		      if (!form.checkValidity()) {
+		        event.preventDefault()
+		        event.stopPropagation()
+		      }
+		
+		      form.classList.add('was-validated')
+		    }, false)
+		  })
+		})()
+	</script>
 
 
 	<jsp:include page="/WEB-INF/views/footer.jsp"/>
