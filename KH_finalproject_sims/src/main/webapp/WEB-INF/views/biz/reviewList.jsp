@@ -179,7 +179,7 @@
 		          <div class="mb-3">
 		          	<input type="hidden" id="selectdReviewNo">
 		            <label for="message-text" class="col-form-label">신고사유 </label>
-		            <textarea class="form-control" id="message-text" placeholder="Required example textarea" required></textarea>
+		            <textarea class="form-control" id="message-text" placeholder="필수 입력 사항입니다." required></textarea>
 		            <div class="invalid-feedback">
 				      신고사유를 입력해주세요. 
 				    </div>
@@ -269,7 +269,7 @@ $(document).ready(function(){
 				alert("관리자가 승인 과정이 필요합니다. 조금만 기다려주세요. ");
 			}
 			, error : function(xhr, status, error){
-				alert("신고사유를 입력해주세요.");
+				alert("에러가 발생했습니다.");
 			}
  		}); //ajax
 		
@@ -384,6 +384,21 @@ $(document).ready(function() {
 		  })
 		})()
 	</script>
+	
+<script>
+$(document).ready(function() {
+	  $('.modalReport').attr('disabled', 'disabled');
+	 
+	  $('textarea').on('input', function() {
+	    if ($(this).val() !== '') {
+	      $('.modalReport').removeAttr("disabled");
+	    } else {
+	      $('.modalReport').attr('disabled', 'disabled');
+	    }
+	  });
+	});
+
+</script>	
 
 
 	<jsp:include page="/WEB-INF/views/footer.jsp"/>
