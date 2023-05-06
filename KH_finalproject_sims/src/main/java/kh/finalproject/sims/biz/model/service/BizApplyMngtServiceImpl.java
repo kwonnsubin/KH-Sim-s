@@ -138,4 +138,51 @@ public class BizApplyMngtServiceImpl implements BizApplyMngtService {
 		System.out.println("**********mapCnt : "+mapCnt);
 		return dao.getDevisionApplyListCount(mapCnt);
 	}
+
+	//검색,분류,기간 조회
+	@Override
+	public Search getDevisionPageByDateRange(String bizid, int pNum, int cnt, String searchType, String keyword,
+			int orderStatus, String startDate, String endDate) {
+		
+			Map<String, Object> map = new HashMap<String, Object>();
+			map.put("start", (pNum - 1) * cnt + 1);
+			map.put("end", pNum * cnt);	
+			map.put("bizid",bizid);
+			map.put("searchType",searchType);
+			map.put("keyword",keyword);
+			map.put("orderStatus",orderStatus);
+			map.put("startDate", startDate);
+			map.put("endDate", endDate);
+			
+			Map<String, Object> mapCnt = new HashMap<String, Object>();
+			mapCnt.put("bizid", bizid);
+			mapCnt.put("searchType", searchType);
+			mapCnt.put("keyword", keyword);
+			mapCnt.put("orderStatus",orderStatus);
+			mapCnt.put("startDate", startDate);
+			mapCnt.put("endDate", endDate);
+			
+			int totalRowCount = dao.getDevisionApplyListCountByDateRange(mapCnt);
+			int mod = totalRowCount % cnt == 0 ? 0 : 1;
+			int pageCount = (totalRowCount / cnt) + mod;
+			
+			List<BizApplyVo>data = dao.getDevisionPageByDateRange(map);
+			Search search = new Search(data, pNum, pageCount, cnt, 5, searchType, keyword );
+			return search;
+	}
+
+	@Override
+	public int getDevisionApplyListCountByDateRange(String bizid, String searchType, String keyword, int orderStatus,
+			String startDate, String endDate) {
+
+			Map<String, Object> mapCnt = new HashMap<String, Object>();
+			mapCnt.put("bizid", bizid);
+			mapCnt.put("searchType", searchType);
+			mapCnt.put("keyword", keyword);
+			mapCnt.put("orderStatus",orderStatus);
+			mapCnt.put("startDate", startDate);
+			mapCnt.put("endDate", endDate);
+			System.out.println("**********mapCnt : "+mapCnt);
+			return dao.getDevisionApplyListCountByDateRange(mapCnt);
+	}
 }

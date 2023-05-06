@@ -19,6 +19,13 @@
 <link type="text/css" rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
 
+ 	<!-- Date Range Picker -->
+	<script type="text/javascript" src="https://cdn.jsdelivr.net/jquery/latest/jquery.min.js"></script> 
+	<script type="text/javascript" src="https://cdn.jsdelivr.net/momentjs/latest/moment.min.js"></script>
+	<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.min.js"></script>
+	<link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.css" />
+
+
 	<!-- Bootstrap core CSS -->
     <link href="<%= request.getContextPath() %>/resources/chain/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
     
@@ -32,7 +39,8 @@
     
 	<!-- Material Icons 라이브러리 추가 -->
   	<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-    
+  	
+ 
 </head>
 <body>
 <jsp:include page="/WEB-INF/views/header.jsp"/>
@@ -51,7 +59,7 @@
 		</div>
 	
 		<div class="searchTop d-flex">
-			<div class="col-md-2">
+			<div class="col-md-2" style="width: 7.5% !important;">
 				<form action="${path}/biz/applyList" class="listSelect">
 						<select class="form-select" style="width: 100px" name="cnt" onchange="submit();">
 							<c:forEach var="num" begin="5" end="30" step="5">
@@ -80,7 +88,16 @@
 				</div>	
 			</div>
 				
+				
+			<!-- 기간조회 -->	
+			<div class="form-check form-switch">
+		    	<input class="form-check-input" type="checkbox" role="switch" role="switch" id="date-checkbox" />기간 조회
+		    </div>
 			
+			<div id="date-container"> 
+				<!-- <input type="text" name="dates" value=""  class="form-control"/> -->
+			</div>	
+				
 			
 			<%
 			    String orderStatus = request.getParameter("orderStatus");
@@ -120,16 +137,30 @@
 		</div>		
 	
 	
-		<div class="totalMent">총 ${applyListCnt}개의 결과가 있습니다.</div>
 	
-	 	<% if (request.getParameter("keyword") != null && !request.getParameter("keyword").isEmpty()) { %>
-	    <span class="resultMent">"<%=request.getParameter("keyword")%>"의 검색 결과입니다.</span>
-		<% } %>
+		<div>
+			<div class="totalMent">총 ${applyListCnt}개의 결과가 있습니다.</div>
+		
+		
+			<div class="resultMent-box">
+			    <div style="display: grid;">
+			        <% if (request.getParameter("keyword") != null && !request.getParameter("keyword").isEmpty()) { %>
+			            <span class="resultMent">"<%=request.getParameter("keyword")%>"의 검색 결과입니다.</span>
+			        <% } %>
+			        
+			        <% if ((request.getParameter("startDate") != null && !request.getParameter("startDate").isEmpty())
+			              && (request.getParameter("endDate") != null && !request.getParameter("endDate").isEmpty())) { %>
+			            <span class="resultMent">"<%=request.getParameter("startDate")%> ~ <%=request.getParameter("endDate")%> " 기간의 결과입니다.</span>
+			        <% } %>
+			    </div>
+			</div>
+		</div>
+
+
 	
 	
 	
-	
-	 	<table class="table table-hover table-responsive" id="applyTb" style="width: 130%;  position: relative;">
+	 	<table class="table table-hover table-responsive" id="applyTb" style="width: 144%;  position: relative;">
 	            <thead>
 	                <tr class="text-center mx-auto" style="background-color: #ecf7fd;">
 	                    <th>번호</th>
@@ -186,12 +217,14 @@
 					</c:when>
 					<c:otherwise>
 						<li class="page-item"><a class="page-link" 
-						href="${path}/biz/applyList?p=${requestScope.paging.prevPage }&searchType=${searchType }&keyword=${keyword }&orderStatus=${orderStatus}">prev</a></li>
+						href="${path}/biz/applyList?p=${requestScope.paging.prevPage }
+						&searchType=${searchType }&keyword=${keyword }&orderStatus=${orderStatus}&startDate=${startDate }&endDate=${endDate}">prev</a></li>
 					</c:otherwise>
 				</c:choose>
 				<c:forEach var="pNum" items="${requestScope.paging.pageList }">
 					<li class="page-item ${pNum eq pageNumber ? 'active' : '' }"><a class="page-link"
-					 href="${path}/biz/applyList?p=${pNum }&searchType=${searchType }&keyword=${keyword }&orderStatus=${orderStatus}">${pNum }</a></li>
+					 href="${path}/biz/applyList?p=${pNum }&searchType=${searchType }
+					 &keyword=${keyword }&orderStatus=${orderStatus}&startDate=${startDate }&endDate=${endDate}">${pNum }</a></li>
 				</c:forEach>
 				<c:choose>
 					<c:when test="${requestScope.paging.nextPage eq -1 }">
@@ -199,7 +232,8 @@
 					</c:when>
 					<c:otherwise>
 						<li class="page-item"><a class="page-link" 
-						href="${path}/biz/applyList?p=${requestScope.paging.nextPage }&searchType=${searchType }&keyword=${keyword }&orderStatus=${orderStatus}">next</a></li>
+						href="${path}/biz/applyList?p=${requestScope.paging.nextPage }
+						&searchType=${searchType }&keyword=${keyword }&orderStatus=${orderStatus}&startDate=${startDate }&endDate=${endDate}">next</a></li>
 					</c:otherwise>
 				</c:choose>
 			</ul>
@@ -214,8 +248,64 @@
 		};
 </script>
  -->
+<script type="text/javascript">
+    $(document).ready(function() {
+      // 체크박스 클릭 이벤트 핸들러
+      $('#date-checkbox').change(function() {
+        if (this.checked) {
+          // 체크박스가 선택되었을 때
+          var element = 
+            '<div>' +
+            '<input type="text" name="dates" value="" class="form-control" style="width:108%; margin-left:10%"/>' +
+            '</div>';
+          $('#date-container').append(element);
+          
+          // DateRangePicker 적용
+          $('input[name="dates"]').daterangepicker();
+          
+        } else {
+          // 체크박스가 선택 해제되었을 때
+          $('#date-container').empty();
+        }
+      });
+    });
+  </script>
+<script type="text/javascript">
+	$('input[name="dates"]').daterangepicker();
 
+</script>
 <script>
+//검색
+	$(document).on('click', '#btnSearch', function(e){
+		e.preventDefault();
+	
+		
+		var url="${pageContext.request.contextPath}/biz/applyList";
+		url = url + "?searchType="+$('#searchType').val();
+		url = url + "&keyword="+$('#keyword').val();
+		url = url + "&orderStatus="+$("input[name='division']:checked").val();
+		
+		
+		/*기간조회를 체크하지 않은 경우 null, 즉 전체 기간 조회*/
+		var startDate = null;
+		var endDate = null;
+		
+		if ($('#date-checkbox').is(':checked')) {
+		  startDate = $('input[name="dates"]').data('daterangepicker').startDate.format('YY/MM/DD');
+		  endDate = $('input[name="dates"]').data('daterangepicker').endDate.format('YY/MM/DD');
+		  
+		  url += "&startDate=" + startDate;
+		  url += "&endDate=" + endDate;
+		}
+	
+		location.href=url;
+		console.log(url);
+	});
+</script>
+
+
+
+<!-- <script> 날짜 옵션 없이 정상 작동
 //검색
 	$(document).on('click', '#btnSearch', function(e){
 		e.preventDefault();
@@ -225,11 +315,10 @@
 		url = url + "&orderStatus="+$("input[name='division']:checked").val();
 		location.href=url;
 		console.log(url);
-/* 		//쿠키에 라디오 버튼 상태를 저장
-		document.cookie = "orderStatus=" + $("input[name='division']:checked").val();
- */
 	});
 </script>
+ -->
+
 
 
 
@@ -257,7 +346,7 @@
 	<jsp:include page="/WEB-INF/views/footer.jsp"/>
 	
 	<!-- Scripts -->
-	<script src="<%= request.getContextPath() %>/resources/chain/vendor/jquery/jquery.min.js"></script>
+	<%-- <script src="<%= request.getContextPath() %>/resources/chain/vendor/jquery/jquery.min.js"></script> --%><!-- daterangepicker에 의한 제이쿼리 중복 -->
 	<script src="<%= request.getContextPath() %>/resources/chain/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
 	<script src="<%= request.getContextPath() %>/resources/chain/assets/js/owl-carousel.js"></script>
 	<script src="<%= request.getContextPath() %>/resources/chain/assets/js/animation.js"></script>

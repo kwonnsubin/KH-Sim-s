@@ -58,4 +58,13 @@ public class BizApplyMngtDao {
 	public List<BizApplyVo> getDevisionPage(Map<String, Object> map) {
 		return sqlSession.selectList("apply.getDevisionPage", map);
 	}
+	
+	//검색,분류,기간 조회
+	public int getDevisionApplyListCountByDateRange(Map<String, Object> mapCnt) {
+		return sqlSession.selectOne("apply.getDevisionApplyListCountByDateRange", mapCnt);
+	}
+	
+	public List<BizApplyVo> getDevisionPageByDateRange(Map<String, Object>map){
+		return sqlSession.selectList("apply.getDevisionPageByDateRange", map);
+	}
 }

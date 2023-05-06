@@ -23,4 +23,12 @@ public interface BizApplyMngtService {
 	public Search getDevisionPage(String bizid, int pNum, int cnt, String searchType, String keyword,
 			int orderStatus);
 	public int getDevisionApplyListCount(String bizid, String searchType, String keyword, int orderStatus);
+	
+	//검색,분류,기간 조회
+	
+	public Search getDevisionPageByDateRange(String bizid, int pNum, int cnt, String searchType, String keyword, 
+			int orderStatus, String startDate, String endDate);
+	
+	public int getDevisionApplyListCountByDateRange(String bizid, String searchType, String keyword,
+			int orderStatus, String startDate, String endDate);
 }
