@@ -20,6 +20,36 @@ function goBack(){
 	window.history.back();
 }
 
+/* 날짜 표시 변경 함수 */
+function fn_datCal(date){
+	console.log(date);
+	var orgDate = new Date(date);
+	var str = "";
+	str += orgDate.getFullYear();
+	str += "-";
+	if(orgDate.getMonth()+1 < 10){
+		str += "0";
+		str += orgDate.getMonth()+1;
+	} else {
+		str += orgDate.getMonth()+1;
+	}
+	str += "-";
+	if(orgDate.getDate() < 10){
+		str += "0"+orgDate.getDate();
+	} else {
+		str += orgDate.getDate();
+	}
+	return str;
+}
+
+/* 글자수 자르기 */
+function fn_substrContent(content){
+	var str = "";
+	str = content.substr(0, 20);
+	
+	return str;
+}
+
 /* 가입한 요금제 리스트 호출 ajax */
 function fn_applyPlanAjax(userId){
 	var html = "";
@@ -44,7 +74,8 @@ function fn_applyPlanAjax(userId){
 				}else if(json[i].orderStatus=='3'){
 					html += '<td>승인보류</td>';
 				}
-				html += '<td>'+json[i].orderDate+'</td>';
+				
+				html += '<td>'+fn_datCal(json[i].orderDate)+'</td>';
 				html += '</tr>';
 			}
 			$("#planSubList").append(html);
@@ -70,8 +101,8 @@ function fn_applyPlanAjax(userId){
 			for(var i=0; i<json.length; i++){
 				review += '<tr>';
 				review += '<td><a href="${path}/admin/review/detail/'+json[i].reviewNo+'">'+json[i].reviewNo+'</a></td>';
-				review += '<td>'+json[i].reviewContent+'</td>';
-				review += '<td>'+json[i].reviewDate+'</td>';
+				review += '<td>'+fn_substrContent(json[i].reviewContent)+'</td>';
+				review += '<td>'+fn_datCal(json[i].reviewDate)+'</td>';
 				review += '<td>'+json[i].bizName+'</td>';
 				if(json[i].reportReason != null){
 					review += '<td>O</td>'

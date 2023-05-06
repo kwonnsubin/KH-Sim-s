@@ -194,9 +194,10 @@ public class AdminBizMngtController {
 	public ModelAndView selectBizModify(ModelAndView mv, @PathVariable String bizId, AdminBizMngtVo vo,  HttpServletRequest request, HttpServletResponse response, @RequestParam(value="p", required = false) String pageNumber)
 			throws Exception {
 		AdminBizMngtVo applyDetail = service.selectApplyDetail(bizId);
-		mv.addObject("applyDetail", applyDetail);
+		
 		mv.addObject("cmd", "update");
 		
+		String divCheck = request.getParameter("divCheck");
 		String imagePath;
 		if(applyDetail.getLogoRenameFileName() == null) {
 			imagePath ="/resources/img/"+applyDetail.getOriginalFileName();
@@ -213,13 +214,12 @@ public class AdminBizMngtController {
 		String searchRadioVal = vo.getSearchRadioVal();
 		String searchBox = vo.getSearchBox();
 		Search search = service.selectBizPlanList(pNum, cnt, searchOption, searchRadioVal, searchBox);
-		/* mv.addObject("applyList", search); */
 		request.setAttribute("paging", search);
 		mv.addObject("searchOption", searchOption);
 		mv.addObject("searchBox", searchBox);
 		mv.addObject("searchRadioVal", searchRadioVal);
-		
-		/* mv.addObject("bizPlanList", service.selectBizPlanList(bizId)); */
+		mv.addObject("divCheck", divCheck);
+		mv.addObject("applyDetail", applyDetail);
 		mv.setViewName("/admin/biz/bizDetail");
 		return mv;
 	}
