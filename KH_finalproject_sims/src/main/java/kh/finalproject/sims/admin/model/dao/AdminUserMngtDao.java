@@ -48,8 +48,13 @@ public class AdminUserMngtDao {
 	}
 
 	//사용자가 신청한 요금제 리스트 ajax
-	public List<AdminBizMngtVo> selectUserApplyPlanAjax(String userId) {
+	public List<AdminUserMngtVo> selectUserApplyPlanAjax(String userId) {
 		return sqlSession.selectList("adminUser.selectUserApplyPlanAjax", userId);
+	}
+
+	//사용자가 단 리뷰 리스트 ajax
+	public List<AdminUserMngtVo> selectUserReviewAjax(String userId) {
+		return sqlSession.selectList("adminUser.selectUserReviewAjax", userId);
 	}
 	
  

@@ -72,7 +72,7 @@
 		                                            <input type="text" class="form-control"  name="orderDate" <c:if test="${cmd eq 'read' }">readonly</c:if> value="<fmt:formatDate value="${bizPlanApplyDetail.orderDate}" pattern="yyyy.MM.dd"/>">
 		                                        </div>
 		                                        <label for="userSsn" class="col-sm-2 col-form-label text-center">신청 상태</label>
-		                                        <div class="col-sm-2">
+		                                        <div class="col-sm-4">
 		                                            <input type="text" class="form-control"  name="userSsn" <c:if test="${cmd eq 'read' }">readonly</c:if> 
 		                                            	<c:choose>
 															<c:when test="${bizPlanApplyDetail.orderStatus eq '1'.charAt(0)}"> value="신청 완료" </c:when>

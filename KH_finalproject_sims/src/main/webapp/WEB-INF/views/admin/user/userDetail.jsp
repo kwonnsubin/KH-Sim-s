@@ -2,6 +2,7 @@
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>    
+<c:set var="path" value="${pageContext.request.contextPath}"/>
 <!DOCTYPE html>
 <html>
 <head>
@@ -22,9 +23,7 @@ function goBack(){
 /* 가입한 요금제 리스트 호출 ajax */
 function fn_applyPlanAjax(userId){
 	var html = "";
-	/* var enable=td.eq(1).text('신청 완료'); */
-	var status=('#planSubList').find("td:eq(1)".text('신청 완료'');
-	
+	<%-- <a href="<%=request.getContextPath()%>/admin/bizPlanApplyDetail/${list.orderNo}">${list.userId}</a> --%>
 	$("#planSubList").empty();
 	// planSubList
 	$.ajax({
@@ -35,15 +34,16 @@ function fn_applyPlanAjax(userId){
 		success: function(json){
 			for(var i=0; i<json.length; i++){
 				html += '<tr>';
-				html += '<td>'+json[i].orderNo+'</td>';
+				html += '<td><a href="${path}/admin/bizPlanApplyDetail/'+json[i].orderNo+'">'+json[i].orderNo+'</a></td>';
 				html += '<td>'+json[i].bizName+'</td>';
 				html += '<td>'+json[i].planName+'</td>';
-				
-				 
-				/* html += '<td>'+"$(json[i].orderStatus)":eq(1).html("신청완료")  */
-				/* html += $("td:eq(1)").html("신청 완료"); */
-				/* html += '<td>'+if(json[i].orderStatus == '1'){'신청 완료'}
-				else if{'승인 완료'}+'</td>'; */
+				if(json[i].orderStatus=='1'){
+					html += '<td>신청완료</td>';
+				}else if(json[i].orderStatus=='2'){
+					html += '<td>승인완료</td>';
+				}else if(json[i].orderStatus=='3'){
+					html += '<td>승인보류</td>';
+				}
 				html += '<td>'+json[i].orderDate+'</td>';
 				html += '</tr>';
 			}
@@ -57,6 +57,47 @@ function fn_applyPlanAjax(userId){
 	});
 }
 
+/* 리뷰 ajax */
+	function fn_reviewAjax(userId){
+	var review = "";
+	$("#reviewList").empty();
+	$.ajax({
+		url: "${pageContext.request.contextPath}/admin/selectUserReviewAjax",
+		type: "post",
+		data: {userId : userId},
+		dataType: "json",
+		success: function(json){
+			for(var i=0; i<json.length; i++){
+				review += '<tr>';
+				review += '<td><a href="${path}/admin/review/detail/'+json[i].reviewNo+'">'+json[i].reviewNo+'</a></td>';
+				review += '<td>'+json[i].reviewContent+'</td>';
+				review += '<td>'+json[i].reviewDate+'</td>';
+				review += '<td>'+json[i].bizName+'</td>';
+				if(json[i].reportReason != null){
+					review += '<td>O</td>'
+				}else{
+					review += '<td>X</td>';
+				}
+				 if(json[i].reportStatus==1){
+					review += '<td>미확인</td>';
+				}else if(json[i].reportStatus==2){
+					review += '<td>삭제</td>';
+				}else if(json[i].reportStatus==3){
+					review += '<td>반려</td>';
+				}else if(json[i].reportStatus==0){
+					review += '<td>해당없음</td>';
+				}
+			}
+				$("#reviewList").append(review);
+			},
+			error: function(jqXHR, textStatus, errorThrown){
+				console.log(jqXHR);  //응답 메시지
+				console.log(textStatus); //"error"로 고정인듯함
+				console.log(errorThrown);
+			}
+		});
+}
+ 
 
 </script>
 <div class="pcoded-main-container">
@@ -169,7 +210,7 @@ function fn_applyPlanAjax(userId){
 		                                    <div class="form-group row">
 		                                        <label for="reviewPlanName" class="col-sm-1 col-form-label text-center">리뷰 </label>
 		                                        <div class="col-sm-5">
-		                                            <input type="text" class="form-control"  name="reviewPlanName" readonly value="${cnt.reviewCnt}개" onclick="window.open('<%=request.getContextPath()%>/admin/review/list?searchType=userId&keyword=${review.userId}','요금제 리스트','width = 500, height = 500')">
+		                                            <input type="text" class="form-control"  name="reviewPlanName" readonly value="${cnt.reviewCnt}개" onclick="fn_reviewAjax('${userDetail.userId}');" data-toggle="modal" data-target=".bd-example-modal-lgReview">
 		                                        </div>
 		                                    </div>
 	                            		</div>
@@ -188,7 +229,7 @@ function fn_applyPlanAjax(userId){
 					</div> -->
 					<div class="card-body">
 						<!-- <button type="button" class="btn  btn-primary" data-toggle="modal" data-target=".bd-example-modal-lg">Large modal</button> -->
-						<div class="modal fade bd-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+						<div class="modal fade bd-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="bd-example-modal-lg" aria-hidden="true">
 							<div class="modal-dialog modal-lg">
 								<div class="modal-content">
 									<div class="modal-header col-md-12">
@@ -221,9 +262,51 @@ function fn_applyPlanAjax(userId){
 						</div>
 					</div>
 				</div>
-			</div>
+			<div class="col-md-8 col-sm-12">
+				<!-- <div class="card">
+					<div class="card-header">
+						<h5>Optional Sizes</h5>
+					</div> -->
+					<div class="card-body">
+						<!-- <button type="button" class="btn  btn-primary" data-toggle="modal" data-target=".bd-example-modal-lgReview">Large modal</button> -->
+						<div class="modal fade bd-example-modal-lgReview" tabindex="-1" role="dialog" aria-labelledby="bd-example-modal-lgReview" aria-hidden="true">
+							<div class="modal-dialog modal-lg">
+								<div class="modal-content">
+									<div class="modal-header col-md-12">
+										<h5 class="modal-title h4" id="myLargeModalLabel">${userDetail.userId}님의 리뷰</h5>
+										<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+									</div>
+									<div class="modal-body">
+										<div class="col-md-12">
+						                    <div class="card-body table-border-style">
+						                        <div class="table-responsive">
+						                            <table class="table table-hover">
+						                                <thead class="text-center">
+						                                    <tr>
+						                                        <th>번호</th>
+																<th>내용</th>
+																<th>작성일</th>
+																<th>통신사</th>
+																<th>신고 여부</th>
+																<th>처리 상태</th>
+						                                    </tr>
+						                                </thead>
+						                                <tbody id="reviewList" class="text-center">
+						                                </tbody>
+						                            </table>
+						                       </div>
+						                  </div>
+						            </div>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			
 		</div>
 	</div>
+</div>	
 <jsp:include page="../include/footer.jsp" />
 
 </body>

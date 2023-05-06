@@ -134,8 +134,10 @@ public class AdminUserMngtController {
 			, @PathVariable String userId
 			, AdminUserMngtVo vo) {
 		AdminUserMngtVo userDetail = service.selectUserDetail(userId);
+		int reviewCnt = service.selectOrderListCountAdmin(userId);
 		int myPlanCnt = service.selectMyPlanListCountAdmin(userId);
 		HashMap<String, Object> cnt = new HashMap<>();
+		cnt.put("reviewCnt", reviewCnt); 
 		cnt.put("myPlanCnt", myPlanCnt);
 		mv.addObject("cnt", cnt);
 		mv.addObject("userDetail", userDetail);
@@ -165,11 +167,21 @@ public class AdminUserMngtController {
 	@ResponseBody
 	public String selectUserApplyPlanAjax(HttpServletRequest request) throws Exception {
 		String userId = request.getParameter("userId");
-		List<AdminBizMngtVo> selectUserApplyPlanAjax = service.selectUserApplyPlanAjax(userId);
+		List<AdminUserMngtVo> selectUserApplyPlanAjax = service.selectUserApplyPlanAjax(userId);
 		Gson gson = new Gson();
 		String json = gson.toJson(selectUserApplyPlanAjax);
 		return json;
 	}
-			
+	
+	//사용자가의 리뷰 리스트 ajax
+	@PostMapping("/selectUserReviewAjax")
+	@ResponseBody
+	public String selectUserReviewAjax(HttpServletRequest request) throws Exception {
+		String userId = request.getParameter("userId");
+		List<AdminUserMngtVo> selectUserReviewAjax = service.selectUserReviewAjax(userId);
+		Gson gson = new Gson();
+		String json = gson.toJson(selectUserReviewAjax);
+		return json;
+	}
 
 }

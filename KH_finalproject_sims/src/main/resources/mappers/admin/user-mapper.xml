@@ -134,7 +134,7 @@
 	</select>
 	
 	<!-- 사용자 신청 요금제 Ajax -->
-	<select id="selectUserApplyPlanAjax" resultType="adBizVo">
+	<select id="selectUserApplyPlanAjax" resultType="adUserVo">
 	/** 사용자 신청 요금제 상세 정보 Ajax (selectUserApplyPlanAjax)**/
 		
 				SELECT
@@ -150,4 +150,25 @@
 				ORDER BY A.ORDER_DATE DESC
 		
 	</select>
+	
+	<!-- 사용자의 리뷰 리스트 ajax -->
+	<select id="selectUserReviewAjax" resultType="adUserVo">
+		SELECT
+			A.REVIEW_NO
+			, A.REVIEW_CONTENT
+			, A.REVIEW_DATE
+			, A.REVIEW_REDATE
+			, A.REVIEW_STAR
+			, C.BIZ_NAME
+			, A.REVIEW_HIDDEN
+            , B.REPORT_STATUS
+            , B.REPORT_REASON
+		FROM BIZ_REVIEW A
+        LEFT OUTER JOIN REVIEW_REPORT B ON A.REVIEW_NO = B.REVIEW_NO
+        LEFT OUTER JOIN BIZ C ON A.BIZ_ID = C.BIZ_ID 
+        WHERE  USER_ID = #{userId}
+        ORDER BY A.REVIEW_DATE DESC
+		
+	</select>
+	
 </mapper>

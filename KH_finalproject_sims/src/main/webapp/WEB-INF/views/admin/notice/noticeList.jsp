@@ -63,7 +63,7 @@
 									<div class="card">
 										<div class="card-body table-border-style">
 											<div class="table-responsive">
-												<table class="table table-hover">
+												<table class="table table-hover text-center">
 													<thead>
 														<tr>
 															<th>번호</th>

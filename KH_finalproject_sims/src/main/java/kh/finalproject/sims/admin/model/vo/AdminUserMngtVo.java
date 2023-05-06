@@ -26,7 +26,6 @@ public class AdminUserMngtVo {
 	// USER_GENDER	  NOT NULL  CHAR(1)
 	// USER_PHONE     NULL      VARCHAR2(30)
 	// USER_EMAIL	  NULL      VARCHAR2(30)
-	// USER_ADDRESS	  NULL      VARCHAR2(100)
 	
 	private String userId;
 	private String userName;
@@ -36,7 +35,6 @@ public class AdminUserMngtVo {
 	private char userGender;
 	private String userPhone;
 	private String userEmail;
-	private String userAddress;
 	private String birth;
 	
 	// 조회용 변수
@@ -55,8 +53,29 @@ public class AdminUserMngtVo {
 	private int enable;
 	private String opinion;
 	
+	
+	//리뷰
+	private int reviewNo;
+	private String reviewContent;
+	private Date reviewDate;
+	private Date reviewRedate;
+	private int reviewStar;
+	private String bizId;
+	private int reviewHidden;
+	private Date reportDate;
+	private int reportStatus;
+	private String reportReason;
+	
+	//요금제 가입정보
+	private int orderNo;
+	private Date orderDate;
 	private String planName;
 	private int planNo;
+	private char orderStatus;
+	
+	//요금제
+	private String bizName;
+	
 	
 	
 	
