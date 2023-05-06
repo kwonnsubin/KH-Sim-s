@@ -89,9 +89,17 @@
 			</div>
 				
 				
+			<%
+			    String startDate = request.getParameter("startDate");
+				String endDate = request.getParameter("endDate");
+			%>	
+				
+				
 			<!-- 기간조회 -->	
 			<div class="form-check form-switch">
-		    	<input class="form-check-input" type="checkbox" role="switch" role="switch" id="date-checkbox" />기간 조회
+		    	<input class="form-check-input" type="checkbox" role="switch" role="switch" id="date-checkbox"
+		    	<% if (startDate != null && endDate != null) { %>checked<% } %>
+		    	 />기간 조회
 		    </div>
 			
 			<div id="date-container"> 
@@ -249,30 +257,37 @@
 </script>
  -->
 <script type="text/javascript">
-    $(document).ready(function() {
-      // 체크박스 클릭 이벤트 핸들러
-      $('#date-checkbox').change(function() {
-        if (this.checked) {
-          // 체크박스가 선택되었을 때
-          var element = 
-            '<div>' +
-            '<input type="text" name="dates" value="" class="form-control" style="width:108%; margin-left:10%"/>' +
-            '</div>';
-          $('#date-container').append(element);
-          
-          // DateRangePicker 적용
-          $('input[name="dates"]').daterangepicker();
-          
-        } else {
-          // 체크박스가 선택 해제되었을 때
-          $('#date-container').empty();
-        }
-      });
-    });
-  </script>
-<script type="text/javascript">
-	$('input[name="dates"]').daterangepicker();
+  // 체크박스 클릭 이벤트 핸들러
+  function handleCheckboxChange() {
+    if ($('#date-checkbox').is(':checked')) {
+      // 체크박스가 선택되었을 때
+      var element =
+        '<div>' +
+        '<input type="text" name="dates" value="" class="form-control" style="width:108%; margin-left:10%"/>' +
+        '</div>';
+      $('#date-container').append(element);
 
+      // DateRangePicker 적용
+      $('input[name="dates"]').daterangepicker();
+    } else {
+      // 체크박스가 선택 해제되었을 때
+      $('#date-container').empty();
+    }
+  }
+
+  // 페이지 로드 시 체크박스 상태 확인 및 이벤트 핸들러 등록
+  $(document).ready(function() {
+    handleCheckboxChange(); // 초기 로드 시 체크박스 상태에 따라 처리
+    $('#date-checkbox').change(handleCheckboxChange); // 체크박스 클릭 이벤트 핸들러 등록
+    
+    var queryString = window.location.search;
+    var urlParams = new URLSearchParams(queryString);
+    var startDate = urlParams.get('startDate');
+    var endDate = urlParams.get('endDate');
+    
+ 	// 초기값으로 선택된 날짜를 입력 필드에 표시
+    $('input[name="dates"]').val(startDate + ' - ' + endDate);
+  });
 </script>
 <script>
 //검색
