@@ -194,10 +194,9 @@ public class AdminBizMngtController {
 	public ModelAndView selectBizModify(ModelAndView mv, @PathVariable String bizId, AdminBizMngtVo vo,  HttpServletRequest request, HttpServletResponse response, @RequestParam(value="p", required = false) String pageNumber)
 			throws Exception {
 		AdminBizMngtVo applyDetail = service.selectApplyDetail(bizId);
-		
+		mv.addObject("applyDetail", applyDetail);
 		mv.addObject("cmd", "update");
 		
-		String divCheck = request.getParameter("divCheck");
 		String imagePath;
 		if(applyDetail.getLogoRenameFileName() == null) {
 			imagePath ="/resources/img/"+applyDetail.getOriginalFileName();
@@ -214,12 +213,13 @@ public class AdminBizMngtController {
 		String searchRadioVal = vo.getSearchRadioVal();
 		String searchBox = vo.getSearchBox();
 		Search search = service.selectBizPlanList(pNum, cnt, searchOption, searchRadioVal, searchBox);
+		/* mv.addObject("applyList", search); */
 		request.setAttribute("paging", search);
 		mv.addObject("searchOption", searchOption);
 		mv.addObject("searchBox", searchBox);
 		mv.addObject("searchRadioVal", searchRadioVal);
-		mv.addObject("divCheck", divCheck);
-		mv.addObject("applyDetail", applyDetail);
+		
+		/* mv.addObject("bizPlanList", service.selectBizPlanList(bizId)); */
 		mv.setViewName("/admin/biz/bizDetail");
 		return mv;
 	}
@@ -227,8 +227,8 @@ public class AdminBizMngtController {
 	// 통신사 상세 수정하기
 	@PostMapping("/saveBizModify")
 	public ModelAndView saveBizModify(ModelAndView mv, AdminBizMngtVo vo) throws Exception {
-		service.saveBizModify(vo);
-
+		service.saveBizModify(vo);	// 통신사 정보 수정
+		service.saveNetServiceModify(vo);	// 통신사 통신망 수정 (고객센터번호)
 		String bizId = vo.getBizId();
 		AdminBizMngtVo applyDetail = service.selectApplyDetail(bizId);
 		

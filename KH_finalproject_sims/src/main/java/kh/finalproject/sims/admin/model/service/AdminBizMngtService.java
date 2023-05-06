@@ -42,6 +42,8 @@ public interface AdminBizMngtService {
 	//통신사 요금제 정보 ajax
 	public AdminBizMngtVo selectPlanAjax(int planNo) throws Exception;
 
+	//고객센터 번호 수정
+	public int saveNetServiceModify(AdminBizMngtVo vo) throws Exception;
 	
 
 }

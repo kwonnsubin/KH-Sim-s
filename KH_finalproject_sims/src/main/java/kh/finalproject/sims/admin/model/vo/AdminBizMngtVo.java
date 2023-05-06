@@ -221,5 +221,7 @@ public class AdminBizMngtVo {
 	private char userGender;
 	private String userPhone;
 	private String userEmail;
+	private String netNoCheck;	// 통신망 배열
+	private String netNoDeleteCheck;	// 통신망 배열
 	
 }	

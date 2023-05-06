@@ -184,6 +184,29 @@ public class AdminBizMngtServiceImpl implements AdminBizMngtService{
 		return dao.selectPlanAjax(planNo);
 	}
 	
+	//고객센터 번호 수정
+	@Override
+	public int saveNetServiceModify(AdminBizMngtVo vo){
+		int result = 0;
+		String bizNetServiceList [] = vo.getNetNoCheck().split(",");
+		if(bizNetServiceList != null) {
+			for(int i=0; i < bizNetServiceList.length; i++) {
+				vo.setNetNo(bizNetServiceList[i]);
+				dao.mergeNetServiceModify(vo);
+				result++;
+			}
+		}
+		String bizNetDelList [] = vo.getNetNoDeleteCheck().split(",");
+		if(bizNetDelList != null) {
+			for(int i=0; i<bizNetDelList.length; i++) {
+				vo.setNetNo(bizNetDelList[i]);
+				dao.deleteNetServiceModify(vo);
+				result++;
+			}
+		}
+		return result;
+	}
+
 	
 
 

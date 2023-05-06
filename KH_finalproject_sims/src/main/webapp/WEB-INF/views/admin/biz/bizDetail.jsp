@@ -85,11 +85,7 @@
         }).open();
     }
 	
-	/*수정 취소(뒤로가기)*/
-	function goBack(){
-		window.history.back();
-	}
-	
+
 
 	$(document).ready(function(){
 		/*지원통신망 입력 값 쪼개기*/
@@ -123,65 +119,37 @@
 			day = bizClosedDayArr[i];
 			$("[name=bizClosedDay][value=" + day + "]").prop("checked", true);
 		}
+		
+		fn_checkNework();
 	})
 	
-<!-- 고객센터 출력-->
-	$(document).ready(function() {
+	function fn_checkNework(){
+		var checkBoxList = [];
+		var checkDeleteBoxList = [];
+		var checkBoxKt = $('#checkBoxKt').is(':checked');
+		var checkBoxSkt = $('#checkBoxSkt').is(':checked');
+		var checkBoxLg = $('#checkBoxLg').is(':checked');
 		
-	    if ($('input[type="checkbox"][name="net"][value="KT망"]').is(':checked')) {
-	        $('span:contains("KT"):first').show();
-	        $('input[type="text"][name="KtService"]').show();
-	    }
-
-	    if ($('input[type="checkbox"][name="net"][value="SKT망"]').is(':checked')) {
-	        $('span:contains("SKT")').show();
-	        $('input[type="text"][name="SktService"]').show();
-	    }
-
-	    if ($('input[type="checkbox"][name="net"][value="LG망"]').is(':checked')) {
-	        $('span:contains("LGU+")').show();
-	        $('input[type="text"][name="LguService"]').show();
-	    }
-
-	    $('input[type="checkbox"][name="net"][value="KT망"]').click(function() {
-	        if($(this).is(':checked')) {
-	            $('span:contains("KT"):first').show();
-	            $('input[type="text"][name="KtService"]').show();
-	        } else {
-	            $('span:contains("KT"):first').hide();
-	            $('input[type="text"][name="KtService"]').val(''); 
-	            $('input[type="text"][name="KtService"]').hide();
-
-	        }
-	    });
-
-	    $('input[type="checkbox"][name="net"][value="SKT망"]').click(function() {
-	        if($(this).is(':checked')) {
-	            $('span:contains("SKT")').show();
-	            $('input[type="text"][name="SktService"]').show();
-	        } else {
-	            $('span:contains("SKT")').hide();
-	            $('input[type="text"][name="SktService"]').val(''); 
-	            $('input[type="text"][name="SktService"]').hide();
-
-	        }
-	    });
-
-	    $('input[type="checkbox"][name="net"][value="LG망"]').click(function() {
-	        if($(this).is(':checked')) {
-	            $('span:contains("LGU+")').show();
-	            $('input[type="text"][name="LguService"]').show();
-	        } else {
-	            $('span:contains("LGU+")').hide();
-	            $('input[type="text"][name="LguService"]').val('');
-	            $('input[type="text"][name="LguService"]').hide();
-
-	        }
-	    });
-	});
-
-
-
+		
+		if(checkBoxKt) {
+			checkBoxList.push("1");
+		} else {
+			checkDeleteBoxList.push("1");
+		}
+		if(checkBoxSkt){
+			checkBoxList.push("2");
+		} else {
+			checkDeleteBoxList.push("2");
+		}
+		if(checkBoxLg) {
+			checkBoxList.push("3");
+		} else {
+			checkDeleteBoxList.push("3");
+		}
+		$("#netNoCheck").val(checkBoxList);
+		$("#netNoDeleteCheck").val(checkDeleteBoxList);
+		
+	}
 	
 	
 </script>
@@ -220,6 +188,8 @@
 								</div>
 							</div>
 							<form action="<%=request.getContextPath()%>/admin/saveBizModify" method="post" onsubmit="return confirm('저장 하시겠습니까?');">
+							    <input type="hidden" name="netNoCheck" id="netNoCheck" value=""/>
+							    <input type="hidden" name="netNoDeleteCheck" id="netNoDeleteCheck" value=""/>
 								<div class="col-md-12">
 									<div class="simsBtn m-b-15">
 										<c:choose>
@@ -227,7 +197,7 @@
 												<input class="btn btn-primary right m-l-10" type="button" onclick="location.href='<%=request.getContextPath()%>/admin/applyList'" value="목록">
 											</c:when>
 											<c:otherwise>
-												<input class="btn btn-primary right m-l-10" type="button" onclick="goBack()" value="취소">
+												<input class="btn btn-primary right m-l-10" type="button" onclick="location.href='<%=request.getContextPath()%>/admin/applyDetail/${applyDetail.bizId}?divCheck=detail'" value="취소">
 											</c:otherwise>
 										</c:choose>
 										<input class="btn btn-primary right m-l-10" type="button" onclick="location.href='<%=request.getContextPath()%>/admin/withdrawalDetail/${applyDetail.bizId}'" value="탈퇴">
@@ -506,45 +476,16 @@
 		                                        		</div>
 		                                        	</c:when>
 		                                        	<c:otherwise>
-		                                        		<c:forEach var="netService" items="${netService}">
-		                                        			<c:choose>
-		                                        				<c:when test="${empty netService[0]}">
-		                                        					<label for="netService" class="col-sm-2 col-form-label text-center">KT</label>
-		                                        					<input type="text" class="form-control"  name="ktNetService" value="${ktNetService}" oninput="checkInput(event)">
-		                                        					<label for="netService" class="col-sm-2 col-form-label text-center">SKT</label>
-		                                        					<input type="text" class="form-control"  name="ktNetService" value="${sktNetService}" oninput="checkInput(event)">
-		                                        					<label for="netService" class="col-sm-2 col-form-label text-center">LGU+</label>
-		                                        					<input type="text" class="form-control"  name="ktNetService" value="${lgNetService}" oninput="checkInput(event)">
-		                                        				</c:when>
-		                                        				<c:when test="${netService.netNo == 1}">
-		                                        					<label for="netService" class="col-sm-2 col-form-label text-center">KT</label>
-		                                        					<c:if test="${not empty netService.ktNetService }">
-		                                        						<input type="text" class="form-control"  name="ktNetService" value="${ktNetService}" oninput="checkInput(event)">
-		                                        					</c:if>
-		                                        					<c:if test="${empty netService.ktNetService }">
-		                                        						<input type="text" class="form-control"  name="ktNetService" value="${ktNetService}" oninput="checkInput(event)">
-		                                        					</c:if>
-		                                        				</c:when>
-		                                        				<c:when test="${netService.netNo == 2}">
-		                                        					<label for="netService" class="col-sm-2 col-form-label text-center">SKT</label>
-		                                        					<c:if test="${not empty netService.sktNetService }">
-		                                        						<input type="text" class="form-control"  name="sktNetService" value="${sktNetService}" oninput="checkInput(event)">
-		                                        					</c:if>
-		                                        					<c:if test="${empty netService.sktNetService }">
-		                                        						<input type="text" class="form-control"  name="sktNetService" value="${sktNetService}" oninput="checkInput(event)">
-		                                        					</c:if>
-		                                        				</c:when>
-		                                        				<c:when test="${netService.netNo == 3}">
-		                                        					<label for="netService" class="col-sm-2 col-form-label text-center">LGU+</label>
-		                                        					<c:if test="${not empty netService.lgNetService }">
-		                                        						<input type="text" class="form-control"  name="lgNetService" value="${lgNetService}" oninput="checkInput(event)">
-		                                        					</c:if>
-		                                        					<c:if test="${empty netService.lgNetService }">
-		                                        						<input type="text" class="form-control"  name="lgNetService" value="${lgNetService}" oninput="checkInput(event)">
-		                                        					</c:if>
-		                                        				</c:when>
-		                                        			</c:choose>
-		                                        		</c:forEach>
+		                                        		<div class="col-sm-4">
+						                                    <div class="form-group">
+						                                        <label class="floating-label" for="Text">KT</label>
+						                                        <input type="text" class="form-control" id="Text" name="ktNetService" <c:if test="${cmd eq 'read' }">readonly</c:if> value="${applyDetail.ktNetService}">
+						                                        <label class="floating-label" for="Text">SKT</label>
+						                                        <input type="text" class="form-control" id="Text" name="sktNetService" <c:if test="${cmd eq 'read' }">readonly</c:if> value="${applyDetail.sktNetService}">
+						                                        <label class="floating-label" for="Text">LG</label>
+						                                        <input type="text" class="form-control" id="Text" name="lgNetService" <c:if test="${cmd eq 'read' }">readonly</c:if> value="${applyDetail.lgNetService}">
+						                                    </div>
+						                                </div>
 		                                        	</c:otherwise>
 		                                        </c:choose>
 		                                     </div>   
@@ -557,23 +498,7 @@
 		                                     
 		                                     
 		                                     
-		                                     
-		                                    <%-- <div class="form-group row">
-		                                        <label for="netService" class="col-sm-2 col-form-label text-center">고객센터 번호</label>
-		                                        <c:set var="netService" value=""/>
-		                                        <c:if test="${not empty applyDetail.ktNetService }">
-		                                        	<c:set var="netService" value="KT : ${applyDetail.ktNetService} / "/>
-		                                        </c:if>
-		                                        <c:if test="${not empty applyDetail.sktNetService }">
-		                                        	<c:set var="netService" value="${netService} SKT : ${applyDetail.sktNetService} / "/>
-		                                        </c:if>
-		                                        <c:if test="${not empty applyDetail.lgNetService }">
-		                                        	<c:set var="netService" value="${netService} LG : ${applyDetail.lgNetService}"/>
-		                                        </c:if>
-		                                        <div class="col-sm-4">
-		                                            <input type="text" class="form-control"  name="netService" <c:if test="${cmd eq 'read' }">readonly</c:if> value="${netService}">
-		                                        </div>
-		                                    </div> --%>
+		                                  
 		                                    <div class="form-group row">
 		                                        <label for="bizId" class="col-sm-2 col-form-label text-center">아이디</label>
 		                                        <div class="col-sm-4">
@@ -588,16 +513,16 @@
 		                                         	</c:when>
 		                                         	<c:otherwise>
 		                                         		<div class="custom-control custom-checkbox mb-3">
-		                                         			<input type="checkbox" class="custom-control-input" id="customControlValidation1" name="network" value="KT망">
-                                							<label class="custom-control-label" for="customControlValidation1">KT망</label>
+		                                         			<input type="checkbox" class="custom-control-input" id="checkBoxKt" name="network" value="KT망" onchange="fn_checkNework();">
+                                							<label class="custom-control-label" for="checkBoxKt">KT망</label>
 		                                        		</div>
 		                                         		<div class="custom-control custom-checkbox mb-3">
-		                                         			<input type="checkbox" class="custom-control-input" id="customControlValidation2" name="network" value="SKT망">
-		                                         			<label class="custom-control-label" for="customControlValidation2">SKT망</label>
+		                                         			<input type="checkbox" class="custom-control-input" id="checkBoxSkt" name="network" value="SKT망" onchange="fn_checkNework();">
+		                                         			<label class="custom-control-label" for="checkBoxSkt">SKT망</label>
 		                                        		</div>
 		                                         		<div class="custom-control custom-checkbox mb-3">
-		                                         			<input type="checkbox" class="custom-control-input" id="customControlValidation3" name="network" value="LG망">
-		                                         			<label class="custom-control-label" for="customControlValidation3">LGU+망</label>
+		                                         			<input type="checkbox" class="custom-control-input" id="checkBoxLg" name="network" value="LG망" onchange="fn_checkNework();">
+		                                         			<label class="custom-control-label" for="checkBoxLg">LGU+망</label>
 		                                        		</div>
 		                                         	</c:otherwise>
 		                                         </c:choose>

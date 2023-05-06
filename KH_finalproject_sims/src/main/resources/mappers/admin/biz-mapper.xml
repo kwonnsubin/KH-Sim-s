@@ -365,6 +365,37 @@
 			AND PLAN_NO = #{plan_no}
 	</select>
 	
-
+	
+	<!-- 통신사 고객센터 병합 -->
+	<update id="mergeNetServiceModify" parameterType="adBizVo">
+		MERGE INTO BIZ_NETWORK A
+		USING DUAL
+		ON (A.BIZ_ID = #{bizId} AND A.NET_NO = #{netNo})
+		WHEN MATCHED THEN 
+			UPDATE SET
+				BIZ_NET_SERVICE = (CASE WHEN #{netNo} = 1 THEN #{ktNetService}
+										WHEN #{netNo} = 2 THEN #{sktNetService}
+										ELSE #{lgNetService} END)
+		WHEN NOT MATCHED THEN 
+			INSERT (
+				BIZ_ID
+				, NET_NO
+				, BIZ_NET_SERVICE
+			) VALUES (
+				#{bizId}
+				, #{netNo}
+				, (CASE WHEN #{netNo} = 1 THEN #{ktNetService}
+						WHEN #{netNo} = 2 THEN #{sktNetService}
+						ELSE #{lgNetService} END)
+			)
+		 
+	</update>
+	
+	<!-- 통신사 고객센터 삭제  -->
+	<delete id="deleteNetServiceModify" parameterType="adBizVo">
+		DELETE FROM BIZ_NETWORK
+		WHERE BIZ_ID = #{bizId} AND NET_NO = #{netNo}
+	</delete>
+	
 
 </mapper>

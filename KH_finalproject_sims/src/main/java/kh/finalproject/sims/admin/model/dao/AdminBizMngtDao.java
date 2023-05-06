@@ -85,6 +85,18 @@ public class AdminBizMngtDao {
 	public AdminBizMngtVo selectPlanAjax(int planNo) {
 		return sqlSession.selectOne("adminBiz.selectBizPlanDetailAjax", planNo);
 	}
+	
+	//고객센터 번호 수정
+	public int mergeNetServiceModify(AdminBizMngtVo vo) {
+		return sqlSession.update("adminBiz.mergeNetServiceModify", vo);
+	}
+
+	//고객센터 번호 삭제
+	public int deleteNetServiceModify(AdminBizMngtVo vo) {
+		return sqlSession.delete("adminBiz.deleteNetServiceModify", vo);
+	}
+
+	
 
 
 
