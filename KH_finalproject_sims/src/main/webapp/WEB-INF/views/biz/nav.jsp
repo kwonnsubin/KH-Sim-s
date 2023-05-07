@@ -7,8 +7,10 @@
 
 <div id="wrap">
 <nav id="header">
-	        <p class="tit"><a href="${path}/biz/myPage">마이페이지</a></p>
 	        <ul class="list">
+	        	<li>
+		        	<a class="tit" href="${path}/biz/myPage" style="border-bottom: 3px solid #555; font-size:28px;">마이페이지</a>
+		        </li>
 	            <li>
 	                <a href="${path}/biz/infodetail">
 	                   	     내 정보 보기
@@ -54,5 +56,15 @@
 </nav>
 </div>
 
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+	  const links = document.querySelectorAll('#header .list li a');
+	  const currentURL = window.location.href;
 
-
+	  links.forEach(link => {
+	    if (link.href === currentURL) {
+	      link.classList.add('active');
+	    }
+	  });
+	});
+</script>

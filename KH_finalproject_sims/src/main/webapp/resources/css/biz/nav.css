@@ -33,17 +33,17 @@
 div{
     display: block;
 }
+#wrap {
+  height: auto;
+}
 #header{
     float: left;
     width: 240px;
-    height: 100vh;
-    padding: 10px;
     padding-left: 50px;
     margin-right : 20px;
-    /* border-style: dotted; */
-     position: sticky;
     top: 100px;
     right: 300px;
+    position: sticky;
 }
 #header .tit{
     margin: 0;
@@ -55,16 +55,11 @@ div{
     letter-spacing: -0.05em;
 }
 #containerWrap{
-    /* border-style: solid; */
     box-sizing: border-box;
     min-height: 100vh;
 }
 .contents{
     box-sizing: border-box;
-    /* border-style: groove; */
-}
-#header .list{
-    border-top: 3px solid #555;
 }
 #header .list >li{
     border-bottom: 1px solid #e0e0e0;
@@ -97,15 +92,15 @@ div{
     color: #333;
     text-decoration: none;
 }
-/*이거 왜 안먹힐까.. */
-#header .list li.active > a {
-    color: #2775c4 ;
+#header .list li a.active {
+  color: #2775c4;
 }
-a:visited, a:hover, a:focus{
-	color: #2775c4;
+#header .list li a:hover {
+  color: #2775c4 !important;
 }
 
 a{
+	color: #333;
     cursor: pointer;
     background-color: transparent;
 }
