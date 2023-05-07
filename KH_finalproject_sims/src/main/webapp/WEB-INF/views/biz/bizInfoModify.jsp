@@ -16,10 +16,11 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@100;300;400;500;700;900&display=swap" rel="stylesheet">
 
-<title>Insert title here</title>
+<title>${bizinfo.bizName } | 내 정보 수정하기</title>
 <script src="https://code.jquery.com/jquery-3.6.3.js"></script>
 <link rel="stylesheet" href="${path}/resources/css/biz/bizModify.css"/>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
+
 
 	 <!-- Bootstrap core CSS -->
     <link href="<%= request.getContextPath() %>/resources/chain/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
@@ -30,11 +31,11 @@
     <link rel="stylesheet" href="<%= request.getContextPath() %>/resources/chain/assets/css/animated.css">
     <link rel="stylesheet" href="<%= request.getContextPath() %>/resources/chain/assets/css/owl.css">
     <link rel="stylesheet" href="<%= request.getContextPath() %>/resources/css/user/myinfo.css"/>
+    
+   
 </head>
 <body>
-
 <jsp:include page="/WEB-INF/views/header.jsp"/>
-
 
 
 <div class="container" style="display:flex; margin:-103px 0 -200px 0; padding:150px 0 380px 0;">
@@ -48,7 +49,10 @@
 			<hr class="line">
 		</div>
 	
-		<form action="modifyInfo " method="post" enctype="multipart/form-data" id="modifyForm" class="needs-validation" novalidate>
+		<form action="modifyInfo " method="post" enctype="multipart/form-data" id="modifyForm" class="needs-validation" novalidate
+				style="width: 122%;">
+				
+				<p class="inpt-text">(*)표시는 필수 입력사항입니다.</p>
 				<div class="d-flex">
 					<div class="division-box">
 						<span>기본정보</span>
@@ -59,39 +63,47 @@
 				<table class="table">
 					<tbody>
 						<tr>
-							<th scope="row">
-								<span >법인명</span>
+							<th scope="row" class="required">
+							    <span>법인명</span>
 							</th>
 							<td><input type="text" class="form-control" name="bizName" value="${bizinfo.bizName }" required>
 							<div class="invalid-feedback">
 						        필수 입력값입니다.
 					        </div>
 							</td>
-							<th scope="row">
+							<th scope="row" class="required">
 								<span>대표자명</span>
 							</th>
-							<td><input type="text" class="form-control" name="bizOwnerName"  value="${bizinfo.bizOwnerName }"></td>
+							<td><input type="text" class="form-control" name="bizOwnerName"  value="${bizinfo.bizOwnerName } "required>
+							<div class="invalid-feedback">
+						        필수 입력값입니다.
+					        </div>
+							</td>
 						</tr>
 						<tr>
-							<th scope="row">
+							<th scope="row" class="required">
 								<span>사업자등록번호</span>
 							</th>
-							<td><input type="text" class="form-control" name="bizCrn" value="${bizinfo.bizCrn }" maxlength="12" onkeyup="autoHyphenCrn(this)" required >
+							<td><input type="text" class="form-control" name="bizCrn" value="${bizinfo.bizCrn }" 
+								placeholder="'-'을 제외한 10자리 숫자만 입력해주세요."
+								maxlength="11" onkeyup="autoHyphenCrn(this)" required >
 							<div class="invalid-feedback">
 						        필수 입력값입니다.
 					        </div>
 							</td>
-							<th scope="row">
+							<th scope="row" class="required">
 								<span>법인등록번호</span>
 							</th>
-							<td><input type="text" class="form-control" name="bizSsn" value="${bizinfo.bizSsn }" maxlength="14" onkeyup="autoHyphenSsn(this)" required>
+							<td><input type="text" class="form-control" name="bizSsn" value="${bizinfo.bizSsn }"
+								 placeholder="'-'을 제외한 13자리 숫자만 입력해주세요."
+								 maxlength="14" onkeyup="autoHyphenSsn(this)" required>
 							<div class="invalid-feedback">
 						        필수 입력값입니다.
 					        </div>
 							</td>
 						</tr>
 						<tr>
-							<th scope="row">
+							<th scope="row" class="required">
 								<span>회사주소</span>
 							</th>
 							<td colspan="3"> 
@@ -149,10 +161,10 @@
 				
 				<table class="table" style="margin-top:2%;">
 					<tr>
-						<th scope="row" class="col-md-1">
+						<th scope="row" class="col-md-2">
 							<span>개통 소요시간</span>
 						</th>
-						<td class="col-md-2"> 
+						<td class="col-md-4"> 
 						평균 <select name="phoneOpTime" class="form-select">
 						  <c:forEach var="i" begin="0" end="150" step="1">
 						  	<c:choose>
@@ -166,10 +178,10 @@
 						  </c:forEach>
 						</select>일
 						</td>
-						<th scope="row" class="col-md-1">
+						<th scope="row" class="col-md-2">
 							<span>개통 소요시간 <br>(유심보유시)</span>
 						</th>
-						<td class="col-md-2">
+						<td class="col-md-4">
 						평균 <select name="phoneOpTimeUsim" class="form-select">
 							  <c:forEach var="i" begin="0" end="150" step="1">
 							  	<c:choose>
@@ -254,7 +266,7 @@
 						<th scope="row">
 							<span>휴무일</span>
 						</th>
-						<td colspan="2" style="display: flex; height: 58px;">
+						<td colspan="4" style="display: flex; height: 61px;">
 							<div class="form-check">
 								<input class="form-check-input" type="checkbox" name="weekday" value="월">월
 							</div>
@@ -282,11 +294,11 @@
 						</td>
 					</tr>
 			
-					<tr>
+					<tr class="col-md-8">
 						<th scope="row">
 							<span>지원통신망</span>
 						</th>
-						<td colspan="2" style="display: flex; height: 54px; width: 242%;">
+						<td colspan="4" style="display: flex; height: 47px; width: 258%;">
 						<div class="form-check">
 							<input class="form-check-input" type="checkbox" name="net" value="KT망" >KT망
 						</div>
@@ -301,11 +313,11 @@
 			
 			
 					<c:forEach var="service" items="${serviceList}">
-						<tr class="col-md-6">
+						<tr class="col-md-8">
 							<th scope="row">
 								<span>고객센터번호</span>
 							</th>
-							<td colspan="2">
+							<td colspan="4">
 								<c:choose>
 									<c:when test="${empty serviceList[0]}">
 										<span>KT</span>
@@ -458,7 +470,6 @@
 <!-- 지원통신망 체크에 따라 고객센터번호 칸 출력 -->
 <script>
 $(document).ready(function() {
-	/*페이지로딩시 체크 된 상태로 고객센터번호칸이 나옴. 근데 애초에 db에 값이 없으면 새로 추가를 못함. */
    // 첫 번째 체크박스 초기화
     if ($('input[type="checkbox"][name="net"][value="KT망"]').is(':checked')) {
         $('span:contains("KT"):first').show();
@@ -647,14 +658,9 @@ function checkInputNum(event) {
 }
 </script>
 <script>
-// Example starter JavaScript for disabling form submissions if there are invalid fields
 (() => {
   'use strict'
-
-  // Fetch all the forms we want to apply custom Bootstrap validation styles to
   const forms = document.querySelectorAll('.needs-validation')
-
-  // Loop over them and prevent submission
   Array.from(forms).forEach(form => {
     form.addEventListener('submit', event => {
       if (!form.checkValidity()) {

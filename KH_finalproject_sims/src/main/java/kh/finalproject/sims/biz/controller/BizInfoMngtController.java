@@ -157,7 +157,6 @@ public class BizInfoMngtController {
 		
 		
 		//파일첨부
-		
 		System.out.println("&&&&&&&&&&&&&&&& multi : "+multi);
 		System.out.println("%%%%%%% multi.getOriginalFilename() : "+multi.getOriginalFilename());
 		
@@ -165,11 +164,7 @@ public class BizInfoMngtController {
 		
 		System.out.println("vo.getLogoRenameFilename() :"+vo.getLogoRenameFilename());
 		
-		/*
-		 * try { filePath = fileUtil.saveFile(multi, request, null);
-		 * vo.setLogoRenameFilename(filePath.get("rename")); } catch (Exception e) {
-		 * e.printStackTrace(); }
-		 */
+
 		try {
 		    filePath = fileUtil.saveFile(multi, request, null);
 		    String logoRenameFilename2 = filePath.get("rename"); //새로 들어오는 이미지파일

@@ -2,6 +2,8 @@
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib uri="http://www.springframework.org/tags" prefix="spring" %> <!-- 채널톡사용 -->
+<%@ page import="java.util.Date, java.text.SimpleDateFormat" %>
+
 <c:set var="path" value="${pageContext.request.contextPath}"/>
 <!DOCTYPE html>
 <html>
@@ -14,7 +16,7 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@100;300;400;500;700;900&display=swap" rel="stylesheet">
     
-<title>Insert title here</title>
+<title>${bizName.bizName} | 통계현황</title>
 <link rel="stylesheet" href="${path}/resources/css/biz/main.css"/>
 <script src="https://code.jquery.com/jquery-3.6.3.js"></script>
 <link type="text/css" rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css">
@@ -46,10 +48,8 @@
   	        type: "post",
   	        dataType:"json",
   	        success: function(json) {
-  	            // JSON 데이터를 받아 처리
-  	            //var data = JSON.parse(json); //dataType:"json"라고 명시하면 이렇게 안써도 됨. 
   	            console.log(json);
-  	          var chartData = [['요금제명', '누적 가입수', { role: 'style' }, '하루 가입수', { role: 'style' }]];
+  	            var chartData = [['요금제명', '누적 가입수', { role: 'style' }, '하루 가입수', { role: 'style' }]];
   	        	for (var i = 0; i < json.length; i++) {
 	  	            var randomColor1 = getRandomColor(); // 랜덤 색상을 생성하는 함수
 	  	            var randomColor2 = getRandomColor(); 
@@ -75,8 +75,8 @@
 		               
 		            };
 		
-		            var chart = new google.visualization.ColumnChart(document.getElementById('chart_div2')); // Column Chart를 생성합니다.
-		            chart.draw(google.visualization.arrayToDataTable(chartData), options); // 차트를 그립니다.
+		            var chart = new google.visualization.ColumnChart(document.getElementById('chart_div2'));
+		            chart.draw(google.visualization.arrayToDataTable(chartData), options);
 		            
 		            // 색상 랜덤으로 부여하기 위한 함수
 		            function getRandomColor() {
@@ -99,7 +99,7 @@
 
 <!-- 최근 일주일간 해당 통신사 요금제 가입자 열 그래프 -->
 <script type="text/javascript">
-	  google.charts.load('current', {packages: ['corechart']}); // 로드할 패키지를 선택합니다.
+	  google.charts.load('current', {packages: ['corechart']}); 
 	  google.charts.setOnLoadCallback(drawChart);
 	
 	function drawChart() {
@@ -157,9 +157,9 @@
       function drawChart() {
 
     	  $.ajax({
-    		   url : "${pageContext.request.contextPath}/biz/piechart" //경로 항상 유의
+    		   url : "${pageContext.request.contextPath}/biz/piechart"
     		  ,type : "post"
-    		  ,dataType : "json" //아 date 오타...아오
+    		  ,dataType : "json"
     		  ,success : function(json){
     			  console.log(json);
     			  console.log("data : "+data);
@@ -323,9 +323,22 @@
 
 	<div class="container" style="margin-left: 3%;">
 
-		<div class="container" style="margin-left: 2%;" >
-				<h2 class="tit">통계 현황</h2>
-				<hr class="line">
+
+		<%
+		  Date date = new Date();
+		  SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm 기준");
+		  String currentTime = sdf.format(date);
+		%>
+		
+		<div class="container d-flex" style="margin-left: 2%;" >
+				<div>
+					<h2 class="tit">통계 현황</h2>
+					<hr class="line">
+				</div>
+				
+			 <div class="container d-flex justify-content-end" style="align-items: end";>
+			 <p><%=currentTime%></p>
+			</div>
 		</div>
 		
 		
@@ -367,7 +380,7 @@
 								<span>통신사 이용</span>
 							</div>
 							<hr>
-					</div>
+					 </div>
 			 
 			    <div class="row">
 				      <!-- 도넛 차트 / 통신사 전체 기준-->
@@ -375,30 +388,9 @@
 					<div class="col chartbox" id="donutchart2" style="width: 900px; height: 500px;"></div>
 			    </div>
 			  </div>
-			    
-			    <!-- 한 페이지에 여러 차트 그리는 법 -->
-				<!-- <table class="columns">
-			      <tr>
-			        <td><div id="chart_div2" style="border: 1px solid #ccc"></div></td>
-			        <td><div id="chart_div" style="border: 1px solid #ccc"></div></td>
-			      </tr>
-			      <tr>
-			        <td><div id="piechart" style="border: 1px solid #ccc"></div></td>
-			        <td><div id="piechart2" style="border: 1px solid #ccc"></div></td>
-			      </tr>
-			      <tr>
-			        <td><div id="donutchart" style="border: 1px solid #ccc"></div></td>
-			        <td><div id="donutchart2" style="border: 1px solid #ccc"></div></td>
-			      </tr>
-			    </table>
-			    
-			     -->
 		    </div>
-		    
 	    </div>
-    
     </div>
-</div>
 	  
 	<jsp:include page="/WEB-INF/views/footer.jsp"/>
 	

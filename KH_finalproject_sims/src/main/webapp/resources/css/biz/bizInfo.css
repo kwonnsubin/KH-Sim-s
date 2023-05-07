@@ -31,8 +31,7 @@ table{
 	margin-top: 5%;
 }
 .modyBtn{
-	position: absolute;
-	left: 48%;
+	margin-left:64%;
     margin-top: 2%;
     background-color: #669dcf !important
 }

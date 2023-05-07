@@ -2,25 +2,15 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="biz">
 	
-	<!-- 테스트용 -->
-	<select id="selectListBizinfo" resultType="bvo">
-		select * from biz where biz_id = 'kctv'
-	</select>
-	
+
 	<select id="selectBizInfoDetail" resultMap="bvoCollectionMap">
-		<!-- select * 
-			FROM BIZ_NETWORK
-				JOIN BIZ
-				USING(BIZ_ID)
-		where biz_id=#{bizid} -->
-		
-		select * FROM BIZ LEFT JOIN BIZ_NETWORK USING(BIZ_ID) where biz_id=#{bizid} 
+	
+		SELECT * FROM BIZ LEFT JOIN BIZ_NETWORK USING(BIZ_ID) where biz_id=#{bizid} 
 
 	</select>
 	
 	<resultMap type="bvo" id="bvoCollectionMap">
 		<id column="BIZ_ID" property="bizId" />
-		<!-- 얘네들도 추가? -->
 		<result column="BIZ_NAME" property="bizName"/>
 		<result column="BIZ_SSN" property="bizSsn"/>
 		<result column="BIZ_CRN" property="bizCrn"/>

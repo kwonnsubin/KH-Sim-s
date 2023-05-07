@@ -25,7 +25,7 @@
 
 
 	<!-- 최근 일주일간 해당 통신사 요금제 가입 수 -->
- 	<select id="selectJoinPlanByDate" resultType="kh.finalproject.sims.biz.model.vo.BizChartVo">
+ 	<select id="selectJoinPlanByDate" resultType="bChartVo">
  	  WITH date_range AS (
 	  SELECT TRUNC(SYSDATE) - LEVEL + 1 AS order_date
 	  FROM DUAL
@@ -51,7 +51,7 @@
  	</select>
  	
  	<!-- 자사 요금제별 총 가입자 수(0 가입자도 출력)  // outer join으로 변경-->
- 	<select id="selectTotalApplyByPlan" resultType="kh.finalproject.sims.biz.model.vo.BizMainVo">
+ 	<select id="selectTotalApplyByPlan" resultType="bMnVo">
  	SELECT p.plan_name, p.plan_no, COUNT(po.plan_no) AS planApply_cnt
 		FROM plan_table p
 		LEFT OUTER JOIN plan_order po ON p.plan_no = po.plan_no
@@ -61,7 +61,7 @@
  	</select>
  	
  	<!-- 요금제별 오늘 하루 가입자 수 -->
- 	<select id="selectTodayApplyByPlan" resultType="kh.finalproject.sims.biz.model.vo.BizMainVo">
+ 	<select id="selectTodayApplyByPlan" resultType="bMnVo">
  	SELECT p.plan_no, COALESCE(COUNT(po.plan_no), 0) AS todayPlanApply_cnt
 	FROM plan_table p
 	LEFT OUTER JOIN plan_order po ON p.plan_no = po.plan_no AND TRUNC(po.ORDER_DATE) = TRUNC(SYSTIMESTAMP)
@@ -71,7 +71,7 @@
 	</select>
  	
  	<!-- 가장 인기있는 요금제의 연령대 비율 -->
- 	<select id="selectTopPlanAgeRatio" resultType="kh.finalproject.sims.biz.model.vo.BizMainVo">
+ 	<select id="selectTopPlanAgeRatio" resultType="bMnVo">
  	select AGE_GROUP, count(*) AS age_cnt
 	from
 		(SELECT user_id,
@@ -109,7 +109,7 @@
  	
  	
  	<!-- 통신사 전체 이용 연령대 카운트 -->
- 	<select id="selectBizAgeRatio" resultType="kh.finalproject.sims.biz.model.vo.BizMainVo">
+ 	<select id="selectBizAgeRatio" resultType="bMnVo">
  		select AGE_GROUP, count(*) AS age_cnt
 			from
 		    (SELECT user_id,
@@ -137,7 +137,7 @@
  	
  	
  	<!-- 가장 인기있는 요금제의 이용자 성별 count -->
- 	<select id="selectTopPlanGenderRatio" resultType="kh.finalproject.sims.biz.model.vo.BizMainVo">
+ 	<select id="selectTopPlanGenderRatio" resultType="bMnVo">
  	SELECT DECODE(SUBSTR(user_ssn, 8, 1), '1', '남', '2', '여', '3', '남', '4', '여') gender, COUNT(*) gender_cnt
 		FROM user_table 
 		 WHERE user_id IN (
@@ -162,7 +162,7 @@
  	
  	
  	<!-- 통신사 전체 요금제 이용 성별 count -->
- 	<select id="selectBizGenderRatio" resultType="kh.finalproject.sims.biz.model.vo.BizMainVo">
+ 	<select id="selectBizGenderRatio" resultType="bMnVo">
 	 	SELECT DECODE(SUBSTR(user_ssn, 8, 1), '1', '남', '2', '여', '3', '남', '4', '여') as gender, COUNT(*) gender_cnt
 			FROM user_table 
 			where user_id in (

@@ -20,7 +20,9 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import kh.finalproject.sims.biz.model.service.BizApplyMngtService;
+import kh.finalproject.sims.biz.model.service.BizPlanMngtService;
 import kh.finalproject.sims.biz.model.vo.BizApplyVo;
+import kh.finalproject.sims.biz.model.vo.BizPlanMngtVo;
 import kh.finalproject.sims.common.page.Paging;
 import kh.finalproject.sims.common.page.Search;
 
@@ -30,6 +32,9 @@ public class BizApplyMngtController {
 
 	@Autowired
 	private BizApplyMngtService service;
+	
+	@Autowired
+	private BizPlanMngtService planService;
 	
 	//날짜 조회 추가
 	//search 가입신청 목록 + 분류
@@ -96,6 +101,10 @@ public class BizApplyMngtController {
 					
 					System.out.println("@@@@search.getPage() : " +search.getPage());//확인용
 					System.out.println("#########getPageList : "+ search.getPageList()); //하단 개수
+					
+					BizPlanMngtVo bizName = planService.findByBizName(bizid);
+					System.out.println(bizName);
+					mv.addObject("bizName", bizName);
 
 					mv.addObject("applyListCnt",divisionApplyListCountByDateRange);	
 					mv.addObject("searchType",searchType);
@@ -212,6 +221,7 @@ public class BizApplyMngtController {
 	@GetMapping("/applydetail")
 	public ModelAndView selectBizPlanApplyDetail(ModelAndView mv
 			, int orderNo
+			, Principal principal
 			) {
 		
 		BizApplyVo vo = service.selectApplyDetailUser(orderNo);
@@ -220,6 +230,11 @@ public class BizApplyMngtController {
 		
 		mv.addObject("applyDetail", vo);
 		mv.addObject("applyDetailPlan", vo1);
+		
+		String bizid = principal.getName();
+		BizPlanMngtVo bizName = planService.findByBizName(bizid);
+		System.out.println(bizName);
+		mv.addObject("bizName", bizName);
 		
 		
 		mv.setViewName("biz/applyDetail");

@@ -16,7 +16,7 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@100;300;400;500;700;900&display=swap" rel="stylesheet">
     
-<title>Insert title here</title>
+<title>${bizName.bizName} | 마이페이지 </title>
 <link rel="stylesheet" href="${path}/resources/css/biz/myPage.css"/>
 <script src="https://code.jquery.com/jquery-3.6.3.js"></script>
 <link type="text/css" rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css">
@@ -50,17 +50,13 @@
 	    		, type : "post"
 	    		, dataType : "json"
 	    		, success : function(json){
-	    			console.log("json :"+json); /* [object Object],[object Object] */
 	    			console.log(json); 
-	    			
 	    			var data = new google.visualization.DataTable();
 	    				data.addColumn('string','일자');
 	    				data.addColumn('number','가입자 수');
 	    				for(var i=0; i < json.length; i++){
 	    					data.addRow([json[i].orderDate, json[i].orderCnt]);
 	    				}
-	    				console.log("data : "+ data); /* [object Object] */
-
 	    				var options = {
 	    				        hAxis: {
 	    				          /* title: 'x축 명' */
@@ -72,7 +68,6 @@
 	    				      };
 
 	    				      var chart = new google.visualization.LineChart(document.getElementById('chart_div'));
-
 	    				      chart.draw(data, options);
 	    		}
 	    	});
@@ -87,7 +82,6 @@
 	<div class="container" style="display:flex; margin:-103px 0 -200px 0; padding:150px 0 380px 0;">
 		<jsp:include page="/WEB-INF/views/biz/nav.jsp"/>
 		
-		
 		<%
 		  Date date = new Date();
 		  SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm 기준");
@@ -96,13 +90,18 @@
 		
 		
 		<div class="container" style="margin-left: 142px; width: 81%;">
+			<div class="container" style="margin-bottom: 2%;">
+				<div class="biz-icon">통신사</div>
+				<span class="welcome-ment">${bizName.bizName} 님, 반갑습니다. </span>
+			</div>
+		
 			<div class="container">
 			 <p><%=currentTime%></p>
 			</div>
 			
-			<div class="container d-flex content">
+			<div class="container d-flex content fade-box">
 			
-				<div class="container logo-img">
+				<div class="container logo-img  ">
 					<div class="text-center">
 						<img src="${path}${imagePath}" onerror="this.onerror=null; this.src='https://www.dummyimage.com/600x400/000/fff.jpg&text=Please+upload+your+logo';" class="mx-auto" style="width: 70% !important"/>
 					</div> 
@@ -172,14 +171,14 @@
 				</div>
 			</div>
 			
-			<div class="container" style="margin-top: 5%;">
+			<div class="container fade-box" style="margin-top: 5%;">
 				<div>
 					<span class="mini-title">최근 7일간 가입자 수</span>
 				</div>
 				<div id="chart_div" style="height: 500px;"></div>
 			</div>
 			
-			<div class="container" style="height: 400px">
+			<div class="container fade-box" style="height: 400px">
 					
 				<div>
 					<span class="mini-title">인기있는 요금제</span>
@@ -211,7 +210,7 @@
 			
 			</div>
 			
-			<div class="container" style="margin-top: 0%;">
+			<div class="container fade-box" style="margin-top: 0%;">
 				<div>
 					<span class="mini-title">최근 리뷰</span>
 				</div>
@@ -241,14 +240,11 @@
 					                    </c:forEach>
 					                </div>
 					            </div>
-					            
 					               <div class="review-footer-item">${recentReview.reviewDate}</div>
-					           
 					        </div>
 					    </div>
 					</c:forEach>
 					<div class="review-box" style="display: flex; align-items: center;"> <!-- 더보기 박스 -->
-						
 						<a class="material-symbols-outlined more-icon" onclick="location.href='${pageContext.request.contextPath}/biz/reviewList'"
 						 		style="font-size: 220px; color: darkgray;  margin: auto; line-height: 0 !important;">
 								read_more

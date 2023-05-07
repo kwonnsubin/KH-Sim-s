@@ -18,8 +18,10 @@ import org.springframework.web.servlet.ModelAndView;
 
 import kh.finalproject.sims.biz.model.service.BizMainService;
 import kh.finalproject.sims.biz.model.service.BizMyPageService;
+import kh.finalproject.sims.biz.model.service.BizPlanMngtService;
 import kh.finalproject.sims.biz.model.vo.BizChartVo;
 import kh.finalproject.sims.biz.model.vo.BizMyPageVo;
+import kh.finalproject.sims.biz.model.vo.BizPlanMngtVo;
 
 @Controller
 @RequestMapping("/biz")
@@ -31,6 +33,9 @@ public class BizMyPageController {
 	
 	@Autowired
 	private BizMainService chartService;
+	
+	@Autowired
+	private BizPlanMngtService planService;
 	
 	//마이페이지 텍스트 통계
 		 @GetMapping("/myPage")
@@ -72,6 +77,10 @@ public class BizMyPageController {
 			 //top 5 요금제 정보
 			 mv.addObject("topPlanList",service.getTopFivePlanInfo(bizid));
 			 System.out.println("topPlanList : "+service.getTopFivePlanInfo(bizid));
+			 
+			 BizPlanMngtVo bizName = planService.findByBizName(bizid);
+			 System.out.println(bizName);
+			 mv.addObject("bizName", bizName);
 			 
 			 mv.setViewName("/biz/myPage");
 			 return mv;

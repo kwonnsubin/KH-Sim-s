@@ -14,7 +14,7 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@100;300;400;500;700;900&display=swap" rel="stylesheet">
 
-<title>Insert title here</title>
+<title>${planDetail.bizName} | 요금제 상세 정보 | ${planDetail.planName} </title>
 <link rel="stylesheet" href="${path}/resources/css/biz/planDetail.css"/>
 <script src="https://code.jquery.com/jquery-3.6.3.js"></script>
 <link type="text/css" rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css">
@@ -41,7 +41,9 @@
 	<div class="container" style="display: flex; margin: -103px 0 -200px 0; padding: 150px 0 380px 0;">
 		<jsp:include page="/WEB-INF/views/biz/nav.jsp"/>
 
-	<div class="content">
+
+	
+	<div class="content fade-box">
 				<h2 class="tit">요금제 상세정보</h2>
 				<hr class="line">
 	

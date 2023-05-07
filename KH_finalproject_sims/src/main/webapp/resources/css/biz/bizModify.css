@@ -6,10 +6,8 @@
 	box-sizing: border-box;
 }
  table {
-   /*  display:block; */
     width: 113% !important;
     margin: 0;
-    /* border: 0; */
     table-layout: fixed;
     border-collapse: collapse;
     empty-cells: show;
@@ -32,7 +30,7 @@
 }
 .btnGroup{
 	position: absolute;
-    left: 44%;
+    left: 61%;
     bottom: -8%;
 }
 .division-box{
@@ -58,7 +56,7 @@ hr:not([size]) {
 }
 .content{
 	position: relative;
-    margin-left: 3%;
+    margin-left: 11%;
 }
 h2.tit{
     margin-top: 1%;
@@ -92,4 +90,17 @@ h2.tit{
   width: 15%;
   border-radius: 6px;
   cursor: pointer;
+}
+th.required > span::after   {
+    content: "\002A";
+    margin-left: 5px;
+    color: #3784f7; 
+}
+.inpt-text{
+	margin-top: 10px;
+    font-size: 1rem;
+    line-height: 2.5rem;
+    text-align: right;
+    width: 112%;
+    color: #5a5a5a !important;
 }

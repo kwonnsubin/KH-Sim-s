@@ -19,7 +19,9 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.google.gson.Gson;
 
+import kh.finalproject.sims.biz.model.service.BizPlanMngtService;
 import kh.finalproject.sims.biz.model.service.BizReviewMngtService;
+import kh.finalproject.sims.biz.model.vo.BizPlanMngtVo;
 import kh.finalproject.sims.biz.model.vo.BizReviewMngtVo;
 import kh.finalproject.sims.common.page.Paging;
 
@@ -29,6 +31,9 @@ public class BizReviewMngtController {
 
 	@Autowired
 	private BizReviewMngtService service;
+	
+	@Autowired
+	private BizPlanMngtService planService;
 	
 	//자사 리뷰 리스트
 	@GetMapping("reviewList")
@@ -88,6 +93,12 @@ public class BizReviewMngtController {
 		
 		mv.addObject("reviewCnt",reviewCnt);
 		mv.setViewName("biz/reviewList");
+		
+
+		BizPlanMngtVo bizName = planService.findByBizName(bizid);
+		System.out.println(bizName);
+		mv.addObject("bizName", bizName);
+		
 		return mv;
 	}
 	
@@ -207,7 +218,6 @@ public class BizReviewMngtController {
 			, HttpServletResponse response
 			,@RequestParam(value = "p", required = false) String pageNumber
 			,@RequestParam(name = "reportStatus", defaultValue = "0") int IntReportStatus
-			//,@RequestParam(name = "btnradio", defaultValue = "0") int IntReportStatus
 			, ModelAndView mv) {
 		
 		String bizid = principal.getName();
@@ -249,6 +259,12 @@ public class BizReviewMngtController {
 		cookie = new Cookie("cnt", cnt);
 		cookie.setMaxAge(60 * 60 * 24 * 5);
 		response.addCookie(cookie);
+		
+		BizPlanMngtVo bizName = planService.findByBizName(bizid);
+		System.out.println(bizName);
+		mv.addObject("bizName", bizName);
+		
+		
 		
 		String reportStatus =  Integer.toString(IntReportStatus);
 		

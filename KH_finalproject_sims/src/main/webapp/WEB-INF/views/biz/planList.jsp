@@ -22,7 +22,7 @@
 	href="https://fonts.googleapis.com/css2?family=Roboto:wght@100;300;400;500;700;900&display=swap"
 	rel="stylesheet">
 
-<title>${bizName.bizName}요금제 목록</title>
+<title>${bizName.bizName} | 요금제 현황</title>
 <link rel="stylesheet" href="${path}/resources/css/biz/planList.css" />
 <link rel="stylesheet" href="${path}/resources/css/font.css"/>
 
@@ -60,21 +60,9 @@
 <body>
 	<jsp:include page="/WEB-INF/views/header.jsp" />
 
-
-	<%-- <sec:authorize access="isAuthenticated()">
-	<p><sec:authentication property="name"/>의 요금제 목록 </p>
-</sec:authorize> --%>
-
-
-
 	<div class="container" style="display: flex; margin: -103px 0 -200px 0; padding: 150px 0 380px 0;">
 
-
-
-
 		<jsp:include page="/WEB-INF/views/biz/nav.jsp" />
-
-
 
 		<div class="content">
 			
@@ -95,9 +83,6 @@
 					</select>
 				</form>
 
-
-
-
 				<!-- search{s} -->
 				<div class="input-group"
 					style="width: auto; height: 20%; padding-right: 60px; margin-left: -10%;">
@@ -114,13 +99,10 @@
 					</div>
 				</div>
 				<!-- search{e} -->
-
-
 			</div>
 
 
-
-			<div style="display: inline-flex; width: 180%; margin-top: 4%;">
+			<div style="display: inline-flex; width: 183%; margin-top: 4%;">
 				<div style="width: 253%">
 					<span class="count float-1 totalMent">총 ${vo} 건의 결과가 있습니다.</span>
 				</div>
@@ -140,10 +122,10 @@
 				}
 			%>
 
-			<table class="table table-hover" id="planTb" style="width: 140%;">
+			<table class="table table-hover" id="planTb" style="width: 148%;">
 				<thead>
 					<tr class="text-center mx-auto" style="background-color: #ecf7fd;">
-						<th><input class="form-check-input" id="allCheck"
+						<th style="width: 6%"><input class="form-check-input" id="allCheck"
 							type="checkbox" name="allCheck" /></th>
 						<th>번호</th>
 						<th>요금제명</th>
@@ -363,11 +345,8 @@
 
 			if (valueArr.length == 0) {
 				alert("선택된 글이 없습니다.");
-				//TODO 모달창이 아예 작동하지 않게 해야 함.
+				//모달창이 아예 작동하지않도록 함. 
 				$('#checkDeleteBtn').removeAttr('data-bs-toggle data-bs-target');
-				//1회차일 때는 모달창이 안나오지만 한번 체크된값 처리하고 다시 아무것도 체크안한 상태에서 삭제 누르면 모달창 다시 나옴.. 
-				// 이미 속성이 추가가 된 상태라... 
-				// 속성을 다시 제거.. 
 			} else {
 				$('#checkDeleteBtn').attr({
 					'data-bs-toggle' : 'modal',

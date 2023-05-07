@@ -12,6 +12,10 @@
 		<typeAlias type="kh.finalproject.sims.biz.model.vo.BizInfoMngtVo" alias="bvo"/>
 		<typeAlias type="kh.finalproject.sims.biz.model.vo.BizApplyVo" alias="poVo"/>
 		<typeAlias type="kh.finalproject.sims.biz.model.vo.BizReviewMngtVo" alias="brVo"/>
+		<typeAlias type="kh.finalproject.sims.biz.model.vo.BizPlanMngtVo" alias="bPlanVo"/>
+		<typeAlias type="kh.finalproject.sims.biz.model.vo.BizMyPageVo" alias="bPageVo"/>
+		<typeAlias type="kh.finalproject.sims.biz.model.vo.BizChartVo" alias="bChartVo"/>
+		<typeAlias type="kh.finalproject.sims.biz.model.vo.BizMainVo" alias="bMnVo"/>
 		<typeAlias type="kh.finalproject.sims.admin.model.vo.AdminLoginVo" alias="adLvo"/>
 		<typeAlias type="kh.finalproject.sims.admin.model.vo.AdminQnaMngtVo" alias="adQvo"/>
 		<typeAlias type="kh.finalproject.sims.admin.model.vo.AdminNoticeMngtVo" alias="adNtcvo"/>

@@ -13,7 +13,7 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@100;300;400;500;700;900&display=swap" rel="stylesheet">
 
-<title>Insert title here</title>
+<title>${bizName.bizName} | 가입 신청 현황</title>
 <link rel="stylesheet" href="${path}/resources/css/biz/applyList.css"/>
 <script src="https://code.jquery.com/jquery-3.6.3.js"></script>
 <link type="text/css" rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css">
@@ -250,12 +250,7 @@
 
 </div>
 
-<!-- <script>
-	window.onload = function() {
-		  document.getElementById("exampleRadios1").checked = true;
-		};
-</script>
- -->
+
 <script type="text/javascript">
   // 체크박스 클릭 이벤트 핸들러
   function handleCheckboxChange() {
@@ -334,28 +329,6 @@
 </script>
  -->
 
-
-
-
-<!-- <script>
-//쿠키에 의해 라디오버튼 체크 상태 유지
-	$(document).ready(function(){
-		 var orderStatus = getCookie("orderStatus");
-		  if (orderStatus != "") {
-		    $("input[name='division'][value='" + orderStatus + "']").prop('checked', true);
-		  } else {
-			//쿠키가 없을 경우 첫 번째 라디오 버튼을 선택
-			$("input[name='division']:first").prop('checked', true);
-		  }
-	});
-
-	function getCookie(name) {
-	  var value = "; " + document.cookie;
-	  var parts = value.split("; " + name + "=");
-	  if (parts.length == 2) return parts.pop().split(";").shift();
-	  return "";
-	}
-</script> -->
 
 
 	<jsp:include page="/WEB-INF/views/footer.jsp"/>

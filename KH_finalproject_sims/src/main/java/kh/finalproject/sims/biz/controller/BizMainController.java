@@ -33,8 +33,10 @@ import com.google.gson.JsonIOException;
 import com.google.gson.JsonObject;
 
 import kh.finalproject.sims.biz.model.service.BizMainService;
+import kh.finalproject.sims.biz.model.service.BizPlanMngtService;
 import kh.finalproject.sims.biz.model.vo.BizChartVo;
 import kh.finalproject.sims.biz.model.vo.BizMainVo;
+import kh.finalproject.sims.biz.model.vo.BizPlanMngtVo;
 
 @Controller
 @RequestMapping("/biz")
@@ -42,6 +44,9 @@ public class BizMainController {
 	
 	@Autowired
 	private BizMainService service;
+	
+	@Autowired
+	private BizPlanMngtService planService;
 	
 	//통신사 마이페이지 메인
 	@GetMapping("/main")
@@ -51,14 +56,17 @@ public class BizMainController {
 		
 		String bizid = principal.getName();
 		System.out.println("통신사아이디 : "+bizid);
-		//TODO 통신사 로고이미지 가지고 오기
-		//service.findByBizLogo(bizid);
+
 		
 		System.out.println("!@!@!@!@!@!selectJoinPlanByDate : "+service.selectJoinPlanByDate(bizid));
 
 		//가장 인기 있는 요금제명
 		String selectTopPlanName = service.selectTopPlanName(bizid);
 		System.out.println("현재 가장 인기있는 요금제명 :"+selectTopPlanName);
+		
+		BizPlanMngtVo bizName = planService.findByBizName(bizid);
+		System.out.println(bizName);
+		mv.addObject("bizName", bizName);
 		
 		mv.addObject("selectTopPlanName",selectTopPlanName);
 		
@@ -230,14 +238,6 @@ public class BizMainController {
 		 System.out.println("@@@@@@@@@@@@전체 이용 성별 비율 jsonArray : "+jsonArray);
 		 
 		 return jsonArray.toString();
-	 }
-	 
-	 
-	 //템플릿 테스트
-	 @GetMapping("/temp")
-	 public ModelAndView temp(ModelAndView mv) {
-		 mv.setViewName("/biz/temp");
-		 return mv;
 	 }
 	 
 	 

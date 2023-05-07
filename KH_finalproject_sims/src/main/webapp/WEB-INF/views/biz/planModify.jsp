@@ -14,7 +14,7 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@100;300;400;500;700;900&display=swap" rel="stylesheet">
     
-<title>Insert title here</title>
+<title>${planDetail.bizName} | 요금제 수정하기</title>
 <link rel="stylesheet" href="${path}/resources/css/biz/planModify.css"/>
 <script src="https://code.jquery.com/jquery-3.6.3.js"></script>
 <link type="text/css" rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css">
@@ -39,153 +39,150 @@
 <jsp:include page="/WEB-INF/views/biz/nav.jsp"/>
 
 
-
-	<div class="container" style="margin-left: 269px;">
+<div class="fade-box">
+	<div class="container" style="margin-left: 269px;margin-bottom: 6%;">
 			<h2 class="tit">요금제 수정하기</h2>
 			<hr class="line">
 	</div>
 
-<div class="container" style="margin-top: -4%";>
-	<form class="needs-validation" action="modifyPlan" method="post" style="width: 155%" novalidate> 
-	<input type="hidden" name="planNo" value="${planDetail.planNo }">
-	<table class="table modiPlanTb" style="width: 65%">
-		<tr>
-			<th>
-				<span>요금제명</span>
-			</th>
-			<td><input type="text" name="planName"  class="form-control" value="${planDetail.planName }" required>
-			<div class="invalid-feedback">
-					    요금제명을 입력해주세요. 
-			</div>
-			</td>
-			
-			<th>
-				<span>통신사명</span>
-			</th>
-			<td >${planDetail.bizName}</td> <!-- 통신사명은 변경 불가 -->
-		</tr>
-		<tr>
-			<th>
-				<span>통신망</span>
-			</th>
-			<td>
-				<select name="netNo" class="form-select">
-				  <option value="1" ${planDetail.netNo eq 1 ? 'selected' : ''}>KT</option>
-				  <option value="2" ${planDetail.netNo eq 2 ? 'selected' : ''}>SKT</option>
-				  <option value="3" ${planDetail.netNo eq 3 ? 'selected' : ''}>LGU+</option>
-				</select>
-			</td>
-			
-			<th>
-				<span>통신세대</span>
-			</th>
-			<td>
-				<select name="genNo" class="form-select">
-				  <option value="1" ${planDetail.genNo eq 1 ? 'selected' : ''}>5G</option>
-				  <option value="2" ${planDetail.genNo eq 2 ? 'selected' : ''}>LTE</option>
-				  <option value="3" ${planDetail.genNo eq 3 ? 'selected' : ''}>3G</option>
-				  <option value="4" ${planDetail.genNo eq 4 ? 'selected' : ''}>LTE/3G</option>
-				</select>
-			</td>
-		</tr>
-		<tr>
-			<th>
-				<span>기본료(원)</span>
-			</th>
-			<td><input type="text" name="planPrice" class="form-control" value="${planDetail.planPrice }" required
-						pattern="[0-9,]*" oninput="checkInputNum(event);" 
-						 maxlength="9">
-				<div class="invalid-feedback">
-					      값을 입력해주세요. 
-				</div>
-				<span class="error-message-num" style="display: none">숫자만 입력가능합니다.</span>
-			</td>
-			<th>
-				<span>기본음성(분)</span>
-			</th>
-			<td><input type="text" name="planVoice" class="form-control" value="${planDetail.planVoice }" required
-						pattern="[0-9]*" oninput="checkInputNum(event)"  maxlength="9">
-				<div class="invalid-feedback">
-					      값을 입력해주세요. 
-				</div>
-				<span class="error-message-num" style="display: none">숫자만 입력가능합니다.</span>
-			</td>
-		</tr>
-		<tr>
-			<th>
-				<span>기본문자(건)</span>
-			</th>
-			<td><input type="text" name="planMessage" class="form-control" value="${planDetail.planMessage }" required
-						pattern="[0-9]*" oninput="checkInputNum(event)"  maxlength="9">
-				<div class="invalid-feedback">
-					      값을 입력해주세요. 
-				</div>
-				<span class="error-message-num" style="display: none">숫자만 입력가능합니다.</span>
-			</td>
-			<th>
-				<span>기본데이터(mb)</span>
-			</th>
-			<td><input type="text" name="planData" class="form-control" value="${planDetail.planData }" required
-						pattern="[0-9]*" oninput="checkInputNum(event)"  maxlength="9">
-				<div class="invalid-feedback">
-					      값을 입력해주세요. 
-				</div>
-				<span class="error-message-num" style="display: none">숫자만 입력가능합니다.</span>
-			</td>
-		</tr>
-		<tr>
-			<th>
-				<span>초과음성단가(초)</span>
-			</th>
-			<td><input type="text" name="planVoiceOver" class="form-control" value="${planDetail.planVoiceOver }" required
-						pattern="[0-9.]*" oninput="checkInputNumComma(event)" maxlength="6">
-				<div class="invalid-feedback">
-					      값을 입력해주세요. 
-				</div>
-				<span class="error-message-num-comma" style="display: none">소수점을 포함한 숫자만 입력가능합니다.</span>
-			</td>
-			<th>
-				<span>초과문자단가(건)</span>
-			</th>
-			<td><input type="text" name="planMessageOver" class="form-control" value="${planDetail.planMessageOver }" required
-						pattern="[0-9]*" oninput="checkInputNum(event)"  maxlength="9">
-				<div class="invalid-feedback">
-					      값을 입력해주세요. 
-				</div>
-				<span class="error-message-num" style="display: none">숫자만 입력가능합니다.</span>
-			</td>
-			<th>
-				<span>초과데이터단가(mb)</span>
-			</th>
-			<td><input type="text" name="planDataOver" class="form-control"  value="${planDetail.planDataOver }" required
-						pattern="[0-9.]*" oninput="checkInputNumComma(event)" maxlength="9">
-				<div class="invalid-feedback">
-					      값을 입력해주세요. 
-				</div>
-				<span class="error-message-num-comma" style="display: none">소수점을 포함한 숫자만 입력가능합니다.</span>
-			</td>
-		</tr>
-	</table>
+	<div class="container" style="margin-top: -4%; height: 600px;">
 	
-	
-		<div class="btnGroup">
-			<button type="button" onclick="location.href='${pageContext.request.contextPath}/biz/planList'" class="btn">목록으로</button>
-	    	<button type="submit"  class="btn">수정완료</button>
-	    </div>
-	</form>
-</div>	
-    
+		<p class="tip-ment">* 모든 항목 필수 입력 사항입니다.</p>
+		<form class="needs-validation" action="modifyPlan" method="post" style="width: 155%" novalidate> 
+		<input type="hidden" name="planNo" value="${planDetail.planNo }">
+		<table class="table modiPlanTb" style="width: 65%">
+			<tr>
+				<th>
+					<span>요금제명</span>
+				</th>
+				<td><input type="text" name="planName"  class="form-control" value="${planDetail.planName }" required>
+				<div class="invalid-feedback">
+						    요금제명을 입력해주세요. 
+				</div>
+				</td>
+				
+				<th>
+					<span>통신사명</span>
+				</th>
+				<td >${planDetail.bizName}</td> <!-- 통신사명은 변경 불가 -->
+			</tr>
+			<tr>
+				<th>
+					<span>통신망</span>
+				</th>
+				<td>
+					<select name="netNo" class="form-select">
+					  <option value="1" ${planDetail.netNo eq 1 ? 'selected' : ''}>KT</option>
+					  <option value="2" ${planDetail.netNo eq 2 ? 'selected' : ''}>SKT</option>
+					  <option value="3" ${planDetail.netNo eq 3 ? 'selected' : ''}>LGU+</option>
+					</select>
+				</td>
+				
+				<th>
+					<span>통신세대</span>
+				</th>
+				<td>
+					<select name="genNo" class="form-select">
+					  <option value="1" ${planDetail.genNo eq 1 ? 'selected' : ''}>5G</option>
+					  <option value="2" ${planDetail.genNo eq 2 ? 'selected' : ''}>LTE</option>
+					  <option value="3" ${planDetail.genNo eq 3 ? 'selected' : ''}>3G</option>
+					  <option value="4" ${planDetail.genNo eq 4 ? 'selected' : ''}>LTE/3G</option>
+					</select>
+				</td>
+			</tr>
+			<tr>
+				<th>
+					<span>기본료(원)</span>
+				</th>
+				<td><input type="text" name="planPrice" class="form-control" value="${planDetail.planPrice }" required
+							pattern="[0-9,]*" oninput="checkInputNum(event);" 
+							 maxlength="9">
+					<div class="invalid-feedback">
+						      값을 입력해주세요. 
+					</div>
+					<span class="error-message-num" style="display: none">숫자만 입력가능합니다.</span>
+				</td>
+				<th>
+					<span>기본음성(분)</span>
+				</th>
+				<td><input type="text" name="planVoice" class="form-control" value="${planDetail.planVoice }" required
+							pattern="[0-9]*" oninput="checkInputNum(event)"  maxlength="9">
+					<div class="invalid-feedback">
+						      값을 입력해주세요. 
+					</div>
+					<span class="error-message-num" style="display: none">숫자만 입력가능합니다.</span>
+				</td>
+			</tr>
+			<tr>
+				<th>
+					<span>기본문자(건)</span>
+				</th>
+				<td><input type="text" name="planMessage" class="form-control" value="${planDetail.planMessage }" required
+							pattern="[0-9]*" oninput="checkInputNum(event)"  maxlength="9">
+					<div class="invalid-feedback">
+						      값을 입력해주세요. 
+					</div>
+					<span class="error-message-num" style="display: none">숫자만 입력가능합니다.</span>
+				</td>
+				<th>
+					<span>기본데이터(mb)</span>
+				</th>
+				<td><input type="text" name="planData" class="form-control" value="${planDetail.planData }" required
+							pattern="[0-9]*" oninput="checkInputNum(event)"  maxlength="9">
+					<div class="invalid-feedback">
+						      값을 입력해주세요. 
+					</div>
+					<span class="error-message-num" style="display: none">숫자만 입력가능합니다.</span>
+				</td>
+			</tr>
+			<tr>
+				<th>
+					<span>초과음성단가(초)</span>
+				</th>
+				<td><input type="text" name="planVoiceOver" class="form-control" value="${planDetail.planVoiceOver }" required
+							pattern="[0-9.]*" oninput="checkInputNumComma(event)" maxlength="6">
+					<div class="invalid-feedback">
+						      값을 입력해주세요. 
+					</div>
+					<span class="error-message-num-comma" style="display: none">소수점을 포함한 숫자만 입력가능합니다.</span>
+				</td>
+				<th>
+					<span>초과문자단가(건)</span>
+				</th>
+				<td><input type="text" name="planMessageOver" class="form-control" value="${planDetail.planMessageOver }" required
+							pattern="[0-9]*" oninput="checkInputNum(event)"  maxlength="9">
+					<div class="invalid-feedback">
+						      값을 입력해주세요. 
+					</div>
+					<span class="error-message-num" style="display: none">숫자만 입력가능합니다.</span>
+				</td>
+				<th>
+					<span>초과데이터단가(mb)</span>
+				</th>
+				<td><input type="text" name="planDataOver" class="form-control"  value="${planDetail.planDataOver }" required
+							pattern="[0-9.]*" oninput="checkInputNumComma(event)" maxlength="9">
+					<div class="invalid-feedback">
+						      값을 입력해주세요. 
+					</div>
+					<span class="error-message-num-comma" style="display: none">소수점을 포함한 숫자만 입력가능합니다.</span>
+				</td>
+			</tr>
+		</table>
+		
+		
+			<div class="btnGroup">
+				<button type="button" onclick="location.href='${pageContext.request.contextPath}/biz/planList'" class="btn">목록으로</button>
+		    	<button type="submit"  class="btn">수정완료</button>
+		    </div>
+		</form>
+	</div>	
+</div>  
 
 <jsp:include page="/WEB-INF/views/footer.jsp"/>
 <script>
-	// Example starter JavaScript for disabling form submissions if there are invalid fields
 		(() => {
 		  'use strict'
-		
-		  // Fetch all the forms we want to apply custom Bootstrap validation styles to
 		  const forms = document.querySelectorAll('.needs-validation')
-		
-		  // Loop over them and prevent submission
 		  Array.from(forms).forEach(form => {
 		    form.addEventListener('submit', event => {
 		      if (!form.checkValidity()) {

@@ -39,14 +39,14 @@
 	 where biz_name like (select biz_name from biz where biz_id = #{bizid})
   </select>
   
-  <select id="getLogo" resultType="kh.finalproject.sims.biz.model.vo.BizMyPageVo">
+  <select id="getLogo" resultType="bPageVo">
  	 select original_fileName, logo_rename_filename 
 	  from biz 
 	  where biz_id=#{bizid}
   </select>
   
   <!-- 최근 통신사 리뷰 / 최신순 3개만 -->
-  <select id="getRecentReview" resultType="kh.finalproject.sims.biz.model.vo.BizMyPageVo">
+  <select id="getRecentReview" resultType="bPageVo">
   	SELECT * 
 	FROM (
 	    SELECT ROW_NUMBER() OVER (ORDER BY REVIEW_NO DESC) rn, 
@@ -61,7 +61,7 @@
   </select>
   
   <!-- 인기있는 요금제 상위 5개 정보(가입자순 기준)/ 가입자수도 함께 출력/ BizPlanMngtVo 사용 -->
-  <select id="getTopFivePlanInfo" resultType="kh.finalproject.sims.biz.model.vo.BizPlanMngtVo">
+  <select id="getTopFivePlanInfo" resultType="bPlanVo">
 	  SELECT p.*, plan_cnt
 		FROM (
 		    SELECT p.plan_no, COUNT(po.plan_no) AS plan_cnt

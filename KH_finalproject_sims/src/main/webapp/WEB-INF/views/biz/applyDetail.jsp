@@ -14,7 +14,7 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@100;300;400;500;700;900&display=swap" rel="stylesheet">
     
-<title>Insert title here</title>
+<title>${bizName.bizName} | 요금제 신청서 상세정보</title>
 <link rel="stylesheet" href="${path}/resources/css/biz/applyDetail.css"/>
 <script src="https://code.jquery.com/jquery-3.6.3.js"></script>
 <link type="text/css" rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css">
@@ -341,11 +341,8 @@
 			</div>
  		</div>
 	</div>
-    
 
-    <!-- End Example Code -->
 
-<!-- 에러발생..  -->
 <script>
 	$(".btn.approve").on("click", approveClickHandler);
 	function approveClickHandler(){

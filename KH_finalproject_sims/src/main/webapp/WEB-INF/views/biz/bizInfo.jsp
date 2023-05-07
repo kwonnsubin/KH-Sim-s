@@ -16,7 +16,7 @@
 	href="https://fonts.googleapis.com/css2?family=Roboto:wght@100;300;400;500;700;900&display=swap"
 	rel="stylesheet">
 
-<title>Insert title here</title>
+<title>${bizinfo.bizName } | 내 정보 보기</title>
 <link rel="stylesheet" href="${path}/resources/css/biz/bizInfo.css" />
 <script src="https://code.jquery.com/jquery-3.6.3.js"></script>
 <link type="text/css" rel="stylesheet"
@@ -49,25 +49,25 @@
 	<jsp:include page="/WEB-INF/views/header.jsp" />
 	
 	
-	<div class="container" style="margin:-103px 0 -200px 0; padding:150px 0 380px 0;">
-	<jsp:include page="/WEB-INF/views/biz/nav.jsp"/>
+	<div class="container" style="display:flex; margin:-103px 0 -200px 0; padding:150px 0 380px 0;">
+		<jsp:include page="/WEB-INF/views/biz/nav.jsp"/>
 	
 
-	<div class="container" style="margin-left:27%">
+	<div class="container" style="margin-left:4%">
 	
 		<div class="container" style="margin-left: -139px;">
 				<h2 class="tit">내 정보 보기</h2>
 				<hr class="line">
 		</div>
 	
-		<div class="text-center" style="margin-top: 70px;">
+		<div class="text-center" style="margin-top: 70px; width: 135%;">
 			<img src="${path}${imagePath}" onerror="this.onerror=null; this.src='https://www.dummyimage.com/600x400/000/fff.jpg&text=Please+upload+your+logo';" class="mx-auto"
 				style="width: 35% !important" />
 		</div>
 
 
 		<div
-			style="display: flex; flex-direction: column; position: relative;">
+			style="display: flex; flex-direction: column; position: relative;width: 135%;">
 			<div style="margin-top: 5%;">
 					<div class="d-flex">
 						<div class="division-box">

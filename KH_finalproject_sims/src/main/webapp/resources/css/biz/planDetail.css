@@ -71,7 +71,27 @@ h2.tit{
 .content{
 	position: relative;
     margin-left: 3%;
+    height: -webkit-fill-available;
 }
 .btn {
     background: #8dbdd7 !important;
+}
+.fade-box {
+  opacity: 0;
+  transform: translateY(-75%);
+  animation-name: fadeInUp;
+  animation-duration: 1s;
+  /* animation-delay: 0.5s; */
+  animation-fill-mode: forwards;
+}
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(-75%);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }

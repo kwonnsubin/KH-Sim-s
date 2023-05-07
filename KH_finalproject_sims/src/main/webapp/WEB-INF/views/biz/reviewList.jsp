@@ -15,7 +15,7 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@100;300;400;500;700;900&display=swap" rel="stylesheet">
 
-<title>Insert title here</title>
+<title>${bizName.bizName} | 리뷰현황</title>
 <link rel="stylesheet" href="${path}/resources/css/biz/reviewList.css"/>
 <script src="https://code.jquery.com/jquery-3.6.3.js"></script>
 <link type="text/css" rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css">
@@ -50,22 +50,11 @@
 			<h2 class="tit">통신사 리뷰 현황</h2>
 			<hr class="line">
 		</div>	
-		<!-- 버튼으로 조회 -->
-		<%-- <form id="reportStatusForm" action="<%=request.getContextPath()%>/biz/selectByReportStatus" method="get" style="display: flex; justify-content: flex-end; margin-right: 10%;">
-		  <div class="btn-group mt-3 mb-3" role="group" aria-label="Basic example">
-		  	<button type="button" class="btn btn-outline-primary" id="all">전체</button>
-		    <button type="button" class="btn btn-outline-primary" id="inProgress">신고처리중</button>
-		    <button type="button" class="btn btn-outline-primary" id="rejected">반려</button>
-		    <button type="button" class="btn btn-outline-primary" id="deleted">삭제</button>
-		  </div>
-		  <input type="hidden" id="reportStatus" name="reportStatus" value=""> <!-- 클릭하면 value에 값이 들어가게 함.  -->
-		</form>
- --%>
-		
 		
 		<%
 		    String reportStatus = request.getParameter("reportStatus");
 		%>
+		
 		<form id="reportStatusForm" action="<%=request.getContextPath()%>/biz/selectByReportStatus" method="get" style="display: flex; justify-content: flex-end; margin-right: 10%;">
 		  <div class="btn-group mt-3 mb-3" role="group" aria-label="Basic example">
 		    <label for="all" class="btn btnStatus btn-outline-primary">
@@ -124,9 +113,7 @@
 		            <div class="review-header-item">${reviewList.reportStatus == 1 ? '상태 : 신고처리중' : reviewList.reportStatus == 2 ? '상태 : 삭제완료' : reviewList.reportStatus == 3 ? '상태 : 반려' : '' }</div>
 		        </div>
 		        <div class="review-content">
-		            <%-- <a href="${path }/biz/reviewDetail?reviewNo=${reviewList.reviewNo }" class=""> --%>
 		                ${reviewList.reviewContent}
-		           <!--  </a> -->
 		        </div>
 		        <div class="review-footer">
 		            <div class="review-footer-item">
@@ -297,65 +284,9 @@ $(document).ready(function(){
 });
 </script>
 
-<!-- 분류에 따른 조회 -->
-<!-- <script>
-$(document).ready(function() {
-	  $('input[type=radio][name=inlineRadioOptions]').change(function() {
-		  if (this.value !== "0") { // radio_value 값이 0이 아닐 때에만 ajax 요청을 보냄
-	    $.ajax({
-	      url: "${pageContext.request.contextPath}/biz/selectByReportStatus.aj",
-	      type: 'post',
-	      data: { radio_value: this.value },
-	      dataType:"json",
-	      success: function(response) {
-	    	  console.log(response);
-	        //location.reload();
-	        displayFrm(response);
-	      },
-	      error: function(xhr) {
-	    	  alert("에러가 발생했습니다. ");
-	      		}
-	    	});
-		  } 
-	  });
-	});
-</script> -->
-
-<!-- 버튼으로 분류 조회 -->
-<!-- <script type="text/javascript">
-
-	$(document).ready(function() {
-		$('#all').on("click", function() {
-		      // reportStatus 값을 form의 hidden input에 설정하고 form 제출
-		      $('#reportStatus').val(0);
-		      $('#reportStatusForm').submit();
-		    });
-		
-	    $('#inProgress').on("click", function() {
-	      // reportStatus 값을 form의 hidden input에 설정하고 form 제출
-	      $('#reportStatus').val(1);
-	      $('#reportStatusForm').submit();
-	    });
-	  
-	    $('#deleted').on("click", function() {
-	      // reportStatus 값을 form의 hidden input에 설정하고 form 제출
-	      $('#reportStatus').val(2);
-	      $('#reportStatusForm').submit();
-	    });
-	
-	    $('#rejected').on("click", function() {
-	      // reportStatus 값을 form의 hidden input에 설정하고 form 제출
-	      $('#reportStatus').val(3);
-	      $('#reportStatusForm').submit();
-	    });
-  });
-  
-</script> -->
-
 <script type="text/javascript">
   $(document).ready(function() {
     $('input[type=radio][name=reportStatus]').change(function() {
-      // 선택한 라디오 버튼의 값을 form의 hidden input에 설정하고 form 제출
       $('#reportStatus').val(this.value);
       $('#reportStatusForm').submit();
     });
@@ -385,6 +316,8 @@ $(document).ready(function() {
 		})()
 	</script>
 	
+	
+<!-- 신고 사유 미입력시 버튼 비활성화 -->	
 <script>
 $(document).ready(function() {
 	  $('.modalReport').attr('disabled', 'disabled');

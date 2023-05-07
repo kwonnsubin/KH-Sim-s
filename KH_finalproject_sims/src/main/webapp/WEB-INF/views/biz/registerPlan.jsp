@@ -13,7 +13,7 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@100;300;400;500;700;900&display=swap" rel="stylesheet">
 
-<title>Insert title here</title>
+<title>${vo.bizName} | 요금제 등록하기</title>
 <link rel="stylesheet" href="${path}/resources/css/biz/registerPlan.css"/>
 <script src="https://code.jquery.com/jquery-3.6.3.js"></script>
 <link type="text/css" rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css">
@@ -39,12 +39,13 @@
 	<div class="container" style="display:flex; margin:-103px 0 -200px 0; padding:150px 0 380px 0;">
 		<jsp:include page="/WEB-INF/views/biz/nav.jsp"/>
 		
-		<div class="content">
+		<div class="content fade-box">
 			<div class="container" style="margin-left: 6px;">
 				<h2 class="tit">요금제 등록하기</h2>
 				<hr class="line">
 			</div>
 		
+			<p class="tip-ment">* 모든 항목 필수 입력 사항입니다.</p>
 			<form action="registerPlan" method="post" class="needs-validation regiForm" novalidate>
 		        <!-- 테이블 적용 s-->
 		        <table class="table" style="width:120%; height:453px;" id="regiPlanTb">
@@ -170,11 +171,8 @@
 		        <div class="btnGroup">
 			        <button type="button" onclick="goList()" class="btn">취소</button>
 			        <button type="submit" class="btn">등록</button>
-			        <%-- location.href='${pageContext.request.contextPath}/biz/planList' --%>
 		        </div>
 		    </form>
-		    
-    <!-- 등록이 되면 등록이 되었다는 창이 뜨게 하고 요금제 목록 창으로  -->
     	</div>
     </div>	
  
@@ -187,14 +185,9 @@
 	</script>    
 	
 	<script>
-	// Example starter JavaScript for disabling form submissions if there are invalid fields
 		(() => {
 		  'use strict'
-		
-		  // Fetch all the forms we want to apply custom Bootstrap validation styles to
 		  const forms = document.querySelectorAll('.needs-validation')
-		
-		  // Loop over them and prevent submission
 		  Array.from(forms).forEach(form => {
 		    form.addEventListener('submit', event => {
 		      if (!form.checkValidity()) {
