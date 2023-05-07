@@ -176,6 +176,7 @@
 			, BIZ_BEGIN_TIME = #{bizBeginTime}
 			, BIZ_END_TIME = #{bizEndTime}
 			, UPDATE_DATE = SYSDATE
+			, LOGO_RENAME_FILENAME = #{logoRenameFilename}
 		WHERE BIZ_ID =#{bizId}
 		
 	</update>

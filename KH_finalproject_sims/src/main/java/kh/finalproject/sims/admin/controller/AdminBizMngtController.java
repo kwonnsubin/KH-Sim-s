@@ -8,6 +8,9 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.context.annotation.PropertySource;
+import org.springframework.core.env.Environment;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -16,6 +19,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.google.gson.Gson;
@@ -24,12 +28,22 @@ import kh.finalproject.sims.admin.model.service.AdminBizMngtService;
 import kh.finalproject.sims.admin.model.vo.AdminBizMngtVo;
 import kh.finalproject.sims.common.page.Search;
 
+import kh.finalproject.sims.common.file.FileUtil;
+
 @RequestMapping("/admin")
 @Controller
+@PropertySource("classpath:properties/sims2.properties")
 public class AdminBizMngtController {
 
 	@Autowired
 	private AdminBizMngtService service;
+	
+	@Autowired
+	@Qualifier("fileUtil")
+	private FileUtil fileUtil;
+	
+	@Autowired
+	private Environment env;
 
 	public Map<String, String> paginationInfo(String pageNumber, HttpServletRequest request, HttpServletResponse response) {
 		Map<String, String> map = new HashMap<String, String>();
@@ -138,12 +152,17 @@ public class AdminBizMngtController {
 		mv.addObject("applyDetail", applyDetail);
 		mv.addObject("cmd", "read");
 		String imagePath;
-		if(applyDetail.getLogoRenameFileName() == null) {
-			imagePath ="/resources/img/"+applyDetail.getOriginalFileName();
-		} else {
-			imagePath ="/resources/img/"+applyDetail.getLogoRenameFileName();
-		}
 		
+		String webServerRoot = request.getSession().getServletContext().getRealPath("");
+		String savePath = webServerRoot + env.getProperty("local.repository");
+		
+		if(applyDetail.getLogoRenameFilename() == null) {
+			imagePath ="/resources/img/"+applyDetail.getOriginalFilename();
+		} else {
+			/* imagePath = savePath + "\\" + applyDetail.getLogoRenameFilename(); */
+			imagePath ="/resources/uploadfiles/"+applyDetail.getLogoRenameFilename();
+		}
+		System.out.println("imagePath ::: " +imagePath);
 		request.setAttribute("paging", search);
 		mv.addObject("searchOption", searchOption);
 		mv.addObject("searchBox", searchBox);
@@ -198,10 +217,10 @@ public class AdminBizMngtController {
 		mv.addObject("cmd", "update");
 		
 		String imagePath;
-		if(applyDetail.getLogoRenameFileName() == null) {
-			imagePath ="/resources/img/"+applyDetail.getOriginalFileName();
+		if(applyDetail.getLogoRenameFilename() == null) {
+			imagePath ="/resources/img/"+applyDetail.getOriginalFilename();
 		} else {
-			imagePath ="/resources/img/"+applyDetail.getLogoRenameFileName();
+			imagePath ="/resources/img/"+applyDetail.getLogoRenameFilename();
 		}
 		
 		mv.addObject("imagePath",imagePath);
@@ -212,6 +231,7 @@ public class AdminBizMngtController {
 		String searchOption = vo.getSearchOption();
 		String searchRadioVal = vo.getSearchRadioVal();
 		String searchBox = vo.getSearchBox();
+		searchRadioVal = bizId;
 		Search search = service.selectBizPlanList(pNum, cnt, searchOption, searchRadioVal, searchBox);
 		/* mv.addObject("applyList", search); */
 		request.setAttribute("paging", search);
@@ -226,7 +246,27 @@ public class AdminBizMngtController {
 
 	// 통신사 상세 수정하기
 	@PostMapping("/saveBizModify")
-	public ModelAndView saveBizModify(ModelAndView mv, AdminBizMngtVo vo) throws Exception {
+	public ModelAndView saveBizModify(ModelAndView mv, AdminBizMngtVo vo, HttpServletRequest request
+			//파일 첨부
+			, @RequestParam(name="logo", required = false) MultipartFile multi
+			, @RequestParam(name="originalFilename", required = false) String originalFilename
+			, @RequestParam(name="logoRenameFilename", required = false) String logoRenameFilename) throws Exception {
+		
+		// 파일 첨부
+		Map<String, String> filePath;
+		try {
+		    filePath = fileUtil.saveFile(multi, request, null);
+		    System.out.println("filePath ::: " + filePath);
+		    String logoRenameFilename2 = filePath.get("rename"); //새로 들어오는 이미지파일
+		    if (multi.getOriginalFilename() == null || multi.getOriginalFilename().isEmpty()) { // 이미지 파일이 선택되지 않은 경우
+		        logoRenameFilename2 = vo.getLogoRenameFilename(); // 이전에 저장된 파일 이름 사용
+		    }
+		    vo.setLogoRenameFilename(logoRenameFilename2);
+		} catch (Exception e) {
+		    e.printStackTrace();
+		}
+		
+		
 		service.saveBizModify(vo);	// 통신사 정보 수정
 		service.saveNetServiceModify(vo);	// 통신사 통신망 수정 (고객센터번호)
 		String bizId = vo.getBizId();

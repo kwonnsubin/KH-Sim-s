@@ -43,6 +43,12 @@ public class AdminBizMngtVo {
 	// UPDATE_DATE			NULL 		DATE
 	// LOGO_RENAME_FILENAME	NULL 		VARCHAR2
 
+	public String getLogoRenameFilename() {
+		return logoRenameFilename;
+	}
+	public void setLogoRenameFilename(String logoRenameFilename) {
+		this.logoRenameFilename = logoRenameFilename;
+	}
 	private String bizId;
 	private String bizName;
 	private String bizSsn;
@@ -65,8 +71,8 @@ public class AdminBizMngtVo {
 	private String network;
 	private Date writeDate;
 	private Date updateDate;
-	private String logoRenameFileName;
-	private String originalFileName;
+	private String originalFilename;
+	private String logoRenameFilename;
 
 	
 	

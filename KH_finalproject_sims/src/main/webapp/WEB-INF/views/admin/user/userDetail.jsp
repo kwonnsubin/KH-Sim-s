@@ -20,6 +20,21 @@ function goBack(){
 	window.history.back();
 }
 
+/*핸드폰 번호 유효성 체크 */
+$(document).ready(function(){
+$('.phone').on('keyup', function(){
+	var phone = $(this).val();
+	if(phone.length >13 ){
+		phone = phone.substr(0,13);
+	}
+	phone =
+		phone.replace(/[^0-9]/g, '') //숫자 제외 모든 문자 제거
+		.replace(/^(\d{2,3})(\d{3,4})(\d{4})$/, `$1-$2-$3`);
+	$(this).val(phone);
+});
+
+})
+
 /* 날짜 표시 변경 함수 */
 function fn_datCal(date){
 	console.log(date);
@@ -220,7 +235,7 @@ function fn_applyPlanAjax(userId){
 		                                        </div>
 		                                        <label for="userPhone" class="col-sm-1 col-form-label text-center">전화번호</label>
 		                                        <div class="col-sm-5">
-		                                            <input type="text" class="form-control"  name="userPhone" <c:if test="${cmd eq 'read' }">readonly</c:if> value="${userDetail.userPhone}">
+		                                            <input type="text" class="form-control phone"  name="userPhone" <c:if test="${cmd eq 'read' }">readonly</c:if> value="${userDetail.userPhone}">
 		                                        </div>
 		                                    </div>
 		                                    

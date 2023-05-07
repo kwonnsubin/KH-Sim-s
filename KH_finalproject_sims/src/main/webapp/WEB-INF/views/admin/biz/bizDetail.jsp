@@ -121,8 +121,47 @@
 		}
 		
 		fn_checkNework();
+		
+		/*전화번호 유효성 검사*/
+		$('.phone').on('keyup', function(){
+			var phone = $(this).val();
+			if(phone.length >12 ){
+				phone = phone.substr(0,12);
+			}
+			phone =
+				phone.replace(/[^0-9]/g, '') //숫자 제외 모든 문자 제거
+				.replace(/^(\d{2,3})(\d{3,4})(\d{4})$/, `$1-$2-$3`);
+			$(this).val(phone);
+	    });
+		
+		/*팩스번호 유효성 검사*/
+		$('.fax').on('keyup', function(){
+			var fax = $(this).val();
+			if(fax.length >12 ){
+				fax = fax.substr(0,12);
+			}
+			fax =
+				fax.replace(/[^0-9]/g, '') //숫자 제외 모든 문자 제거
+				.replace(/^(\d{2,3})(\d{3,4})(\d{4})$/, `$1-$2-$3`);
+			$(this).val(fax);
+	    });
+	
+
+		//번호 유효성 검사
+		$('.Text' ).on('keyup', function() {
+	        var text = $(this).val();
+	        if(text.length > 9){
+	        	text = text.substr(0,9);
+	        }
+	        text = 
+	        	text.replace(/[^0-9]/g, '') // 숫자를 제외한 모든 문자 제거
+	        	  .replace(/^(\d{3,4})(\d{4})$/, `$1-$2`);
+	        $(this).val(text);
+	      });
 	})
 	
+	
+	/*통신망 체크*/
 	function fn_checkNework(){
 		var checkBoxList = [];
 		var checkDeleteBoxList = [];
@@ -150,6 +189,7 @@
 		$("#netNoDeleteCheck").val(checkDeleteBoxList);
 		
 	}
+	
 	
 	
 </script>
@@ -187,9 +227,11 @@
 									</div>
 								</div>
 							</div>
-							<form action="<%=request.getContextPath()%>/admin/saveBizModify" method="post" onsubmit="return confirm('저장 하시겠습니까?');">
+							<form action="<%=request.getContextPath()%>/admin/saveBizModify" method="post" onsubmit="return confirm('저장 하시겠습니까?');" enctype="multipart/form-data">
 							    <input type="hidden" name="netNoCheck" id="netNoCheck" value=""/>
 							    <input type="hidden" name="netNoDeleteCheck" id="netNoDeleteCheck" value=""/>
+							    <input type="hidden" name="originalFilename" value="${applyDetail.originalFilename }">
+								<input type="hidden" name="logoRenameFilename" value="${applyDetail.logoRenameFilename }">
 								<div class="col-md-12">
 									<div class="simsBtn m-b-15">
 										<c:choose>
@@ -223,20 +265,28 @@
 		                                    <div class="form-group row">
 			                                    <c:choose>
 			                                    	<c:when test="${cmd eq 'read'}">
-			                                    		<img src="${path}${imagePath}" style="width:200px;height:60px;" alt="이미지" onerror="this.style.display='none'"/>
+			                                    		<img src="${path}${imagePath}" style="width:200px;height:60px;margin-left:30px;" alt="이미지" onerror="this.style.display='none'"/>
+			                                    		<%-- <img src="${path}${imagePath}" style="width:200px;height:60px;" alt="이미지" onerror="this.style.display='none'"/> --%>
 			                                    	</c:when>
 			                                    	<c:otherwise>
 			                                    		<label for="Logo_Rename_FileName" class="col-sm-2 col-form-label text-center">통신사 로고</label>
 			                                    		<div class="input-group cust-file-button col-sm-4">
 			                                    			<div class="custom-file">
-			                                    				<input type="file" class="custom-file-input" id="inputGroupFile04" name="Logo_Rename_FileName" <%-- value="${applyDetail.logoRenameFilename } --%>>
+			                                    				<input type="file" class="custom-file-input" id="inputGroupFile04" name="logo" multiple="multiple"<%-- value="${applyDetail.logoRenameFilename } --%>>
 			                                    				<label class="custom-file-label" for="inputGroupFile04">
 			                                    					파일을 선택해주세요
 			                                    				</label>
 			                                    			</div>
-			                                    			<div class="input-group-append">
+			                                    			<%-- <div class="custom-file">
+			                                    				<input type="file" class="custom-file-input" id="inputGroupFile04" name="Logo_Rename_FileName" value="${applyDetail.logoRenameFilename }>
+			                                    				<label class="custom-file-label" for="inputGroupFile04">
+			                                    					파일을 선택해주세요
+			                                    				</label>
+			                                    			</div> --%>
+			                                    			<!-- <input type="file" name="logo" placeholder="첨부파일" multiple="multiple" onchange="readURL(this);" > -->
+			                                    			<!-- <div class="input-group-append">
 			                                    				<button class="btn btn-primary" type="button">Button</button>
-			                                    			</div>
+			                                    			</div> -->
 			                                    		</div>
 			                                   		</c:otherwise>
 			                                    </c:choose>
@@ -264,11 +314,11 @@
 		                                    <div class="form-group row">
 		                                        <label for="bizPhone" class="col-sm-2 col-form-label text-center">전화</label>
 		                                        <div class="col-sm-4">
-		                                            <input type="text" class="form-control"  name="bizPhone" id="bizPhone" <c:if test="${cmd eq 'read' }">readonly</c:if> value="${applyDetail.bizPhone}">
+		                                            <input type="text" class="form-control phone"  name="bizPhone" id="bizPhone" <c:if test="${cmd eq 'read' }">readonly</c:if> value="${applyDetail.bizPhone}">
 		                                        </div>
 		                                        <label for="bizFax" class="col-sm-2 col-form-label text-center">팩스 </label>
 		                                        <div class="col-sm-4">
-		                                            <input type="text" class="form-control"  name="bizFax"  <c:if test="${cmd eq 'read' }">readonly</c:if> value="${applyDetail.bizFax}">
+		                                            <input type="text" class="form-control fax"  name="bizFax"  <c:if test="${cmd eq 'read' }">readonly</c:if> value="${applyDetail.bizFax}">
 		                                        </div>
 		                                    </div>
 		                                    <div class="form-group row">
@@ -424,35 +474,35 @@
 		                                        	<c:otherwise>
 		                                        		<div class="custom-control custom-checkbox mb-2">
 		                                         			<input type="checkbox" class="custom-control-input" id="customControlValidation11" name="bizClosedDay" value="월">
-                                							<label class="custom-control-label" for="customControlValidation11">월</label>
+                                							<label class="custom-control-label" for="customControlValidation11" style="margin-right:10px; margin-top:10px;">월</label>
 		                                        		</div>
 		                                         		<div class="custom-control custom-checkbox mb-2">
 		                                         			<input type="checkbox" class="custom-control-input" id="customControlValidation12" name="bizClosedDay" value="화">
-		                                         			<label class="custom-control-label" for="customControlValidation12">화</label>
+		                                         			<label class="custom-control-label" for="customControlValidation12" style="margin-right:10px; margin-top:10px;">화</label>
 		                                        		</div>
 		                                         		<div class="custom-control custom-checkbox mb-2">
 		                                         			<input type="checkbox" class="custom-control-input" id="customControlValidation13" name="bizClosedDay" value="수">
-		                                         			<label class="custom-control-label" for="customControlValidation13">수</label>
+		                                         			<label class="custom-control-label" for="customControlValidation13" style="margin-right:10px; margin-top:10px;">수</label>
 		                                        		</div>
 		                                        		<div class="custom-control custom-checkbox mb-2">
 		                                         			<input type="checkbox" class="custom-control-input" id="customControlValidation14" name="bizClosedDay" value="목">
-                                							<label class="custom-control-label" for="customControlValidation14">목</label>
+                                							<label class="custom-control-label" for="customControlValidation14" style="margin-right:10px; margin-top:10px;">목</label>
 		                                        		</div>
 		                                         		<div class="custom-control custom-checkbox mb-2">
 		                                         			<input type="checkbox" class="custom-control-input" id="customControlValidation15" name="bizClosedDay" value="금">
-		                                         			<label class="custom-control-label" for="customControlValidation15">금</label>
+		                                         			<label class="custom-control-label" for="customControlValidation15" style="margin-right:10px; margin-top:10px;">금</label>
 		                                        		</div>
 		                                         		<div class="custom-control custom-checkbox mb-2">
 		                                         			<input type="checkbox" class="custom-control-input" id="customControlValidation16" name="bizClosedDay" value="토">
-		                                         			<label class="custom-control-label" for="customControlValidation16">토</label>
+		                                         			<label class="custom-control-label" for="customControlValidation16" style="margin-right:10px; margin-top:10px;">토</label>
 		                                        		</div>
 		                                         		<div class="custom-control custom-checkbox mb-2">
 		                                         			<input type="checkbox" class="custom-control-input" id="customControlValidation17" name="bizClosedDay" value="일">
-		                                         			<label class="custom-control-label" for="customControlValidation17">일</label>
+		                                         			<label class="custom-control-label" for="customControlValidation17" style="margin-right:10px; margin-top:10px;">일</label>
 		                                        		</div>
 		                                         		<div class="custom-control custom-checkbox mb-2">
 		                                         			<input type="checkbox" class="custom-control-input" id="customControlValidation18" name="bizClosedDay" value="공휴일">
-		                                         			<label class="custom-control-label" for="customControlValidation18">공휴일</label>
+		                                         			<label class="custom-control-label" for="customControlValidation18" style="margin-right:10px; margin-top:10px;">공휴일</label>
 		                                        		</div>
 		                                        	</c:otherwise>
 		                                        </c:choose>
@@ -472,33 +522,23 @@
 		                                        			<c:set var="netService" value="${netService} LG : ${applyDetail.lgNetService}"/>
 		                                        		</c:if>
 		                                        		<div class="col-sm-4">
-		                                            		<input type="text" class="form-control"  name="netService" <c:if test="${cmd eq 'read' }">readonly</c:if> value="${netService}">
+		                                            		<input type="text" class="form-control"  name="netService"  style="margin-bottom:10px;"  <c:if test="${cmd eq 'read' }">readonly</c:if> value="${netService}">
 		                                        		</div>
 		                                        	</c:when>
 		                                        	<c:otherwise>
 		                                        		<div class="col-sm-4">
 						                                    <div class="form-group">
 						                                        <label class="floating-label" for="Text">KT</label>
-						                                        <input type="text" class="form-control" id="Text" name="ktNetService" <c:if test="${cmd eq 'read' }">readonly</c:if> value="${applyDetail.ktNetService}">
+						                                        <input type="text" class="form-control Text" name="ktNetService"  style="margin-bottom:10px;"  <c:if test="${cmd eq 'read' }">readonly</c:if> value="${applyDetail.ktNetService}">
 						                                        <label class="floating-label" for="Text">SKT</label>
-						                                        <input type="text" class="form-control" id="Text" name="sktNetService" <c:if test="${cmd eq 'read' }">readonly</c:if> value="${applyDetail.sktNetService}">
+						                                        <input type="text" class="form-control Text" name="sktNetService"  style="margin-bottom:10px;"  <c:if test="${cmd eq 'read' }">readonly</c:if> value="${applyDetail.sktNetService}">
 						                                        <label class="floating-label" for="Text">LG</label>
-						                                        <input type="text" class="form-control" id="Text" name="lgNetService" <c:if test="${cmd eq 'read' }">readonly</c:if> value="${applyDetail.lgNetService}">
+						                                        <input type="text" class="form-control Text" name="lgNetService"   style="margin-bottom:10px;" <c:if test="${cmd eq 'read' }">readonly</c:if> value="${applyDetail.lgNetService}">
 						                                    </div>
 						                                </div>
 		                                        	</c:otherwise>
 		                                        </c:choose>
 		                                     </div>   
-		                                    
-		                                     
-		                                     
-		                                     
-		                                     
-		                                     
-		                                     
-		                                     
-		                                     
-		                                  
 		                                    <div class="form-group row">
 		                                        <label for="bizId" class="col-sm-2 col-form-label text-center">아이디</label>
 		                                        <div class="col-sm-4">
@@ -514,15 +554,15 @@
 		                                         	<c:otherwise>
 		                                         		<div class="custom-control custom-checkbox mb-3">
 		                                         			<input type="checkbox" class="custom-control-input" id="checkBoxKt" name="network" value="KT망" onchange="fn_checkNework();">
-                                							<label class="custom-control-label" for="checkBoxKt">KT망</label>
+                                							<label class="custom-control-label" for="checkBoxKt" style="margin-right:10px; margin-top:10px;">KT망</label>
 		                                        		</div>
 		                                         		<div class="custom-control custom-checkbox mb-3">
 		                                         			<input type="checkbox" class="custom-control-input" id="checkBoxSkt" name="network" value="SKT망" onchange="fn_checkNework();">
-		                                         			<label class="custom-control-label" for="checkBoxSkt">SKT망</label>
+		                                         			<label class="custom-control-label" for="checkBoxSkt" style="margin-right:10px; margin-top:10px;">SKT망</label>
 		                                        		</div>
 		                                         		<div class="custom-control custom-checkbox mb-3">
 		                                         			<input type="checkbox" class="custom-control-input" id="checkBoxLg" name="network" value="LG망" onchange="fn_checkNework();">
-		                                         			<label class="custom-control-label" for="checkBoxLg">LGU+망</label>
+		                                         			<label class="custom-control-label" for="checkBoxLg" style="margin-right:10px; margin-top:10px;">LGU+망</label>
 		                                        		</div>
 		                                         	</c:otherwise>
 		                                         </c:choose>
@@ -532,7 +572,14 @@
 		                                        <c:choose>
 		                                        	<c:when test="${cmd eq 'read' }">
 		                                        		<div class="col-sm-4">
-				                                            <input type="text" class="form-control"  name="bizZipCode" readonly value="${applyDetail.bizZipCode}">
+		                                        		    <c:choose>
+		                                        		        <c:when test="${empty applyDetail.bizZipCode }">
+		                                        			        <input type="text" class="form-control"  name="bizZipCode" readonly value="">
+		                                        				</c:when>
+		                                        				<c:otherwise>
+		                                        				    <input type="text" class="form-control"  name="bizZipCode" readonly value="${applyDetail.bizZipCode}">
+		                                        				</c:otherwise>
+		                                        		    </c:choose>
 				                                        </div>
 		                                        	</c:when>
 		                                        	<c:otherwise>

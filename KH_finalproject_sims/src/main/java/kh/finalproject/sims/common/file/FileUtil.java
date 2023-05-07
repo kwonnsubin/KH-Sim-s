@@ -58,9 +58,11 @@ public class FileUtil {
 			// file을 server에 특정 위치(저장할 폴더)에 저장
 			String webServerRoot = request.getSession().getServletContext().getRealPath("");
 			String savePath = webServerRoot + env.getProperty("local.repository");
+			System.out.println("savePath1 ::: " + savePath);
 			if(addedPath != null) {
 				savePath += addedPath;
 			}
+			System.out.println("savePath2 ::: " + savePath);
 			// 저장할 폴더가 안만들어져 있다면 만들어줌
 			File folder = new File(savePath);
 			if(!folder.exists()) {
@@ -72,7 +74,7 @@ public class FileUtil {
 			
 			renameFilePath = savePath + "\\" + renameByTime;
 			multi.transferTo(new File(savePath + "\\" + renameByTime));
-			
+			System.out.println("savePath3 ::: " + savePath + "\\" + renameByTime);
 			result.put("original", orginalFileName);
 			result.put("rename", renameByTime);
 		}
