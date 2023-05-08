@@ -146,7 +146,7 @@
 				FROM
 					PLAN_ORDER A
 					LEFT OUTER JOIN PLAN_TABLE B ON A.PLAN_NO = B.PLAN_NO
-				WHERE 1=1
+				WHERE  USER_ID = #{userId}
 				ORDER BY A.ORDER_DATE DESC
 		
 	</select>
