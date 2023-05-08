@@ -40,36 +40,36 @@
 	
 	<!-- search -->
 	<select id="searchQnaPageList" parameterType="map" resultType="kh.finalproject.sims.admin.model.vo.AdminQnaMngtVo">
-		SELECT *
-		FROM (
-        SELECT
-            ROW_NUMBER() OVER (ORDER BY AQ_DATE DESC) AS n
-            , AQ_NO
-            , USER_ID
-            , AQ_TITLE
-            , AQ_CONTENT
-            , AQ_DATE
-            , AQ_REDATE
-            , AQ_VIEWS
-            , AQ_ANSWERS
-            FROM QNA
-		<choose>
-			<when test="searchType != null and searchType == 'title'"> WHERE AQ_TITLE LIKE '%'|| #{keyword} ||'%'</when>
-			<when test="searchType != null and searchType == 'writer'"> WHERE USER_ID LIKE '%'|| #{keyword} ||'%'</when>
-			<when test="searchType != null and searchType == 'content'"> WHERE AQ_CONTENT LIKE '%'|| #{keyword} ||'%'</when>
-		</choose>
-		)
-		WHERE N BETWEEN #{start} AND #{end}
-		<!-- ORDER BY AQ_DATE DESC -->
+	  SELECT *
+	  FROM (
+	    SELECT
+	      ROW_NUMBER() OVER (ORDER BY AQ_DATE DESC) AS n
+	      , AQ_NO
+	      , USER_ID
+	      , AQ_TITLE
+	      , AQ_CONTENT
+	      , AQ_DATE
+	      , AQ_REDATE
+	      , AQ_VIEWS
+	      , AQ_ANSWERS
+	      FROM QNA
+	    <choose>
+	      <when test="searchType != null and searchType == 'title'"> WHERE LOWER(AQ_TITLE) LIKE '%'|| LOWER(#{keyword}) ||'%'</when>
+	      <when test="searchType != null and searchType == 'writer'"> WHERE LOWER(USER_ID) LIKE '%'|| LOWER(#{keyword}) ||'%'</when>
+	      <when test="searchType != null and searchType == 'content'"> WHERE LOWER(AQ_CONTENT) LIKE '%'|| LOWER(#{keyword}) ||'%'</when>
+	    </choose>
+	  )
+	  WHERE N BETWEEN #{start} AND #{end}
 	</select>
+
 	
 	<!-- 글 개수 -->
 	<select id="getSearchQnaPageCnt" parameterType="map" resultType="_int">
 		SELECT COUNT(*) FROM QNA
 		<choose>
-			<when test="searchType != null and searchType == 'title'"> WHERE AQ_TITLE LIKE '%'|| #{keyword} ||'%'</when>
-			<when test="searchType != null and searchType == 'writer'"> WHERE USER_ID LIKE '%'|| #{keyword} ||'%'</when>
-			<when test="searchType != null and searchType == 'content'"> WHERE AQ_CONTENT LIKE '%'|| #{keyword} ||'%'</when>
+	      <when test="searchType != null and searchType == 'title'"> WHERE LOWER(AQ_TITLE) LIKE '%'|| LOWER(#{keyword}) ||'%'</when>
+	      <when test="searchType != null and searchType == 'writer'"> WHERE LOWER(USER_ID) LIKE '%'|| LOWER(#{keyword}) ||'%'</when>
+	      <when test="searchType != null and searchType == 'content'"> WHERE LOWER(AQ_CONTENT) LIKE '%'|| LOWER(#{keyword}) ||'%'</when>
 		</choose>
 	</select>
 	

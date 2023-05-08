@@ -92,6 +92,9 @@
 														</tr>
 													</thead>
 													<tbody>
+														<c:if test="${empty requestScope.paging.page}">
+															<td colspan="5" class="text-center" style="color: gray;">신고된 리뷰가 없습니다.</td>
+														</c:if>
 														<c:forEach var="reviewreport" items="${requestScope.paging.page}" varStatus="status">
 															<tr>
 																<td class="text-center">${paging.totalRowCount - ((paging.currentPage-1) * 10 + status.index)}</td>
@@ -116,6 +119,7 @@
 											</div>
 											<!-- 리스트 {e} -->
 											<!-- 페이지 번호 {s} -->
+											<c:if test="${not empty requestScope.paging.page}">
 											<nav aria-label="Page navigation example" id="pageNumber">
 												<ul class="pagination justify-content-center">
 													<c:set var="pageNumber" value="${empty param.p ? 1 : param.p }" />
@@ -125,11 +129,11 @@
 														</c:when>
 														<c:otherwise>
 															<li class="page-item"><a class="page-link"
-															 href="${path}/admin/reviewreport/list?p=${requestScope.paging.prevPage }">prev</a></li>
+															 href="${path}/admin/reviewreport/list?p=${requestScope.paging.prevPage }&searchType=${searchType }&keyword=${keyword }">prev</a></li>
 														</c:otherwise>
 													</c:choose>
 													<c:forEach var="pNum" items="${requestScope.paging.pageList }">
-														<li class="page-item ${pNum eq pageNumber ? 'active' : '' }"><a class="page-link" href="${path}/admin/reviewreport/list?p=${pNum }&reportStatus=${reportStatus}">${pNum }</a></li>
+														<li class="page-item ${pNum eq pageNumber ? 'active' : '' }"><a class="page-link" href="${path}/admin/reviewreport/list?p=${pNum }&searchType=${searchType }&keyword=${keyword }&reportStatus=${reportStatus}">${pNum }</a></li>
 													</c:forEach>
 													<c:choose>
 														<c:when test="${requestScope.paging.nextPage eq -1 }">
@@ -137,11 +141,12 @@
 														</c:when>
 														<c:otherwise>
 															<li class="page-item"><a class="page-link"
-															 href="${path}/admin/reviewreport/list?p=${requestScope.paging.nextPage }">next</a></li>
+															 href="${path}/admin/reviewreport/list?p=${requestScope.paging.nextPage }&searchType=${searchType }&keyword=${keyword }">next</a></li>
 														</c:otherwise>
 													</c:choose>
 												</ul>
 											</nav>
+											</c:if>
 											<!-- 페이지 번호 {e} -->
 										</div>
 									</div>
