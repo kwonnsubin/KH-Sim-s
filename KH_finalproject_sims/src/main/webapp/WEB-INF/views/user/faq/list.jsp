@@ -52,7 +52,7 @@
 										<img src="${cpath }/resources/img/faq.png" class="d-block w-100" alt="...">
 										<div class="carousel-caption">
 											<h3 class="m-auto">
-												<a href="${cpath}/faq/faqread/${faq.faqNo}">${faq.faqTitle}</a>
+												<a href="${cpath}/faq/${faq.faqNo}">${faq.faqTitle}</a>
 											</h3>
 										</div>
 									</div>
@@ -62,7 +62,7 @@
 										<img src="${cpath }/resources/img/faq.png" class="d-block w-100" alt="...">
 										<div class="carousel-caption">
 											<h3 class="m-auto">
-												<a href="${cpath}/faq/faqread/${faq.faqNo}">${faq.faqTitle}</a>
+												<a href="${cpath}/faq/${faq.faqNo}">${faq.faqTitle}</a>
 											</h3>
 										</div>
 									</div>

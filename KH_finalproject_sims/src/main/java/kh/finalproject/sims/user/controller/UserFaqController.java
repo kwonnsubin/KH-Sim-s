@@ -78,12 +78,12 @@ public class UserFaqController {
 		mv.addObject("keyword", keyword);
 	
 		mv.addObject("faqlist", service.selectFaqList());
-		mv.setViewName("user/faq/faqlist");
+		mv.setViewName("user/faq/list");
 		return mv;
 	}
 	
 	// 자주묻는질문 상세보기
-	@GetMapping("/faqread/{faqNo}")
+	@GetMapping("/{faqNo}")
 	public ModelAndView readFaq(
 			ModelAndView mv, 
 			@PathVariable int faqNo
@@ -91,7 +91,7 @@ public class UserFaqController {
 		UserFaqVo faq = service.selectFaqDetail(faqNo);
 		faq.setFaqContent(faq.getFaqContent().replaceAll(System.lineSeparator(), "<br>"));
 		mv.addObject("faq", faq);
-		mv.setViewName("user/faq/faqread");
+		mv.setViewName("user/faq/readFaq");
 		return mv;
 	}
 	
