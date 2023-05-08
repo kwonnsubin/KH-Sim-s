@@ -73,7 +73,7 @@
 				                                </div>
 											<div class="col-sm-12">
 												<div class="form-group">
-			                                        <textarea class="form-control" name="ntcContent" rows="20" readonly style="background-color: white;">${qnaDetail.aqContent }</textarea>
+			                                        <textarea class="form-control" name="ntcContent" rows="20" readonly style="background-color: white; resize: none;">${qnaDetail.aqContent }</textarea>
 			                                    </div>
 											</div>
 										</div>
@@ -86,7 +86,7 @@
 					                        <span id="answersCount">${qnaDetail.aqAnswers }</span>
 					                        <span>개의 답변</span>				                        
 						                    <div class="text-right">
-										          <textarea class="form-control m-t-15 m-b-15" id="aaContent" rows="3" placeholder="댓글을 입력해보세요." required></textarea>
+										          <textarea class="form-control m-t-15 m-b-15" id="aaContent" rows="3" placeholder="댓글을 입력해보세요." required style="resize: none;"></textarea>
 										          <div class="invalid-tooltip">
 				                                       	 답변을 작성해주세요.
 				                                  </div>
