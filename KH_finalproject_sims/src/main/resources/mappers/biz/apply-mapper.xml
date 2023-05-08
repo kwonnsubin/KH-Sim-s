@@ -60,32 +60,9 @@
 	JOIN plan_table USING (plan_no)
 	WHERE plan_no IN (
    	 SELECT plan_no 
-    	FROM plan_table 
-    		WHERE biz_name LIKE (
-        						SELECT biz_name 
-							        FROM biz 
-							        WHERE biz_id = #{bizid}
-   		)
-   	)
-	<!-- TODO 뷰 사용, 결과 확인할 것 
-	SELECT rownum,
-       TO_CHAR(order_date, 'YYYYMMDD') || '-' || LPAD(order_no, 6, '0')  AS serial_no,
-       plan_name,
-       user_id,
-       order_status,
-       order_date,
-       order_no
-	FROM plan_order
-	JOIN plan_table USING (plan_no)
-	WHERE plan_no IN (
-   	 SELECT plan_no 
     	FROM view_plan_biz 
-	    WHERE biz_id = 'sejong');
-	    
-	     -->
-
-
-
+	    WHERE biz_id = #{bizid}
+   		)
 	</select>
 	
 	<!-- 가입신청서 수 -->
@@ -95,13 +72,9 @@
 			JOIN plan_table USING (plan_no)
 			WHERE plan_no IN (
 		   	 SELECT plan_no 
-		    	FROM plan_table 
-		    		WHERE biz_name LIKE (
-		        						SELECT biz_name 
-									        FROM biz 
-									        WHERE biz_id = #{bizid}
-   		)
-   	)
+		    	FROM view_plan_biz 
+			    WHERE biz_id = #{bizid}
+		   		)
 	</select>
 	
 	
@@ -118,15 +91,11 @@
 			           order_no
 			    FROM plan_order
 			    JOIN plan_table USING (plan_no)
-			    WHERE plan_no IN (
-			        SELECT plan_no 
-			        FROM plan_table 
-			        WHERE biz_name LIKE (
-			            SELECT biz_name 
-			            FROM biz 
-			            WHERE biz_id = #{bizid}
-			        )
-			    )
+				  WHERE plan_no IN (
+								   	 SELECT plan_no 
+								    	FROM view_plan_biz 
+									    WHERE biz_id = #{bizid}
+								   		)
 			)
 			WHERE rn between #{start} and #{end}
 	</select>
@@ -177,14 +146,10 @@
 					     FROM plan_order
 					     JOIN plan_table USING (plan_no)
 			            WHERE plan_no IN (
-			                    SELECT plan_no 
-			                     FROM plan_table 
-			                     WHERE biz_name LIKE (
-			                                    SELECT biz_name 
-			                                    FROM biz 
-			                                    WHERE biz_id = #{bizid}
-			                                 )
-			                    )
+								   	 SELECT plan_no 
+								    	FROM view_plan_biz 
+									    WHERE biz_id = #{bizid}
+								   		)
 			                    
 			<if test="searchType=='planName' and keyword != null and keyword != '' ">
             AND plan_name like ('%' || #{keyword} || '%')
@@ -215,16 +180,12 @@
 					           order_no
 					     FROM plan_order
 					     JOIN plan_table USING (plan_no)
-			            WHERE plan_no IN (
-			                    SELECT plan_no 
-			                     FROM plan_table 
-			                     WHERE biz_name LIKE (
-			                                    SELECT biz_name 
-			                                    FROM biz 
-			                                    WHERE biz_id = #{bizid}
-			                                 )
-			                    )
-			                   and order_status = #{orderStatus}
+			         	 WHERE plan_no IN (
+								   	 SELECT plan_no 
+								    	FROM view_plan_biz 
+									    WHERE biz_id = #{bizid}
+								   		)
+			             AND order_status = #{orderStatus}
 			                    
 			<if test="searchType=='planName' and keyword != null and keyword != '' ">
             AND plan_name like ('%' || #{keyword} || '%')

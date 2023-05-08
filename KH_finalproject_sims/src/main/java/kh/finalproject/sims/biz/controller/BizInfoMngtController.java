@@ -238,7 +238,6 @@ public class BizInfoMngtController {
 		String network = selectedNetworksString.toString();
 		System.out.println(network);
 
-		// 한 번에 담아오게 수정할 것.. 그럼 문자열 쪼개는 것을 jsp 에서..?하지말자..
 		//vo에 담기
 		vo.setBizName(bizName);
 //		vo.setBizSsn(bizSsn);
@@ -259,6 +258,8 @@ public class BizInfoMngtController {
 //		vo.setPhoneOpTimeUsim(phoneOpTimeUsim);
 		vo.setNetwork(network);
 		vo.setBizId(bizid);
+		
+	
 		
 		service.modifyBizInfo(vo);
 		System.out.println("@@수정하기 버튼 누른 후 vo :"+vo);
