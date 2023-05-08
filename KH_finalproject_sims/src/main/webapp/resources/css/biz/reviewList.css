@@ -72,7 +72,7 @@
 }
 .content{
 	position: relative;
-    margin-left: -5%;
+    margin-left: -2%;
     margin-right: -17%;
     width: -webkit-fill-available;
 }
@@ -99,4 +99,10 @@ h2.tit{
     height: 4px !important;
     color: #488ed5;
     opacity: 1;
+}
+.modal{
+	position :fixed !important;
+	width: 100%;
+    height: -webkit-fill-available !important;
+    background : rgba(0, 0, 0, -0.2) !important;
 }
