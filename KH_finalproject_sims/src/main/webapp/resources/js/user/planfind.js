@@ -71,8 +71,6 @@ function insertQueVal(e) {
 				else if(voice == 3) voice = 60;
 				else if(voice == 4) voice = 999999;
 				
-				if(speed == 3) speed = 4;
-				
 				if(tel == 4 || tel == 0) {
 					location.href = cPath + "/plans?planData=" + data + "&planVoice=" + voice + "&genNo=" + speed;
 				} else {

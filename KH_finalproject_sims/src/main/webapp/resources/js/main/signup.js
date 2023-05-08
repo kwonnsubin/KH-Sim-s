@@ -11,70 +11,70 @@ $(document).ready(function() {
     
     // 유저 비밀번호 체크
     $('.user input[name=pwCheck]').keyup(function(){
-		if($('.user input[name=pw]').val() === $('.user input[name=pwCheck]').val() && !$('.user input[name=pw]') == ""
-			&& !$('.user input[name=pw]') == null && !$('.user input[name=pw]') == undefined) {
+		if($('.user input[name=pw]').val() === $('.user input[name=pwCheck]').val() && $('.user input[name=pw]') != ""
+			&& $('.user input[name=pw]') != null && $('.user input[name=pw]') != undefined) {
 			
 			$(".user .pwCheckDiv").html("<p style='color: green;'>비밀번호가 같습니다.</p>");
 			$(".user .pwCheckDiv").css("display", "block");
 			if($('input[name=userEmail').attr('readonly') === 'readonly' && 
 					$(".user .idCheckDiv").html() === '<p style="color: green;">사용 가능한 아이디입니다.</p>'&&
 					$(".user .passwdCheck").css('display') === 'none'){
-				$(".userForm .btn").removeAttr("disabled");
+				$(".userForm button[type=submit]").removeAttr("disabled");
 			}
 		} else {
 			$(".user .pwCheckDiv").html("<p style='color: red;'>비밀번호가 다릅니다.</p>");
 			$(".user .pwCheckDiv").css("display", "block");
-			$(".userForm .btn").attr("disabled", "disabled");
+			$(".userForm button[type=submit]").attr("disabled", "disabled");
 		}
 	});
 	
 	$('.user input[name=pw]').keyup(function(){
-		if($('.user input[name=pw]').val() === $('.user input[name=pwCheck]').val() && !$('.user input[name=pw]') == ""
-			&& !$('.user input[name=pw]') == null && !$('.user input[name=pw]') == undefined ) {
+		if($('.user input[name=pw]').val() === $('.user input[name=pwCheck]').val() && $('.user input[name=pw]') != ""
+			&& $('.user input[name=pw]') != null && $('.user input[name=pw]') != undefined ) {
 			
 			$(".user .pwCheckDiv").html("<p style='color: green;'>비밀번호가 같습니다.</p>");
 			$(".user .pwCheckDiv").css("display", "block");
 			if($('input[name=userEmail').attr('readonly') === 'readonly' && 
 					$(".user .idCheckDiv").html() === '<p style="color: green;">사용 가능한 아이디입니다.</p>' &&
 					$(".user .passwdCheck").css('display') === 'none'){
-				$(".userForm .btn").removeAttr("disabled");
+				$(".userForm button[type=submit]").removeAttr("disabled");
 			}
 		} else {
 			$(".user .pwCheckDiv").html("<p style='color: red;'>비밀번호가 다릅니다.</p>");
 			$(".user .pwCheckDiv").css("display", "block");
-			$(".userForm .btn").attr("disabled", "disabled");
+			$(".userForm button[type=submit]").attr("disabled", "disabled");
 		}
 	});
 	
 	// 통신사 비밀번호 체크
 	$('.biz input[name=pwCheck]').keyup(function(){
-		if($('.biz input[name=pw]').val() === $('.biz input[name=pwCheck]').val() && !$('.biz input[name=pw]') == ""
-			&& !$('.biz input[name=pw]') == null && !$('.biz input[name=pw]') == undefined) {
+		if($('.biz input[name=pw]').val() === $('.biz input[name=pwCheck]').val() && $('.biz input[name=pw]') != ""
+			&& $('.biz input[name=pw]') != null && $('.biz input[name=pw]') != undefined) {
 			
 			$(".biz .pwCheckDiv").html("<p style='color: green;'>비밀번호가 같습니다.</p>");
 			$(".biz .pwCheckDiv").css("display", "block");
 			if($(".biz .idCheckDiv").html() === '<p style="color: green;">사용 가능한 아이디입니다.</p>'){
-				$(".bizForm .btn").removeAttr("disabled");
+				$(".bizForm button[type=submit]").removeAttr("disabled");
 			}
 		} else {
 			$(".biz .pwCheckDiv").html("<p style='color: red;'>비밀번호가 다릅니다.</p>");
 			$(".biz .pwCheckDiv").css("display", "block");
-			$(".bizForm .btn").attr("disabled", "disabled");
+			$(".bizForm button[type=submit]").attr("disabled", "disabled");
 		}
 	});
 	
 	$('.biz input[name=pw]').keyup(function(){
-		if($('.biz input[name=pw]').val() === $('.biz input[name=pwCheck]').val() && !$('.biz input[name=pw]') == ""
-			&& !$('.biz input[name=pw]') == null && !$('.biz input[name=pw]') == undefined) {
+		if($('.biz input[name=pw]').val() === $('.biz input[name=pwCheck]').val() && $('.biz input[name=pw]') != ""
+			&& $('.biz input[name=pw]') != null && $('.biz input[name=pw]') != undefined) {
 			$(".biz .pwCheckDiv").html("<p style='color: green;'>비밀번호가 같습니다.</p>");
 			$(".biz .pwCheckDiv").css("display", "block");
 			if($(".biz .idCheckDiv").html() === '<p style="color: green;">사용 가능한 아이디입니다.</p>'){
-				$(".bizForm .btn").removeAttr("disabled");
+				$(".bizForm button[type=submit]").removeAttr("disabled");
 			}
 		} else {
 			$(".user .pwCheckDiv").html("<p style='color: red;'>비밀번호가 다릅니다.</p>");
 			$(".biz .pwCheckDiv").css("display", "block");
-			$(".bizForm .btn").attr("disabled", "disabled");
+			$(".bizForm button[type=submit]").attr("disabled", "disabled");
 		}
 	});
 	

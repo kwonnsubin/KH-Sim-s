@@ -83,7 +83,7 @@
 			</if>
 			
 			<if test="select == 'choose'.toString()">
-			order by order_count desc
+				order by order_count desc
 			</if>
 			<if test="select == 'star'.toString()">
 				order by biz_review_star desc nulls last
@@ -99,6 +99,16 @@
 		<if test="searchText != null">
 			where plan_name like '%${searchText}%' or biz_name like '%${searchText}%'
 		</if>
+		
+		<if test="select == 'choose'.toString()">
+			order by order_count desc
+		</if>
+		<if test="select == 'star'.toString()">
+			order by biz_review_star desc nulls last
+		</if>
+		<if test="select == 'data'.toString()">
+			order by to_number(plan_data) desc
+		</if>
 	</select>
 	
 	<select id="cntPlanFilterList" parameterType="map" resultType="int">
@@ -110,13 +120,13 @@
 			<if test="planData == 5000"><![CDATA[ (plan_data < 10000 and plan_data >= 5000)]]> </if>
 			<if test="planData == 1000"><![CDATA[ plan_data <= 5000]]> </if>
 			
-			<if test="planVoice == 0"><![CDATA[and plan_voice = 0 ]]> </if>
+			<if test="planVoice == 1"><![CDATA[and plan_voice = 0 ]]> </if>
 			<if test="planVoice == 300"><![CDATA[and plan_voice >= 300 ]]> </if>
 			<if test="planVoice == 180"><![CDATA[and (plan_voice < 300 and plan_voice >= 180) ]]> </if>
 			<if test="planVoice == 60"><![CDATA[and (plan_voice < 180 and plan_voice >= 60) ]]> </if>
 			<if test="planVoice == 30"><![CDATA[and plan_voice <= 60 ]]> </if>
 			
-			<if test="planMessage == 0"><![CDATA[and plan_message = 0 ]]> </if>
+			<if test="planMessage == 1"><![CDATA[and plan_message = 0 ]]> </if>
 			<if test="planMessage == 300"><![CDATA[and plan_message >= 300 ]]> </if>
 			<if test="planMessage == 100"><![CDATA[and (plan_message < 300 and plan_message >= 100) ]]> </if>
 			<if test="planMessage == 50"><![CDATA[and (plan_message < 100 and plan_message >= 50) ]]> </if>
@@ -138,6 +148,16 @@
 			
 			<if test="searchText != null">
 				and (plan_name like '%${searchText}%' or biz_name like '%${searchText}%')
+			</if>
+			
+			<if test="select == 'choose'.toString()">
+				order by order_count desc
+			</if>
+			<if test="select == 'star'.toString()">
+				order by biz_review_star desc nulls last
+			</if>
+			<if test="select == 'data'.toString()">
+				order by to_number(plan_data) desc
 			</if>
 		</trim>
 	</select>
