@@ -54,7 +54,14 @@ public class UserPlanController {
 			recentInfo.put("planNo", planNo);
 			planService.insertRecentInfo(recentInfo);
 		}
-		//
+		
+		// 찜 여부 조회
+		boolean isLiked = false;
+		if (req.getUserPrincipal() != null && req.isUserInRole("ROLE_USER")) {
+			Principal prin = req.getUserPrincipal();
+			String userId = prin.getName();
+			isLiked = planService.getLikeByPlanWithUser(planNo, userId);
+		}
 		
 		PlanVo pvo = planService.getPlanByNo(planNo);
 		BizVo bvo = bizService.getBizByName(pvo.getBizName());
@@ -63,6 +70,7 @@ public class UserPlanController {
 		mv.addObject("bizNets", bizService.getNetListByBizId(bvo.getBizId()));
 		mv.addObject("cntReview", bizService.getCountReviewByBizId(bvo.getBizId()));
 		
+		mv.addObject("like", isLiked);
 		mv.addObject("plan", pvo);
 		mv.addObject("biz", bvo);
 		mv.addObject("reviewList", reviewList);
