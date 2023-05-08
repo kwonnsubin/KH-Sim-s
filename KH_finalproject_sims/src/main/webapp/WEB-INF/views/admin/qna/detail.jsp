@@ -73,7 +73,7 @@
 				                                </div>
 											<div class="col-sm-12">
 												<div class="form-group">
-			                                        <textarea class="form-control" name="ntcContent" rows="20" readonly style="background-color: white;">${qnaDetail.aqContent }</textarea>
+			                                        <textarea class="form-control" name="ntcContent" rows="20" readonly style="background-color: white; resize: none;">${qnaDetail.aqContent }</textarea>
 			                                    </div>
 											</div>
 										</div>
@@ -86,7 +86,7 @@
 					                        <span id="answersCount">${qnaDetail.aqAnswers }</span>
 					                        <span>개의 답변</span>				                        
 						                    <div class="text-right">
-										          <textarea class="form-control m-t-15 m-b-15" id="aaContent" rows="3" placeholder="댓글을 입력해보세요." required></textarea>
+										          <textarea class="form-control m-t-15 m-b-15" id="aaContent" rows="3" placeholder="댓글을 입력해보세요." required style="resize: none;"></textarea>
 										          <div class="invalid-tooltip">
 				                                       	 답변을 작성해주세요.
 				                                  </div>
@@ -147,14 +147,15 @@ $(document).ready(function(){
  		html += '		<h6 class="m-b-15">';
  		if(result[i].adminId) {
  			html += result[i].adminId;
-	 		html += '  		<a class="m-l-5 text-info" onclick="qnaAnsUpdate(' +result[i].aaNo+ ',\''  +result[i].adminId+ '\',\'' +result[i].aaContent+'\',\'' +result[i].aaDate+ '\')">수정</a>'; // 답변 수정 폼 추가
+	 	//  html += '  		<a class="m-l-5 text-info" onclick="qnaAnsUpdate(' +result[i].aaNo+ ',\''  +result[i].adminId+ '\',\'' +result[i].aaContent+'\',\'' +result[i].aaDate+ '\')">수정</a>'; // 답변 수정 폼 추가
+	 		html += '  		<a class="m-l-5 text-info" onclick="qnaAnsUpdate(' +result[i].aaNo+ ',\''  +result[i].adminId+ '\',\'' +result[i].aaDate+ '\')">수정</a>'; // 답변 수정 폼 추가
 	 		html += '  		<a class="m-l-5 text-info" onclick="qnaAnsDelete('+result[i].aaNo+')">삭제</a>';
  		} else if(result[i].userId) {
  			html += result[i].userId;
  		}
  		html += '		<span class="float-right f-13 text-muted">'+result[i].aaDate+'</span>';
  		html += '		</h6>';	                                    				                                
- 		html += '		<p class="m-t-15 m-b-15 text-muted">'+result[i].aaContent+'</p> ';
+ 		html += '		<p class="m-t-15 m-b-15 text-muted" style="white-space:pre;">'+result[i].aaContent+'</p> ';
  		
  		
  		html += '		<label data-target="#rplsBy'+result[i].aaNo+'"class="badge badge-light-primary" role="button" data-toggle="collapse" aria-expanded="false" aria-controls="collapseExample" onclick="qnaReplyList('+result[i].aaNo+')">답글</label>';
@@ -214,10 +215,12 @@ function qnaAnsDelete(aaNo) {
 }
 
 // 답변 수정 폼 ajax
-function qnaAnsUpdate(aaNo, adminId, aaContent, aaDate) {
+// function qnaAnsUpdate(aaNo, adminId, aaContent, aaDate) {
+function qnaAnsUpdate(aaNo, adminId, aaDate) {
 	var aaNo = aaNo;
 	var adminId = adminId;
-	var aaContent = aaContent;
+	var aaContent = $("#no" + aaNo + " p").text();
+	console.log(aaContent);
 	var aaDate = aaDate;
 	var html='';
 	

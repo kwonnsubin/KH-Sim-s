@@ -54,12 +54,17 @@ public class HomeController {
 	 * Simply selects the home view to render by returning its name.
 	 */
 	@RequestMapping(value = "/", method = RequestMethod.GET)
-	public ModelAndView mainPage(ModelAndView mv, HttpServletRequest req) {
+	public ModelAndView mainPage(ModelAndView mv, HttpServletRequest req) throws Exception {
 		
-		if(req.getUserPrincipal() != null && req.isUserInRole("ROLE_USER")) {
+		if(req.getUserPrincipal() != null) {
 			Principal prin = req.getUserPrincipal();
 			String userId = prin.getName();
-			String username = userMemberService.getUserName(userId);
+			String username = null;
+			if(req.isUserInRole("ROLE_USER")) {
+				username = userMemberService.getUserName(userId);
+			} else if(req.isUserInRole("ROLE_BIZ")) {
+				username = userMemberService.getBizName(userId);
+			}
 			mv.addObject("username", username);
 		}
 		
@@ -79,7 +84,7 @@ public class HomeController {
 	}
 	
 	@GetMapping("bizinfo/{bizId}")
-	public ModelAndView authdiv(ModelAndView mv, @PathVariable String bizId) {
+	public ModelAndView authdiv(ModelAndView mv, @PathVariable String bizId) throws Exception {
 		
 		BizInfoMngtVo bizInfo = bizInfoService.selectMainBizInfo(bizId);
 		List<bizInfoMngServiceVo> bizService = bizInfoService.selectListService(bizId);
@@ -96,7 +101,7 @@ public class HomeController {
 	}
 	
 	@GetMapping("/authdiv")
-	public ModelAndView authdiv(ModelAndView mv, HttpServletRequest req) {
+	public ModelAndView authdiv(ModelAndView mv, HttpServletRequest req) throws Exception {
 		
 		if(req.isUserInRole("ROLE_USER")) {
 			mv.setViewName("redirect:/");

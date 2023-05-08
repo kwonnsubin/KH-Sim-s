@@ -46,9 +46,9 @@
 		FROM REVIEW_REPORT R
 		JOIN BIZ_REVIEW B ON R.REVIEW_NO = B.REVIEW_NO
         <choose>
-			<when test="searchType != null and searchType == 'title'">  WHERE REPORT_REASON LIKE '%'|| #{keyword} ||'%'</when>
-			<when test="searchType != null and searchType == 'writer'"> WHERE BIZ_ID LIKE '%'|| #{keyword} ||'%'</when>
-			<when test="searchType != null and searchType == 'content'"> WHERE REVIEW_CONTENT LIKE '%'|| #{keyword} ||'%'</when>
+            <when test="searchType != null and searchType == 'title'">WHERE LOWER(R.REPORT_REASON) LIKE '%'|| LOWER(#{keyword}) || '%'</when>
+            <when test="searchType != null and searchType == 'writer'">WHERE LOWER(B.BIZ_ID) LIKE '%'|| LOWER(#{keyword}) || '%'</when>
+            <when test="searchType != null and searchType == 'content'">WHERE LOWER(B.REVIEW_CONTENT) LIKE '%'|| LOWER(#{keyword}) || '%'</when>
 			<when test="reportStatus != null and reportStatus == 1"> WHERE REPORT_STATUS = 1</when>
 			<when test="reportStatus != null and reportStatus == 2"> WHERE REPORT_STATUS = 2</when>
 			<when test="reportStatus != null and reportStatus == 3"> WHERE REPORT_STATUS = 3</when>
@@ -63,9 +63,9 @@
 		SELECT COUNT(*) FROM REVIEW_REPORT
 		JOIN BIZ_REVIEW USING (REVIEW_NO)
 		<choose>
-			<when test="searchType != null and searchType == 'title'">  WHERE REPORT_REASON LIKE '%'|| #{keyword} ||'%'</when>
-			<when test="searchType != null and searchType == 'writer'"> WHERE BIZ_ID LIKE '%'|| #{keyword} ||'%'</when>
-			<when test="searchType != null and searchType == 'content'"> WHERE REVIEW_CONTENT LIKE '%'|| #{keyword} ||'%'</when>
+            <when test="searchType != null and searchType == 'title'">WHERE LOWER(REPORT_REASON) LIKE '%'|| LOWER(#{keyword}) || '%'</when>
+            <when test="searchType != null and searchType == 'writer'">WHERE LOWER(BIZ_ID) LIKE '%'|| LOWER(#{keyword}) || '%'</when>
+            <when test="searchType != null and searchType == 'content'">WHERE LOWER(REVIEW_CONTENT) LIKE '%'|| LOWER(#{keyword}) || '%'</when>
 			<when test="reportStatus != null and reportStatus == 1"> WHERE REPORT_STATUS = 1</when>
 			<when test="reportStatus != null and reportStatus == 2"> WHERE REPORT_STATUS = 2</when>
 			<when test="reportStatus != null and reportStatus == 3"> WHERE REPORT_STATUS = 3</when>

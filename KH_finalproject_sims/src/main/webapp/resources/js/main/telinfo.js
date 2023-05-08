@@ -24,6 +24,7 @@ $('.list-div').on('click', function(e) {
 $('.f-review-plus').on('click', function() {
 	for(var i = 5; i < 10; i++) {
 		$('.list-row').eq(i).css('display', '');
+		$('.written-content').eq(i).find('textarea').height(1).height( $('.written-content').eq(i).find('textarea').prop('scrollHeight')+12 );
 	}
 	if($('.list-row').length > 10) {
 		$('.s-review-plus').css('display', '');
@@ -34,6 +35,8 @@ $('.f-review-plus').on('click', function() {
 $('.s-review-plus').on('click', function() {
 	for(var i = 10; i < $('.list-row').length; i++) {
 		$('.list-row').eq(i).css('display', '');
+		$('.written-content').eq(i).find('textarea').height(1).height( $('.written-content').eq(i).find('textarea').prop('scrollHeight')+12 );
+		
 	}
 	$('.s-review-plus').css('display', 'none');
 });

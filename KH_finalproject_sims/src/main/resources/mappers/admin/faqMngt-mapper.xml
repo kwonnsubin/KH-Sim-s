@@ -59,22 +59,23 @@
 	      FAQ_REDATE
 	    FROM FAQ
 	    <choose>
-	      <when test="searchType != null and searchType == 'title'"> WHERE FAQ_TITLE LIKE '%'|| #{keyword} ||'%'</when>
-	      <when test="searchType != null and searchType == 'writer'"> WHERE ADMIN_ID LIKE '%'|| #{keyword} ||'%'</when>
-	      <when test="searchType != null and searchType == 'content'"> WHERE FAQ_CONTENT LIKE '%'|| #{keyword} ||'%'</when>
+	      <when test="searchType != null and searchType == 'title'"> WHERE LOWER(FAQ_TITLE) LIKE '%'|| LOWER(#{keyword}) ||'%'</when>
+	      <when test="searchType != null and searchType == 'writer'"> WHERE LOWER(ADMIN_ID) LIKE '%'|| LOWER(#{keyword}) ||'%'</when>
+	      <when test="searchType != null and searchType == 'content'"> WHERE LOWER(FAQ_CONTENT) LIKE '%'|| LOWER(#{keyword}) ||'%'</when>
 	    </choose>
 	  )
 	  WHERE N BETWEEN #{start} AND #{end}
 	</select>
 
+
 	<!-- search -->
 	<select id="getSearchFaqListCnt" parameterType="map" resultType="_int">
 		SELECT COUNT(*) FROM FAQ
-		<choose>
-			<when test="searchType != null and searchType == 'title'"> WHERE FAQ_TITLE LIKE '%'|| #{keyword} ||'%'</when>
-			<when test="searchType != null and searchType == 'writer'"> WHERE ADMIN_ID LIKE '%'|| #{keyword} ||'%'</when>
-			<when test="searchType != null and searchType == 'content'"> WHERE FAQ_CONTENT LIKE '%'|| #{keyword} ||'%'</when>
-		</choose>
+	    <choose>
+	      <when test="searchType != null and searchType == 'title'"> WHERE LOWER(FAQ_TITLE) LIKE '%'|| LOWER(#{keyword}) ||'%'</when>
+	      <when test="searchType != null and searchType == 'writer'"> WHERE LOWER(ADMIN_ID) LIKE '%'|| LOWER(#{keyword}) ||'%'</when>
+	      <when test="searchType != null and searchType == 'content'"> WHERE LOWER(FAQ_CONTENT) LIKE '%'|| LOWER(#{keyword}) ||'%'</when>
+	    </choose>
 	</select>
 
 

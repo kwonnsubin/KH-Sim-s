@@ -11,6 +11,12 @@
 <meta charset="UTF-8">
 <title>자주묻는질문 상세페이지</title>
 <script src="https://code.jquery.com/jquery-3.6.3.js"></script>
+<script src="https://cdn.ckeditor.com/ckeditor5/37.0.1/classic/ckeditor.js"></script>
+<style>
+	.ck-editor__editable {
+	min-height: 500px;
+}
+</style>
 <link rel="stylesheet" href="${path}/resources/css/admin/faqUpdate.css"/>
 </head>
 <body>
@@ -68,12 +74,12 @@
 				                                </div>
 			                                <!-- </div> -->
 											<div class="col-sm-12">
-<%-- 											<div class="form-group">
-			                                        <textarea class="form-control" name="faqContent" rows="20" >${faqlist.faqContent }</textarea>
-			                                    </div> --%>
-			                                    <div class="form-group">
+ 											<div class="form-group">
+			                                	<textarea class="form-control" name="faqContent" rows="20" id="faqContent_textarea" >${faqlist.faqContent }</textarea>
+			                                </div>
+<%-- 			                               <div class="form-group">
 												  <div class="textarea-like" contenteditable="true">${faqlist.faqContent}</div>
-												</div>
+												</div> --%>
 											</div>
 										</div>
 									</div>
@@ -89,6 +95,12 @@
 <jsp:include page="/WEB-INF/views/admin/include/footer.jsp" />
 </body>
 <script>
+ClassicEditor
+.create(document.querySelector('#faqContent_textarea'))
+.catch(error=>{
+	console.error(error);
+});
+
 	$("#faqForm").submit(function() {
 		  if(! $("input[name=faqTitle]").val() ) {
 		    alert("제목을 입력해주세요.");

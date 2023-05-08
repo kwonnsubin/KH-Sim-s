@@ -82,6 +82,9 @@ public class AdminReviewReportMngtController {
   		
 		Search search = service.getPage(pNum, Integer.parseInt(cnt), keyword, searchType, vo.getReportStatus()); 
 		request.setAttribute("paging", search);
+		
+		mv.addObject("keyword", keyword);
+		mv.addObject("searchType", searchType);
 		mv.addObject("reportStatus", vo.getReportStatus());
 		mv.setViewName("admin/reviewreport/list");
 		return mv;

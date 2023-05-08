@@ -28,30 +28,38 @@
     <link rel="stylesheet" href="<%= request.getContextPath() %>/resources/chain/assets/css/owl.css">
     <link rel="stylesheet" href="<%= request.getContextPath() %>/resources/css/user/myinfo.css"/>
     
-     <style>
-
-    .input-form {
-      max-width: 680px;
-
-      margin-top: 60px;
-      padding: 32px;
-
-      background: #fff;
-      -webkit-border-radius: 10px;
-      -moz-border-radius: 10px;
-      border-radius: 10px;
-      -webkit-box-shadow: 0 8px 20px 0 rgba(0, 0, 0, 0.15);
-      -moz-box-shadow: 0 8px 20px 0 rgba(0, 0, 0, 0.15);
-      box-shadow: 0 8px 20px 0 rgba(0, 0, 0, 0.15)
-    }
-  </style>
 </head>
 <body>
 
 	<jsp:include page="/WEB-INF/views/header.jsp"/>
 	
 	<section>
-	  <div class="container">
+		<c:if test="${empty kakaoToken}">
+		<div class="container info-pw-div">
+			<div class="input-form-backgroud row">
+	      		<div class="input-form col-md-12 mx-auto">
+					<h4 class="mb-3">비밀번호 확인</h4>
+					<h6>정보 확인을 위해 비밀번호를 입력해주세요</h6>
+					<div class="row">
+						<div class="col-9">
+			            	<input type="password" class="form-control mt-3 info-pw" placeholder="비밀번호">
+						</div>
+						<div class="col-3 text-center align-self-end">
+							<button class="btn btn-primary btn-sm btn-block info-pw-btn" type="button" style="padding-top:0px; padding-bottom: 0px; height: 38px;">확인</button>
+						</div>
+						<div class="info-pw-alert" style="color:red; font-size:14px; display:none;">비밀번호가 다릅니다.</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		</c:if>
+		
+	  <c:if test="${not empty kakaoToken}">
+	  	<div class="container myinfo-div">
+	  </c:if>
+	  <c:if test="${empty kakaoToken}">
+	  	<div class="container myinfo-div" style="display: none;">
+	  </c:if>
 	    <div class="input-form-backgroud row">
 	      <div class="input-form col-md-12 mx-auto">
 	        <h4 class="mb-3">내 정보</h4>
@@ -74,21 +82,25 @@
 	              <div class="invalid-feedback">아이디를 입력해주세요.</div>
 	        </div>
 	        
-	        <div class="mb-3">
-	            <label for="pw" data-tooltip="영문 대문자와 소문자, 숫자, 특수문자를 하나 이상 포함하여 8-16자리 암호를 작성해주세요">비밀번호 <i class="fa-solid fa-circle-question" style="color: #538cee;"></i></label>
-	            <input type="password" class="form-control inputPw" name="pw" placeholder="비밀번호" required>
-	            <div class="invalid-feedback">비밀번호를 입력하세요</div>
+	        <c:if test="${empty kakaoToken}">
+	        <div>
+		        <div class="mb-3">
+		            <label for="pw" data-tooltip="영문 대문자와 소문자, 숫자, 특수문자를 하나 이상 포함하여 8-16자리 암호를 작성해주세요">비밀번호 <i class="fa-solid fa-circle-question" style="color: #538cee;"></i></label>
+		            <input type="password" class="form-control inputPw" name="pw" placeholder="비밀번호">
+		            <div class="invalid-feedback">비밀번호를 입력하세요</div>
+		        </div>
+		        
+		        <div class="passwdCheck" style="display:none; font-size: 14px;"><p style='color: red;'>양식에 맞게 작성해주세요.</p></div>
+		          
+		        <div class="mb-3">
+		            <label for="pwCheck">비밀번호 확인</label>
+		            <input type="password" class="form-control" name="pwCheck" placeholder="비밀번호 확인">
+		            <div class="invalid-feedback">비밀번호를 입력하세요</div>
+		        </div>
+		          
+		        <div class="pwCheckDiv" style="display:none; font-size: 14px;"></div>
 	        </div>
-	        
-	        <div class="passwdCheck" style="display:none; font-size: 14px;"><p style='color: red;'>양식에 맞게 작성해주세요.</p></div>
-	          
-	        <div class="mb-3">
-	            <label for="pwCheck">비밀번호 확인</label>
-	            <input type="password" class="form-control" name="pwCheck" placeholder="비밀번호 확인" required>
-	            <div class="invalid-feedback">비밀번호를 입력하세요</div>
-	        </div>
-	          
-	        <div class="pwCheckDiv" style="display:none; font-size: 14px;"></div>
+	        </c:if>
 				
             <div class="row">
 	          <div class="col-9 mb-3 text-left">
@@ -97,13 +109,13 @@
 	            <div class="invalid-feedback">이메일을 입력해주세요.</div>
 	          </div>
 	          <div class="col-3 mb-3 text-center align-self-end">
-	            <button class="btn btn-primary btn-sm btn-block" name="emailBtn" type="button" disabled="disabled">본인인증</button>
+	            <button class="btn btn-primary btn-sm btn-block" name="emailBtn" type="button" style="padding-top:0px; padding-bottom: 0px; height: 38px;">본인인증</button>
 	          </div>
             </div>
 	
 	        <div class="mb-3">
 	            <label for="emailCheck">인증번호</label>
-	            <input type="text" class="form-control" name="emailCheck" placeholder="인증번호" required>
+	            <input type="text" class="form-control" name="emailCheck" placeholder="인증번호">
 	            <div class="invalid-feedback">인증번호를 입력하세요</div>
 	        </div>
 		          
@@ -111,8 +123,9 @@
 	        
 	        <div class="mb-3">
 	            <label for="userPhone">전화번호</label>
-	            <input type="text" class="form-control" name="userPhone" value="${userInfo.userPhone}" required>
+	            <input type="text" class="form-control" name="userPhone" value="${userInfo.userPhone}" maxlength="13" pattern="[0-9\-]*" oninput="checkInput(event)" onkeyup="autoHyphenPhone(this)" required>
 	            <div class="invalid-feedback">전화번호를 입력하세요</div>
+	            <div class="error-message mt-2" style="display:none; color: red; font-size: 14px;">숫자만 입력 가능합니다.</div>
 	        </div>
 	        
 	        <!-- 성별 -->
@@ -121,29 +134,29 @@
 	          <div class="col input-group mb-3">
 				  <div class="input-group-text">
 				  	<c:if test="${userInfo.userGender eq 'F'}">
-				    	<input class="form-check-input mt-0" type="radio" value="F" name="userGender" checked>
+				    	<input class="form-check-input mt-0 radioCheck" type="radio" value="F" name="userGender" checked>
 				    </c:if>
 				    <c:if test="${userInfo.userGender ne 'F'}">
-				    	<input class="form-check-input mt-0" type="radio" value="F" name="userGender">
+				    	<input class="form-check-input mt-0 radioCheck" type="radio" value="F" name="userGender">
 				    </c:if>
 				  </div>
-				  <input type="text" class="form-control" value="여성" readonly style="background-color:white;">
+				  <input type="text" class="form-control genderInput1" value="여성" readonly style="background-color:white; cursor:default; outline:none;">
 			  </div>
 			  <div class="col input-group mb-3">
 				  <div class="input-group-text">
 				  	<c:if test="${userInfo.userGender eq 'M'}">
-				    	<input class="form-check-input mt-0" type="radio" value="M" name="userGender" checked>
-				    </c:if>
-				    <c:if test="${userInfo.userGender ne 'M'}">
-				    	<input class="form-check-input mt-0" type="radio" value="M" name="userGender">
-				    </c:if>
+				  		<input class="form-check-input mt-0 radioCheck" type="radio" value="M" name="userGender" checked>
+				  	</c:if>
+				  	<c:if test="${userInfo.userGender ne 'M'}">
+				    	<input class="form-check-input mt-0 radioCheck" type="radio" value="M" name="userGender">
+			    	</c:if>
 				  </div>
-				  <input type="text" class="form-control" value="남성" readonly style="background-color:white;">
+				  <input type="text" class="form-control genderInput2" value="남성" readonly style="background-color:white; cursor:default; outline:none;">
 			  </div>
         	</div>
 	        
 	        <div class="text-center mt-5">
-		       	<button class="btn btn-primary mx-3 subBtn" type="submit" disabled>수정</button>
+		       	<button class="btn btn-primary mx-3 subBtn" type="submit">수정</button>
 		       	<button type="button" class="btn btn-primary mx-3" data-bs-toggle="modal" data-bs-target="#relModal">탈퇴</button>
         	</div>
 	        

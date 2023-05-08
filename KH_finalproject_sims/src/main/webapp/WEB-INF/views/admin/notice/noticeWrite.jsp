@@ -33,7 +33,7 @@
 									</div>
 								</div>
 							</div>
-							<form action="<%=request.getContextPath()%>/admin/saveNoticeWrite" method="post">
+							<form action="<%=request.getContextPath()%>/admin/saveNoticeWrite" method="post" onsubmit="return confirm('저장 하시겠습니까?')">
 								<div class="col-md-12">
 									<div class="simsBtn m-b-15">
 										<%-- <input class="btn btn-primary right" type="button" onclick="location.href='<%=request.getContextPath()%>/adminNotice/saveNoticeWrite'" value="저장"> --%>

@@ -171,6 +171,7 @@
 				      	<input type="password" class="form-control" name="pwCheck" placeholder="새 비밀번호 확인">
 			          </div>
 		          </div>
+		          <div class="passwdCheck" style="display:none; font-size: 14px;"><p style='color: red;'>양식에 맞게 작성해주세요.</p></div>
 		          <div class="pwCheckDiv" style="display:none"></div>
 		          <button class="btn btn-primary btn-lg btn-block changePwBtn" type="button" disabled>변경</button>
 		      </div>

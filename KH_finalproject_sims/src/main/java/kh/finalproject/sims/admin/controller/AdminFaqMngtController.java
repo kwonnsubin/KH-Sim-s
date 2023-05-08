@@ -80,7 +80,9 @@ public class AdminFaqMngtController {
 	  		
 			Search search = service.getPage(pNum, Integer.parseInt(cnt), keyword, searchType);
 			request.setAttribute("paging", search);
-	    
+			
+		mv.addObject("keyword", keyword);
+		mv.addObject("searchType", searchType);
 	    mv.setViewName("admin/faq/list");
 	    return mv;
 	}

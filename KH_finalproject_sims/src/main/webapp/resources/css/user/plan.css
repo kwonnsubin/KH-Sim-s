@@ -183,6 +183,10 @@ input[type="text"], input[type="password"] {
 	word-break: keep-all;
 }
 
+.fa-xl {
+	font-size: 2em !important
+}
+
 .card-review {
 	background-color: #b8c9ac1f;
 	border: 0;

@@ -198,15 +198,15 @@
 		                                    <tr>
 		                                        <td>
 											        <c:choose>
-											          <c:when test="${fn:length(reviewReport.reviewContent) > 23}">
-											           <a href="<%=request.getContextPath()%>/admin/reviewreport/detail/${reviewReport.reviewNo }" class="text-dark">${fn:substring(reviewReport.reviewContent, 0, 23)}...</a>
+											          <c:when test="${fn:length(reviewReport.reportReason) > 23}">
+											           <a href="<%=request.getContextPath()%>/admin/reviewreport/detail/${reviewReport.reviewNo }" class="text-dark">${fn:substring(reviewReport.reportReason, 0, 23)}...</a>
 											          </c:when>
 											          <c:otherwise>
-											           <a href="<%=request.getContextPath()%>/admin/reviewreport/detail/${reviewReport.reviewNo }" class="text-dark">${reviewReport.reviewContent}</a>
+											           <a href="<%=request.getContextPath()%>/admin/reviewreport/detail/${reviewReport.reviewNo }" class="text-dark">${reviewReport.reportReason}</a>
 											          </c:otherwise>
 											        </c:choose>  
 		                                        </td>
-		                                        <td  class="text-right">${reviewReport.reviewDate}</td>
+		                                        <td  class="text-right">${reviewReport.reportDate}</td>
 		                                    </tr>
 		                                </tbody>
 	                                </c:forEach>

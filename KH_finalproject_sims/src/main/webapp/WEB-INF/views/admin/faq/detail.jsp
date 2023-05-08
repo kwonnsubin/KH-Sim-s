@@ -53,7 +53,6 @@
 	                                       			<input type="text" class="form-control" name="ntcTitle" value="${faqlist.faqTitle }" readonly style="background-color: white;">
 	                                   			</div>
 											</div>
-											<!-- <div class="row"> -->
 												<div class="col-sm-12">
 					                                    <div class="form-group row  text-center">
 					                                        <label for="adminId" class="col-sm-2 col-form-label left">작성자</label>
@@ -66,7 +65,7 @@
 					                                        </div>
 					                                    </div>
 				                                </div>
-			                                <!-- </div> -->
+				                            <!-- 내용 {s} -->
 											<div class="col-sm-12">
 <%-- 											<div class="form-group">
 			                                        <textarea class="form-control" name="ntcContent" rows="20" readonly style="background-color: white;">${faqlist.faqContent }</textarea>
@@ -75,6 +74,7 @@
 												  <div class="textarea-like">${faqlist.faqContent}</div>
 												</div>
 											</div>
+											<!-- 내용 {e} -->
 										</div>
 									</div>
 							</div>	

@@ -42,7 +42,7 @@ public class KakaoController {
 	private BCryptPasswordEncoder pwEncoder;
 
     @RequestMapping(value = "/kakaoLogin", method = RequestMethod.GET)
-    public String redirectkakao(@RequestParam String code, HttpSession session, HttpServletRequest req, Model mo) throws IOException {
+    public String redirectkakao(@RequestParam String code, HttpSession session, HttpServletRequest req, Model mo) throws Exception {
 
         // 접속토큰 get
         String kakaoToken = kakaoService.getReturnAccessToken(code, req);
@@ -76,7 +76,7 @@ public class KakaoController {
     }
     
     @RequestMapping("/logoutKakao")
-    public ModelAndView logoutKakao(ModelAndView mv, HttpSession session) {
+    public ModelAndView logoutKakao(ModelAndView mv, HttpSession session) throws Exception {
     	kakaoService.getLogout((String)session.getAttribute("kakaoToken"));
     	session.setAttribute("kakaoToken", null);
     	
@@ -85,7 +85,7 @@ public class KakaoController {
     }
     
     @GetMapping("/kakaoJoin")
-    public ModelAndView kakaoContract(ModelAndView mv) {
+    public ModelAndView kakaoContract(ModelAndView mv) throws Exception {
     	
     	mv.setViewName("main/kakaoJoin");
     	
@@ -93,7 +93,7 @@ public class KakaoController {
     }
     
     @PostMapping("/kakaoJoin")
-    public ModelAndView kakaoJoin(ModelAndView mv, HttpSession session, MemberVo memberVo, UserMemberVo userMemberVo, String kakaoToken) {
+    public ModelAndView kakaoJoin(ModelAndView mv, HttpSession session, MemberVo memberVo, UserMemberVo userMemberVo, String kakaoToken) throws Exception {
     	
     	String snsId = memberVo.getId();
     	

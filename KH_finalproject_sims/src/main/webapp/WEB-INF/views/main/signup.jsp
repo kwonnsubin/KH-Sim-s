@@ -94,7 +94,7 @@
 		            <div class="invalid-feedback">이메일을 입력해주세요.</div>
 		          </div>
 		          <div class="col-3 mb-3 text-center align-self-end">
-		            <button class="btn btn-primary btn-sm btn-block" name="emailBtn" type="button" disabled="disabled">본인인증</button>
+		            <button class="btn btn-primary btn-sm btn-block" name="emailBtn" type="button" style="padding-top:0px; padding-bottom: 0px; height: 38px;" disabled="disabled">본인인증</button>
 		          </div>
 	            </div>
 		
@@ -113,7 +113,7 @@
 			       		<div class="invalid-feedback">아이디를 입력해주세요.</div>
 			        </div>
 		        	<div class="col-3 mb-3 text-center align-self-end">
-		            	<button class="btn btn-primary btn-sm btn-block" name="idBtn" type="button" disabled="disabled">중복확인</button>
+		            	<button class="btn btn-primary btn-sm btn-block" name="idBtn" type="button" style="padding-top:0px; padding-bottom: 0px; height: 38px;" disabled="disabled">중복확인</button>
 		          	</div>
 		        </div>
 		        

@@ -21,36 +21,34 @@
 	</select>
 	
 	<!--  search -->
-<select id="searchReviewPageList" parameterType="map" resultType="kh.finalproject.sims.admin.model.vo.AdminReviewMngtVo">
-    SELECT *
-    FROM (
-        SELECT
-              ROW_NUMBER() OVER (ORDER BY REVIEW_DATE DESC) AS n
-            , REVIEW_NO
-            , REVIEW_CONTENT
-            , REVIEW_DATE
-            , REVIEW_REDATE
-            , REVIEW_STAR
-            , USER_ID
-            , BIZ_ID
-            , REVIEW_HIDDEN
-        FROM BIZ_REVIEW
-        <choose>
-            <when test="searchType != null and searchType == 'writer'"> WHERE USER_ID LIKE '%'|| #{keyword} ||'%'</when>
-            <when test="searchType != null and searchType == 'content'"> WHERE REVIEW_CONTENT LIKE '%'|| #{keyword} ||'%'</when>
-        </choose>
-    )
-    WHERE N BETWEEN #{start} AND #{end}
-</select>
+	<select id="searchReviewPageList" parameterType="map" resultType="kh.finalproject.sims.admin.model.vo.AdminReviewMngtVo">
+	    SELECT *
+	    FROM (
+	        SELECT
+	              ROW_NUMBER() OVER (ORDER BY REVIEW_DATE DESC) AS n
+	            , REVIEW_NO
+	            , REVIEW_CONTENT
+	            , REVIEW_DATE
+	            , REVIEW_REDATE
+	            , REVIEW_STAR
+	            , USER_ID
+	            , BIZ_ID
+	            , REVIEW_HIDDEN
+	        FROM BIZ_REVIEW
+	        <choose>
+	            <when test="searchType != null and searchType == 'writer'"> WHERE LOWER(USER_ID) LIKE '%'|| LOWER(#{keyword}) ||'%'</when>
+	            <when test="searchType != null and searchType == 'content'"> WHERE LOWER(REVIEW_CONTENT) LIKE '%'|| LOWER(#{keyword}) ||'%'</when>
+	        </choose>
+	    )
+	    WHERE N BETWEEN #{start} AND #{end}
+	</select>
 
-
-	
 	<!-- 글 개수 -->
 	<select id="getSearchReviewPageCnt" parameterType="map" resultType="_int">
 		SELECT COUNT(*) FROM BIZ_REVIEW
 		<choose>
-			<when test="searchType != null and searchType == 'writer'"> WHERE USER_ID LIKE '%'|| #{keyword} ||'%'</when>
-			<when test="searchType != null and searchType == 'content'"> WHERE REVIEW_CONTENT LIKE '%'|| #{keyword} ||'%'</when>
+		    <when test="searchType != null and searchType == 'writer'"> WHERE LOWER(USER_ID) LIKE '%'|| LOWER(#{keyword}) ||'%'</when>
+		    <when test="searchType != null and searchType == 'content'"> WHERE LOWER(REVIEW_CONTENT) LIKE '%'|| LOWER(#{keyword}) ||'%'</when>
 		</choose>
 	</select>
 
