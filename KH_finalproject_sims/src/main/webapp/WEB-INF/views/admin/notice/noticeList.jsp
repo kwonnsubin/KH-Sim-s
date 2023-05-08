@@ -66,10 +66,10 @@
 												<table class="table table-hover text-center">
 													<thead>
 														<tr>
-															<th>번호</th>
-															<th>제목</th>
-															<th>작성자</th>
-															<th>작성일</th>
+															<th width="10%">번호</th>
+															<th width="50%">제목</th>
+															<th width="20%">작성자</th>
+															<th width="20%">작성일</th>
 														</tr>
 													</thead>
 													<tbody>

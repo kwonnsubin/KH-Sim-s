@@ -36,7 +36,7 @@
 						</choose>
 					</if>
 					<if test="(searchOption == null or searchOption == '') and !(searchBox == null or searchBox == '')">
-						AND (UPPER(A.BIZ_NAME) LIKE UPPER('%'||#{searchBox}||'%') OR AND UPPER(A.BIZ_OWNER_NAME) LIKE UPPER('%'||#{searchBox}||'%')) 
+						AND (UPPER(A.BIZ_NAME) LIKE UPPER('%'||#{searchBox}||'%') OR UPPER(A.BIZ_OWNER_NAME) LIKE UPPER('%'||#{searchBox}||'%')) 
 					</if>
 					ORDER BY A.WRITE_DATE DESC
 						)C
@@ -73,7 +73,7 @@
 			</choose>
 		</if>
 		<if test="(searchOption == null or searchOption == '') and !(searchBox == null or searchBox == '')">
-			AND (UPPER(A.BIZ_NAME) LIKE UPPER('%'||#{searchBox}||'%') OR AND UPPER(A.BIZ_OWNER_NAME) LIKE UPPER('%'||#{searchBox}||'%')) 
+			AND (UPPER(A.BIZ_NAME) LIKE UPPER('%'||#{searchBox}||'%') OR UPPER(A.BIZ_OWNER_NAME) LIKE UPPER('%'||#{searchBox}||'%')) 
 		</if>
 	</select>
 	
@@ -165,7 +165,7 @@
 			, BIZ_FAX = #{bizFax}
 			, BIZ_OWner_NAME = #{bizOwnerName}
 			, BIZ_HP = #{bizHp}
-			, BIZ_LOCATION = #{bizLocation}
+			, BIZ_LOCATION = #{bizLocation} 
 			, BIZ_CARD_PAY_DATE = #{bizCardPayDate}
 			, BIZ_ACC_PAY_DATE = #{bizAccPayDate}
 			, BIZ_CLOSED_DAY = #{bizClosedDay}
@@ -274,8 +274,11 @@
 					</choose>
 				</if>
 				<if test="(searchOption == null or searchOption == '') and !(searchBox == null or searchBox == '')">
-					AND (UPPER(B.PLAN_NAME) LIKE UPPER('%'||#{searchBox}||'%') OR AND UPPER(A.USER_ID) LIKE UPPER('%'||#{searchBox}||'%')
-					OR AND UPPER(B.BIZ_NAME) LIKE UPPER('%'||#{searchBox}||'%')) 
+					AND (
+					   UPPER(B.PLAN_NAME) LIKE UPPER('%'||#{searchBox}||'%') 
+					OR UPPER(A.USER_ID) LIKE UPPER('%'||#{searchBox}||'%')
+					OR UPPER(B.BIZ_NAME) LIKE UPPER('%'||#{searchBox}||'%')
+					) 
 				</if>
 				ORDER BY A.ORDER_DATE DESC
 			) C
@@ -314,8 +317,11 @@
 					</choose>
 				</if>
 				<if test="(searchOption == null or searchOption == '') and !(searchBox == null or searchBox == '')">
-					AND (UPPER(B.PLAN_NAME) LIKE UPPER('%'||#{searchBox}||'%') OR AND UPPER(A.USER_ID) LIKE UPPER('%'||#{searchBox}||'%')
-					OR AND UPPER(B.BIZ_NAME) LIKE UPPER('%'||#{searchBox}||'%')) ) 
+					AND (
+					UPPER(B.PLAN_NAME) LIKE UPPER('%'||#{searchBox}||'%') 
+					OR UPPER(A.USER_ID) LIKE UPPER('%'||#{searchBox}||'%')
+					OR UPPER(B.BIZ_NAME) LIKE UPPER('%'||#{searchBox}||'%')
+					)  
 				</if>
 				
 	</select>

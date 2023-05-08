@@ -112,8 +112,9 @@
 		var bizClosedDay = "${applyDetail.bizClosedDay}";
 		console.log("bizClosedDay : " + bizClosedDay);
 		var bizClosedDayArr = bizClosedDay.split(",");
-		console.log(bizClosedDayArr);
-		console.log(bizClosedDayArr.length);
+		bizClosedDayArr = bizClosedDayArr.filter(function(item){
+			return item !== null && item !== undefined && item !=='';
+		})
 		var day;
 		for(var i = 0; i < bizClosedDayArr.length; i++){
 			day = bizClosedDayArr[i];
@@ -185,9 +186,19 @@
 		} else {
 			checkDeleteBoxList.push("3");
 		}
-		$("#netNoCheck").val(checkBoxList);
-		$("#netNoDeleteCheck").val(checkDeleteBoxList);
 		
+		checkBoxList = checkBoxList.filter(function(item){
+			return item !== null && item !== undefined && item !=='';
+		})
+		checkDeleteBoxList = checkDeleteBoxList.filter(function(item){
+			return item !== null && item !== undefined && item !=='';
+		})
+		if(checkBoxList.length > 0){
+			$("#netNoCheck").val(checkBoxList);
+		}
+		if(checkDeleteBoxList.length > 0){
+			$("#netNoDeleteCheck").val(checkDeleteBoxList);
+		}
 	}
 	
 	

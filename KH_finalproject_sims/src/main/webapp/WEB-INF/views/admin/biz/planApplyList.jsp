@@ -52,7 +52,7 @@
 															<input class="form-control" type="text" name="searchBox" value="${searchBox}">
 															<div class="col-sm-5 p-t-10">
 																<div class="custom-control custom-radio custom-control-inline">
-								                                    <input type="radio" id="customRadioInline1" name="searchRadioVal" class="custom-control-input" value="total" <c:if test="${searchRadioVal eq 'total' }">checked</c:if>>
+								                                    <input type="radio" id="customRadioInline1" name="searchRadioVal" class="custom-control-input" value="total" <c:if test="${searchRadioVal eq 'total' || empty searchRadioVal }">checked</c:if>>
 								                                    <label class="custom-control-label" for="customRadioInline1">전체</label>
 								                                </div>
 								                                <div class="custom-control custom-radio custom-control-inline">
@@ -82,12 +82,12 @@
 													<table class="table table-hover text-center">
 														<thead>
 															<tr>
-																<th>번호</th>
-																<th>신청자</th>
-																<th>통신사명</th>
-																<th>요금제명</th>
-																<th>신청상태</th>
-																<th>신청일</th>
+																<th width="10%">번호</th>
+																<th width="20%">신청자</th>
+																<th width="25%">통신사명</th>
+																<th width="25%">요금제명</th>
+																<th width="10%">신청상태</th>
+																<th width="10%">신청일</th>
 															</tr>
 														</thead>
 														<tbody>

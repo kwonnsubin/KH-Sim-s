@@ -189,19 +189,23 @@ public class AdminBizMngtServiceImpl implements AdminBizMngtService{
 	public int saveNetServiceModify(AdminBizMngtVo vo){
 		int result = 0;
 		String bizNetServiceList [] = vo.getNetNoCheck().split(",");
-		if(bizNetServiceList != null) {
+		if(bizNetServiceList.length > 0) {
 			for(int i=0; i < bizNetServiceList.length; i++) {
-				vo.setNetNo(bizNetServiceList[i]);
-				dao.mergeNetServiceModify(vo);
-				result++;
+				if(!"".equals(bizNetServiceList[i])) {
+					vo.setNetNo(bizNetServiceList[i]);
+					dao.mergeNetServiceModify(vo);
+					result++;
+				}
 			}
 		}
 		String bizNetDelList [] = vo.getNetNoDeleteCheck().split(",");
-		if(bizNetDelList != null) {
+		if(bizNetDelList.length > 0) {
 			for(int i=0; i<bizNetDelList.length; i++) {
-				vo.setNetNo(bizNetDelList[i]);
-				dao.deleteNetServiceModify(vo);
-				result++;
+				if(!"".equals(bizNetDelList[i])) {
+					vo.setNetNo(bizNetDelList[i]);
+					dao.deleteNetServiceModify(vo);
+					result++;
+				}
 			}
 		}
 		return result;

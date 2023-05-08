@@ -45,12 +45,12 @@
 															<select class="" name="searchOption">
 																<option value="">선택</option>
 																<option value="bizName" <c:if test="${searchOption eq 'bizName' }">selected</c:if>>업체명</option>
-																<option value="bizOwnerName" <c:if test="${searchOption eq 'bizOwnerName' }">selected</c:if>>대표자</option>
+																<option value="bizOwnerName" <c:if test="${searchOption eq 'bizOwnerName' }">selected</c:if>>아이디</option>
 															</select>
 															<input class="form-control" type="text" name="searchBox" value="${searchBox}">
 															<div class="col-sm-5 p-t-10">
 																<div class="custom-control custom-radio custom-control-inline">
-								                                    <input type="radio" id="customRadioInline1" name="searchRadioVal" class="custom-control-input" value="total" <c:if test="${searchRadioVal eq 'total' }">checked</c:if>>
+								                                    <input type="radio" id="customRadioInline1" name="searchRadioVal" class="custom-control-input" value="total" <c:if test="${searchRadioVal eq 'total' || empty searchRadioVal}">checked</c:if>>
 								                                    <label class="custom-control-label" for="customRadioInline1">전체</label>
 								                                </div>
 								                                <div class="custom-control custom-radio custom-control-inline">
@@ -84,11 +84,11 @@
 													<table class="table table-hover text-center">
 														<thead>
 															<tr>
-																<th>번호</th>
-																<th>업체명</th>
-																<th>대표자</th>
-																<th>신청상태</th>
-																<th>가입 신청일</th>
+																<th width="10%">번호</th>
+																<th width="30%">업체명</th>
+																<th width="20%">대표자</th>
+																<th width="20%">신청상태</th>
+																<th width="10%">가입 신청일</th>
 															</tr>
 														</thead>
 														<tbody>
