@@ -3,6 +3,9 @@ package kh.finalproject.sims.biz.controller;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.security.Principal;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
 
 import javax.servlet.http.Cookie;
@@ -89,6 +92,9 @@ public class BizApplyMngtController {
 				cookie = new Cookie("cnt", cnt);
 				cookie.setMaxAge(60 * 60 * 24 * 5);
 				response.addCookie(cookie);
+				
+			
+		        
 				
 				// 전체조회(0)이어도 매퍼에서 처리	
 			

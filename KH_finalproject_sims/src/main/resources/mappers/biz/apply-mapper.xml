@@ -306,7 +306,7 @@
 					            <if test="searchType=='userId' and keyword != null and keyword != '' ">
 					            AND user_id like ('%' || #{keyword} || '%')
 					            </if>
-					            <if test="startDate != null and endDate != null">
+					            <if test="startDate != null and startDate != '' and  endDate != null and endDate != '' ">
 					               <![CDATA[ AND TRUNC(order_date) >= #{startDate} ]]> 
 					               <![CDATA[ AND TRUNC(order_date) <= #{endDate} ]]> 
 					            </if>
@@ -345,7 +345,7 @@
 		            <if test="searchType=='userId' and keyword != null and keyword != '' ">
 		           AND user_id like ('%' || #{keyword} || '%')
 		           </if>
-		           <if test="startDate != null and endDate != null">
+		           <if test="startDate != null and startDate != '' and  endDate != null and endDate != '' ">
 		               <![CDATA[ AND TRUNC(order_date) >= #{startDate} ]]>
 		               <![CDATA[ AND TRUNC(order_date) <= #{endDate} ]]>
 		           </if>

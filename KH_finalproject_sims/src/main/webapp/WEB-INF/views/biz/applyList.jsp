@@ -40,6 +40,7 @@
 	<!-- Material Icons 라이브러리 추가 -->
   	<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
   	
+  	
  
 </head>
 <body>
@@ -98,7 +99,7 @@
 			<!-- 기간조회 -->	
 			<div class="form-check form-switch">
 		    	<input class="form-check-input" type="checkbox" role="switch" role="switch" id="date-checkbox"
-		    	<% if (startDate != null && endDate != null) { %>checked<% } %>
+		    	<% if (startDate != null && endDate != null && startDate != "" && endDate != "") { %>checked<% } %>
 		    	 />기간 조회
 		    </div>
 			
@@ -264,6 +265,24 @@
 
       // DateRangePicker 적용
       $('input[name="dates"]').daterangepicker();
+      
+      
+      
+      //필드에 입력된 값이 있을 때
+      if("${startDate}" != '' && "${endDate}" != ''){
+	      var startDate = "${startDate}"; // 필드에 입력되어 있던 값
+	      var endDate = "${endDate}"; 
+	
+	      // 그 해당 날짜를 Date 객체로 변환, moment 사용
+	      var initialStartDate = moment(startDate, 'YY/MM/DD');
+	      var initialEndDate = moment(endDate, 'YY/MM/DD');
+	
+	      // DateRangePicker에 그 해당 날짜 적용
+	      $('input[name="dates"]').data('daterangepicker').setStartDate(initialStartDate);
+	      $('input[name="dates"]').data('daterangepicker').setEndDate(initialEndDate);
+      }
+      
+      
     } else {
       // 체크박스가 선택 해제되었을 때
       $('#date-container').empty();
@@ -303,13 +322,15 @@
 		if ($('#date-checkbox').is(':checked')) {
 		  startDate = $('input[name="dates"]').data('daterangepicker').startDate.format('YY/MM/DD');
 		  endDate = $('input[name="dates"]').data('daterangepicker').endDate.format('YY/MM/DD');
-		  
+    	  
+	      
 		  url += "&startDate=" + startDate;
 		  url += "&endDate=" + endDate;
-		}
-	
+        }
+	      
 		location.href=url;
 		console.log(url);
+		
 	});
 </script>
 
