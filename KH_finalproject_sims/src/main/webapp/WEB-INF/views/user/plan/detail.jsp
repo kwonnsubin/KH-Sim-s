@@ -38,12 +38,14 @@
 	<section>
 		<div class="container-sm div-sm">
 		
-		
+			<c:set var="logo" value="${cpath}/resources/img/${empty biz.logoRenameFilename ? biz.originalFilename : biz.logoRenameFilename}" />
+			
 			<!-- 통신사 로고, 요금제명, 찜, 공유 -->
 			<div class="row m-3 py-4">
 				<div class="col-sm-2 float-sm-none my-auto">
 					<a href="${cpath}/bizinfo/${biz.bizId}">
-						<img class="logo-m" src="${cpath}/resources/img/${biz.bizId}.png" alt="${plan.bizName}">
+						<img class="logo-m" src="${logo}" alt="${plan.bizName}">
+						
 					</a>
 				</div>
 				<div class="col-sm-7 float-sm-none my-auto px-4">
@@ -51,15 +53,23 @@
 				</div>
 				<div class="col-sm-3 row">
 					<div class="col-6 float-sm-none my-auto">
-						<c:set var="cpath" value="${pageContext.request.contextPath }" />
-						<a class="like" onclick="toggleLike(${plan.planNo})"> 
-							<img class="logo-s-cursor float-end" src="${cpath}/resources/img/like.png" alt="like">
-						</a>
+						<c:choose>
+							<c:when test="${like}">
+								<a class="like" onclick="toggleLike(${plan.planNo})"> 
+									<i class="logo-s-cursor fa-solid fa-heart fa-xl" style="color: #f72b2b;"></i>
+								</a>
+							</c:when>
+							<c:otherwise>
+								<a class="like" onclick="toggleLike(${plan.planNo})"> 
+									<i class="logo-s-cursor fa-regular fa-heart fa-xl" style="color: #f72b2b;"></i>
+								</a>
+							</c:otherwise>
+						</c:choose>
 					</div>
 	
 					<div class="col-6 float-sm-none my-auto">
 						<a class="share" onclick="shareMessage()">
-							<img class="logo-s-cursor" src="${cpath}/resources/img/share.png" alt="카카오톡 공유 보내기 버튼" />
+							<i class="logo-s-cursor fa-regular fa-share-from-square fa-xl" style="color: #4b8ef1;"></i>
 						</a>
 					</div>
 				</div>
@@ -138,7 +148,7 @@
 					<div class="row">
 						<div class="col-2">
 							<a href="${cpath}/bizinfo/${biz.bizId}">
-								<img class="logo-s-cursor" src="${cpath}/resources/img/${biz.bizId}.png" alt="${plan.bizName}">
+								<img class="logo-s-cursor" src="${logo}" alt="${plan.bizName}">
 							</a>
 						</div>
 						<div class="col-6 my-auto">
@@ -187,7 +197,7 @@
 						<h4 class="fw-bold">${biz.bizReviewStar}</h4>
 					</div>
 					<div class="col-10 my-auto">
-						<a href="${cpath}/bizinfo/${biz.bizId}#biz-review">${cntReview}개></a> 
+						<a onclick="window.open('${cpath}/bizinfo/${biz.bizId}#biz-review');" style="cursor: pointer">${cntReview}개></a> 
 					</div>
 				</div>
 				<div class="row my-3">
@@ -285,6 +295,11 @@
 	<!-- 찜하기 -->
 	<script>
 	    function toggleLike(planNo) {
+	    	<c:if test="${pageContext.request.userPrincipal == null}">
+            alert('로그인 후 이용할 수 있습니다.');
+            location.href="${cpath}/login";
+            return;
+        	</c:if>
 	        $.ajax({
 	            url: '${cpath}/plan/${plan.planNo}/like',
 	            type: 'POST',
@@ -296,8 +311,10 @@
 	            	console.log(result);
 	                if (result  == 1) {
 	                    alert("찜목록에 추가되었습니다.");
+	                    $('.like i').removeClass('fa-regular').addClass('fa-solid');
 	                } else if(result == 0){
 	                    alert("찜목록에서 제거되었습니다.");
+	                    $('.like i').removeClass('fa-solid').addClass('fa-regular');
 	                } 
 	            },
 	            error: function(xhr, status, error) {
