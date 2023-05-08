@@ -137,7 +137,7 @@ public class AdminNoticeMngtController {
 		int ntcNo = vo.getNtcNo();
 		AdminNoticeMngtVo noticeDetail = service.selectNoticeDetail(ntcNo);
 		mv.addObject("noticeDetail", noticeDetail);
-		mv.addObject("result", "저장이 완료되었습니다.");
+		/* mv.addObject("result", "저장이 완료되었습니다."); */
 		mv.addObject("cmd", "read");
 		mv.setViewName("/admin/notice/noticeDetail");
 		return mv;
@@ -166,7 +166,7 @@ public class AdminNoticeMngtController {
 		int ntcNo = vo.getNtcNo();
 		AdminNoticeMngtVo noticeDetail = service.selectNoticeDetail(ntcNo);
 		mv.addObject("noticeDetail", noticeDetail);
-		mv.addObject("result", "수정이 완료되었습니다.");
+		/* mv.addObject("result", "수정이 완료되었습니다."); */
 		mv.addObject("cmd", "read");
 		mv.setViewName("/admin/notice/noticeDetail");
 		return mv;

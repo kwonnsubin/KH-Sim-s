@@ -43,7 +43,7 @@
 									</div>
 								</div>
 							</div>
-							<form action="<%=request.getContextPath()%>/admin/saveNoticeModify" method="post">
+							<form action="<%=request.getContextPath()%>/admin/saveNoticeModify" method="post" onsubmit="return confirm('저장 하시겠습니까?')">
 								<div class="col-md-12">
 									<div class="simsBtn m-b-15">
 										<input class="btn btn-primary right m-l-10" type="button" onclick="location.href='<%=request.getContextPath()%>/admin/noticeList'" value="목록">
@@ -65,7 +65,7 @@
 										<div class="row">
 											<div class="col-sm-12">
 												<div class="form-group">
-	                                       			<input type="text" class="form-control" name="ntcTitle" <c:if test="${cmd eq 'read' }">readonly</c:if> value="${noticeDetail.ntcTitle }">
+	                                       			<input type="text" class="form-control" name="ntcTitle"  required <c:if test="${cmd eq 'read' }">readonly</c:if> value="${noticeDetail.ntcTitle }">
 	                                   			</div>
 											</div>
 											<!-- <div class="row"> -->
@@ -87,7 +87,7 @@
 			                                <!-- </div> -->
 											<div class="col-sm-12">
 												<div class="form-group">
-			                                        <textarea class="form-control" name="ntcContent" rows="20" style=resize:none; <c:if test="${cmd eq 'read' }">readonly</c:if>>${noticeDetail.ntcContent}</textarea>
+			                                        <textarea class="form-control" name="ntcContent" rows="20" style=resize:none; required <c:if test="${cmd eq 'read' }">readonly</c:if>>${noticeDetail.ntcContent}</textarea>
 			                                    </div>
 											</div>
 										</div>
