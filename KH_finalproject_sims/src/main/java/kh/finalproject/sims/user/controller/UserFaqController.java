@@ -100,8 +100,27 @@ public class UserFaqController {
 	public ModelAndView readQna(
 			ModelAndView mv
 			, @PathVariable int aqNo
+			, HttpServletRequest req
+			, HttpServletResponse resp
 			) {
-		service.viewCount(aqNo);
+		String cookieName = "viewed_" + aqNo; // 현재 게시글 번호로 쿠키 이름 생성
+		Cookie[] cookies = req.getCookies();
+		boolean isViewed = false; // 조회 여부 변수
+		if (cookies != null) {
+			for (Cookie cookie : cookies) {
+				if (cookie.getName().equals(cookieName)) {
+					isViewed = true;
+					break;
+				}
+			}
+		}
+		if (!isViewed) {
+			service.viewCount(aqNo); // 조회수 증가
+			Cookie cookie = new Cookie(cookieName, "viewed"); // 쿠키 생성
+			cookie.setMaxAge(60*60*24); // 쿠키유효시간
+			resp.addCookie(cookie);
+		}
+		
 		UserQnaVo question = service.selectQnaDetail(aqNo);
 		List<UserAnsVo> answers = service.selectAnsList(aqNo);
 		mv.addObject("question", question);
@@ -109,7 +128,7 @@ public class UserFaqController {
 		mv.setViewName("user/faq/readQna");
 		return mv;
 	}
-
+	
 	//  답변달기
 	@PostMapping(value = "/qna/{aqNo}/answer")
 	@Transactional
