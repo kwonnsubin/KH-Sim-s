@@ -37,10 +37,10 @@ public class UserMyPageServiceImpl implements UserMyPageService {
 	@Override
 	@Transactional
 	public void updateMyPageModify(MemberVo memVo, UserMemberVo userVo) {
-		int result = dao.changePw(memVo);
-		if(result == 1) {
-			dao.updateMyPageModify(userVo);
+		if(memVo.getPw() != null) {
+			dao.changePw(memVo);
 		}
+		dao.updateMyPageModify(userVo);
 	}
 
 	// 공지사항 리스트
@@ -129,6 +129,12 @@ public class UserMyPageServiceImpl implements UserMyPageService {
 	// 찜한 요금제 갯수
 	public int selectLikeListCount(String userId) {
 		return dao.selectLikeListCount(userId);
+	}
+
+	// 내 정보 비밀번호 확인
+	@Override
+	public String infoPasswordCheck(String userId) {
+		return dao.infoPasswordCheck(userId);
 	}
 	
 }

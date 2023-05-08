@@ -4,6 +4,9 @@ import java.security.Principal;
 import java.util.HashMap;
 import java.util.List;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
@@ -18,6 +21,7 @@ import org.springframework.web.servlet.ModelAndView;
 import com.google.gson.Gson;
 
 import kh.finalproject.sims.admin.model.vo.AdminNoticeMngtVo;
+import kh.finalproject.sims.apiTest.kakao.KakaoService;
 import kh.finalproject.sims.biz.model.vo.BizApplyVo;
 import kh.finalproject.sims.biz.model.vo.BizReviewMngtVo;
 import kh.finalproject.sims.user.model.service.UserMemberService;
@@ -34,6 +38,9 @@ public class UserMyPageController {
 	
 	@Autowired
 	private UserMemberService userMemberService;
+	
+	@Autowired
+	private KakaoService kakaoService;
 	
 	@Autowired
 	private BCryptPasswordEncoder pwEncoder;
@@ -88,16 +95,41 @@ public class UserMyPageController {
 	
 	// 내 정보 페이지 수정
 	@PostMapping("/mypage/myinfo")
-	public ModelAndView updateMyPageModify(ModelAndView mv, MemberVo memVo, UserMemberVo userVo) {
+	public ModelAndView updateMyPageModify(ModelAndView mv, HttpSession session, MemberVo memVo, UserMemberVo userVo) {
 		
 		userVo.setUserId(memVo.getId());
-		memVo.setPw(pwEncoder.encode(memVo.getPw()));
+		if(memVo.getPw() != null) {
+			memVo.setPw(pwEncoder.encode(memVo.getPw()));
+		}
 		
 		service.updateMyPageModify(memVo, userVo);
+		
+		if((String)session.getAttribute("kakaoToken") != null) {
+			kakaoService.getLogout((String)session.getAttribute("kakaoToken"));
+			session.setAttribute("kakaoToken", null);
+		}
 		
 		mv.setViewName("redirect:/logout");
 		
 		return mv;
+	}
+	
+	// 내 정보 비밀번호 확인
+	@ResponseBody
+	@PostMapping("/mypage/infopw")
+	public String infoPasswordCheck(ModelAndView mv, @RequestParam String password, Principal prin) {
+
+		String userId = prin.getName();
+		String myPw = service.infoPasswordCheck(userId);
+		
+		int result = 0;
+		if(pwEncoder.matches(password, myPw)) {
+			result = 1;
+		} else {
+			result = 0;
+		}
+		
+		return new Gson().toJson(result);
 	}
 	
 	// 공지사항

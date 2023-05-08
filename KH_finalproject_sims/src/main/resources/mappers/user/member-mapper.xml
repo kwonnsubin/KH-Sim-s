@@ -73,5 +73,13 @@
 	<select id="getUserName" parameterType="string" resultType="string">
 		select user_name from user_table where user_id=#{userId}
 	</select>
+	
+	<select id="getBizName" parameterType="string" resultType="string">
+		select biz_name from biz where biz_id=#{bizId}
+	</select>
+	
+	<select id="infoPasswordCheck" parameterType="string" resultType="string">
+		select pw from member where id=#{userId}
+	</select>
 
 </mapper>

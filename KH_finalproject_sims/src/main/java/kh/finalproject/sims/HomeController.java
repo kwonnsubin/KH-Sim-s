@@ -56,10 +56,15 @@ public class HomeController {
 	@RequestMapping(value = "/", method = RequestMethod.GET)
 	public ModelAndView mainPage(ModelAndView mv, HttpServletRequest req) {
 		
-		if(req.getUserPrincipal() != null && req.isUserInRole("ROLE_USER")) {
+		if(req.getUserPrincipal() != null) {
 			Principal prin = req.getUserPrincipal();
 			String userId = prin.getName();
-			String username = userMemberService.getUserName(userId);
+			String username = null;
+			if(req.isUserInRole("ROLE_USER")) {
+				username = userMemberService.getUserName(userId);
+			} else if(req.isUserInRole("ROLE_BIZ")) {
+				username = userMemberService.getBizName(userId);
+			}
 			mv.addObject("username", username);
 		}
 		

@@ -42,5 +42,8 @@ public interface UserMemberService {
 
 	// 로그인한 이름
 	public String getUserName(String userId);
+
+	// 로그인한 통신사 이름
+	public String getBizName(String bizId);
 	
 }

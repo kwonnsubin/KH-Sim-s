@@ -96,4 +96,8 @@ public class UserMyPageDao {
 		return sqlSession.selectOne("plan.selectLikeListCount", userId);
 	}
 
+	public String infoPasswordCheck(String userId) {
+		return sqlSession.selectOne("member.infoPasswordCheck", userId);
+	}
+
 }

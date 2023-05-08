@@ -73,5 +73,9 @@ public class UserMemberDao {
 	public String getUserName(String userId) {
 		return sqlSession.selectOne("member.getUserName", userId);
 	}
+
+	public String getBizName(String bizId) {
+		return sqlSession.selectOne("member.getBizName", bizId);
+	}
 	
 }

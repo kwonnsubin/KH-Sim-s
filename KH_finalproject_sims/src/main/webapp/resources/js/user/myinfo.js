@@ -30,6 +30,7 @@ $(document).ready(function() {
 	});
 	
 	$('input[name=userEmail]').change(function(){
+		$(".subBtn").attr("disabled", "disabled");
 		if($('input[name=userEmail]').val() != null) {
 			$("button[name=emailBtn]").removeAttr("disabled");
 		} else {
@@ -145,3 +146,54 @@ $('.inputPw').on('keyup', function (e) {
 		$(".passwdCheck").css("display", "none");
 	}
 });
+
+$('.info-pw-btn').on('click', function(e) {
+	$.ajax({
+		url : contextPath + "/mypage/infopw",
+		type : "post",
+		async : false,
+		data : {
+			password : $(".info-pw").val()
+		},
+		dataType : "json",
+		success : function(data){
+			if(data == 1) {
+				$('.info-pw-div').css('display', 'none');
+				$('.myinfo-div').css('display', '');
+			} else {
+				$('.info-pw-alert').css('display', '');
+			}
+		}
+	 });
+})
+
+// 전화번호 포맷 xxx-xxxx-xxxx 11자리
+function autoHyphenPhone(obj) {
+  var str = obj.value;
+  str = str.replace(/[^0-9]/g, '');
+  var tmp = '';
+  if (str.length < 4) {
+    obj.value = str;
+    return;
+  } else if (str.length < 11) {
+    tmp += str.substr(0, 3) + '-';
+    tmp += str.substr(3);
+  } else {
+    tmp += str.substr(0, 3) + '-';
+    tmp += str.substr(3, 4) + '-';
+    tmp += str.substr(7);
+  }
+  obj.value = tmp;
+}
+
+//숫자만 입력가능
+function checkInput(event) {
+  const input = event.target;
+  const error = input.parentElement.querySelector('.error-message');
+  if (!input.validity.valid) {
+    error.style.display = 'block';
+    input.value = input.value.replace(/[^0-9]/g, '');
+  } else {
+    error.style.display = 'none';
+  }
+}

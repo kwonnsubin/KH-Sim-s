@@ -26,10 +26,13 @@ $(document).ready(function() {
 	});
     
     $('input[name=pw]').change(function(){
-		if($('input[name=pw]').val() === $('input[name=pwCheck]').val()) {
+		if($('input[name=pw]').val() === $('input[name=pwCheck]').val() && $('input[name=pw]') != ""
+			&& $('input[name=pw]') != null && $('input[name=pw]') != undefined) {
 			$(".pwCheckDiv").html("<p style='color: green;'>비밀번호가 같습니다.</p>");
 			$(".pwCheckDiv").css("display", "block");
-			$(".changePwBtn").removeAttr("disabled");
+			if($(".user .passwdCheck").css('display') === 'none') {
+				$(".changePwBtn").removeAttr("disabled");
+			}
 		} else {
 			$(".pwCheckDiv").html("<p style='color: red;'>비밀번호가 다릅니다.</p>");
 			$(".pwCheckDiv").css("display", "block");
@@ -38,10 +41,13 @@ $(document).ready(function() {
 	});
     
     $('input[name=pwCheck]').change(function(){
-		if($('input[name=pw]').val() === $('input[name=pwCheck]').val()) {
+		if($('input[name=pw]').val() === $('input[name=pwCheck]').val() && $('input[name=pw]') != ""
+			&& $('input[name=pw]') != null && $('input[name=pw]') != undefined) {
 			$(".pwCheckDiv").html("<p style='color: green;'>비밀번호가 같습니다.</p>");
 			$(".pwCheckDiv").css("display", "block");
-			$(".changePwBtn").removeAttr("disabled");
+			if($(".user .passwdCheck").css('display') === 'none') {
+				$(".changePwBtn").removeAttr("disabled");
+			}
 		} else {
 			$(".pwCheckDiv").html("<p style='color: red;'>비밀번호가 다릅니다.</p>");
 			$(".pwCheckDiv").css("display", "block");
@@ -138,6 +144,18 @@ $('.biz input[name=emailCheck]').on("blur", function () {
 	}else{
 		$resultMsg.html("<p style='color: green;'>인증번호가 불일치합니다. 다시 확인해주세요</p>");
 		$resultMsg.css("display", "block");
+	}
+});
+
+$('.inputPw').on('keyup', function (e) {
+	var passwdCheck = RegExp(/^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#$%^*()\-_=+\\\|\[\]{};:\'",.<>\/?]).{8,16}$/);
+	var str = $(e.target).val();
+	
+	console.log(passwdCheck.test(str));
+	if(passwdCheck.test(str) == false){
+		$(".passwdCheck").css("display", "block");
+	} else {
+		$(".passwdCheck").css("display", "none");
 	}
 });
 

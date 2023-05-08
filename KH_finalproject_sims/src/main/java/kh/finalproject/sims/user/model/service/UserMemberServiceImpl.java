@@ -126,5 +126,11 @@ public class UserMemberServiceImpl implements UserMemberService {
 	public String getUserName(String userId) {
 		return dao.getUserName(userId);
 	}
+	
+	// 로그인 한 통신사 이름
+	@Override
+	public String getBizName(String bizId) {
+		return dao.getBizName(bizId);
+	}
 
 }

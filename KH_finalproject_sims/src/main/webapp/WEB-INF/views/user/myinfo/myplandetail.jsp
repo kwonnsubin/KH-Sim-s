@@ -145,8 +145,8 @@
        							
        							<p class="mb-2">월 납부 금액		|	<fmt:formatNumber value="${poVo.planPrice}" pattern="###,###" /> 원</p>
        							<p class="mb-2">초과데이터단가	|	MB당 ${poVo.planDataOver} 원</p>
-       							<p class="mb-2">초과음성단가	|	초당 ${poVo.planVoiceOver} 원</p>
-       							<p class="mb-2">초과문자단가	|	건당 ${poVo.planMessageOver} 원</p>
+       							<p class="mb-2">초과음성단가		|	초당 ${poVo.planVoiceOver} 원</p>
+       							<p class="mb-2">초과문자단가		|	건당 ${poVo.planMessageOver} 원</p>
        							
        							<c:if test="${poVo.planPay eq 1}">
 	       							<p class="mb-2">납부방법		|	카드</p>
