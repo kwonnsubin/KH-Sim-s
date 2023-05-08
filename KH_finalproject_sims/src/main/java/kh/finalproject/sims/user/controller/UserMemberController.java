@@ -40,7 +40,7 @@ public class UserMemberController {
 
 	// 로그인 페이지
 	@GetMapping("login")
-	public ModelAndView LoginDo(ModelAndView mv, HttpServletRequest req) {
+	public ModelAndView LoginDo(ModelAndView mv, HttpServletRequest req) throws Exception {
 		
 		mv.setViewName("main/login");
 		
@@ -49,7 +49,7 @@ public class UserMemberController {
 	
 	// 약관동의 페이지
 	@GetMapping("contract")
-	public ModelAndView contract(ModelAndView mv) {
+	public ModelAndView contract(ModelAndView mv) throws Exception {
 		mv.setViewName("main/contract");
 		
 		return mv;
@@ -57,7 +57,7 @@ public class UserMemberController {
 	
 	// 회원가입 페이지
 	@GetMapping("signup")
-	public ModelAndView signUp(ModelAndView mv) {
+	public ModelAndView signUp(ModelAndView mv) throws Exception {
 		mv.setViewName("main/signup");
 		
 		return mv;
@@ -65,7 +65,7 @@ public class UserMemberController {
 	
 	// 회원가입
 	@PostMapping("signup")
-	public ModelAndView insertSignUp(ModelAndView mv, MemberVo memVo, UserMemberVo userVo, BizInfoMngtVo bizVo) {
+	public ModelAndView insertSignUp(ModelAndView mv, MemberVo memVo, UserMemberVo userVo, BizInfoMngtVo bizVo) throws Exception {
 		
 		String encPw = pwEncoder.encode(memVo.getPw());
 		memVo.setPw(encPw);
@@ -93,7 +93,7 @@ public class UserMemberController {
 	
 	// 아이디 찾기 페이지
 	@GetMapping("findid")
-	public ModelAndView findId(ModelAndView mv) {
+	public ModelAndView findId(ModelAndView mv) throws Exception {
 		mv.setViewName("main/findid");
 		
 		return mv;
@@ -101,7 +101,7 @@ public class UserMemberController {
 	
 	// 아이디 찾기
 	@PostMapping("findid")
-	public ModelAndView selectFindId(ModelAndView mv, MemberVo memVo, UserMemberVo userVo, BizInfoMngtVo bizVo) {
+	public ModelAndView selectFindId(ModelAndView mv, MemberVo memVo, UserMemberVo userVo, BizInfoMngtVo bizVo) throws Exception {
 		
 		MemberVo result = null;
 		if(memVo.getRole().equals("ROLE_USER")) {
@@ -126,7 +126,7 @@ public class UserMemberController {
 	
 	// 비밀번호 찾기 페이지
 	@GetMapping("findpw")
-	public ModelAndView findPw(ModelAndView mv) {
+	public ModelAndView findPw(ModelAndView mv) throws Exception {
 		mv.setViewName("main/findpw");
 		
 		return mv;
@@ -134,7 +134,7 @@ public class UserMemberController {
 	
 	// 비밀번호 찾기
 	@PostMapping("findpw")
-	public ModelAndView selectFindPw(ModelAndView mv, MemberVo memVo, UserMemberVo userVo, BizInfoMngtVo bizVo) {
+	public ModelAndView selectFindPw(ModelAndView mv, MemberVo memVo, UserMemberVo userVo, BizInfoMngtVo bizVo) throws Exception {
 		
 		int result = 0;
 		if(memVo.getRole().equals("ROLE_USER")) {
@@ -159,7 +159,7 @@ public class UserMemberController {
 	// 비밀번호 재설정
 	@ResponseBody
 	@PostMapping("findpw/changepw")
-	public String changePw(ModelAndView mv, @RequestParam String id, @RequestParam String pw) {
+	public String changePw(ModelAndView mv, @RequestParam String id, @RequestParam String pw) throws Exception {
 
 		MemberVo memVo = new MemberVo();
 		
@@ -175,7 +175,7 @@ public class UserMemberController {
 	// 계정 복구
 	@ResponseBody
 	@PostMapping("/enable")
-	public String updateEnable(ModelAndView mv, @RequestParam String id) {
+	public String updateEnable(ModelAndView mv, @RequestParam String id) throws Exception {
 
 		HashMap<String, Object> result = new HashMap<String, Object>();
 		result.put("rel", service.updateEnable(id));
@@ -186,7 +186,7 @@ public class UserMemberController {
 	// ID 중복 확인
 	@ResponseBody
 	@PostMapping("signup/idcheck")
-	public String selectIdCheck(ModelAndView mv, @RequestParam String id) {
+	public String selectIdCheck(ModelAndView mv, @RequestParam String id) throws Exception {
 
 		HashMap<String, Object> result = new HashMap<String, Object>();
 		result.put("idCheck", service.selectIdCheck(id));
@@ -197,7 +197,7 @@ public class UserMemberController {
 	//이메일 인증
 	@RequestMapping(value = "/emailCheck")
 	@ResponseBody
-	public String selectEmailCertify(String email) {
+	public String selectEmailCertify(String email) throws Exception {
 		System.out.println("이메일 인증 요청이 들어옴!");
 		System.out.println("이메일 인증 이메일 : " + email);
 		

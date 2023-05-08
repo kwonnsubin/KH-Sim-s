@@ -110,11 +110,13 @@
 	       						<p style="font-size: 14px;">영업시간</p>
 	       						<p style="font-size: 16px;">평일 ${bizInfo.bizBeginTime} - ${bizInfo.bizEndTime}</p>
 	       					</div>
-	       					<c:if test="${not empty bizInfo.bizClosedDay}">
-	       					<div class="col align-self-center ms-3">
-	       						<p style="font-size: 14px; color:red;">휴무일</p>
-	       						<p style="font-size: 16px;">${bizInfo.bizClosedDay} 휴무</p>
-	       					</div>
+	       					<c:if test="${(not empty bizInfo.bizClosedDay)}">
+	       						<c:if test="${bizInfo.bizClosedDay != 'No weekday selected'}">
+		       					<div class="col align-self-center ms-3">
+		       						<p style="font-size: 14px; color:red;">휴무일</p>
+		       						<p style="font-size: 16px;">${bizInfo.bizClosedDay} 휴무</p>
+		       					</div>
+	       						</c:if>
 	       					</c:if>
 	       				</div>
 	       			</div>

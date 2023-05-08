@@ -17,7 +17,7 @@ public class UserMemberServiceImpl implements UserMemberService {
 	
 	// id 중복확인
 	@Override
-	public int selectIdCheck(String id) {
+	public int selectIdCheck(String id) throws Exception {
 		
 		return dao.selectIdCheck(id);
 	}
@@ -25,7 +25,7 @@ public class UserMemberServiceImpl implements UserMemberService {
 	// 유저 회원가입
 	@Override
 	@Transactional
-	public int insertUserSignUp(MemberVo memVo, UserMemberVo userVo) {
+	public int insertUserSignUp(MemberVo memVo, UserMemberVo userVo) throws Exception {
 		int signUpMember = dao.signUpMember(memVo);
 		
 		int result = 0;
@@ -39,7 +39,7 @@ public class UserMemberServiceImpl implements UserMemberService {
 	// 통신사 회원가입
 	@Override
 	@Transactional
-	public int insertBizSignUp(MemberVo memVo, BizInfoMngtVo bizVo) {
+	public int insertBizSignUp(MemberVo memVo, BizInfoMngtVo bizVo) throws Exception {
 		int signUpMember = dao.signUpMember(memVo);
 		
 		int result = 0;
@@ -52,7 +52,7 @@ public class UserMemberServiceImpl implements UserMemberService {
 
 	// 유저 아이디 찾기
 	@Override
-	public MemberVo selectFindId(UserMemberVo userVo) {
+	public MemberVo selectFindId(UserMemberVo userVo) throws Exception {
 		MemberVo memVo = new MemberVo();
 		memVo.setId(dao.selectFindId(userVo));
 		if(memVo.getId() != null) {
@@ -64,7 +64,7 @@ public class UserMemberServiceImpl implements UserMemberService {
 
 	// 통신사 아이디 찾기
 	@Override
-	public MemberVo selectFindId(BizInfoMngtVo bizVo) {
+	public MemberVo selectFindId(BizInfoMngtVo bizVo) throws Exception {
 		MemberVo memVo = new MemberVo();
 		memVo.setId(dao.selectFindId(bizVo));
 		if(memVo.getId() != null) {
@@ -76,27 +76,27 @@ public class UserMemberServiceImpl implements UserMemberService {
 
 	// 유저 비밀번호 찾기
 	@Override
-	public int selectFindPw(UserMemberVo userVo) {
+	public int selectFindPw(UserMemberVo userVo) throws Exception {
 		int result = dao.selectFindPw(userVo);
 		return result;
 	}
 	
 	// 계정 복구
 	@Override
-	public int updateEnable(String id) {
+	public int updateEnable(String id) throws Exception {
 		return dao.updateEnable(id);
 	}
 
 	// 통신사 비밀번호 찾기
 	@Override
-	public int selectFindPw(BizInfoMngtVo bizVo) {
+	public int selectFindPw(BizInfoMngtVo bizVo) throws Exception {
 		int result = dao.selectFindPw(bizVo);
 		return result;
 	}
 
 	// 비밀번호 재설정
 	@Override
-	public int changePw(MemberVo memVo) {
+	public int changePw(MemberVo memVo) throws Exception {
 		int result = dao.changePw(memVo);
 		return result;
 	}
@@ -104,7 +104,7 @@ public class UserMemberServiceImpl implements UserMemberService {
 	/* 카카오 로그인 */
     @Override
     @Transactional
-    public void kakaoJoin(MemberVo memberVo, UserMemberVo userMemberVo) {
+    public void kakaoJoin(MemberVo memberVo, UserMemberVo userMemberVo) throws Exception {
         int result = dao.kakaoInsert(memberVo);
         if(result == 1) {
         	dao.kakaoInsertUserMember(userMemberVo);
@@ -112,24 +112,24 @@ public class UserMemberServiceImpl implements UserMemberService {
     }
 
     @Override
-    public MemberVo kakaoLogin(String snsId) {
+    public MemberVo kakaoLogin(String snsId) throws Exception {
         return dao.kakaoSelect(snsId);
     }
 
     @Override
-    public MemberVo findByUserId(String snsId) {
+    public MemberVo findByUserId(String snsId) throws Exception {
         return dao.kakaoSelect(snsId);
     }
 
     // 로그인 한 이름
 	@Override
-	public String getUserName(String userId) {
+	public String getUserName(String userId) throws Exception {
 		return dao.getUserName(userId);
 	}
 	
 	// 로그인 한 통신사 이름
 	@Override
-	public String getBizName(String bizId) {
+	public String getBizName(String bizId) throws Exception {
 		return dao.getBizName(bizId);
 	}
 

@@ -54,7 +54,7 @@ public class HomeController {
 	 * Simply selects the home view to render by returning its name.
 	 */
 	@RequestMapping(value = "/", method = RequestMethod.GET)
-	public ModelAndView mainPage(ModelAndView mv, HttpServletRequest req) {
+	public ModelAndView mainPage(ModelAndView mv, HttpServletRequest req) throws Exception {
 		
 		if(req.getUserPrincipal() != null) {
 			Principal prin = req.getUserPrincipal();
@@ -84,7 +84,7 @@ public class HomeController {
 	}
 	
 	@GetMapping("bizinfo/{bizId}")
-	public ModelAndView authdiv(ModelAndView mv, @PathVariable String bizId) {
+	public ModelAndView authdiv(ModelAndView mv, @PathVariable String bizId) throws Exception {
 		
 		BizInfoMngtVo bizInfo = bizInfoService.selectMainBizInfo(bizId);
 		List<bizInfoMngServiceVo> bizService = bizInfoService.selectListService(bizId);
@@ -101,7 +101,7 @@ public class HomeController {
 	}
 	
 	@GetMapping("/authdiv")
-	public ModelAndView authdiv(ModelAndView mv, HttpServletRequest req) {
+	public ModelAndView authdiv(ModelAndView mv, HttpServletRequest req) throws Exception {
 		
 		if(req.isUserInRole("ROLE_USER")) {
 			mv.setViewName("redirect:/");

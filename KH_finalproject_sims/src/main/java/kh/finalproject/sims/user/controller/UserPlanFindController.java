@@ -38,7 +38,7 @@ public class UserPlanFindController {
 			, String searchText
 			, String select
 			, HttpServletRequest req
-			) {
+			) throws Exception {
 		Map<String, Object> searchMap = null;
 		List<PlanVo> planList = null;
 		int cnt = 0;
@@ -85,7 +85,7 @@ public class UserPlanFindController {
 	}
 	
 	@GetMapping("/planfind")
-	public ModelAndView selectCustomFind(ModelAndView mv, Principal prin, String queType) {
+	public ModelAndView selectCustomFind(ModelAndView mv, Principal prin, String queType) throws Exception {
 		String userId = prin.getName();
 		
 		if(queType.equals("telecom")) {
@@ -104,7 +104,7 @@ public class UserPlanFindController {
 	
 	@ResponseBody
 	@PostMapping("/planfind")
-	public String insertQueVal(ModelAndView mv, Principal prin, String type, int value) {
+	public String insertQueVal(ModelAndView mv, Principal prin, String type, int value) throws Exception {
 		String userId = prin.getName();
 		
 		Map<String, Object> val = new HashMap<>();
