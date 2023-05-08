@@ -149,12 +149,12 @@
 							</div>
 							<!-- /답변 수정 폼 -->
 							
-							<div class="text-end">
+							<div class="text-end mt-3">
 								<button data-bs-target="#rplsBy${answer.aaNo}" class="btn-inherit btn btn-sm btn-outline-secondary" type="button"
 								data-bs-toggle="collapse" aria-expanded="false" aria-controls="collapseExample">댓글</button>
 							</div>
 
-							<div class="collapse card" id="rplsBy${answer.aaNo}">
+							<div class="collapse card mt-3" id="rplsBy${answer.aaNo}">
 								<div class="card-body">
 									<!-- 댓글목록 -->
 									<div class="reply-item">
@@ -213,7 +213,8 @@
 														<form action="${cpath }/faq/rplupdate/${rpl.rplNo }" method="post" onsubmit="return validModRpl(${rpl.rplNo})">
 															<div class="input-group">
 																<input type="hidden" id="hiddenRpl_${rpl.rplNo}" value="${rpl.rplContent }" size="60">
-																<input type="text" name="rplContent" id="modRplContent_${rpl.rplNo}" class="form-control" value="${rpl.rplContent }" size="60">
+																<input type="text" name="rplContent" id="modRplContent_${rpl.rplNo}" class="form-control" value="${rpl.rplContent }" size="60" 
+																style="border-top-left-radius: 0.25rem; border-bottom-left-radius: 0.25rem;">
 																<button class="btn" type="submit">수정</button>
 															</div>
 														</form>
@@ -257,7 +258,8 @@
 				<div class="row">
 					<form method="post" class="input-group my-4" id="input-answer" action="/sims/faq/qna/${question.aqNo}/answer" onsubmit="return validNewAns()">
 						<input type="hidden" name="userId" value="${username }">
-				 		<textarea id="aaContent" name="aaContent" class="form-control" rows="2" placeholder="답변은 구체적으로 남길수록 도움이 돼요"></textarea>
+				 		<textarea id="aaContent" name="aaContent" class="form-control" rows="2" placeholder="답변은 구체적으로 남길수록 도움이 돼요"
+				 		style="border-top-left-radius: 0.25rem; border-bottom-left-radius: 0.25rem;"></textarea>
 				  		<button class="btn" type="submit" id="btn-writeAns">등록</button>
 					</form>
 				</div>
