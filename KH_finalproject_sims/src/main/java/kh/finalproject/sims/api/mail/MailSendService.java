@@ -4,10 +4,10 @@ import org.springframework.stereotype.Component;
 
 public interface MailSendService {
 	
-	public void makeRandomNumber();
+	public void makeRandomNumber() throws Exception;
 	
-	public String joinEmail(String email);
+	public String joinEmail(String email) throws Exception;
 	
-	public void mailSend(String setFrom, String toMail, String title, String content);
+	public void mailSend(String setFrom, String toMail, String title, String content) throws Exception;
 
 }

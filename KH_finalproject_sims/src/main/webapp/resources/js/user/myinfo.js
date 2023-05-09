@@ -197,3 +197,10 @@ function checkInput(event) {
     error.style.display = 'none';
   }
 }
+
+// 비밀번호 입력 엔터시 버튼 클릭
+$('.info-pw').on('keyup', function(e) {
+	if(e.keyCode == 13) {
+		$('.info-pw-btn').click();
+	}
+});

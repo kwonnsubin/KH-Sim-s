@@ -13,7 +13,7 @@ public class EmailController {
 	private MailSendService mailService;
 	
 	@RequestMapping(value = "/mail")
-	public ModelAndView mailCheck(ModelAndView mv) {
+	public ModelAndView mailCheck(ModelAndView mv) throws Exception {
 		
 		mv.setViewName("apitest/mail");
 		return mv;
@@ -22,7 +22,7 @@ public class EmailController {
 	//이메일 인증
 	@RequestMapping(value = "/mailCheck")
 	@ResponseBody
-	public String mailCheck(String email) {
+	public String mailCheck(String email) throws Exception {
 		System.out.println("이메일 인증 요청이 들어옴!");
 		System.out.println("이메일 인증 이메일 : " + email);
 		

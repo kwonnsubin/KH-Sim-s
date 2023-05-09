@@ -28,7 +28,7 @@ public class UserMyPageDao {
 		return sqlSession.update("member.updateDisable", id);
 	}
 
-	public UserMemberVo selectMyPageInfo(String id) {
+	public UserMemberVo selectMyPageInfo(String id) throws Exception {
 		return sqlSession.selectOne("member.selectMyPageInfo", id);
 	}
 

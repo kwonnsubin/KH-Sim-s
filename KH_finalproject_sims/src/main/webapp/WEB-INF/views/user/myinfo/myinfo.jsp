@@ -40,14 +40,14 @@
 	      		<div class="input-form col-md-12 mx-auto">
 					<h4 class="mb-3">비밀번호 확인</h4>
 					<h6>정보 확인을 위해 비밀번호를 입력해주세요</h6>
-					<div class="row">
-						<div class="col-9">
-			            	<input type="password" class="form-control mt-3 info-pw" placeholder="비밀번호">
+					<div class="row row-cols-auto">
+						<div class="col">
+			            	<input type="password" class="form-control mt-3 info-pw" style="width: 500px" placeholder="비밀번호">
 						</div>
-						<div class="col-3 text-center align-self-end">
+						<div class="col text-center align-self-end">
 							<button class="btn btn-primary btn-sm btn-block info-pw-btn" type="button" style="padding-top:0px; padding-bottom: 0px; height: 38px;">확인</button>
 						</div>
-						<div class="info-pw-alert" style="color:red; font-size:14px; display:none;">비밀번호가 다릅니다.</div>
+						<div class="info-pw-alert mt-3" style="color:red; font-size:14px; display:none;">비밀번호가 다릅니다.</div>
 					</div>
 				</div>
 			</div>

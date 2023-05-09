@@ -43,13 +43,13 @@
 	       		<div class="col-12">
 	       			<div class="row row-cols-auto text-div mb-5 ms-5">
 	       				<div class="col text-center write-review">
-		       				<p style="font-weight: bold;">리뷰 작성</p>
+		       				<p style="font-weight: bold; font-size: 20px;">리뷰 작성</p>
 	       				</div>
 	       				<div class="col" style="display: flex; justify-content : center;">
 		       				<div class="vr" style="background-color:black; height:28px;"></div>
 	       				</div>
 	       				<div class="col text-center written-review">
-	       					<p>작성한 리뷰</p>
+	       					<p style="font-size: 20px;">작성한 리뷰</p>
 	       				</div>
 	       			</div>
 	       			<div class="write-review-list">

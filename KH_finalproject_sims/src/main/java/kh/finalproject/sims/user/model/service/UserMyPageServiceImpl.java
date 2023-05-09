@@ -29,7 +29,7 @@ public class UserMyPageServiceImpl implements UserMyPageService {
 
 	// 유저 정보 가져오기
 	@Override
-	public UserMemberVo selectMyPageInfo(String id) {
+	public UserMemberVo selectMyPageInfo(String id) throws Exception {
 		return dao.selectMyPageInfo(id);
 	}
 

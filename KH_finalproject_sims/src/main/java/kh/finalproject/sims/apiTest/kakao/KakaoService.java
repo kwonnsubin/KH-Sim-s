@@ -25,7 +25,7 @@ public class KakaoService {
 	@Value("#{apikey['apikey.kakaoRest']}")
 	private String kakaoRest;
 	
-     public String getReturnAccessToken(String code, HttpServletRequest req) {
+     public String getReturnAccessToken(String code, HttpServletRequest req) throws Exception {
          String access_token = "";
          String refresh_token = "";
          String reqURL = "https://kauth.kakao.com/oauth/token";
@@ -76,7 +76,7 @@ public class KakaoService {
          return access_token;
      }
 
-     public Map<String,Object> getUserInfo(String access_token) {
+     public Map<String,Object> getUserInfo(String access_token) throws Exception {
 	    Map<String,Object> resultMap =new HashMap<>();
 	    String reqURL = "https://kapi.kakao.com/v2/user/me";
 	     try {
@@ -121,7 +121,7 @@ public class KakaoService {
 	     return resultMap;
 	 }
      
-     public void getLogout(String access_token) {
+     public void getLogout(String access_token) throws Exception {
     	 String reqURL = "https://kapi.kakao.com/v1/user/logout";
     	 try {
     		 URL url = new URL(reqURL);

@@ -64,15 +64,15 @@ function goToScroll(name) {
 
 $(window).scroll(function(){
 	var height = $(window).scrollTop();
-	if(height >= 400 && height < 1000) {
+	if(height >= 377 && height < 1000) {
 		$('.menu-text').eq(0).css('border-bottom', '3px solid');
 		$('.menu-text').eq(1).css('border-bottom', '');
 		$('.menu-text').eq(2).css('border-bottom', '');
-	} else if(height >= 1000 && height < 2030) {
+	} else if(height >= 1000 && height < 2010) {
 		$('.menu-text').eq(1).css('border-bottom', '3px solid');
 		$('.menu-text').eq(0).css('border-bottom', '');
 		$('.menu-text').eq(2).css('border-bottom', '');
-	} else if(height > 2030 && height < 2700) {
+	} else if(height > 2010 && height < 2700) {
 		$('.menu-text').eq(2).css('border-bottom', '3px solid');
 		$('.menu-text').eq(0).css('border-bottom', '');
 		$('.menu-text').eq(1).css('border-bottom', '');

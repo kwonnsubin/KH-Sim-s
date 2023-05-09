@@ -9,32 +9,32 @@ import kh.finalproject.sims.user.model.vo.PlanVo;
 
 public interface UserPlanFindService {
 	
-	public List<PlanVo> selectPlanList(Map<String, Object> searchMap);
+	public List<PlanVo> selectPlanList(Map<String, Object> searchMap) throws Exception;
 
-	public int cntPlanList(Map<String, Object> searchMap);
+	public int cntPlanList(Map<String, Object> searchMap) throws Exception;
 
-	public List<PlanVo> selectPlanFilterList(Map<String, Object> searchMap);
+	public List<PlanVo> selectPlanFilterList(Map<String, Object> searchMap) throws Exception;
 	
-	public int cntPlanFilterList(Map<String, Object> searchMap);
+	public int cntPlanFilterList(Map<String, Object> searchMap) throws Exception;
 
-	public List<String> selectBizNameList();
+	public List<String> selectBizNameList() throws Exception;
 
-	public CustomQueVo selectCustomQueList(String userId);
+	public CustomQueVo selectCustomQueList(String userId) throws Exception;
 
-	public int insertQueVal(Map<String, Object> val);
+	public int insertQueVal(Map<String, Object> val) throws Exception;
 
-	public int selectUser(String userId);
+	public int selectUser(String userId) throws Exception;
 
-	public void insertUser(String userId);
+	public void insertUser(String userId) throws Exception;
 
-	public List<PlanVo> selectViewRankList();
+	public List<PlanVo> selectViewRankList() throws Exception;
 
-	public List<PlanVo> selectLikeRankList();
+	public List<PlanVo> selectLikeRankList() throws Exception;
 
-	public List<PlanVo> selectOrderRankList();
+	public List<PlanVo> selectOrderRankList() throws Exception;
 
-	public List<PlanVo> selectBizPlanList(String bizId);
+	public List<PlanVo> selectBizPlanList(String bizId) throws Exception;
 
-	public List<BizInfoMngtVo> selectBizIdList();
+	public List<BizInfoMngtVo> selectBizIdList() throws Exception;
 
 }

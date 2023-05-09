@@ -19,7 +19,7 @@ public class MailSendServiceImpl implements MailSendService {
 	private int authNumber;
 	
 	@Override
-	public void makeRandomNumber() {
+	public void makeRandomNumber() throws Exception {
 		// 난수의 범위 111111 ~ 999999 (6자리 난수)
 		Random r = new Random();
 		int checkNum = r.nextInt(888888) + 111111;
@@ -29,7 +29,7 @@ public class MailSendServiceImpl implements MailSendService {
 	
 	
 	@Override //이메일 보낼 양식! 
-	public String joinEmail(String email) {
+	public String joinEmail(String email) throws Exception {
 		makeRandomNumber();
 		String setFrom = "sooseong1989@gmail.com"; // email-config에 설정한 자신의 이메일 주소를 입력 
 		String toMail = email;
@@ -45,7 +45,7 @@ public class MailSendServiceImpl implements MailSendService {
 	}
 	
 	@Override //이메일 전송 메소드
-	public void mailSend(String setFrom, String toMail, String title, String content) { 
+	public void mailSend(String setFrom, String toMail, String title, String content) throws Exception { 
 		MimeMessage message = mailSender.createMimeMessage();
 		// true 매개값을 전달하면 multipart 형식의 메세지 전달이 가능.문자 인코딩 설정도 가능하다.
 		try {

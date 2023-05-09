@@ -40,9 +40,28 @@
 		<div class="container-fluid d-flex justify-content-center mt-5 myplan-div">
 	       	<div class="row myplan-row">
 	       		<div class="col">
-       				<div class="mb-5 text-div">
-	       				<p style="font-weight: bold;">신청한 요금제</p>
+       				<div class="mb-3 text-div">
+	       				<p style="font-weight: bold; font-size: 20px;">신청한 요금제</p>
        				</div>
+       				
+       				<div class="row row-cols-auto text-div mb-5">
+	       				<div class="col text-center write-review">
+		       				<p style="font-weight: bold;">신청 완료</p>
+	       				</div>
+	       				<div class="col" style="display: flex; justify-content : center;">
+		       				<div class="vr" style="background-color:black; height:28px;"></div>
+	       				</div>
+	       				<div class="col text-center written-review">
+	       					<p>승인 완료</p>
+	       				</div>
+	       				<div class="col" style="display: flex; justify-content : center;">
+		       				<div class="vr" style="background-color:black; height:28px;"></div>
+	       				</div>
+	       				<div class="col text-center written-review">
+	       					<p>승인 보류</p>
+	       				</div>
+	       			</div>
+	       			
 	       			<div class="myplan-list">
 	       				<c:if test="${not empty poList}">
 	       				<c:forEach items="${poList}" var="po">

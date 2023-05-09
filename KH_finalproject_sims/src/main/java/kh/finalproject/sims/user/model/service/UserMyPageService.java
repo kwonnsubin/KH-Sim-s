@@ -16,7 +16,7 @@ public interface UserMyPageService {
 	public int updateDisable(String id) throws Exception;
 	
 	// 마이페이지
-	public UserMemberVo selectMyPageInfo(String id);
+	public UserMemberVo selectMyPageInfo(String id) throws Exception;
 
 	// 유저 정보 수정
 	public void updateMyPageModify(MemberVo memVo, UserMemberVo userVo) throws Exception;

@@ -12,7 +12,7 @@ public class FeeApiDao {
 	@Autowired
 	private SqlSession sqlSession;
 	
-	public int insert(Map<String, Object> map) {
+	public int insert(Map<String, Object> map) throws Exception {
 		return sqlSession.insert("plan.insertPlanData", map);
 	}
 }

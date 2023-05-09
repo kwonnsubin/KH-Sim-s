@@ -30,7 +30,7 @@ public class FeeApiController {
 	private String feeData;
 	
 	@RequestMapping("/feeapitest")
-	public ModelAndView feeApi(ModelAndView mv) {
+	public ModelAndView feeApi(ModelAndView mv) throws Exception {
     	String apiurl = "http://openapi.epost.go.kr/postal/retrieveAlddlChargeService/retrieveAlddlChargeService/getAlddlChargeList";
     	String servicekey = feeData;
     	
