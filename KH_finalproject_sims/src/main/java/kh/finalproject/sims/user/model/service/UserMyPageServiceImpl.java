@@ -37,7 +37,7 @@ public class UserMyPageServiceImpl implements UserMyPageService {
 	@Override
 	@Transactional
 	public void updateMyPageModify(MemberVo memVo, UserMemberVo userVo) throws Exception {
-		if(!memVo.getPw().isEmpty()) {
+		if(memVo.getPw() != null) {
 			dao.changePw(memVo);
 		}
 		dao.updateMyPageModify(userVo);
