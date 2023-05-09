@@ -36,22 +36,22 @@ public class UserPlanServiceImpl implements UserPlanService {
 	private JavaMailSenderImpl mailSender;
 
 	@Override
-	public PlanVo getPlanByNo(int planNo) {
+	public PlanVo getPlanByNo(int planNo) throws Exception {
 		return dao.getPlanByNo(planNo);
 	}
 
 	@Override
-	public int insertLike(LikeVo lvo) {
+	public int insertLike(LikeVo lvo) throws Exception {
 		return dao.insertLike(lvo);
 	}
 
 	@Override
-	public int deleteLike(int planNo, String userId) {
+	public int deleteLike(int planNo, String userId) throws Exception {
 		return dao.deleteLike(planNo, userId);
 	}
 
 	@Override
-	public boolean getLikeByPlanWithUser(int planNo, String userId) {
+	public boolean getLikeByPlanWithUser(int planNo, String userId) throws Exception {
 		LikeVo like = dao.getLikeByPlanWithUser(planNo, userId);
 		return like != null;
 	}
@@ -59,7 +59,7 @@ public class UserPlanServiceImpl implements UserPlanService {
 	// 최근 본 요금제 저장
 	@Override
 	@Transactional
-	public void insertRecentInfo(HashMap<String, Object> recentInfo) {
+	public void insertRecentInfo(HashMap<String, Object> recentInfo) throws Exception {
 		if(dao.getRecentInfo(recentInfo) == 1) {
 			dao.updateRecentInfo(recentInfo);
 		} else {
@@ -69,13 +69,13 @@ public class UserPlanServiceImpl implements UserPlanService {
 	}
 
 	@Override
-	public int selectOrderNo() {
+	public int selectOrderNo() throws Exception {
 		return dao.selectOrderNo();
 	}
 	
 	@Override
 	@Transactional
-	public void insertPlanOrder(PlanOrderVo planOrderVO) {
+	public void insertPlanOrder(PlanOrderVo planOrderVO) throws Exception {
 		
 		UserMemberVo user = mypageDao.selectMyPageInfo(planOrderVO.getUserId());
 		
@@ -141,12 +141,12 @@ public class UserPlanServiceImpl implements UserPlanService {
 	}
 	
 	@Override
-	public void insertPayinfoCard(PayCardVo payCardVo) {
+	public void insertPayinfoCard(PayCardVo payCardVo) throws Exception {
 		dao.insertPayinfoCard(payCardVo);
 	}
 	
 	@Override
-	public void insertPayinfoAcc(PayAccVo payAccVo) {
+	public void insertPayinfoAcc(PayAccVo payAccVo) throws Exception {
 		dao.insertPayinfoAcc(payAccVo);
 	}
 

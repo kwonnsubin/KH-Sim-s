@@ -16,22 +16,22 @@ public class UserBizServiceImpl implements UserBizService {
 	UserBizDao dao;
 
 	@Override
-	public BizVo getBizByName(String bizName) {
+	public BizVo getBizByName(String bizName) throws Exception {
 		return dao.getBizByName(bizName);
 	}
 
 	@Override
-	public List<String> getNetListByBizId(String bizId) {
+	public List<String> getNetListByBizId(String bizId) throws Exception {
 		return dao.getNetListByBizId(bizId);
 	}
 
 	@Override
-	public int getCountReviewByBizId(String bizId) {
+	public int getCountReviewByBizId(String bizId) throws Exception {
 		return dao.getCountReviewByBizId(bizId);
 	}
 
 	@Override
-	public List<UserReviewVo> getReviewListById(String bizId) {
+	public List<UserReviewVo> getReviewListById(String bizId) throws Exception {
 		return dao.getReviewListById(bizId);
 	}
 

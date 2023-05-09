@@ -33,17 +33,18 @@ public class UserFaqController {
 	
 	// 질문 목록
 	@GetMapping("/")
-	public ModelAndView selectFaqList(
+	public ModelAndView selectFaqList (
 			ModelAndView mv
 			, UserQnaVo vo
 			, @RequestParam(required = false) String keyword
 			, @RequestParam(required = false) String searchType
 			, HttpServletRequest req
 			, HttpServletResponse resp
-			) {
+			) throws Exception {
 		// 페이징
 		String pageNum = req.getParameter("p");
 		int pNum;
+		
 		if (pageNum == null || pageNum.isEmpty()) {
 			pNum = 1;
 		} else {
@@ -87,9 +88,12 @@ public class UserFaqController {
 	public ModelAndView readFaq(
 			ModelAndView mv, 
 			@PathVariable int faqNo
-			) {
+			) throws Exception {
 		UserFaqVo faq = service.selectFaqDetail(faqNo);
+		
+		// 줄바꿈 처리
 		faq.setFaqContent(faq.getFaqContent().replaceAll(System.lineSeparator(), "<br>"));
+		
 		mv.addObject("faq", faq);
 		mv.setViewName("user/faq/readFaq");
 		return mv;
@@ -102,10 +106,11 @@ public class UserFaqController {
 			, @PathVariable int aqNo
 			, HttpServletRequest req
 			, HttpServletResponse resp
-			) {
+			) throws Exception {
 		String cookieName = "viewed_" + aqNo; // 현재 게시글 번호로 쿠키 이름 생성
 		Cookie[] cookies = req.getCookies();
 		boolean isViewed = false; // 조회 여부 변수
+		
 		if (cookies != null) {
 			for (Cookie cookie : cookies) {
 				if (cookie.getName().equals(cookieName)) {
@@ -125,6 +130,7 @@ public class UserFaqController {
 		List<UserAnsVo> answers = service.selectAnsList(aqNo);
 		mv.addObject("question", question);
 		mv.addObject("answers", answers);
+		
 		mv.setViewName("user/faq/readQna");
 		return mv;
 	}
@@ -135,9 +141,9 @@ public class UserFaqController {
 	public String insertAnswer(
 			@PathVariable int aqNo
 			, UserAnsVo vo
-			) {
+			) throws Exception {
 		service.insertAnswer(aqNo, vo);
-		// service.upAnswers(aqNo);
+		// 트리거로 변경 service.upAnswers(aqNo);
 		return "redirect:/faq/qna/" + aqNo;
 	}
 	
@@ -146,7 +152,7 @@ public class UserFaqController {
 	public String insertReply(
 			@PathVariable int aaNo
 			, UserRplVo vo
-			) {
+			) throws Exception {
 		service.insertReply(aaNo, vo);
 		UserAnsVo ansVo = service.getAnsByNo(aaNo);
 		return "redirect:/faq/qna/" + ansVo.getAqNo();
@@ -157,7 +163,7 @@ public class UserFaqController {
 	public ModelAndView writeQnaForm(
 			ModelAndView mv
 			, Principal principal
-			) {
+			) throws Exception {
 		mv.setViewName("user/faq/writeQna");
 		String username = principal.getName();
 		mv.addObject("username", username);
@@ -169,7 +175,7 @@ public class UserFaqController {
 	public String writeQna(
 			UserQnaVo vo
 			, Authentication authentication
-			) {
+			) throws Exception {
 		service.insertQna(vo);
 		return "redirect:/faq/";
 	}
@@ -179,7 +185,7 @@ public class UserFaqController {
 	public ModelAndView selectMyQnaList(
 			ModelAndView mv
 			, Principal principal
-			) {
+			) throws Exception {
 		String username = principal.getName();
 		
 		mv.addObject("myqnalist", service.selectMyQnaList(username));
@@ -194,7 +200,7 @@ public class UserFaqController {
 			  ModelAndView mv
 			, @PathVariable int aqNo
 			, HttpServletRequest request
-			) {
+			) throws Exception {
 		service.deleteQna(aqNo);
 		String referer = request.getHeader("Referer");
 		mv.setViewName("redirect:" + referer);
@@ -208,9 +214,9 @@ public class UserFaqController {
 			@PathVariable int aqNo
 			, @PathVariable int aaNo
 			, HttpServletRequest request
-			) {
+			) throws Exception {
 		service.deleteAns(aaNo);
-		// service.deAnswers(aqNo);
+		// 트리거로 변경 service.deAnswers(aqNo);
 		return "redirect:" + request.getHeader("Referer");
 	}
 	
@@ -220,7 +226,7 @@ public class UserFaqController {
 			@PathVariable int rplNo
 			, @PathVariable int aaNo
 			, @PathVariable int aqNo
-			) {
+			) throws Exception {
 		service.deleteRpl(rplNo);
 		return "redirect:/faq/qna/"+ aqNo;
 	}
@@ -230,7 +236,7 @@ public class UserFaqController {
 	public ModelAndView updateQnaForm(
 			ModelAndView mv
 		  , @PathVariable int aqNo
-			) {
+			) throws Exception {
 		mv.addObject("myqna", service.selectQnaDetail(aqNo)); 
 		mv.setViewName("user/faq/updateQna");
 		return mv;
@@ -241,7 +247,8 @@ public class UserFaqController {
 	public ModelAndView updateQna(
 		     ModelAndView mv
 		   , @PathVariable int aqNo
-		   , UserQnaVo vo) {
+		   , UserQnaVo vo
+		   ) throws Exception {
 		service.updateQna(vo);
 		mv.setViewName("redirect:/faq/qna/"+vo.getAqNo());
 		return mv;
@@ -253,7 +260,7 @@ public class UserFaqController {
 			ModelAndView mv
 			, @PathVariable int aaNo
 			, UserAnsVo vo
-			) {
+			) throws Exception {
 		service.updateAns(vo);
 		mv.setViewName("redirect:/faq/qna/"+ service.getAnsByNo(aaNo).getAqNo());
 		return mv;
@@ -265,7 +272,7 @@ public class UserFaqController {
 			ModelAndView mv
 			, @PathVariable int rplNo
 			, UserRplVo vo
-			) {
+			) throws Exception {
 		service.updateRpl(vo);
 		UserRplVo rpl = service.getRplByNo(rplNo);
 		UserAnsVo ans = service.getAnsByNo(rpl.getAaNo());

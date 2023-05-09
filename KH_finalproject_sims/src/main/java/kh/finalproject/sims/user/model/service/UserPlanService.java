@@ -10,23 +10,31 @@ import kh.finalproject.sims.user.model.vo.PlanVo;
 
 public interface UserPlanService {
 
-	public PlanVo getPlanByNo(int planNo);
+	// 요금제 조회
+	public PlanVo getPlanByNo(int planNo) throws Exception;
 	
 	// 최근 본 요금제 저장
-	public void insertRecentInfo(HashMap<String, Object> recentInfo);
+	public void insertRecentInfo(HashMap<String, Object> recentInfo) throws Exception;
 
-	public int insertLike(LikeVo lvo);
+	// 찜하기
+	public int insertLike(LikeVo lvo) throws Exception;
 	
-	public int deleteLike(int planNo, String userId);
+	// 찜취소
+	public int deleteLike(int planNo, String userId) throws Exception;
 	
-	public boolean getLikeByPlanWithUser(int planNo, String userId);
+	// 찜조회
+	public boolean getLikeByPlanWithUser(int planNo, String userId) throws Exception;
 
-	public int selectOrderNo();
+	// 신청서번호 생성
+	public int selectOrderNo() throws Exception;
 	
-	public void insertPlanOrder(PlanOrderVo planOrderVO);
+	// 신청서 저장
+	public void insertPlanOrder(PlanOrderVo planOrderVO) throws Exception;
 	
-	public void insertPayinfoCard(PayCardVo payCardVo);
+	// 카드정보 저장
+	public void insertPayinfoCard(PayCardVo payCardVo) throws Exception;
 	
-	public void insertPayinfoAcc(PayAccVo payAccVo);
+	// 계좌정보 저장
+	public void insertPayinfoAcc(PayAccVo payAccVo) throws Exception;
 
 }
