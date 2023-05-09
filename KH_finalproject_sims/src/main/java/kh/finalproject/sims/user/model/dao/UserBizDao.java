@@ -30,5 +30,9 @@ public class UserBizDao {
 	public List<UserReviewVo> getReviewListById(String bizId) {
 		return session.selectList("usbiz.getReviewListById", bizId);
 	}
+
+	public BizVo getBizById(String bizId) {
+		return session.selectOne("usbiz.getBizById", bizId);
+	}
 	
 }

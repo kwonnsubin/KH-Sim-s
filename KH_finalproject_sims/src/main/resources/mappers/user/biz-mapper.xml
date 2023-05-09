@@ -29,4 +29,8 @@
 			and review_hidden = 0
 	</select>
 	
+	<select id="getBizById" resultType="bizVo">
+		select * from biz where biz_id = #{bizId}
+	</select>
+	
 </mapper>
