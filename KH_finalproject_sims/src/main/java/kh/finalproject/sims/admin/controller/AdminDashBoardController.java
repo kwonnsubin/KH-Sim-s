@@ -26,8 +26,8 @@ public class AdminDashBoardController {
 	@Autowired
 	AdminDashBoardService service;
 	
-	@GetMapping("/dashboard")
-		public ModelAndView selectDashBoard(ModelAndView mv) {
+	@GetMapping("/dashboard") 
+		public ModelAndView selectDashBoard(ModelAndView mv) throws Exception {
 		List<AdminReviewMngtVo> bizReviewList = service.selectDashboardBizReview(); // 리뷰 리스트
 		List<AdminQnaMngtVo> qnaList = service.selectDashBoardQna(); // 질문/답변 리스트
 		List<AdminReviewMngtVo> reviewReportList = service.selectDashBoardReviewReport(); // 신고 리스트
@@ -49,9 +49,9 @@ public class AdminDashBoardController {
 	
 	// 일별 가입자 수
 	@ResponseBody
-	@PostMapping("/dashBoardDailyTotalUserWriteCount")
-	public String selectDashBoardDailyTotalUserWriteCount(
-			) {
+	@PostMapping("/dashBoardDailyTotalUserWriteCount") 
+	public String selectDashBoardDailyTotalUserWriteCount (
+			) throws Exception {
 		List<AdminDashBoardVo> chartList = service.selectDashBoardDailyTotalUserWriteCount(); // 차트 리스트
 		return new Gson().toJson(chartList);
 	}

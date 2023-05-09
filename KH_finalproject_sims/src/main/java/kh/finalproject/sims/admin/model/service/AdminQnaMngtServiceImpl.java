@@ -25,106 +25,106 @@ public class AdminQnaMngtServiceImpl implements AdminQnaMngtService{
 	
 	// 리스트
 	@Override
-	public List<AdminQnaMngtVo> selectQnaList() {
+	public List<AdminQnaMngtVo> selectQnaList() throws Exception {
 		return dao.selectQnaList();
 	}
 	
 	// 검색
 	@Override
-	public List<AdminQnaMngtVo> selectSearchQnaList(AdminQnaMngtVo vo) {
+	public List<AdminQnaMngtVo> selectSearchQnaList(AdminQnaMngtVo vo) throws Exception {
 		return dao.selectSearchQnaList(vo);
 	}
 
 	// 상세보기
 	@Override
-	public AdminQnaMngtVo selectQnaListDetail(int aqNo) {
+	public AdminQnaMngtVo selectQnaListDetail(int aqNo) throws Exception {
 		return dao.selectQnaListDetail(aqNo);
 	}
 	
 	// 문의글 삭제
 	@Override
-	public int deleteQnaDetail(int aqNo) {
+	public int deleteQnaDetail(int aqNo) throws Exception {
 		System.out.println(dao.deleteQnaByAns(aqNo));
 		return dao.deleteQnaDetail(aqNo);
 	}
 
 	// 답변 리스트 ajax
 	@Override
-	public List<AdminQnaAnsVo> selectQnaAnsList(int aqNo) {
+	public List<AdminQnaAnsVo> selectQnaAnsList(int aqNo) throws Exception {
 		return dao.selectQnaAnsList(aqNo);
 	}
 	
 	// 답변 작성 ajax
 	@Override
-	public int insertQnaAnsWrite(AdminQnaAnsVo vo) {
+	public int insertQnaAnsWrite(AdminQnaAnsVo vo) throws Exception {
 		//dao.upAnswerCount(vo.getAaNo());
 		return dao.insertQnaAnsWrite(vo); // 답변수 +1 증가 -> 트리거
 	}
 	
 	// 답글 작성 ajax
 	@Override
-	public int insertQnaReplyWrite(AdminQnaReplyVo vo) {
+	public int insertQnaReplyWrite(AdminQnaReplyVo vo) throws Exception {
 		return dao.insertQnaReplyWrite(vo);
 	}
 
 	// 답변 삭제 ajax
 	@Override
-	public int deleteQnaAns(int aaNo) {
+	public int deleteQnaAns(int aaNo) throws Exception {
 		//dao.downAnswerCount(aaNo);
 		return dao.deleteQnaAns(aaNo); // 답변수-1 감소 -> 트리거
 	}
 
 	// 답변 수정
 	@Override
-	public int updateQnaAns(AdminQnaAnsVo vo) {
+	public int updateQnaAns(AdminQnaAnsVo vo) throws Exception {
 		return dao.updateQnaAns(vo);
 	}
 
 	// 답글 리스트 ajax
 	@Override
-	public List<AdminQnaReplyVo> selectQnaReplyList(int aaNo) {
+	public List<AdminQnaReplyVo> selectQnaReplyList(int aaNo) throws Exception {
 		return dao.selectQnaReplyList(aaNo);
 	}
 	
 	// 답글 등록 ajax
 	@Override
-	public int insertReply(AdminQnaReplyVo vo) {
+	public int insertReply(AdminQnaReplyVo vo) throws Exception {
 		return dao.insertReply(vo);
 	}
 	
 	// 답글 수정 ajax
 	@Override
-	public int updateQnaReply(AdminQnaReplyVo vo) {
+	public int updateQnaReply(AdminQnaReplyVo vo) throws Exception {
 		return dao.updateQnaReply(vo);
 	}
 	
 	// 답글 삭제 ajax
 	@Override
-	public int deleteQnaReply(int rplNo) {
+	public int deleteQnaReply(int rplNo) throws Exception {
 		return dao.deleteQnaReply(rplNo);
 	}
 
 	// 답변수 조회 ajax
 	@Override
-	public int selectAnswerCount(int aqNo) {
+	public int selectAnswerCount(int aqNo) throws Exception {
 		return dao.selectAnswerCount(aqNo);
 	}
 
 	// 조회수 증가
 	@Override
-	public int viewUp(int aqNo) {
+	public int viewUp(int aqNo) throws Exception {
 		return dao.viewUp(aqNo);
 	}
 
 	// 조회수 조회 ajax
 	@Override
-	public int selectViewCount(int aqNo) {
+	public int selectViewCount(int aqNo) throws Exception {
 		return dao.selectViewCount(aqNo);
 	}
 	
 	// search
 	@Override
-	public Search getPage(int pNum, int cnt, String keyword, String searchType) {
+	public Search getPage(int pNum, int cnt, String keyword, String searchType) throws Exception {
 		Map<String, Object> map = new HashMap<String, Object>();
 		map.put("start", (pNum - 1) * cnt + 1);
 		map.put("end", pNum * cnt);

@@ -51,7 +51,7 @@ public class AdminQnaMngtController {
 			,@RequestParam(required = false) String keyword
 			,@RequestParam(required = false) String searchType
 			,@RequestParam(value = "p", required = false) String pageNumber
-			) {
+			) throws Exception {
 	    
 	    //페이징
   		int pNum;
@@ -108,7 +108,7 @@ public class AdminQnaMngtController {
 			, Principal principal // 사용자(관리자)정보 가져오기
 			, HttpServletRequest request
 			, HttpServletResponse response
-			) {
+			) throws Exception {
 	    String username = principal.getName(); // 사용자(관리자)정보 가져오기
 	    
 	    mv.addObject("qnaAnsList", service.selectQnaAnsList(aqNo));
@@ -166,7 +166,7 @@ public class AdminQnaMngtController {
 	@GetMapping("/qna/delete")
 	public String deleteQnaDetail(
 			@RequestParam("aqNo") int aqNo
-			) {
+			) throws Exception {
 		service.deleteQnaDetail(aqNo);
 		return null;	
 	}
@@ -176,7 +176,7 @@ public class AdminQnaMngtController {
 	@PostMapping("/qna/insertAns")
 	public String insertQnaAnsWrite(
 			 AdminQnaAnsVo vo
-			) {
+			) throws Exception {
 		int result = service.insertQnaAnsWrite(vo);
 		//userService.upAnswers(vo.getAqNo());
 		if(result > 0) {
@@ -189,8 +189,8 @@ public class AdminQnaMngtController {
 	// 답변 불러오기 ajax
 	@ResponseBody
 	@PostMapping(value="/qna/ansList", produces = "application/json;charset=utf-8")
-	public String ansList(
-			@RequestParam("aqNo") int aqNo)
+	public String ansList (
+			@RequestParam("aqNo") int aqNo) throws Exception
 			{
 			service.selectQnaListDetail(aqNo);
 			List<AdminQnaAnsVo> qnaAnsList = service.selectQnaAnsList(aqNo);
@@ -206,7 +206,7 @@ public class AdminQnaMngtController {
 	@PostMapping("/qna/deleteAns")
 	public String deleteQnaAns(
 			 int aaNo
-			) {
+			) throws Exception {
 		//userService.deAnswers(userService.getAnsByNo(aaNo).getAqNo());
 		int result = service.deleteQnaAns(aaNo);
 		if(result > 0) {
@@ -221,7 +221,7 @@ public class AdminQnaMngtController {
 	@PostMapping("/qna/updateAns")
 	public String updateQnaAns(
 			AdminQnaAnsVo vo
-			) {
+			) throws Exception {
 		int result = service.updateQnaAns(vo);
 		if(result > 0) {
 			return "success";
@@ -235,7 +235,7 @@ public class AdminQnaMngtController {
 	@PostMapping(value = "/qna/qnaReplyList" , produces = "application/json;charset=utf-8")
 	public String selectQnaReplyList(
 			@RequestParam("aaNo")int aaNo
-			) {
+			) throws Exception {
 		List<AdminQnaReplyVo> qnaReplyList = service.selectQnaReplyList(aaNo);
 		if(!qnaReplyList.isEmpty()) {
 			Gson gson = new GsonBuilder().setDateFormat("yyyy-MM-dd").create();
@@ -249,7 +249,7 @@ public class AdminQnaMngtController {
 	@PostMapping("/qna/insertReply")
 	public String insertReply(
 			 AdminQnaReplyVo vo
-			) {
+			) throws Exception {
 		int result = service.insertReply(vo);
 		if(result > 0) {
 			return "success";
@@ -263,7 +263,7 @@ public class AdminQnaMngtController {
 	@PostMapping("/qna/updateReply")
 	public String updateQnaReply(
 			AdminQnaReplyVo vo
-			) {
+			) throws Exception {
 		int result = service.updateQnaReply(vo);
 		if(result > 0) {
 			return "success";
@@ -277,7 +277,7 @@ public class AdminQnaMngtController {
 	@PostMapping("/qna/deleteReply")
 	public String deleteQnaReply(
 			@RequestParam("rplNo") int rplNo
-			) {
+			) throws Exception {
 		int result = service.deleteQnaReply(rplNo);
 		if(result > 0) {
 			return "success";
@@ -291,7 +291,7 @@ public class AdminQnaMngtController {
 	@PostMapping("/qna/selectAnswerCount")
 	public int selectAnswerCount(
 			@RequestParam("aqNo") int aqNo
-			) {
+			) throws Exception {
 		int result = service.selectAnswerCount(aqNo);
 			return result;		
 	}
@@ -299,7 +299,7 @@ public class AdminQnaMngtController {
 	// 조회수 증가 ajax
 	@ResponseBody
 	@PostMapping("/qna/selectViewCount")
-	public int selectViewCount(@RequestParam("aqNo") int aqNo) {
+	public int selectViewCount(@RequestParam("aqNo") int aqNo) throws Exception {
 		int result = service.selectViewCount(aqNo);
 		return result;
 	}

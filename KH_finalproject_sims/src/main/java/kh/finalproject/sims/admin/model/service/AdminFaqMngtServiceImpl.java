@@ -20,37 +20,37 @@ public class AdminFaqMngtServiceImpl implements AdminFaqMngtService{
 	
 	// 목록보기 
 	@Override
-	public List<AdminFaqVo> selectFaqList() {
+	public List<AdminFaqVo> selectFaqList() throws Exception {
 		return dao.selectFaqList();
 	}
 
 	// 상세보기
 	@Override
-	public AdminFaqVo selectFaqDetail(int faqNo) {
+	public AdminFaqVo selectFaqDetail(int faqNo) throws Exception {
 		return dao.selectFaqDetail(faqNo);
 	}
 	
 	// 작성
 	@Override
-	public int insertFaqWrite(AdminFaqVo vo) {
+	public int insertFaqWrite(AdminFaqVo vo) throws Exception {
 		return dao.insertFaqWrite(vo);
 	}
 	
 	// 수정
 	@Override
-	public int selectFaqModify(AdminFaqVo vo) {
+	public int selectFaqModify(AdminFaqVo vo) throws Exception {
 		return dao.selectFaqModify(vo);
 	}
 	
 	// 삭제
 	@Override
-	public int deleteFaq(int faqNo) {
+	public int deleteFaq(int faqNo) throws Exception {
 		return dao.deleteFaq(faqNo);
 	}
 	
 	// search
 	@Override
-	public Search getPage(int pNum, int cnt, String keyword, String searchType) {
+	public Search getPage(int pNum, int cnt, String keyword, String searchType) throws Exception {
 		Map<String, Object> map = new HashMap<String, Object>();
 		map.put("start", (pNum - 1) * cnt + 1);
 		map.put("end", pNum * cnt);
@@ -71,7 +71,7 @@ public class AdminFaqMngtServiceImpl implements AdminFaqMngtService{
 	
 	// 검색
 	@Override
-	public List<AdminFaqVo> selectSearchFaqList(AdminFaqVo vo) {
+	public List<AdminFaqVo> selectSearchFaqList(AdminFaqVo vo) throws Exception {
 		return null;
 	}
 }

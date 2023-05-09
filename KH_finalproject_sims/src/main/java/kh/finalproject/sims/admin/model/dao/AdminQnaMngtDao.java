@@ -21,36 +21,36 @@ public class AdminQnaMngtDao {
 	SqlSession sqlSession;
 			
 	// 리스트
-	public List<AdminQnaMngtVo> selectQnaList() {
+	public List<AdminQnaMngtVo> selectQnaList() throws Exception {
 		return sqlSession.selectList("admin.selectQnaList");
 	}
 	
 	// 검색
-	public List<AdminQnaMngtVo> selectSearchQnaList(AdminQnaMngtVo vo) {
+	public List<AdminQnaMngtVo> selectSearchQnaList(AdminQnaMngtVo vo) throws Exception {
 		return sqlSession.selectList("admin.selectSearchQnaList", vo);
 	}
 	
 	// 상세보기
-	public AdminQnaMngtVo selectQnaListDetail(int aqNo) {
+	public AdminQnaMngtVo selectQnaListDetail(int aqNo) throws Exception {
 		return sqlSession.selectOne("admin.selectQnaListDetail", aqNo);
 	}
 	
 	// 문의글별 답변 삭제
-	public int deleteQnaByAns(int aqNo) {
+	public int deleteQnaByAns(int aqNo) throws Exception {
 		return sqlSession.delete("admin.deleteQnaByAns", aqNo);
 	}
 	// 문의글 삭제
-	public int deleteQnaDetail(int aqNo) {
+	public int deleteQnaDetail(int aqNo) throws Exception {
 		return sqlSession.delete("admin.deleteQnaDetail", aqNo);
 	}
 	
 	// 답변 리스트 ajax
-	public List<AdminQnaAnsVo> selectQnaAnsList(int aqNo) {
+	public List<AdminQnaAnsVo> selectQnaAnsList(int aqNo) throws Exception  {
 		return sqlSession.selectList("admin.selectQnaAnsList", aqNo);
 	}
 	
 	//  답변 작성
-	public int insertQnaAnsWrite(AdminQnaAnsVo vo) {
+	public int insertQnaAnsWrite(AdminQnaAnsVo vo) throws Exception {
 		return sqlSession.insert("admin.insertQnaAnsWrite", vo);
 	}
 	

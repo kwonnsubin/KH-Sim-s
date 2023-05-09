@@ -41,7 +41,7 @@ public class AdminReviewReportMngtController {
 			,@RequestParam(value = "p", required = false) String pageNumber
 			, HttpServletRequest request
 			, HttpServletResponse response	
-			) {
+			) throws Exception {
 		
 		// 페이징
   		int pNum;
@@ -95,7 +95,7 @@ public class AdminReviewReportMngtController {
 	public ModelAndView selectReviewReportDetail(
 			ModelAndView mv
 			, @PathVariable int reviewNo
-			) {
+			) throws Exception {
 		AdminReviewMngtVo result = service.selectReviewReportDetail(reviewNo);
 		mv.addObject("detail", result);
 		mv.setViewName("admin/reviewreport/detail");
@@ -109,7 +109,7 @@ public class AdminReviewReportMngtController {
 			, @RequestParam("reviewHidden") int reviewHidden
 			, @RequestParam("reportStatus") int reportStatus
 			, AdminReviewMngtVo vo
-			) {
+			) throws Exception {
 		service.updateReviewReportStatus(vo);
 		return "redirect:/admin/reviewreport/detail/"+reviewNo;
 	}
@@ -122,7 +122,7 @@ public class AdminReviewReportMngtController {
 			, @RequestParam("reviewHidden") int reviewHidden
 			, @RequestParam("reportStatus") int reportStatus
 			, AdminReviewMngtVo vo
-			) {
+			) throws Exception {
 		service.updateReviewReportStatus(vo);
 		return "redirect:/admin/reviewreport/detail/"+reviewNo;
 	}

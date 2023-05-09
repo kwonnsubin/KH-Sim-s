@@ -31,7 +31,7 @@ public class AdminFaqMngtController {
 
 	// 자주묻는질문화면 리스트
 	@RequestMapping(value="/faq/list", method = {RequestMethod.GET, RequestMethod.POST})
-	public ModelAndView selectFaqList(
+	public ModelAndView selectFaqList (
 			ModelAndView mv
 			, AdminFaqVo vo
 			,@RequestParam(required = false) String keyword
@@ -39,7 +39,7 @@ public class AdminFaqMngtController {
 			,@RequestParam(value = "p", required = false) String pageNumber
 			, HttpServletRequest request 
 			, HttpServletResponse response 
-			) {
+			) throws Exception {
 	    	
 	  //페이징
 	  		int pNum;
@@ -89,10 +89,10 @@ public class AdminFaqMngtController {
 	
 	// 자주묻는질문화면 상세내용 보기
 	@GetMapping("/faq/detail/{faqNo}")
-	public ModelAndView selectFaqDetail(
+	public ModelAndView selectFaqDetail (
 			  ModelAndView mv
 			, @PathVariable int faqNo
-			) {
+			) throws Exception {
 		AdminFaqVo result = service.selectFaqDetail(faqNo);
 		mv.addObject("faqlist", result);
 		mv.setViewName("admin/faq/detail");
@@ -104,7 +104,7 @@ public class AdminFaqMngtController {
 	public ModelAndView viewInsertFaq(
 			  ModelAndView mv
 			, HttpServletRequest request // 사용자(관리자)정보 가져오기
-			) {
+			) throws Exception {
 		mv.setViewName("admin/faq/write");
 		Principal principal = request.getUserPrincipal(); // 사용자(관리자)정보 가져오기
 	    String username = principal.getName(); // 사용자(관리자)정보 가져오기
@@ -118,7 +118,7 @@ public class AdminFaqMngtController {
 	public ModelAndView faqwrite(
 			ModelAndView mv
 		  , AdminFaqVo vo
-			) {
+			) throws Exception {
 	    // HTML 태그 제거
 //		String plainText = vo.getFaqContent().replaceAll("\\<.*?\\>", "");
 //		vo.setFaqContent(plainText);
@@ -134,7 +134,7 @@ public class AdminFaqMngtController {
 	public ModelAndView viewUpdateFaq(
 			ModelAndView mv
 		  , @PathVariable int faqNo
-			) {
+			) throws Exception {
 		AdminFaqVo result = service.selectFaqDetail(faqNo);
 		mv.addObject("faqlist", result); // 기존 내용 띄우기
 		mv.setViewName("admin/faq/update");
@@ -147,7 +147,7 @@ public class AdminFaqMngtController {
 	public ModelAndView selectFaqModify(
 		     ModelAndView mv
 		   , @PathVariable int faqNo
-		   , AdminFaqVo vo) {
+		   , AdminFaqVo vo) throws Exception {
 		service.selectFaqModify(vo);
 		mv.setViewName("redirect:/admin/faq/detail/"+vo.getFaqNo());
 		return mv;
@@ -159,7 +159,7 @@ public class AdminFaqMngtController {
 	public String deleteFaq(
 			  AdminFaqVo vo,
 			  @RequestParam int faqNo
-			) {
+			) throws Exception {
 		service.deleteFaq(faqNo);
 		return null;
 	}

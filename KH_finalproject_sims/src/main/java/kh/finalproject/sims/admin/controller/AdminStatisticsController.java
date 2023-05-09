@@ -31,7 +31,7 @@ public class AdminStatisticsController {
 	@GetMapping("/statistics")
 	public ModelAndView selectOrderByRegistration(
 			ModelAndView mv
-			) {
+			) throws Exception {
 		mv.addObject("orderByRegistration", service.selectOrderByRegistration()); // 가입자 많은 순
 		mv.addObject("ageGroupPlans",service.selectAgeGroupPlans()); // 연령대별 요금제 
 		mv.setViewName("/admin/statistics");
@@ -42,7 +42,7 @@ public class AdminStatisticsController {
 	@ResponseBody
 	@PostMapping("/dailyTotalUserWriteCount")
 	public String selectDailyTotalUserWriteCount(
-			) {
+			) throws Exception {
 		List<AdminStatisticsVo> chartList = service.selectDailyTotalUserWriteCount(); // 차트 리스트
 		return new Gson().toJson(chartList);
 	}
@@ -51,7 +51,7 @@ public class AdminStatisticsController {
 	@ResponseBody
 	@PostMapping("/monthlyPlanOrderCount")
 	public String selectMonthlyPlanOrderCount(
-			) {
+			) throws Exception {
 		List<AdminStatisticsVo> chartList = service.selectMonthlyPlanOrderCount(); // 차트 리스트
 		return new Gson().toJson(chartList);	
 	}
@@ -60,7 +60,7 @@ public class AdminStatisticsController {
 	@ResponseBody
 	@PostMapping("/dailyGenderUserWriteCount")
 	public String selectDailyGenderUserWriteCount(
-			) {
+			) throws Exception {
 		List<AdminStatisticsVo> chartList = service.selectDailyGenderUserWriteCount(); // 차트 리스트
 		return new Gson().toJson(chartList);	
 	}
@@ -69,7 +69,7 @@ public class AdminStatisticsController {
 	@ResponseBody
 	@PostMapping("/genderRatioByTotalUserRatio")
 	public String selectGenderRatioByTotalUserRatio(
-			) {
+			) throws Exception {
 		AdminStatisticsVo chartList = service.selectGenderRatioByTotalUserRatio(); // 차트 리스트
 		return new Gson().toJson(chartList);
 	}
@@ -78,7 +78,7 @@ public class AdminStatisticsController {
 	@ResponseBody
 	@PostMapping("/ageGroupPlanOrderCount")
 	public String selectAgeGroupPlanOrderCount(
-			) {
+			) throws Exception {
 		List<AdminStatisticsVo> chartList = service.selectAgeGroupPlanOrderCount(); // 차트 리스트
 		return new Gson().toJson(chartList);
 	}
@@ -87,7 +87,7 @@ public class AdminStatisticsController {
 	@ResponseBody
 	@PostMapping("/ageGroupByTotalUserRatio")
 	public String selectAgeGroupByTotalUserRatio(
-			) {
+			) throws Exception {
 		List<AdminStatisticsVo> chartList = service.selectAgeGroupByTotalUserRatio(); // 차트 리스트
 		return new Gson().toJson(chartList);
 	}
@@ -96,7 +96,7 @@ public class AdminStatisticsController {
 	@ResponseBody
 	@PostMapping("/starRating")
 	public String selectStarRating(
-			) {
+			) throws Exception {
 		List<AdminStatisticsVo> chartList = service.selectStarRating(); // 차트 리스트
 		return new Gson().toJson(chartList);
 	}

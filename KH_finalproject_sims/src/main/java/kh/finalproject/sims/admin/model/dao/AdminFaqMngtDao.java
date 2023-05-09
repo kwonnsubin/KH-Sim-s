@@ -17,42 +17,42 @@ public class AdminFaqMngtDao {
 	SqlSession sqlSession;
 
 	// 리스트
-	public List<AdminFaqVo> selectFaqList() {
+	public List<AdminFaqVo> selectFaqList() throws Exception {
 		return sqlSession.selectList("admin.selectFaqList");
 	}
 	
 	// 상세보기
-	public AdminFaqVo selectFaqDetail(int faqNo) {
+	public AdminFaqVo selectFaqDetail(int faqNo) throws Exception {
 		return sqlSession.selectOne("admin.selectFaqDetail", faqNo);
 	}
 	
 	// 작성하기
-	public int insertFaqWrite(AdminFaqVo vo) {
+	public int insertFaqWrite(AdminFaqVo vo) throws Exception {
 		return sqlSession.insert("admin.insertFaqWrite", vo);
 	}
 	
 	// 수정하기
-	public int selectFaqModify(AdminFaqVo vo) {
+	public int selectFaqModify(AdminFaqVo vo) throws Exception {
 		return sqlSession.update("admin.selectFaqModify", vo);
 	}
 	
 	// 삭제하기
-	public int deleteFaq(int faqNo) {
+	public int deleteFaq(int faqNo) throws Exception {
 		return sqlSession.delete("admin.deleteFaq", faqNo);
 	}
 	
 	// 검색
-	public List<AdminFaqVo> selectSearchFaqList(AdminFaqVo vo) {
+	public List<AdminFaqVo> selectSearchFaqList(AdminFaqVo vo) throws Exception {
 		return sqlSession.selectList("admin.selectSearchFaqList", vo);
 	}
 	
 	// search
-	public List<AdminFaqVo> searchFaqPageList(Map<String, Object> map) {
+	public List<AdminFaqVo> searchFaqPageList(Map<String, Object> map) throws Exception {
 		return sqlSession.selectList("admin.searchFaqPageList", map); // 한 페이지의 글 목록
 	}
 	
 	// 글 개수
-	public int getSearchFaqListCnt(Map<String, Object> map) {
+	public int getSearchFaqListCnt(Map<String, Object> map) throws Exception {
 		return sqlSession.selectOne("admin.getSearchFaqListCnt", map);
 	}
 }

@@ -19,31 +19,31 @@ public class AdminReviewMngtServiceImpl implements AdminReviewMngtService{
 	
 	// 목록
 	@Override
-	public List<AdminReviewMngtVo> selectReviewList() {
+	public List<AdminReviewMngtVo> selectReviewList() throws Exception {
 		return dao.selectReviewList();
 	}
 	
 	// 검색
 	@Override
-	public List<AdminReviewMngtVo> selectSearchReviewList(AdminReviewMngtVo vo) {
+	public List<AdminReviewMngtVo> selectSearchReviewList(AdminReviewMngtVo vo) throws Exception {
 		return dao.selectSearchReviewList(vo);
 	}
 	
 	// 삭제
 	@Override
-	public int deleteReview(int reviewNo) {
+	public int deleteReview(int reviewNo) throws Exception {
 		return dao.deleteReview(reviewNo);
 	}
 	
 	// 상세내용
 	@Override
-	public AdminReviewMngtVo selectReviewDetail(int reviewNo) {
+	public AdminReviewMngtVo selectReviewDetail(int reviewNo) throws Exception {
 		return dao.selectReviewDetail(reviewNo);
 	}
 	
 	// search
 	@Override
-	public Search getPage(int pNum, int cnt, String keyword, String searchType) {
+	public Search getPage(int pNum, int cnt, String keyword, String searchType) throws Exception {
 		Map<String, Object> map = new HashMap<String, Object>();
 		map.put("start", (pNum - 1) * cnt + 1);
 		map.put("end", pNum * cnt);

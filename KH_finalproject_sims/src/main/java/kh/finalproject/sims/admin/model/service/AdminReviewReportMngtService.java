@@ -9,17 +9,17 @@ import kh.finalproject.sims.common.page.Search;
 public interface AdminReviewReportMngtService {
 	
 	// 목록
-	public List<AdminReviewMngtVo> selectReviewReportList();
+	public List<AdminReviewMngtVo> selectReviewReportList() throws Exception;
 	
 	// 검색
-	public List<AdminReviewMngtVo> selectSearchReviewReportList(AdminReviewMngtVo vo);
+	public List<AdminReviewMngtVo> selectSearchReviewReportList(AdminReviewMngtVo vo) throws Exception;
 	
 	// 상세
-	public AdminReviewMngtVo selectReviewReportDetail(int reviewNo);
+	public AdminReviewMngtVo selectReviewReportDetail(int reviewNo) throws Exception;
 	
 	// 처리(반려/삭제)
-	public int updateReviewReportStatus(AdminReviewMngtVo vo);
+	public int updateReviewReportStatus(AdminReviewMngtVo vo) throws Exception;
 	
 	// 페이징 search
-	public Search getPage(int pNum, int cnt, String keyword, String searchType, String reportStatus);
+	public Search getPage(int pNum, int cnt, String keyword, String searchType, String reportStatus) throws Exception;
 }

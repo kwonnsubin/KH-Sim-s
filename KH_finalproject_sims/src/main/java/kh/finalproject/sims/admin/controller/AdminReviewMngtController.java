@@ -35,7 +35,7 @@ public class AdminReviewMngtController {
 			,@RequestParam(value = "p", required = false) String pageNumber
 			, HttpServletRequest request
 			, HttpServletResponse response
-			) {
+			) throws Exception {
 		
 		//페이징
   		int pNum;
@@ -89,7 +89,7 @@ public class AdminReviewMngtController {
 	public ModelAndView selectReviewDetail(
 			ModelAndView mv
 			, @PathVariable int reviewNo
-			) {
+			) throws Exception {
 		AdminReviewMngtVo result = service.selectReviewDetail(reviewNo);
 		mv.addObject("reviewdetail", result);
 		mv.setViewName("admin/review/detail");
@@ -100,7 +100,7 @@ public class AdminReviewMngtController {
 	@PostMapping("review/delete") 
 	public String deleteReview(
 			@RequestParam("reviewNo") int reviewNo
-			) {
+			) throws Exception {
 		service.deleteReview(reviewNo);
 		return "redirect:/admin/review/detail/"+reviewNo;
 	}

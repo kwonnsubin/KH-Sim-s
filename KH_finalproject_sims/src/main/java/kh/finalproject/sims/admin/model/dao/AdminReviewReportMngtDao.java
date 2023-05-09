@@ -17,37 +17,37 @@ public class AdminReviewReportMngtDao {
 	SqlSession sqlSession;
 	
 	// 리스트
-	public List<AdminReviewMngtVo> selectReviewReportList() {
+	public List<AdminReviewMngtVo> selectReviewReportList() throws Exception {
 		return sqlSession.selectList("admin.selectReviewReportList");
 	}
 	
 	// 검색
-	public List<AdminReviewMngtVo> selectSearchReviewReportList(AdminReviewMngtVo vo) {
+	public List<AdminReviewMngtVo> selectSearchReviewReportList(AdminReviewMngtVo vo) throws Exception {
 		return sqlSession.selectList("admin.selectSearchReviewReportList", vo);
 	}
 	
 	// 상세
-	public AdminReviewMngtVo selectReviewReportDetail(int reviewNo) {
+	public AdminReviewMngtVo selectReviewReportDetail(int reviewNo) throws Exception {
 		return sqlSession.selectOne("admin.selectReviewReportDetail", reviewNo);
 	}
 	
 	// 처리(반려/삭제)
-	public int updateReviewReportStatus(AdminReviewMngtVo vo) {
+	public int updateReviewReportStatus(AdminReviewMngtVo vo) throws Exception {
 		return sqlSession.update("admin.updateReviewReportStatus", vo);
 	}
 	
 	// 숨김
-	public int updateReviewHidden(AdminReviewMngtVo vo) {
+	public int updateReviewHidden(AdminReviewMngtVo vo) throws Exception {
 		return sqlSession.update("admin.updateReviewHidden", vo);
 	}
 	
 	// 페이징 search
-	public List<AdminReviewReportMngtVo> searchReviewReportPageList(Map<String, Object> map) {
+	public List<AdminReviewReportMngtVo> searchReviewReportPageList(Map<String, Object> map) throws Exception {
 		return sqlSession.selectList("admin.searchReviewReportPageList", map); // 한 페이지의 글 목록
 	}
 	
 	// 글목록 총 갯수 search
-	public int getSearchReviewReportListCnt(Map<String, Object> map) {
+	public int getSearchReviewReportListCnt(Map<String, Object> map) throws Exception {
 		return sqlSession.selectOne("admin.getSearchReviewReportPageCnt", map);
 	}
 }

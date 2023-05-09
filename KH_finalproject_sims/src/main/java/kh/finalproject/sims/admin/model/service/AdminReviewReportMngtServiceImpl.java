@@ -20,25 +20,25 @@ public class AdminReviewReportMngtServiceImpl implements AdminReviewReportMngtSe
 	
 	// 목록
 	@Override
-	public List<AdminReviewMngtVo> selectReviewReportList() {
+	public List<AdminReviewMngtVo> selectReviewReportList() throws Exception {
 		return dao.selectReviewReportList();
 	}
 	
 	// 검색
 	@Override
-	public List<AdminReviewMngtVo> selectSearchReviewReportList(AdminReviewMngtVo vo) {
+	public List<AdminReviewMngtVo> selectSearchReviewReportList(AdminReviewMngtVo vo) throws Exception {
 		return dao.selectSearchReviewReportList(vo);
 	}
 
 	// 상세
 	@Override
-	public AdminReviewMngtVo selectReviewReportDetail(int reviewNo) {
+	public AdminReviewMngtVo selectReviewReportDetail(int reviewNo) throws Exception {
 		return dao.selectReviewReportDetail(reviewNo);
 	}
 
 	// 처리(반려/삭제)
 	@Override
-	public int updateReviewReportStatus(AdminReviewMngtVo vo) {
+	public int updateReviewReportStatus(AdminReviewMngtVo vo) throws Exception {
 		
 		// 숨김
 		dao.updateReviewHidden(vo);
@@ -48,7 +48,7 @@ public class AdminReviewReportMngtServiceImpl implements AdminReviewReportMngtSe
 	
 	// 페이징 search
 	@Override
-	public Search getPage(int pNum, int cnt, String keyword, String searchType, String reportStatus) {
+	public Search getPage(int pNum, int cnt, String keyword, String searchType, String reportStatus) throws Exception {
 		Map<String, Object> map = new HashMap<String, Object>();
 		map.put("start", (pNum - 1) * cnt + 1);
 		map.put("end", pNum * cnt);
