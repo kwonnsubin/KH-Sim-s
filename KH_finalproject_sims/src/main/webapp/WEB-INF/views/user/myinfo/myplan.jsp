@@ -68,7 +68,7 @@
 	       					<div class="insert-div">
 			       				<div class="row my-3 list-row">
 			       					<div class="col-2 text-center align-self-center">
-			       						<img src="<%=request.getContextPath()%>/resources/img/${order.bizId}.png" style="max-width: 60px; height: 26px;">
+			       						<img src="<%=request.getContextPath()%>/resources/img/${order.bizId}.png" style="max-width: 80px; max-height: 30px;">
 			       					</div>
 			       					<div class="col-7 align-self-center">
 			       						<p class="plan-name-text">
@@ -122,7 +122,7 @@
 	       					<div class="insert-div">
 			       				<div class="row my-3 list-row">
 			       					<div class="col-2 text-center align-self-center">
-			       						<img src="<%=request.getContextPath()%>/resources/img/${accept.bizId}.png" style="max-width: 60px; height: 26px;">
+			       						<img src="<%=request.getContextPath()%>/resources/img/${accept.bizId}.png" style="max-width: 80px; max-height: 30px;">
 			       					</div>
 			       					<div class="col-7 align-self-center">
 			       						<p class="plan-name-text">
@@ -176,7 +176,7 @@
 	       					<div class="insert-div">
 			       				<div class="row my-3 list-row">
 			       					<div class="col-2 text-center align-self-center">
-			       						<img src="<%=request.getContextPath()%>/resources/img/${hold.bizId}.png" style="max-width: 60px; height: 26px;">
+			       						<img src="<%=request.getContextPath()%>/resources/img/${hold.bizId}.png" style="max-width: 80px; max-height: 30px;">
 			       					</div>
 			       					<div class="col-7 align-self-center">
 			       						<p class="plan-name-text">
