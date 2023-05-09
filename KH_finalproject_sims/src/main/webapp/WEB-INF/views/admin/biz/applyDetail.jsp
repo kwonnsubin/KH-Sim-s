@@ -12,7 +12,15 @@
 <body>
 
 <jsp:include page="../include/header.jsp" />
+<script src="http://code.jquery.com/jquery-latest.js"></script> 
 <script>
+$(document).ready(function(){
+	var msg = '<c:out value="${param.msg}"/>';
+	if(msg == "SUCCESS"){
+		alert("수정 되었습니다.");
+	}
+});
+
 function fn_submitCheck(){
 	var testCheck = $('input[name=enable]:checked').val();
 	var html = "";

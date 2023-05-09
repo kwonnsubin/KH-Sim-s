@@ -45,7 +45,7 @@
 															<select class="" name="searchOption">
 																<option value="">선택</option>
 																<option value="bizName" <c:if test="${searchOption eq 'bizName' }">selected</c:if>>업체명</option>
-																<option value="bizOwnerName" <c:if test="${searchOption eq 'bizOwnerName' }">selected</c:if>>아이디</option>
+																<option value="bizOwnerName" <c:if test="${searchOption eq 'bizOwnerName' }">selected</c:if>>대표자</option>
 															</select>
 															<input class="form-control" type="text" name="searchBox" value="${searchBox}">
 															<div class="col-sm-5 p-t-10">

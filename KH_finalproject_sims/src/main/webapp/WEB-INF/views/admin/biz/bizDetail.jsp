@@ -88,6 +88,11 @@
 
 
 	$(document).ready(function(){
+		var msg = '<c:out value="${param.msg}"/>';
+		if(msg == "SUCCESS"){
+			alert("수정 되었습니다.");
+		}
+		
 		/*지원통신망 입력 값 쪼개기*/
 		var network = "${applyDetail.network}";
 		var networkArr = network.split(",");
@@ -339,7 +344,7 @@
 		                                        </div>
 		                                        <label for="bizHp" class="col-sm-2 col-form-label text-center">홈페이지</label>
 		                                        <div class="col-sm-4">
-		                                            <input type="text" class="form-control"  name="bizHp" style="cursor:pointer" <c:if test="${cmd eq 'read' }">readonly onclick="javascript:fn_goToHompage();"</c:if> value="${applyDetail.bizHp}">
+		                                            <input type="text" class="form-control"  name="bizHp" <c:if test="${cmd eq 'read' }">readonly onclick="javascript:fn_goToHompage();"</c:if> value="${applyDetail.bizHp}">
 		                                            <%-- <a href="${applyDetail.bizHp }">${applyDetail.bizHp }</a> --%>
 		                                        </div>
 		                                    </div>
@@ -549,6 +554,12 @@
 						                                </div>
 		                                        	</c:otherwise>
 		                                        </c:choose>
+		                                     </div>   
+		                                    <div class="form-group row">
+		                                        <label for="bizId" class="col-sm-2 col-form-label text-center">아이디</label>
+		                                        <div class="col-sm-4">
+		                                            <input type="text" class="form-control"  name="bizId" readonly <c:if test="${cmd eq 'read' }">readonly</c:if> value="${applyDetail.bizId}">
+		                                        </div>
 		                                        <label for="network" class="col-sm-2 col-form-label text-center">지원통신망</label>
 		                                        <c:choose>
 		                                         	<c:when test="${cmd eq 'read'}">
@@ -571,7 +582,7 @@
 		                                        		</div>
 		                                         	</c:otherwise>
 		                                         </c:choose>
-		                                     </div>   
+		                                    </div>
 		                                    <div class="form-group row">
 		                                        <label for="bizZipCode" class="col-sm-2 col-form-label text-center">우편번호</label>
 		                                        <c:choose>
@@ -596,14 +607,11 @@
 		                                        		</div>
 		                                        	</c:otherwise>
 		                                        </c:choose>
-		                                        <label for="bizId" class="col-sm-2 col-form-label text-center">아이디</label>
+		                                        <%-- <div class="col-sm-5">
+		                                            <input type="text" class="form-control"  name="bizZipCode" <c:if test="${cmd eq 'read' }">readonly</c:if> value="${applyDetail.bizZipCode}">
+		                                        </div> --%>
+		                                        <label for="bizLocation" class="col-sm-2 col-form-label text-center">주소</label>
 		                                        <div class="col-sm-4">
-		                                            <input type="text" class="form-control"  name="bizId" readonly <c:if test="${cmd eq 'read' }">readonly</c:if> value="${applyDetail.bizId}">
-		                                        </div>
-		                                    </div>
-		                                    <div class="form-group row">
-		                                    <label for="bizLocation" class="col-sm-2 col-form-label text-center">주소</label>
-		                                        <div class="col-sm-10">
 		                                            <input type="text" class="form-control" id="roadAddress"  name="bizLocation" <c:if test="${cmd eq 'read' }">readonly</c:if> value="${applyDetail.bizLocation}">
 		                                        </div>
 		                                    </div>

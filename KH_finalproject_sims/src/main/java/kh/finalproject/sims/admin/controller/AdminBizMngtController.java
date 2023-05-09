@@ -175,37 +175,45 @@ public class AdminBizMngtController {
 
 	// 통신사 검토결과 변경
 	@PostMapping("/updateBizStatus")
-	public ModelAndView updateBizStatus(ModelAndView mv, AdminBizMngtVo vo, HttpServletRequest request, HttpServletResponse response, @RequestParam(value="p", required = false) String pageNumber) throws Exception {
+	public String updateBizStatus(ModelAndView mv, AdminBizMngtVo vo, HttpServletRequest request, HttpServletResponse response, @RequestParam(value="p", required = false) String pageNumber) throws Exception {
 		service.updateBizStatus(vo);
 		
-		String divCheck = request.getParameter("divCheck");
-		
-		Map<String, String> paginationInfo = null;
-		int pNum = 0;
-		int cnt = 0;
-		String searchOption = vo.getSearchOption();
-		String searchRadioVal = vo.getSearchRadioVal();
-		String searchBox = vo.getSearchBox();
-		Search search = null;
-
-		String bizId = vo.getBizId();
-		AdminBizMngtVo applyDetail = service.selectApplyDetail(bizId);
-		paginationInfo = paginationInfo(pageNumber, request, response);
-		pNum = Integer.parseInt(paginationInfo.get("pNum"));
-		cnt = Integer.parseInt(paginationInfo.get("cnt"));
-		searchRadioVal = bizId;
-		search = service.selectBizPlanList(pNum, cnt, searchOption, searchRadioVal, searchBox);
-		request.setAttribute("paging", search);
-		mv.addObject("searchOption", searchOption);
-		mv.addObject("searchBox", searchBox);
-		mv.addObject("searchRadioVal", searchRadioVal);
+		String divCheck="";
+		String goToUrl = "redirect:/admin/applyDetail/";
+		String msg = "SUCCESS";
+		if(vo.getEnable() == 1) {
+			divCheck = "detail";
+		}else if(vo.getEnable() == 3) {
+			divCheck = "apply";
+		}
 		mv.addObject("divCheck", divCheck);
+		String bizId = vo.getBizId();
+		mv.addObject("bizId", bizId);
+		goToUrl = goToUrl + bizId + "?divCheck=" + divCheck + "&cmd=read&msg=" + msg;
 		
-		mv.addObject("applyDetail", applyDetail);
-		mv.addObject("result", "수정이 완료되었습니다.");
-		mv.addObject("cmd", "read");
-		mv.setViewName("admin/biz/bizDetail");
-		return mv;
+		return goToUrl;
+		
+		/*
+		 * Map<String, String> paginationInfo = null; int pNum = 0; int cnt = 0; String
+		 * searchOption = vo.getSearchOption(); String searchRadioVal =
+		 * vo.getSearchRadioVal(); String searchBox = vo.getSearchBox(); Search search =
+		 * null;
+		 * 
+		 * String bizId = vo.getBizId(); AdminBizMngtVo applyDetail =
+		 * service.selectApplyDetail(bizId); paginationInfo = paginationInfo(pageNumber,
+		 * request, response); pNum = Integer.parseInt(paginationInfo.get("pNum")); cnt
+		 * = Integer.parseInt(paginationInfo.get("cnt")); searchRadioVal = bizId; search
+		 * = service.selectBizPlanList(pNum, cnt, searchOption, searchRadioVal,
+		 * searchBox); request.setAttribute("paging", search);
+		 * mv.addObject("searchOption", searchOption); mv.addObject("searchBox",
+		 * searchBox); mv.addObject("searchRadioVal", searchRadioVal);
+		 * mv.addObject("divCheck", divCheck);
+		 * 
+		 * mv.addObject("applyDetail", applyDetail); mv.addObject("result",
+		 * "수정이 완료되었습니다."); mv.addObject("cmd", "read");
+		 * mv.setViewName("admin/biz/bizDetail");
+		 */
+		/* return mv; */
 	}
 
 	// 통신사 상세 수정 페이지로 이동
