@@ -39,12 +39,13 @@ public class UserPlanController {
 	@Autowired
 	private UserMyPageService myService;
 	
+	// 요금제 상세 페이지
 	@GetMapping("/{planNo}")
 	public ModelAndView viewPlanDetail(
 			ModelAndView mv
 			, HttpServletRequest req
 			, @PathVariable int planNo
-			) {
+			) throws Exception {
 		
 		// 최근 본 요금제 추가
 		if(req.getUserPrincipal() != null && req.isUserInRole("ROLE_USER")) {
@@ -69,7 +70,6 @@ public class UserPlanController {
 		
 		mv.addObject("bizNets", bizService.getNetListByBizId(bvo.getBizId()));
 		mv.addObject("cntReview", bizService.getCountReviewByBizId(bvo.getBizId()));
-		
 		mv.addObject("like", isLiked);
 		mv.addObject("plan", pvo);
 		mv.addObject("biz", bvo);
@@ -84,7 +84,7 @@ public class UserPlanController {
 	public ModelAndView viewTerms(
 			ModelAndView mv
 			, @PathVariable int planNo
-			) {
+			) throws Exception {
 		PlanVo pvo = planService.getPlanByNo(planNo);
 		mv.addObject("plan", pvo);
 		mv.setViewName("user/plan/terms");
@@ -96,7 +96,7 @@ public class UserPlanController {
 	public ModelAndView viewPlanOption(
 			ModelAndView mv
 			, @PathVariable int planNo
-			) {
+			) throws Exception {
 		PlanVo pvo = planService.getPlanByNo(planNo);
 		mv.addObject("plan", pvo);
 		mv.setViewName("user/plan/option");
@@ -109,10 +109,11 @@ public class UserPlanController {
 			ModelAndView mv
 			, @PathVariable int planNo
 			, Principal principal
-			) {
+			) throws Exception {
 		String userId = principal.getName();
 		UserMemberVo mvo = myService.selectMyPageInfo(userId);
 		PlanVo pvo = planService.getPlanByNo(planNo);
+		
 		mv.addObject("plan", pvo);
 		mv.addObject("user", mvo);
 		
@@ -128,14 +129,16 @@ public class UserPlanController {
 			, @ModelAttribute PlanOrderVo orderVo
 			, @ModelAttribute PayCardVo cardVo
 			, @ModelAttribute PayAccVo accVo
-			) {
-		int orderNo = planService.selectOrderNo();
+			) throws Exception {
+		int orderNo = planService.selectOrderNo(); // 주문번호 생성
 		orderVo.setOrderNo(orderNo);
+		
 		planService.insertPlanOrder(orderVo);
-        if (orderVo.getPlanPay().equals("1")) {
+		
+        if (orderVo.getPlanPay().equals("1")) {	// 카드납부
         	cardVo.setOrderNo(orderNo);
         	planService.insertPayinfoCard(cardVo);
-		} else if (orderVo.getPlanPay().equals("2")) {
+		} else if (orderVo.getPlanPay().equals("2")) { // 계좌이체
 			accVo.setOrderNo(orderNo);
 			planService.insertPayinfoAcc(accVo);
 		}
@@ -148,10 +151,10 @@ public class UserPlanController {
 	public int likePlan(
 	        HttpServletRequest req
 	        , @PathVariable int planNo
-	        ) {
+	        ) throws Exception {
 	    Principal prin = req.getUserPrincipal();
 	    String userId = prin.getName();
-	    boolean isLiked = planService.getLikeByPlanWithUser(planNo, userId);
+	    boolean isLiked = planService.getLikeByPlanWithUser(planNo, userId); // 찜여부 조회
 	    if (isLiked) {
 	        planService.deleteLike(planNo, userId);
 	        return 0; // 찜 취소

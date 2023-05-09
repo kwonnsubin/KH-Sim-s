@@ -7,12 +7,12 @@ import kh.finalproject.sims.user.model.vo.UserReviewVo;
 
 public interface UserBizService {
 
-	BizVo getBizByName(String bizName);
+	BizVo getBizByName(String bizName) throws Exception;
 
-	List<String> getNetListByBizId(String bizId);
+	List<String> getNetListByBizId(String bizId) throws Exception;
 
-	int getCountReviewByBizId(String bizId);
+	int getCountReviewByBizId(String bizId) throws Exception;
 
-	List<UserReviewVo> getReviewListById(String bizId);
+	List<UserReviewVo> getReviewListById(String bizId) throws Exception;
 
 }

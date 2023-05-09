@@ -15,23 +15,23 @@ public class UserBizDao {
 	@Autowired
 	private SqlSession session;
 
-	public BizVo getBizByName(String bizName) {
+	public BizVo getBizByName(String bizName) throws Exception {
 		return session.selectOne("usbiz.getBizByName", bizName);
 	}
 
-	public List<String> getNetListByBizId(String bizId) {
+	public List<String> getNetListByBizId(String bizId) throws Exception {
 		return session.selectList("usbiz.getNetListByBizId", bizId);
 	}
 
-	public int getCountReviewByBizId(String bizId) {
+	public int getCountReviewByBizId(String bizId) throws Exception {
 		return session.selectOne("usbiz.getCountReviewByBizId", bizId);
 	}
 
-	public List<UserReviewVo> getReviewListById(String bizId) {
+	public List<UserReviewVo> getReviewListById(String bizId) throws Exception {
 		return session.selectList("usbiz.getReviewListById", bizId);
 	}
 
-	public BizVo getBizById(String bizId) {
+	public BizVo getBizById(String bizId) throws Exception {
 		return session.selectOne("usbiz.getBizById", bizId);
 	}
 	
