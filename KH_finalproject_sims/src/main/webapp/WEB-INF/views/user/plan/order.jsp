@@ -679,7 +679,6 @@
 				                    'cardExpiration': cardExpiration,
 				                },
 				                success: function(result) {
-				                	console.log(result);
 				                	alert("요금제 신청 성공");
 				                	
 				                	// 문자 보내기
@@ -774,7 +773,6 @@
 				                    'accBank': accBank
 				                },
 				                success: function(result) {
-				                	console.log(result);
 				                	alert("요금제 신청 성공");
 				                	
 				                	// 문자 보내기

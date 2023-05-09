@@ -139,7 +139,7 @@ public class UserPlanController {
 			accVo.setOrderNo(orderNo);
 			planService.insertPayinfoAcc(accVo);
 		}
-        return "redirect:/";
+        return "redirect:/mypage/myplan";
 	}
 	
 	// 찜하기
