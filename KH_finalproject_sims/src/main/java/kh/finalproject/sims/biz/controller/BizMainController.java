@@ -52,7 +52,7 @@ public class BizMainController {
 	@GetMapping("/main")
 	public ModelAndView showMainBoard(ModelAndView mv
 			, Principal principal
-			) throws JsonIOException, IOException {
+			) throws Exception {
 		
 		String bizid = principal.getName();
 		System.out.println("통신사아이디 : "+bizid);
@@ -120,7 +120,7 @@ public class BizMainController {
 	 @PostMapping("/planAcc.Aj")
 	 @ResponseBody 
 	 public String chart2(Principal principal 
-			) throws JsonProcessingException {
+			) throws Exception {
 	 
 	 String bizid = principal.getName(); 
 	 System.out.println("통신사아이디 : "+bizid);

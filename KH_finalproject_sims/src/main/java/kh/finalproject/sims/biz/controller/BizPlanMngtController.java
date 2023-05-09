@@ -131,7 +131,7 @@ public class BizPlanMngtController {
 	@PostMapping("/registerPlan")
 	public String registerBizPlan(ModelAndView mv
 			, @ModelAttribute BizPlanMngtVo vo
-			) {
+			) throws Exception {
 		service.registerBizPlan(vo);
 
 		return "redirect:/biz/planList";
