@@ -81,7 +81,7 @@ public class BizMainController {
 	public String chart(Model model
 			, Principal principal
 			, HttpServletResponse response
-			) {
+			)throws Exception {
 		
 		String bizid = principal.getName();
 		System.out.println("통신사아이디 : "+bizid);
@@ -159,7 +159,7 @@ public class BizMainController {
 	 //가장 인기있는 요금제의 연령대 비율
 	 @PostMapping("/piechart")
 	 @ResponseBody
-	 public String piechart(Principal principal) {
+	 public String piechart(Principal principal)throws Exception {
 		 String bizid = principal.getName(); 
 
 		 List<BizMainVo> topPlanAgeGroupList = service.selectTopPlanAgeRatio(bizid);
@@ -180,7 +180,7 @@ public class BizMainController {
 	 //가장 인기있는 요금제의 성별 비율
 	 @PostMapping("/piechart2.Aj")
 	 @ResponseBody
-	 public String piechart2(Principal pricipal) {
+	 public String piechart2(Principal pricipal) throws Exception {
 		 String bizid = pricipal.getName();
 		 
 		 List<BizMainVo> topPlanGgenderList = service.selectTopPlanGenderRatio(bizid);
@@ -201,7 +201,7 @@ public class BizMainController {
 	 //통신사 전체 이용 연령대 비율
 	 @PostMapping("/bizAgeRatio.Aj")
 	 @ResponseBody
-	 public String bizAgeRatio(Principal pricipal) {
+	 public String bizAgeRatio(Principal pricipal) throws Exception {
 		 String bizid = pricipal.getName();
 		 
 		 List<BizMainVo> bizAgeList = service.selectBizAgeRatio(bizid);
@@ -222,7 +222,7 @@ public class BizMainController {
 	 //통신사 전체 이용 성별 비율
 	 @PostMapping("/bizGenderRatio.Aj")
 	 @ResponseBody
-	 public String bizGenderRatio(Principal pricipal) {
+	 public String bizGenderRatio(Principal pricipal) throws Exception {
 		 String bizid = pricipal.getName();
 		 
 		 List<BizMainVo> bizGenderList = service.selectBizGenderRatio(bizid);

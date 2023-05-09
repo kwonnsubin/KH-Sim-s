@@ -23,32 +23,32 @@ public class BizInfoMngtServiceImpl implements BizInfoMngtService{
 	 */
 
 	@Override
-	public BizInfoMngtVo selectBizInfoDetail(String bizid) {
+	public BizInfoMngtVo selectBizInfoDetail(String bizid)throws Exception {
 		return dao.selectBizInfoDetail(bizid);
 	}
 
 	@Override
-	public List<bizInfoMngServiceVo> selectListService(String bizid) {
+	public List<bizInfoMngServiceVo> selectListService(String bizid)throws Exception {
 		return dao.selectListService(bizid);
 	}
 
 	@Override
-	public int modifyNetService(List<bizInfoMngServiceVo> netServiceList) {
+	public int modifyNetService(List<bizInfoMngServiceVo> netServiceList)throws Exception {
 		return dao.modifyNetService(netServiceList);
 	}
 
 	@Override
-	public int modifyBizInfo(BizInfoMngtVo vo) {
+	public int modifyBizInfo(BizInfoMngtVo vo) throws Exception{
 		return dao.modifyBizInfo(vo);
 	}
 
 	@Override
-	public String getBeforeBizName(String bizid) {
+	public String getBeforeBizName(String bizid)throws Exception {
 		return dao.getBeforeBizName(bizid);
 	}
 
 	@Override
-	public int updatePlanTable(String beforeBizName, String bizName) {
+	public int updatePlanTable(String beforeBizName, String bizName) throws Exception{
 		Map<String, String> map = new HashMap<String, String>();
 		map.put("bizName", bizName );
 		map.put("beforeBizName", beforeBizName);
@@ -57,12 +57,12 @@ public class BizInfoMngtServiceImpl implements BizInfoMngtService{
 
 	// 메인 통신사 정보
 	@Override
-	public BizInfoMngtVo selectMainBizInfo(String bizId) {
+	public BizInfoMngtVo selectMainBizInfo(String bizId)throws Exception {
 		return dao.selectMainBizInfo(bizId);
 	}
 
 	@Override
-	public int insertServicList(String bizid) {
+	public int insertServicList(String bizid)throws Exception {
 		return dao.insertServicList(bizid);
 	}
 

@@ -15,35 +15,35 @@ public class BizMyPageDao {
 	@Autowired
 	private SqlSession sqlSession;
 	
-	public int getTodayReviewCnt(String bizid) {
+	public int getTodayReviewCnt(String bizid) throws Exception {
 		return sqlSession.selectOne("mypage.getTodayReviewCnt", bizid);
 	}
 
-	public int getTotalReviewCnt(String bizid) {
+	public int getTotalReviewCnt(String bizid) throws Exception {
 		return sqlSession.selectOne("mypage.getTotalReviewCnt", bizid);
 	}
 	
-	public int getTodayApplyCnt(String bizid) {
+	public int getTodayApplyCnt(String bizid) throws Exception {
 		return sqlSession.selectOne("mypage.getTodayApplyCnt", bizid);
 	}
 	
-	public int getTotalApplyCnt(String bizid) {
+	public int getTotalApplyCnt(String bizid) throws Exception {
 		return sqlSession.selectOne("mypage.getTotalApplyCnt", bizid);
 	}
 	
-	public int getTotalPlanCnt(String bizid) {
+	public int getTotalPlanCnt(String bizid)throws Exception {
 		return sqlSession.selectOne("mypage.getTotalPlanCnt", bizid);
 	}
 	
-	public BizMyPageVo getLogo(String bizid) {
+	public BizMyPageVo getLogo(String bizid) throws Exception{
 		return sqlSession.selectOne("mypage.getLogo",bizid);
 	}
 	
-	public List<BizMyPageVo> getRecentReview(String bizid){
+	public List<BizMyPageVo> getRecentReview(String bizid)throws Exception{
 		return sqlSession.selectList("mypage.getRecentReview", bizid);
 	}
 	
-	public List<BizPlanMngtVo> getTopFivePlanInfo(String bizid){
+	public List<BizPlanMngtVo> getTopFivePlanInfo(String bizid) throws Exception{
 		return sqlSession.selectList("mypage.getTopFivePlanInfo", bizid);
 	}
 }

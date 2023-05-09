@@ -40,7 +40,7 @@ public class BizMyPageController {
 	//마이페이지 텍스트 통계
 		 @GetMapping("/myPage")
 		 public ModelAndView myPage(ModelAndView mv
-				 , Principal principal) {
+				 , Principal principal) throws Exception {
 			 
 		     String bizid = principal.getName();
 			 System.out.println("통신사아이디 : " + bizid);
@@ -91,7 +91,7 @@ public class BizMyPageController {
 		 @ResponseBody
 		 public String chart(Principal principal
 				 , JSONArray jsonArray
-				 ) {
+				 ) throws Exception {
 			 String bizid = principal.getName();
 			 System.out.println("통신사 아이디 :"+bizid);
 			 

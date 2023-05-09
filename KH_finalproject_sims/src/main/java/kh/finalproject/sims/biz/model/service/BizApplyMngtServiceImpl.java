@@ -19,17 +19,17 @@ public class BizApplyMngtServiceImpl implements BizApplyMngtService {
 	public BizApplyMngtDao dao;
 
 	@Override
-	public BizApplyVo selectApplyDetailUser(int orderNo) {
+	public BizApplyVo selectApplyDetailUser(int orderNo) throws Exception {
 		return dao.selectApplyDetailUser(orderNo);
 	}
 
 	@Override
-	public BizApplyVo selectApplyDetailPlan(int orderNo) {
+	public BizApplyVo selectApplyDetailPlan(int orderNo)throws Exception {
 		return dao.selectApplyDetailPlan(orderNo);
 	}
 
 	@Override
-	public int updateApproveStatus(int orderNo, String bizid) {
+	public int updateApproveStatus(int orderNo, String bizid)throws Exception {
 		Map<String, Object> map = new HashMap<String, Object>();
 		map.put("orderNo", orderNo);
 		map.put("bizid", bizid);
@@ -38,7 +38,7 @@ public class BizApplyMngtServiceImpl implements BizApplyMngtService {
 	}
 
 	@Override
-	public int updateHoldStatus(int orderNo, String bizid) {
+	public int updateHoldStatus(int orderNo, String bizid)throws Exception {
 		Map<String, Object> map = new HashMap<String, Object>();
 		map.put("orderNo", orderNo);
 		map.put("bizid", bizid);
@@ -47,12 +47,12 @@ public class BizApplyMngtServiceImpl implements BizApplyMngtService {
 	}
 
 	@Override
-	public List<BizApplyVo> selectBizPlanApplyList(String bizid) {
+	public List<BizApplyVo> selectBizPlanApplyList(String bizid) throws Exception{
 		return dao.selectBizPlanApplyList(bizid);
 	}
 
 	@Override
-	public Paging getPage(String bizid, int pNum, int cnt) {
+	public Paging getPage(String bizid, int pNum, int cnt) throws Exception{
 		Map<String, Object> map = new HashMap<String, Object>();
 		map.put("start", (pNum - 1) * cnt + 1);
 		map.put("end", pNum * cnt);	
@@ -70,7 +70,7 @@ public class BizApplyMngtServiceImpl implements BizApplyMngtService {
 
 	//search
 	@Override
-	public Search getPage(String bizid, int pNum, int cnt, String searchType, String keyword) {
+	public Search getPage(String bizid, int pNum, int cnt, String searchType, String keyword) throws Exception{
 		Map<String, Object> map = new HashMap<String, Object>();
 		map.put("start", (pNum - 1) * cnt + 1);
 		map.put("end", pNum * cnt);	
@@ -93,7 +93,7 @@ public class BizApplyMngtServiceImpl implements BizApplyMngtService {
 	}
 
 	@Override
-	public int getSearchApplyListCount(String bizid, String searchType, String keyword) {
+	public int getSearchApplyListCount(String bizid, String searchType, String keyword) throws Exception {
 		Map<String, String> mapCnt = new HashMap<String, String>();
 		mapCnt.put("bizid", bizid);
 		mapCnt.put("searchType", searchType);
@@ -104,7 +104,7 @@ public class BizApplyMngtServiceImpl implements BizApplyMngtService {
 
 	// 분류에 따른 목록
 	@Override
-	public Search getDevisionPage(String bizid, int pNum, int cnt, String searchType, String keyword, int orderStatus) {
+	public Search getDevisionPage(String bizid, int pNum, int cnt, String searchType, String keyword, int orderStatus) throws Exception {
 		Map<String, Object> map = new HashMap<String, Object>();
 		map.put("start", (pNum - 1) * cnt + 1);
 		map.put("end", pNum * cnt);	
@@ -129,7 +129,7 @@ public class BizApplyMngtServiceImpl implements BizApplyMngtService {
 	}
 
 	@Override
-	public int getDevisionApplyListCount(String bizid, String searchType, String keyword, int orderStatus) {
+	public int getDevisionApplyListCount(String bizid, String searchType, String keyword, int orderStatus) throws Exception {
 		Map<String, Object> mapCnt = new HashMap<String, Object>();
 		mapCnt.put("bizid", bizid);
 		mapCnt.put("searchType", searchType);
@@ -142,7 +142,7 @@ public class BizApplyMngtServiceImpl implements BizApplyMngtService {
 	//검색,분류,기간 조회
 	@Override
 	public Search getDevisionPageByDateRange(String bizid, int pNum, int cnt, String searchType, String keyword,
-			int orderStatus, String startDate, String endDate) {
+			int orderStatus, String startDate, String endDate) throws Exception {
 		
 			Map<String, Object> map = new HashMap<String, Object>();
 			map.put("start", (pNum - 1) * cnt + 1);
@@ -173,7 +173,7 @@ public class BizApplyMngtServiceImpl implements BizApplyMngtService {
 
 	@Override
 	public int getDevisionApplyListCountByDateRange(String bizid, String searchType, String keyword, int orderStatus,
-			String startDate, String endDate) {
+			String startDate, String endDate) throws Exception {
 
 			Map<String, Object> mapCnt = new HashMap<String, Object>();
 			mapCnt.put("bizid", bizid);

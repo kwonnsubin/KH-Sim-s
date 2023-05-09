@@ -19,33 +19,33 @@ public class BizPlanMngtServiceImpl implements BizPlanMngtService{
 	public BizPlanMngtDao dao;
 
 	@Override
-	public List<BizPlanMngtVo> selectBizPlanList(String bizid) {
+	public List<BizPlanMngtVo> selectBizPlanList(String bizid)throws Exception {
 		return dao.selectBizPlanList(bizid);
 	}
 
 	@Override
-	public BizPlanMngtVo selectBizPlanDetail(int planNo) {
+	public BizPlanMngtVo selectBizPlanDetail(int planNo) throws Exception{
 		return dao.selectBizPlanDetail(planNo);
 	}
 
 	@Override
-	public int registerBizPlan(BizPlanMngtVo vo) {
+	public int registerBizPlan(BizPlanMngtVo vo)throws Exception {
 		return dao.registerBizPlan(vo);
 		
 	}
 
 	@Override
-	public BizPlanMngtVo findByBizName(String bizid) {
+	public BizPlanMngtVo findByBizName(String bizid) throws Exception{
 		return dao.findByBizName(bizid);
 	}
 
 	@Override
-	public int getPlanListCnt(String bizid) {
+	public int getPlanListCnt(String bizid)throws Exception {
 		return dao.getPlanListCnt(bizid);
 	}
 
 	@Override
-	public Paging getPage(String bizid, int pNum, int cnt) {
+	public Paging getPage(String bizid, int pNum, int cnt)throws Exception {
 		Map<String, Object> map = new HashMap<String, Object>();
 		map.put("start", (pNum - 1) * cnt + 1);
 		map.put("end", pNum * cnt);	
@@ -62,14 +62,14 @@ public class BizPlanMngtServiceImpl implements BizPlanMngtService{
 	}
 
 	@Override
-	public int deleteBizPlan(int planNo) {
+	public int deleteBizPlan(int planNo)throws Exception {
 		return dao.deleteBizPlan(planNo);
 	}
 
 	
 	//search
 	@Override
-	public Search getPage(String bizid, int pNum, int cnt, String keyword) {
+	public Search getPage(String bizid, int pNum, int cnt, String keyword) throws Exception{
 		Map<String, Object> map = new HashMap<String, Object>();
 		map.put("start", (pNum - 1) * cnt + 1);
 		map.put("end", pNum * cnt);	
@@ -92,7 +92,7 @@ public class BizPlanMngtServiceImpl implements BizPlanMngtService{
 	}
 
 	@Override
-	public int getSearchPlanListCount(String bizid, String keyword) {
+	public int getSearchPlanListCount(String bizid, String keyword)throws Exception {
 		Map<String, String> mapCnt = new HashMap<String, String>();
 		mapCnt.put("bizid", bizid);
 		mapCnt.put("keyword", keyword);
@@ -100,8 +100,9 @@ public class BizPlanMngtServiceImpl implements BizPlanMngtService{
 	}
 
 	@Override
-	public int modifyPlan(BizPlanMngtVo vo) {
+	public int modifyPlan(BizPlanMngtVo vo)throws Exception {
 		return dao.modifyPlan(vo);
 	}
+
 
 }

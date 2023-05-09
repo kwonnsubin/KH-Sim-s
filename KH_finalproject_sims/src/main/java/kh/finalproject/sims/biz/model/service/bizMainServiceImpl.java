@@ -17,42 +17,42 @@ public class bizMainServiceImpl implements BizMainService{
 	private BizMainDao dao;
 	
 	@Override
-	public List<BizChartVo> selectJoinPlanByDate(String bizid) {
+	public List<BizChartVo> selectJoinPlanByDate(String bizid)throws Exception {
 		return dao.selectJoinPlanByDate(bizid);
 	}
 
 	@Override
-	public List<BizMainVo> selectTotalApplyByPlan(String bizid) {
+	public List<BizMainVo> selectTotalApplyByPlan(String bizid)throws Exception {
 		return dao.selectTotalApplyByPlan(bizid);
 	}
 
 
 	@Override
-	public List<BizMainVo>selectTodayApplyByPlan(String bizid) {
+	public List<BizMainVo>selectTodayApplyByPlan(String bizid)throws Exception {
 		return dao.selectTodayApplyByPlan(bizid);
 	}
 	
 	@Override
-	public List<BizMainVo> selectTopPlanAgeRatio(String bizid) {
+	public List<BizMainVo> selectTopPlanAgeRatio(String bizid)throws Exception {
 		return dao.selectTopPlanAgeRatio(bizid);
 	}
 
 	@Override
-	public List<BizMainVo> selectTopPlanGenderRatio(String bizid) {
+	public List<BizMainVo> selectTopPlanGenderRatio(String bizid)throws Exception {
 		return dao.selectTopPlanGenderRatio(bizid);
 	}
 
 	@Override
-	public String selectTopPlanName(String bizid) {
+	public String selectTopPlanName(String bizid) throws Exception{
 		return dao.selectTopPlanName(bizid);
 	}
 
 	@Override
-	public List<BizMainVo> selectBizAgeRatio(String bizid) {
+	public List<BizMainVo> selectBizAgeRatio(String bizid)throws Exception {
 		return dao.selectBizAgeRatio(bizid);	}
 
 	@Override
-	public List<BizMainVo> selectBizGenderRatio(String bizid) {
+	public List<BizMainVo> selectBizGenderRatio(String bizid)throws Exception {
 		return dao.selectBizGenderRatio(bizid);	}
 
 

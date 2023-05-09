@@ -8,25 +8,25 @@ import kh.finalproject.sims.common.page.Search;
 
 public interface BizPlanMngtService {
 
-	public List<BizPlanMngtVo> selectBizPlanList(String bizid);
+	public List<BizPlanMngtVo> selectBizPlanList(String bizid)throws Exception;
 
-	public BizPlanMngtVo selectBizPlanDetail(int planNo);
+	public BizPlanMngtVo selectBizPlanDetail(int planNo)throws Exception;
 
-	public int registerBizPlan(BizPlanMngtVo vo);
+	public int registerBizPlan(BizPlanMngtVo vo)throws Exception;
 
-	public BizPlanMngtVo findByBizName(String bizid);
+	public BizPlanMngtVo findByBizName(String bizid)throws Exception;
 
-	public int getPlanListCnt(String bizid);
+	public int getPlanListCnt(String bizid)throws Exception;
 
-	public Paging getPage(String bizid, int pNum, int cnt);
+	public Paging getPage(String bizid, int pNum, int cnt)throws Exception;
 
-	public int deleteBizPlan(int planNo);
+	public int deleteBizPlan(int planNo)throws Exception;
 
-	public int modifyPlan(BizPlanMngtVo vo);
+	public int modifyPlan(BizPlanMngtVo vo)throws Exception;
 	
 	//search 목록
-	public Search getPage(String bizid, int pNum, int cnt, String keyword); 
+	public Search getPage(String bizid, int pNum, int cnt, String keyword)throws Exception; 
 
-	public int getSearchPlanListCount(String bizid, String keyword);
+	public int getSearchPlanListCount(String bizid, String keyword)throws Exception;
 
 }

@@ -7,19 +7,19 @@ import kh.finalproject.sims.biz.model.vo.BizPlanMngtVo;
 
 public interface BizMyPageService {
 
-	public int getTodayReviewCnt(String bizid);
+	public int getTodayReviewCnt(String bizid)throws Exception;
 	
-	public int getTotalReviewCnt(String bizid);
+	public int getTotalReviewCnt(String bizid)throws Exception;
 	
-	public int getTodayApplyCnt(String bizid);
+	public int getTodayApplyCnt(String bizid)throws Exception;
 	
-	public int getTotalApplyCnt(String bizid);
+	public int getTotalApplyCnt(String bizid)throws Exception;
 	
-	public int getTotalPlanCnt(String bizid);
+	public int getTotalPlanCnt(String bizid)throws Exception;
 	
-	public BizMyPageVo getLogo(String bizid);
+	public BizMyPageVo getLogo(String bizid)throws Exception;
 	
-	public List<BizMyPageVo> getRecentReview(String bizid);
+	public List<BizMyPageVo> getRecentReview(String bizid)throws Exception;
 	
-	public List<BizPlanMngtVo> getTopFivePlanInfo(String bizid);
+	public List<BizPlanMngtVo> getTopFivePlanInfo(String bizid)throws Exception;
 }

@@ -37,7 +37,7 @@ public class BizPlanMngtController {
 			,@RequestParam(required = false) String keyword
 			, HttpServletRequest request
 			, HttpServletResponse response
-			) {
+			) throws Exception {
 		String bizid = principal.getName();
 		System.out.println("통신사아이디 : " + bizid);
 		
@@ -101,7 +101,7 @@ public class BizPlanMngtController {
 
 	// 통신사 요금제 상세
 	@GetMapping("/planDetail")
-	public ModelAndView selectBizPlanDetail(ModelAndView mv, int planNo) {
+	public ModelAndView selectBizPlanDetail(ModelAndView mv, int planNo) throws Exception {
 		System.out.println(planNo);
 		BizPlanMngtVo vo = service.selectBizPlanDetail(planNo); // 이름으로 보내면 요금제 이름이 중복 될 경우에 에러 나서 planNo로
 		System.out.println(vo);
@@ -115,7 +115,7 @@ public class BizPlanMngtController {
 	@GetMapping("/registerPlan")
 	public ModelAndView registerBizPlan(ModelAndView mv
 			, Principal principal
-			) {
+			) throws Exception {
 
 		String bizid = principal.getName();
 		System.out.println("통신사아이디 : " + bizid);
@@ -140,7 +140,7 @@ public class BizPlanMngtController {
 	//요금제 삭제
 	@PostMapping("deletePlan")
 	@ResponseBody
-	public String deleteBizPlan(int planNo) {
+	public String deleteBizPlan(int planNo) throws Exception {
 		System.out.println(planNo);
 		service.deleteBizPlan(planNo);
 		return "success";
@@ -148,7 +148,7 @@ public class BizPlanMngtController {
 	
 	//체크박스를 통한 요금제 선택삭제
 	@PostMapping("deleteChkBox")
-	public String deleteChkBox(HttpServletRequest req) {
+	public String deleteChkBox(HttpServletRequest req) throws Exception {
 		String [] ajaxMsg = req.getParameterValues("valueArr");
 		
 		if(ajaxMsg !=null && ajaxMsg.length > 0) {
@@ -176,7 +176,7 @@ public class BizPlanMngtController {
 	@GetMapping("/modifyPlan")
 	public ModelAndView modifyPlan(ModelAndView mv
 			, int planNo
-			) {
+			) throws Exception {
 		System.out.println("요금제 수정을 위한 기본값 출력 planNo:"+ planNo);
 		BizPlanMngtVo vo = service.selectBizPlanDetail(planNo);
 		System.out.println("요금제 수정을 위한 기본값 출력 vo :"+ vo);
@@ -192,7 +192,7 @@ public class BizPlanMngtController {
 	//요금제 수정
 	@PostMapping("/modifyPlan")
 	public String modifyPlan(@ModelAttribute BizPlanMngtVo vo
-			) {
+			) throws Exception {
 		System.out.println("post로 넘어온planNo :"+vo.getPlanNo());
 		System.out.println("수정 정보 vo :" +vo);
 		

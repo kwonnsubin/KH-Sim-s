@@ -41,7 +41,7 @@ public class BizReviewMngtController {
 			, Principal principal
 			, HttpServletRequest request
 			, HttpServletResponse response
-			) {
+			) throws Exception {
 		String bizid = principal.getName();
 		System.out.println("통신사 아이디 :"+bizid);
 		
@@ -108,7 +108,7 @@ public class BizReviewMngtController {
 	public String reportReview(
 			@RequestParam("reviewNo") int reviewNo,
             @RequestParam("reportReason") String reportReason
-			) {
+			) throws Exception {
 		System.out.println("reviewNo: " + reviewNo);
         System.out.println("reportReason: " + reportReason);
         
@@ -131,11 +131,10 @@ public class BizReviewMngtController {
 	}
 	
 	//리뷰상세보기
-	//TODO
 	@GetMapping("/reviewDetail")
 	public ModelAndView reviewDetail(ModelAndView mv
 			,@RequestParam("reviewNo") int reviewNo
-			) {
+			) throws Exception {
 		
 		BizReviewMngtVo vo = service.selectReviewDetail(reviewNo);
 		System.out.println("리뷰 상세보기"+vo);
@@ -146,71 +145,7 @@ public class BizReviewMngtController {
 		return mv;
 	}
 	
-	//신고처리상태에 의한 조회
-//	@PostMapping("/selectByReportStatus.aj")
-//	@ResponseBody
-//	public String selectByReportStatus(@RequestParam("radio_value") String reportStatus
-//			, Principal principal
-//			, HttpServletRequest request
-//			, HttpServletResponse response) {
-//		Map<String, Object> map = new HashMap<String, Object>();
-//		System.out.println("에이작스를 통해 들어온 reportStatus :"+reportStatus);
-//		
-//		String bizid = principal.getName();
-//		System.out.println("통신사 아이디 :"+bizid);
-//		
-//		String pageNumber = request.getParameter("p");
-//		int pNum;
-//		if (pageNumber == null || pageNumber.isEmpty()) {
-//			pNum = 1;
-//		} else {
-//			pNum = Integer.parseInt(pageNumber);
-//		}
-//
-//		Cookie cookie = null;
-//		Cookie[] cookies = request.getCookies();
-//		for (Cookie c : cookies) {
-//			if (c.getName().equals("cnt")) {
-//				cookie = c;
-//			}
-//		}
-//
-//		String cnt = request.getParameter("cnt");
-//		if (cnt != null) {
-//			if (cnt.isEmpty()) {
-//				if (cookie != null) {
-//					cnt = cookie.getValue();
-//				} else {
-//					cnt = "10"; // 초기값
-//				}
-//			}
-//		} else {
-//			if (cookie != null) {
-//				cnt = cookie.getValue();
-//			} else {
-//				cnt = "10";
-//			}
-//		}
-//
-//		cookie = new Cookie("cnt", cnt);
-//		cookie.setMaxAge(60 * 60 * 24 * 5);
-//		response.addCookie(cookie);
-//		
-//		Paging paging = service.selectByReportStatus(bizid, pNum, Integer.parseInt(cnt),reportStatus);
-//		//request.setAttribute("paging", paging);
-//		map.put("paging", paging);
-//		
-//		System.out.println("paging.getPage() : "+paging.getPage());
-//		System.out.println("getPageList : "+paging.getPageList());
-//		
-//		int reviewCnt = service.selectByReportStatusCnt(bizid,reportStatus);
-//		System.out.println("해당 통신사 상태 리뷰 총 개수 : "+reviewCnt);
-//		
-//		//mv.addObject("reviewCnt",reviewCnt);
-//		map.put("reviewCnt",reviewCnt);
-//		
-//		return new Gson().toJson(map); 
-//	}
+
 	@GetMapping("/selectByReportStatus")
 	public ModelAndView selectByReportStatus(BizReviewMngtVo vo
 			, Principal principal
@@ -218,7 +153,7 @@ public class BizReviewMngtController {
 			, HttpServletResponse response
 			,@RequestParam(value = "p", required = false) String pageNumber
 			,@RequestParam(name = "reportStatus", defaultValue = "0") int IntReportStatus
-			, ModelAndView mv) {
+			, ModelAndView mv) throws Exception {
 		
 		String bizid = principal.getName();
 		System.out.println("통신사 아이디 :"+bizid);

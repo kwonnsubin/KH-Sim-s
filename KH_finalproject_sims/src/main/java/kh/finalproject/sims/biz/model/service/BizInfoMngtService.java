@@ -10,15 +10,15 @@ public interface BizInfoMngtService {
 	
 	//public List<BizInfoMngtVo> selectList() throws Exception;
 
-	public BizInfoMngtVo selectBizInfoDetail(String bizid);
-	public List<bizInfoMngServiceVo> selectListService(String bizid);
-	public int modifyNetService(List<bizInfoMngServiceVo> netServiceList);
-	public int modifyBizInfo(BizInfoMngtVo vo);
-	public String getBeforeBizName(String bizid);
-	public int updatePlanTable(String beforeBizName, String bizName);
+	public BizInfoMngtVo selectBizInfoDetail(String bizid)throws Exception;
+	public List<bizInfoMngServiceVo> selectListService(String bizid)throws Exception;
+	public int modifyNetService(List<bizInfoMngServiceVo> netServiceList)throws Exception;
+	public int modifyBizInfo(BizInfoMngtVo vo)throws Exception;
+	public String getBeforeBizName(String bizid)throws Exception;
+	public int updatePlanTable(String beforeBizName, String bizName)throws Exception;
 	
 	// 메인 통신사 정보
-	public BizInfoMngtVo selectMainBizInfo(String bizId);
+	public BizInfoMngtVo selectMainBizInfo(String bizId)throws Exception;
 	
-	public int insertServicList(String bizid);
+	public int insertServicList(String bizid)throws Exception;
 }

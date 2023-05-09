@@ -18,12 +18,12 @@ public class BizReviewMngtServiceImpl implements BizReviewMngtService {
 	private BizReviewMngtDao dao;
 	
 	@Override
-	public int getReviewListCount(String bizid) {
+	public int getReviewListCount(String bizid) throws Exception{
 		return dao.getReviewListCount(bizid);
 	}
 
 	@Override
-	public Paging getPage(String bizid, int pNum, int cnt) {
+	public Paging getPage(String bizid, int pNum, int cnt)throws Exception {
 		Map<String, Object> map = new HashMap<String, Object>();
 		map.put("start", (pNum - 1) * cnt + 1);
 		map.put("end", pNum * cnt);	
@@ -40,29 +40,29 @@ public class BizReviewMngtServiceImpl implements BizReviewMngtService {
 	}
 
 	@Override
-	public int reportReview(BizReviewMngtVo vo) {
+	public int reportReview(BizReviewMngtVo vo)throws Exception {
 		return dao.reportReview(vo);
 	}
 
 	@Override
-	public int cancleReport(int reviewNo) {
+	public int cancleReport(int reviewNo)throws Exception {
 		return dao.cancleReport(reviewNo);
 	}
 
 	@Override
-	public BizReviewMngtVo selectReviewDetail(int reviewNo) {
+	public BizReviewMngtVo selectReviewDetail(int reviewNo)throws Exception {
 		return dao.selectReviewDetail(reviewNo);
 	}
 
 	// 메인 통신사 페이지 리뷰
 	@Override
-	public List<BizReviewMngtVo> selectBizReviewList(String bizId) {
+	public List<BizReviewMngtVo> selectBizReviewList(String bizId)throws Exception {
 		return dao.selectBizReviewList(bizId);
 	}
 
 	//신고처리상태에 따른 조회
 	@Override
-	public Paging selectByReportStatus(String bizid, int pNum, int cnt, String reportStatus) {
+	public Paging selectByReportStatus(String bizid, int pNum, int cnt, String reportStatus)throws Exception {
 		Map<String, Object> map = new HashMap<String, Object>();
 		map.put("start", (pNum - 1) * cnt + 1);
 		map.put("end", pNum * cnt);	
@@ -80,7 +80,7 @@ public class BizReviewMngtServiceImpl implements BizReviewMngtService {
 	}
 
 	@Override
-	public int selectByReportStatusCnt(String bizid, String reportStatus) {
+	public int selectByReportStatusCnt(String bizid, String reportStatus) throws Exception{
 		Map<String, Object> map = new HashMap<String, Object>();
 		map.put("bizid",bizid);
 		map.put("reportStatus",reportStatus);

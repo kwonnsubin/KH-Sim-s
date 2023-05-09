@@ -38,7 +38,7 @@ public class BizInfoMngtController {
 	@GetMapping("/infodetail")
 	public ModelAndView selectBizInfoDetail(ModelAndView mv
 			, Principal principal
-			) {
+			)throws Exception {
 		String bizid = principal.getName();
 		System.out.println("통신사아이디 : "+bizid);
 		
@@ -78,7 +78,7 @@ public class BizInfoMngtController {
 	@GetMapping("/modifyInfo")
 	public ModelAndView modifyBizInfo(ModelAndView mv
 			, Principal principal
-			) {
+			)throws Exception {
 		String bizid = principal.getName();
 		System.out.println("통신사아이디 : "+bizid);
 		
@@ -140,7 +140,7 @@ public class BizInfoMngtController {
 			, @RequestParam(name="logo", required = false) MultipartFile multi
 			, @RequestParam(name="originalFilename", required = false) String originalFilename
 			, @RequestParam(name="logoRenameFilename", required = false) String logoRenameFilename
-			) {
+			)throws Exception {
 		String bizid = principal.getName();
 		System.out.println("통신사아이디 : " + bizid);
 		
