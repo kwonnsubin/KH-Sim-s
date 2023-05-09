@@ -68,8 +68,16 @@ public class UserMyPageDao {
 		return sqlSession.delete("bizReview.deleteReview", brVo);
 	}
 
-	public List<BizApplyVo> selectMyPlanList(String userId) throws Exception {
-		return sqlSession.selectList("apply.selectMyPlanList", userId);
+	public List<BizApplyVo> selectMyPlanListOrder(String userId) throws Exception {
+		return sqlSession.selectList("apply.selectMyPlanListOrder", userId);
+	}
+	
+	public List<BizApplyVo> selectMyPlanListAccept(String userId) throws Exception {
+		return sqlSession.selectList("apply.selectMyPlanListAccept", userId);
+	}
+	
+	public List<BizApplyVo> selectMyPlanListHold(String userId) throws Exception {
+		return sqlSession.selectList("apply.selectMyPlanListHold", userId);
 	}
 
 	public BizApplyVo selectMyPlanDetail(HashMap<String, Object> searchOrder) throws Exception {

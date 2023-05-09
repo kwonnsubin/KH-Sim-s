@@ -91,10 +91,22 @@ public class UserMyPageServiceImpl implements UserMyPageService {
 		return dao.selectOrderListCount(userId);
 	}
 
-	// 가입한 요금제 리스트
+	// 가입한 요금제 리스트 (신청완료)
 	@Override
-	public List<BizApplyVo> selectMyPlanList(String userId) throws Exception {
-		return dao.selectMyPlanList(userId);
+	public List<BizApplyVo> selectMyPlanListOrder(String userId) throws Exception {
+		return dao.selectMyPlanListOrder(userId);
+	}
+	
+	// 가입한 요금제 리스트 (승인완료)
+	@Override
+	public List<BizApplyVo> selectMyPlanListAccept(String userId) throws Exception {
+		return dao.selectMyPlanListAccept(userId);
+	}
+	
+	// 가입한 요금제 리스트 (승인보류)
+	@Override
+	public List<BizApplyVo> selectMyPlanListHold(String userId) throws Exception {
+		return dao.selectMyPlanListHold(userId);
 	}
 
 	// 가입한 요금제 상세

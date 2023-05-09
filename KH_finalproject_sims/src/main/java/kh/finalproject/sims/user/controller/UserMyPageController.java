@@ -212,9 +212,13 @@ public class UserMyPageController {
 	@GetMapping("/mypage/myplan")
 	public ModelAndView selectMyPlanList(ModelAndView mv, Principal prin) throws Exception {
 		String userId = prin.getName();
-		List<BizApplyVo> poList = service.selectMyPlanList(userId);
+		List<BizApplyVo> orderList = service.selectMyPlanListOrder(userId);
+		List<BizApplyVo> acceptList = service.selectMyPlanListAccept(userId);
+		List<BizApplyVo> holdList = service.selectMyPlanListHold(userId);
 		
-		mv.addObject("poList", poList);
+		mv.addObject("orderList", orderList);
+		mv.addObject("acceptList", acceptList);
+		mv.addObject("holdList", holdList);
 		mv.setViewName("user/myinfo/myplan");
 		
 		return mv;

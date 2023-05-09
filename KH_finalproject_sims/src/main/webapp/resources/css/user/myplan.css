@@ -8,6 +8,12 @@
 	width: 80%;
 }
 
+.order-text,
+.accept-text,
+.hold-text {
+	cursor: pointer;
+}
+
 .list-row,
 .none-div {
 	min-height: 100px;

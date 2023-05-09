@@ -45,8 +45,14 @@ public interface UserMyPageService {
 	// 리뷰에 나올 가입한 요금제 리스트 갯수
 	public int selectOrderListCount(String userId) throws Exception;
 
-	// 가입한 요금제 리스트
-	public List<BizApplyVo> selectMyPlanList(String userId) throws Exception;
+	// 가입한 요금제 리스트 (신청완료)
+	public List<BizApplyVo> selectMyPlanListOrder(String userId) throws Exception;
+	
+	// 가입한 요금제 리스트 (승인완료)
+	public List<BizApplyVo> selectMyPlanListAccept(String userId) throws Exception;
+	
+	// 가입한 요금제 리스트 (승인보류)
+	public List<BizApplyVo> selectMyPlanListHold(String userId) throws Exception;
 
 	// 가입한 요금제 상세
 	public BizApplyVo selectMyPlanDetail(HashMap<String, Object> searchOrder) throws Exception;

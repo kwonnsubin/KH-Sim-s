@@ -9,7 +9,7 @@
 <head>
 
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="vieworderrt" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta name="description" content="">
     <meta name="author" content="">
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -45,56 +45,56 @@
        				</div>
        				
        				<div class="row row-cols-auto text-div mb-5">
-	       				<div class="col text-center write-review">
+	       				<div class="col text-center order-text">
 		       				<p style="font-weight: bold;">신청 완료</p>
 	       				</div>
 	       				<div class="col" style="display: flex; justify-content : center;">
 		       				<div class="vr" style="background-color:black; height:28px;"></div>
 	       				</div>
-	       				<div class="col text-center written-review">
+	       				<div class="col text-center accept-text">
 	       					<p>승인 완료</p>
 	       				</div>
 	       				<div class="col" style="display: flex; justify-content : center;">
 		       				<div class="vr" style="background-color:black; height:28px;"></div>
 	       				</div>
-	       				<div class="col text-center written-review">
+	       				<div class="col text-center hold-text">
 	       					<p>승인 보류</p>
 	       				</div>
 	       			</div>
 	       			
-	       			<div class="myplan-list">
-	       				<c:if test="${not empty poList}">
-	       				<c:forEach items="${poList}" var="po">
+	       			<div class="myplan-list-order">
+	       				<c:if test="${not empty orderList}">
+	       				<c:forEach items="${orderList}" var="order">
 	       					<div class="insert-div">
 			       				<div class="row my-3 list-row">
 			       					<div class="col-2 text-center align-self-center">
-			       						<img src="<%=request.getContextPath()%>/resources/img/${po.bizId}.png" style="max-width: 60px; height: 26px;">
+			       						<img src="<%=request.getContextPath()%>/resources/img/${order.bizId}.png" style="max-width: 60px; height: 26px;">
 			       					</div>
 			       					<div class="col-7 align-self-center">
 			       						<p class="plan-name-text">
-			       							<input class="orderNo" type="hidden" value="${po.orderNo}">
-			       							${po.planName} + 
-			       							<c:if test="${po.planData eq 0}">
+			       							<input class="orderNo" type="hidden" value="${order.orderNo}">
+			       							${order.planName} + 
+			       							<c:if test="${order.planData eq 0}">
 			       								없음
 			       							</c:if>
-			       							<c:if test="${po.planData ne 0}">
-						    					<c:if test="${po.planData lt 1000}">
-						    					${po.planData} MB 
+			       							<c:if test="${order.planData ne 0}">
+						    					<c:if test="${order.planData lt 1000}">
+						    					${order.planData} MB 
 						    					</c:if>
-						    					<c:if test="${po.planData gt 1000}">
-						    					<fmt:formatNumber var="data" type="number" maxFractionDigits="1" value="${po.planData / 1000}" />
+						    					<c:if test="${order.planData gt 1000}">
+						    					<fmt:formatNumber var="data" type="number" maxFractionDigits="1" value="${order.planData / 1000}" />
 						    					${data} GB
 						    					</c:if>
 					    					</c:if>
 			       						</p>
 			       						<p>
-			       							<c:if test="${po.netNo eq 1}">KT 망</c:if>
-			       							<c:if test="${po.netNo eq 2}">SKT 망</c:if>
-			       							<c:if test="${po.netNo eq 3}">LGU+ 망</c:if>
+			       							<c:if test="${order.netNo eq 1}">KT 망</c:if>
+			       							<c:if test="${order.netNo eq 2}">SKT 망</c:if>
+			       							<c:if test="${order.netNo eq 3}">LGU+ 망</c:if>
 			       							 | 
-			       							<c:if test="${po.genNo eq 1}">5G</c:if>
-			       							<c:if test="${po.genNo eq 2}">LTE</c:if>
-			       							<c:if test="${po.genNo eq 4}">3G</c:if>
+			       							<c:if test="${order.genNo eq 1}">5G</c:if>
+			       							<c:if test="${order.genNo eq 2}">LTE</c:if>
+			       							<c:if test="${order.genNo eq 4}">3G</c:if>
 			       						</p>
 			       					</div>
 			       					<div class="col-3 text-center align-self-center button-container">
@@ -107,10 +107,118 @@
 		       				</div>
 	       				</c:forEach>
 	       				</c:if>
-	       				<c:if test="${empty poList}">
+	       				<c:if test="${empty orderList}">
 	       					<div class="row none-div">
 	       						<div class="text-center align-self-center" style="font-size: 14px; color: black;">
 		       						신청한 요금제가 없습니다.
+	       						</div>
+	       					</div>
+	       				</c:if>
+	       			</div>
+	       			
+	       			<div class="myplan-list-accept" style="display: none;">
+	       				<c:if test="${not empty acceptList}">
+	       				<c:forEach items="${acceptList}" var="accept">
+	       					<div class="insert-div">
+			       				<div class="row my-3 list-row">
+			       					<div class="col-2 text-center align-self-center">
+			       						<img src="<%=request.getContextPath()%>/resources/img/${accept.bizId}.png" style="max-width: 60px; height: 26px;">
+			       					</div>
+			       					<div class="col-7 align-self-center">
+			       						<p class="plan-name-text">
+			       							<input class="orderNo" type="hidden" value="${accept.orderNo}">
+			       							${accept.planName} + 
+			       							<c:if test="${accept.planData eq 0}">
+			       								없음
+			       							</c:if>
+			       							<c:if test="${accept.planData ne 0}">
+						    					<c:if test="${accept.planData lt 1000}">
+						    					${accept.planData} MB 
+						    					</c:if>
+						    					<c:if test="${accept.planData gt 1000}">
+						    					<fmt:formatNumber var="data" type="number" maxFractionDigits="1" value="${accept.planData / 1000}" />
+						    					${data} GB
+						    					</c:if>
+					    					</c:if>
+			       						</p>
+			       						<p>
+			       							<c:if test="${accept.netNo eq 1}">KT 망</c:if>
+			       							<c:if test="${accept.netNo eq 2}">SKT 망</c:if>
+			       							<c:if test="${accept.netNo eq 3}">LGU+ 망</c:if>
+			       							 | 
+			       							<c:if test="${accept.genNo eq 1}">5G</c:if>
+			       							<c:if test="${accept.genNo eq 2}">LTE</c:if>
+			       							<c:if test="${accept.genNo eq 4}">3G</c:if>
+			       						</p>
+			       					</div>
+			       					<div class="col-3 text-center align-self-center button-container">
+			       						<button class="myplan-btn">
+									        	상세 조회
+									        <i class="fa fa-check"></i>
+									    </button>
+			       					</div>
+			       				</div>
+		       				</div>
+	       				</c:forEach>
+	       				</c:if>
+	       				<c:if test="${empty acceptList}">
+	       					<div class="row none-div">
+	       						<div class="text-center align-self-center" style="font-size: 14px; color: black;">
+		       						승인 완료된 요금제가 없습니다.
+	       						</div>
+	       					</div>
+	       				</c:if>
+	       			</div>
+	       			
+	       			<div class="myplan-list-hold" style="display: none;">
+	       				<c:if test="${not empty holdList}">
+	       				<c:forEach items="${holdList}" var="hold">
+	       					<div class="insert-div">
+			       				<div class="row my-3 list-row">
+			       					<div class="col-2 text-center align-self-center">
+			       						<img src="<%=request.getContextPath()%>/resources/img/${hold.bizId}.png" style="max-width: 60px; height: 26px;">
+			       					</div>
+			       					<div class="col-7 align-self-center">
+			       						<p class="plan-name-text">
+			       							<input class="orderNo" type="hidden" value="${hold.orderNo}">
+			       							${hold.planName} + 
+			       							<c:if test="${hold.planData eq 0}">
+			       								없음
+			       							</c:if>
+			       							<c:if test="${hold.planData ne 0}">
+						    					<c:if test="${hold.planData lt 1000}">
+						    					${hold.planData} MB 
+						    					</c:if>
+						    					<c:if test="${hold.planData gt 1000}">
+						    					<fmt:formatNumber var="data" type="number" maxFractionDigits="1" value="${hold.planData / 1000}" />
+						    					${data} GB
+						    					</c:if>
+					    					</c:if>
+			       						</p>
+			       						<p>
+			       							<c:if test="${hold.netNo eq 1}">KT 망</c:if>
+			       							<c:if test="${hold.netNo eq 2}">SKT 망</c:if>
+			       							<c:if test="${hold.netNo eq 3}">LGU+ 망</c:if>
+			       							 | 
+			       							<c:if test="${hold.genNo eq 1}">5G</c:if>
+			       							<c:if test="${hold.genNo eq 2}">LTE</c:if>
+			       							<c:if test="${hold.genNo eq 4}">3G</c:if>
+			       						</p>
+			       					</div>
+			       					<div class="col-3 text-center align-self-center button-container">
+			       						<button class="myplan-btn">
+									        	상세 조회
+									        <i class="fa fa-check"></i>
+									    </button>
+			       					</div>
+			       				</div>
+		       				</div>
+	       				</c:forEach>
+	       				</c:if>
+	       				<c:if test="${empty holdList}">
+	       					<div class="row none-div">
+	       						<div class="text-center align-self-center" style="font-size: 14px; color: black;">
+		       						승인 보류된 요금제가 없습니다.
 	       						</div>
 	       					</div>
 	       				</c:if>
