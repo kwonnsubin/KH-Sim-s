@@ -17,6 +17,8 @@
 ## 3️⃣ 설계의 주안점
 
 ## 4️⃣ 개발환경
+<img width="10" src="https://noticon-static.tammolo.com/dgggcrkxq/image/upload/v1629972500/noticon/htwpjnfc0hlr1teypbjo.png">
+<img width="10" src="https://noticon-static.tammolo.com/dgggcrkxq/image/upload/v1629279836/noticon/qopgwljhqw2ezqxnfjpe.png">
 
 ## 5️⃣ 주요기능
 
