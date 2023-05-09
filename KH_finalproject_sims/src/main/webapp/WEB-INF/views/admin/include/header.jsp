@@ -53,14 +53,12 @@
                         <a href="<%=request.getContextPath()%>/admin/applyList" class="nav-link " class="nav-link "><span class="pcoded-micon"><i class="feather icon-layout"></i></span><span class="pcoded-mtext">통신사 관리</span></a>
                         <ul class="pcoded-submenu">
                             <li><a href="<%=request.getContextPath()%>/admin/applyList">통신사 관리</a></li>
-                           <!--  <li><a href="layout-horizontal.html" target="_blank">통신사정보</a></li>
-                            <li><a href="layout-horizontal.html" target="_blank">탈퇴정보</a></li> -->
                             <li><a href="<%=request.getContextPath()%>/admin/bizPlanApplyList">통신사 요금제 가입정보</a></li>
                         </ul>
                     </li>
-                    <li class="nav-item pcoded-menu-caption">
+                    <!-- <li class="nav-item pcoded-menu-caption">
                     	<label>UI Element</label>
-                    </li>
+                    </li> -->
                     <!-- <li class="nav-item pcoded-hasmenu">
                     	<a href="#!" class="nav-link "><span class="pcoded-micon"><i class="feather icon-box"></i></span><span class="pcoded-mtext">사용자 관리</span></a>
                     	<ul class="pcoded-submenu">
