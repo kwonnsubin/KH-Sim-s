@@ -41,7 +41,8 @@
 				</div>
 			</div>
 			<div class="text-end my-3">
-				<button class="btn" onclick="location.href='${pageContext.request.contextPath}/faq/'">목록</button>
+				<button class="btn" onclick="location.href='${pageContext.request.contextPath}/faq/'">이전</button>
+				<button class="btn" onclick="location.href='${pageContext.request.contextPath}/faq/list'">목록</button>
 			</div>
 		</div>
 		

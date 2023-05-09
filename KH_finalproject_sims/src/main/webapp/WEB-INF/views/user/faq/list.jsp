@@ -32,7 +32,6 @@
     <link rel="stylesheet" href="<%= request.getContextPath() %>/resources/chain/assets/css/owl.css">
     <link rel="stylesheet" href="<%= request.getContextPath() %>/resources/css/user/qna.css">
     
-    
 </head>
 <body>
 	<jsp:include page="/WEB-INF/views/header.jsp" />
@@ -41,7 +40,7 @@
 		<div class="container-sm div-m">
 			<!-- ***** 자주묻는질문 Start ***** -->
 			<div class="row">
-				<div class="col-lg-12 my-3">
+				<div class="col-lg-12 mt-3">
 					<h5 class="py-3 fw-bolder">알뜰폰 궁금한 점 무엇이든 물어보세요</h5>
 					<div id="carouselExampleControls" class="carousel slide carousel-fade"
 						data-bs-ride="carousel">
@@ -77,6 +76,9 @@
 							<span class="carousel-control-next-icon" aria-hidden="true"></span>
 							<span class="visually-hidden">Next</span>
 						</button>
+					</div>
+					<div class="text-end">
+						<p onclick="location.href='${cpath}/faq/list'" style="cursor: pointer">자주묻는질문 목록으로 보기</p>
 					</div>
 				</div>
 				<!-- ***** 자주묻는질문 end ***** -->

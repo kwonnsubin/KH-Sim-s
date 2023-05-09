@@ -99,6 +99,16 @@ public class UserFaqController {
 		return mv;
 	}
 	
+	// 자주묻는질문 목록
+	@GetMapping("/list")
+	public ModelAndView getFaqList(
+			ModelAndView mv
+			) throws Exception {
+		mv.addObject("faqlist", service.selectFaqList());
+		mv.setViewName("user/faq/faqlist");
+		return mv;
+	}
+	
 	// 문의게시판 질문 상세보기
 	@GetMapping("/qna/{aqNo}")
 	public ModelAndView readQna(
