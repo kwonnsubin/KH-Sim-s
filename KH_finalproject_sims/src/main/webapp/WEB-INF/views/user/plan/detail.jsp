@@ -42,7 +42,7 @@
 			<div class="row m-3 py-4">
 				<div class="col-sm-2 float-sm-none my-auto">
 					<a href="${cpath}/bizinfo/${biz.bizId}">
-						<img class="logo-m" src="${cpath}/resources/img/${biz.logoRenameFilename}" onerror="this.src='${cpath}/resources/img/${biz.originalFilename}'">
+						<img class="logo-m" src="${cpath}/resources/img/${biz.logoRenameFilename}" onerror="this.onerror=null; this.src='${cpath}/resources/img/${biz.originalFilename}'">
 						
 					</a>
 				</div>
@@ -146,7 +146,7 @@
 					<div class="row">
 						<div class="col-2">
 							<a href="${cpath}/bizinfo/${biz.bizId}">
-								<img class="logo-s-cursor" src="${cpath}/resources/img/${biz.logoRenameFilename}" onerror="this.src='${cpath}/resources/img/${biz.originalFilename}'">
+								<img class="logo-s-cursor" src="${cpath}/resources/img/${biz.logoRenameFilename}" onerror="this.onerror=null; this.src='${cpath}/resources/img/${biz.originalFilename}'">
 							</a>
 						</div>
 						<div class="col-6 my-auto">
