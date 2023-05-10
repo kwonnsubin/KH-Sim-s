@@ -35,14 +35,14 @@
 		<result column="LOGO_RENAME_FILENAME" property="logoRenameFilename"/>
 		<result column="ORIGINAL_FILENAME" property="originalFilename"/>
 
-		<collection column="BIZ_ID" property="serviceList" ofType="kh.finalproject.sims.biz.model.vo.bizInfoMngServiceVo">
+		<collection column="BIZ_ID" property="serviceList" ofType="kh.finalproject.sims.biz.model.vo.BizInfoMngServiceVo">
 			<result column="NET_NO" property="netNo"/>
 			<result column="BIZ_NET_SERVICE" property="bizNetService"/>
 		</collection>
 	</resultMap>
 	
 	<!-- 고객센터 번호 -->
-	<select id="selectListService" resultType="kh.finalproject.sims.biz.model.vo.bizInfoMngServiceVo">
+	<select id="selectListService" resultType="kh.finalproject.sims.biz.model.vo.BizInfoMngServiceVo">
 		SELECT NET_NO, BIZ_NET_SERVICE
 			FROM BIZ_NETWORK
 			RIGHT JOIN BIZ
