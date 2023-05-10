@@ -53,8 +53,7 @@
 
 ### 5. ERD
 
-
-
+![erd](https://github.com/kh-finalproject-Sim-s/KH-Sim-s/assets/39897996/699cf502-2929-4802-a517-21be0c933483)
 
 <br>
 
