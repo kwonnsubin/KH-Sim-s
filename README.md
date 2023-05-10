@@ -25,53 +25,62 @@
 
 <br>
 
-##  1. 개발 일정
+###  1. 개발 일정
+
+![파이널일정](https://github.com/kh-finalproject-Sim-s/KH-Sim-s/assets/39897996/5884c88c-22d0-44d6-b73a-d7e4d4b1fbfe)
+
+[개발 일정](https://docs.google.com/spreadsheets/d/1lzwMWUxGIPIKWTNiMaEKy476FF1IoE7DxSgG2XCRy0I/edit?usp=share_link)
+
+<br>
+
+### 2. 요구사항 정의서
+
+[요구사항 정의서](https://docs.google.com/spreadsheets/d/1zpxNKCAAbaDkjvBq_QaCtq5PRXOaC3a94BBmZ-sLCoA/edit?usp=share_link)
+
+<br>
+
+### 3. 화면설계서
+
+[화면 설계서](https://docs.google.com/presentation/d/14XjLgfpgOTimMjqLh9ypzOsEaiUIjZgHz0ETE-nXkoU/edit?usp=share_link)
+
+<br>
+
+### 4. 유스케이스
 
 
 
 <br>
 
-## 2. 요구사항 정의서
-
-
-
-<br>
-
-## 3. 화면설계서
-
-
-
-<br>
-
-## 4. 유스케이스
-
-
-
-<br>
-
-## 5. ERD
-
-
-
-
-<br>
-
-## 6. Sequence Diagram
-
-
-<br>
-
-## 7. Class Diagram
-
-
-
+### 5. ERD
 
 
 
 
 <br>
 
-## 8. history
+### 6. Sequence Diagram
+
+![요금제검색_Sequence](https://github.com/kh-finalproject-Sim-s/KH-Sim-s/assets/39897996/c4f86fd2-b246-4bae-84d2-c6235d66a879)
+
+<br>
+
+![요금제신청_Sequence](https://github.com/kh-finalproject-Sim-s/KH-Sim-s/assets/39897996/568e8b3b-3204-4506-a70f-6f54cc2460ca)
+
+<br>
+
+### 7. Class Diagram
+
+
+<br>
+
+
+### 8. 플로우 차트
+
+
+<br>
+
+
+### 9. history
 
 [history 전체보기](https://docs.google.com/spreadsheets/d/1kZ3R5gv2rakgyw1BX-JixVKzIxx89I8O9IaOMMycSPo/edit?usp=share_link)
 
