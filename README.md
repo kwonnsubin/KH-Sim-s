@@ -128,7 +128,7 @@
 <br>
 
 ### 4. 유스케이스
-
+![sims 유스케이스 다이어그램](https://github.com/kh-finalproject-Sim-s/KH-Sim-s/assets/108276943/58a6a69f-c5bd-49df-8ba0-7b8dc925776f)
 
 
 <br>
