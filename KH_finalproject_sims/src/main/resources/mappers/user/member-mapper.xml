@@ -30,12 +30,16 @@
 		select biz_id from biz where biz_name=#{bizName} and biz_email=#{bizEmail}
 	</select>
 	
-	<select id="selectFindUserPw" parameterType="userVo" resultType="int">
-		select count(*) from user_table where user_id=#{userId} and user_email=#{userEmail}
+	<select id="selectFindUserPw" parameterType="userVo" resultType="memVo">
+		select (select id from member where id=#{userId}) as id
+			, (select opinion from member where id=#{userId}) as opinion 
+			from user_table where user_id=#{userId} and user_email=#{userEmail}
+			and (select enable from member where id=#{userId})=1
 	</select>
 	
 	<select id="selectFindBizPw" parameterType="bVo" resultType="int">
 		select count(*) from biz where biz_id=#{bizId} and biz_email=#{bizEmail}
+			and (select enable from member where id=#{bizId})=1
 	</select>
 	
 	<select id="selectMyPageInfo" parameterType="string" resultType="userVo">

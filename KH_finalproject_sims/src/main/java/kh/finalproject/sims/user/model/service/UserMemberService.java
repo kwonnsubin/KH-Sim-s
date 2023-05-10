@@ -22,7 +22,7 @@ public interface UserMemberService {
 	public MemberVo selectFindId(BizInfoMngtVo bizVo) throws Exception;
 
 	// 유저 아이디에 대한 계정 정보 유무
-	public int selectFindPw(UserMemberVo userVo) throws Exception;
+	public MemberVo selectFindPw(UserMemberVo userVo) throws Exception;
 
 	// 통신사 아이디에 대한 계정 정보 유무
 	public int selectFindPw(BizInfoMngtVo bizVo) throws Exception;

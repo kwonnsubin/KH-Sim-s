@@ -76,8 +76,8 @@ public class UserMemberServiceImpl implements UserMemberService {
 
 	// 유저 비밀번호 찾기
 	@Override
-	public int selectFindPw(UserMemberVo userVo) throws Exception {
-		int result = dao.selectFindPw(userVo);
+	public MemberVo selectFindPw(UserMemberVo userVo) throws Exception {
+		MemberVo result = dao.selectFindPw(userVo);
 		return result;
 	}
 	

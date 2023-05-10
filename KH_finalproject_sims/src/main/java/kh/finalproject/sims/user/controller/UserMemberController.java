@@ -141,7 +141,14 @@ public class UserMemberController {
 		int result = 0;
 		if(memVo.getRole().equals("ROLE_USER")) {
 			userVo.setUserId(memVo.getId());
-			result = service.selectFindPw(userVo);
+			MemberVo memRes = service.selectFindPw(userVo);
+			if(memRes.getId() == null) {
+				result = 0;
+			} else if(memRes.getOpinion() == null) {
+				result = 1;
+			} else if(memRes.getOpinion() != null) {
+				result = 2;
+			} 
 		} else {
 			bizVo.setBizId(memVo.getId());
 			result = service.selectFindPw(bizVo);
@@ -149,11 +156,12 @@ public class UserMemberController {
 		
 		if(result == 0) {
 			mv.addObject("msg", "해당 정보에 맞는 계정이 없습니다.");
-			mv.setViewName("main/findpw");
-		} else {
+		} else if(result == 1){
 			mv.addObject("resultId", memVo.getId());
-			mv.setViewName("main/findpw");
+		} else if(result == 2) {
+			mv.addObject("msg", "카카오 회원은 비밀번호를 변경할 수 없습니다.");
 		}
+		mv.setViewName("main/findpw");
 		
 		return mv;
 	}	

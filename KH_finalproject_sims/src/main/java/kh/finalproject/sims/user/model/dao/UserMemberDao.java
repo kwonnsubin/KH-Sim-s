@@ -38,7 +38,7 @@ public class UserMemberDao {
 		return sqlSession.selectOne("member.selectFindBizId", bizVo);
 	}
 
-	public int selectFindPw(UserMemberVo userVo) throws Exception {
+	public MemberVo selectFindPw(UserMemberVo userVo) throws Exception {
 		return sqlSession.selectOne("member.selectFindUserPw", userVo);
 	}
 
