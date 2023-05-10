@@ -21,4 +21,58 @@
 
 ## 5️⃣ 주요기능
 
-## 6️⃣ 
+## 6️⃣ Document
+
+<br>
+
+##  1. 개발 일정
+
+
+
+<br>
+
+## 2. 요구사항 정의서
+
+
+
+<br>
+
+## 3. 화면설계서
+
+
+
+<br>
+
+## 4. 유스케이스
+
+
+
+<br>
+
+## 5. ERD
+
+
+
+
+<br>
+
+## 6. Sequence Diagram
+
+
+<br>
+
+## 7. Class Diagram
+
+
+
+
+
+
+
+<br>
+
+## 8. history
+
+[history 전체보기](https://docs.google.com/spreadsheets/d/1kZ3R5gv2rakgyw1BX-JixVKzIxx89I8O9IaOMMycSPo/edit?usp=share_link)
+
+<br>
