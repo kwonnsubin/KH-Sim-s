@@ -38,13 +38,11 @@
 	<section>
 		<div class="container-sm div-sm">
 		
-			<c:set var="logo" value="${cpath}/resources/img/${empty biz.logoRenameFilename ? biz.originalFilename : biz.logoRenameFilename}" />
-			
 			<!-- 통신사 로고, 요금제명, 찜, 공유 -->
 			<div class="row m-3 py-4">
 				<div class="col-sm-2 float-sm-none my-auto">
 					<a href="${cpath}/bizinfo/${biz.bizId}">
-						<img class="logo-m" src="${logo}" alt="${plan.bizName}">
+						<img class="logo-m" src="${cpath}/resources/img/${biz.logoRenameFilename}" onerror="this.src='${cpath}/resources/img/${biz.originalFilename}'">
 						
 					</a>
 				</div>
@@ -138,7 +136,7 @@
 				</div>
 			</div>
 			
-			<!-- 통신사 문의, 간편 신청 -->
+			<!-- 간편 신청 -->
 			<button class="btn btn-lg my-4 p-3 w-100" type="button" onclick="location.href='${cpath}/plan/${plan.planNo}/order/terms'" class="btn btn-xl p-3">신청하기</button>
 			
 			
@@ -148,7 +146,7 @@
 					<div class="row">
 						<div class="col-2">
 							<a href="${cpath}/bizinfo/${biz.bizId}">
-								<img class="logo-s-cursor" src="${logo}" alt="${plan.bizName}">
+								<img class="logo-s-cursor" src="${cpath}/resources/img/${biz.logoRenameFilename}" onerror="this.src='${cpath}/resources/img/${biz.originalFilename}'">
 							</a>
 						</div>
 						<div class="col-6 my-auto">
