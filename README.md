@@ -103,6 +103,12 @@
 
 ## 5️⃣ 주요기능
 
+### 1. 메인페이지
+
+![main-page](https://github.com/kh-finalproject-Sim-s/KH-Sim-s/assets/54164292/64820d1f-da24-4d97-b59d-5dfe24e28264)
+
+####
+
 ## 6️⃣ Document
 
 <br>
