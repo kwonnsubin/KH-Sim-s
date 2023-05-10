@@ -20,7 +20,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import kh.finalproject.sims.biz.model.service.BizInfoMngtService;
 import kh.finalproject.sims.biz.model.vo.BizInfoMngtVo;
-import kh.finalproject.sims.biz.model.vo.bizInfoMngServiceVo;
+import kh.finalproject.sims.biz.model.vo.BizInfoMngServiceVo;
 import kh.finalproject.sims.common.file.FileUtil;
 
 @Controller
@@ -46,7 +46,7 @@ public class BizInfoMngtController {
 		System.out.println(vo);
 		
 		//고객센터 번호
-		List<bizInfoMngServiceVo> serviceList = service.selectListService(bizid);
+		List<BizInfoMngServiceVo> serviceList = service.selectListService(bizid);
 		System.out.println("고객센터번호serviceList :"+ serviceList);
 	
 	
@@ -88,7 +88,7 @@ public class BizInfoMngtController {
 		service.insertServicList(bizid);
 		
 		//고객센터 번호
-		List<bizInfoMngServiceVo> serviceList = service.selectListService(bizid);
+		List<BizInfoMngServiceVo> serviceList = service.selectListService(bizid);
 		System.out.println("serviceList :"+serviceList);
 
 		mv.addObject("bizinfo", vo);
@@ -106,28 +106,9 @@ public class BizInfoMngtController {
 	public String modifyBizInfo(HttpServletRequest request
 			, Principal principal
 			, @ModelAttribute BizInfoMngtVo vo
-			, bizInfoMngServiceVo svo
+			, BizInfoMngServiceVo svo
 			, @RequestParam(name ="bizName" , required = false) String bizName
-//			, @RequestParam(name ="bizOwnerName" , required = false) String bizOwnerName
-//			, @RequestParam(name ="bizCrn" , required = false) String bizCrn
-//			, @RequestParam(name ="bizSsn" , required = false) String bizSsn
-//			//주소
-//			, @RequestParam(name ="bizZipCode", required = false) int bizZipCode
-//			, @RequestParam(name ="roadAddress", required = false) String roadAddress
-//			, @RequestParam(name ="detailAddress", required = false) String detailAddress
-//			, @RequestParam(name ="bizLocation", required = false) String bizLocation
-//			// 
-//			, @RequestParam(name ="bizPhone", required = false) String bizPhone
-//			, @RequestParam(name ="bizFax", required = false) String bizFax
-//			, @RequestParam(name ="bizEmail", required = false) String bizEmail
-//			, @RequestParam(name ="bizHp", required = false) String bizHp
-//			
-//			, @RequestParam(name ="phoneOpTime", required = false) String phoneOpTime
-//			, @RequestParam(name ="phoneOpTimeUsim", required = false) String phoneOpTimeUsim
-//			, @RequestParam(name ="bizCardPayDate", required = false) String bizCardPayDate
-//			, @RequestParam(name ="bizAccPayDate", required = false) String bizAccPayDate
-//			, @RequestParam(name ="bizBeginTime", required = false) String bizBeginTime
-//			, @RequestParam(name ="bizEndTime", required = false) String bizEndTime
+
 			//고객센터번호
 			, @RequestParam(name ="KtService", required = false) String KtService
 			, @RequestParam(name ="SktService", required = false) String SktService
@@ -181,22 +162,22 @@ public class BizInfoMngtController {
 		System.out.println("vo.getLogoRenameFilename()"+vo.getLogoRenameFilename());
 		
 		//고객센터번호
-		List<bizInfoMngServiceVo> netServiceList = new ArrayList<>();
+		List<BizInfoMngServiceVo> netServiceList = new ArrayList<>();
 
-		bizInfoMngServiceVo netService1 = new bizInfoMngServiceVo();
+		BizInfoMngServiceVo netService1 = new BizInfoMngServiceVo();
 		netService1.setNetNo(1);
 		netService1.setBizNetService(KtService);
 		netService1.setBizId(bizid);
 		netServiceList.add(netService1);
 		
 		
-		bizInfoMngServiceVo netService2 = new bizInfoMngServiceVo();
+		BizInfoMngServiceVo netService2 = new BizInfoMngServiceVo();
 		netService2.setNetNo(2);
 		netService2.setBizNetService(SktService);
 		netService2.setBizId(bizid);
 		netServiceList.add(netService2);
 		
-		bizInfoMngServiceVo netService3 = new bizInfoMngServiceVo();
+		BizInfoMngServiceVo netService3 = new BizInfoMngServiceVo();
 		netService3.setNetNo(3);
 		netService3.setBizNetService(LguService);
 		netService3.setBizId(bizid);
@@ -216,7 +197,7 @@ public class BizInfoMngtController {
 		    // 마지막 구분자 제거
 		    selectedWeekdaysString.setLength(selectedWeekdaysString.length() - 1);
 		} else {
-		    selectedWeekdaysString.append("No weekday selected");
+		    selectedWeekdaysString.append("미등록");
 		}
 
 		String bizClosedDay = selectedWeekdaysString.toString();
@@ -231,7 +212,7 @@ public class BizInfoMngtController {
 		    // 마지막 구분자 제거
 		    selectedNetworksString.setLength(selectedNetworksString.length() - 1);
 		} else {
-		    selectedNetworksString.append("No network selected");
+		    selectedNetworksString.append("미등록");
 		}
 		
 
@@ -240,22 +221,7 @@ public class BizInfoMngtController {
 
 		//vo에 담기
 		vo.setBizName(bizName);
-//		vo.setBizSsn(bizSsn);
-//		vo.setBizCrn(bizCrn);
-//		vo.setBizEmail(bizEmail);
-//		vo.setBizPhone(bizPhone);
-//		vo.setBizFax(bizFax);
-//		vo.setBizOwnerName(bizOwnerName);
-//		vo.setBizHp(bizHp);
-//		vo.setBizZipCode(bizZipCode);
-//		vo.setBizLocation(bizLocation);
-//		vo.setBizCardPayDate(bizCardPayDate);
-//		vo.setBizAccPayDate(bizAccPayDate);
-//		vo.setBizBeginTime(bizBeginTime);
-//		vo.setBizEndTime(bizEndTime);
 		vo.setBizClosedDay(bizClosedDay);
-//		vo.setPhoneOpTime(phoneOpTime);
-//		vo.setPhoneOpTimeUsim(phoneOpTimeUsim);
 		vo.setNetwork(network);
 		vo.setBizId(bizid);
 		

@@ -9,7 +9,7 @@ import org.springframework.stereotype.Repository;
 
 import kh.finalproject.sims.biz.model.vo.BizApplyVo;
 import kh.finalproject.sims.biz.model.vo.BizInfoMngtVo;
-import kh.finalproject.sims.biz.model.vo.bizInfoMngServiceVo;
+import kh.finalproject.sims.biz.model.vo.BizInfoMngServiceVo;
 
 
 @Repository
@@ -24,12 +24,12 @@ public class BizInfoMngtDao {
 	}
 	
 	//고객센터번호 리스트
-	public List<bizInfoMngServiceVo> selectListService(String bizid) throws Exception{
+	public List<BizInfoMngServiceVo> selectListService(String bizid) throws Exception{
 		return sqlSession.selectList("biz.selectListService", bizid);
 	}
 
 	//고객센터번호 수정
-	public int modifyNetService(List<bizInfoMngServiceVo> netServiceList) throws Exception {
+	public int modifyNetService(List<BizInfoMngServiceVo> netServiceList) throws Exception {
 		return sqlSession.update("biz.modifyNetService",netServiceList );
 	}
 

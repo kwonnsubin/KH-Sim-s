@@ -69,7 +69,7 @@ public class BizInfoMngtVo {
 	private String logoRenameFilename;
 	private String originalFilename;
 	
-	private List<bizInfoMngServiceVo> serviceList;
+	private List<BizInfoMngServiceVo> serviceList;
 
 	// 통신사 리뷰 갯수
 	private int bizReviewCnt;

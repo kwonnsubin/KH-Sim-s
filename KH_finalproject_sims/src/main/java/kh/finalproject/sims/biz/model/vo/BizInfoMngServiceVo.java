@@ -16,7 +16,7 @@ import lombok.ToString;
 @AllArgsConstructor
 @NoArgsConstructor
 @ToString
-public class bizInfoMngServiceVo {
+public class BizInfoMngServiceVo {
 	private int netNo;
 	private String bizNetService;
 	

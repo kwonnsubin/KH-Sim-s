@@ -57,27 +57,16 @@
 	padding-right: 30%;
 }
 .totalMent{
-	/* position: absolute; */
     display: inline-block;
     width: 80%;
-    /* top: 35%; */
     padding:0;
-    margin-top:6%;
 }
 .resultMent-box{
 	display: table;
     margin-left: 43%;
 	text-align:end;
     width: 100%;
-    margin-top: -3%;
 }
-}
-/* .resultMent{
-	position: absolute;
-	right: -30%;
-    top: 23%;
-    padding:0;
-} */
 /* 버튼 요소 스타일링 */
 #btnSearch {
   border: none; /* 버튼 테두리 제거 */

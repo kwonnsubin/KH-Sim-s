@@ -147,7 +147,7 @@
 	
 	
 	
-		<div>
+		<div style="padding-top : 6%">
 			<div class="totalMent">총 ${applyListCnt}개의 결과가 있습니다.</div>
 		
 		
@@ -333,22 +333,6 @@
 		
 	});
 </script>
-
-
-
-<!-- <script> 날짜 옵션 없이 정상 작동
-//검색
-	$(document).on('click', '#btnSearch', function(e){
-		e.preventDefault();
-		var url="${pageContext.request.contextPath}/biz/applyList";
-		url = url + "?searchType="+$('#searchType').val();
-		url = url + "&keyword="+$('#keyword').val();
-		url = url + "&orderStatus="+$("input[name='division']:checked").val();
-		location.href=url;
-		console.log(url);
-	});
-</script>
- -->
 
 
 

@@ -25,7 +25,7 @@ import kh.finalproject.sims.biz.model.service.BizInfoMngtService;
 import kh.finalproject.sims.biz.model.service.BizReviewMngtService;
 import kh.finalproject.sims.biz.model.vo.BizInfoMngtVo;
 import kh.finalproject.sims.biz.model.vo.BizReviewMngtVo;
-import kh.finalproject.sims.biz.model.vo.bizInfoMngServiceVo;
+import kh.finalproject.sims.biz.model.vo.BizInfoMngServiceVo;
 import kh.finalproject.sims.user.model.service.UserMemberService;
 import kh.finalproject.sims.user.model.service.UserPlanFindService;
 import kh.finalproject.sims.user.model.vo.PlanVo;
@@ -87,7 +87,7 @@ public class HomeController {
 	public ModelAndView authdiv(ModelAndView mv, @PathVariable String bizId) throws Exception {
 		
 		BizInfoMngtVo bizInfo = bizInfoService.selectMainBizInfo(bizId);
-		List<bizInfoMngServiceVo> bizService = bizInfoService.selectListService(bizId);
+		List<BizInfoMngServiceVo> bizService = bizInfoService.selectListService(bizId);
 		List<PlanVo> bizPlanList = userPlanFindService.selectBizPlanList(bizId);
 		List<BizReviewMngtVo> bizReviewList = bizReviewMngtService.selectBizReviewList(bizId);
 		
