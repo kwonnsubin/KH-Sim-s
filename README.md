@@ -107,7 +107,9 @@
 
 ![main-page](https://github.com/kh-finalproject-Sim-s/KH-Sim-s/assets/54164292/64820d1f-da24-4d97-b59d-5dfe24e28264)
 
-####
+### 2. 사용자 맞춤형 요금제 찾기
+
+![find-customPlan](https://github.com/kh-finalproject-Sim-s/KH-Sim-s/assets/54164292/5096b025-b9a3-45ed-b103-9fa1ea6d5d25)
 
 ## 6️⃣ Document
 
