@@ -410,19 +410,42 @@ Spring Security를 활용하여 로그인 기능을 구현, 비밀번호의 경�
 
 
 ---
-
 ### 2. 통신사
 <details>
     <summary>통신사 대시보드</summary>
     
 ![biz-dashboard](https://github.com/minseong95/minseong95.github.io/assets/54164292/2f1015e3-3962-448a-a6d8-16880fe9fb27)
-
+    
+1. 통신사가 로그인하고 마이페이지로 이동
+2. 페이지 진입한 시스템 시간 표시
+3. 해당 통신사 로고 출력
+3-1. 로고 옆 세팅 아이콘 클릭시 내 정보수정하기 페이지 즉시 이동
+4. 리뷰/가입자 수, 등록 요금제 수 통계 텍스트로 표시
+5. 최근 7일간 가입자 수 차트
+6. 인기 상위 5개의 요금제 간단 정보 
+6-1. 제목 클릭시 해당 요금제 상세정보페이지 연결
+7. 가장 최신 리뷰 3개 전시, 더 보기 링크 
+7-1. 리뷰 내용이 25자 이상일 경우 그 이상 텍스트는 ··· 으로 대체 
 </details>
 
 <details>
     <summary>통신사 정보</summary>
     
 ![bizinfo](https://github.com/minseong95/minseong95.github.io/assets/54164292/d38f5fb8-762b-40bd-82f9-dfdfd113fec9)
+
+1. 통신사의 기본정보/상세정보 조회 가능
+2. 이전 정보가 입력되어있는 상태로 수정 진행
+3. 우편번호 찾기 api 이용
+4. 각 input 마다 입력 양식 제한
+5. 지원통신망의 경우, 특정 통신망 체크 시 해당 통신망의 고객센터번호 입력칸 생성<br>
+5-1. 미체크 시 입력칸 숨김 처리<br>
+5-2. 숨김 처리 상태로 등록할 경우 고객센터번호 미운영으로 처리<br>
+6. 로고 이미지 파일 수정하지 않는 경우 이전 로고 이미지로 자동 저장
+    
+체크박스 이벤트 로직
+    <img width="952" alt="serviceList-checkBox-event" src="https://github.com/kh-finalproject-Sim-s/KH-Sim-s/assets/54164292/2815a7ba-5f95-4125-8212-feff7ffd33b7">
+    <img width="770" alt="js_ctrl_check" src="https://github.com/kh-finalproject-Sim-s/KH-Sim-s/assets/54164292/07fde5bb-ad2a-4996-b05b-08bfbe1405b9">
+
 
 </details>
 
@@ -450,8 +473,13 @@ Spring Security를 활용하여 로그인 기능을 구현, 비밀번호의 경�
 
 <details>
     <summary>자사 통계 조회</summary>
+    
+두 개의 열을 가진 차트 
+<img width="873" alt="bizChart" src="https://github.com/kh-finalproject-Sim-s/KH-Sim-s/assets/54164292/e8197c19-6366-4c7c-8485-73c28a7d107a">
+
    
 </details>
+
 
 
 
