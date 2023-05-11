@@ -50,14 +50,9 @@ public class BizApplyVo {
 	private String currentTelecom;
 	private String planBill;
 	private String planPay;
-//	private String cardNumber;
-//	private String cardExpiration;
-//	private String bank;
-//	private String bankNumber;
 	private Date orderDate;
 	private String orderStatus;
 	private int NetNo;
-	private int genN0;
 	private int orderPrice;
 	private int orderData;
 	private int orderVoice;
@@ -132,7 +127,6 @@ public class BizApplyVo {
 	//private int planNo;
 	private String planName;
 	private String bizName;
-	private int netNo;
 	private int genNo;
 	private int planPrice;
 	private int planVoice;
@@ -143,7 +137,6 @@ public class BizApplyVo {
 	private double planDataOver;
 	private int planDate;
 	
-	//TODO biz 테이블도 추가
 	private String bizId;
 	//private String bizName;
 	private String bizSsn;
