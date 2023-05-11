@@ -104,13 +104,21 @@
 ## 5️⃣ 주요기능
 
 ### 1. 메인페이지
-
+<details>
+    <summary>메인페이지</summary>
+    
 ![main-page](https://github.com/kh-finalproject-Sim-s/KH-Sim-s/assets/54164292/64820d1f-da24-4d97-b59d-5dfe24e28264)
+    
+</details>
 
 ### 2. 사용자 맞춤형 요금제 찾기
-
+<details>
+    <summary>사용자 맞춤형 요금제 찾기/추천</summary>
+    
 ![find-customPlan](https://github.com/kh-finalproject-Sim-s/KH-Sim-s/assets/54164292/5096b025-b9a3-45ed-b103-9fa1ea6d5d25)
 
+</details>    
+    
 ## 6️⃣ Document
 
 <br>
