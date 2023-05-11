@@ -5,9 +5,7 @@ $(document).ready(function() {
 		if($('input[name=pw]').val() === $('input[name=pwCheck]').val()) {
 			$(".pwCheckDiv").html("<p style='color: green;'>비밀번호가 같습니다.</p>");
 			$(".pwCheckDiv").css("display", "block");
-			if($('input[name=userEmail').attr('readonly') === 'readonly'){
-				$(".subBtn").removeAttr("disabled");
-			}
+			$(".subBtn").removeAttr("disabled");
 		} else {
 			$(".pwCheckDiv").html("<p style='color: red;'>비밀번호가 다릅니다.</p>");
 			$(".pwCheckDiv").css("display", "block");
@@ -19,9 +17,7 @@ $(document).ready(function() {
 		if($('input[name=pw]').val() === $('input[name=pwCheck]').val()) {
 			$(".pwCheckDiv").html("<p style='color: green;'>비밀번호가 같습니다.</p>");
 			$(".pwCheckDiv").css("display", "block");
-			if($('input[name=userEmail').attr('readonly') === 'readonly'){
-				$(".subBtn").removeAttr("disabled");
-			}
+			$(".subBtn").removeAttr("disabled");
 		} else {
 			$(".pwCheckDiv").html("<p style='color: red;'>비밀번호가 다릅니다.</p>");
 			$(".pwCheckDiv").css("display", "block");

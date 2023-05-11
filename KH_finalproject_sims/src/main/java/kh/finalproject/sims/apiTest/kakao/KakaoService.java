@@ -59,7 +59,6 @@ public class KakaoService {
                 result += br_line;
             }
 
-//          JsonParser parser = new JsonParser();
             JsonElement element = JsonParser.parseString(result);
 
 
@@ -101,7 +100,6 @@ public class KakaoService {
 	        System.out.println("response:" + result);
 	
 	
-	//                 JsonParser parser = new JsonParser();
 	         JsonElement element = JsonParser.parseString(result);
 	         JsonObject properties = element.getAsJsonObject().get("properties").getAsJsonObject();
 	         JsonObject kakao_account = element.getAsJsonObject().get("kakao_account").getAsJsonObject();

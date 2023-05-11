@@ -30,7 +30,7 @@ $(document).ready(function() {
 			&& $('input[name=pw]') != null && $('input[name=pw]') != undefined) {
 			$(".pwCheckDiv").html("<p style='color: green;'>비밀번호가 같습니다.</p>");
 			$(".pwCheckDiv").css("display", "block");
-			if($(".user .passwdCheck").css('display') === 'none') {
+			if($(".passwdCheck").css('display') === 'none') {
 				$(".changePwBtn").removeAttr("disabled");
 			}
 		} else {
@@ -45,7 +45,7 @@ $(document).ready(function() {
 			&& $('input[name=pw]') != null && $('input[name=pw]') != undefined) {
 			$(".pwCheckDiv").html("<p style='color: green;'>비밀번호가 같습니다.</p>");
 			$(".pwCheckDiv").css("display", "block");
-			if($(".user .passwdCheck").css('display') === 'none') {
+			if($(".passwdCheck").css('display') === 'none') {
 				$(".changePwBtn").removeAttr("disabled");
 			}
 		} else {
