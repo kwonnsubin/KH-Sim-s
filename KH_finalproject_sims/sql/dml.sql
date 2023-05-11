@@ -456,28 +456,14 @@ INSERT INTO BIZ_REVIEW VALUES (BIZ_REVIEW_SEQ.NEXTVAL
 );
 
 -- 요금제 가입 정보
-INSERT INTO PLAN_ORDER VALUES (PLAN_ORDER_SEQ.NEXTVAL,
-                               'user1',
-                               1,
-                               '1',
-                               '1',
-                               '1',
-                               '1',
-                               '1',
-                               '1',
-                               '3456-5958-1923-4921',
-                               '05/24',
-                               NULL,
-                               NULL,
-                               DEFAULT,
-                               '1',
-                               1,
-                               2,
-                               NULL,
-                               NULL,
-                               NULL,
-                               NULL
-);   
+INSERT INTO plan_order (
+			order_no, user_id, biz_id, plan_no, join_category, sim_type, sim_yn
+			, current_telecom, plan_bill, plan_pay, order_date, order_status, net_no, gen_no
+			, order_price, order_data, order_voice, order_message, order_address
+		) VALUES (
+			PLAN_ORDER_SEQ.NEXTVAL, 'user7', 'sejong', 114, 1, 1, 1
+			, 1, 1, 1, '23/05/11', '1', 1, 1
+			, 25000, 10240, 0, 0, '[05237]서울 강동구 아리수로 46  (암사동)');
 
 -- 리뷰내역신고
 INSERT INTO REVIEW_REPORT (
