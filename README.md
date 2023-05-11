@@ -111,6 +111,134 @@
     
 </details>
 
+<details>
+<summary><h3>✅ 시큐리티 로그인 및 회원 </h3></summary>
+<div markdown="1">
+  
+<br>
+<br>
+<div align="center">
+<img src="https://res.cloudinary.com/dnik5jlzd/image/upload/c_scale,h_10,w_225/v1679302400/readme/%EC%84%A0_vkktmh.png">
+시큐리티 로그인
+<img src="https://res.cloudinary.com/dnik5jlzd/image/upload/c_scale,h_10,w_225/v1679302400/readme/%EC%84%A0_vkktmh.png">
+</div><br>
+<div align="center">
+
+![login](https://github.com/kh-finalproject-Sim-s/KH-Sim-s/assets/39897996/f04deb30-ed48-4e3e-b34b-76a769dc5ba5)
+    
+</div>
+
+Spring Security를 활용하여 로그인 기능을 구현, 비밀번호의 경우 bcrpt 암호화를 적용
+- security-context.xml 시큐리티 설정
+1. jdbc-user-service 에서 로그인 폼에 입력한 내용을 DB와 비교하여 로그인이 된다.
+2. 로그인 한 유저의 정보를 가져와서 유저이름과 권한을 저장한다.
+
+![security](https://github.com/kh-finalproject-Sim-s/KH-Sim-s/assets/39897996/08d5a65c-04a2-4e47-a65e-ed8bf66c4db5)
+    
+---
+  
+<br> 
+<br> 
+<br> 
+    
+<div align="center">
+<img src="https://res.cloudinary.com/dnik5jlzd/image/upload/c_scale,h_10,w_225/v1679302400/readme/%EC%84%A0_vkktmh.png">
+카카오 로그인
+<img src="https://res.cloudinary.com/dnik5jlzd/image/upload/c_scale,h_10,w_225/v1679302400/readme/%EC%84%A0_vkktmh.png">
+</div><br>
+<div align="center">
+    
+![kakaoLogin](https://github.com/kh-finalproject-Sim-s/KH-Sim-s/assets/39897996/b640e275-d5cb-4b56-96a6-5a42e4ea96b9)
+    
+</div>
+
+1. KakaoService에서 토큰값을 받아온다.
+2. kakaoService에서 토큰값으로 현재 로그인 한 유저의 정보를 받아온다.
+3. kakaoController에서 받은 정보를 데이터베이스와 비교하여 유저 정보가 없으면 회원가입을 하고 해당 정보로 Security Authentication을 생성해 권한을 만들고 로그인한다.
+4. kakaoController에서 받은 정보를 와 비교하여 유저 정보가 있으면 해당 정보로 Security Authentication을 생성해 권한을 만들고 로그인한다.
+
+![카카오로그인](https://github.com/kh-finalproject-Sim-s/KH-Sim-s/assets/39897996/28b119a4-ca52-4693-94e7-18563763e198)
+![카카오정보](https://github.com/kh-finalproject-Sim-s/KH-Sim-s/assets/39897996/f8f78b92-191e-45d5-961e-c76128fb99dc)
+    
+---
+  
+<br> 
+<br> 
+<br> 
+ 
+<div align="center">
+<img src="https://res.cloudinary.com/dnik5jlzd/image/upload/c_scale,h_10,w_225/v1679302400/readme/%EC%84%A0_vkktmh.png">
+아이디 찾기
+<img src="https://res.cloudinary.com/dnik5jlzd/image/upload/c_scale,h_10,w_225/v1679302400/readme/%EC%84%A0_vkktmh.png">
+</div><br>
+<div align="center">
+  
+![findId](https://github.com/kh-finalproject-Sim-s/KH-Sim-s/assets/39897996/10a20ba5-6c2d-4880-99be-b6a35874f71d)
+  
+</div>
+
+1. 로그인 페이지 하단의 아이디 찾기 클릭
+2. 이름, 이메일 인증 후 데이터베이스 조회
+3. 해당하는 정보와 일치하는 ID 화면에 출력
+4. 휴면계정이라면 휴면풀기 버튼 생성
+5. 휴면계정이 아니라면 로그인하기, 비밀번호 찾기 버튼 생성
+
+---
+  
+<br> 
+<br> 
+<br> 
+ 
+<div align="center">
+<img src="https://res.cloudinary.com/dnik5jlzd/image/upload/c_scale,h_10,w_225/v1679302400/readme/%EC%84%A0_vkktmh.png">
+비밀번호 찾기
+<img src="https://res.cloudinary.com/dnik5jlzd/image/upload/c_scale,h_10,w_225/v1679302400/readme/%EC%84%A0_vkktmh.png">
+</div><br>
+<div align="center">
+  
+![findpw](https://github.com/kh-finalproject-Sim-s/KH-Sim-s/assets/39897996/90810f62-be1b-4d66-87db-3d2e3e154c8f)
+  
+</div>
+
+1. 로그인 페이지 하단의 비밀번호 찾기 클릭
+2. 아이디 이메일 인증 후 데이터베이스 조회
+3. 해당하는 정보와 일치하면 비밀번호 재설정
+4. 로그인 페이지로 이동
+    
+---
+    
+<br> 
+<br> 
+<br>
+ 
+<div align="center">
+<img src="https://res.cloudinary.com/dnik5jlzd/image/upload/c_scale,h_10,w_225/v1679302400/readme/%EC%84%A0_vkktmh.png">
+회원가입
+<img src="https://res.cloudinary.com/dnik5jlzd/image/upload/c_scale,h_10,w_225/v1679302400/readme/%EC%84%A0_vkktmh.png">
+</div><br>
+<div align="center">
+  
+![signup](https://github.com/kh-finalproject-Sim-s/KH-Sim-s/assets/39897996/613e39e4-79e5-476a-90b9-f5203ba9c008)
+  
+</div>
+
+1. 사용자, 통신사를 선택하면 해당하는 회원가입 폼이 생성
+2. 회원가입에 필요한 정보를 모두 적지 않으면 에러 메시지 생성
+3. 이메일 인증 버튼을 누르면 해당 이메일로 인증번호를 보내고 입력한 인증번호와 같은지 확인
+4. 아이디 중복확인 버튼을 누르면 입력한 아이디를 사용할 수 있는지 데이터베이스와 비교
+4-1. 아이디 생성이 가능하다면 '사용 가능한 아이디입니다' 메시지 출력
+4-2. 아이디 생성이 불가하다면 '사용 불가능한 아이디입니다' 메시지 출력
+5. 비밀번호 정규식 체크를 통해 사용 가능한 비밀번호인지 확인
+5-1. 비밀번호와 비밀번호 확인에 입력한 문자열이 동일한지 확인
+6. 주민등록번호, 전화번호, 법인등록번호, 사업자등록번호는 정규식을 통해 확인
+    
+![유효성체크1](https://github.com/kh-finalproject-Sim-s/KH-Sim-s/assets/39897996/d53decb9-e790-4940-be7e-dbe0a3899e48)
+    
+---
+
+</div>
+</details>
+
 ### 2. 사용자 맞춤형 요금제 찾기
 <details>
     <summary>사용자 맞춤형 요금제 찾기/추천</summary>
@@ -206,6 +334,7 @@
 
 ### 8. 플로우 차트
 
+![플로우차트](https://github.com/kh-finalproject-Sim-s/KH-Sim-s/assets/96179832/69db77f4-0496-455b-9def-56d5dc0bff4f)
 
 <br>
 
