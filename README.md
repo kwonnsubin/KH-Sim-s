@@ -458,38 +458,160 @@ Spring Security를 활용하여 로그인 기능을 구현, 비밀번호의 경�
 김민성
 
 ### 3. 관리자
-### 3-1. 관리자 신고 관리
+
+### 3-2. 관리자 신고 관리
 <details>
     <summary>관리자 신고 관리</summary>
     
 ![신고관리](https://github.com/kh-finalproject-Sim-s/KH-Sim-s/assets/108276943/1a19e9b7-274d-485b-9d45-bf1bbb21faa5)
+    
+<div align="center">
+<img src="https://res.cloudinary.com/dnik5jlzd/image/upload/c_scale,h_10,w_225/v1679302400/readme/%EC%84%A0_vkktmh.png">
+신고 리뷰 목록
+<img src="https://res.cloudinary.com/dnik5jlzd/image/upload/c_scale,h_10,w_225/v1679302400/readme/%EC%84%A0_vkktmh.png">
+</div><br>
+<div align="center">
+    
+</div>
+    
+1. 신고리뷰 목록에서 미확인/삭제/반려 버튼을 누르면 해당 상태의 목록만 따로 조회 가능
+- '미확인', '삭제', '반려' 버튼 클릭 시 reportStatus 값(0,1,2)을 설정하고, reportStatusForm을 제출
+- 각각의 버튼은 활성화된 상태와 비활성화된 상태가 있으며, 활성화된 상태일 때 해당 버튼에 'active'가 추가되어 표시
+2. 3일 이내에 신고된 리뷰는 새로운 리뷰로 간주되어, 목록에서 해당 리뷰 옆에 new 아이콘이 표시
+3. 상태 처리가 '미확인'인 리뷰는 목록에서 빨간색 글자로 표시
+4. 검색 옵션을 사용하여 특정 키워드와 일치하는 리뷰를 검색. 검색어를 입력하면 해당 검색어가 포함된 리뷰가 목록에서 필터링
+
+<div align="center">
+<img src="https://res.cloudinary.com/dnik5jlzd/image/upload/c_scale,h_10,w_225/v1679302400/readme/%EC%84%A0_vkktmh.png">
+신고 리뷰 처리
+<img src="https://res.cloudinary.com/dnik5jlzd/image/upload/c_scale,h_10,w_225/v1679302400/readme/%EC%84%A0_vkktmh.png">
+</div><br>
+<div align="center">
+    
+</div> 
+    
+1. ajax를 활용하여 신고 리뷰를 삭제/반려 처리
+- 삭제/반려 처리 시 "반려(삭제)처리 하시겠습니까?"라는 확인창 표시
+- 확인을 누르면 처리상태가 '반려' 또는 '삭제'로 바뀐다.
+3. 목록버튼을 누르면 신고 리뷰 목록 페이지로 이동
 
 </details> 
 
-### 3-2. 관리자 문의내역 관리
+### 3-3. 관리자 문의내역 관리
 <details>
     <summary>관리자 문의내역 관리</summary>
     
 ![문의내역 관리](https://github.com/kh-finalproject-Sim-s/KH-Sim-s/assets/108276943/152ace0c-d6b3-4059-8c88-e7bdd8850d2b)
-
-</details>
-
-### 3-3. 관리자 자주묻는질문 관리
-<details>
-    <summary>관리자 자주묻는질문 관리</summary>
     
-![자주묻는질문 관리](https://github.com/kh-finalproject-Sim-s/KH-Sim-s/assets/108276943/ebffa4f0-64d9-451b-91e4-306829fd1443)
+<div align="center">
+<img src="https://res.cloudinary.com/dnik5jlzd/image/upload/c_scale,h_10,w_225/v1679302400/readme/%EC%84%A0_vkktmh.png">
+문의내역 목록 조회
+<img src="https://res.cloudinary.com/dnik5jlzd/image/upload/c_scale,h_10,w_225/v1679302400/readme/%EC%84%A0_vkktmh.png">
+</div><br>
+<div align="center">
+    
+</div>
+    
+1. 등록된 문의내역 목록을 조회
+2. 3일 이내에 등록된 문의는 새로운 문의로 간주되어, 목록에서 해당 제목 옆에 new 아이콘이 표시
+    
+<div align="center">
+<img src="https://res.cloudinary.com/dnik5jlzd/image/upload/c_scale,h_10,w_225/v1679302400/readme/%EC%84%A0_vkktmh.png">
+문의내역 상세
+<img src="https://res.cloudinary.com/dnik5jlzd/image/upload/c_scale,h_10,w_225/v1679302400/readme/%EC%84%A0_vkktmh.png">
+</div><br>
+<div align="center">
+    
+</div>
+
+1. 쿠키를 이용한 조회수 무한증가 방지.
+    
+<img width="696" alt="스크린샷 2023-05-11 오후 8 44 58" src="https://github.com/kh-finalproject-Sim-s/KH-Sim-s/assets/108276943/5c3a5dbd-754d-4dbc-9d55-5bb95bc9a53c">
+    
+- 쿠키 만료 시간을 10초로 설정하여 해당 Q&A 글을 본 이후 10초 이내에 다시 조회하면 중복 조회로 처리되지 않고 조회수가 증가하지 않음.
+    
+2. 트리거와 ajax를 활용하여 답변 등록, 삭제 시 답변수가 자동으로 증감됨.
+   
+<div align="center">
+<img src="https://res.cloudinary.com/dnik5jlzd/image/upload/c_scale,h_10,w_225/v1679302400/readme/%EC%84%A0_vkktmh.png">
+답변
+<img src="https://res.cloudinary.com/dnik5jlzd/image/upload/c_scale,h_10,w_225/v1679302400/readme/%EC%84%A0_vkktmh.png">
+</div><br>
+<div align="center">
+    
+</div>
+    
+- 등록
+1. ajax를 사용하여 답변 등록
+2. 등록시 답변 내용이 비어있으면 "댓글 내용을 입력하지 않았습니다."라는 경고창이 표시
+    
+- 수정
+1. ajax를 사용하여 답변을 수정
+2. 관리자(admin)계정의 답변만 수정 버튼이 활성화
+3. 수정 버튼 클릭 시 해당 답변 내용이 수정할 수 있는 수정폼으로 변경
+    
+- 삭제
+1. ajax를 사용하여 답변을 삭제
+2. 관리자(admin)계정의 답변만 삭제 버튼이 활성화
+3. 삭제를 클릭하면 "삭제하시겠습니까?"라는 확인창(confirm)이 뜬다.
+    
+<div align="center">
+<img src="https://res.cloudinary.com/dnik5jlzd/image/upload/c_scale,h_10,w_225/v1679302400/readme/%EC%84%A0_vkktmh.png">
+답글
+<img src="https://res.cloudinary.com/dnik5jlzd/image/upload/c_scale,h_10,w_225/v1679302400/readme/%EC%84%A0_vkktmh.png">
+</div><br>
+<div align="center">
+    
+</div>
+    
+- 조회
+1. 답글 버튼을 누르면 ajax로 해당 답변의 답글목록이 나타나게함
+    
+- 등록
+1. ajax를 사용하여 답글을 삭제
+1. 내용을 입력하고 등록버튼을 클릭시 답글 작성
+1-1. 답변 하단에 등록한 답글이 추가된다.
+1-2. 답글이 비어있으면 "댓글 내용을 입력하지 않았습니다."라는 알림창이 뜬다.
+    
+- 수정
+1. ajax를 사용하여 답글을 수정
+1. 수정을 클릭하여 해당 답글을 수정할 수 있다.
+1-1. 관리자(admin)계정의 답글만 수정 버튼이 활성화
+2. 수정을 클릭하면 해당 답글 내용이 수정할 수 있는 수정폼으로 변경된다.
+2-2. 수정폼에는 기존에 작성했던 답글내용이 들어가있다.
+2-3. 저장을 클릭하면 수정 완료되고, 수정한 내용이 바로 반영되어 보여진다.
+2-4. 취소를 클릭하여 수정 취소
+2-5. 답글이 비어있으면 "댓글 내용을 입력하지 않았습니다."라는 알림창이 뜬다.
+    
+- 삭제
+1. ajax를 사용하여 해당 답글을 삭제
+1-1. 관리자(admin)계정의 답글만 삭제 버튼이 활성화
+2. 삭제를 클릭하면 "삭제하시겠습니까?"라는 확인창(confirm)이 뜬다.
+2-1. 이때 확인을 누르면 해당 답글이 바로 삭제된다.
 
 </details>
 
-### 3-4. 관리자 통계조회
+### 3-5. 관리자 통계조회
 <details>
     <summary>관리자 통계조회</summary>
     
 ![통계조회](https://github.com/kh-finalproject-Sim-s/KH-Sim-s/assets/108276943/159dbd36-21a9-49d8-bf8d-459d88c0bcd4)
+    
+<div align="center">
+<img src="https://res.cloudinary.com/dnik5jlzd/image/upload/c_scale,h_10,w_225/v1679302400/readme/%EC%84%A0_vkktmh.png">
+통계조회
+<img src="https://res.cloudinary.com/dnik5jlzd/image/upload/c_scale,h_10,w_225/v1679302400/readme/%EC%84%A0_vkktmh.png">
+</div><br>
+<div align="center">
+    
+</div>
+    
+1. apexcharts 차트 라이브러리를 사용하여 차트를 나타냄.
 
 </details>
-    
+
+권수빈
+
 ## 6️⃣ Document
 
 <br>
