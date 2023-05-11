@@ -100,7 +100,7 @@
 		    , (select b.biz_id from biz b where p.biz_name = b.biz_name) as biz_id
 		    , (select b.biz_review_star from biz b where p.biz_name = b.biz_name) as biz_review_star
 		    , (select count(*) from plan_order po where p.plan_no = po.plan_no and po.order_status=2) as order_count
-		from plan_table p)
+		from plan_table p
 		<if test="searchText != null">
 			where plan_name like '%${searchText}%' or biz_name like '%${searchText}%'
 		</if>
@@ -114,6 +114,7 @@
 		<if test="select == 'data'.toString()">
 			order by to_number(plan_data) desc
 		</if>
+		)
 	</select>
 	
 	<select id="cntPlanFilterList" parameterType="map" resultType="int">
@@ -122,7 +123,7 @@
 		    , (select b.biz_id from biz b where p.biz_name = b.biz_name) as biz_id
 		    , (select b.biz_review_star from biz b where p.biz_name = b.biz_name) as biz_review_star
 		    , (select count(*) from plan_order po where p.plan_no = po.plan_no and po.order_status=2) as order_count
-		from plan_table p)
+		from plan_table p
 		<trim prefix="where" prefixOverrides="and|or">
 			<if test="planData == 100000">plan_data >= 100000</if>
 			<if test="planData == 50000"><![CDATA[ (plan_data < 100000 and plan_data >= 50000)]]> </if>
@@ -170,6 +171,7 @@
 				order by to_number(plan_data) desc
 			</if>
 		</trim>
+		)
 	</select>
 	
 	<select id="bizNameList" resultType="string">
