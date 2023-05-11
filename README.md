@@ -117,7 +117,40 @@
     
 ![find-customPlan](https://github.com/kh-finalproject-Sim-s/KH-Sim-s/assets/54164292/5096b025-b9a3-45ed-b103-9fa1ea6d5d25)
 
-</details>    
+</details>
+
+### 3. 관리자
+### 3-1. 관리자 신고 관리
+<details>
+    <summary>관리자 신고 관리</summary>
+    
+![신고관리](https://github.com/kh-finalproject-Sim-s/KH-Sim-s/assets/108276943/1a19e9b7-274d-485b-9d45-bf1bbb21faa5)
+
+</details> 
+
+### 3-2. 관리자 문의내역 관리
+<details>
+    <summary>관리자 문의내역 관리</summary>
+    
+![문의내역 관리](https://github.com/kh-finalproject-Sim-s/KH-Sim-s/assets/108276943/152ace0c-d6b3-4059-8c88-e7bdd8850d2b)
+
+</details>
+
+### 3-3. 관리자 자주묻는질문 관리
+<details>
+    <summary>관리자 자주묻는질문 관리</summary>
+    
+![자주묻는질문 관리](https://github.com/kh-finalproject-Sim-s/KH-Sim-s/assets/108276943/ebffa4f0-64d9-451b-91e4-306829fd1443)
+
+</details>
+
+### 3-4. 관리자 통계조회
+<details>
+    <summary>관리자 통계조회</summary>
+    
+![통계조회](https://github.com/kh-finalproject-Sim-s/KH-Sim-s/assets/108276943/159dbd36-21a9-49d8-bf8d-459d88c0bcd4)
+
+</details>
     
 ## 6️⃣ Document
 
