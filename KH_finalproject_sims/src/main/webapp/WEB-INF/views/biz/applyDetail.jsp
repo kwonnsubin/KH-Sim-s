@@ -93,7 +93,7 @@
 						<th scope="row">
 							<span>주소</span>
 						</th>
-						<td colspan="2">${applyDetail.userAddress }</td>
+						<td colspan="2">${applyDetailPlan.orderAddress }</td>
 		                <th scope="row">
 		                    <span>이메일</span>
 		                </th>

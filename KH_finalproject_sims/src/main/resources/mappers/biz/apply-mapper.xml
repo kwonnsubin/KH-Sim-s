@@ -22,8 +22,9 @@
 	      ,po.plan_bill, po.plan_pay
 	      ,pc.card_number, pc.card_expiration, pc.card_holder, pc.card_ssn, pc.card_relationship
 	      ,pa.acc_bank, pa.acc_number, pa.acc_holder, pa.acc_ssn, pa.acc_relationship
-	      ,po.order_date ,pt.net_no, pt.gen_no, pt.plan_price, pt.plan_data, pt.plan_voice, pt.plan_message,
-	      po.order_no, po.order_status
+	      ,po.order_date ,pt.net_no, pt.gen_no, pt.plan_price, pt.plan_data, pt.plan_voice, pt.plan_message
+	      ,po.order_no, po.order_status
+	      ,po.order_address
 	FROM plan_order po
 	JOIN plan_table pt ON po.plan_no = pt.plan_no
 	LEFT OUTER JOIN PAYINFO_CARD pc ON po.order_no = pc.order_no

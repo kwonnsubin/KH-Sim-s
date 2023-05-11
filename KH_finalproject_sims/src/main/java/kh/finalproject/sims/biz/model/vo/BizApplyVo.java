@@ -57,6 +57,7 @@ public class BizApplyVo {
 	private int orderData;
 	private int orderVoice;
 	private int orderMessage;
+	private String orderAddress;
 	
 //	payinfo_acc
 //	---------------- -------- ------------ 
