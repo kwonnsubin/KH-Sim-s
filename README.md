@@ -97,8 +97,9 @@
 | `CI`       | Git(GitHub Desktop)                                            |
 | `Web browser` | Chrome                                                      |
 | `Document` | ERDCloud, StarUML, Google Drive                                |
-| `Library & Framework` |  ojcbc8(21.1.0),lombok(1.18.26), log4j(1.16), gson(2.8.9),json(20160810), jackson(2.13.2.2),commons-fileupload(1.4), commons-io(2.6), slf4j(1.6.6),aspectJ(1.6.10), security(4.2.1.RELEASE),Bootstrap(5.2.3), DateRangePicker , Chart.js, Google chart                    |
-| `API`      |  과학기술정보통신부 우정사업본부_우체국알뜰폰 요금제 조회 서비스, 카카오톡 로그인, 카카오톡 push 알림, 카카오톡 공유, 다음 우편번호 서비스, 채널톡, 누리고, CKEditor                                                        |
+| `Library & Framework` |  ojcbc8(21.1.0),  lombok(1.18.26),  log4j(1.16),  gson(2.8.9),  json(20160810), <br> jackson(2.13.2.2),  commons-fileupload(1.4),  commons-io(2.6),  slf4j(1.6.6), <br> aspectJ(1.6.10), security(4.2.1.RELEASE),  Bootstrap(5.2.3),  DateRangePicker ,  Chart.js,  Google chart            |
+| `API`      |  과학기술정보통신부 우정사업본부_우체국알뜰폰 요금제 조회 서비스,<br>  카카오톡 로그인, 카카오톡 push 알림, 카카오톡 공유, 다음 우편번호 서비스, 채널톡, 누리고, CKEditor   |
+                                                    |
 
 
 ## 5️⃣ 주요기능
@@ -406,6 +407,55 @@ Spring Security를 활용하여 로그인 기능을 구현, 비밀번호의 경�
 </details>
 
 진수성 끝
+
+
+---
+
+### 2. 통신사
+<details>
+    <summary>통신사 대시보드</summary>
+    
+![biz-dashboard](https://github.com/minseong95/minseong95.github.io/assets/54164292/2f1015e3-3962-448a-a6d8-16880fe9fb27)
+
+</details>
+
+<details>
+    <summary>통신사 정보</summary>
+    
+![bizinfo](https://github.com/minseong95/minseong95.github.io/assets/54164292/d38f5fb8-762b-40bd-82f9-dfdfd113fec9)
+
+</details>
+
+<details>
+    <summary>자사 요금제 관리</summary>
+    
+![bizplan](https://github.com/minseong95/minseong95.github.io/assets/54164292/b918498e-45aa-42ac-8dca-fc27204fc00b)
+
+</details>
+
+<details>
+    <summary>자사 요금제 가입 신청 관리</summary>
+    
+![bizApply](https://github.com/minseong95/minseong95.github.io/assets/54164292/b7ada5f0-219b-4638-9c9c-995434d42991)
+
+</details>
+
+<details>
+    <summary>자사 리뷰 관리</summary>
+    
+![bizReview](https://github.com/minseong95/minseong95.github.io/assets/54164292/18d07722-12db-482a-8c94-20367e15f1a8)
+
+</details>
+
+
+<details>
+    <summary>자사 통계 조회</summary>
+   
+</details>
+
+
+
+김민성
 
 ### 3. 관리자
 ### 3-1. 관리자 신고 관리
