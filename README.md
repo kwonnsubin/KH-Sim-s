@@ -356,15 +356,56 @@ Spring Security를 활용하여 로그인 기능을 구현, 비밀번호의 경�
 </div>
 </details>
 
-진수성 끝
-
-### 2. 사용자 맞춤형 요금제 찾기
 <details>
-    <summary>사용자 맞춤형 요금제 찾기/추천</summary>
+<summary><h3>✅ 요금제 검색 / 맞춤형 요금제 </h3></summary>
+<div markdown="1">
+  
+<br>
+<br>
+<div align="center">
+<img src="https://res.cloudinary.com/dnik5jlzd/image/upload/c_scale,h_10,w_225/v1679302400/readme/%EC%84%A0_vkktmh.png">
+요금제 검색
+<img src="https://res.cloudinary.com/dnik5jlzd/image/upload/c_scale,h_10,w_225/v1679302400/readme/%EC%84%A0_vkktmh.png">
+</div><br>
+<div align="center">
+
+![plans](https://github.com/kh-finalproject-Sim-s/KH-Sim-s/assets/39897996/9a1e5ee5-d037-49e1-b9e4-19b1b196afe5)
+    
+</div>
+
+1. 분류 클릭 후 선택순, 별점순, 데이터순 클릭 시 해당 요금제 리스트 생성
+2. 우측 검색어 입력시 해당 요금제 리스트 생성
+3. 필터 클릭 후 각 분류 선택 후 확인 버튼 클릭 시 해당하는 요금제 리스트 생성
+4. 우측 최근 본 요금제 리스트 최대 7개 생성
+5. 분류에 대한 데이터, 통화량, 가격 상단에 생성
+    
+---
+  
+<br> 
+<br> 
+<br> 
+    
+<div align="center">
+<img src="https://res.cloudinary.com/dnik5jlzd/image/upload/c_scale,h_10,w_225/v1679302400/readme/%EC%84%A0_vkktmh.png">
+맞춤형 요금제
+<img src="https://res.cloudinary.com/dnik5jlzd/image/upload/c_scale,h_10,w_225/v1679302400/readme/%EC%84%A0_vkktmh.png">
+</div><br>
+<div align="center">
     
 ![find-customPlan](https://github.com/kh-finalproject-Sim-s/KH-Sim-s/assets/54164292/5096b025-b9a3-45ed-b103-9fa1ea6d5d25)
+    
+</div>
 
+1. 메인페이지 맞춤 요금제 찾기 클릭
+2. 질문에 대한 답변 클릭, 다음페이지로 넘어감
+3. 모든 질문에 답변하게되면 해당 답변에 대한 정보를 가지고 요금제 리스트 페이지로 넘어감
+    
+---
+
+</div>
 </details>
+
+진수성 끝
 
 ### 3. 관리자
 ### 3-1. 관리자 신고 관리
