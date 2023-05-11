@@ -74,13 +74,14 @@
 			<!-- 검색창에 검색값 유지  -->
 			<%
 				String keyword = request.getParameter("keyword");
+				String searchType = request.getParameter("searchType");
 			%>
 			<!-- search{s} -->
 				<div style="display: flex;">
 		
 					<select class="form-select" style="display: inline-block; width: 120px" name="searchType" id="searchType">
-						<option value="planName">요금제명</option>
-						<option value="userId">신청자</option>
+						<option value="planName" <c:if test="${searchType eq 'planName'}">selected</c:if>>요금제명</option>
+						<option value="userId"  <c:if test="${searchType eq 'userId'}">selected</c:if>>신청자</option>
 					</select>
 					<input class="form-control" style="display: inline-block; width: 300px;" type="text"
 					 name="keyword" id="keyword" value=${keyword}>
@@ -226,14 +227,12 @@
 					</c:when>
 					<c:otherwise>
 						<li class="page-item"><a class="page-link" 
-						href="${path}/biz/applyList?p=${requestScope.paging.prevPage }
-						&searchType=${searchType }&keyword=${keyword }&orderStatus=${orderStatus}&startDate=${startDate }&endDate=${endDate}">prev</a></li>
+						href="${path}/biz/applyList?p=${requestScope.paging.prevPage }&searchType=${searchType }&keyword=${keyword }&orderStatus=${orderStatus}&startDate=${startDate }&endDate=${endDate}">prev</a></li>
 					</c:otherwise>
 				</c:choose>
 				<c:forEach var="pNum" items="${requestScope.paging.pageList }">
 					<li class="page-item ${pNum eq pageNumber ? 'active' : '' }"><a class="page-link"
-					 href="${path}/biz/applyList?p=${pNum }&searchType=${searchType }
-					 &keyword=${keyword }&orderStatus=${orderStatus}&startDate=${startDate }&endDate=${endDate}">${pNum }</a></li>
+					 href="${path}/biz/applyList?p=${pNum }&searchType=${searchType }&keyword=${keyword }&orderStatus=${orderStatus}&startDate=${startDate }&endDate=${endDate}">${pNum }</a></li>
 				</c:forEach>
 				<c:choose>
 					<c:when test="${requestScope.paging.nextPage eq -1 }">
@@ -241,8 +240,7 @@
 					</c:when>
 					<c:otherwise>
 						<li class="page-item"><a class="page-link" 
-						href="${path}/biz/applyList?p=${requestScope.paging.nextPage }
-						&searchType=${searchType }&keyword=${keyword }&orderStatus=${orderStatus}&startDate=${startDate }&endDate=${endDate}">next</a></li>
+						href="${path}/biz/applyList?p=${requestScope.paging.nextPage }&searchType=${searchType }&keyword=${keyword }&orderStatus=${orderStatus}&startDate=${startDate }&endDate=${endDate}">next</a></li>
 					</c:otherwise>
 				</c:choose>
 			</ul>
