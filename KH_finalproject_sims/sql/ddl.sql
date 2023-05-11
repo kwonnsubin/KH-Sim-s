@@ -458,3 +458,12 @@ from plan_table tbp
 join biz tbb 
 on tbp.biz_name=tbb.biz_name;
 
+--요금제 삭제용 트리거
+CREATE OR REPLACE TRIGGER delete_plan_trigger
+BEFORE DELETE ON plan_table
+FOR EACH ROW
+BEGIN
+  DELETE FROM view_table WHERE plan_no = :OLD.plan_no;
+  DELETE FROM like_table WHERE plan_no = :OLD.plan_no;
+END;
+
