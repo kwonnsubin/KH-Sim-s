@@ -123,7 +123,9 @@
 <img src="https://res.cloudinary.com/dnik5jlzd/image/upload/c_scale,h_10,w_225/v1679302400/readme/%EC%84%A0_vkktmh.png">
 </div><br>
 <div align="center">
-  
+
+![login](https://github.com/kh-finalproject-Sim-s/KH-Sim-s/assets/39897996/f04deb30-ed48-4e3e-b34b-76a769dc5ba5)
+    
 </div>
 
 Spring Security를 활용하여 로그인 기능을 구현, 비밀번호의 경우 bcrpt 암호화를 적용
@@ -145,6 +147,8 @@ Spring Security를 활용하여 로그인 기능을 구현, 비밀번호의 경�
 <img src="https://res.cloudinary.com/dnik5jlzd/image/upload/c_scale,h_10,w_225/v1679302400/readme/%EC%84%A0_vkktmh.png">
 </div><br>
 <div align="center">
+    
+![kakaoLogin](https://github.com/kh-finalproject-Sim-s/KH-Sim-s/assets/39897996/b640e275-d5cb-4b56-96a6-5a42e4ea96b9)
     
 </div>
 
@@ -169,7 +173,7 @@ Spring Security를 활용하여 로그인 기능을 구현, 비밀번호의 경�
 </div><br>
 <div align="center">
   
-
+![findId](https://github.com/kh-finalproject-Sim-s/KH-Sim-s/assets/39897996/10a20ba5-6c2d-4880-99be-b6a35874f71d)
   
 </div>
 
@@ -192,7 +196,7 @@ Spring Security를 활용하여 로그인 기능을 구현, 비밀번호의 경�
 </div><br>
 <div align="center">
   
-
+![findpw](https://github.com/kh-finalproject-Sim-s/KH-Sim-s/assets/39897996/90810f62-be1b-4d66-87db-3d2e3e154c8f)
   
 </div>
 
@@ -214,7 +218,7 @@ Spring Security를 활용하여 로그인 기능을 구현, 비밀번호의 경�
 </div><br>
 <div align="center">
   
-
+![signup](https://github.com/kh-finalproject-Sim-s/KH-Sim-s/assets/39897996/613e39e4-79e5-476a-90b9-f5203ba9c008)
   
 </div>
 
