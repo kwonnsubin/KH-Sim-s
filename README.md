@@ -111,6 +111,7 @@
     
 </details>
 
+진수성 
 <details>
 <summary><h3>✅ 시큐리티 로그인 및 회원 </h3></summary>
 <div markdown="1">
@@ -238,6 +239,124 @@ Spring Security를 활용하여 로그인 기능을 구현, 비밀번호의 경�
 
 </div>
 </details>
+
+<details>
+<summary><h3>✅ 마이페이지 </h3></summary>
+<div markdown="1">
+  
+<br>
+<br>
+<div align="center">
+<img src="https://res.cloudinary.com/dnik5jlzd/image/upload/c_scale,h_10,w_225/v1679302400/readme/%EC%84%A0_vkktmh.png">
+정보 수정
+<img src="https://res.cloudinary.com/dnik5jlzd/image/upload/c_scale,h_10,w_225/v1679302400/readme/%EC%84%A0_vkktmh.png">
+</div><br>
+<div align="center">
+
+![myinfo](https://github.com/kh-finalproject-Sim-s/KH-Sim-s/assets/39897996/15775d43-a63d-47db-ba93-937839dc7b60)
+    
+</div>
+
+1. 비밀번호 확인을 통해 정보 수정 폼 생성
+2. 이름과 아이디는 유저 정보로 작성
+5. 비밀번호 정규식 체크를 통해 사용 가능한 비밀번호인지 확인
+5-1. 비밀번호와 비밀번호 확인에 입력한 문자열이 동일한지 확인
+3. 이메일 인증 버튼을 누르면 해당 이메일로 인증번호를 보내고 입력한 인증번호와 같은지 확인
+6. 전화번호는 정규식을 통해 확인
+7. 정보 변경 후 로그아웃 처리
+    
+---
+  
+<br> 
+<br> 
+<br> 
+    
+<div align="center">
+<img src="https://res.cloudinary.com/dnik5jlzd/image/upload/c_scale,h_10,w_225/v1679302400/readme/%EC%84%A0_vkktmh.png">
+리뷰 작성/관리
+<img src="https://res.cloudinary.com/dnik5jlzd/image/upload/c_scale,h_10,w_225/v1679302400/readme/%EC%84%A0_vkktmh.png">
+</div><br>
+<div align="center">
+    
+![review](https://github.com/kh-finalproject-Sim-s/KH-Sim-s/assets/39897996/d802bd8c-42b1-4536-9e5d-5ce5fac6c43d)
+    
+</div>
+
+1. 상단 리뷰 작성을 누르면 작성할 수 있는 리뷰 폼 생성
+2. 리뷰 작성 버튼을 누르면 글 작성 폼과 별점 선택 폼 생성
+2-1. 작성 버튼 누르면 리뷰 저장
+3. 상단 작성한 리뷰 누르면 작성된 리뷰 리스트 생성
+4. 수정 버튼 누르면 수정 폼으로 변경
+4-1. 수정 버튼 누르면 수정한 내용으로 변경
+5. 삭제 버튼 누르면 해당 리뷰 삭제
+    
+---
+  
+<br> 
+<br> 
+<br> 
+ 
+<div align="center">
+<img src="https://res.cloudinary.com/dnik5jlzd/image/upload/c_scale,h_10,w_225/v1679302400/readme/%EC%84%A0_vkktmh.png">
+신청한 요금제
+<img src="https://res.cloudinary.com/dnik5jlzd/image/upload/c_scale,h_10,w_225/v1679302400/readme/%EC%84%A0_vkktmh.png">
+</div><br>
+<div align="center">
+  
+![order](https://github.com/kh-finalproject-Sim-s/KH-Sim-s/assets/39897996/25e0f622-ee4b-411a-befa-dcdf96d28da7)
+  
+</div>
+
+1. 상단 신청완료, 승인완료, 승인보류 선택시 해당 요금제 리스트 생성
+2. 각 리스트 상세 조회 누를시 상세 조회 페이지로 이동
+
+---
+  
+<br> 
+<br> 
+<br> 
+ 
+<div align="center">
+<img src="https://res.cloudinary.com/dnik5jlzd/image/upload/c_scale,h_10,w_225/v1679302400/readme/%EC%84%A0_vkktmh.png">
+찜한 요금제
+<img src="https://res.cloudinary.com/dnik5jlzd/image/upload/c_scale,h_10,w_225/v1679302400/readme/%EC%84%A0_vkktmh.png">
+</div><br>
+<div align="center">
+  
+![like](https://github.com/kh-finalproject-Sim-s/KH-Sim-s/assets/39897996/29e3d535-c478-4771-a9c5-0d0035e61d41)
+  
+</div>
+
+1. 찜한 요금제 리스트 생성
+2. 각 리스트 하트 누르면 찜 삭제
+3. 자세히 보기 누르면 해당 요금제 페이지로 이동
+    
+---
+    
+<br> 
+<br> 
+<br>
+ 
+<div align="center">
+<img src="https://res.cloudinary.com/dnik5jlzd/image/upload/c_scale,h_10,w_225/v1679302400/readme/%EC%84%A0_vkktmh.png">
+최근 본 요금제
+<img src="https://res.cloudinary.com/dnik5jlzd/image/upload/c_scale,h_10,w_225/v1679302400/readme/%EC%84%A0_vkktmh.png">
+</div><br>
+<div align="center">
+  
+![recent](https://github.com/kh-finalproject-Sim-s/KH-Sim-s/assets/39897996/adb17b2f-b2ef-4c61-92fb-f4e6d7a9501b)
+  
+</div>
+    
+1. 요금제 페이지 이동시 최근 본 요금제 추가
+2. 자세히 보기 누르면 해당 요금제 페이지로 이동
+    
+---
+
+</div>
+</details>
+
+진수성 끝
 
 ### 2. 사용자 맞춤형 요금제 찾기
 <details>
