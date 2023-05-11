@@ -330,6 +330,7 @@ Spring Security를 활용하여 로그인 기능을 구현, 비밀번호의 경�
 
 ### 8. 플로우 차트
 
+![플로우차트](https://github.com/kh-finalproject-Sim-s/KH-Sim-s/assets/96179832/69db77f4-0496-455b-9def-56d5dc0bff4f)
 
 <br>
 
