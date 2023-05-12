@@ -635,7 +635,7 @@ Spring Security를 활용하여 로그인 기능을 구현, 비밀번호의 경�
 ### 3. 관리자
 
 <details>
-    <summary>대시보드</summary>
+    <summary>✅ 대시보드</summary>
     
   ![대시보드](https://github.com/kh-finalproject-Sim-s/KH-Sim-s/assets/108276943/c9df45e6-2589-461a-863c-25c8e8fc8683)
 
@@ -659,7 +659,7 @@ Spring Security를 활용하여 로그인 기능을 구현, 비밀번호의 경�
 </details>
     
 <details>
-    <summary>관리자 신고 관리</summary>
+    <summary>✅ 관리자 신고 관리</summary>
     
 ![신고관리](https://github.com/kh-finalproject-Sim-s/KH-Sim-s/assets/108276943/1a19e9b7-274d-485b-9d45-bf1bbb21faa5)
     
@@ -695,7 +695,7 @@ Spring Security를 활용하여 로그인 기능을 구현, 비밀번호의 경�
 </details> 
 
 <details>
-    <summary>관리자 문의내역 관리</summary>
+    <summary>✅ 관리자 문의내역 관리</summary>
     
 ![문의내역 관리](https://github.com/kh-finalproject-Sim-s/KH-Sim-s/assets/108276943/152ace0c-d6b3-4059-8c88-e7bdd8850d2b)
     
@@ -835,7 +835,7 @@ Spring Security를 활용하여 로그인 기능을 구현, 비밀번호의 경�
 </details>
 
 <details>
-    <summary>관리자 통계조회</summary>
+    <summary>✅ 관리자 통계조회</summary>
     
 ![통계조회](https://github.com/kh-finalproject-Sim-s/KH-Sim-s/assets/108276943/159dbd36-21a9-49d8-bf8d-459d88c0bcd4)
     
