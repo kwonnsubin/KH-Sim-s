@@ -55,7 +55,7 @@
 		    String reportStatus = request.getParameter("reportStatus");
 		%>
 		
-		<form id="reportStatusForm" action="<%=request.getContextPath()%>/biz/selectByReportStatus" method="get" style="display: flex; justify-content: flex-end; margin-right: 10%;">
+		<form id="reportStatusForm" action="<%=request.getContextPath()%>/biz/reviewList" method="get" style="display: flex; justify-content: flex-end; margin-right: 10%;">
 		  <div class="btn-group mt-3 mb-3" role="group" aria-label="Basic example">
 		    <label for="all" class="btn btnStatus btn-outline-primary">
 		      <input type="radio" id="all" name="reportStatus" value="0" 
@@ -190,18 +190,18 @@
 							<li class="page-item disabled"><a class="page-link">prev</a></li>
 						</c:when>
 						<c:otherwise>
-							<li class="page-item"><a class="page-link" href="${path}/biz/selectByReportStatus?p=${requestScope.paging.prevPage }&reportStatus=${reportStatus}">prev</a></li>
+							<li class="page-item"><a class="page-link" href="${path}/biz/reviewList?p=${requestScope.paging.prevPage }&reportStatus=${reportStatus}">prev</a></li>
 						</c:otherwise>
 					</c:choose>
 					<c:forEach var="pNum" items="${requestScope.paging.pageList }">
-						<li class="page-item ${pNum eq pageNumber ? 'active' : '' }"><a class="page-link" href="${path}/biz/selectByReportStatus?p=${pNum }&reportStatus=${reportStatus}">${pNum }</a></li>
+						<li class="page-item ${pNum eq pageNumber ? 'active' : '' }"><a class="page-link" href="${path}/biz/reviewList?p=${pNum }&reportStatus=${reportStatus}">${pNum }</a></li>
 					</c:forEach>
 					<c:choose>
 						<c:when test="${requestScope.paging.nextPage eq -1 }">
 							<li class="page-item disabled"><a class="page-link">next</a></li>
 						</c:when>
 						<c:otherwise>
-							<li class="page-item"><a class="page-link" href="${path}/biz/selectByReportStatus?p=${requestScope.paging.nextPage }&reportStatus=${reportStatus}">next</a></li>
+							<li class="page-item"><a class="page-link" href="${path}/biz/reviewList?p=${requestScope.paging.nextPage }&reportStatus=${reportStatus}">next</a></li>
 						</c:otherwise>
 					</c:choose>
 				</ul>

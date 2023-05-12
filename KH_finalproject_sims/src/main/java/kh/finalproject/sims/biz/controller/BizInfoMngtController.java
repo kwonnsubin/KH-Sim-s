@@ -69,7 +69,6 @@ public class BizInfoMngtController {
 		System.out.println("imagePath : "+imagePath);
 		
 		//String imagePath ="/resources/img/"+vo.getOriginalFilename();
-		mv.addObject("imagePath",imagePath);
 		mv.setViewName("biz/bizInfo");
 		return mv;
 	}

@@ -58,6 +58,7 @@ public class FileUtil {
 			// file을 server에 특정 위치(저장할 폴더)에 저장
 			String webServerRoot = request.getSession().getServletContext().getRealPath("");
 			String savePath = webServerRoot + env.getProperty("local.repository");
+			//String savePath = env.getProperty("local.repository");
 			System.out.println("savePath1 ::: " + savePath);
 			if(addedPath != null) {
 				savePath += addedPath;

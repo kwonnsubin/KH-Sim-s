@@ -62,7 +62,7 @@ public class BizReviewMngtServiceImpl implements BizReviewMngtService {
 
 	//신고처리상태에 따른 조회
 	@Override
-	public Paging selectByReportStatus(String bizid, int pNum, int cnt, String reportStatus)throws Exception {
+	public Paging selectByReportStatus(String bizid, int pNum, int cnt, int reportStatus)throws Exception {
 		Map<String, Object> map = new HashMap<String, Object>();
 		map.put("start", (pNum - 1) * cnt + 1);
 		map.put("end", pNum * cnt);	
@@ -80,7 +80,7 @@ public class BizReviewMngtServiceImpl implements BizReviewMngtService {
 	}
 
 	@Override
-	public int selectByReportStatusCnt(String bizid, String reportStatus) throws Exception{
+	public int selectByReportStatusCnt(String bizid, int reportStatus) throws Exception{
 		Map<String, Object> map = new HashMap<String, Object>();
 		map.put("bizid",bizid);
 		map.put("reportStatus",reportStatus);

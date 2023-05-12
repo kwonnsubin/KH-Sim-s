@@ -61,7 +61,7 @@
 		</div>
 	
 		<div class="text-center" style="margin-top: 70px; width: 135%;">
-			<img src="${path}${imagePath}" onerror="this.onerror=null; this.src='https://www.dummyimage.com/600x400/000/fff.jpg&text=Please+upload+your+logo';" class="mx-auto"
+			<img src="${path}${imagePath}"  class="mx-auto"
 				style="width: 35% !important" />
 		</div>
 

@@ -343,11 +343,11 @@
 		});
 
 		function deleteValue(event) {
-			var url = "/biz/deleteChkBox" // 컨트롤러로 보내고자 하는 url
+			var url = "/biz/deleteChkBox" 
 			var valueArr = new Array();
 			var list = $("input[name='RowCheck']");
 			for (var i = 0; i < list.length; i++) {
-				if (list[i].checked) { // 선택되어 있으면 배열에 값을 저장
+				if (list[i].checked) { 
 					valueArr.push(list[i].value);
 					console.log(valueArr);
 				}
@@ -355,7 +355,6 @@
 
 			if (valueArr.length == 0) {
 				alert("선택된 글이 없습니다.");
-				//모달창이 아예 작동하지않도록 함. 
 				$('#checkDeleteBtn').removeAttr('data-bs-toggle data-bs-target');
 			} else {
 				$('#checkDeleteBtn').attr({
@@ -364,13 +363,11 @@
 				});
 				$('#checkDelete').modal('show');
 				console.log(valueArr);
-				// 모달의 삭제 버튼 클릭시 이벤트 처리
 				$('.checkDelete-modal').on('click', function() {
-					// 선택된 값 컨트롤러로 전송
 					$.ajax({
 						url : "${pageContext.request.contextPath}" + url,
 						type : 'post',
-						traditional : true //적어주는 거 잊지말 것. ajax 배열 넘기기 옵션!
+						traditional : true 
 						,
 						data : {
 							valueArr : valueArr
@@ -386,8 +383,7 @@
 					});
 				});
 
-				$('#checkDeleteBtn').removeAttr('data-bs-toggle data-bs-target'); //속성 다시 제거해서 바로 다음 미체크시 모달창 작동 막음 
-
+				$('#checkDeleteBtn').removeAttr('data-bs-toggle data-bs-target'); 
 			}
 
 		}
