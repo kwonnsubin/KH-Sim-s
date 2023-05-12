@@ -887,7 +887,7 @@ Spring Security를 활용하여 로그인 기능을 구현, 비밀번호의 경�
 
 ### 5. ERD
 
-![erd](https://github.com/kh-finalproject-Sim-s/KH-Sim-s/assets/39897996/699cf502-2929-4802-a517-21be0c933483)
+![Copy of KH-Sim-s](https://github.com/kh-finalproject-Sim-s/KH-Sim-s/assets/54164292/50efbc3b-ff09-4687-bac5-52fd8e26b530)
 
 <br>
 
