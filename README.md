@@ -918,3 +918,6 @@ Spring Security를 활용하여 로그인 기능을 구현, 비밀번호의 경�
 [history 전체보기](https://docs.google.com/spreadsheets/d/1kZ3R5gv2rakgyw1BX-JixVKzIxx89I8O9IaOMMycSPo/edit?usp=share_link)
 
 <br>
+    
+    
+### 10. Troubleshooting
