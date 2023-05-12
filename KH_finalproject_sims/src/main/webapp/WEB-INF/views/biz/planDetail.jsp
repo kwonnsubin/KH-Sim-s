@@ -145,9 +145,9 @@
 	
 		<div class="btnGroup">
 			<button class= "btn" onclick="location.href='${pageContext.request.contextPath}/biz/planList'">목록</button>
-			<button class= "btn" onclick="location.href='${pageContext.request.contextPath}/biz/modifyPlan?planNo=${planDetail.planNo }'">수정</button>
+			<button class= "btn" onclick="location.href='${pageContext.request.contextPath}/biz/modifyPlan?planNo=${planDetail.planNo }'" ${planDetail.planStatus eq 1 ? 'disabled' : ''}>수정</button>
 			<button type="button" class="btn deleteBtn" data-bs-toggle="modal" data-bs-target="#deleteleModal"
-					data-planno="${planDetail.planNo}">삭제</button>
+					data-planno="${planDetail.planNo}" ${planDetail.planStatus eq 1 ? 'disabled' : ''}>삭제</button>
 		</div>
 		
 		<!-- 개별 요금제 삭제 Modal -->

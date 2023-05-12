@@ -137,6 +137,7 @@ public class BizApplyVo {
 	private double planMessageOver;
 	private double planDataOver;
 	private int planDate;
+	private int planStatus;
 	
 	private String bizId;
 	//private String bizName;
@@ -169,4 +170,6 @@ public class BizApplyVo {
 	private int searchCnt;
 	
 	private int listCnt;
+	
+	
 }

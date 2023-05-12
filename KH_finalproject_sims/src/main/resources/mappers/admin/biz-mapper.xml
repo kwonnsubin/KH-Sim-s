@@ -121,6 +121,7 @@
     					PLAN_TABLE A
     					LEFT OUTER JOIN BIZ B ON A.BIZ_NAME = B.BIZ_NAME
  						WHERE 1=1
+ 						AND A.PLAN_STATUS = 0
     					AND B.BIZ_ID =#{bizId}
     					ORDER BY PLAN_DATE DESC
 					)C

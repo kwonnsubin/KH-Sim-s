@@ -33,7 +33,7 @@
 	<select id="searchBizPlanList" parameterType="map" resultType="bPlanVo">
 	SELECT *
 		FROM (
-		    SELECT rownum rn, plan_name, plan_date, biz_name, plan_no
+		    SELECT rownum rn, plan_name, plan_date, biz_name, plan_no, plan_status
 		    FROM plan_table
 		    WHERE biz_name = (SELECT biz_name FROM biz WHERE biz_id = #{bizid})    
         			AND plan_name LIKE '%' || #{keyword} || '%' 
@@ -47,7 +47,7 @@
 	select count(*) searchCnt
 	 from (SELECT *
 			FROM (
-				    SELECT rownum rn, plan_name, plan_date, biz_name, plan_no
+				    SELECT rownum rn, plan_name, plan_date, biz_name, plan_no, plan_status
 				    FROM plan_table
 				    WHERE biz_name = (SELECT biz_name FROM biz WHERE biz_id = #{bizid})    
 				        AND plan_name LIKE '%' || #{keyword} || '%')
@@ -66,7 +66,7 @@
  				, #{bizName}, #{netNo} , #{genNo}
  				, #{planPrice} , #{planVoice}, #{planMessage}
  				, #{planData} , #{planVoiceOver}, #{planMessageOver} 
- 				, #{planDataOver} , sysdate, null)
+ 				, #{planDataOver} , sysdate, null, default)
 	</insert>
 	
 	<!-- 통신사 이름 추출 -->
@@ -76,7 +76,8 @@
 	
 	<!-- 요금제 삭제 -->
 	<delete id="deleteBizPlan">
-		delete from plan_table where plan_no=#{planNo}
+		<!-- delete from plan_table where plan_no=#{planNo} -->
+		update plan_table set plan_status = 1 where plan_no=#{planNo}
 	</delete>
 	
 	<!-- 요금제 수정 -->
@@ -87,7 +88,8 @@
 	  		plan_message = #{planMessage}, plan_data = #{planData},
 	  		plan_voice_over = #{planVoiceOver}, plan_message_over = #{planMessageOver},
 	  		plan_data_over = #{planDataOver},
-	  		plan_update_date = sysdate
+	  		plan_update_date = sysdate,
+	  		plan_status = default
 	 where plan_no = #{planNo} 
 	</update>
 	

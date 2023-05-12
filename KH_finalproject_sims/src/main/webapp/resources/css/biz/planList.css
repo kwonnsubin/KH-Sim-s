@@ -60,11 +60,7 @@
     left: 63%;
     transform: translateX(-50%);
 }
-.regBtn{
-	 /*  position: absolute; 절대적으로 배치됨
-	  right:-40%;
-   	  top: 50% ; */
-}
+
 @media (max-width: 1200px) {
   #wrap {
     display: none; /*화면 너비가 지정 크기 이하일 때 사이드 바가 안보이게 함. */
@@ -98,6 +94,9 @@ h2.tit{
 	width: 100%;
     height: -webkit-fill-available !important;
     background : rgba(0, 0, 0, -0.2) !important;
+}
+.delete-word{
+	color : #f14f5b;
 }
 
 

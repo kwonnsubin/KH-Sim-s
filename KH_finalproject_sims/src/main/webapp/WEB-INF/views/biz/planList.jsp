@@ -131,6 +131,7 @@
 						<th>요금제명</th>
 						<th>등록일</th>
 						<th>관리</th>
+						<th>상태</th>
 					</tr>
 				</thead>
 				<tbody>
@@ -163,10 +164,19 @@
 								<td>
 									<button type="button" class="btn"
 										onclick="location.href=
-	                    '${pageContext.request.contextPath}/biz/modifyPlan?planNo=${plan.planNo }'">수정</button>
+	                    '${pageContext.request.contextPath}/biz/modifyPlan?planNo=${plan.planNo }'"
+	                    			 ${plan.planStatus eq 1 ? 'disabled' : ''}>수정</button>
 									<button type="button" class="btn deleteBtn"
 										data-bs-toggle="modal" data-bs-target="#deleteleModal"
-										data-planno="${plan.planNo}">삭제</button>
+										data-planno="${plan.planNo}"
+										 ${plan.planStatus eq 1 ? 'disabled' : ''}>삭제</button>
+								</td>
+								<td>
+									<c:choose>
+										<c:when test="${plan.planStatus eq 1}">
+			                    			<span class="delete-word">삭제</span>
+			                    		</c:when>
+									</c:choose>
 								</td>
 							</tr>
 						</c:forEach>

@@ -86,6 +86,7 @@ public class BizPlanMngtVo {
 	//bizMyPage-mapper에서 사용
 	private int planCnt;
 
+	private int planStatus;
 	
 	
 }

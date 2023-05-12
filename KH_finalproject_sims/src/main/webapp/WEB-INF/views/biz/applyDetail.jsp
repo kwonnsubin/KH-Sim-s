@@ -332,8 +332,8 @@
 			</table>
 			
 				<div class="statusBtnGroup">
-					<button type="button" class="btn approve" style="margin-right : 10px;">승인</button>
-					<button type="button" class="btn hold">보류</button>
+					<button type="button" class="btn approve" style="margin-right : 10px;" ${applyDetailPlan.planStatus eq 1 ? 'disabled' : ''}>승인</button>
+					<button type="button" class="btn hold" ${applyDetailPlan.planStatus eq 1 ? 'disabled' : ''}>보류</button>
 				</div>
 		
 				<button type="button" class="btn goList" onclick="location.href='<%=request.getContextPath()%>/biz/applyList'">목록으로</button>
