@@ -464,7 +464,7 @@ Spring Security를 활용하여 로그인 기능을 구현, 비밀번호의 경�
 ---
 ### 2. 통신사
 <details>
-    <summary>통신사 대시보드</summary>
+    <summary>✅ 통신사 대시보드</summary>
     
 ![biz-dashboard](https://github.com/minseong95/minseong95.github.io/assets/54164292/2f1015e3-3962-448a-a6d8-16880fe9fb27)
     
@@ -474,14 +474,14 @@ Spring Security를 활용하여 로그인 기능을 구현, 비밀번호의 경�
 3-1. 로고 옆 세팅 아이콘 클릭시 내 정보수정하기 페이지 즉시 이동
 4. 리뷰/가입자 수, 등록 요금제 수 통계 텍스트로 표시
 5. 최근 7일간 가입자 수 차트
-6. 인기 상위 5개의 요금제 간단 정보 
-6-1. 제목 클릭시 해당 요금제 상세정보페이지 연결
-7. 가장 최신 리뷰 3개 전시, 더 보기 링크 
+6. 인기 상위 5개의 요금제 간단 정보 <br>
+6-1. 제목 클릭시 해당 요금제 상세정보페이지 연결<br>
+7. 가장 최신 리뷰 3개 전시, 더 보기 링크 <br>
 7-1. 리뷰 내용이 25자 이상일 경우 그 이상 텍스트는 ··· 으로 대체 
 </details>
 
 <details>
-    <summary>통신사 정보</summary>
+    <summary>✅ 통신사 정보</summary>
     
 ![bizinfo](https://github.com/minseong95/minseong95.github.io/assets/54164292/d38f5fb8-762b-40bd-82f9-dfdfd113fec9)
 
@@ -494,39 +494,132 @@ Spring Security를 활용하여 로그인 기능을 구현, 비밀번호의 경�
 5-2. 숨김 처리 상태로 등록할 경우 고객센터번호 미운영으로 처리<br>
 6. 로고 이미지 파일 수정하지 않는 경우 이전 로고 이미지로 자동 저장
     
-체크박스 이벤트 로직
-    <img width="952" alt="serviceList-checkBox-event" src="https://github.com/kh-finalproject-Sim-s/KH-Sim-s/assets/54164292/2815a7ba-5f95-4125-8212-feff7ffd33b7">
-    <img width="770" alt="js_ctrl_check" src="https://github.com/kh-finalproject-Sim-s/KH-Sim-s/assets/54164292/07fde5bb-ad2a-4996-b05b-08bfbe1405b9">
-
-
-</details>
-
-<details>
-    <summary>자사 요금제 관리</summary>
     
-![bizplan](https://github.com/minseong95/minseong95.github.io/assets/54164292/b918498e-45aa-42ac-8dca-fc27204fc00b)
+<div align="center">
+<img src="https://res.cloudinary.com/dnik5jlzd/image/upload/c_scale,h_10,w_225/v1679302400/readme/%EC%84%A0_vkktmh.png">
+체크박스 이벤트 로직
+<img src="https://res.cloudinary.com/dnik5jlzd/image/upload/c_scale,h_10,w_225/v1679302400/readme/%EC%84%A0_vkktmh.png">
+</div><br>
+<div align="center">
+    
+
+<img width="952" alt="serviceList-checkBox-event" src="https://github.com/kh-finalproject-Sim-s/KH-Sim-s/assets/54164292/2815a7ba-5f95-4125-8212-feff7ffd33b7">
+<img width="770" alt="js_ctrl_check" src="https://github.com/kh-finalproject-Sim-s/KH-Sim-s/assets/54164292/07fde5bb-ad2a-4996-b05b-08bfbe1405b9">
+
 
 </details>
 
 <details>
-    <summary>자사 요금제 가입 신청 관리</summary>
+    <summary>✅ 자사 요금제 관리</summary>
+    
+![bizPlanDelete](https://github.com/kh-finalproject-Sim-s/KH-Sim-s/assets/54164292/74e9379a-b1b5-44d9-88c7-3fe04f2ece40)
+
+1. 해당 요금제 삭제 버튼 클릭 시 모달창 발생
+2. 체크박스 미체크 상태에서 선택 삭제 버튼 클릭시 alert 창 발생
+3. 체크박스 체크 후 선택 삭제 버튼 클릭 시 모달창 발생
+4. 체크박스를 통해 체크한 데이터는 ajax를 통해 전달
+5. 삭제 상태가 삭제로 변경 <br>
+    5-1. 삭제 상태일 경우 수정/삭제 버튼 비활성화
+6. 요금제가 삭제될 시 해당 요금제에 대한 찜하기, 최근 본 요금제 기록에서 삭제하기 위해 트리거 작동
+ 
+<div align="center">
+<img src="https://res.cloudinary.com/dnik5jlzd/image/upload/c_scale,h_10,w_225/v1679302400/readme/%EC%84%A0_vkktmh.png">
+요금제 삭제 로직
+<img src="https://res.cloudinary.com/dnik5jlzd/image/upload/c_scale,h_10,w_225/v1679302400/readme/%EC%84%A0_vkktmh.png">
+</div><br>
+<div align="center"> 
+    
+![plan-delete](https://github.com/kh-finalproject-Sim-s/KH-Sim-s/assets/54164292/be6f9b07-d053-4db7-8a87-c25486e69560)
+    
+<div align="center">
+<img src="https://res.cloudinary.com/dnik5jlzd/image/upload/c_scale,h_10,w_225/v1679302400/readme/%EC%84%A0_vkktmh.png">
+모달창과 체크박스로 선택 삭제
+<img src="https://res.cloudinary.com/dnik5jlzd/image/upload/c_scale,h_10,w_225/v1679302400/readme/%EC%84%A0_vkktmh.png">
+</div><br>
+<div align="center"> 
+    
+![modal-check-delete](https://github.com/kh-finalproject-Sim-s/KH-Sim-s/assets/54164292/e4e6c753-d499-4db8-912e-f300451de0f5)
+
+
+</details>
+
+<details>
+    <summary>✅ 자사 요금제 가입 신청 관리</summary>
     
 ![bizApply](https://github.com/minseong95/minseong95.github.io/assets/54164292/b7ada5f0-219b-4638-9c9c-995434d42991)
+    
+1. 해당 통신사의 가입 신청서 목록 조회 가능
+2. 한 페이지의 목록 출력 개수 선택 가능
+3. 조건별 검색 기능 <br>
+3-1. 검색키워드(요금제명 / 신청자) 검색 가능<br>
+3-2. 가입신청상태(전체/신청완료/승인완료/승인보류) 검색 가능<br>
+3-3. 기간으로 조회 가능<br>
+3-4  키워드와 신청상태 , 기간 동시 검색 가능<br>
+4. 결과에 따른 출력 개수 텍스트로 표시
+5. 페이징 처리
+6. 신청일자 활용하여 신청번호 생성<br>
+6-1. 하이픈 뒷 자리는 총 6자리 숫자로 고정
+7. 가입신청상태 별로 텍스트 색상 다르게 함
+8. 상세보기 버튼 클릭시 요금제 가입 신청서 상세정보 페이지로 이동
+9. 가입신청서 없을 시 문구 출력 
+10. 가입 신청 상세조회 페이지에서 가입 신청 상태 변경 가능<br>
+10-1. 신청 상태에 따른 텍스트 색상 변경<br>
+10-2. 승인/보류 버튼 클릭시 확인 alert 창 표시<br>
+10-3. ajax를 사용하여 상태 변경 시 화면 즉시 반영
+    
+<div align="center">
+<img src="https://res.cloudinary.com/dnik5jlzd/image/upload/c_scale,h_10,w_225/v1679302400/readme/%EC%84%A0_vkktmh.png">
+기간조회 로직
+<img src="https://res.cloudinary.com/dnik5jlzd/image/upload/c_scale,h_10,w_225/v1679302400/readme/%EC%84%A0_vkktmh.png">
+</div><br>
+<div align="center"> 
+    
+![date-search__](https://github.com/kh-finalproject-Sim-s/KH-Sim-s/assets/54164292/7850950e-3607-4b51-80ab-36f8fd7aaf8b)
 
 </details>
 
 <details>
-    <summary>자사 리뷰 관리</summary>
+    <summary>✅ 자사 리뷰 관리</summary>
     
 ![bizReview](https://github.com/minseong95/minseong95.github.io/assets/54164292/18d07722-12db-482a-8c94-20367e15f1a8)
 
+1. 해당 통신사에 대한 모든 리뷰 조회 가능<br>
+    1-1. 사용자에게 보여지지 않는 숨김 처리된 리뷰 또한 조회 가능 (상태 : 삭제)
+2. 한 페이지의 목록 출력 개수 선택 가능
+3. 결과에 따른 출력 개수 텍스트로 표시
+4. 페이징 처리
+5. 사용자 아이디, 리뷰 작성일자, 리뷰 내용, 별점 확인 가능<br>
+5-1. 리뷰 내용 길이에 따라 리뷰 박스 길이 또한 자동으로 증가
+6. 신고처리상태(전체/신고처리중/삭제/반려)에 따른 조회 가능<br>
+6-1. 해당 상태 라디오버튼 체크 시 화면 즉시 반영
+7. 등록된 리뷰 없을 시 문구 출력
+8. 특정 라디오버튼 체크된 상태일 경우 페이지 이동시에도 체크 상태 유지
+    
 </details>
 
 
 <details>
-    <summary>자사 통계 조회</summary>
+    <summary>✅ 자사 통계 조회</summary>
     
-두 개의 열을 가진 차트 
+![bizChart](https://github.com/kh-finalproject-Sim-s/KH-Sim-s/assets/54164292/8dc97561-f6ea-42f8-bbeb-e03460ca8504)
+    
+0. 구글 차트 이용
+1. 해당 통신사의 요금제 별 가입자 수 <br>
+1-1. 두 개의 열로 누적 / 일일 가입 자수 표시 <br>
+1-2. 가입자 수가 0인 경우에도 표시
+2. 시스템 시각 기준 최근 일주일 간 해당 통신사의 모든 요금제 가입자 수에 대한 열 차트
+3. 현재 기준 가장 많은 가입자 수를 가진 요금제의 연령대 비율에 대한 원형 차트
+4. 현재 기준 가장 많은 가입자 수를 가진 요금제의 성별 비율에 대한 원형 차트
+5. 해당 통신사의 요금제를 가입한 사용자들의 연령대 비율에 대한 원형 차트
+6. 해당 통신사의 요금제를 가입한 사용자들의 성별 비율에 대한 원형 차트
+
+<div align="center">
+<img src="https://res.cloudinary.com/dnik5jlzd/image/upload/c_scale,h_10,w_225/v1679302400/readme/%EC%84%A0_vkktmh.png">
+두 개의 열을 가진 차트 로직
+<img src="https://res.cloudinary.com/dnik5jlzd/image/upload/c_scale,h_10,w_225/v1679302400/readme/%EC%84%A0_vkktmh.png">
+</div><br>
+<div align="center">
+    
 <img width="873" alt="bizChart" src="https://github.com/kh-finalproject-Sim-s/KH-Sim-s/assets/54164292/e8197c19-6366-4c7c-8485-73c28a7d107a">
 
    
