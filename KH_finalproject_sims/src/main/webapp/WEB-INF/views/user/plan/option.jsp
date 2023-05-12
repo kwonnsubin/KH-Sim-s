@@ -201,7 +201,7 @@
 		    console.log(sessionStorage.getItem('simType'));
 
 		    const planNo = "${plan.planNo}";
-		    location.href = '${cpath}/plan/${planNo}/order?joinCategory=${selectedJoinCategory.value}&simYn=${selectedSimYn.value}&simType=${selectedSimType.value}';
+		    location.href = '${cpath}/plan/${planNo}/order?joinCategory=' + selectedJoinCategory.value + '&simYn=' + selectedSimYn.value + '&simType=' + selectedSimType.value;
 		}
 
 	});
