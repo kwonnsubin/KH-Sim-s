@@ -130,14 +130,17 @@
        						<div class="plan-info mb-3">
        							<p class="mb-2">신청일자	|	${poVo.orderDate}</p>
        							
-       							<c:if test="${poVo.orderStatus eq 1}">
+       							<c:if test="${poVo.orderStatus eq 1 && poVo.planStatus eq 0}">
 	       							<p class="mb-2">진행상태	|	신청 완료</p>
        							</c:if>
-       							<c:if test="${poVo.orderStatus eq 2}">
+       							<c:if test="${poVo.orderStatus eq 2 && poVo.planStatus eq 0}">
 	       							<p class="mb-2">진행상태	|	승인 완료</p>
        							</c:if>
-       							<c:if test="${poVo.orderStatus eq 3}">
+       							<c:if test="${poVo.orderStatus eq 3 && poVo.planStatus eq 0}">
 	       							<p class="mb-2">진행상태	|	승인 보류</p>
+       							</c:if>
+       							<c:if test="${poVo.planStatus eq 1}">
+       								<p class="mb-2">진행상태	|	삭제된 요금제</p>
        							</c:if>
        						</div>
        						<div class="plan-info">

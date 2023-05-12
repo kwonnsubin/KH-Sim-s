@@ -34,6 +34,7 @@ public class PlanVo {
 	private Date planUpdateDate;
 	private String netName;
 	private String genName;
+	private String planStatus;
 	
 	// count
 	private int listCount;

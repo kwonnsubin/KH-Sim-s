@@ -24,8 +24,9 @@
 		    , (select b.biz_review_star from biz b where p.biz_name = b.biz_name) as biz_review_star
 		    , (select count(*) from plan_order po where p.plan_no = po.plan_no and po.order_status=2) as order_count
 		from plan_table p
+		where (plan_status = 0)
 		<if test="searchText != null">
-			where plan_name like '%${searchText}%' or biz_name like '%${searchText}%'
+			and (plan_name like '%${searchText}%' or biz_name like '%${searchText}%')
 		</if>
 		<if test="select == 'choose'.toString()">
 			order by order_count desc
@@ -45,53 +46,52 @@
 		    , (select b.biz_review_star from biz b where p.biz_name = b.biz_name) as biz_review_star
 		    , (select count(*) from plan_order po where p.plan_no = po.plan_no and po.order_status=2) as order_count
 		from plan_table p
-		<trim prefix="where" prefixOverrides="and|or">
-			<if test="planData == 100000">plan_data >= 100000</if>
-			<if test="planData == 50000"><![CDATA[ (plan_data < 100000 and plan_data >= 50000)]]> </if>
-			<if test="planData == 10000"><![CDATA[ (plan_data < 50000 and plan_data >= 10000)]]> </if>
-			<if test="planData == 5000"><![CDATA[ (plan_data < 10000 and plan_data >= 5000)]]> </if>
-			<if test="planData == 1000"><![CDATA[ plan_data <= 5000]]> </if>
-			
-			<if test="planVoice == 1"><![CDATA[and plan_voice = 0 ]]> </if>
-			<if test="planVoice == 300"><![CDATA[and plan_voice >= 300 ]]> </if>
-			<if test="planVoice == 180"><![CDATA[and (plan_voice < 300 and plan_voice >= 180) ]]> </if>
-			<if test="planVoice == 60"><![CDATA[and (plan_voice < 180 and plan_voice >= 60) ]]> </if>
-			<if test="planVoice == 30"><![CDATA[and plan_voice <= 60 ]]> </if>
-			
-			<if test="planMessage == 1"><![CDATA[and plan_message = 0 ]]> </if>
-			<if test="planMessage == 300"><![CDATA[and plan_message >= 300 ]]> </if>
-			<if test="planMessage == 100"><![CDATA[and (plan_message < 300 and plan_message >= 100) ]]> </if>
-			<if test="planMessage == 50"><![CDATA[and (plan_message < 100 and plan_message >= 50) ]]> </if>
-			<if test="planMessage == 10"><![CDATA[and plan_message <= 50 ]]> </if>
-			
-			<if test="planPrice == 30000"><![CDATA[and plan_price >= 30000 ]]> </if>
-			<if test="planPrice == 20000"><![CDATA[and (plan_price < 30000 and plan_price >= 20000) ]]> </if>
-			<if test="planPrice == 10000"><![CDATA[and (plan_price < 20000 and plan_price >= 10000) ]]> </if>
-			<if test="planPrice == 5000"><![CDATA[and (plan_price < 10000 and plan_price >= 5000) ]]> </if>
-			<if test="planPrice == 1000"><![CDATA[and plan_price <= 5000 ]]> </if>
-			
-			<if test="netNo != null and netNo != 0"><![CDATA[ and net_no = #{netNo} ]]> </if>
-			
-			<if test="genNo == 1"><![CDATA[ and gen_no = #{genNo}]]> </if>
-			<if test="genNo == 2"><![CDATA[ and (gen_no = #{genNo} or gen_no = 3)]]> </if>
-			<if test="genNo == 4"><![CDATA[ and (gen_no = #{genNo} or gen_no = 3)]]> </if>
-			
-			<if test="bizName != null"><![CDATA[and biz_name = #{bizName} ]]> </if>
-			
-			<if test="searchText != null">
-				and (plan_name like '%${searchText}%' or biz_name like '%${searchText}%')
-			</if>
-			
-			<if test="select == 'choose'.toString()">
-				order by order_count desc
-			</if>
-			<if test="select == 'star'.toString()">
-				order by biz_review_star desc nulls last
-			</if>
-			<if test="select == 'data'.toString()">
-				order by to_number(plan_data) desc
-			</if>
-		</trim>
+		where (plan_status = 0)
+		<if test="planData == 100000">and plan_data >= 100000</if>
+		<if test="planData == 50000"><![CDATA[ and (plan_data < 100000 and plan_data >= 50000)]]> </if>
+		<if test="planData == 10000"><![CDATA[ and (plan_data < 50000 and plan_data >= 10000)]]> </if>
+		<if test="planData == 5000"><![CDATA[ and (plan_data < 10000 and plan_data >= 5000)]]> </if>
+		<if test="planData == 1000"><![CDATA[ and plan_data <= 5000]]> </if>
+		
+		<if test="planVoice == 1"><![CDATA[and plan_voice = 0 ]]> </if>
+		<if test="planVoice == 300"><![CDATA[and plan_voice >= 300 ]]> </if>
+		<if test="planVoice == 180"><![CDATA[and (plan_voice < 300 and plan_voice >= 180) ]]> </if>
+		<if test="planVoice == 60"><![CDATA[and (plan_voice < 180 and plan_voice >= 60) ]]> </if>
+		<if test="planVoice == 30"><![CDATA[and plan_voice <= 60 ]]> </if>
+		
+		<if test="planMessage == 1"><![CDATA[and plan_message = 0 ]]> </if>
+		<if test="planMessage == 300"><![CDATA[and plan_message >= 300 ]]> </if>
+		<if test="planMessage == 100"><![CDATA[and (plan_message < 300 and plan_message >= 100) ]]> </if>
+		<if test="planMessage == 50"><![CDATA[and (plan_message < 100 and plan_message >= 50) ]]> </if>
+		<if test="planMessage == 10"><![CDATA[and plan_message <= 50 ]]> </if>
+		
+		<if test="planPrice == 30000"><![CDATA[and plan_price >= 30000 ]]> </if>
+		<if test="planPrice == 20000"><![CDATA[and (plan_price < 30000 and plan_price >= 20000) ]]> </if>
+		<if test="planPrice == 10000"><![CDATA[and (plan_price < 20000 and plan_price >= 10000) ]]> </if>
+		<if test="planPrice == 5000"><![CDATA[and (plan_price < 10000 and plan_price >= 5000) ]]> </if>
+		<if test="planPrice == 1000"><![CDATA[and plan_price <= 5000 ]]> </if>
+		
+		<if test="netNo != null and netNo != 0"><![CDATA[ and net_no = #{netNo} ]]> </if>
+		
+		<if test="genNo == 1"><![CDATA[ and gen_no = #{genNo}]]> </if>
+		<if test="genNo == 2"><![CDATA[ and (gen_no = #{genNo} or gen_no = 3)]]> </if>
+		<if test="genNo == 4"><![CDATA[ and (gen_no = #{genNo} or gen_no = 3)]]> </if>
+		
+		<if test="bizName != null"><![CDATA[and biz_name = #{bizName} ]]> </if>
+		
+		<if test="searchText != null">
+			and (plan_name like '%${searchText}%' or biz_name like '%${searchText}%')
+		</if>
+		
+		<if test="select == 'choose'.toString()">
+			order by order_count desc
+		</if>
+		<if test="select == 'star'.toString()">
+			order by biz_review_star desc nulls last
+		</if>
+		<if test="select == 'data'.toString()">
+			order by to_number(plan_data) desc
+		</if>
 	</select>
 	
 	<select id="cntPlanList" parameterType="map" resultType="int">
@@ -101,8 +101,9 @@
 		    , (select b.biz_review_star from biz b where p.biz_name = b.biz_name) as biz_review_star
 		    , (select count(*) from plan_order po where p.plan_no = po.plan_no and po.order_status=2) as order_count
 		from plan_table p
+		where (plan_status = 0)
 		<if test="searchText != null">
-			where plan_name like '%${searchText}%' or biz_name like '%${searchText}%'
+			and (plan_name like '%${searchText}%' or biz_name like '%${searchText}%')
 		</if>
 		
 		<if test="select == 'choose'.toString()">
@@ -124,12 +125,12 @@
 		    , (select b.biz_review_star from biz b where p.biz_name = b.biz_name) as biz_review_star
 		    , (select count(*) from plan_order po where p.plan_no = po.plan_no and po.order_status=2) as order_count
 		from plan_table p
-		<trim prefix="where" prefixOverrides="and|or">
-			<if test="planData == 100000">plan_data >= 100000</if>
-			<if test="planData == 50000"><![CDATA[ (plan_data < 100000 and plan_data >= 50000)]]> </if>
-			<if test="planData == 10000"><![CDATA[ (plan_data < 50000 and plan_data >= 10000)]]> </if>
-			<if test="planData == 5000"><![CDATA[ (plan_data < 10000 and plan_data >= 5000)]]> </if>
-			<if test="planData == 1000"><![CDATA[ plan_data <= 5000]]> </if>
+		where (plan_status = 0)
+			<if test="planData == 100000">and plan_data >= 100000</if>
+			<if test="planData == 50000"><![CDATA[ and (plan_data < 100000 and plan_data >= 50000)]]> </if>
+			<if test="planData == 10000"><![CDATA[ and (plan_data < 50000 and plan_data >= 10000)]]> </if>
+			<if test="planData == 5000"><![CDATA[ and (plan_data < 10000 and plan_data >= 5000)]]> </if>
+			<if test="planData == 1000"><![CDATA[ and plan_data <= 5000]]> </if>
 			
 			<if test="planVoice == 1"><![CDATA[and plan_voice = 0 ]]> </if>
 			<if test="planVoice == 300"><![CDATA[and plan_voice >= 300 ]]> </if>
@@ -170,7 +171,6 @@
 			<if test="select == 'data'.toString()">
 				order by to_number(plan_data) desc
 			</if>
-		</trim>
 		)
 	</select>
 	
@@ -278,8 +278,8 @@
 			    , (select b.biz_review_star from biz b where p.biz_name = b.biz_name) as biz_review_star
 		        , (select count(*) from plan_order po where p.plan_no = po.plan_no and po.order_status=2) as order_count
 			from view_table v, plan_table p
-			where v.plan_no = p.plan_no and user_id=#{userId} and
-			(view_date >= SYSTIMESTAMP - interval '24' hour)
+			where (v.plan_no = p.plan_no) and (user_id=#{userId}) and
+		(view_date >= SYSTIMESTAMP - interval '24' hour) and (p.plan_status = 0)
 			order by view_date desc)
         where <![CDATA[ rownum <= 7 ]]>
 	</select>
@@ -288,8 +288,8 @@
 	<select id="selectRecentListCount" parameterType="string" resultType="int">
 		select count(*)
 		from view_table v, plan_table p
-		where v.plan_no = p.plan_no and user_id=#{userId} and
-		(view_date >= SYSTIMESTAMP - interval '24' hour)
+		where (v.plan_no = p.plan_no) and (user_id=#{userId}) and
+		(view_date >= SYSTIMESTAMP - interval '24' hour) and (p.plan_status = 0)
 		order by view_date desc
 	</select>
 	
@@ -314,7 +314,7 @@
 		    , plan_data, plan_voice_over, plan_message_over, plan_data_over, plan_date, plan_update_date
 		    , (select b.biz_id from biz b where p.biz_name = b.biz_name) as biz_id
 		from like_table l, plan_table p
-		where l.plan_no = p.plan_no and user_id=#{userId}
+		where (l.plan_no = p.plan_no) and (user_id=#{userId}) and (p.plan_status = 0)
 		order by like_date desc
 	</select>
 	
@@ -322,7 +322,7 @@
 	<select id="selectLikeListCount" parameterType="string" resultType="int">
 		select count(*)
 		from like_table l, plan_table p
-		where l.plan_no = p.plan_no and user_id=#{userId}
+		where (l.plan_no = p.plan_no) and (user_id=#{userId}) and (p.plan_status = 0)
 		order by like_date desc
 	</select>
 	
@@ -336,6 +336,7 @@
 		        , (select count(*) from plan_order po where p.plan_no = po.plan_no and po.order_status=2) as order_count
 		        , (select count(*) from view_table vt where p.plan_no = vt.plan_no) as view_rank
 		    from plan_table p
+		    where (plan_status = 0)
 		    order by view_rank desc)
 		where rownum <![CDATA[ <= ]]> 10
 	</select>
@@ -350,6 +351,7 @@
 			    , (select count(*) from plan_order po where p.plan_no = po.plan_no and po.order_status=2) as order_count
 			    , (select count(*) from like_table lt where p.plan_no = lt.plan_no) as like_rank
 			from plan_table p
+			where (plan_status = 0)
 			order by like_rank desc)
 		where rownum <![CDATA[ <= ]]> 10
 	</select>
@@ -363,6 +365,7 @@
 		        , (select b.biz_review_star from biz b where p.biz_name = b.biz_name) as biz_review_star
 		        , (select count(*) from plan_order po where p.plan_no = po.plan_no and po.order_status=2) as order_count
 		    from plan_table p
+		    where (plan_status = 0)
 		    order by order_count desc)
 		where rownum <![CDATA[ <= ]]> 10
 	</select>
@@ -376,7 +379,7 @@
 			    , (select b.biz_review_star from biz b where p.biz_name = b.biz_name) as biz_review_star
 			    , (select count(*) from plan_order po where p.plan_no = po.plan_no and po.order_status=2) as order_count
 			from plan_table p
-			where (select b.biz_id from biz b where p.biz_name = b.biz_name) = #{bizId} )
+			where (plan_status = 0) and (select b.biz_id from biz b where p.biz_name = b.biz_name) = #{bizId} )
 		where rownum <![CDATA[ <= ]]> 5
 	</select>
 	
