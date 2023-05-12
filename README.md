@@ -456,12 +456,38 @@ Spring Security를 활용하여 로그인 기능을 구현, 비밀번호의 경�
 
 <details>
 <summary><h3>✅ 요금제 상세 / 신청 </h3></summary>
-![order-plan](https://github.com/kh-finalproject-Sim-s/KH-Sim-s/assets/96179832/40390b62-bf4d-4ac1-9eb7-4bf97e98aee8)
+<div markdown="1">
+  
+<div align="center">
+![plan](https://github.com/kh-finalproject-Sim-s/KH-Sim-s/assets/96179832/40390b62-bf4d-4ac1-9eb7-4bf97e98aee8)
+</div>
+    
+<br>
+<br>
+<div align="center">
+<img src="https://res.cloudinary.com/dnik5jlzd/image/upload/c_scale,h_10,w_225/v1679302400/readme/%EC%84%A0_vkktmh.png">
+요금제 상세페이지
+<img src="https://res.cloudinary.com/dnik5jlzd/image/upload/c_scale,h_10,w_225/v1679302400/readme/%EC%84%A0_vkktmh.png">
+</div><br>
 
+1. 통신사 로고 또는 통신사명을 클릭하면 통신사 페이지로 이동
+2. 현재 로그인한 사용자의 해당 요금제를 찜한 상태에 따라 찜하기 버튼 변화
+    2-1. ajax로 찜 구현 / 찜 버튼 변화
+    2-2. 로그인하지 않은 사용자는 로그인 페이지로 이동
+3. 카카오톡 공유하기 api 사용
+4. 통신사 간략 정보
+    4-1. 지원 통신망은 해당 통신사의 요금제에서 통신망 정보 가져옴
+5. 통신사 리뷰의 평균 별점과 개수, 최대 3개의 리뷰 출력
+    5-1. 리뷰 개수 또는 각 리뷰 박스를 클릭하면 통신사 페이지의 리뷰 위치로 스크롤 이동
+    
+<div align="center">
+<img src="https://github.com/kh-finalproject-Sim-s/KH-Sim-s/assets/96179832/d97bc2ba-2693-422e-b01e-1e1f9894bf72">
+</div>
     
 </details>
 
----
+
+
 
 ### 2. 통신사
 <details>
