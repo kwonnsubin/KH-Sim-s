@@ -958,7 +958,9 @@ Spring Security를 활용하여 로그인 기능을 구현, 비밀번호의 경�
 
 <br>
 
-### 7. Class Diagram
+### 7. Class Diagram!
+
+![요금제 ](https://github.com/kh-finalproject-Sim-s/KH-Sim-s/assets/114970528/28e23a17-83bf-43a0-a48b-989e6d9de102)
 [클래스 다이어그램](https://drive.google.com/drive/folders/1a5grtXf50yrOKO6vW-3gw7DAvtl75Xyp?usp=sharing)
 
 <br>
