@@ -682,7 +682,7 @@
 				                	alert("요금제 신청 성공");
 				                	
 				                	// 문자 보내기
-				                	$.ajax({
+/* 				                	$.ajax({
 				        	            url: '${cpath}/send-one',
 				        	           	type: 'POST',
 				        	            data: {
@@ -700,7 +700,7 @@
 				        	             console.log(error);
 				        	            	alert("문자 실패");
 				        	            }
-				        	        });
+				        	        }); */
 				                },
 				                error: function(xhr, status, error) {
 				                	console.log("xhr.status: " + xhr.status);
@@ -776,7 +776,7 @@
 				                	alert("요금제 신청 성공");
 				                	
 				                	// 문자 보내기
-				                	$.ajax({
+/* 				                	$.ajax({
 				        	            url: '${cpath}/send-one',
 				        	           	type: 'POST',
 				        	            data: {
@@ -794,7 +794,7 @@
 											console.log(error);
 											alert("문자 실패");
 				        	            }
-				        	        });
+				        	        }); */
 				                },
 				                error: function(xhr, status, error) {
 				                	console.log("xhr.status: " + xhr.status);
