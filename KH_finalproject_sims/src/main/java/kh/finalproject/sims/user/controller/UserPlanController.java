@@ -68,7 +68,7 @@ public class UserPlanController {
 		BizVo bvo = bizService.getBizByName(pvo.getBizName());
 		List<UserReviewVo> reviewList = bizService.getReviewListById(bvo.getBizId());
 		
-		mv.addObject("bizNets", bizService.getNetListByBizId(bvo.getBizId()));
+		mv.addObject("bizNets", bizService.getNetListByBizName(pvo.getBizName()));
 		mv.addObject("cntReview", bizService.getCountReviewByBizId(bvo.getBizId()));
 		mv.addObject("like", isLiked);
 		mv.addObject("plan", pvo);

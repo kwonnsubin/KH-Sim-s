@@ -6,13 +6,12 @@
 		select * from biz where biz_name = #{bizName}
 	</select>
 	
-	<select id="getNetListByBizId" resultType="string">
-		SELECT n.NET_NAME
-		FROM NETWORK_TABLE n
-		    INNER JOIN BIZ_NETWORK b
-		    ON (n.net_no = b.net_no)
-		WHERE b.BIZ_ID = #{bizId} 
-			and b.BIZ_NET_SERVICE is not null
+	<select id="getNetListByBizName" resultType="string">
+		SELECT N.NET_NAME
+		FROM NETWORK_TABLE N
+		    INNER JOIN (SELECT DISTINCT NET_NO, BIZ_NAME FROM PLAN_TABLE) P
+		    ON (N.NET_NO = P.NET_NO)
+		WHERE P.BIZ_NAME = #{bizName}
 	</select>
 	
 	<select id="getCountReviewByBizId" resultType="_int">

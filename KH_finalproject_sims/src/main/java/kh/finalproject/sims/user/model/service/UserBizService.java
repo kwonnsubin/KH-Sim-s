@@ -9,7 +9,7 @@ public interface UserBizService {
 
 	BizVo getBizByName(String bizName) throws Exception;
 
-	List<String> getNetListByBizId(String bizId) throws Exception;
+	List<String> getNetListByBizName(String bizName) throws Exception;
 
 	int getCountReviewByBizId(String bizId) throws Exception;
 

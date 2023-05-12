@@ -21,8 +21,8 @@ public class UserBizServiceImpl implements UserBizService {
 	}
 
 	@Override
-	public List<String> getNetListByBizId(String bizId) throws Exception {
-		return dao.getNetListByBizId(bizId);
+	public List<String> getNetListByBizName(String bizName) throws Exception {
+		return dao.getNetListByBizName(bizName);
 	}
 
 	@Override

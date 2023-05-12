@@ -19,16 +19,16 @@ public class UserBizDao {
 		return session.selectOne("usbiz.getBizByName", bizName);
 	}
 
-	public List<String> getNetListByBizId(String bizId) throws Exception {
-		return session.selectList("usbiz.getNetListByBizId", bizId);
+	public List<String> getNetListByBizName(String bizName) throws Exception {
+		return session.selectList("usbiz.getNetListByBizName", bizName);
 	}
 
 	public int getCountReviewByBizId(String bizId) throws Exception {
 		return session.selectOne("usbiz.getCountReviewByBizId", bizId);
 	}
 
-	public List<UserReviewVo> getReviewListById(String bizId) throws Exception {
-		return session.selectList("usbiz.getReviewListById", bizId);
+	public List<UserReviewVo> getReviewListById(String bizName) throws Exception {
+		return session.selectList("usbiz.getReviewListById", bizName);
 	}
 
 	public BizVo getBizById(String bizId) throws Exception {
