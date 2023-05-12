@@ -534,7 +534,30 @@ Spring Security를 활용하여 로그인 기능을 구현, 비밀번호의 경�
 
 ### 3. 관리자
 
-### 3-2. 관리자 신고 관리
+<details>
+    <summary>대시보드</summary>
+    
+  ![대시보드](https://github.com/kh-finalproject-Sim-s/KH-Sim-s/assets/108276943/c9df45e6-2589-461a-863c-25c8e8fc8683)
+
+<div align="center">
+<img src="https://res.cloudinary.com/dnik5jlzd/image/upload/c_scale,h_10,w_225/v1679302400/readme/%EC%84%A0_vkktmh.png">
+대시보드
+<img src="https://res.cloudinary.com/dnik5jlzd/image/upload/c_scale,h_10,w_225/v1679302400/readme/%EC%84%A0_vkktmh.png">
+</div><br>
+<div align="center">
+    
+</div>
+    
+1. ajax를 사용하여 차트 데이터를 받아옴
+2. 리뷰, 질문/답변, 신고글은 최신글 3개까지만 보여짐.
+- 게시글의 제목이 23자보다 긴 경우의 조건을 <c:when>태그를 사용하였고 참일 때, fn:substring() 함수를 사용하여 게시글 제목의 일부분만 출력하도록함.    
+      
+![대시보드](https://github.com/kh-finalproject-Sim-s/KH-Sim-s/assets/108276943/711e9897-6271-4aed-b85d-c4e224dafd44)
+    
+![대시보드2](https://github.com/kh-finalproject-Sim-s/KH-Sim-s/assets/108276943/b181d6fa-9fc2-4d94-be88-77810ac602b5)
+
+</details>
+    
 <details>
     <summary>관리자 신고 관리</summary>
     
@@ -568,11 +591,9 @@ Spring Security를 활용하여 로그인 기능을 구현, 비밀번호의 경�
 1. ajax를 활용하여 신고 리뷰를 삭제/반려 처리
 - 삭제/반려 처리 시 "반려(삭제)처리 하시겠습니까?"라는 확인창(confirm) 표시
 - 확인을 누르면 처리상태가 '반려' 또는 '삭제'로 바뀐다.
-3. 목록버튼을 누르면 신고 리뷰 목록 페이지로 이동
 
 </details> 
 
-### 3-3. 관리자 문의내역 관리
 <details>
     <summary>관리자 문의내역 관리</summary>
     
@@ -606,6 +627,9 @@ Spring Security를 활용하여 로그인 기능을 구현, 비밀번호의 경�
 - 쿠키 만료 시간을 10초로 설정하여 해당 Q&A 글을 본 이후 10초 이내에 다시 조회하면 중복 조회로 처리되지 않고 조회수가 증가하지 않음.
     
 2. 트리거와 ajax를 활용하여 답변 등록, 삭제 시 답변수가 자동으로 증감됨.
+    
+![트리거](https://github.com/kh-finalproject-Sim-s/KH-Sim-s/assets/108276943/66a18279-3677-45a9-b189-e8720ac35fbd)
+
 3. collection을 활용하여 한 게시글의 답변과 답변의 답글 데이터 목록을 받아옴.
     
 ![컬렉션](https://github.com/kh-finalproject-Sim-s/KH-Sim-s/assets/108276943/ef16fb28-dac9-4d32-ad81-d25c367baa6a)
@@ -613,26 +637,41 @@ Spring Security를 활용하여 로그인 기능을 구현, 비밀번호의 경�
    
 <div align="center">
 <img src="https://res.cloudinary.com/dnik5jlzd/image/upload/c_scale,h_10,w_225/v1679302400/readme/%EC%84%A0_vkktmh.png">
-답변
+답변 등록
 <img src="https://res.cloudinary.com/dnik5jlzd/image/upload/c_scale,h_10,w_225/v1679302400/readme/%EC%84%A0_vkktmh.png">
 </div><br>
 <div align="center">
     
 </div>
     
-- 등록
 1. ajax를 사용한 답변 등록
 - 답변 등록에 성공하면 ajax로 답변 목록과, 답변 수를 데이터를 받아와 .html()로 초기화하고 새로 받아온 답변 목록과 답변수로 변경
 2. 등록시 답변 내용이 비어있으면 "댓글 내용을 입력하지 않았습니다."라는 경고창이 표시
+  
+<div align="center">
+<img src="https://res.cloudinary.com/dnik5jlzd/image/upload/c_scale,h_10,w_225/v1679302400/readme/%EC%84%A0_vkktmh.png">
+답변 수정
+<img src="https://res.cloudinary.com/dnik5jlzd/image/upload/c_scale,h_10,w_225/v1679302400/readme/%EC%84%A0_vkktmh.png">
+</div><br>
+<div align="center">
     
-- 수정
+</div>
+    
 1. ajax를 사용한 답변 수정
 - 답변 수정에 성공하면 ajax로 답변 목록 데이터를 받아와 .html()로 초기화하고 새로 받아온 답변 목록으로 변경
 2. 관리자(admin)계정의 답변만 수정 버튼이 활성화
 3. 수정 버튼 클릭 시 해당 답변 내용이 수정할 수 있는 수정폼으로 변경
 - 답변마다 고유id를 부여하여 해당 답변만 수정폼으로 변경될수있게 구현
     
-- 삭제
+<div align="center">
+<img src="https://res.cloudinary.com/dnik5jlzd/image/upload/c_scale,h_10,w_225/v1679302400/readme/%EC%84%A0_vkktmh.png">
+답변 삭제
+<img src="https://res.cloudinary.com/dnik5jlzd/image/upload/c_scale,h_10,w_225/v1679302400/readme/%EC%84%A0_vkktmh.png">
+</div><br>
+<div align="center">
+
+</div>
+    
 1. ajax를 사용한 답변 삭제
 - 답변 삭제에 성공하면 ajax로 답변 목록 데이터를 받아와 .html()로 초기화하고 새로 받아온 답변 목록으로 변경
 2. 관리자(admin)계정의 답변만 삭제 버튼이 활성화
@@ -640,22 +679,37 @@ Spring Security를 활용하여 로그인 기능을 구현, 비밀번호의 경�
     
 <div align="center">
 <img src="https://res.cloudinary.com/dnik5jlzd/image/upload/c_scale,h_10,w_225/v1679302400/readme/%EC%84%A0_vkktmh.png">
-답글
+답글 조회
 <img src="https://res.cloudinary.com/dnik5jlzd/image/upload/c_scale,h_10,w_225/v1679302400/readme/%EC%84%A0_vkktmh.png">
 </div><br>
 <div align="center">
     
 </div>
     
-- 조회
 1. 답글버튼을 누르면 ajax로 답글목록을 데이터를 받아와 해당 답변의 답글목록이 보여짐.
     
-- 등록
+<div align="center">
+<img src="https://res.cloudinary.com/dnik5jlzd/image/upload/c_scale,h_10,w_225/v1679302400/readme/%EC%84%A0_vkktmh.png">
+답글 등록
+<img src="https://res.cloudinary.com/dnik5jlzd/image/upload/c_scale,h_10,w_225/v1679302400/readme/%EC%84%A0_vkktmh.png">
+</div><br>
+<div align="center">
+
+</div>
+    
 1. ajax를 사용하여 답글 등록
 - 답글 등록에 성공하면 ajax로 답글 목록 데이터를 받아와 .html()로 초기화하고 새로 받아온 답글 목록으로 변경
 - 등록시 답글 내용이 비어있으면 "댓글 내용을 입력하지 않았습니다."라는 경고창이 표시
     
-- 수정
+<div align="center">
+<img src="https://res.cloudinary.com/dnik5jlzd/image/upload/c_scale,h_10,w_225/v1679302400/readme/%EC%84%A0_vkktmh.png">
+답글 수정
+<img src="https://res.cloudinary.com/dnik5jlzd/image/upload/c_scale,h_10,w_225/v1679302400/readme/%EC%84%A0_vkktmh.png">
+</div><br>
+<div align="center">
+
+</div>
+    
 1. ajax를 사용하여 답글 수정
 - 답글 수정에 성공하면 ajax로 답글 목록 데이터를 받아와 .html()로 초기화하고 새로 받아온 답글 목록으로 변경   
 2. 관리자(admin)계정의 답글만 수정 버튼이 활성화
@@ -664,7 +718,15 @@ Spring Security를 활용하여 로그인 기능을 구현, 비밀번호의 경�
 4. 저장을 클릭하면 수정 완료되고, 수정한 내용이 바로 반영되어 보여진다.
 5. 수정시 답글 내용이 비어있으면 "댓글 내용을 입력하지 않았습니다."라는 경고창이 표시
      
-- 삭제
+<div align="center">
+<img src="https://res.cloudinary.com/dnik5jlzd/image/upload/c_scale,h_10,w_225/v1679302400/readme/%EC%84%A0_vkktmh.png">
+답글 삭제
+<img src="https://res.cloudinary.com/dnik5jlzd/image/upload/c_scale,h_10,w_225/v1679302400/readme/%EC%84%A0_vkktmh.png">
+</div><br>
+<div align="center">
+
+</div>
+    
 1. ajax를 사용하여 답글 삭제
 - 답글 삭제에 성공하면 ajax로 답글 목록 데이터를 받아와 .html()로 초기화하고 새로 받아온 답글 목록으로 변경
 2. 관리자(admin)계정의 답글만 삭제 버튼이 활성화
@@ -672,7 +734,6 @@ Spring Security를 활용하여 로그인 기능을 구현, 비밀번호의 경�
 
 </details>
 
-### 3-5. 관리자 통계조회
 <details>
     <summary>관리자 통계조회</summary>
     
@@ -687,8 +748,9 @@ Spring Security를 활용하여 로그인 기능을 구현, 비밀번호의 경�
     
 </div>
     
-1. apexcharts 차트 라이브러리를 사용하여 차트를 나타냄.
-
+1. apexcharts 차트 라이브러리를 활용
+    
+![차트](https://github.com/kh-finalproject-Sim-s/KH-Sim-s/assets/108276943/c2d1720e-45f0-4862-9b4c-88a97821d5db)    
 </details>
 
 권수빈
