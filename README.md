@@ -486,8 +486,21 @@ Spring Security를 활용하여 로그인 기능을 구현, 비밀번호의 경�
 <img src="https://github.com/kh-finalproject-Sim-s/KH-Sim-s/assets/96179832/d97bc2ba-2693-422e-b01e-1e1f9894bf72">
 </div>
     
-</details>
+<br>
+<br>
+<div align="center">
+<img src="https://res.cloudinary.com/dnik5jlzd/image/upload/c_scale,h_10,w_225/v1679302400/readme/%EC%84%A0_vkktmh.png">
+요금제 신청
+<img src="https://res.cloudinary.com/dnik5jlzd/image/upload/c_scale,h_10,w_225/v1679302400/readme/%EC%84%A0_vkktmh.png">
+</div><br>
 
+1. 
+    
+<div align="center">
+
+</div>
+    
+</details>
 
 
 
