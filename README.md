@@ -112,7 +112,8 @@
     
 </details>
 
-진수성 
+---
+
 <details>
 <summary><h3>✅ 시큐리티 로그인 및 회원 </h3></summary>
 <div markdown="1">
@@ -453,8 +454,6 @@ Spring Security를 활용하여 로그인 기능을 구현, 비밀번호의 경�
 
 </div>
 </details>
-
-진수성 끝
 
 
 ---
