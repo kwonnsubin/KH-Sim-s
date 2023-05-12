@@ -76,8 +76,19 @@
 	
 	<!-- 요금제 삭제 -->
 	<delete id="deleteBizPlan">
-		<!-- delete from plan_table where plan_no=#{planNo} -->
 		update plan_table set plan_status = 1 where plan_no=#{planNo}
+		
+		<!-- 트리거 작동 
+		CREATE TRIGGER plan_status_update_trigger
+			AFTER UPDATE OF plan_status ON plan_table
+			FOR EACH ROW
+			BEGIN
+			  IF :NEW.plan_status = 1 THEN
+			    DELETE FROM view_table WHERE plan_no = :OLD.plan_no;
+			    DELETE FROM like_table WHERE plan_no = :OLD.plan_no;
+			  END IF;
+			END;
+		 -->
 	</delete>
 	
 	<!-- 요금제 수정 -->
