@@ -79,7 +79,7 @@ function fn_applyPlanAjax(userId){
 		success: function(json){
 			for(var i=0; i<json.length; i++){
 				html += '<tr>';
-				html += '<td><a href="${path}/admin/bizPlanApplyDetail/'+json[i].orderNo+'">'+json[i].orderNo+'</a></td>';
+				html += '<td><a href="${path}/admin/bizPlanApplyDetail/'+json[i].orderNo+'" target="_blank">'+json[i].orderNo+'</a></td>';
 				html += '<td>'+json[i].bizName+'</td>';
 				html += '<td>'+json[i].planName+'</td>';
 				if(json[i].orderStatus=='1'){
@@ -115,7 +115,7 @@ function fn_applyPlanAjax(userId){
 		success: function(json){
 			for(var i=0; i<json.length; i++){
 				review += '<tr>';
-				review += '<td><a href="${path}/admin/review/detail/'+json[i].reviewNo+'">'+json[i].reviewNo+'</a></td>';
+				review += '<td><a href="${path}/admin/review/detail/'+json[i].reviewNo+'" target="_blank">'+json[i].reviewNo+'</a></td>';
 				review += '<td>'+fn_substrContent(json[i].reviewContent)+'</td>';
 				review += '<td>'+fn_datCal(json[i].reviewDate)+'</td>';
 				review += '<td>'+json[i].bizName+'</td>';

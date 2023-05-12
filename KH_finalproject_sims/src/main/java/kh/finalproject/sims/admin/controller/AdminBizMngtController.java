@@ -136,7 +136,6 @@ public class AdminBizMngtController {
 			searchRadioVal = bizId;
 			search = service.selectBizPlanList(pNum, cnt, searchOption, searchRadioVal, searchBox);
 			mv.setViewName("admin/biz/bizDetail");
-			/* mv.addObject("bizPlanList", service.selectBizPlanList(bizId)); */
 			break;
 		default:
 			paginationInfo = paginationInfo(pageNumber, request, response);
@@ -145,7 +144,6 @@ public class AdminBizMngtController {
 			searchRadioVal = bizId;
 			search = service.selectBizPlanList(pNum, cnt, searchOption, searchRadioVal, searchBox);
 			mv.setViewName("admin/biz/bizDetail");
-			/* mv.addObject("bizPlanList", service.selectBizPlanList(bizId)); */
 			break;
 		}
 		AdminBizMngtVo applyDetail = service.selectApplyDetail(bizId);
@@ -159,7 +157,6 @@ public class AdminBizMngtController {
 		if(applyDetail.getLogoRenameFilename() == null) {
 			imagePath ="/resources/img/"+applyDetail.getOriginalFilename();
 		} else {
-			/* imagePath = savePath + "\\" + applyDetail.getLogoRenameFilename(); */
 			imagePath ="/resources/uploadfiles/"+applyDetail.getLogoRenameFilename();
 		}
 		System.out.println("imagePath ::: " +imagePath);
@@ -193,27 +190,6 @@ public class AdminBizMngtController {
 		
 		return goToUrl;
 		
-		/*
-		 * Map<String, String> paginationInfo = null; int pNum = 0; int cnt = 0; String
-		 * searchOption = vo.getSearchOption(); String searchRadioVal =
-		 * vo.getSearchRadioVal(); String searchBox = vo.getSearchBox(); Search search =
-		 * null;
-		 * 
-		 * String bizId = vo.getBizId(); AdminBizMngtVo applyDetail =
-		 * service.selectApplyDetail(bizId); paginationInfo = paginationInfo(pageNumber,
-		 * request, response); pNum = Integer.parseInt(paginationInfo.get("pNum")); cnt
-		 * = Integer.parseInt(paginationInfo.get("cnt")); searchRadioVal = bizId; search
-		 * = service.selectBizPlanList(pNum, cnt, searchOption, searchRadioVal,
-		 * searchBox); request.setAttribute("paging", search);
-		 * mv.addObject("searchOption", searchOption); mv.addObject("searchBox",
-		 * searchBox); mv.addObject("searchRadioVal", searchRadioVal);
-		 * mv.addObject("divCheck", divCheck);
-		 * 
-		 * mv.addObject("applyDetail", applyDetail); mv.addObject("result",
-		 * "수정이 완료되었습니다."); mv.addObject("cmd", "read");
-		 * mv.setViewName("admin/biz/bizDetail");
-		 */
-		/* return mv; */
 	}
 
 	// 통신사 상세 수정 페이지로 이동
@@ -241,13 +217,11 @@ public class AdminBizMngtController {
 		String searchBox = vo.getSearchBox();
 		searchRadioVal = bizId;
 		Search search = service.selectBizPlanList(pNum, cnt, searchOption, searchRadioVal, searchBox);
-		/* mv.addObject("applyList", search); */
 		request.setAttribute("paging", search);
 		mv.addObject("searchOption", searchOption);
 		mv.addObject("searchBox", searchBox);
 		mv.addObject("searchRadioVal", searchRadioVal);
 		
-		/* mv.addObject("bizPlanList", service.selectBizPlanList(bizId)); */
 		mv.setViewName("/admin/biz/bizDetail");
 		return mv;
 	}
@@ -324,7 +298,6 @@ public class AdminBizMngtController {
 		Search search = service.selectBizPlanApplyList(pNum, cnt, searchOption, searchRadioVal, searchBox);
 		
 		request.setAttribute("paging", search);
-		/* mv.addObject("bizPlanApplyList", service.selectBizPlanApplyList(vo)); */
 		mv.addObject("searchOption", searchOption);
 		mv.addObject("searchBox", searchBox);
 		mv.addObject("searchRadioVal", searchRadioVal);
