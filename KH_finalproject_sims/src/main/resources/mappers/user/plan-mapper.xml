@@ -199,11 +199,12 @@
 		update custom_q set cq_${type}=#{value}
 	</update>
 
-	<!-- 신청서 -->
+	<!-- 가입신청서 번호 -->
 	<select id="selectOrderNo" resultType="int">
 		SELECT plan_order_seq.NEXTVAL FROM dual
 	</select>
 
+	<!-- 가입신청서 저장 -->
 	<insert id="insertPlanOrder" parameterType="orderVo">
 		INSERT INTO plan_order (
 			order_no, user_id, biz_id, plan_no, join_category, sim_type, sim_yn

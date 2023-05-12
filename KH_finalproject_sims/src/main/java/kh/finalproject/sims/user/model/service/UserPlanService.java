@@ -25,7 +25,7 @@ public interface UserPlanService {
 	// 찜조회
 	public boolean getLikeByPlanWithUser(int planNo, String userId) throws Exception;
 
-	// 신청서번호 생성
+	// 가입신청서 번호
 	public int selectOrderNo() throws Exception;
 	
 	// 신청서 저장

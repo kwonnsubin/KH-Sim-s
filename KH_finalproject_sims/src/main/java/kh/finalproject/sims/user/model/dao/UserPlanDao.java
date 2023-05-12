@@ -19,6 +19,7 @@ public class UserPlanDao {
 	@Autowired
 	private SqlSession session;
 	
+	
 	public PlanVo getPlanByNo(int planNo) throws Exception {
 		return session.selectOne("plan.getPlanByNo", planNo);
 	}
@@ -56,18 +57,22 @@ public class UserPlanDao {
 		session.insert("plan.insertRecentInfo", recentInfo);
 	}
 
+	// 가입신청서 번호
 	public int selectOrderNo() throws Exception {
 		return session.selectOne("plan.selectOrderNo");
 	}
 	
+	// 가입신청서 저장
 	public void insertPlanOrder(PlanOrderVo planOrderVO) throws Exception {
 		session.insert("plan.insertPlanOrder", planOrderVO);
 	}
 	
+	// 카드 정보 저장
 	public void insertPayinfoCard(PayCardVo payCardVo) throws Exception {
 		session.insert("plan.insertPayinfoCard", payCardVo);
 	}
 	
+	// 계좌 정보 저장
 	public void insertPayinfoAcc(PayAccVo payAccVo) throws Exception {
 		session.insert("plan.insertPayinfoAcc", payAccVo);
 	}

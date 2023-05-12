@@ -35,21 +35,25 @@ public class UserPlanServiceImpl implements UserPlanService {
 	@Autowired
 	private JavaMailSenderImpl mailSender;
 
+	// 요금제 번호로 조회
 	@Override
 	public PlanVo getPlanByNo(int planNo) throws Exception {
 		return dao.getPlanByNo(planNo);
 	}
 
+	// 찜추가
 	@Override
 	public int insertLike(LikeVo lvo) throws Exception {
 		return dao.insertLike(lvo);
 	}
 
+	// 찜삭제
 	@Override
 	public int deleteLike(int planNo, String userId) throws Exception {
 		return dao.deleteLike(planNo, userId);
 	}
 
+	// 찜 조회
 	@Override
 	public boolean getLikeByPlanWithUser(int planNo, String userId) throws Exception {
 		LikeVo like = dao.getLikeByPlanWithUser(planNo, userId);
@@ -68,17 +72,19 @@ public class UserPlanServiceImpl implements UserPlanService {
 		
 	}
 
+	// 가입신청서 번호
 	@Override
 	public int selectOrderNo() throws Exception {
 		return dao.selectOrderNo();
 	}
 	
+	// 가입신청서 저장
 	@Override
 	@Transactional
 	public void insertPlanOrder(PlanOrderVo planOrderVO) throws Exception {
 		
+		// 가입 확인 메일 보내기
 		UserMemberVo user = mypageDao.selectMyPageInfo(planOrderVO.getUserId());
-		
 		MimeMessage msg = mailSender.createMimeMessage();
 
 		try {
@@ -137,14 +143,18 @@ public class UserPlanServiceImpl implements UserPlanService {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
+		// --------------
+		
 		dao.insertPlanOrder(planOrderVO);
 	}
 	
+	// 카드 정보 저장
 	@Override
 	public void insertPayinfoCard(PayCardVo payCardVo) throws Exception {
 		dao.insertPayinfoCard(payCardVo);
 	}
 	
+	// 계좌 정보 저장
 	@Override
 	public void insertPayinfoAcc(PayAccVo payAccVo) throws Exception {
 		dao.insertPayinfoAcc(payAccVo);

@@ -136,7 +136,7 @@
 				</div>
 			</div>
 			
-			<!-- 간편 신청 -->
+			<!-- 신청하기 -->
 			<button class="btn btn-lg my-4 p-3 w-100" type="button" onclick="location.href='${cpath}/plan/${plan.planNo}/order/terms'" class="btn btn-xl p-3">신청하기</button>
 			
 			
@@ -146,7 +146,8 @@
 					<div class="row">
 						<div class="col-2">
 							<a href="${cpath}/bizinfo/${biz.bizId}">
-								<img class="logo-s-cursor" src="${cpath}/resources/img/${biz.logoRenameFilename}" onerror="this.onerror=null; this.src='${cpath}/resources/img/${biz.originalFilename}'">
+								<img class="logo-s-cursor" src="${cpath}/resources/img/${biz.logoRenameFilename}"
+								 onerror="this.onerror=null; this.src='${cpath}/resources/img/${biz.originalFilename}'">
 							</a>
 						</div>
 						<div class="col-6 my-auto">
@@ -162,15 +163,15 @@
 					</div>
 					<table class="mt-3 table-h-30">
 						<tr>
-							<td width="250px">개통 소요 시간</td>
+							<td width="250px"><p>개통 소요 시간</p></td>
 							<td>평균 ${biz.phoneOpTime}일</td>
 						</tr>
 						<tr>
-							<td>개통 소요 시간(유심 보유 시)</td>
+							<td><p>개통 소요 시간(유심 보유 시)</p></td>
 							<td>평균 ${biz.phoneOpTimeUsim}일</td>
 						</tr>
 						<tr>
-							<td>지원 통신망</td>
+							<td><p>지원 통신망</p></td>
 							<td>
 								<c:if test="${not empty bizNets}">
 									<c:forEach items="${bizNets}" var="biznet">
@@ -205,10 +206,7 @@
 								<div class="card-body">
 									<div class="row mb-3">
 										<div class="col-md-5 pe-0" style="padding-right:0;">
-											${fn:substring(review.userId,0,3)}
-											<c:forEach begin="4" end="7">
-											*
-											</c:forEach>
+											<p><fmt:formatDate value="${review.reviewDate}" pattern="yy.MM.dd"/></p>
 										</div>
 										<div class="col-md-7 ps-0 text-end">
 											<c:forEach var="i" begin="1" end="5">
