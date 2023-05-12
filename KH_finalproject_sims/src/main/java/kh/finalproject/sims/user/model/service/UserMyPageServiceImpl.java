@@ -69,20 +69,39 @@ public class UserMyPageServiceImpl implements UserMyPageService {
 
 	// 리뷰 작성
 	@Override
+	@Transactional
 	public int insertReview(BizReviewMngtVo brVo) throws Exception {
-		return dao.insertReview(brVo);
+		int result = 0;
+		int num = dao.insertReview(brVo);
+		
+		if(num == 1) {
+			result = dao.updateBizReviewAvg(brVo.getBizId());
+		}
+		return result;
 	}
 
 	// 리뷰 수정
 	@Override
 	public int updateReview(BizReviewMngtVo brVo) throws Exception {
-		return dao.updateReview(brVo);
+		int result = 0;
+		int num = dao.updateReview(brVo);
+		
+		if(num == 1) {
+			result = dao.updateBizReviewAvg(brVo.getBizId());
+		}
+		return result;
 	}
 
 	// 리뷰 삭제
 	@Override
 	public int deleteReview(BizReviewMngtVo brVo) throws Exception {
-		return dao.deleteReview(brVo);
+		int result = 0;
+		int num = dao.deleteReview(brVo);
+		
+		if(num == 1) {
+			result = dao.updateBizReviewAvg(brVo.getBizId());
+		}
+		return result;
 	}
 
 	// 리뷰에 나올 가입한 요금제 리스트 갯수

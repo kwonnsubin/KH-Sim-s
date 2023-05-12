@@ -98,7 +98,14 @@
 	<delete id="deleteReview" parameterType="brVo">
 		delete from biz_review where review_no=#{reviewNo}
 	</delete>
-  
+	
+	<!-- biz 리뷰 평점 수정 -->
+	<update id="updateBizReviewAvg" parameterType="string">
+		update biz set biz_review_star=(
+			select trunc(avg(review_star)/2, 1) as review_avg from biz_review
+			where biz_id=#{bizId} and review_hidden=0)
+		where biz_id=#{bizId};
+	</update>
 
 	<!-- 리뷰 상세 보기 -->
 	<select id="selectReviewDetail" resultType="kh.finalproject.sims.biz.model.vo.BizReviewMngtVo">

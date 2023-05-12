@@ -108,4 +108,8 @@ public class UserMyPageDao {
 		return sqlSession.selectOne("member.infoPasswordCheck", userId);
 	}
 
+	public int updateBizReviewAvg(String bizId) {
+		return sqlSession.update("bizReview.updateBizReviewAvg".concat(bizId));
+	}
+
 }

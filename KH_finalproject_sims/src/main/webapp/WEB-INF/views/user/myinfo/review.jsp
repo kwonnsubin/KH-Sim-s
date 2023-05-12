@@ -137,6 +137,7 @@
 			       					<div class="row written-row">
 				       					<div class="col-3">
 				       						<input class="reviewNo" type="hidden" value="${review.reviewNo}">
+				       						<input class="bizId" type="hidden" value="${review.bizId}">
 				       						<p class="biz-name">${review.bizName}</p>
 				       					</div>
 				       					<div class="col-7">

@@ -147,7 +147,8 @@ $('.update-btn').on('click', function(e) {
 		data : {
 			reviewNo : $(e.target).parent().parent().prev().find('.reviewNo').val(),
 			reviewStar : $(e.target).parent().parent().prev().find('.starInput').val(),
-			reviewContent : $(e.target).parent().parent().prev().find('.updateTextarea').val()
+			reviewContent : $(e.target).parent().parent().prev().find('.updateTextarea').val(),
+			bizId : $(e.target).parent().parent().prev().find('.bizId').val()
 		},
 		dataType : "json",
 		success : function(data){
@@ -166,7 +167,8 @@ $('.del-btn').on('click', function(e) {
 		type : "post",
 		async : false,
 		data : {
-			reviewNo : $(e.target).parent().parent().prev().find('.reviewNo').val()
+			reviewNo : $(e.target).parent().parent().prev().find('.reviewNo').val(),
+			bizId : $(e.target).parent().parent().prev().find('.bizId').val()
 		},
 		dataType : "json",
 		success : function(data){
