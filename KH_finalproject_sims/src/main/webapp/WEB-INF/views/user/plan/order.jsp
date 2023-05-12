@@ -680,7 +680,7 @@
 				                },
 				                success: function(result) {
 				                	alert("요금제 신청 성공");
-				                	
+				                	window.location.href = '${cpath}/mypage/myplan';
 				                	// 문자 보내기
 /* 				                	$.ajax({
 				        	            url: '${cpath}/send-one',
@@ -774,7 +774,7 @@
 				                },
 				                success: function(result) {
 				                	alert("요금제 신청 성공");
-				                	
+				                	window.location.href = '${cpath}/mypage/myplan';
 				                	// 문자 보내기
 /* 				                	$.ajax({
 				        	            url: '${cpath}/send-one',
