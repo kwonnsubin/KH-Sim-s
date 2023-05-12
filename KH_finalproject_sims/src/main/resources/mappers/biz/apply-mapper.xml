@@ -405,6 +405,7 @@
             , (select pt.plan_data_over from plan_table Pt where pt.plan_no = p.plan_no) as plan_data_over
 			, (select pt.plan_voice_over from plan_table Pt where pt.plan_no = p.plan_no) as plan_voice_over
             , (select pt.plan_message_over from plan_table Pt where pt.plan_no = p.plan_no) as plan_message_over
+            , (select pt.plan_status from plan_table Pt where pt.plan_no = p.plan_no) as plan_status
 	    from plan_order P 
 	    where P.user_id=#{userId}
 	    and P.order_no=#{orderNo}

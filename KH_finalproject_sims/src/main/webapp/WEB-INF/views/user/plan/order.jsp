@@ -680,9 +680,9 @@
 				                },
 				                success: function(result) {
 				                	alert("요금제 신청 성공");
-				                	
+				                	window.location.href = '${cpath}/mypage/myplan';
 				                	// 문자 보내기
-				                	$.ajax({
+/* 				                	$.ajax({
 				        	            url: '${cpath}/send-one',
 				        	           	type: 'POST',
 				        	            data: {
@@ -700,7 +700,7 @@
 				        	             console.log(error);
 				        	            	alert("문자 실패");
 				        	            }
-				        	        });
+				        	        }); */
 				                },
 				                error: function(xhr, status, error) {
 				                	console.log("xhr.status: " + xhr.status);
@@ -774,9 +774,9 @@
 				                },
 				                success: function(result) {
 				                	alert("요금제 신청 성공");
-				                	
+				                	window.location.href = '${cpath}/mypage/myplan';
 				                	// 문자 보내기
-				                	$.ajax({
+/* 				                	$.ajax({
 				        	            url: '${cpath}/send-one',
 				        	           	type: 'POST',
 				        	            data: {
@@ -794,7 +794,7 @@
 											console.log(error);
 											alert("문자 실패");
 				        	            }
-				        	        });
+				        	        }); */
 				                },
 				                error: function(xhr, status, error) {
 				                	console.log("xhr.status: " + xhr.status);
