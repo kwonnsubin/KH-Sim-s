@@ -461,7 +461,9 @@ Spring Security를 활용하여 로그인 기능을 구현, 비밀번호의 경�
 
     
 </details>
+
 ---
+
 ### 2. 통신사
 <details>
     <summary>✅ 통신사 대시보드</summary>
