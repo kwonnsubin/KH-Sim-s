@@ -459,7 +459,9 @@ Spring Security를 활용하여 로그인 기능을 구현, 비밀번호의 경�
 <div markdown="1">
   
 <div align="center">
+    
 ![plan](https://github.com/kh-finalproject-Sim-s/KH-Sim-s/assets/96179832/40390b62-bf4d-4ac1-9eb7-4bf97e98aee8)
+
 </div>
     
 <br>
