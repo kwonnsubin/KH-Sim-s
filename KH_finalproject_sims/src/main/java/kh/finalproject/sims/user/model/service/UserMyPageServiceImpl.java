@@ -82,18 +82,17 @@ public class UserMyPageServiceImpl implements UserMyPageService {
 
 	// 리뷰 수정
 	@Override
+	@Transactional
 	public int updateReview(BizReviewMngtVo brVo) throws Exception {
 		int result = 0;
 		int num = dao.updateReview(brVo);
-		
-		if(num == 1) {
-			result = dao.updateBizReviewAvg(brVo.getBizId());
-		}
+		result = dao.updateBizReviewAvg(brVo.getBizId());
 		return result;
 	}
 
 	// 리뷰 삭제
 	@Override
+	@Transactional
 	public int deleteReview(BizReviewMngtVo brVo) throws Exception {
 		int result = 0;
 		int num = dao.deleteReview(brVo);

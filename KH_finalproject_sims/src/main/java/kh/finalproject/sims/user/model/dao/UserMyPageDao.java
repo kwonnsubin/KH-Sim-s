@@ -109,7 +109,7 @@ public class UserMyPageDao {
 	}
 
 	public int updateBizReviewAvg(String bizId) {
-		return sqlSession.update("bizReview.updateBizReviewAvg".concat(bizId));
+		return sqlSession.update("bizReview.updateBizReviewAvg", bizId);
 	}
 
 }
