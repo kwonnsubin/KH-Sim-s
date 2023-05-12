@@ -559,6 +559,10 @@ Spring Security를 활용하여 로그인 기능을 구현, 비밀번호의 경�
 - 쿠키 만료 시간을 10초로 설정하여 해당 Q&A 글을 본 이후 10초 이내에 다시 조회하면 중복 조회로 처리되지 않고 조회수가 증가하지 않음.
     
 2. 트리거와 ajax를 활용하여 답변 등록, 삭제 시 답변수가 자동으로 증감됨.
+3. collection을 활용하여 한 게시글의 답변과 답변의 답글 데이터 목록을 받아옴.
+    
+![컬렉션](https://github.com/kh-finalproject-Sim-s/KH-Sim-s/assets/108276943/ef16fb28-dac9-4d32-ad81-d25c367baa6a)
+
    
 <div align="center">
 <img src="https://res.cloudinary.com/dnik5jlzd/image/upload/c_scale,h_10,w_225/v1679302400/readme/%EC%84%A0_vkktmh.png">
