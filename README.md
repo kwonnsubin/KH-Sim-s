@@ -457,12 +457,6 @@ Spring Security를 활용하여 로그인 기능을 구현, 비밀번호의 경�
 <details>
 <summary><h3>✅ 요금제 상세 / 신청 </h3></summary>
 <div markdown="1">
-  
-<div align="center">
-    
-![plan](https://github.com/kh-finalproject-Sim-s/KH-Sim-s/assets/96179832/40390b62-bf4d-4ac1-9eb7-4bf97e98aee8)
-
-</div>
     
 <br>
 <br>
@@ -471,6 +465,12 @@ Spring Security를 활용하여 로그인 기능을 구현, 비밀번호의 경�
 요금제 상세페이지
 <img src="https://res.cloudinary.com/dnik5jlzd/image/upload/c_scale,h_10,w_225/v1679302400/readme/%EC%84%A0_vkktmh.png">
 </div><br>
+    
+<div align="center">
+    
+![요금제 상세페이지](https://github.com/kh-finalproject-Sim-s/KH-Sim-s/assets/96179832/98d42adb-adbe-4ef8-b91f-ae4d0f43333d)
+
+</div>
 
 1. 통신사 로고 또는 통신사명을 클릭하면 통신사 페이지로 이동
 2. 현재 로그인한 사용자의 해당 요금제를 찜한 상태에 따라 찜하기 버튼 변화
