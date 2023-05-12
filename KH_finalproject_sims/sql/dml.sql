@@ -506,3 +506,6 @@ INSERT INTO TEL_GEN_TABLE (GEN_NO, GEN_NAME) VALUES ('2', 'LTE');
 INSERT INTO TEL_GEN_TABLE (GEN_NO, GEN_NAME) VALUES ('3', '3G');
 INSERT INTO TEL_GEN_TABLE (GEN_NO, GEN_NAME) VALUES ('4', 'LTE/3G');
 
+--소수점 혹은 0점 리뷰 수정
+update biz_review set review_star = 1 where review_star = 0;
+UPDATE biz_review SET review_star = ROUND(review_star);
