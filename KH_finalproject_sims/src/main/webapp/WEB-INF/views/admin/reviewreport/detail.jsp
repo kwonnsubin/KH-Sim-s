@@ -49,7 +49,7 @@
 					                                    <div class="form-group row">
 					                                        <label for="adminId" class="col-sm-1 col-form-label left">통신사</label>
 					                                        <div class="col-sm-2">
-					                                            <input type="text" readonly class="form-control-plaintext" name="adminId" value="${detail.bizId }">
+					                                            <input type="text" readonly class="form-control-plaintext" name="bizId" value="${detail.bizId }">
 					                                        </div>
 					                                        <label for="adminId" class="col-sm-1 col-form-label left">작성자</label>
 					                                        <div class="col-sm-2">
@@ -86,12 +86,13 @@
 <script>
 $(function() {
   $('#reject-btn').click(function() {
-    if (confirm("반려하시겠습니까?")) {
-		var reviewNo = ${detail.reviewNo};    	
+    if (confirm("반려처리 하시겠습니까?")) {
+		var reviewNo = ${detail.reviewNo};
+		var bizId = $('input[name=bizId]').val();
 	    $.ajax({
 		      type: 'POST',
 		      url: '<%=request.getContextPath()%>/admin/reviewreport/status',
-		      data: {reviewNo: reviewNo, reviewHidden: 0, reportStatus: 3},
+		      data: {reviewNo: reviewNo, reviewHidden: 0, reportStatus: 3, bizId:bizId},
 		      success: function(result) {
 					alert('반려 처리되었습니다.');
 			        location.reload(); // 페이지 새로고침
@@ -107,11 +108,12 @@ $(function() {
 
 $(function() {
     $("#delete-btn").click(function() {
-        if (confirm("선택하신 답변을 삭제하시겠습니까?")) {
+        if (confirm("삭제처리 하시겠습니까?")) {
             var reviewNo = ${detail.reviewNo};
+            var bizId = $('input[name=bizId]').val();
             $.ajax({
                 url: "<%=request.getContextPath()%>/admin/reviewreport/status",
-                data: {reviewNo: reviewNo, reviewHidden: 1, reportStatus: 2},
+                data: {reviewNo: reviewNo, reviewHidden: 1, reportStatus: 2, bizId:bizId},
                 type: "POST",
                 success: function() {
                     alert("삭제되었습니다.");	        

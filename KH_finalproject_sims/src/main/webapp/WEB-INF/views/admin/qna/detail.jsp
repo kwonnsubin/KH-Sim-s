@@ -147,7 +147,6 @@ $(document).ready(function(){
  		html += '		<h6 class="m-b-15">';
  		if(result[i].adminId) {
  			html += result[i].adminId;
-	 	//  html += '  		<a class="m-l-5 text-info" onclick="qnaAnsUpdate(' +result[i].aaNo+ ',\''  +result[i].adminId+ '\',\'' +result[i].aaContent+'\',\'' +result[i].aaDate+ '\')">수정</a>'; // 답변 수정 폼 추가
 	 		html += '  		<a class="m-l-5 text-info" onclick="qnaAnsUpdate(' +result[i].aaNo+ ',\''  +result[i].adminId+ '\',\'' +result[i].aaDate+ '\')">수정</a>'; // 답변 수정 폼 추가
 	 		html += '  		<a class="m-l-5 text-info" onclick="qnaAnsDelete('+result[i].aaNo+')">삭제</a>';
  		} else if(result[i].userId) {
@@ -215,7 +214,6 @@ function qnaAnsDelete(aaNo) {
 }
 
 // 답변 수정 폼 ajax
-// function qnaAnsUpdate(aaNo, adminId, aaContent, aaDate) {
 function qnaAnsUpdate(aaNo, adminId, aaDate) {
 	var aaNo = aaNo;
 	var adminId = adminId;

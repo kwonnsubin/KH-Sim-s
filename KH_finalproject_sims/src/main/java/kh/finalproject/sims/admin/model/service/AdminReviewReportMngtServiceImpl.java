@@ -6,6 +6,7 @@ import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import kh.finalproject.sims.admin.model.dao.AdminReviewReportMngtDao;
 import kh.finalproject.sims.admin.model.vo.AdminReviewMngtVo;
@@ -38,10 +39,14 @@ public class AdminReviewReportMngtServiceImpl implements AdminReviewReportMngtSe
 
 	// 처리(반려/삭제)
 	@Override
+	@Transactional
 	public int updateReviewReportStatus(AdminReviewMngtVo vo) throws Exception {
 		
 		// 숨김
-		dao.updateReviewHidden(vo);
+		int num = dao.updateReviewHidden(vo);
+		if(num == 1) {
+			dao.updateBizReviewAvg(vo.getBizId());
+		}
 		
 		return dao.updateReviewReportStatus(vo);
 	}

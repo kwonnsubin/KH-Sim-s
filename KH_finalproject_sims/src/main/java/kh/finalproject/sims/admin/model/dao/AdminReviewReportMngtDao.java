@@ -50,4 +50,9 @@ public class AdminReviewReportMngtDao {
 	public int getSearchReviewReportListCnt(Map<String, Object> map) throws Exception {
 		return sqlSession.selectOne("admin.getSearchReviewReportPageCnt", map);
 	}
+
+	// 통신사 리뷰 평점
+	public int updateBizReviewAvg(String bizId) {
+		return sqlSession.update("bizReview.updateBizReviewAvg", bizId);
+	}
 }

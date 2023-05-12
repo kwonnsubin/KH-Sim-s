@@ -104,7 +104,7 @@
 		update biz set biz_review_star=(
 			select trunc(avg(review_star)/2, 1) as review_avg from biz_review
 			where biz_id=#{bizId} and review_hidden=0)
-		where biz_id=#{bizId};
+		where biz_id=#{bizId}
 	</update>
 
 	<!-- 리뷰 상세 보기 -->
