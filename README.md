@@ -130,7 +130,7 @@
     
 </div>
 
-Spring Security를 활용하여 로그인 기능을 구현, 비밀번호의 경우 bcrpt 암호화를 적용
+Spring Security를 활용하여 로그인 기능을 구현, 비밀번호의 경우 bcrypt 암호화를 적용
 - security-context.xml 시큐리티 설정
 1. jdbc-user-service 에서 로그인 폼에 입력한 내용을 DB와 비교하여 로그인이 된다.
 2. 로그인 한 유저의 정보를 가져와서 유저이름과 권한을 저장한다.
@@ -157,7 +157,7 @@ Spring Security를 활용하여 로그인 기능을 구현, 비밀번호의 경�
 1. KakaoService에서 토큰값을 받아온다.
 2. kakaoService에서 토큰값으로 현재 로그인 한 유저의 정보를 받아온다.
 3. kakaoController에서 받은 정보를 데이터베이스와 비교하여 유저 정보가 없으면 회원가입을 하고 해당 정보로 Security Authentication을 생성해 권한을 만들고 로그인한다.
-4. kakaoController에서 받은 정보를 와 비교하여 유저 정보가 있으면 해당 정보로 Security Authentication을 생성해 권한을 만들고 로그인한다.
+4. kakaoController에서 받은 정보를 데이터베이스와 비교하여 유저 정보가 있으면 해당 정보로 Security Authentication을 생성해 권한을 만들고 로그인한다.
 
 ![카카오로그인](https://github.com/kh-finalproject-Sim-s/KH-Sim-s/assets/39897996/28b119a4-ca52-4693-94e7-18563763e198)
 ![카카오정보](https://github.com/kh-finalproject-Sim-s/KH-Sim-s/assets/39897996/f8f78b92-191e-45d5-961e-c76128fb99dc)
