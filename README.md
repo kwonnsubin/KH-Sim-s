@@ -99,7 +99,6 @@
 | `Document` | ERDCloud, StarUML, Google Drive                                |
 | `Library & Framework` |  ojcbc8(21.1.0),  lombok(1.18.26),  log4j(1.16),  gson(2.8.9),  json(20160810), <br> jackson(2.13.2.2),  commons-fileupload(1.4),  commons-io(2.6),  slf4j(1.6.6), <br> aspectJ(1.6.10), security(4.2.1.RELEASE),  Bootstrap(5.2.3),  DateRangePicker ,  Chart.js,  Google chart            |
 | `API`      |  과학기술정보통신부 우정사업본부_우체국알뜰폰 요금제 조회 서비스,<br>  카카오톡 로그인, 카카오톡 push 알림, 카카오톡 공유, 다음 우편번호 서비스, 채널톡, 누리고, CKEditor   |
-                                                    |
 
 
 ## 5️⃣ 주요기능
