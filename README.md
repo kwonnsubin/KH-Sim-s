@@ -103,7 +103,8 @@
 
 ---
 
-![수성](https://github.com/kh-finalproject-Sim-s/KH-Sim-s/assets/54164292/a9e8d25a-eefc-4318-a066-b4d4b060f5d9)
+![수성](https://github.com/kh-finalproject-Sim-s/KH-Sim-s/assets/54164292/0b8a9a6e-1830-479a-99d9-b29801d337fb)
+
 
 <details>
 <summary>✅ 시큐리티 로그인 및 회원 </summary>
@@ -443,6 +444,9 @@ Spring Security를 활용하여 로그인 기능을 구현, 비밀번호의 경�
     
 ---
 
+    
+    
+    
 </div>
 </details>
 
@@ -683,6 +687,9 @@ Spring Security를 활용하여 로그인 기능을 구현, 비밀번호의 경�
 ---
 
 ### 3. 관리자
+    
+ 수빈   
+ 
 
 <details>
     <summary>✅ 대시보드</summary>
