@@ -62,30 +62,6 @@
 				</if>
 	</select>
 	
-	<!-- <select id="selectUserList" resultType="adUserVo">
-		/** 관리자의 사용자 관리 리스트 (selectUserList)**/
-			SELECT
-				*
-			FROM
-			(
-			SELECT
-				A.*
-				, B.*
-				, ROWNUM AS RO
-			FROM 
-				USER_TABLE A
-				INNER JOIN MEMBER B ON A.USER_ID = B.ID
-			WHERE 1=1
-				<if test="searchUserId != '' and searchUserId != null">
-					AND UPPER(A.USER_ID) LIKE UPPER('%'||#{searchUserId}||'%')
-				</if>
-				<if test="searchUserName != '' and searchUserName != null">
-					AND UPPER(A.USER_NAME) LIKE UPPER('%'||#{searchUserName}||'%')
-				</if>
-				<if test="searchRadioVal == 'enable'">
-					AND B.ENABLE = '2'
-				</if>
-	</select>-->
 	
 	<!-- 관리자의 사용자 관리 상세 -->
 	<select id="selectUserDetail" resultType="adUserVo">

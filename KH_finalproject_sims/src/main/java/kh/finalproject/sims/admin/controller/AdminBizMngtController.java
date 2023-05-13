@@ -157,7 +157,7 @@ public class AdminBizMngtController {
 		if(applyDetail.getLogoRenameFilename() == null) {
 			imagePath ="/resources/img/"+applyDetail.getOriginalFilename();
 		} else {
-			imagePath ="/resources/uploadfiles/"+applyDetail.getLogoRenameFilename();
+			imagePath ="/resources/img/"+applyDetail.getLogoRenameFilename();
 		}
 		System.out.println("imagePath ::: " +imagePath);
 		request.setAttribute("paging", search);
