@@ -13,7 +13,7 @@
 ## 1️⃣ 팀 소개
 <p align="center"><img width="300" src="https://github.com/kh-finalproject-Sim-s/KH-Sim-s/assets/54164292/e64afc8a-6c50-4c0e-9fe2-6e6e7deee122"></p>
 
-`김민성`
+
 
 
 ## 2️⃣ 프로젝트 개요
@@ -903,9 +903,9 @@ Spring Security를 활용하여 로그인 기능을 구현, 비밀번호의 경�
 ![차트](https://github.com/kh-finalproject-Sim-s/KH-Sim-s/assets/108276943/c2d1720e-45f0-4862-9b4c-88a97821d5db)    
 </details>
 
-
- 
-![경진](https://github.com/kh-finalproject-Sim-s/KH-Sim-s/assets/54164292/828df225-3b87-46f9-9464-6e3a724920cf)
+    
+    
+ ![경진](https://github.com/kh-finalproject-Sim-s/KH-Sim-s/assets/54164292/04a2bc6c-0874-4ab0-a95a-53e2960023a4)
 
     
 <details>
