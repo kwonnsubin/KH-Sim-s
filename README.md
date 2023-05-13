@@ -912,6 +912,87 @@ Spring Security를 활용하여 로그인 기능을 구현, 비밀번호의 경�
 
 권수빈
 
+    
+<details>
+    <summary>통신사 관리</summary>
+    
+ ![통신사 관리](https://github.com/kh-finalproject-Sim-s/KH-Sim-s/assets/114970528/820a36af-e26c-4a9b-96f0-da8fd38074a8)
+ 
+<div align="center">
+<img src="https://res.cloudinary.com/dnik5jlzd/image/upload/c_scale,h_10,w_225/v1679302400/readme/%EC%84%A0_vkktmh.png">
+통신사 관리 상세 - 신청 승인/보류
+<img src="https://res.cloudinary.com/dnik5jlzd/image/upload/c_scale,h_10,w_225/v1679302400/readme/%EC%84%A0_vkktmh.png">
+</div><br>
+<div align="center">
+    1. 통신사 관리 리스트에서 업체명/대표자명을 클릭하여 상세 페이지로 이동
+    2. 가입상태에 따라 이동하는 상세 페이지가 다름(신청중, 반려, 탈퇴의 경우엔 applyDetail화면으로 설정/ 승인완료 땐 bizDetail화면)
+    3. divCheck라는 변수를 선언하여 값을 apply로 받아오는 경우엔 신청화면(applyDetail)이 표시되고
+       detail 값을 받아오는 경우엔 통신사 상세정보화면(bizDetail)이 뜨도록 case문 사용(각 화면으로 이동할 때 가져가는 값 다르게 설정)
+    4. 신청 중인 통신사를 누르면 신청 페이지로 이동하여 검토 결과(승인, 보류)를 선택 후 저장할 수 있다. 메일 전송과 함께 신청 상태가 승인이나 보류로 변동되며
+       상태에 따라 전송되는 메일 메시지가 달라진다.
+    5. 보류인 경우 보류 메일이 보내지며 페이지 이동이 없는 반면 승인의 경우 승인 메일이 보내지며 상세 정보를 조회/저장할 수 있는 페이지로 자동 이동
+    
+</div> 
+<div align="center">
+<img src="https://res.cloudinary.com/dnik5jlzd/image/upload/c_scale,h_10,w_225/v1679302400/readme/%EC%84%A0_vkktmh.png">
+통신사 관리 상세 - 조회,수정 및 탈퇴
+<img src="https://res.cloudinary.com/dnik5jlzd/image/upload/c_scale,h_10,w_225/v1679302400/readme/%EC%84%A0_vkktmh.png">
+</div><br>
+<div align="center">
+    1. 관리자는 승인완료된 통신사에 대해 정보 수정 및 탈퇴를 할 수 있다.
+    2. bizDetail이라는 jsp화면 하나를 <c:if test="${cmd eq 'read' }">readonly</c:if>를 붙여 하나의 jsp를 두가지 기능(조회, 수정)을 가진 화면으로 이용
+    3. 통신사 로고 - 파일첨부 기능을 이용하여 수정
+       주소 - 우편번호 api를 이용하여 수정
+       지원통신망과 고객센터 번호 - 지원통신망에 sk, kt를 체크하고 sk와 lg 고객센터 번호 입력란에 번호를 기입할 경우 lg의 번호는 자동으로 삭제되어 sk번호만 저장되도록 설정
+    3. 기본정보(이름, 사업자번호, 이메일 같은 경우는 readonly로 수정 할 수 없도록 설정), 그 외 번호는 유효성 체크를 통해 자동으로 하이픈이 들어가며 숫자만 입력되도록 함
+    4. 요금제 정보 - 관리자는 요금제를 조회만 할 수 있으며 ajax를 이용하여 요금제 정보를 화면 이동 없이 보고 끌 수 있게 설정
+    5. 탈퇴확정을 클릭하여 통신사를 탈퇴시킬 수 있다. 탈퇴 메일이 전송되며 가입 상태가 탈퇴로 전환된다. 
+    
+</div>     
+    
+    
+    
+ <details>
+    <summary>사용자 관리</summary>
+     
+    ![사용자 관리](https://github.com/kh-finalproject-Sim-s/KH-Sim-s/assets/114970528/95d17cd6-1736-4c3b-ac44-c14a91b8bdd2
+ 
+     
+<div align="center">
+<img src="https://res.cloudinary.com/dnik5jlzd/image/upload/c_scale,h_10,w_225/v1679302400/readme/%EC%84%A0_vkktmh.png">
+사용자 관리 리스트
+<img src="https://res.cloudinary.com/dnik5jlzd/image/upload/c_scale,h_10,w_225/v1679302400/readme/%EC%84%A0_vkktmh.png">
+</div><br>
+<div align="center">
+    
+</div>
+
+<div align="center">
+<img src="https://res.cloudinary.com/dnik5jlzd/image/upload/c_scale,h_10,w_225/v1679302400/readme/%EC%84%A0_vkktmh.png">
+사용자 관리 상세
+<img src="https://res.cloudinary.com/dnik5jlzd/image/upload/c_scale,h_10,w_225/v1679302400/readme/%EC%84%A0_vkktmh.png">
+</div><br>
+<div align="center">
+    
+</div>
+etails>
+    <summary>공지사항 관리</summary>
+     
+    ![공지사항 관리](https://github.com/kh-finalproject-Sim-s/KH-Sim-s/assets/114970528/95b4f560-befb-4838-a5e2-d721dc94f065)
+
+ 
+     
+<div align="center">
+<img src="https://res.cloudinary.com/dnik5jlzd/image/upload/c_scale,h_10,w_225/v1679302400/readme/%EC%84%A0_vkktmh.png">
+공지사항 관리 - 작성, 수정, 삭제
+<img src="https://res.cloudinary.com/dnik5jlzd/image/upload/c_scale,h_10,w_225/v1679302400/readme/%EC%84%A0_vkktmh.png">
+</div><br>
+<div align="center">
+    
+</div>     
+    
+전경진    
+
 ## 6️⃣ Document
 
 <br>
