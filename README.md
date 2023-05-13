@@ -86,24 +86,14 @@
 + 자주 묻는 질문 관리 
 
 ## 4️⃣ 개발환경
-|  분류      |                     개발환경                                     |
-| --------   | ----------------------------------------------------------------|
-| `OS`       |        Window 10(x64), macOS                                        |
-| `IDE`      |  Spring Tools Suite3, SQL Developer, DBeaver, Visual Studio Code |
-| `BackEnd`  |   Java(JDK 11), Servlet(4.0.1), Spring(5.3.19), MyBatis(3.5.6) | 
-| `FrontEnd` | HTML5, CSS3, JavaScript, JQuery(3.6.3)                         |
-| `WAS`      | Apache-tomcat 9.0                                              |
-| `DataBase`  | Oracle DataBase 21c Express Edition RELEASE 21.0.0.0.0         |
-| `CI`       | Git(GitHub Desktop)                                            |
-| `Web browser` | Chrome                                                      |
-| `Document` | ERDCloud, StarUML, Google Drive                                |
-| `Library & Framework` |  ojcbc8(21.1.0),  lombok(1.18.26),  log4j(1.16),  gson(2.8.9),  json(20160810), <br> jackson(2.13.2.2),  commons-fileupload(1.4),  commons-io(2.6),  slf4j(1.6.6), <br> aspectJ(1.6.10), security(4.2.1.RELEASE),  Bootstrap(5.2.3),  DateRangePicker ,  Chart.js,  Google chart            |
-| `API`      |  과학기술정보통신부 우정사업본부_우체국알뜰폰 요금제 조회 서비스,<br>  카카오톡 로그인, 카카오톡 push 알림, 카카오톡 공유, 다음 우편번호 서비스, 채널톡, 누리고, CKEditor   |
+
+
+![개발환경](https://github.com/kh-finalproject-Sim-s/KH-Sim-s/assets/54164292/820880c4-a3bb-4f03-9a6d-47539b493679)
 
 
 ## 5️⃣ 주요기능
 
-### 1. 메인페이지
+### 1. 사용자
 <details>
     <summary>메인페이지</summary>
     
@@ -113,8 +103,10 @@
 
 ---
 
+![수성](https://github.com/kh-finalproject-Sim-s/KH-Sim-s/assets/54164292/a9e8d25a-eefc-4318-a066-b4d4b060f5d9)
+
 <details>
-<summary><h3>✅ 시큐리티 로그인 및 회원 </h3></summary>
+<summary>✅ 시큐리티 로그인 및 회원 </summary>
 <div markdown="1">
   
 <br>
@@ -227,10 +219,10 @@ Spring Security를 활용하여 로그인 기능을 구현, 비밀번호의 경�
 1. 사용자, 통신사를 선택하면 해당하는 회원가입 폼이 생성
 2. 회원가입에 필요한 정보를 모두 적지 않으면 에러 메시지 생성
 3. 이메일 인증 버튼을 누르면 해당 이메일로 인증번호를 보내고 입력한 인증번호와 같은지 확인
-4. 아이디 중복확인 버튼을 누르면 입력한 아이디를 사용할 수 있는지 데이터베이스와 비교
-    4-1. 아이디 생성이 가능하다면 '사용 가능한 아이디입니다' 메시지 출력
+4. 아이디 중복확인 버튼을 누르면 입력한 아이디를 사용할 수 있는지 데이터베이스와 비교<br> 
+    4-1. 아이디 생성이 가능하다면 '사용 가능한 아이디입니다' 메시지 출력<br> 
     4-2. 아이디 생성이 불가하다면 '사용 불가능한 아이디입니다' 메시지 출력
-5. 비밀번호 정규식 체크를 통해 사용 가능한 비밀번호인지 확인
+5. 비밀번호 정규식 체크를 통해 사용 가능한 비밀번호인지 확인<br> 
 5-1. 비밀번호와 비밀번호 확인에 입력한 문자열이 동일한지 확인
 6. 주민등록번호, 전화번호, 법인등록번호, 사업자등록번호는 정규식을 통해 확인
     
@@ -242,7 +234,7 @@ Spring Security를 활용하여 로그인 기능을 구현, 비밀번호의 경�
 </details>
 
 <details>
-<summary><h3>✅ 마이페이지 </h3></summary>
+<summary>✅ 마이페이지</summary>
 <div markdown="1">
   
 <br>
@@ -260,7 +252,7 @@ Spring Security를 활용하여 로그인 기능을 구현, 비밀번호의 경�
 
 1. 비밀번호 확인을 통해 정보 수정 폼 생성
 2. 이름과 아이디는 유저 정보로 작성
-5. 비밀번호 정규식 체크를 통해 사용 가능한 비밀번호인지 확인
+5. 비밀번호 정규식 체크를 통해 사용 가능한 비밀번호인지 확인<br> 
     5-1. 비밀번호와 비밀번호 확인에 입력한 문자열이 동일한지 확인
 3. 이메일 인증 버튼을 누르면 해당 이메일로 인증번호를 보내고 입력한 인증번호와 같은지 확인
 6. 전화번호는 정규식을 통해 확인
@@ -284,10 +276,10 @@ Spring Security를 활용하여 로그인 기능을 구현, 비밀번호의 경�
 </div>
 
 1. 상단 리뷰 작성을 누르면 작성할 수 있는 리뷰 폼 생성
-2. 리뷰 작성 버튼을 누르면 글 작성 폼과 별점 선택 폼 생성
+2. 리뷰 작성 버튼을 누르면 글 작성 폼과 별점 선택 폼 생성<br> 
     2-1. 작성 버튼 누르면 리뷰 저장
 3. 상단 작성한 리뷰 누르면 작성된 리뷰 리스트 생성
-4. 수정 버튼 누르면 수정 폼으로 변경
+4. 수정 버튼 누르면 수정 폼으로 변경<br> 
     4-1. 수정 버튼 누르면 수정한 내용으로 변경
 5. 삭제 버튼 누르면 해당 리뷰 삭제
     
@@ -358,7 +350,7 @@ Spring Security를 활용하여 로그인 기능을 구현, 비밀번호의 경�
 </details>
 
 <details>
-<summary><h3>✅ 요금제 검색 / 맞춤형 요금제 </h3></summary>
+<summary>✅ 요금제 검색 / 맞춤형 요금제 </summary>
 <div markdown="1">
   
 <br>
@@ -407,7 +399,7 @@ Spring Security를 활용하여 로그인 기능을 구현, 비밀번호의 경�
 </details>
 
 <details>
-<summary><h3>✅ 공지사항 / 통신사 페이지 </h3></summary>
+<summary>✅ 공지사항 / 통신사 페이지 </summary>
 <div markdown="1">
   
 <br>
@@ -455,7 +447,7 @@ Spring Security를 활용하여 로그인 기능을 구현, 비밀번호의 경�
 </details>
 
 <details>
-<summary><h3>✅ 요금제 상세 / 신청 </h3></summary>
+<summary>✅ 요금제 상세 / 신청 </summary>
 <div markdown="1">
     
 <br>
@@ -519,9 +511,12 @@ Spring Security를 활용하여 로그인 기능을 구현, 비밀번호의 경�
     
 </details>
 
-
+---
 
 ### 2. 통신사
+    
+![민성](https://github.com/kh-finalproject-Sim-s/KH-Sim-s/assets/54164292/f59bf489-c05e-4ade-aec0-73736b07216d)
+    
 <details>
     <summary>✅ 통신사 대시보드</summary>
     
@@ -685,9 +680,7 @@ Spring Security를 활용하여 로그인 기능을 구현, 비밀번호의 경�
 </details>
 
 
-
-
-김민성
+---
 
 ### 3. 관리자
 
@@ -910,9 +903,11 @@ Spring Security를 활용하여 로그인 기능을 구현, 비밀번호의 경�
 ![차트](https://github.com/kh-finalproject-Sim-s/KH-Sim-s/assets/108276943/c2d1720e-45f0-4862-9b4c-88a97821d5db)    
 </details>
 
-권수빈
 
  
+![경진](https://github.com/kh-finalproject-Sim-s/KH-Sim-s/assets/54164292/828df225-3b87-46f9-9464-6e3a724920cf)
+
+    
 <details>
     <summary>✅ 통신사 관리</summary>
     
@@ -1018,12 +1013,6 @@ Spring Security를 활용하여 로그인 기능을 구현, 비밀번호의 경�
 </details>    
     
 
-    
-
-
-    
-전경진    
-
 ## 6️⃣ Document
 
 <br>
@@ -1095,3 +1084,12 @@ Spring Security를 활용하여 로그인 기능을 구현, 비밀번호의 경�
 ### 10. Troubleshooting
 
 [TroubleShooting 전체보기](https://docs.google.com/spreadsheets/d/15NW-3_jEqZpxbsdjh70hDACcwm2r9KsZrV_pDOWIJgI/edit#gid=0)
+    
+    
+<br>
+    
+### 11. 테스트케이스
+    
+[테스트 케이스](https://docs.google.com/spreadsheets/d/1PkeXlvEz7_MZ62x51RMDv5iwXBOpsuQakZTxDCFS7u4/edit?usp=share_link)
+    
+ 
