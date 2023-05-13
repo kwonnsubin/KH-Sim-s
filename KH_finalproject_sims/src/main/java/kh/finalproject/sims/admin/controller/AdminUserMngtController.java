@@ -155,7 +155,13 @@ public class AdminUserMngtController {
 		  
 		  String userId = vo.getUserId();
 		  AdminUserMngtVo userDetail = service.selectUserDetail(userId);
+		  int reviewCnt = service.selectOrderListCountAdmin(userId);
+	      int myPlanCnt = service.selectMyPlanListCountAdmin(userId);
+	      HashMap<String, Object> cnt = new HashMap<>();
 		  mv.addObject("userDetail", userDetail);
+		  cnt.put("reviewCnt", reviewCnt); 
+		  cnt.put("myPlanCnt", myPlanCnt);
+		  mv.addObject("cnt", cnt);
 		  mv.addObject("result", "저장이 완료되었습니다.");
 		  mv.addObject("cmd","read");
 		  mv.setViewName("/admin/user/userDetail");

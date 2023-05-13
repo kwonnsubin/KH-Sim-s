@@ -73,12 +73,12 @@
 												<table class="table table-hover text-center">
 													<thead>
 														<tr>
-															<th>번호</th>
-															<th>아이디</th>
-															<th>이름</th>
-															<th>메일</th>
-															<th>신청상태</th>
-															<th>가입일</th>
+															<th width="10%">번호</th>
+															<th width="20%">아이디</th>
+															<th width="10%">이름</th>
+															<th width="30%">메일</th>
+															<th width="10%">신청상태</th>
+															<th width="10%">가입일</th>
 														</tr>
 													</thead>
 													<tbody>

@@ -130,13 +130,6 @@
 			WHERE 1=1
  				AND RO BETWEEN #{start} AND #{end}
 	
-		<!-- SELECT
-    		B.*
-		FROM
-    		BIZ A
-    		INNER JOIN PLAN_TABLE B ON A.BIZ_NAME = B.BIZ_NAME
-		WHERE 1=1
-    		AND A.BIZ_ID = #{bizId} -->
 	</select>
 	
 	<select id="selectBizPlanListCnt" resultType="_int">
@@ -171,7 +164,6 @@
 			, BIZ_ACC_PAY_DATE = #{bizAccPayDate}
 			, BIZ_CLOSED_DAY = #{bizClosedDay}
 			, NETWORK =#{network}
-			<!-- ,(biz_net_service)=(select biz_net_service from biz_network where biz_id = #{bizId} AND NET_NO = '1' AND ROWNUM = '1') -->
 			, PHONE_OP_TIME =#{phoneOpTime}
 			, PHONE_OP_TIME_USIM =#{phoneOpTimeUsim}
 			, BIZ_BEGIN_TIME = #{bizBeginTime}
@@ -182,19 +174,6 @@
 		
 	</update>
 	
-
-	
-	
-	<!-- 통신사 탈퇴정보 리스트 -->
-	<!-- <select id="selectWithdrawalList" resultType="adBizVo">
-	/** 통신사 탈퇴정보 리스트(selectWithdrawalList)**/
-		SELECT
-			*
-		FROM 
-			BIZ A
-			INNER JOIN MEMBER B ON A.BIZ_ID = B.ID
-		
-	</select> -->
 	
 	<!-- 통신사 탈퇴정보 상세 -->
 	<select id="selectWithdrawalDetail" resultType="adBizVo">
