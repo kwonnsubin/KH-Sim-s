@@ -37,21 +37,6 @@ function fn_submitCheck(){
     }
 }
 
-/* alert("warning")
-	var title = document.forms[0].title.value;
-	var reason = document.forms[0].reason.value;
-function formCheck(){
-	if(title==null || title==""){
-		alert('입력하세요');
-		document.forms[0].title.focus();
-		return false;
-	}
-	if(reason==null || title==""){
-		alert('입력하세요');
-		document.forms[0].reason.focus();
-		return false;
-	}
-}	 */
 	
 </script>
 <div class="pcoded-main-container">
@@ -86,8 +71,7 @@ function formCheck(){
 										</div>
 									</div>
 								</div>
-							</div><!--confirm('승인하시겠습니까?')  -->
-							<%-- <form action="<%=request.getContextPath()%>/admin/updateBizStatus" method="post" onsubmit="return confirm('승인하시겠습니까?');"> --%>
+							</div>
 							<form action="<%=request.getContextPath()%>/admin/updateBizStatus" method="post" id="frm">
 								<div class="col-md-12">
 									<div class="simsBtn m-b-15">
@@ -168,10 +152,6 @@ function formCheck(){
 				                    						<input type="radio" class="custom-control-input" name="enable" id="enable1" value="1" <c:if test="${applyDetail.enable eq '1'}">checked</c:if>>
 				                    						<label class="custom-control-label" for="enable1">승인</label>
 				                    					</div>
-				                    					<%-- <div class="custom-control custom-radio custom-control-inline">
-				                    						<input type="radio" class="custom-control-input" name="enable" id="enable2" value="2" <c:if test="${applyDetail.enable eq '2'}">checked</c:if>>
-				                    						<label class="custom-control-label" for="enable2">탈퇴</label>
-				                    					</div> --%>
 				                    					<div class="custom-control custom-radio custom-control-inline">
 				                    						<input type="radio" class="custom-control-input" name="enable" id="enable3" value="3" <c:if test="${applyDetail.enable eq '3'}">checked</c:if>>
 				                    						<label class="custom-control-label" for="enable3">반려</label>
@@ -182,7 +162,6 @@ function formCheck(){
 			                    					<div class="col-md-12">
 			                    						<h5>검토의견</h5><hr><span></span>
 			                    						<textarea class="form-control" aria-label="with textarea" name="opinion"  required style= height:360px;resize:none;>${applyDetail.opinion }</textarea>
-			                    						<%-- <textarea class="col-md-12 bg-light p-4 mb-2" style="height:277px; resize:none; border:2px solid rgba(0, 0, 0, 0.15);" name="rvwOpinion">${applyDetail.opinion }</textarea> --%>
 			                    					</div>
 			                    				</div>
 			                    			</div>

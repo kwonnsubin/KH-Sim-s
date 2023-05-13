@@ -118,15 +118,6 @@ public class AdminUserMngtController {
 		return mv;
 	}
 	
-	
-	/*
-	 * public ModelAndView selectUserDetail(ModelAndView mv, @PathVariable String
-	 * userId) { AdminUserMngtVo userDetail = service.selectUserDetail(userId);
-	 * mv.addObject("userDetail", userDetail);
-	 * mv.setViewName("admin/user/userDetail"); mv.addObject("cmd","read"); return
-	 * mv; }
-	 */
-	
 	//관리자의 사용자 관리 수정 페이지로 이동
 	@GetMapping("/selectUserModify/{userId}")
 	public ModelAndView selectUserModify(

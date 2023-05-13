@@ -244,7 +244,6 @@ function fn_applyPlanAjax(userId){
 									</div>
 									<div class="card">
 	                    				<div class="card-header">
-	                        				<%-- <h5>${userDetail.userId}님의 요금제 정보</h5> --%>
 	                    				</div>
 	                    				<div class="card-body">
 		                                    <div class="form-group row">

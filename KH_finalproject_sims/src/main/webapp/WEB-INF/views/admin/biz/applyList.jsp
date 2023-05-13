@@ -119,27 +119,6 @@
 																	</tr>
 																</c:forEach>
 															</c:if>
-															<%-- <c:forEach var="list" items="${applyList}" varStatus="status">
-																<tr>
-																	<td>${status.count}</td>
-																		<c:set var="divCheck" value="apply"/>
-																		<c:if test="${list.enable eq '1' }">
-																			<c:set var="divCheck" value="detail"/>
-																		</c:if>
-																	<td><a href="<%=request.getContextPath()%>/admin/applyDetail/${list.bizId}?divCheck=${divCheck}">${list.bizName}</a></td>
-																	<td><a href="<%=request.getContextPath()%>/admin/applyDetail/${list.bizId}?divCheck=${divCheck}">${list.bizOwnerName}</a></td>
-																	<td>
-																		<c:choose>
-																			<c:when test="${list.enable eq '0'}"> 인증 전 </c:when>
-																			<c:when test="${list.enable eq '1'}"> 인증 완료 </c:when>
-																			<c:when test="${list.enable eq '3'}"> 반려</c:when>
-																			<c:otherwise>탈퇴</c:otherwise>
-																		</c:choose>
-																	</td>
-																	<td><fmt:formatDate value="${list.writeDate}" pattern="yyyy.MM.dd"/> </td>
-																</tr>
-															</c:forEach> --%>
-															
 														</tbody>
 													</table>
 												</div>
