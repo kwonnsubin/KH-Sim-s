@@ -83,7 +83,7 @@
 						<option value="planName" <c:if test="${searchType eq 'planName'}">selected</c:if>>요금제명</option>
 						<option value="userId"  <c:if test="${searchType eq 'userId'}">selected</c:if>>신청자</option>
 					</select>
-					<input class="form-control" style="display: inline-block; width: 300px;" type="text"
+					<input class="form-control" style="display: inline-block; width: 233px;" type="text"
 					 name="keyword" id="keyword" value=${keyword}>
 					
 			<!-- 분류 {s} -->
@@ -98,7 +98,7 @@
 				
 				
 			<!-- 기간조회 -->	
-			<div class="form-check form-switch">
+			<div class="form-check form-switch"">
 		    	<input class="form-check-input" type="checkbox" role="switch" role="switch" id="date-checkbox"
 		    	<% if (startDate != null && endDate != null && startDate != "" && endDate != "") { %>checked<% } %>
 		    	 />기간 조회
@@ -170,7 +170,7 @@
 	
 	
 	
-	 	<table class="table table-hover table-responsive" id="applyTb" style="width: 144%;  position: relative;">
+	 	<table class="table table-hover table-responsive" id="applyTb" style="width: 132%;  position: relative;">
 	            <thead>
 	                <tr class="text-center mx-auto" style="background-color: #ecf7fd;">
 	                    <th>번호</th>

@@ -34,73 +34,7 @@ public class BizReviewMngtController {
 	
 	@Autowired
 	private BizPlanMngtService planService;
-	
-//	//자사 리뷰 리스트
-//	@GetMapping("reviewList")
-//	public ModelAndView selectBizReviewList(ModelAndView mv
-//			, Principal principal
-//			, HttpServletRequest request
-//			, HttpServletResponse response
-//			) throws Exception {
-//		String bizid = principal.getName();
-//		System.out.println("통신사 아이디 :"+bizid);
-//		
-//		String pageNumber = request.getParameter("p");
-//		int pNum;
-//		if (pageNumber == null || pageNumber.isEmpty()) {
-//			pNum = 1;
-//		} else {
-//			pNum = Integer.parseInt(pageNumber);
-//		}
-//
-//		Cookie cookie = null;
-//		Cookie[] cookies = request.getCookies();
-//		for (Cookie c : cookies) {
-//			if (c.getName().equals("cnt")) {
-//				cookie = c;
-//			}
-//		}
-//
-//		String cnt = request.getParameter("cnt");
-//		if (cnt != null) {
-//			if (cnt.isEmpty()) {
-//				if (cookie != null) {
-//					cnt = cookie.getValue();
-//				} else {
-//					cnt = "10"; // 초기값
-//				}
-//			}
-//		} else {
-//			if (cookie != null) {
-//				cnt = cookie.getValue();
-//			} else {
-//				cnt = "10";
-//			}
-//		}
-//
-//		cookie = new Cookie("cnt", cnt);
-//		cookie.setMaxAge(60 * 60 * 24 * 5);
-//		response.addCookie(cookie);
-//
-//		Paging paging = service.getPage(bizid, pNum, Integer.parseInt(cnt));
-//		request.setAttribute("paging", paging);
-//		
-//		System.out.println("paging.getPage() : "+paging.getPage());
-//		System.out.println("getPageList : "+paging.getPageList());
-//		
-//		int reviewCnt = service.getReviewListCount(bizid);
-//		System.out.println("해당 통신사 리뷰 총 개수 : "+reviewCnt);
-//		
-//		mv.addObject("reviewCnt",reviewCnt);
-//		mv.setViewName("biz/reviewList");
-//		
-//
-//		BizPlanMngtVo bizName = planService.findByBizName(bizid);
-//		System.out.println(bizName);
-//		mv.addObject("bizName", bizName);
-//		
-//		return mv;
-//	}
+
 	
 	//리뷰신고하기
 	@PostMapping("/reportReview")
@@ -158,7 +92,6 @@ public class BizReviewMngtController {
 		String bizid = principal.getName();
 		System.out.println("통신사 아이디 :"+bizid);
 		
-		//String pageNumber = request.getParameter("p");
 		int pNum;
 		if (pageNumber == null || pageNumber.isEmpty()) {
 			pNum = 1;
@@ -180,7 +113,7 @@ public class BizReviewMngtController {
 				if (cookie != null) {
 					cnt = cookie.getValue();
 				} else {
-					cnt = "10"; // 초기값
+					cnt = "10"; 
 				}
 			}
 		} else {
@@ -201,28 +134,6 @@ public class BizReviewMngtController {
 		
 		
 		
-		//String reportStatus =  Integer.toString(IntReportStatus);
-		
-//		
-//		//전체 버튼 눌렀을 때
-//		if("0".equals(reportStatus) || "".equals(reportStatus)) {
-//			Paging paging = service.getPage(bizid, pNum, Integer.parseInt(cnt));
-//			request.setAttribute("paging", paging);
-//			
-//			System.out.println("paging.getPage() : "+paging.getPage());
-//			System.out.println("getPageList : "+paging.getPageList());
-//			
-//			int reviewCnt = service.getReviewListCount(bizid);
-//			System.out.println("해당 통신사 리뷰 총 개수 : "+reviewCnt);
-//			
-//			mv.addObject("reviewCnt",reviewCnt);
-//			mv.setViewName("biz/reviewList");
-//			return mv;
-//		
-//			
-//		//분류 조회
-//		}else {
-		
 		Paging paging = service.selectByReportStatus(bizid, pNum, Integer.parseInt(cnt),reportStatus);
 		request.setAttribute("paging", paging);
 		mv.addObject("reportStatus",reportStatus);
@@ -238,7 +149,7 @@ public class BizReviewMngtController {
 		
 		return mv; 
 		}
-	//}
+
 
 
 }

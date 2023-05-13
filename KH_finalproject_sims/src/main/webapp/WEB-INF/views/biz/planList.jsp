@@ -102,7 +102,7 @@
 			</div>
 
 
-			<div style="display: inline-flex; width: 183%; margin-top: 4%;">
+			<div style="display: inline-flex; width: 166%; margin-top: 4%;">
 				<div style="width: 253%">
 					<span class="count float-1 totalMent">총 ${vo} 건의 결과가 있습니다.</span>
 				</div>
@@ -122,7 +122,7 @@
 				}
 			%>
 
-			<table class="table table-hover" id="planTb" style="width: 148%;">
+			<table class="table table-hover" id="planTb" style="width: 130%;">
 				<thead>
 					<tr class="text-center mx-auto" style="background-color: #ecf7fd;">
 						<th style="width: 6%"><input class="form-check-input" id="allCheck"

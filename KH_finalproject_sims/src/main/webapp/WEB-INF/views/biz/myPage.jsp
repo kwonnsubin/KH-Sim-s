@@ -89,7 +89,7 @@
 		%>
 		
 		
-		<div class="container" style="margin-left: 142px; width: 81%;">
+		<div class="container" style="margin-left: 82px; width: 72% !important;">
 			<div class="container" style="margin-bottom: 2%;">
 				<div class="biz-icon">통신사</div>
 				<span class="welcome-ment">${bizName.bizName} 님, 반갑습니다. </span>
@@ -120,7 +120,7 @@
 							</div>
 						</div>
 						<div class="cntMentBox-content">
-						오늘 등록된 리뷰 수는 <span>${todayReviewCnt }</span>개입니다.
+						오늘 등록된 리뷰 수는<br> <span>${todayReviewCnt }</span>개입니다.
 						</div>
 					</div>
 					
@@ -142,7 +142,7 @@
 							</span>
 						</div>
 						<div class="cntMentBox-content">
-						오늘 가입한 고객의 수는 <span>${todayApplyCnt }</span>명입니다. 
+						오늘 가입한 고객의 수는 <br> <span>${todayApplyCnt }</span>명입니다. 
 						</div>
 					</div>
 					<div class="cntMentBox" style="grid-column: 2 / 2; grid-row: 2 / 2;">

@@ -53,7 +53,7 @@
 		<jsp:include page="/WEB-INF/views/biz/nav.jsp"/>
 	
 
-	<div class="container" style="margin-left:4%">
+	<div class="container" style="margin-left:6%">
 	
 		<div class="container" style="margin-left: -139px;">
 				<h2 class="tit">내 정보 보기</h2>

@@ -48,7 +48,7 @@
 	<div class="container" style="margin-top: -4%; height: 600px;">
 	
 		<p class="tip-ment">* 모든 항목 필수 입력 사항입니다.</p>
-		<form class="needs-validation" action="modifyPlan" method="post" style="width: 155%" novalidate> 
+		<form class="needs-validation" action="modifyPlan" method="post" style="width: 145%" novalidate> 
 		<input type="hidden" name="planNo" value="${planDetail.planNo }">
 		<table class="table modiPlanTb" style="width: 65%">
 			<tr>

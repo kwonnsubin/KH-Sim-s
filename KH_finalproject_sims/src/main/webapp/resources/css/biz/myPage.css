@@ -78,7 +78,7 @@
 .mini-title{
   margin-top:1%;
   font-weight: bold;
-  font-size: 2.2em; 
+  font-size: 1.9em; 
 }
 .material-symbols-outlined.modify-icon a{
     color: #9d9e9f !important;
@@ -107,6 +107,9 @@
 
 .fade-box:nth-child(5) {
   animation-delay: 1.3s;
+}
+.fade-box:nth-child(6) {
+  animation-delay: 1.6s;
 }
 
 @keyframes fadeInUp {
