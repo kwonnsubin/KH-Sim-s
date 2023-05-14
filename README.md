@@ -96,7 +96,7 @@
 
 ### 1. 사용자
 <details>
-    <summary>메인페이지</summary>
+    <summary>✅ 메인페이지</summary>
     
 ![main-page](https://github.com/kh-finalproject-Sim-s/KH-Sim-s/assets/54164292/64820d1f-da24-4d97-b59d-5dfe24e28264)
     
@@ -448,7 +448,7 @@ Spring Security를 활용하여 로그인 기능을 구현, 비밀번호의 경�
 </div>
 </details>
 
-![채현](https://github.com/kh-finalproject-Sim-s/KH-Sim-s/assets/54164292/056c9200-0caa-4e7f-9f06-539749620c7f)
+![채현수정](https://github.com/kh-finalproject-Sim-s/KH-Sim-s/assets/54164292/32d9d583-2eb2-4e85-a7cf-11fd890e69a2)
 
 
 <details>
