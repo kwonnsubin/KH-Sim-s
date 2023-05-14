@@ -485,6 +485,10 @@ Spring Security를 활용하여 로그인 기능을 구현, 비밀번호의 경�
 
 1. 가입 조건을 모두 선택하지 않고 구매신청 버튼 클릭하면 메시지 출력
 2. 선택한 조건 정보를 세션에 담아서 신청서 작성 페이지로 이동
+    
+<div align="center">
+![가입조건 저장](https://github.com/kh-finalproject-Sim-s/KH-Sim-s/assets/96179832/c4ced2b2-3d27-4f84-a7eb-003388f04ae2)
+</div>
 
 <br><br>
 
@@ -503,9 +507,28 @@ Spring Security를 활용하여 로그인 기능을 구현, 비밀번호의 경�
 4. '룬 알고리즘'으로 유효한 카드번호인지 확인   
 5. 모든 항목을 입력하지 않았을 경우 신청하기 클릭 시 alert
 6. 신청 성공하면 가입 정보 담은 메일 전송, '마이페이지-신청한 요금제'로 이동
+  
+- 자릿수 제한
+<div align="center">
+![자릿수 유효성](https://github.com/kh-finalproject-Sim-s/KH-Sim-s/assets/96179832/685d6f69-f79b-4129-931d-05bd2a4cde2d)
+</div><br>
+    
+- 카드번호 유효성 확인
+<div align="center">
+![카드번호 유효성](https://github.com/kh-finalproject-Sim-s/KH-Sim-s/assets/96179832/7554e189-89c0-4732-809f-9fc1d698d06a)
+</div><br>
     
 <div align="center">
-
+![고객정보와동일](https://github.com/kh-finalproject-Sim-s/KH-Sim-s/assets/96179832/4a12cb1b-c65a-4426-be71-035ca681b579)
+</div>
+    
+- 모든항목 입력 확인
+<div align="center">
+![신청서 모든항목 입력](https://github.com/kh-finalproject-Sim-s/KH-Sim-s/assets/96179832/6bba04f4-3b6f-460d-964e-5c42c51911b0)
+</div>
+    
+<div align="center">
+![가입신청메일](https://github.com/kh-finalproject-Sim-s/KH-Sim-s/assets/96179832/e8c3a8c4-d3c2-4230-8c6d-3e2b78236a5c)
 </div>
     
 </details>
@@ -540,37 +563,6 @@ Spring Security를 활용하여 로그인 기능을 구현, 비밀번호의 경�
     
 <div align="center">
 <img src="https://github.com/kh-finalproject-Sim-s/KH-Sim-s/assets/96179832/d97bc2ba-2693-422e-b01e-1e1f9894bf72">
-</div>
-    
-<br>
-<br>
-<div align="center">
-<img src="https://res.cloudinary.com/dnik5jlzd/image/upload/c_scale,h_10,w_225/v1679302400/readme/%EC%84%A0_vkktmh.png">
-요금제 신청
-<img src="https://res.cloudinary.com/dnik5jlzd/image/upload/c_scale,h_10,w_225/v1679302400/readme/%EC%84%A0_vkktmh.png">
-</div><br>
-
-<div align="center">
-    
-![요금제 신청과정](https://github.com/kh-finalproject-Sim-s/KH-Sim-s/assets/96179832/f64308c3-acb3-4bca-8572-1b4eadb2dd77)
-    
-</div>
-    
-1. 약관에 모두 동의하지 않으면 다음으로 넘어갈 수 없음<br>
-    1-1. 약관에 모두 동의 체크하면 모든 항목에 체크 표시<br>
-    1-2. 모든 동의 항목에 체크하면 모두 동의에 체크 표시<br>
-    1-3. 한 항목이라도 체크하지 않으면 모두 동의에 체크 취소
-2. 가입 조건을 모두 선택하지 않으면 신청 페이지로 넘어갈 수 없음
-3. 선택한 조건 정보를 세션에 담아서 신청서 작성 페이지로 이동
-4. 사용자의 고객 정보가 입력되어 있고 수정 가능
-5. 다음 우편번호 API 사용<br>
-    5-1. 우편번호 찾기 중 입력한 정보와 결과, 상세주소에 입력한 정보를 합하여 주소 저장
-6. 카드납부 혹은 계좌납부를 선택하면 신청한 납부 수단의 정보를 작성할 수 있는 입력폼이 나타남<br>
-    6-1. 
-    
-    
-<div align="center">
-
 </div>
     
 </details>
