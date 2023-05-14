@@ -293,16 +293,6 @@
 			                                    					파일을 선택해주세요
 			                                    				</label>
 			                                    			</div>
-			                                    			<%-- <div class="custom-file">
-			                                    				<input type="file" class="custom-file-input" id="inputGroupFile04" name="Logo_Rename_FileName" value="${applyDetail.logoRenameFilename }>
-			                                    				<label class="custom-file-label" for="inputGroupFile04">
-			                                    					파일을 선택해주세요
-			                                    				</label>
-			                                    			</div> --%>
-			                                    			<!-- <input type="file" name="logo" placeholder="첨부파일" multiple="multiple" onchange="readURL(this);" > -->
-			                                    			<!-- <div class="input-group-append">
-			                                    				<button class="btn btn-primary" type="button">Button</button>
-			                                    			</div> -->
 			                                    		</div>
 			                                   		</c:otherwise>
 			                                    </c:choose>
@@ -429,10 +419,6 @@
 		                                         	</c:otherwise>
 		                                         </c:choose>
 		                                         </div>
-		                                        <%-- <div class="col-sm-5">
-		                                        
-		                                           <input type="text" class="form-control"  name="bizAccPayDate" <c:if test="${cmd eq 'read' }">readonly</c:if> value="${applyDetail.bizAccPayDate}">
-		                                        </div> --%>
 		                                    </div>
 		                           			 <div class="form-group row">
 		                                         <label for="bizTime" class="col-sm-2 col-form-label text-center">영업 시간</label>
@@ -607,9 +593,6 @@
 		                                        		</div>
 		                                        	</c:otherwise>
 		                                        </c:choose>
-		                                        <%-- <div class="col-sm-5">
-		                                            <input type="text" class="form-control"  name="bizZipCode" <c:if test="${cmd eq 'read' }">readonly</c:if> value="${applyDetail.bizZipCode}">
-		                                        </div> --%>
 		                                        <label for="bizLocation" class="col-sm-2 col-form-label text-center">주소</label>
 		                                        <div class="col-sm-4">
 		                                            <input type="text" class="form-control" id="roadAddress"  name="bizLocation" <c:if test="${cmd eq 'read' }">readonly</c:if> value="${applyDetail.bizLocation}">

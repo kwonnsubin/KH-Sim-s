@@ -26,8 +26,8 @@
 													<h5 class="m-b-10">사용자 관리</h5>
 												</div>
 												<ul class="breadcrumb">
-													<li class="breadcrumb-item"><a href=""><i class="feather icon-home"></i></a></li>
-													<li class="breadcrumb-item"><a href=""><i class="breadcrumb-item"></i>사용자 관리</a></li>
+													<li class="breadcrumb-item"><a href="<%=request.getContextPath()%>/admin/dashboard"><i class="feather icon-home"></i></a></li>
+													<li class="breadcrumb-item"><a href="<%=request.getContextPath()%>/admin/userList"><i class="breadcrumb-item"></i>사용자 관리</a></li>
 												</ul>
 											</div>
 										</div>
