@@ -560,6 +560,104 @@ Spring Security를 활용하여 로그인 기능을 구현, 비밀번호의 경�
     
 </details>
 
+<details>
+<summary>✅ 자주묻는질문 </summary>
+<div markdown="1">
+    
+<br>
+<br>
+<div align="center">
+<img src="https://res.cloudinary.com/dnik5jlzd/image/upload/c_scale,h_10,w_225/v1679302400/readme/%EC%84%A0_vkktmh.png">
+자주묻는질문
+<img src="https://res.cloudinary.com/dnik5jlzd/image/upload/c_scale,h_10,w_225/v1679302400/readme/%EC%84%A0_vkktmh.png">
+</div><br>
+    
+<div align="center">
+    
+gif자리
+
+</div>
+
+1. 자주묻는질문의 제목을 캐러셀로 나타냄
+2. 제목 클릭하면 해당 자주묻는질문의 상세보기 페이지로 이동
+    
+    
+</details>
+
+<details>
+<summary>✅ 문의게시판 </summary>
+<div markdown="1">
+    
+<br>
+<br>
+<div align="center">
+<img src="https://res.cloudinary.com/dnik5jlzd/image/upload/c_scale,h_10,w_225/v1679302400/readme/%EC%84%A0_vkktmh.png">
+질문 검색
+<img src="https://res.cloudinary.com/dnik5jlzd/image/upload/c_scale,h_10,w_225/v1679302400/readme/%EC%84%A0_vkktmh.png">
+</div><br>
+    
+<div align="center">
+    
+gif자리
+
+</div>
+
+1. 제목 혹은 내용을 선택하여 원하는 키워드로 검색 가능
+2. 질문 목록을 한 페이지당 5개로 페이징
+3. 질문 상세보기 페이지로 이동하면 조회수 증가
+
+<br>
+<br>
+<div align="center">
+<img src="https://res.cloudinary.com/dnik5jlzd/image/upload/c_scale,h_10,w_225/v1679302400/readme/%EC%84%A0_vkktmh.png">
+질문하기
+<img src="https://res.cloudinary.com/dnik5jlzd/image/upload/c_scale,h_10,w_225/v1679302400/readme/%EC%84%A0_vkktmh.png">
+</div><br>
+    
+<div align="center">
+    
+gif자리
+
+</div>
+
+1. 질문 제목 혹은 내용 모두 입력하지 않으면 alert
+2. 
+
+<br>
+<br>
+<div align="center">
+<img src="https://res.cloudinary.com/dnik5jlzd/image/upload/c_scale,h_10,w_225/v1679302400/readme/%EC%84%A0_vkktmh.png">
+답변/댓글 작성하기, 수정 및 삭제
+<img src="https://res.cloudinary.com/dnik5jlzd/image/upload/c_scale,h_10,w_225/v1679302400/readme/%EC%84%A0_vkktmh.png">
+</div><br>
+    
+<div align="center">
+    
+gif자리
+
+</div>
+
+1. 
+
+<br>
+<br>
+<div align="center">
+<img src="https://res.cloudinary.com/dnik5jlzd/image/upload/c_scale,h_10,w_225/v1679302400/readme/%EC%84%A0_vkktmh.png">
+내 질문/답변 조회, 수정 및 삭제
+<img src="https://res.cloudinary.com/dnik5jlzd/image/upload/c_scale,h_10,w_225/v1679302400/readme/%EC%84%A0_vkktmh.png">
+</div><br>
+    
+<div align="center">
+    
+gif자리
+
+</div>
+
+1. 
+    
+    
+</details>
+
 ---
 
 ### 2. 통신사
