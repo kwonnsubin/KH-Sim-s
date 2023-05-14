@@ -486,9 +486,7 @@ Spring Security를 활용하여 로그인 기능을 구현, 비밀번호의 경�
 1. 가입 조건을 모두 선택하지 않고 구매신청 버튼 클릭하면 메시지 출력
 2. 선택한 조건 정보를 세션에 담아서 신청서 작성 페이지로 이동
     
-<div align="center">
 ![가입조건 저장](https://github.com/kh-finalproject-Sim-s/KH-Sim-s/assets/96179832/c4ced2b2-3d27-4f84-a7eb-003388f04ae2)
-</div>
 
 <br><br>
 
@@ -509,27 +507,19 @@ Spring Security를 활용하여 로그인 기능을 구현, 비밀번호의 경�
 6. 신청 성공하면 가입 정보 담은 메일 전송, '마이페이지-신청한 요금제'로 이동
   
 - 자릿수 제한
-<div align="center">
 ![자릿수 유효성](https://github.com/kh-finalproject-Sim-s/KH-Sim-s/assets/96179832/685d6f69-f79b-4129-931d-05bd2a4cde2d)
-</div><br>
     
 - 카드번호 유효성 확인
-<div align="center">
 ![카드번호 유효성](https://github.com/kh-finalproject-Sim-s/KH-Sim-s/assets/96179832/7554e189-89c0-4732-809f-9fc1d698d06a)
-</div><br>
     
-<div align="center">
+- 고객정보 가져오기
 ![고객정보와동일](https://github.com/kh-finalproject-Sim-s/KH-Sim-s/assets/96179832/4a12cb1b-c65a-4426-be71-035ca681b579)
-</div>
     
 - 모든항목 입력 확인
-<div align="center">
 ![신청서 모든항목 입력](https://github.com/kh-finalproject-Sim-s/KH-Sim-s/assets/96179832/6bba04f4-3b6f-460d-964e-5c42c51911b0)
-</div>
     
-<div align="center">
+- 가입신청 성공 
 ![가입신청메일](https://github.com/kh-finalproject-Sim-s/KH-Sim-s/assets/96179832/e8c3a8c4-d3c2-4230-8c6d-3e2b78236a5c)
-</div>
     
 </details>
 
@@ -560,6 +550,9 @@ Spring Security를 활용하여 로그인 기능을 구현, 비밀번호의 경�
     4-1. 지원 통신망은 해당 통신사의 요금제에서 통신망 정보 가져옴
 5. 통신사 리뷰의 평균 별점과 개수, 최대 3개의 리뷰 출력<br>
     5-1. 리뷰 개수 또는 각 리뷰 박스를 클릭하면 통신사 페이지의 리뷰 위치로 스크롤 이동
+    
+- 찜 기능
+![찜하기](https://github.com/kh-finalproject-Sim-s/KH-Sim-s/assets/96179832/d7133a0c-c031-4609-8e88-d69ceef53809)
     
 <div align="center">
 <img src="https://github.com/kh-finalproject-Sim-s/KH-Sim-s/assets/96179832/d97bc2ba-2693-422e-b01e-1e1f9894bf72">
