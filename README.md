@@ -608,13 +608,18 @@ Spring Security를 활용하여 로그인 기능을 구현, 비밀번호의 경�
 2. 질문 목록을 한 페이지당 5개로 페이징
 3. 질문 상세보기 페이지로 이동하면 조회수 증가
     
+- 조회수 증가 처리
 ![조회수 증가](https://github.com/kh-finalproject-Sim-s/KH-Sim-s/assets/96179832/c3666b8e-b1ec-47d9-a06c-763497a8038d)
 <br>
+- 질문 작성 정보
 ![질문 정보](https://github.com/kh-finalproject-Sim-s/KH-Sim-s/assets/96179832/91f7fa34-9b43-4fe0-bd62-a42e2e50dbe0)
 <br>
+- 답변 작성자
 ![답변 작성자](https://github.com/kh-finalproject-Sim-s/KH-Sim-s/assets/96179832/93840638-3ddd-45f6-b290-f5d4da9599ce)
 <br>
+- 줄바꿈 처리
 ![줄바꿈 처리](https://github.com/kh-finalproject-Sim-s/KH-Sim-s/assets/96179832/4058839a-2f12-4892-bed4-8a72893a4371)
+<br>
 - 답변 컬렉션맵
 ![답변 컬렉션맵](https://github.com/kh-finalproject-Sim-s/KH-Sim-s/assets/96179832/a14914fc-fe3a-47e7-9a2c-5b72c4d2148f)
 
@@ -634,7 +639,6 @@ Spring Security를 활용하여 로그인 기능을 구현, 비밀번호의 경�
 </div>
 
 1. 질문 제목 혹은 내용 모두 입력하지 않으면 alert
-2. 
     
 ![질문하기](https://github.com/kh-finalproject-Sim-s/KH-Sim-s/assets/96179832/2f3c3239-e3c0-416d-bcfa-3b35827d86d2)
 
@@ -653,9 +657,15 @@ Spring Security를 활용하여 로그인 기능을 구현, 비밀번호의 경�
 
 </div>
 
-1. 
+1. 답변, 댓글 작성 시 내용이 없으면 alert
+2. 답변, 댓글 수정 시 비어있거나 수정할 내용이 없으면 alert
+3. 수정 버튼을 클릭하면 기존 답변/댓글 자리에 수정 input이 나타남.   
+    3-1. 다시 수정 버튼 클릭하면 돌아옴
     
+- 답변, 댓글 유효성 체크
 ![답변,댓글 작성 유효성](https://github.com/kh-finalproject-Sim-s/KH-Sim-s/assets/96179832/c98cfa30-f72d-4e89-8383-6e18cb7f42b8)
+
+- 답변 수정
 ![답변 수정창](https://github.com/kh-finalproject-Sim-s/KH-Sim-s/assets/96179832/8bb4949e-ddd8-4181-8f78-7fdd892a1a96)
     
 
@@ -673,7 +683,10 @@ Spring Security를 활용하여 로그인 기능을 구현, 비밀번호의 경�
    
 </div>
 
-1. 
+1. 내가 작성한 질문의 제목과 답변수 목록 출력
+2. 제목 클릭하면 해당 질문 상세보기 페이지로 이동
+3. 내가 작성한 답변 목록 출력
+4. 내가 작성한 질문/답변의 수정 및 삭제 가능
     
     
 </details>
