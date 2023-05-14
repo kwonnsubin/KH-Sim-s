@@ -610,16 +610,16 @@ Spring Security를 활용하여 로그인 기능을 구현, 비밀번호의 경�
     
 - 조회수 증가 처리
 ![조회수 증가](https://github.com/kh-finalproject-Sim-s/KH-Sim-s/assets/96179832/c3666b8e-b1ec-47d9-a06c-763497a8038d)
-<br>
+
 - 질문 작성 정보
 ![질문 정보](https://github.com/kh-finalproject-Sim-s/KH-Sim-s/assets/96179832/91f7fa34-9b43-4fe0-bd62-a42e2e50dbe0)
-<br>
+
 - 답변 작성자
 ![답변 작성자](https://github.com/kh-finalproject-Sim-s/KH-Sim-s/assets/96179832/93840638-3ddd-45f6-b290-f5d4da9599ce)
-<br>
+
 - 줄바꿈 처리
 ![줄바꿈 처리](https://github.com/kh-finalproject-Sim-s/KH-Sim-s/assets/96179832/4058839a-2f12-4892-bed4-8a72893a4371)
-<br>
+
 - 답변 컬렉션맵
 ![답변 컬렉션맵](https://github.com/kh-finalproject-Sim-s/KH-Sim-s/assets/96179832/a14914fc-fe3a-47e7-9a2c-5b72c4d2148f)
 
