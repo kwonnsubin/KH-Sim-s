@@ -452,7 +452,66 @@ Spring Security를 활용하여 로그인 기능을 구현, 비밀번호의 경�
 
 
 <details>
-<summary>✅ 요금제 상세 / 신청 </summary>
+<summary>✅ 요금제 신청하기 </summary>
+<div markdown="1">
+    
+<br>
+<br>
+
+<div align="center">
+    
+![요금제 신청과정](https://github.com/kh-finalproject-Sim-s/KH-Sim-s/assets/96179832/f64308c3-acb3-4bca-8572-1b4eadb2dd77)
+    
+</div><br>
+
+<div align="center">
+<img src="https://res.cloudinary.com/dnik5jlzd/image/upload/c_scale,h_10,w_225/v1679302400/readme/%EC%84%A0_vkktmh.png">
+약관 동의
+<img src="https://res.cloudinary.com/dnik5jlzd/image/upload/c_scale,h_10,w_225/v1679302400/readme/%EC%84%A0_vkktmh.png">
+</div><br>
+    
+1. 약관에 모두 동의하지 않고 다음 버튼 클릭하면 메시지 출력
+2. '약관에 모두 동의' 체크하면 모든 항목에 체크 표시   
+3. 모든 동의 항목에 체크하면 모두 동의에 체크 표시   
+4. 한 항목이라도 체크하지 않으면 모두 동의에 체크 취소
+
+<br><br>
+
+<div align="center">
+<img src="https://res.cloudinary.com/dnik5jlzd/image/upload/c_scale,h_10,w_225/v1679302400/readme/%EC%84%A0_vkktmh.png">
+가입 조건 선택
+<img src="https://res.cloudinary.com/dnik5jlzd/image/upload/c_scale,h_10,w_225/v1679302400/readme/%EC%84%A0_vkktmh.png">
+</div><br>
+
+1. 가입 조건을 모두 선택하지 않고 구매신청 버튼 클릭하면 메시지 출력
+2. 선택한 조건 정보를 세션에 담아서 신청서 작성 페이지로 이동
+
+<br><br>
+
+<div align="center">
+<img src="https://res.cloudinary.com/dnik5jlzd/image/upload/c_scale,h_10,w_225/v1679302400/readme/%EC%84%A0_vkktmh.png">
+가입 신청서 작성
+<img src="https://res.cloudinary.com/dnik5jlzd/image/upload/c_scale,h_10,w_225/v1679302400/readme/%EC%84%A0_vkktmh.png">
+</div><br>
+
+1. 사용자의 고객 정보가 입력되어 있고 수정 가능
+2. 다음 우편번호 API 사용   
+    2-1. 입력한 정보와 우편번호 찾기 결과, 상세주소에 입력한 정보를 더하여 주소 저장
+3. input마다 입력할 수 있는 문자 혹은 길이 제한
+3. 카드납부 혹은 계좌납부를 선택하면 신청한 납부 수단의 정보를 작성할 수 있는 입력폼이 나타남   
+    3-1. '고객정보와 동일' 체크하면 사용자 정보 자동완성
+4. '룬 알고리즘'으로 유효한 카드번호인지 확인   
+5. 모든 항목을 입력하지 않았을 경우 신청하기 클릭 시 alert
+6. 신청 성공하면 가입 정보 담은 메일 전송, '마이페이지-신청한 요금제'로 이동
+    
+<div align="center">
+
+</div>
+    
+</details>
+
+<details>
+<summary>✅ 요금제 상세페이지 </summary>
 <div markdown="1">
     
 <br>
