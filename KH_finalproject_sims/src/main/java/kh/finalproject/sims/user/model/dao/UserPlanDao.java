@@ -24,10 +24,12 @@ public class UserPlanDao {
 		return session.selectOne("plan.getPlanByNo", planNo);
 	}
 
+	// 찜추가
 	public int insertLike(LikeVo lvo) throws Exception {
 		return session.insert("plan.insertLike", lvo);
 	}
 
+	// 찜삭제
 	public int deleteLike(int planNo, String userId) throws Exception {
 		Map<String, Object> map = new HashMap<String, Object>();
 		map.put("planNo", planNo);
@@ -35,6 +37,7 @@ public class UserPlanDao {
 		return session.delete("plan.deleteLike", map);
 	}
 
+	// 찜조회
 	public LikeVo getLikeByPlanWithUser(int planNo, String userId) throws Exception {
 		Map<String, Object> map = new HashMap<String, Object>();
 		map.put("planNo", planNo);

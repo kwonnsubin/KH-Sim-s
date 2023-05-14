@@ -97,12 +97,12 @@
 						<tr>
 							<td>배송지 주소</td>
 							<td class="lh-lg">
-								<input type="text" id="sample6_postcode" placeholder="우편번호"
+								<input type="text" id="postcode" placeholder="우편번호"
 									oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');">
-								<input type="button" onclick="sample6_execDaumPostcode()" value="우편번호 찾기" class="btn btn-sm"><br>
-								<input type="text" id="sample6_address" placeholder="주소" style="min-width: 55%"> 
-								<input type="text" id="sample6_extraAddress" placeholder="참고항목" style="min-width: 44%"><br>
-								<input type="text" id="sample6_detailAddress" placeholder="상세주소">
+								<input type="button" onclick="daumPostcode()" value="우편번호 찾기" class="btn btn-sm"><br>
+								<input type="text" id="input_address" placeholder="주소" style="min-width: 55%"> 
+								<input type="text" id="input_extraAddress" placeholder="참고항목" style="min-width: 44%"><br>
+								<input type="text" id="detailAddress" placeholder="상세주소">
 							</td>
 						</tr>
 					    <tr>
@@ -286,7 +286,8 @@
 							<tr>
 								<td>계좌번호</td>
 								<td>
-									<input id="accNumber" type="text" placeholder="숫자만 입력해 주세요">
+									<input id="accNumber" type="text" placeholder="숫자만 입력해 주세요"
+									 oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');">
 									<div class="acc-alert"></div>
 								</td>
 							</tr>
@@ -362,7 +363,7 @@
 		
 		
 		// 우편번호
-		function sample6_execDaumPostcode() {
+		function daumPostcode() {
 			new daum.Postcode({
 				oncomplete: function(data) {
 					// 팝업에서 검색결과 항목을 클릭했을때 실행할 코드를 작성하는 부분.
@@ -395,29 +396,29 @@
 					        extraAddr = ' (' + extraAddr + ')';
 					    }
 					    // 조합된 참고항목을 해당 필드에 넣는다.
-					    document.getElementById("sample6_extraAddress").value = extraAddr;
+					    document.getElementById("input_extraAddress").value = extraAddr;
 					
 					} else {
-					    document.getElementById("sample6_extraAddress").value = '';
+					    document.getElementById("input_extraAddress").value = '';
 					}
 					
 					// 우편번호와 주소 정보를 해당 필드에 넣는다.
-					document.getElementById('sample6_postcode').value = data.zonecode;
-					document.getElementById("sample6_address").value = addr;
+					document.getElementById('postcode').value = data.zonecode;
+					document.getElementById("input_address").value = addr;
 					// 커서를 상세주소 필드로 이동한다.
-					document.getElementById("sample6_detailAddress").focus();
+					document.getElementById("detailAddress").focus();
 				}
 			}).open();
 		}
 		
-		// 카드정보
+		// 고객정보와 동일(카드)
 		const userEqCard = document.getElementById('userEqCard');
 		const cardHolder = document.getElementById('cardHolder');
 		
 		userEqCard.addEventListener('change', () => {
 			if (userEqCard.checked) {
-				cardHolder.value = '${user.userName}';
-				$('#cardSsn1').val(ssn1);
+				cardHolder.value = '${user.userName}'; // 카드 명의
+				$('#cardSsn1').val(ssn1);	// 카드 소유자 주민등록번호
 				$('#cardSsn2').val(ssn2);
 			} else {
 				cardHolder.value = '';
@@ -426,14 +427,14 @@
 			}
 		});
 		
-		// 예금정보
+		// 고객정보와 동일(계좌)
 		const userEqAccount = document.getElementById('userEqAccount');
 		const accHolder = document.getElementById('accHolder');
 		
 		userEqAccount.addEventListener('change', () => {
 			if (userEqAccount.checked) {
-				accHolder.value = '${user.userName}';
-				$('#accountSsn1').val(ssn1);
+				accHolder.value = '${user.userName}';	// 예금 명의
+				$('#accountSsn1').val(ssn1);	// 예금주 주민등록번호
 				$('#accountSsn2').val(ssn2);
 			} else {
 				accHolder.value = '';
@@ -620,7 +621,7 @@
 		        	const planPay = $('input[name="planPay"]:checked').val();
 		            if (planPay == '1') {
 			            if ($('select[name="currentTelecom"]').val() === '' || $('input[name="cardPlanBill"]').val() === '' 
-			                    || $('#sample6_postcode').val() === '' || $('#sample6_address').val() === '' || $('#cardHolder').val() === ''
+			                    || $('#postcode').val() === '' || $('#input_address').val() === '' || $('#cardHolder').val() === ''
 			                    || $('#cardSsn1').val() === '' || $('#cardSsn2').val() === '' 
 			                    || $('input[name="card1"]').val() === '' || $('input[name="card2"]').val() === ''
 			                    || $('input[name="card3"]').val() === '' || $('input[name="card4"]').val() === ''
@@ -644,8 +645,8 @@
 				            const orderData = parseInt($('input[name="orderData"]').val());
 				            const orderVoice = parseInt($('input[name="orderVoice"]').val());
 				            const orderMessage = parseInt($('input[name="orderMessage"]').val());
-				            const orderAddress = '[' + $('#sample6_postcode').val() + ']' + $('#sample6_address').val() + ' '
-				            	+ $('#sample6_detailAddress').val() + $('#sample6_extraAddress').val();
+				            const orderAddress = '[' + $('#postcode').val() + ']' + $('#input_address').val() + ' '
+				            	+ $('#detailAddress').val() + $('#input_extraAddress').val();
 				            const cardHolder = $('#cardHolder').val();
 				            const cardSsn = $('#cardSsn1').val() + '-' + $('#cardSsn2').val();
 				            const cardRelationship = $('select[name="cardRelationship"]').val();
@@ -679,7 +680,6 @@
 				                    'cardExpiration': cardExpiration,
 				                },
 				                success: function(result) {
-				                	alert("요금제 신청 성공");
 				                	window.location.href = '${cpath}/mypage/myplan';
 				                	// 문자 보내기
 /* 				                	$.ajax({
@@ -715,7 +715,7 @@
 			            }
 		            } else if (planPay == '2') {
 			            if ($('select[name="currentTelecom"]').val() === '' || $('input[name="accPlanBill"]').val() === '' 
-			            		|| $('#sample6_postcode').val() === '' || $('#sample6_address').val() === '' 
+			            		|| $('#postcode').val() === '' || $('#input_address').val() === '' 
 			            		|| $('#accHolder').val() === ''
 			                    || $('#accountSsn1').val() === '' || $('#accountSsn2').val() === '' 
 			                    || $('select[name="accRelationship"]').val() === ''
@@ -739,8 +739,8 @@
 				            const orderData = parseInt($('input[name="orderData"]').val());
 				            const orderVoice = parseInt($('input[name="orderVoice"]').val());
 				            const orderMessage = parseInt($('input[name="orderMessage"]').val());
-				            const orderAddress = '[' + $('#sample6_postcode').val() + ']' + $('#sample6_address').val() + ' '
-				            	+ $('#sample6_detailAddress').val() + $('#sample6_extraAddress').val();
+				            const orderAddress = '[' + $('#postcode').val() + ']' + $('#input_address').val() + ' '
+				            	+ $('#detailAddress').val() + $('#input_extraAddress').val();
 					        const accHolder = $('#accHolder').val();
 				            const accSsn = $('#accountSsn1').val() + '-' + $('#accountSsn2').val();
 				            const accRelationship = $('select[name="accRelationship"]').val();
@@ -773,7 +773,6 @@
 				                    'accBank': accBank
 				                },
 				                success: function(result) {
-				                	alert("요금제 신청 성공");
 				                	window.location.href = '${cpath}/mypage/myplan';
 				                	// 문자 보내기
 /* 				                	$.ajax({

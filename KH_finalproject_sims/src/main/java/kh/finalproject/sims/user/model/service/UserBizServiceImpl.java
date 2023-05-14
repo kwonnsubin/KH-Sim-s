@@ -27,7 +27,7 @@ public class UserBizServiceImpl implements UserBizService {
 		return dao.getNetListByBizName(bizName);
 	}
 
-	// 통신사 id로 리뷰 count
+	// 통신사 id로 리뷰 개수
 	@Override
 	public int getCountReviewByBizId(String bizId) throws Exception {
 		return dao.getCountReviewByBizId(bizId);
