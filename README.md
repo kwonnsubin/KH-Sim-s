@@ -1228,7 +1228,7 @@ Spring Security를 활용하여 로그인 기능을 구현, 비밀번호의 경�
 
 ### 5. ERD
 
-![Copy of KH-Sim-s](https://github.com/kh-finalproject-Sim-s/KH-Sim-s/assets/54164292/50efbc3b-ff09-4687-bac5-52fd8e26b530)
+![ERD 최종 정말로](https://github.com/kh-finalproject-Sim-s/KH-Sim-s/assets/54164292/ed3ab4c9-eca2-4276-b7f3-a98f381ea6c0)
 
 <br>
 
