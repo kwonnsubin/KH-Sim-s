@@ -96,7 +96,7 @@
 
 ### 1. 사용자
 <details>
-    <summary>메인페이지</summary>
+    <summary>✅ 메인페이지</summary>
     
 ![main-page](https://github.com/kh-finalproject-Sim-s/KH-Sim-s/assets/54164292/64820d1f-da24-4d97-b59d-5dfe24e28264)
     
@@ -448,7 +448,7 @@ Spring Security를 활용하여 로그인 기능을 구현, 비밀번호의 경�
 </div>
 </details>
 
-![채현](https://github.com/kh-finalproject-Sim-s/KH-Sim-s/assets/54164292/056c9200-0caa-4e7f-9f06-539749620c7f)
+![채현수정](https://github.com/kh-finalproject-Sim-s/KH-Sim-s/assets/54164292/32d9d583-2eb2-4e85-a7cf-11fd890e69a2)
 
 
 <details>
@@ -574,13 +574,15 @@ Spring Security를 활용하여 로그인 기능을 구현, 비밀번호의 경�
     
 <div align="center">
     
-gif자리
+![자주묻는질문](https://github.com/kh-finalproject-Sim-s/KH-Sim-s/assets/96179832/665092f7-a48a-428d-9e15-cd1b94d07905)
 
 </div>
 
 1. 자주묻는질문의 제목을 캐러셀로 나타냄
 2. 제목 클릭하면 해당 자주묻는질문의 상세보기 페이지로 이동
     
+- 컨트롤러에서 줄바꿈 처리
+![자주묻는질문 줄바꿈](https://github.com/kh-finalproject-Sim-s/KH-Sim-s/assets/96179832/815a94c3-a6e0-4f8d-82ec-01005b32b549)
     
 </details>
 
@@ -598,13 +600,29 @@ gif자리
     
 <div align="center">
     
-gif자리
+![문의게시판 검색](https://github.com/kh-finalproject-Sim-s/KH-Sim-s/assets/96179832/74fcc894-60b5-4a5c-9c4d-3d5d5388458c)
 
 </div>
 
 1. 제목 혹은 내용을 선택하여 원하는 키워드로 검색 가능
 2. 질문 목록을 한 페이지당 5개로 페이징
 3. 질문 상세보기 페이지로 이동하면 조회수 증가
+    
+- 조회수 증가 처리
+![조회수 증가](https://github.com/kh-finalproject-Sim-s/KH-Sim-s/assets/96179832/c3666b8e-b1ec-47d9-a06c-763497a8038d)
+
+- 질문 작성 정보
+![질문 정보](https://github.com/kh-finalproject-Sim-s/KH-Sim-s/assets/96179832/91f7fa34-9b43-4fe0-bd62-a42e2e50dbe0)
+
+- 답변 작성자
+![답변 작성자](https://github.com/kh-finalproject-Sim-s/KH-Sim-s/assets/96179832/93840638-3ddd-45f6-b290-f5d4da9599ce)
+
+- 줄바꿈 처리
+![줄바꿈 처리](https://github.com/kh-finalproject-Sim-s/KH-Sim-s/assets/96179832/4058839a-2f12-4892-bed4-8a72893a4371)
+
+- 답변 컬렉션맵
+![답변 컬렉션맵](https://github.com/kh-finalproject-Sim-s/KH-Sim-s/assets/96179832/a14914fc-fe3a-47e7-9a2c-5b72c4d2148f)
+
 
 <br>
 <br>
@@ -616,12 +634,14 @@ gif자리
     
 <div align="center">
     
-gif자리
+![질문하기](https://github.com/kh-finalproject-Sim-s/KH-Sim-s/assets/96179832/62b43b47-fbdc-45b3-a9f4-f316b1e7f170)
 
 </div>
 
 1. 질문 제목 혹은 내용 모두 입력하지 않으면 alert
-2. 
+    
+![질문하기](https://github.com/kh-finalproject-Sim-s/KH-Sim-s/assets/96179832/2f3c3239-e3c0-416d-bcfa-3b35827d86d2)
+
 
 <br>
 <br>
@@ -633,11 +653,21 @@ gif자리
     
 <div align="center">
     
-gif자리
+![답변,댓글 작성,수정,삭제](https://github.com/kh-finalproject-Sim-s/KH-Sim-s/assets/96179832/6b887fae-2c42-486e-9c00-f4dc700fa1b8)
 
 </div>
 
-1. 
+1. 답변, 댓글 작성 시 내용이 없으면 alert
+2. 답변, 댓글 수정 시 비어있거나 수정할 내용이 없으면 alert
+3. 수정 버튼을 클릭하면 기존 답변/댓글 자리에 수정 input이 나타남.   
+    3-1. 다시 수정 버튼 클릭하면 돌아옴
+    
+- 답변, 댓글 유효성 체크
+![답변,댓글 작성 유효성](https://github.com/kh-finalproject-Sim-s/KH-Sim-s/assets/96179832/c98cfa30-f72d-4e89-8383-6e18cb7f42b8)
+
+- 답변 수정
+![답변 수정창](https://github.com/kh-finalproject-Sim-s/KH-Sim-s/assets/96179832/8bb4949e-ddd8-4181-8f78-7fdd892a1a96)
+    
 
 <br>
 <br>
@@ -649,11 +679,14 @@ gif자리
     
 <div align="center">
     
-gif자리
-
+![내질문답변 수정,삭제](https://github.com/kh-finalproject-Sim-s/KH-Sim-s/assets/96179832/fbe896cf-97d5-43b5-b608-08be7c351aae)
+   
 </div>
 
-1. 
+1. 내가 작성한 질문의 제목과 답변수 목록 출력
+2. 제목 클릭하면 해당 질문 상세보기 페이지로 이동
+3. 내가 작성한 답변 목록 출력
+4. 내가 작성한 질문/답변의 수정 및 삭제 가능
     
     
 </details>
@@ -1195,7 +1228,7 @@ gif자리
 
 ### 5. ERD
 
-![Copy of KH-Sim-s](https://github.com/kh-finalproject-Sim-s/KH-Sim-s/assets/54164292/50efbc3b-ff09-4687-bac5-52fd8e26b530)
+![ERD 최종 정말로](https://github.com/kh-finalproject-Sim-s/KH-Sim-s/assets/54164292/ed3ab4c9-eca2-4276-b7f3-a98f381ea6c0)
 
 <br>
 
