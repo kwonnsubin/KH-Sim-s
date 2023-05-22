@@ -882,8 +882,13 @@ Spring Security를 활용하여 로그인 기능을 구현, 비밀번호의 경�
 </div>
     
 1. apexcharts 라이브러리를 사용하여 차트를 생성하고 ajax를 통해 차트 데이터를 동적으로 가져옴.
+
+<img width="681" alt="스크린샷 2023-05-22 오전 11 17 34" src="https://github.com/kwonnsubin/KH-Sim-s/assets/108276943/e4e69934-2b8e-477d-a382-f4f0386bf939">
+    
+<img width="744" alt="스크린샷 2023-05-22 오전 11 24 53" src="https://github.com/kwonnsubin/KH-Sim-s/assets/108276943/78967dec-c5f9-4632-a630-a42dfeadc3ba">
+    
 2. 리뷰, 질문/답변, 신고글은 rownum 조건을 통해 최신글 3개까지만 보여지도록 함.
-3. 게시글의 제목이 23자보다 긴 경우에는 <c:choose>, <c:when>울 사용하여 조건을 검사하고 fn:substring() 함수를 사용하여 게시글 제목의 일부분만 출력하도록함. 
+3. 게시글의 제목이 23자보다 긴 경우에는 <c:choose>, <c:when> 사용하여 조건을 검사하고 fn:substring() 함수를 사용하여 게시글 제목의 일부분만 출력하도록함. 
       
 ![대시보드](https://github.com/kh-finalproject-Sim-s/KH-Sim-s/assets/108276943/711e9897-6271-4aed-b85d-c4e224dafd44)
     
@@ -907,10 +912,19 @@ Spring Security를 활용하여 로그인 기능을 구현, 비밀번호의 경�
     
 1. 신고리뷰 목록에서 미확인/삭제/반려 버튼을 누르면 해당 상태의 목록만 따로 조회 가능
 - '미확인', '삭제', '반려' 버튼 클릭 시 reportStatus 값(0,1,2)을 설정하고, reportStatusForm을 제출
-- 각각의 버튼은 활성화된 상태와 비활성화된 상태가 있으며, 활성화된 상태일 때 해당 버튼에 'active'가 추가되어 표시
+- 선택된 값에 따라 라디오 버튼에 'active' 클래스를 추가하여 해당 버튼이 활성회됨을 시각적으로 표시
+
+<img width="761" alt="스크린샷 2023-05-22 오전 11 41 56" src="https://github.com/kwonnsubin/KH-Sim-s/assets/108276943/34d2f21a-ed69-4632-b46e-344d03c4f8fe">
+    
+<img width="832" alt="스크린샷 2023-05-22 오전 11 34 51" src="https://github.com/kwonnsubin/KH-Sim-s/assets/108276943/2276c444-01f2-4fa9-a387-22f84ccbafa6">
+   
 2. 3일 이내에 신고된 리뷰는 새로운 리뷰로 간주되어, 목록에서 해당 리뷰 옆에 new 아이콘이 표시
+
+<img width="1124" alt="스크린샷 2023-05-22 오전 11 45 32" src="https://github.com/kwonnsubin/KH-Sim-s/assets/108276943/bdd91021-0f3c-4d07-a778-aaeeb06efbf1">    
+    
 3. 처리가 '미확인'인 리뷰는 목록에서 빨간색 글자로 표시
 4. 검색 옵션을 사용하여 특정 키워드와 일치하는 리뷰를 검색. 검색어를 입력하면 해당 검색어가 포함된 리뷰가 목록에서 필터링
+5. 목록을 한 페이지당 10개로 페이징
 
 <div align="center">
 <img src="https://res.cloudinary.com/dnik5jlzd/image/upload/c_scale,h_10,w_225/v1679302400/readme/%EC%84%A0_vkktmh.png">
@@ -924,7 +938,12 @@ Spring Security를 활용하여 로그인 기능을 구현, 비밀번호의 경�
 1. ajax로 신고 리뷰 삭제 또는 반려 처리
 - 삭제/반려 처리 시 "반려(삭제)처리 하시겠습니까?"라는 확인창(confirm) 표시
 - 확인을 누르면 처리상태가 '반려' 또는 '삭제'로 바뀐다.
+- 이때, 삭제 시 해당 리뷰는 실제로 삭제되는것이 아닌 사용자 페이지에서 숨김처리가 된다.
 
+<img width="663" alt="스크린샷 2023-05-22 오전 11 55 08" src="https://github.com/kwonnsubin/KH-Sim-s/assets/108276943/5b9c3654-80f9-4b4b-8795-203009179fd5">
+    
+<img width="746" alt="스크린샷 2023-05-22 오전 11 56 47" src="https://github.com/kwonnsubin/KH-Sim-s/assets/108276943/b498cac9-ac3b-4be6-809a-562469916287">    
+    
 </details> 
 
 <details>
@@ -943,6 +962,7 @@ Spring Security를 활용하여 로그인 기능을 구현, 비밀번호의 경�
     
 1. 등록된 문의내역 목록을 조회
 2. 3일 이내에 등록된 문의는 새로운 문의로 간주되어, 목록에서 해당 제목 옆에 new 아이콘이 표시
+3. 목록을 한 페이지당 10개로 페이징
     
 <div align="center">
 <img src="https://res.cloudinary.com/dnik5jlzd/image/upload/c_scale,h_10,w_225/v1679302400/readme/%EC%84%A0_vkktmh.png">
